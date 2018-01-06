@@ -1,0 +1,10 @@
+#ifndef VERSION_HPP
+#define VERSION_HPP
+
+namespace global {
+    static constexpr char version[] = "@PROJECT_VERSION@";
+    static constexpr char git_sha1[] ="@GIT_SHA1@";
+    static constexpr char git_date[] ="@GIT_DATE@";
+}
+
+#endif // VERSION_HPP

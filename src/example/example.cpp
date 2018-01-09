@@ -1,22 +1,19 @@
 /*  This file is part of mastodon-cpp.
- *  Copyright © 2018 tastytea <tastytea@tastytea.de>
- *                                                                   
- *  This program is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, version 3.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <iostream>
 #include "../mastodon-cpp.hpp"
 
 int main(int argc, char *argv[])
 {
-    //
+    if (argc < 3)
+    {
+        std::cerr << "usage: " << argv[0] << " <instance> <access token>\n";
+        return 1;
+    }
+
+    Mastodon::API masto(argv[1], argv[2]);
+
+    std::cout << masto.get(Mastodon::API::v1::accounts_id,
+                           "44897") << '\n';
 }

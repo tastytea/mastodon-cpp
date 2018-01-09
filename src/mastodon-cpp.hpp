@@ -17,10 +17,81 @@
 #ifndef MASTODON_CPP_HPP
 #define MASTODON_CPP_HPP
 
-class Mastodon
+#include <string>
+#include <vector>
+#include <cstdint>
+#include <boost/asio.hpp>
+#include <boost/asio/ssl.hpp>
+
+namespace Mastodon
 {
-public:
-    Mastodon();
-};
+    class API
+    {
+    public:
+        enum class v1
+        {
+            accounts_id,
+            accounts_verify_credentials,
+            accounts_id_followers,
+            accounts_id_following,
+            accounts_id_statuses,
+            accounts_relationships,
+            accounts_search
+        };
+
+        explicit API(const std::string &instance,
+                     const std::string &access_token);
+        // Select one of the predefined methods.
+        const std::string get(const Mastodon::API::v1 &method);
+        const std::string get(const Mastodon::API::v1 &method,
+                              const std::vector<std::string> &parameters);
+        const std::string get(const Mastodon::API::v1 &method,
+                              const std::string &argument,
+                              const std::vector<std::string> &parameters);
+        const std::string get(const Mastodon::API::v1 &method,
+                              const std::string &argument);
+        // Supply a custom method as string.
+        const std::string get(const std::string &method);
+
+        const void set_useragent(const std::string &useragent);
+
+    private:
+        const std::string _instance;
+        const std::string _access_token;
+        std::string _useragent;
+
+        class http
+        {
+        public:
+            enum class method
+            {
+                GET,
+                PATCH,
+                POST,
+                DELETE
+            };
+
+            explicit http(const std::string &instance,
+                          const std::string &access_token,
+                          const std::string &useragent);
+            const std::uint16_t request_sync(const method &meth,
+                                             const std::string &path,
+                                             std::string &answer);
+            const std::uint16_t request_sync(const method &meth,
+                                             const std::string &path,
+                                             const std::string &data,
+                                             std::string &answer);
+
+        private:
+            const std::string _instance;
+            const std::string _access_token;
+            const std::string _useragent;
+            boost::asio::ssl::context _ctx;
+            boost::asio::io_service _io_service;
+            boost::asio::ip::tcp::resolver _resolver;
+            boost::asio::ssl::stream<boost::asio::ip::tcp::socket> _socket;
+        } _http;
+    };
+}
 
 #endif

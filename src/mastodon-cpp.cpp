@@ -14,12 +14,23 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <iostream>
+#include <string>
+#include "version.hpp"
 #include "mastodon-cpp.hpp"
 
-using std::cout;
+using namespace Mastodon;
+using std::string;
 
-Mastodon::Mastodon()
+API::API(const string &instance, const string &access_token)
+: _instance(instance)
+, _access_token(access_token)
+, _useragent(string("mastodon-cpp/") + global::version)
+, _http(instance, access_token, _useragent)
 {
-    cout << "Test.\n";
+    //
+}
+
+const void API::set_useragent(const std::string &useragent)
+{
+    _useragent = useragent;
 }

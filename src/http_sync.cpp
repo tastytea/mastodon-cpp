@@ -31,11 +31,11 @@ using boost::asio::ip::tcp;
 namespace ssl = boost::asio::ssl;
 typedef ssl::stream<tcp::socket> ssl_socket;
 
-API::http::http(const string &instance, const string &access_token,
-                const string &useragent)
-: _instance(instance)
+API::http::http(const API &api, const string &instance,
+                const string &access_token)
+: parent(api)
+, _instance(instance)
 , _access_token(access_token)
-, _useragent(useragent)
 , _ctx(ssl::context::tlsv12)
 , _resolver(_io_service)
 , _socket(_io_service, _ctx)
@@ -97,7 +97,7 @@ const std::uint16_t API::http::request_sync(const method &meth,
         request_stream << "Host: " << _instance << "\r\n";
         request_stream << "Accept: */*\r\n";
         request_stream << "Connection: close\r\n";
-        request_stream << "User-Agent: " << _useragent << "\r\n";
+        request_stream << "User-Agent: " << parent.get_useragent() << "\r\n";
         request_stream << "Authorization: Bearer "
                        << _access_token << "\r\n\r\n";
         boost::asio::write(_socket, request);

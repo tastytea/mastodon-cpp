@@ -25,7 +25,7 @@ API::API(const string &instance, const string &access_token)
 : _instance(instance)
 , _access_token(access_token)
 , _useragent(string("mastodon-cpp/") + global::version)
-, _http(instance, access_token, _useragent)
+, _http(*this, instance, access_token)
 {
     //
 }
@@ -33,4 +33,9 @@ API::API(const string &instance, const string &access_token)
 const void API::set_useragent(const std::string &useragent)
 {
     _useragent = useragent;
+}
+
+const std::string API::get_useragent() const
+{
+    return _useragent;
 }

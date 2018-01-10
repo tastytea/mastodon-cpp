@@ -22,74 +22,74 @@
 using namespace Mastodon;
 using std::string;
 using std::cerr;
-const string API::get(const Mastodon::API::v1 &method)
+const string API::get(const Mastodon::API::v1 &call)
 {
     const std::vector<string> v{};
-    return get(method, v);
+    return get(call, v);
 }
 
-const string API::get(const Mastodon::API::v1 &method,
+const string API::get(const Mastodon::API::v1 &call,
                       const std::vector<string> &parameters)
 {
-    string strmethod = "";
-    switch (method)
+    string strcall = "";
+    switch (call)
     {
         case v1::accounts_verify_credentials:
-            strmethod = "/api/v1/accounts/verify_credentials";
+            strcall = "/api/v1/accounts/verify_credentials";
             break;
         default:
-            cerr << "ERROR: Invalid method.\n";
+            cerr << "ERROR: Invalid call.\n";
             break;
     }
 
     string answer;
-    _http.request_sync(http::method::GET, strmethod, answer);
+    _http.request_sync(http::method::GET, strcall, answer);
     return answer;
 }
 
-const string API::get(const Mastodon::API::v1 &method,
+const string API::get(const Mastodon::API::v1 &call,
                       const string &argument)
 {
     const std::vector<string> v;
-    return get(method, argument, v);
+    return get(call, argument, v);
 }
-const string API::get(const Mastodon::API::v1 &method,
+const string API::get(const Mastodon::API::v1 &call,
                       const string &argument,
                       const std::vector<string> &parameters)
 {
-    string strmethod = "";
-    switch (method)
+    string strcall = "";
+    switch (call)
     {
         case v1::accounts_id:
-            strmethod = "/api/v1/accounts/" + argument;
+            strcall = "/api/v1/accounts/" + argument;
             break;
         case v1::accounts_id_followers:
-            strmethod = "/api/v1/accounts/" + argument + "/followers";
+            strcall = "/api/v1/accounts/" + argument + "/followers";
             break;
         case v1::accounts_id_following:
-            strmethod = "/api/v1/accounts/" + argument + "/following";
+            strcall = "/api/v1/accounts/" + argument + "/following";
             break;
         case v1::accounts_id_statuses:
-            strmethod = "/api/v1/accounts/" + argument + "/statuses";
+            strcall = "/api/v1/accounts/" + argument + "/statuses";
             break;
         case v1::accounts_relationships:
-            strmethod = "/api/v1/accounts/relationships?id=" + argument;
+            strcall = "/api/v1/accounts/relationships?id=" + argument;
             break;
         case v1::accounts_search:
-            strmethod = "/api/v1/accounts/search?q=" + argument;
+            strcall = "/api/v1/accounts/search?q=" + argument;
             break;
         default:
-            cerr << "ERROR: Invalid method.\n";
+            cerr << "ERROR: Invalid call.\n";
             return "";
             break;
     }
 
     string answer;
-    _http.request_sync(http::method::GET, strmethod, answer);
+    _http.request_sync(http::method::GET, strcall, answer);
     return answer;
 }
 
-const string API::get(const std::string &method)
+const string API::get(const std::string &call)
 {
-    return method;
+    return call;
 }

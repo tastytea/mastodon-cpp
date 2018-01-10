@@ -42,18 +42,19 @@ namespace Mastodon
         explicit API(const std::string &instance,
                      const std::string &access_token);
         // Select one of the predefined methods.
-        const std::string get(const Mastodon::API::v1 &method);
-        const std::string get(const Mastodon::API::v1 &method,
+        const std::string get(const Mastodon::API::v1 &call);
+        const std::string get(const Mastodon::API::v1 &call,
                               const std::vector<std::string> &parameters);
-        const std::string get(const Mastodon::API::v1 &method,
+        const std::string get(const Mastodon::API::v1 &call,
                               const std::string &argument,
                               const std::vector<std::string> &parameters);
-        const std::string get(const Mastodon::API::v1 &method,
+        const std::string get(const Mastodon::API::v1 &call,
                               const std::string &argument);
-        // Supply a custom method as string.
-        const std::string get(const std::string &method);
+        // Supply a custom call as string.
+        const std::string get(const std::string &call);
 
         const void set_useragent(const std::string &useragent);
+        const std::string get_useragent() const;
 
     private:
         const std::string _instance;
@@ -71,9 +72,8 @@ namespace Mastodon
                 DELETE
             };
 
-            explicit http(const std::string &instance,
-                          const std::string &access_token,
-                          const std::string &useragent);
+            explicit http(const API &api, const std::string &instance,
+                          const std::string &access_token);
             const std::uint16_t request_sync(const method &meth,
                                              const std::string &path,
                                              std::string &answer);
@@ -83,9 +83,9 @@ namespace Mastodon
                                              std::string &answer);
 
         private:
+            const API &parent;
             const std::string _instance;
             const std::string _access_token;
-            const std::string _useragent;
             boost::asio::ssl::context _ctx;
             boost::asio::io_service _io_service;
             boost::asio::ip::tcp::resolver _resolver;

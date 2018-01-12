@@ -21,6 +21,7 @@ All versions below 1.0.0 (SOVERSION 0) are considered insecure, unstable and can
 
 # Usage
     Mastodon::API masto("social.example.com", "access token");
+    std::cout << masto.get(Mastodon::API::v1::timelines_home) << '\n';
     std::cout << masto.get(Mastodon::API::v1::accounts_id, "12345") << '\n';
 
 There is an example in `src/example`.
@@ -30,6 +31,7 @@ There is an example in `src/example`.
     * [ ] Implement all GET methods
     * [ ] Proper error handling
     * [x] Network stuff
+    * [ ] Comprehensive example
  * Version 0.2.0
      * [ ] Implement all PATCH methods
      * [ ] Implement all POST methods
@@ -54,42 +56,59 @@ There is an example in `src/example`.
  * [x] GET /api/v1/accounts/relationships
  * [x] GET /api/v1/accounts/search
  * [ ] POST /api/v1/apps
- * [ ] GET /api/v1/blocks
- * [ ] GET /api/v1/favourites
- * [ ] GET /api/v1/follow_requests
+ * [x] GET /api/v1/blocks
+ * [x] GET /api/v1/domain_blocks
+ * [ ] POST /api/v1/domain_blocks
+ * [ ] DELETE /api/v1/domain_blocks
+ * [x] GET /api/v1/favourites
+ * [x] GET /api/v1/follow_requests
  * [ ] POST /api/v1/follow_requests/:id/authorize
  * [ ] POST /api/v1/follow_requests/:id/reject
  * [ ] POST /api/v1/follows
- * [ ] GET /api/v1/instance
+ * [x] GET /api/v1/instance
+ * [x] GET /api/v1/custom_emojis
+ * [x] GET /api/v1/lists
+ * [x] GET /api/v1/accounts/:id/lists
+ * [x] GET /api/v1/lists/:id/accounts
+ * [x] GET /api/v1/lists/:id
+ * [ ] POST /api/v1/lists
+ * [ ] PUT /api/v1/lists/:id
+ * [ ] DELETE /api/v1/lists/:id
+ * [ ] POST /api/v1/lists/:id/accounts
+ * [ ] DELETE /api/v1/lists/:id/accounts
  * [ ] POST /api/v1/media
- * [ ] GET /api/v1/mutes
- * [ ] GET /api/v1/notifications
- * [ ] GET /api/v1/notifications/:id
+ * [x] GET /api/v1/mutes
+ * [x] GET /api/v1/notifications
+ * [x] GET /api/v1/notifications/:id
  * [ ] POST /api/v1/notifications/clear
- * [ ] GET /api/v1/reports
+ * [ ] POST /api/v1/notifications/dismiss
+ * [x] GET /api/v1/reports
  * [ ] POST /api/v1/reports
- * [ ] GET /api/v1/search
- * [ ] GET /api/v1/statuses/:id
- * [ ] GET /api/v1/statuses/:id/context
- * [ ] GET /api/v1/statuses/:id/card
- * [ ] GET /api/v1/statuses/:id/reblogged_by
- * [ ] GET /api/v1/statuses/:id/favourited_by
+ * [x] GET /api/v1/search
+ * [x] GET /api/v1/statuses/:id
+ * [x] GET /api/v1/statuses/:id/context
+ * [x] GET /api/v1/statuses/:id/card
+ * [x] GET /api/v1/statuses/:id/reblogged_by
+ * [x] GET /api/v1/statuses/:id/favourited_by
  * [ ] POST /api/v1/statuses
  * [ ] DELETE /api/v1/statuses/:id
  * [ ] POST /api/v1/statuses/:id/reblog
  * [ ] POST /api/v1/statuses/:id/unreblog
  * [ ] POST /api/v1/statuses/:id/favourite
  * [ ] POST /api/v1/statuses/:id/unfavourite
- * [ ] GET /api/v1/timelines/home
- * [ ] GET /api/v1/timelines/public
- * [ ] GET /api/v1/timelines/tag/:hashtag
- * [ ] GET /api/v1/timelines/list/:list_id
+ * [ ] POST /api/v1/statuses/:id/pin
+ * [ ] POST /api/v1/statuses/:id/unpin
+ * [ ] POST /api/v1/statuses/:id/mute
+ * [ ] POST /api/v1/statuses/:id/unmute
+ * [x] GET /api/v1/timelines/home
+ * [x] GET /api/v1/timelines/public
+ * [x] GET /api/v1/timelines/tag/:hashtag
+ * [x] GET /api/v1/timelines/list/:list_id
+
+[Full reference](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md)
 
 # Copyright
     Copyright © 2018 tastytea <tastytea@tastytea.de>.
     License GPLv3: GNU GPL version 3 <https://www.gnu.org/licenses/gpl-3.0.html>.
     This program comes with ABSOLUTELY NO WARRANTY. This is free software,
     and you are welcome to redistribute it under certain conditions.
-
-# Bugs & feature requests
-Via [E-Mail](mailto:bugs -AT- tastytea.de) or [XMPP](xmpp:tastytea -AT- tastytea.de?message).

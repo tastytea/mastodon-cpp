@@ -4,6 +4,8 @@
 #include <iostream>
 #include "../mastodon-cpp.hpp"
 
+using Mastodon::API;
+
 int main(int argc, char *argv[])
 {
     if (argc < 3)
@@ -14,6 +16,5 @@ int main(int argc, char *argv[])
 
     Mastodon::API masto(argv[1], argv[2]);
 
-    std::cout << masto.get(Mastodon::API::v1::accounts_id,
-                           "44897") << '\n';
+    std::cout << masto.get(API::v1::timelines_tag_hashtag, "FOSS") << '\n';
 }

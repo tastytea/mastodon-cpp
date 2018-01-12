@@ -37,8 +37,45 @@ const string API::get(const Mastodon::API::v1 &call,
         case v1::accounts_verify_credentials:
             strcall = "/api/v1/accounts/verify_credentials";
             break;
+        case v1::blocks:
+            strcall = "/api/v1/blocks";
+            break;
+        case v1::domain_blocks:
+            strcall = "/api/v1/domain_blocks";
+            break;
+        case v1::favourites:
+            strcall = "/api/v1/favourites";
+            break;
+        case v1::follow_requests:
+            strcall = "/api/v1/follow_requests";
+            break;
+        case v1::instance:
+            strcall = "/api/v1/instance";
+            break;
+        case v1::custom_emojis:
+            strcall = "/api/v1/custom_emojis";
+            break;
+        case v1::lists:
+            strcall = "/api/v1/lists";
+            break;
+        case v1::mutes:
+            strcall = "/api/v1/mutes";
+            break;
+        case v1::notifications:
+            strcall = "/api/v1/notifications";
+            break;
+        case v1::reports:
+            strcall = "/api/v1/reports";
+            break;
+        case v1::timelines_home:
+            strcall = "/api/v1/timelines/home";
+            break;
+        case v1::timelines_public:
+            strcall = "/api/v1/timelines/public";
+            break;
         default:
             cerr << "ERROR: Invalid call.\n";
+            return "";
             break;
     }
 
@@ -77,6 +114,42 @@ const string API::get(const Mastodon::API::v1 &call,
             break;
         case v1::accounts_search:
             strcall = "/api/v1/accounts/search?q=" + argument;
+            break;
+        case v1::accounts_id_lists:
+            strcall = "/api/v1/accounts/" + argument + "/lists";
+            break;
+        case v1::lists_id_accounts:
+            strcall = "/api/v1/lists/" + argument + "/accounts";
+            break;
+        case v1::lists_id:
+            strcall = "/api/v1/lists/" + argument;
+            break;
+        case v1::notifications_id:
+            strcall = "/api/v1/notifications/" + argument;
+            break;
+        case v1::search:
+            strcall = "/api/v1/search?q=" + argument;
+            break;
+        case v1::statuses_id:
+            strcall = "/api/v1/statuses/" + argument;
+            break;
+        case v1::statuses_id_context:
+            strcall = "/api/v1/statuses/" + argument + "/context";
+            break;
+        case v1::statuses_id_card:
+            strcall = "/api/v1/statuses/" + argument + "/card";
+            break;
+        case v1::statuses_id_reblogged_by:
+            strcall = "/api/v1/statuses/" + argument + "/reblogged_by";
+            break;
+        case v1::statuses_id_favourited_by:
+            strcall = "/api/v1/statuses/" + argument + "/favourited_by";
+            break;
+        case v1::timelines_tag_hashtag:
+            strcall = "/api/v1/timelines/tag/" + argument;
+            break;
+        case v1::timelines_list_list_id:
+            strcall = "/api/v1/timelines/list/" + argument;
             break;
         default:
             cerr << "ERROR: Invalid call.\n";

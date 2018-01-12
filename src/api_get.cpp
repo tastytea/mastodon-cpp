@@ -95,6 +95,8 @@ const string API::get(const Mastodon::API::v1 &call,
                       const std::vector<string> &parameters)
 {
     string strcall = "";
+    char delim = '?';
+
     switch (call)
     {
         case v1::accounts_id:
@@ -111,9 +113,11 @@ const string API::get(const Mastodon::API::v1 &call,
             break;
         case v1::accounts_relationships:
             strcall = "/api/v1/accounts/relationships?id=" + argument;
+            delim = '&';
             break;
         case v1::accounts_search:
             strcall = "/api/v1/accounts/search?q=" + argument;
+            delim = '&';
             break;
         case v1::accounts_id_lists:
             strcall = "/api/v1/accounts/" + argument + "/lists";
@@ -129,6 +133,7 @@ const string API::get(const Mastodon::API::v1 &call,
             break;
         case v1::search:
             strcall = "/api/v1/search?q=" + argument;
+            delim = '&';
             break;
         case v1::statuses_id:
             strcall = "/api/v1/statuses/" + argument;
@@ -155,6 +160,18 @@ const string API::get(const Mastodon::API::v1 &call,
             cerr << "ERROR: Invalid call.\n";
             return "";
             break;
+    }
+
+    if (parameters.size() > 0)
+    {
+        for (const string p : parameters)
+        {
+            strcall += delim + p;
+            if (delim == '?')
+            {
+                delim = '&';
+            }
+        }
     }
 
     string answer;

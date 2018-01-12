@@ -1,6 +1,6 @@
-**mastodon-cpp** is a CPP wrapper for the Mastodon API. The aim is to be as simple as possible.
+**mastodon-cpp** is a C++ wrapper for the Mastodon API. The aim is to be as simple as possible.
 The library takes care of the network stuff. You submit a query and get the raw JSON.
-All versions below 1.0.0 (SOVERSION 0) are considered insecure, unstable and can change drastically any time.
+All versions below 1.0.0 (SOVERSION 0) are considered insecure, unstable and can change any time.
 
 # Install
 ## Dependencies
@@ -8,6 +8,7 @@ All versions below 1.0.0 (SOVERSION 0) are considered insecure, unstable and can
  * C++ compiler (tested: gcc 6.4)
  * [cmake](https://cmake.org/) (tested: 3.9.6)
  * [boost](http://www.boost.org/) (tested: 1.63.0)
+ * Optional: [doxygen](https://www.stack.nl/~dimitri/doxygen/) (tested: 1.8.13)
 
 ## Get sourcecode
 ### Development version
@@ -20,15 +21,12 @@ All versions below 1.0.0 (SOVERSION 0) are considered insecure, unstable and can
     make
 
 # Usage
-    Mastodon::API masto("social.example.com", "access token");
-    std::cout << masto.get(Mastodon::API::v1::timelines_home) << '\n';
-    std::cout << masto.get(Mastodon::API::v1::accounts_id, "12345") << '\n';
 
-There is an example in `src/example`.
+The reference can be generated with `build_doc.sh`, if doxygen is installed. Or just look in `src/mastodon-cpp.hpp`. There is an example in `src/example`.
 
 # TODO
  * Version 0.1.0
-    * [ ] Implement all GET methods
+    * [x] Implement all GET methods
     * [ ] Proper error handling
     * [x] Network stuff
     * [ ] Comprehensive example
@@ -37,8 +35,8 @@ There is an example in `src/example`.
      * [ ] Implement all POST methods
      * [ ] Implement all DELETE methods
  * Later
-    [ ] Escape user input
-    [ ] Asynchronous I/O
+    * [ ] Escape user input
+    * [ ] Asynchronous I/O
 
 ## Status of implementation
  * [x] GET /api/v1/accounts/:id
@@ -108,6 +106,7 @@ There is an example in `src/example`.
 [Full reference](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md)
 
 # Copyright
+
     Copyright © 2018 tastytea <tastytea@tastytea.de>.
     License GPLv3: GNU GPL version 3 <https://www.gnu.org/licenses/gpl-3.0.html>.
     This program comes with ABSOLUTELY NO WARRANTY. This is free software,

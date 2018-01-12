@@ -2,6 +2,8 @@
  */
 
 #include <iostream>
+#include <vector>
+#include <string>
 #include "../mastodon-cpp.hpp"
 
 using Mastodon::API;
@@ -16,5 +18,12 @@ int main(int argc, char *argv[])
 
     Mastodon::API masto(argv[1], argv[2]);
 
-    std::cout << masto.get(API::v1::timelines_tag_hashtag, "FOSS") << '\n';
+    std::vector<std::string> parameters =
+    {
+        "limit=2",
+        "only_media=1"
+    };
+    std::cout << 
+        masto.get(API::v1::accounts_id_statuses, "44897", parameters) <<
+        '\n';
 }

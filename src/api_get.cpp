@@ -17,6 +17,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "macros.hpp"
 #include "mastodon-cpp.hpp"
 
 using namespace Mastodon;
@@ -74,7 +75,7 @@ const std::uint16_t API::get(const Mastodon::API::v1 &call,
             strcall = "/api/v1/timelines/public";
             break;
         default:
-            cerr << "ERROR: Invalid call.\n";
+            ttdebug << "ERROR: Invalid call.\n";
             return 1;
             break;
     }
@@ -168,7 +169,7 @@ const std::uint16_t API::get(const Mastodon::API::v1 &call,
             strcall = "/api/v1/timelines/list/" + argument;
             break;
         default:
-            cerr << "ERROR: Invalid call.\n";
+            ttdebug << "ERROR: Invalid call.\n";
             return 1;
             break;
     }

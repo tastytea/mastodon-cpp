@@ -16,7 +16,7 @@ All versions below 1.0.0 (SOVERSION 0) are considered insecure, unstable and can
 
 ### Development version
 
-    git clone https://…
+    git clone https://github.com/tastytea/mastodon-cpp.git
 
 ## Compile
 
@@ -25,7 +25,7 @@ All versions below 1.0.0 (SOVERSION 0) are considered insecure, unstable and can
     cmake ..
     make
 
-If you want to compile a debug build, use `cmake -DCMAKE_BUILD_TYPE=Debug`
+If you want to compile a debug build, use `cmake -DCMAKE_BUILD_TYPE=Debug ..`
 instead.
 
 # Usage
@@ -50,16 +50,16 @@ If you use a debug build, you get more verbose error messages.
 # TODO
 
  * Version 0.1.0
-    * [x] Implement all GET methods
+    * [x] Implement all GET calls
     * [x] Usable error handling
     * [x] Network stuff
     * [x] Comprehensive example
  * Version 0.2.0
-     * [ ] Implement all PATCH methods
-     * [ ] Implement all POST methods
-     * [ ] Implement all DELETE methods
+     * [ ] Implement all PATCH calls
+     * [ ] Implement all POST calls
+     * [ ] Implement all DELETE calls
  * Version 0.3.0
-    * [ ] Handling HTTP statuses 301 & 302
+    * [ ] Handle HTTP statuses 301 & 302
  * Later
     * [ ] Escape user input
     * [ ] Asynchronous I/O

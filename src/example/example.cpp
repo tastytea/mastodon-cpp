@@ -32,8 +32,7 @@ int main(int argc, char *argv[])
             "only_media=1"
         };
 
-        ret = masto.get(API::v1::accounts_id_statuses, uid,
-                        parameters, answer);
+        ret = masto.get(API::v1::accounts_id_statuses, uid,parameters, answer);
         if (ret == 0)
         {
             std::cout << answer << '\n';
@@ -63,6 +62,11 @@ int main(int argc, char *argv[])
             std::cerr << "Error code: " << ret << '\n';
             return ret;
         }
+    }
+    else
+    {
+        std::cerr << "Error code: " << ret << '\n';
+        return ret;
     }
 
     return 0;

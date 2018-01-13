@@ -3,23 +3,10 @@ project (mastodon-cpp
          VERSION 0.1.1
          LANGUAGES CXX
 )
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -fPIC")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
 
-# Write SHA1 hash and date of current git commit to a header file. Also version.
-find_package(Git)
-if(Git_FOUND)
-    # force regeneration of version.hpp on each build
-    file(REMOVE "${PROJECT_BINARY_DIR}/version.hpp")
-    execute_process(COMMAND "${GIT_EXECUTABLE}" describe --always --abbrev=0 --dirty
-                    WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
-                    OUTPUT_VARIABLE GIT_SHA1
-                    ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
-    execute_process(COMMAND "${GIT_EXECUTABLE}" log -1 --format=%aI --date=iso-strict
-                    WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
-                    OUTPUT_VARIABLE GIT_DATE
-                    ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
-endif()
+# Write version in header
 include_directories(${MY_SOURCE_DIR}/src)
 configure_file (
     "${PROJECT_SOURCE_DIR}/src/version.hpp.in"
@@ -39,7 +26,7 @@ set_target_properties(mastodon-cpp PROPERTIES
 )
 install(TARGETS mastodon-cpp DESTINATION lib)
 target_link_libraries(mastodon-cpp boost_system ssl crypto)
-install(FILES ${PROJECT_SOURCE_DIR}/src/lib/mastodon-cpp.hpp DESTINATION include)
+install(FILES ${PROJECT_SOURCE_DIR}/src/mastodon-cpp.hpp DESTINATION include)
 
 # Example client
 if(NOT LIB_ONLY)

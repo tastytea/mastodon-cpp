@@ -66,6 +66,7 @@ If you use a debug build, you get more verbose error messages.
      * [ ] Implement all DELETE calls
  * Version 0.3.0
     * [ ] Handle HTTP statuses 301 & 302
+    * [ ] Support registering as an application
  * Later
     * [ ] Escape user input
     * [ ] Asynchronous I/O

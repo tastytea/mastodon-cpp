@@ -18,6 +18,7 @@ int main(int argc, char *argv[])
     }
 
     Mastodon::API masto(argv[1], argv[2]);
+    masto.set_useragent("mastodon-cpp-example/1.3.3.7");
     std::string answer;
     std::uint16_t ret;
 

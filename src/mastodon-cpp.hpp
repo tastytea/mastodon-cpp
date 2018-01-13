@@ -86,7 +86,7 @@ public:
      *  @param  answer  The answer from the server. Usually JSON. On error an
      *                  empty string.
      *
-     *  @return The HTTP error code, or 0xffff if an other error happens.
+     *  @return Error code. See README.md for details.
      */
     const std::uint16_t get(const Mastodon::API::v1 &call, std::string &answer);
 
@@ -98,7 +98,7 @@ public:
      *  @param  answer    The answer from the server. Usually JSON. On error an
      *                    empty string.
      *
-     *  @return The HTTP error code, or 0xffff if an other error happens.
+     *  @return Error code. See README.md for details.
      */
     const std::uint16_t get(const Mastodon::API::v1 &call,
                             const std::string &argument,
@@ -114,7 +114,7 @@ public:
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
-     *  @return The HTTP error code, or 0xffff if an other error happens.
+     *  @return Error code. See README.md for details.
      */
     const std::uint16_t get(const Mastodon::API::v1 &call,
                             const std::vector<std::string> &parameters,
@@ -124,16 +124,6 @@ public:
      *  @brief  Make a GET request which requires an argument, pass optional
      *          parameters.
      *
-     *          Example:
-     *
-     *              Mastodon::API masto(argv[1], argv[2]);
-     *              std::vector<std::string> parameters =
-     *              {
-     *                  "limit=2",
-     *                  "only_media=1"
-     *              };
-     *              masto.get(Mastodon::API::v1::accounts_id_statuses, "12345", parameters);
-     *
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  argument    The non-optional argument
      *  @param  parameters  A std::vector containing optional parameters in the
@@ -141,7 +131,7 @@ public:
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
-     *  @return The HTTP error code, or 0xffff if an other error happens.
+     *  @return Error code. See README.md for details.
      */
     const std::uint16_t get(const Mastodon::API::v1 &call,
                             const std::string &argument,
@@ -155,7 +145,7 @@ public:
      *  @param  answer  The answer from the server. Usually JSON. On error an
      *                  empty string.
      *
-     *  @return The HTTP error code, or 0xffff if an other error happens.
+     *  @return Error code. See README.md for details.
      */
     const std::uint16_t get(const std::string &call,
                             std::string &answer);
@@ -206,7 +196,7 @@ private:
          *                  into a std::vector.
          *  @param  answer  The answer from the server
          *
-         *  @return The HTTP error code, or 0xffff if an other error happens.
+         *  @return Error code. See README.md for details.
          */
         const std::uint16_t request_sync(const method &meth,
                                          const std::string &path,

@@ -83,21 +83,26 @@ public:
      *  @brief  Make a GET request which doesn't require an argument.
      *
      *  @param  call    A call defined in Mastodon::API::v1
+     *  @param  answer  The answer from the server. Usually JSON. On error an
+     *                  empty string.
      *
-     *  @return The answer from the server. Usually JSON.
+     *  @return The HTTP error code, or 0xffff if an other error happens.
      */
-    const std::string get(const Mastodon::API::v1 &call);
+    const std::uint16_t get(const Mastodon::API::v1 &call, std::string &answer);
 
     /*!
      *  @brief  Make a GET request which requires an argument
      *
      *  @param  call      A call defined in Mastodon::API::v1
      *  @param  argument  The non-optional argument
+     *  @param  answer    The answer from the server. Usually JSON. On error an
+     *                    empty string.
      *
-     *  @return The answer from the server. Usually JSON.
+     *  @return The HTTP error code, or 0xffff if an other error happens.
      */
-    const std::string get(const Mastodon::API::v1 &call,
-                          const std::string &argument);
+    const std::uint16_t get(const Mastodon::API::v1 &call,
+                            const std::string &argument,
+                            std::string &answer);
 
     /*!
      *  @brief  Make a GET request which doesn't require an argument, pass
@@ -106,11 +111,14 @@ public:
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  parameters  A std::vector containing optional parameters in the
      *                      form `field=value`
+     *  @param  answer      The answer from the server. Usually JSON. On error
+     *                      an empty string.
      *
-     *  @return The answer from the server. Usually JSON.
+     *  @return The HTTP error code, or 0xffff if an other error happens.
      */
-    const std::string get(const Mastodon::API::v1 &call,
-                          const std::vector<std::string> &parameters);
+    const std::uint16_t get(const Mastodon::API::v1 &call,
+                            const std::vector<std::string> &parameters,
+                            std::string &answer);
 
     /*!
      *  @brief  Make a GET request which requires an argument, pass optional
@@ -119,32 +127,38 @@ public:
      *          Example:
      *
      *              Mastodon::API masto(argv[1], argv[2]);
-     *             std::vector<std::string> parameters =
-     *             {
-     *                 "limit=2",
-     *                 "only_media=1"
-     *             };
-     *             masto.get(Mastodon::API::v1::accounts_id_statuses, "12345", parameters);
+     *              std::vector<std::string> parameters =
+     *              {
+     *                  "limit=2",
+     *                  "only_media=1"
+     *              };
+     *              masto.get(Mastodon::API::v1::accounts_id_statuses, "12345", parameters);
      *
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  argument    The non-optional argument
      *  @param  parameters  A std::vector containing optional parameters in the
      *                      form `field=value`
+     *  @param  answer      The answer from the server. Usually JSON. On error
+     *                      an empty string.
      *
-     *  @return The answer from the server. Usually JSON.
+     *  @return The HTTP error code, or 0xffff if an other error happens.
      */
-    const std::string get(const Mastodon::API::v1 &call,
-                          const std::string &argument,
-                          const std::vector<std::string> &parameters);
+    const std::uint16_t get(const Mastodon::API::v1 &call,
+                            const std::string &argument,
+                            const std::vector<std::string> &parameters,
+                            std::string &answer);
 
     /*!
      *  @brief  Make a custom GET request.
      *
      *  @param  call    String in the form `/api/v1/example`
+     *  @param  answer  The answer from the server. Usually JSON. On error an
+     *                  empty string.
      *
-     *  @return The answer from the server. Usually JSON.
+     *  @return The HTTP error code, or 0xffff if an other error happens.
      */
-    const std::string get(const std::string &call);
+    const std::uint16_t get(const std::string &call,
+                            std::string &answer);
 
     /*!
      *  @brief  Sets the useragent. Default is mastodon-cpp/version.
@@ -181,6 +195,19 @@ private:
         const std::uint16_t request_sync(const method &meth,
                                          const std::string &path,
                                          std::string &answer);
+
+        /*!
+         *  @brief  Blocking request.
+         *
+         *  @param  meth    The method defined in http::method
+         *  @param  path    The api call as string
+         *  @param  data    The form data for PATCH and POST request. Not
+         *                  implemented at the moment. This will likely change
+         *                  into a std::vector.
+         *  @param  answer  The answer from the server
+         *
+         *  @return The HTTP error code, or 0xffff if an other error happens.
+         */
         const std::uint16_t request_sync(const method &meth,
                                          const std::string &path,
                                          const std::string &data,

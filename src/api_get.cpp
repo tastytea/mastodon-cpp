@@ -22,14 +22,14 @@
 using namespace Mastodon;
 using std::string;
 using std::cerr;
-const string API::get(const Mastodon::API::v1 &call)
+const std::uint16_t API::get(const Mastodon::API::v1 &call, string &answer)
 {
     const std::vector<string> v{};
-    return get(call, v);
+    return get(call, v, answer);
 }
 
-const string API::get(const Mastodon::API::v1 &call,
-                      const std::vector<string> &parameters)
+const std::uint16_t API::get(const Mastodon::API::v1 &call,
+                      const std::vector<string> &parameters, string &answer)
 {
     string strcall = "";
     switch (call)
@@ -75,24 +75,35 @@ const string API::get(const Mastodon::API::v1 &call,
             break;
         default:
             cerr << "ERROR: Invalid call.\n";
-            return "";
+            return 1;
             break;
     }
 
-    string answer;
-    _http.request_sync(http::method::GET, strcall, answer);
-    return answer;
+    if (parameters.size() > 0)
+    {
+        char delim = '?';
+        for (const string p : parameters)
+        {
+            strcall += delim + p;
+            if (delim == '?')
+            {
+                delim = '&';
+            }
+        }
+    }
+
+    return _http.request_sync(http::method::GET, strcall, answer);
 }
 
-const string API::get(const Mastodon::API::v1 &call,
-                      const string &argument)
+const std::uint16_t API::get(const Mastodon::API::v1 &call,
+                      const string &argument, string &answer)
 {
     const std::vector<string> v;
-    return get(call, argument, v);
+    return get(call, argument, v, answer);
 }
-const string API::get(const Mastodon::API::v1 &call,
+const std::uint16_t API::get(const Mastodon::API::v1 &call,
                       const string &argument,
-                      const std::vector<string> &parameters)
+                      const std::vector<string> &parameters, string &answer)
 {
     string strcall = "";
     char delim = '?';
@@ -158,7 +169,7 @@ const string API::get(const Mastodon::API::v1 &call,
             break;
         default:
             cerr << "ERROR: Invalid call.\n";
-            return "";
+            return 1;
             break;
     }
 
@@ -174,12 +185,10 @@ const string API::get(const Mastodon::API::v1 &call,
         }
     }
 
-    string answer;
-    _http.request_sync(http::method::GET, strcall, answer);
-    return answer;
+    return _http.request_sync(http::method::GET, strcall, answer);
 }
 
-const string API::get(const std::string &call)
+const std::uint16_t API::get(const std::string &call, string &answer)
 {
-    return call;
+    return _http.request_sync(http::method::GET, call, answer);
 }

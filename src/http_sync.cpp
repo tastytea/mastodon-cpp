@@ -21,6 +21,7 @@
 #include <ostream>
 #include <boost/asio.hpp>
 #include <boost/asio/ssl.hpp>
+#include "macros.hpp"
 #include "mastodon-cpp.hpp"
 
 using namespace Mastodon;
@@ -64,6 +65,15 @@ const std::uint16_t API::http::request_sync(const method &meth,
         tcp::resolver::iterator endpoint_iterator = _resolver.resolve(query);
         boost::asio::connect(_socket.lowest_layer(), endpoint_iterator);
         _socket.lowest_layer().set_option(tcp::no_delay(true));
+    }
+    catch (const std::exception &e)
+    {
+        ttdebug << "ERROR: " << e.what() << "\n";
+        return 16;
+    }
+
+    try
+    {
         // Server Name Indication (SNI)
         SSL_set_tlsext_host_name(_socket.native_handle(), _instance.c_str());
 
@@ -71,7 +81,15 @@ const std::uint16_t API::http::request_sync(const method &meth,
         _socket.set_verify_callback(ssl::rfc2818_verification(_instance));
 
         _socket.handshake(ssl_socket::client);
+    }
+    catch (const std::exception &e)
+    {
+        ttdebug << "ERROR: " << e.what() << "\n";
+        return 17;
+    }
 
+    try
+    {
         boost::asio::streambuf request;
         std::ostream request_stream(&request);
         switch (meth)
@@ -90,8 +108,8 @@ const std::uint16_t API::http::request_sync(const method &meth,
             //     request_stream << "DELETE";
             //     break;
                 default:
-                    cerr << "NOT IMPLEMENTED\n";
-                    return 0xffff;
+                    ttdebug << "ERROR: Not implemented\n";
+                    return 2;
         }
         request_stream << " HTTP/1.0\r\n";
         request_stream << "Host: " << _instance << "\r\n";
@@ -115,14 +133,16 @@ const std::uint16_t API::http::request_sync(const method &meth,
         std::getline(response_stream, status_message);
         if (!response_stream || http_version.substr(0, 5) != "HTTP/")
         {
-            cerr << "Invalid response\n";
-            return 0xffff;
+            ttdebug << "ERROR: Invalid response from server\n";
+            ttdebug << "Response was: " << http_version << " " << status_code
+                    << " " << status_message << '\n';
+            return 18;
         }
         if (status_code != 200)
         {
-            cerr << "Response returned with status code " << status_code
-                 << ": " << status_message << "\n";
-            return 0xffff;
+            ttdebug << "ERROR: Response returned with status code "
+                    << status_code << ": " << status_message << "\n";
+            return status_code;
         }
 
         // Read headers
@@ -130,7 +150,6 @@ const std::uint16_t API::http::request_sync(const method &meth,
         std::string header;
         while (std::getline(response_stream, header) && header != "\r")
         {}
-        //response.consume(response.size());
 
         // Read body
         boost::system::error_code error;
@@ -149,7 +168,7 @@ const std::uint16_t API::http::request_sync(const method &meth,
     }
     catch (const std::exception &e)
     {
-        cerr << "Exception: " << e.what() << "\n";
+        ttdebug << "Exception: " << e.what() << "\n";
         return 0xffff;
     }
 

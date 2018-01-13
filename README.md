@@ -3,7 +3,9 @@ The library takes care of the network stuff. You submit a query and get the raw 
 All versions below 1.0.0 (SOVERSION 0) are considered insecure, unstable and can change any time.
 
 # Install
+
 ## Dependencies
+
  * Tested OS: Linux
  * C++ compiler (tested: gcc 6.4)
  * [cmake](https://cmake.org/) (tested: 3.9.6)
@@ -11,34 +13,59 @@ All versions below 1.0.0 (SOVERSION 0) are considered insecure, unstable and can
  * Optional: [doxygen](https://www.stack.nl/~dimitri/doxygen/) (tested: 1.8.13)
 
 ## Get sourcecode
+
 ### Development version
+
     git clone https://…
 
 ## Compile
+
     mkdir build
     cd build/
     cmake ..
     make
 
+If you want to compile a debug build, use `cmake -DCMAKE_BUILD_TYPE=Debug`
+instead.
+
 # Usage
 
 The reference can be generated with `build_doc.sh`, if doxygen is installed. Or just look in `src/mastodon-cpp.hpp`. There is an example in `src/example`.
 
+## Error codes
+
+|      Code | Explanation                   |
+| --------: |:------------------------------|
+|         0 | No error                      |
+|         1 | Invalid call                  |
+|         2 | Not implemented               |
+|        16 | Connection failed             |
+|        17 | TLS error                     |
+|        18 | Invalid response from server  |
+| 100 - 999 | HTTP status codes             |
+|     65535 | Unknown exception             |
+
+If you use a debug build, you get more verbose error messages.
+
 # TODO
+
  * Version 0.1.0
     * [x] Implement all GET methods
-    * [ ] Proper error handling
+    * [x] Usable error handling
     * [x] Network stuff
-    * [ ] Comprehensive example
+    * [x] Comprehensive example
  * Version 0.2.0
      * [ ] Implement all PATCH methods
      * [ ] Implement all POST methods
      * [ ] Implement all DELETE methods
+ * Version 0.3.0
+    * [ ] Handling HTTP statuses 301 & 302
  * Later
     * [ ] Escape user input
     * [ ] Asynchronous I/O
 
 ## Status of implementation
+
  * [x] GET /api/v1/accounts/:id
  * [x] GET /api/v1/accounts/verify_credentials
  * [ ] PATCH /api/v1/accounts/update_credentials

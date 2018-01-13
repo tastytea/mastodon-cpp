@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <cstdint>
 #include "../mastodon-cpp.hpp"
 
 using Mastodon::API;
@@ -17,13 +18,52 @@ int main(int argc, char *argv[])
     }
 
     Mastodon::API masto(argv[1], argv[2]);
+    std::string answer;
+    std::uint16_t ret;
 
-    std::vector<std::string> parameters =
+    ret = masto.get(API::v1::accounts_verify_credentials, answer);
+    if (ret == 0)
     {
-        "limit=2",
-        "only_media=1"
-    };
-    std::cout << 
-        masto.get(API::v1::accounts_id_statuses, "44897", parameters) <<
-        '\n';
+        std::cout << "Your last toot with media attached:\n";
+        std::string uid = answer.substr(7, answer.find("\"", 7) - 7);
+        std::vector<std::string> parameters =
+        {
+            "limit=1",
+            "only_media=1"
+        };
+
+        ret = masto.get(API::v1::accounts_id_statuses, uid,
+                        parameters, answer);
+        if (ret == 0)
+        {
+            std::cout << answer << '\n';
+        }
+        else
+        {
+            std::cerr << "Error code: " << ret << '\n';
+            return ret;
+        }
+
+        std::cout << "\nYour last 2 followers:\n";
+        parameters =
+        {
+            "limit=2",
+            "exclude_types[]=favourite",
+            "exclude_types[]=reblog",
+            "exclude_types[]=mention"
+        };
+        ret = masto.get(API::v1::notifications, parameters, answer);
+        if (ret == 0)
+        {
+            std::cout << answer << '\n';
+            return 0;
+        }
+        else
+        {
+            std::cerr << "Error code: " << ret << '\n';
+            return ret;
+        }
+    }
+
+    return 0;
 }

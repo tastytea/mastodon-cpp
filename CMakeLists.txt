@@ -38,7 +38,7 @@ set_target_properties(mastodon-cpp PROPERTIES
     SOVERSION ${mastodon-cpp_VERSION_MAJOR}
 )
 install(TARGETS mastodon-cpp DESTINATION lib)
-target_link_libraries(mastodon-cpp pthread boost_system ssl crypto)
+target_link_libraries(mastodon-cpp boost_system ssl crypto)
 install(FILES ${PROJECT_SOURCE_DIR}/src/lib/mastodon-cpp.hpp DESTINATION include)
 
 # Example client

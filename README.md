@@ -32,6 +32,12 @@ instead.
 
 The reference can be generated with `build_doc.sh`, if doxygen is installed. Or just look in `src/mastodon-cpp.hpp`. There is an example in `src/example`.
 
+## Compiling your project
+
+After you did a `make install`, a project consisting of one file can be compiled as follows:
+
+    g++ -std=c++14 -lmastodon-cpp -lboost_system -lssl -lcrypto example.cpp
+
 ## Error codes
 
 |      Code | Explanation                   |

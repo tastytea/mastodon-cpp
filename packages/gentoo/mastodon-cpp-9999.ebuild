@@ -23,9 +23,28 @@ src_unpack() {
 
 src_configure() {
     local mycmakeargs=(
-        -DWITH_DOC="$(usex doc)"
+        -DWITH_DOC=NO
         -DWITH_EXAMPLES=NO
         -DWITH_TESTS=NO
     )
     cmake-utils_src_configure
+}
+
+# We can not let cmake handle the documentation, because it would end up in
+# doc/mastodon-cpp-${PROJECT_VERSION} instead of -9999
+src_compile() {
+    if use doc; then
+        ./build_doc.sh
+    fi
+    cmake-utils_src_compile
+}
+
+src_install() {
+    if use doc; then
+        HTML_DOCS="doc/html/*"
+        for file in src/examples/*.cpp; do
+            dodoc ${file}
+        done
+    fi
+    cmake-utils_src_install
 }

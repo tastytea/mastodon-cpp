@@ -14,6 +14,10 @@ All versions below 1.0.0 (SOVERSION 0) are considered insecure, unstable and can
 
 ## Get sourcecode
 
+### Release
+
+Download the current release at [GitHub](https://github.com/tastytea/mastodon-cpp/releases).
+
 ### Development version
 
     git clone https://github.com/tastytea/mastodon-cpp.git
@@ -25,12 +29,19 @@ All versions below 1.0.0 (SOVERSION 0) are considered insecure, unstable and can
     cmake ..
     make
 
-If you want to compile a debug build, use `cmake -DCMAKE_BUILD_TYPE=Debug ..`
-instead.
+cmake options:
+
+ * `-DCMAKE_BUILD_TYPE=Debug` for a debug build
+ * `-DWITH_EXAMPLES=ON` if you want to compile the examples
+ * `-DWITH_TESTS=ON` if you want to compile the tests
+ * `-DWITH_DOC=ON` if you want to compile the HTML reference
+
+You can run the tests with `ctest ..` inside the build directory.
+Install with `make install`.
 
 # Usage
 
-The reference can be generated with `build_doc.sh`, if doxygen is installed. Or just look in `src/mastodon-cpp.hpp`. There is an example in `src/example`.
+The HTML reference can be generated with `build_doc.sh`, if doxygen is installed. Or just look in `src/mastodon-cpp.hpp`. There is an example in `src/examples/`.
 
 ## Compiling your project
 

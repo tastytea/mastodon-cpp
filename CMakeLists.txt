@@ -1,4 +1,5 @@
 cmake_minimum_required (VERSION 3.7)
+include(GNUInstallDirs)
 project (mastodon-cpp
          VERSION 0.1.1
          LANGUAGES CXX
@@ -24,19 +25,30 @@ set_target_properties(mastodon-cpp PROPERTIES
     VERSION ${PROJECT_VERSION}
     SOVERSION ${mastodon-cpp_VERSION_MAJOR}
 )
-install(TARGETS mastodon-cpp DESTINATION lib)
 target_link_libraries(mastodon-cpp boost_system ssl crypto)
-install(FILES ${PROJECT_SOURCE_DIR}/src/mastodon-cpp.hpp DESTINATION include)
+install(TARGETS mastodon-cpp LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(FILES ${PROJECT_SOURCE_DIR}/src/mastodon-cpp.hpp
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+
+# Documentation
+if(WITH_DOC)
+    execute_process(COMMAND ./build_doc.sh
+                    WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}")
+    install(DIRECTORY ${PROJECT_SOURCE_DIR}/doc/html
+            DESTINATION ${CMAKE_INSTALL_DOCDIR}/mastodon-cpp-${PROJECT_VERSION})
+    install(FILES ${PROJECT_SOURCE_DIR}/src/examples/example.cpp
+            DESTINATION ${CMAKE_INSTALL_DOCDIR}/mastodon-cpp-${PROJECT_VERSION}/examples)
+endif()
 
 # Example client
-if(NOT LIB_ONLY)
-    file(GLOB_RECURSE sources_example src/example/*.cpp)
+if(WITH_EXAMPLES)
+    file(GLOB_RECURSE sources_example src/examples/example.cpp)
     add_executable(example ${sources_example})
     target_link_libraries(example mastodon-cpp)
 endif()
 
 # Tests
-if(NOT NOTESTS)
+if(WITH_TESTS)
     include(CTest)
     file(GLOB sources_tests "src/tests/test_*.cpp")
     foreach(src ${sources_tests})

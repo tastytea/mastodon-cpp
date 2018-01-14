@@ -1,4 +1,6 @@
 /*  This file is part of mastodon-cpp.
+ *  This example dumps the raw JSON of your last toot with media attached
+ *  and your last 2 followers.
  */
 
 #include <iostream>

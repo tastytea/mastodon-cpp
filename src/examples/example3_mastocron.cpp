@@ -9,7 +9,7 @@
 #include <sstream>
 #include <regex>
 #include <cstdlib>
-#include <mastodon-cpp.hpp>
+#include "../mastodon-cpp.hpp"
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 
@@ -51,7 +51,11 @@ int main(int argc, char *argv[])
     }
 
     // Only get toots we haven't seen yet
-    std::vector<string> params = { "limit=" + limit, "since_id=" + lastid };
+    API::parametermap params =
+    {
+        { "limit", { limit } },
+        { "since_id", { lastid } }
+    };
     ret = masto.get(API::v1::timelines_tag_hashtag, hashtag, params, answer);
 
     if (ret == 0)

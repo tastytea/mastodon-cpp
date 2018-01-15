@@ -43,6 +43,20 @@ Install with `make install`.
 
 The HTML reference can be generated with `build_doc.sh`, if doxygen is installed. Or just look in `src/mastodon-cpp.hpp`. There are examples in `src/examples/`.
 
+## Most basic example
+
+    #include <iostream>
+    #include <string>
+    #include <mastodon-cpp.hpp>
+
+    int main()
+    {
+        Mastodon::API masto("social.example.com", "secret_token");
+        std::string answer;
+        masto.get(API::v1::accounts_verify_credentials, answer);
+        std::cout << answer << '\n';
+    }
+
 ## Compiling your project
 
 After you did a `make install`, a project consisting of one file can be compiled as follows:

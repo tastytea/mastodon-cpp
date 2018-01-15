@@ -15,8 +15,13 @@
  */
 
 #include <string>
+#include <map>
+#include <vector>
 #include "version.hpp"
+#include "macros.hpp"
 #include "mastodon-cpp.hpp"
+
+#include <iostream>
 
 using namespace Mastodon;
 using std::string;
@@ -35,7 +40,43 @@ const void API::set_useragent(const std::string &useragent)
     _useragent = useragent;
 }
 
-const std::string API::get_useragent() const
+const string API::get_useragent() const
 {
     return _useragent;
+}
+
+const string API::maptostr(const parametermap &map, const bool &firstparam)
+{
+    string result = "";
+    char delim = '?';
+    if (!firstparam)
+    {
+        delim = '&';
+    }
+
+    for (const auto &it : map)
+    {
+        if (it.second.size() == 1)
+        {
+            result += (delim + it.first + "=" + it.second.front());
+            if (delim == '?')
+            {
+                delim = '&';
+            }
+        }
+        else
+        {
+            for (const string &str : it.second)
+            {
+                result += (delim + it.first + "[]=" + str);
+                if (delim == '?')
+                {
+                    delim = '&';
+                }
+            }
+        }
+    }
+
+    ttdebug << "Constructed parameter string: " << result << '\n';
+    return result;
 }

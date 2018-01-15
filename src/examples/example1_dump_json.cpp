@@ -29,10 +29,10 @@ int main(int argc, char *argv[])
     {
         std::cout << "Your last toot with media attached:\n";
         std::string uid = answer.substr(7, answer.find("\"", 7) - 7);
-        std::vector<std::string> parameters =
+        API::parametermap parameters =
         {
-            "limit=1",
-            "only_media=1"
+            { "limit", { "1" } },
+            { "only_media", { "1" } }
         };
 
         ret = masto.get(API::v1::accounts_id_statuses, uid,parameters, answer);
@@ -49,10 +49,12 @@ int main(int argc, char *argv[])
         std::cout << "\nYour last 2 followers:\n";
         parameters =
         {
-            "limit=2",
-            "exclude_types[]=favourite",
-            "exclude_types[]=reblog",
-            "exclude_types[]=mention"
+            {
+                "limit", { "2" }
+            },
+            {
+                "exclude_types", { "favourite", "reblog", "mention" }
+            }
         };
         ret = masto.get(API::v1::notifications, parameters, answer);
         if (ret == 0)

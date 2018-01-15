@@ -25,12 +25,12 @@ using std::string;
 using std::cerr;
 const std::uint16_t API::get(const Mastodon::API::v1 &call, string &answer)
 {
-    const std::vector<string> v{};
-    return get(call, v, answer);
+    const parametermap p;
+    return get(call, p, answer);
 }
 
 const std::uint16_t API::get(const Mastodon::API::v1 &call,
-                      const std::vector<string> &parameters, string &answer)
+                      const parametermap &parameters, string &answer)
 {
     string strcall = "";
     switch (call)
@@ -82,15 +82,7 @@ const std::uint16_t API::get(const Mastodon::API::v1 &call,
 
     if (parameters.size() > 0)
     {
-        char delim = '?';
-        for (const string p : parameters)
-        {
-            strcall += delim + p;
-            if (delim == '?')
-            {
-                delim = '&';
-            }
-        }
+        strcall += maptostr(parameters);
     }
 
     return _http.request_sync(http::method::GET, strcall, answer);
@@ -99,15 +91,15 @@ const std::uint16_t API::get(const Mastodon::API::v1 &call,
 const std::uint16_t API::get(const Mastodon::API::v1 &call,
                       const string &argument, string &answer)
 {
-    const std::vector<string> v;
-    return get(call, argument, v, answer);
+    const parametermap p;
+    return get(call, argument, p, answer);
 }
 const std::uint16_t API::get(const Mastodon::API::v1 &call,
                       const string &argument,
-                      const std::vector<string> &parameters, string &answer)
+                      const parametermap &parameters, string &answer)
 {
     string strcall = "";
-    char delim = '?';
+    bool firstparam = true;
 
     switch (call)
     {
@@ -125,11 +117,11 @@ const std::uint16_t API::get(const Mastodon::API::v1 &call,
             break;
         case v1::accounts_relationships:
             strcall = "/api/v1/accounts/relationships?id=" + argument;
-            delim = '&';
+            firstparam = false;
             break;
         case v1::accounts_search:
             strcall = "/api/v1/accounts/search?q=" + argument;
-            delim = '&';
+            firstparam = false;
             break;
         case v1::accounts_id_lists:
             strcall = "/api/v1/accounts/" + argument + "/lists";
@@ -145,7 +137,7 @@ const std::uint16_t API::get(const Mastodon::API::v1 &call,
             break;
         case v1::search:
             strcall = "/api/v1/search?q=" + argument;
-            delim = '&';
+            firstparam = false;
             break;
         case v1::statuses_id:
             strcall = "/api/v1/statuses/" + argument;
@@ -176,14 +168,7 @@ const std::uint16_t API::get(const Mastodon::API::v1 &call,
 
     if (parameters.size() > 0)
     {
-        for (const string p : parameters)
-        {
-            strcall += delim + p;
-            if (delim == '?')
-            {
-                delim = '&';
-            }
-        }
+        strcall += maptostr(parameters, firstparam);
     }
 
     return _http.request_sync(http::method::GET, strcall, answer);

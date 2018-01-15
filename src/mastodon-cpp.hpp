@@ -20,6 +20,7 @@
 #include <string>
 #include <vector>
 #include <cstdint>
+#include <map>
 #include <boost/asio.hpp>
 #include <boost/asio/ssl.hpp>
 
@@ -47,6 +48,19 @@ namespace Mastodon
 class API
 {
 public:
+    /*!
+     *  @brief Used for passing optional parameters.
+     *  
+     *  Example:
+     *  @code
+     *  parametermap p =
+     *  {
+     *      {"field1", { "value1", "value2" } },
+     *      {"field2", { "value" } }
+     *  }
+     *  @endcode
+     */
+    typedef std::multimap<std::string, std::vector<std::string>> parametermap;
     /*!
      *  @brief  A list of all API calls.
      *
@@ -105,7 +119,7 @@ public:
      *  @param  answer  The answer from the server. Usually JSON. On error an
      *                  empty string.
      *
-     *  @return Error code. See README.md for details.
+     *  @return @ref error "Error code".
      */
     const std::uint16_t get(const Mastodon::API::v1 &call, std::string &answer);
 
@@ -117,7 +131,7 @@ public:
      *  @param  answer    The answer from the server. Usually JSON. On error an
      *                    empty string.
      *
-     *  @return Error code. See README.md for details.
+     *  @return @ref error "Error code".
      */
     const std::uint16_t get(const Mastodon::API::v1 &call,
                             const std::string &argument,
@@ -128,15 +142,15 @@ public:
      *          optional parameters.
      *
      *  @param  call        A call defined in Mastodon::API::v1
-     *  @param  parameters  A std::vector containing optional parameters in the
-     *                      form `field=value`
+     *  @param  parameters  A Mastodon::API::parametermap containing optional
+     *                      parameters.
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
-     *  @return Error code. See README.md for details.
+     *  @return @ref error "Error code".
      */
     const std::uint16_t get(const Mastodon::API::v1 &call,
-                            const std::vector<std::string> &parameters,
+                            const parametermap &parameters,
                             std::string &answer);
 
     /*!
@@ -145,16 +159,16 @@ public:
      *
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  argument    The non-optional argument
-     *  @param  parameters  A std::vector containing optional parameters in the
-     *                      form `field=value`
+     *  @param  parameters  A Mastodon::API::parametermap containing optional
+     *                      parameters.
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
-     *  @return Error code. See README.md for details.
+     *  @return @ref error "Error code".
      */
     const std::uint16_t get(const Mastodon::API::v1 &call,
                             const std::string &argument,
-                            const std::vector<std::string> &parameters,
+                            const parametermap &parameters,
                             std::string &answer);
 
     /*!
@@ -164,7 +178,7 @@ public:
      *  @param  answer  The answer from the server. Usually JSON. On error an
      *                  empty string.
      *
-     *  @return Error code. See README.md for details.
+     *  @return @ref error "Error code".
      */
     const std::uint16_t get(const std::string &call,
                             std::string &answer);
@@ -187,6 +201,17 @@ private:
     const std::string _instance;
     const std::string _access_token;
     std::string _useragent;
+
+    /*!
+     *  @brief  Converts map of parameters into a string.
+     *
+     *  @param  map         Map of parameters
+     *  @param  firstparam  Contains this map the first parameter?
+     *
+     *  @return String of parameters
+     */
+    const std::string maptostr(const parametermap &map,
+                               const bool &firstparam = true);
 
     class http
     {

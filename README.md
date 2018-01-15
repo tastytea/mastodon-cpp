@@ -41,7 +41,7 @@ Install with `make install`.
 
 # Usage
 
-The HTML reference can be generated with `build_doc.sh`, if doxygen is installed. Or just look in `src/mastodon-cpp.hpp`. There is an example in `src/examples/`.
+The HTML reference can be generated with `build_doc.sh`, if doxygen is installed. Or just look in `src/mastodon-cpp.hpp`. There are examples in `src/examples/`.
 
 ## Compiling your project
 

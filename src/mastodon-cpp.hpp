@@ -23,8 +23,27 @@
 #include <boost/asio.hpp>
 #include <boost/asio/ssl.hpp>
 
+/*!
+ *  @example example1_dump_json.cpp
+ *  @example example2_parse_account.cpp
+ *  @example example3_mastocron.cpp
+ */
 namespace Mastodon
 {
+/*!
+ *  @brief  Class for the Mastodon API.
+ *  @section error Error codes
+ *  |      Code | Explanation                   |
+ *  | --------: |:------------------------------|
+ *  |         0 | No error                      |
+ *  |         1 | Invalid call                  |
+ *  |         2 | Not implemented               |
+ *  |        16 | Connection failed             |
+ *  |        17 | TLS error                     |
+ *  |        18 | Invalid response from server  |
+ *  | 100 - 999 | HTTP status codes             |
+ *  |     65535 | Unknown exception             |
+ */
 class API
 {
 public:

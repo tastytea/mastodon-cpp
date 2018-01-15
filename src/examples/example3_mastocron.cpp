@@ -60,6 +60,15 @@ int main(int argc, char *argv[])
         // if answer is "[]" there are none at all
         if (answer != "" && answer != "[]")
         {
+            string ornament = "  +++++";
+            for (std::uint8_t i = hashtag.size(); i > 0; --i)
+            {
+                ornament += "+";
+            }
+            cout << ornament << '\n';
+            cout << "  + " << hashtag << ": +\n";
+            cout << ornament << '\n';
+
             std::istringstream iss(answer);
             pt::ptree tree;
             
@@ -78,6 +87,10 @@ int main(int argc, char *argv[])
                      << " (" << toot.second.get<string>("account.acct") << ") at "
                      << toot.second.get<string>("created_at") << "\n";
                 cout << "    " << toot.second.get<string>("url") << '\n';
+                for (const pt::ptree::value_type &media : toot.second.get_child("media_attachments"))
+                {
+                    cout << "Attachment: <" << media.second.get<string>("url") << ">\n";
+                }
                 cout << "++++++++\n";
             }
 

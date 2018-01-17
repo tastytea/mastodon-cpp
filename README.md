@@ -41,7 +41,7 @@ Install with `make install`.
 
 # Usage
 
-The HTML reference can be generated with `build_doc.sh`, if doxygen is installed. Or just look in `src/mastodon-cpp.hpp`. There are examples in `src/examples/`.
+The HTML reference can be generated with `build_doc.sh`, if doxygen is installed. Or just look in `src/mastodon-cpp.hpp`. There are examples in `src/examples/`. All input is expected to be UTF-8.
 
 ## Most basic example
 
@@ -86,6 +86,7 @@ If you use a debug build, you get more verbose error messages.
     * [x] Network stuff
     * [x] Comprehensive example
  * Version 0.2.0
+     * [x] Escape user input
      * [ ] Implement all PATCH calls
      * [ ] Implement all POST calls
      * [ ] Implement all DELETE calls
@@ -93,7 +94,6 @@ If you use a debug build, you get more verbose error messages.
     * [ ] Handle HTTP statuses 301 & 302
     * [ ] Support registering as an application
  * Later
-    * [ ] Escape user input
     * [ ] Asynchronous I/O
 
 ## Status of implementation

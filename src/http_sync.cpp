@@ -19,6 +19,7 @@
 #include <iostream>
 #include <istream>
 #include <ostream>
+#include <sstream>
 #include <boost/asio.hpp>
 #include <boost/asio/ssl.hpp>
 #include "macros.hpp"
@@ -59,6 +60,7 @@ const std::uint16_t API::http::request_sync(const method &meth,
                                             const string &data,
                                             string &answer)
 {
+    ttdebug << "Path is: " << path << '\n';
     try
     {
         tcp::resolver::query query(_instance, "https");
@@ -154,17 +156,17 @@ const std::uint16_t API::http::request_sync(const method &meth,
         // Read body
         boost::system::error_code error;
         answer = "";
-        std::ostringstream ss;
+        std::ostringstream oss;
         while (boost::asio::read(_socket, response,
                                  boost::asio::transfer_at_least(1), error))
         {
-            ss << &response;
+            oss << &response;
         }
         if (error != boost::asio::error::eof)
         {
             throw boost::system::system_error(error);
         }
-        answer = ss.str();
+        answer = oss.str();
     }
     catch (const std::exception &e)
     {

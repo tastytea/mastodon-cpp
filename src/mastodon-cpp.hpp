@@ -32,7 +32,7 @@
 namespace Mastodon
 {
 /*!
- *  @brief  Class for the Mastodon API.
+ *  @brief  Class for the Mastodon API. All input is expected to be UTF-8.
  *  @section error Error codes
  *  |      Code | Explanation                   |
  *  | --------: |:------------------------------|
@@ -196,6 +196,21 @@ public:
      *  @return The useragent.
      */
     const std::string get_useragent() const;
+
+    /*!
+     *  @brief  Percent-encodes a string. This is done automatically, unless you
+     *          make a custom request.
+     *
+     *          The only time you should use this, is if you use
+     *          get(const std::string &call, std::string &answer).
+     *          
+     *          See RFC 3986 section 2.1 for more info.
+     *
+     *  @param  str     The string
+     *
+     *  @return The percent-encoded string
+     */
+    const std::string urlencode(const std::string &str) const;
 
 private:
     const std::string _instance;

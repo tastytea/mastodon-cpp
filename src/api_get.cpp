@@ -100,65 +100,66 @@ const std::uint16_t API::get(const Mastodon::API::v1 &call,
 {
     string strcall = "";
     bool firstparam = true;
+    const string argument_encoded = urlencode(argument);
 
     switch (call)
     {
         case v1::accounts_id:
-            strcall = "/api/v1/accounts/" + argument;
+            strcall = "/api/v1/accounts/" + argument_encoded;
             break;
         case v1::accounts_id_followers:
-            strcall = "/api/v1/accounts/" + argument + "/followers";
+            strcall = "/api/v1/accounts/" + argument_encoded + "/followers";
             break;
         case v1::accounts_id_following:
-            strcall = "/api/v1/accounts/" + argument + "/following";
+            strcall = "/api/v1/accounts/" + argument_encoded + "/following";
             break;
         case v1::accounts_id_statuses:
-            strcall = "/api/v1/accounts/" + argument + "/statuses";
+            strcall = "/api/v1/accounts/" + argument_encoded + "/statuses";
             break;
         case v1::accounts_relationships:
-            strcall = "/api/v1/accounts/relationships?id=" + argument;
+            strcall = "/api/v1/accounts/relationships?id=" + argument_encoded;
             firstparam = false;
             break;
         case v1::accounts_search:
-            strcall = "/api/v1/accounts/search?q=" + argument;
+            strcall = "/api/v1/accounts/search?q=" + argument_encoded;
             firstparam = false;
             break;
         case v1::accounts_id_lists:
-            strcall = "/api/v1/accounts/" + argument + "/lists";
+            strcall = "/api/v1/accounts/" + argument_encoded + "/lists";
             break;
         case v1::lists_id_accounts:
-            strcall = "/api/v1/lists/" + argument + "/accounts";
+            strcall = "/api/v1/lists/" + argument_encoded + "/accounts";
             break;
         case v1::lists_id:
-            strcall = "/api/v1/lists/" + argument;
+            strcall = "/api/v1/lists/" + argument_encoded;
             break;
         case v1::notifications_id:
-            strcall = "/api/v1/notifications/" + argument;
+            strcall = "/api/v1/notifications/" + argument_encoded;
             break;
         case v1::search:
-            strcall = "/api/v1/search?q=" + argument;
+            strcall = "/api/v1/search?q=" + argument_encoded;
             firstparam = false;
             break;
         case v1::statuses_id:
-            strcall = "/api/v1/statuses/" + argument;
+            strcall = "/api/v1/statuses/" + argument_encoded;
             break;
         case v1::statuses_id_context:
-            strcall = "/api/v1/statuses/" + argument + "/context";
+            strcall = "/api/v1/statuses/" + argument_encoded + "/context";
             break;
         case v1::statuses_id_card:
-            strcall = "/api/v1/statuses/" + argument + "/card";
+            strcall = "/api/v1/statuses/" + argument_encoded + "/card";
             break;
         case v1::statuses_id_reblogged_by:
-            strcall = "/api/v1/statuses/" + argument + "/reblogged_by";
+            strcall = "/api/v1/statuses/" + argument_encoded + "/reblogged_by";
             break;
         case v1::statuses_id_favourited_by:
-            strcall = "/api/v1/statuses/" + argument + "/favourited_by";
+            strcall = "/api/v1/statuses/" + argument_encoded + "/favourited_by";
             break;
         case v1::timelines_tag_hashtag:
-            strcall = "/api/v1/timelines/tag/" + argument;
+            strcall = "/api/v1/timelines/tag/" + argument_encoded;
             break;
         case v1::timelines_list_list_id:
-            strcall = "/api/v1/timelines/list/" + argument;
+            strcall = "/api/v1/timelines/list/" + argument_encoded;
             break;
         default:
             ttdebug << "ERROR: Invalid call.\n";

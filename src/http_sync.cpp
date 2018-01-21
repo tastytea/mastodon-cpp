@@ -57,7 +57,7 @@ const std::uint16_t API::http::request_sync(const method &meth,
 
 const std::uint16_t API::http::request_sync(const method &meth,
                                             const string &path,
-                                            const string &data,
+                                            const string &formdata,
                                             string &answer)
 {
     ttdebug << "Path is: " << path << '\n';
@@ -98,28 +98,48 @@ const std::uint16_t API::http::request_sync(const method &meth,
         {
             case http::method::GET:
                 request_stream << "GET";
-                request_stream << " " << path;
                 break;
-            // case http::method::PATCH:
-            //     request_stream << "PATCH";
-            //     break;
-            // case http::method::POST:
-            //     request_stream << "POST";
-            //     break;
-            // case http::method::DELETE:
-            //     request_stream << "DELETE";
-            //     break;
+            case http::method::PATCH:
+                request_stream << "PATCH";
+                break;
+            case http::method::POST:
+                request_stream << "POST";
+                break;
+            case http::method::DELETE:
+                request_stream << "DELETE";
+                break;
                 default:
                     ttdebug << "ERROR: Not implemented\n";
                     return 2;
         }
+        request_stream << " " << path;
         request_stream << " HTTP/1.0\r\n";
         request_stream << "Host: " << _instance << "\r\n";
         request_stream << "Accept: */*\r\n";
         request_stream << "Connection: close\r\n";
         request_stream << "User-Agent: " << parent.get_useragent() << "\r\n";
         request_stream << "Authorization: Bearer "
-                       << _access_token << "\r\n\r\n";
+                       << _access_token << "\r\n";
+        switch (meth)
+        {
+            case http::method::GET:
+                request_stream << "\r\n";
+                break;
+            case http::method::PATCH:
+                request_stream << formdata;
+                break;
+            case http::method::POST:
+                if (formdata.empty())
+                {
+                    request_stream << "\r\n";
+                }
+                else
+                {
+                    request_stream << formdata;
+                }
+            default:
+                break;
+        }
         boost::asio::write(_socket, request);
 
         boost::asio::streambuf response;
@@ -150,8 +170,11 @@ const std::uint16_t API::http::request_sync(const method &meth,
         // Read headers
         boost::asio::read_until(_socket, response, "\r\n\r\n");
         std::string header;
+        // ttdebug << "Header: \n";
         while (std::getline(response_stream, header) && header != "\r")
-        {}
+        {
+            // ttdebug << header << '\n';
+        }
 
         // Read body
         boost::system::error_code error;
@@ -167,6 +190,7 @@ const std::uint16_t API::http::request_sync(const method &meth,
             throw boost::system::system_error(error);
         }
         answer = oss.str();
+        ttdebug << "Answer from server: " << oss.str() << '\n';
     }
     catch (const std::exception &e)
     {

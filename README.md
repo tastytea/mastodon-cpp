@@ -95,6 +95,7 @@ If you use a debug build, you get more verbose error messages.
     * [ ] Support registering as an application
  * Later
     * [ ] Asynchronous I/O
+    * [ ] Handle X-RateLimit header
 
 ## Status of implementation
 

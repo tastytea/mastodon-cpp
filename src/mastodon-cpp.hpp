@@ -60,7 +60,7 @@ public:
      *  }
      *  @endcode
      */
-    typedef std::multimap<std::string, std::vector<std::string>> parametermap;
+    typedef std::map<std::string, std::vector<std::string>> parametermap;
     /*!
      *  @brief  A list of all API calls.
      *
@@ -99,7 +99,32 @@ public:
         timelines_home,
         timelines_public,
         timelines_tag_hashtag,
-        timelines_list_list_id
+        timelines_list_list_id,
+        // PATCH
+        accounts_update_credentials,
+        // POST
+        accounts_id_follow,
+        accounts_id_unfollow,
+        accounts_id_block,
+        accounts_id_unblock,
+        accounts_id_mute,
+        accounts_id_unmute,
+        apps,
+        follow_requests_id_authorize,
+        follow_requests_id_reject,
+        follows,
+        media,
+        notifications_clear,
+        notifications_dismiss,
+        statuses,
+        statuses_id_reblog,
+        statuses_id_unreblog,
+        statuses_id_favourite,
+        statuses_id_unfavourite,
+        statuses_id_pin,
+        statuses_id_unpin,
+        statuses_id_mute,
+        statuses_id_unmute
     };
 
     /*!
@@ -111,6 +136,35 @@ public:
      */
     explicit API(const std::string &instance,
                  const std::string &access_token);
+
+    /*!
+     *  @brief  Sets the useragent. Default is mastodon-cpp/version.
+     *
+     *  @param  useragent  The useragent
+     */
+    const void set_useragent(const std::string &useragent);
+
+    /*!
+     *  @brief  Gets the useragent.
+     *
+     *  @return The useragent.
+     */
+    const std::string get_useragent() const;
+
+    /*!
+     *  @brief  Percent-encodes a string. This is done automatically, unless you
+     *          make a custom request.
+     *
+     *          The only time you should use this, is if you use
+     *          get(const std::string &call, std::string &answer).
+     *          
+     *          See RFC 3986 section 2.1 for more info.
+     *
+     *  @param  str     The string
+     *
+     *  @return The percent-encoded string
+     */
+    const std::string urlencode(const std::string &str) const;
 
     /*!
      *  @brief  Make a GET request which doesn't require an argument.
@@ -184,33 +238,92 @@ public:
                             std::string &answer);
 
     /*!
-     *  @brief  Sets the useragent. Default is mastodon-cpp/version.
+     *  @brief  Make a PATCH request.
      *
-     *  @param  useragent  The useragent
+     *          Couldn't make it work yet.
+     *
+     *  @param  call        A call defined in Mastodon::API::v1
+     *  @param  parameters  A Mastodon::API::parametermap containing optional
+     *                      parameters.
+     *  @param  answer      The answer from the server. Usually JSON. On error
+     *                      an empty string.
+     *
+     *  @return @ref error "Error code".
      */
-    const void set_useragent(const std::string &useragent);
+    const std::uint16_t patch(const Mastodon::API::v1 &call,
+                              const parametermap &parameters,
+                             std::string &answer);
 
     /*!
-     *  @brief  Gets the useragent.
+     *  @brief  Make a POST request which doesn't require an argument.
      *
-     *  @return The useragent.
+     *  @param  call    A call defined in Mastodon::API::v1
+     *  @param  answer  The answer from the server. Usually JSON. On error an
+     *                  empty string.
+     *
+     *  @return @ref error "Error code".
      */
-    const std::string get_useragent() const;
+    const std::uint16_t post(const Mastodon::API::v1 &call, std::string &answer);
 
     /*!
-     *  @brief  Percent-encodes a string. This is done automatically, unless you
-     *          make a custom request.
+     *  @brief  Make a POST request which requires an argument
      *
-     *          The only time you should use this, is if you use
-     *          get(const std::string &call, std::string &answer).
-     *          
-     *          See RFC 3986 section 2.1 for more info.
+     *  @param  call      A call defined in Mastodon::API::v1
+     *  @param  argument  The non-optional argument
+     *  @param  answer    The answer from the server. Usually JSON. On error an
+     *                    empty string.
      *
-     *  @param  str     The string
-     *
-     *  @return The percent-encoded string
+     *  @return @ref error "Error code".
      */
-    const std::string urlencode(const std::string &str) const;
+    const std::uint16_t post(const Mastodon::API::v1 &call,
+                             const std::string &argument,
+                             std::string &answer);
+
+    /*!
+     *  @brief  Make a POST request which doesn't require an argument, pass
+     *          optional parameters.
+     *
+     *  @param  call        A call defined in Mastodon::API::v1
+     *  @param  parameters  A Mastodon::API::parametermap containing optional
+     *                      parameters.
+     *  @param  answer      The answer from the server. Usually JSON. On error
+     *                      an empty string.
+     *
+     *  @return @ref error "Error code".
+     */
+    const std::uint16_t post(const Mastodon::API::v1 &call,
+                             const parametermap &parameters,
+                             std::string &answer);
+
+    /*!
+     *  @brief  Make a POST request which requires an argument, pass optional
+     *          parameters.
+     *
+     *  @param  call        A call defined in Mastodon::API::v1
+     *  @param  argument    The non-optional argument
+     *  @param  parameters  A Mastodon::API::parametermap containing optional
+     *                      parameters.
+     *  @param  answer      The answer from the server. Usually JSON. On error
+     *                      an empty string.
+     *
+     *  @return @ref error "Error code".
+     */
+    const std::uint16_t post(const Mastodon::API::v1 &call,
+                            const std::string &argument,
+                            const parametermap &parameters,
+                            std::string &answer);
+
+    /*!
+     *  @brief  Make a custom POST request.
+     *
+     *  @param  call    String in the form `/api/v1/example`
+     *  @param  answer  The answer from the server. Usually JSON. On error an
+     *                  empty string.
+     *
+     *  @return @ref error "Error code".
+     */
+    const std::uint16_t post(const std::string &call,
+                            std::string &answer);
 
 private:
     const std::string _instance;
@@ -227,6 +340,7 @@ private:
      */
     const std::string maptostr(const parametermap &map,
                                const bool &firstparam = true);
+    const std::string maptoformdata(const parametermap &map);
 
     class http
     {
@@ -248,18 +362,16 @@ private:
         /*!
          *  @brief  Blocking request.
          *
-         *  @param  meth    The method defined in http::method
-         *  @param  path    The api call as string
-         *  @param  data    The form data for PATCH and POST request. Not
-         *                  implemented at the moment. This will likely change
-         *                  into a std::vector.
-         *  @param  answer  The answer from the server
+         *  @param  meth      The method defined in http::method
+         *  @param  path      The api call as string
+         *  @param  formdata  The form data for PATCH and POST request.
+         *  @param  answer    The answer from the server
          *
          *  @return Error code. See README.md for details.
          */
         const std::uint16_t request_sync(const method &meth,
                                          const std::string &path,
-                                         const std::string &data,
+                                         const std::string &formdata,
                                          std::string &answer);
 
     private:

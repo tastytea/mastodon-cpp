@@ -60,6 +60,9 @@ const std::uint16_t API::post(const Mastodon::API::v1 &call,
         case v1::reports:
             strcall = "/api/v1/reports";
             break;
+        case v1::statuses:
+            strcall = "/api/v1/statuses";
+            break;
         default:
             ttdebug << "ERROR: Invalid call.\n";
             return 1;
@@ -111,9 +114,6 @@ const std::uint16_t API::post(const Mastodon::API::v1 &call,
             break;
         case v1::lists_id_accounts:
             strcall = "/api/v1/lists/" + argument + "/accounts";
-            break;
-        case v1::statuses_id:
-            strcall = "/api/v1/statuses/" + argument;
             break;
         case v1::statuses_id_reblog:
             strcall = "/api/v1/statuses/" + argument + "/reblog";

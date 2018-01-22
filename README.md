@@ -41,7 +41,7 @@ Install with `make install`.
 
 # Usage
 
-The HTML reference can be generated with `build_doc.sh`, if doxygen is installed. Or just look in `src/mastodon-cpp.hpp`. There are examples in `src/examples/`. All input is expected to be UTF-8.
+The HTML reference can be generated with `build_doc.sh`, if doxygen is installed. Or just look in `src/mastodon-cpp.hpp`. There are examples in `src/examples/`.
 
 ## Most basic example
 
@@ -51,7 +51,7 @@ The HTML reference can be generated with `build_doc.sh`, if doxygen is installed
 
     int main()
     {
-        Mastodon::API masto("social.example.com", "secret_token");
+        Mastodon::API masto("social.example.com", "auth_token");
         std::string answer;
         masto.get(API::v1::accounts_verify_credentials, answer);
         std::cout << answer << '\n';
@@ -89,6 +89,7 @@ If you use a debug build, you get more verbose error messages.
      * [x] Escape user input
      * [x] Implement all PATCH calls
      * [x] Implement all POST calls
+     * [ ] Implement all PUT calls
      * [ ] Implement all DELETE calls
  * Version 0.3.0
     * [ ] Handle HTTP statuses 301 & 302

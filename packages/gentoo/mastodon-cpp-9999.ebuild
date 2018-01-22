@@ -11,7 +11,7 @@ EGIT_REPO_URI="https://github.com/tastytea/mastodon-cpp.git"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="doc"
+IUSE="doc debug"
 RDEPEND=">=dev-libs/boost-1.63.0"
 DEPEND=">=dev-util/cmake-3.9.6
         doc? ( >=app-doc/doxygen-1.8.13-r1 )
@@ -27,6 +27,11 @@ src_configure() {
         -DWITH_EXAMPLES=NO
         -DWITH_TESTS=NO
     )
+    if use debug; then
+        mycmakeargs+=(-DCMAKE_BUILD_TYPE=Debug)
+    else
+        mycmakeargs+=(-DCMAKE_BUILD_TYPE=Release)
+    fi
     cmake-utils_src_configure
 }
 

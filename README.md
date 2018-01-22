@@ -87,8 +87,8 @@ If you use a debug build, you get more verbose error messages.
     * [x] Comprehensive example
  * Version 0.2.0
      * [x] Escape user input
-     * [ ] Implement all PATCH calls
-     * [ ] Implement all POST calls
+     * [x] Implement all PATCH calls
+     * [x] Implement all POST calls
      * [ ] Implement all DELETE calls
  * Version 0.3.0
     * [ ] Handle HTTP statuses 301 & 302
@@ -96,68 +96,69 @@ If you use a debug build, you get more verbose error messages.
  * Later
     * [ ] Asynchronous I/O
     * [ ] Handle X-RateLimit header
+    * [ ] Find out why the "short read" error occurs with PATCH and POST
 
 ## Status of implementation
 
  * [x] GET /api/v1/accounts/:id
  * [x] GET /api/v1/accounts/verify_credentials
- * [ ] PATCH /api/v1/accounts/update_credentials
+ * [x] PATCH /api/v1/accounts/update_credentials
  * [x] GET /api/v1/accounts/:id/followers
  * [x] GET /api/v1/accounts/:id/following
  * [x] GET /api/v1/accounts/:id/statuses
- * [ ] POST /api/v1/accounts/:id/follow
- * [ ] POST /api/v1/accounts/:id/unfollow
- * [ ] POST /api/v1/accounts/:id/block
- * [ ] POST /api/v1/accounts/:id/unblock
- * [ ] POST /api/v1/accounts/:id/mute
- * [ ] POST /api/v1/accounts/:id/unmute
+ * [x] POST /api/v1/accounts/:id/follow
+ * [x] POST /api/v1/accounts/:id/unfollow
+ * [x] POST /api/v1/accounts/:id/block
+ * [x] POST /api/v1/accounts/:id/unblock
+ * [x] POST /api/v1/accounts/:id/mute
+ * [x] POST /api/v1/accounts/:id/unmute
  * [x] GET /api/v1/accounts/relationships
  * [x] GET /api/v1/accounts/search
- * [ ] POST /api/v1/apps
+ * [x] POST /api/v1/apps
  * [x] GET /api/v1/blocks
  * [x] GET /api/v1/domain_blocks
- * [ ] POST /api/v1/domain_blocks
+ * [x] POST /api/v1/domain_blocks
  * [ ] DELETE /api/v1/domain_blocks
  * [x] GET /api/v1/favourites
  * [x] GET /api/v1/follow_requests
- * [ ] POST /api/v1/follow_requests/:id/authorize
- * [ ] POST /api/v1/follow_requests/:id/reject
- * [ ] POST /api/v1/follows
+ * [x] POST /api/v1/follow_requests/:id/authorize
+ * [x] POST /api/v1/follow_requests/:id/reject
+ * [x] POST /api/v1/follows
  * [x] GET /api/v1/instance
  * [x] GET /api/v1/custom_emojis
  * [x] GET /api/v1/lists
  * [x] GET /api/v1/accounts/:id/lists
  * [x] GET /api/v1/lists/:id/accounts
  * [x] GET /api/v1/lists/:id
- * [ ] POST /api/v1/lists
+ * [x] POST /api/v1/lists
  * [ ] PUT /api/v1/lists/:id
  * [ ] DELETE /api/v1/lists/:id
- * [ ] POST /api/v1/lists/:id/accounts
+ * [x] POST /api/v1/lists/:id/accounts
  * [ ] DELETE /api/v1/lists/:id/accounts
- * [ ] POST /api/v1/media
+ * [x] POST /api/v1/media
  * [x] GET /api/v1/mutes
  * [x] GET /api/v1/notifications
  * [x] GET /api/v1/notifications/:id
- * [ ] POST /api/v1/notifications/clear
- * [ ] POST /api/v1/notifications/dismiss
+ * [x] POST /api/v1/notifications/clear
+ * [x] POST /api/v1/notifications/dismiss
  * [x] GET /api/v1/reports
- * [ ] POST /api/v1/reports
+ * [x] POST /api/v1/reports
  * [x] GET /api/v1/search
  * [x] GET /api/v1/statuses/:id
  * [x] GET /api/v1/statuses/:id/context
  * [x] GET /api/v1/statuses/:id/card
  * [x] GET /api/v1/statuses/:id/reblogged_by
  * [x] GET /api/v1/statuses/:id/favourited_by
- * [ ] POST /api/v1/statuses
+ * [x] POST /api/v1/statuses
  * [ ] DELETE /api/v1/statuses/:id
- * [ ] POST /api/v1/statuses/:id/reblog
- * [ ] POST /api/v1/statuses/:id/unreblog
- * [ ] POST /api/v1/statuses/:id/favourite
- * [ ] POST /api/v1/statuses/:id/unfavourite
- * [ ] POST /api/v1/statuses/:id/pin
- * [ ] POST /api/v1/statuses/:id/unpin
- * [ ] POST /api/v1/statuses/:id/mute
- * [ ] POST /api/v1/statuses/:id/unmute
+ * [x] POST /api/v1/statuses/:id/reblog
+ * [x] POST /api/v1/statuses/:id/unreblog
+ * [x] POST /api/v1/statuses/:id/favourite
+ * [x] POST /api/v1/statuses/:id/unfavourite
+ * [x] POST /api/v1/statuses/:id/pin
+ * [x] POST /api/v1/statuses/:id/unpin
+ * [x] POST /api/v1/statuses/:id/mute
+ * [x] POST /api/v1/statuses/:id/unmute
  * [x] GET /api/v1/timelines/home
  * [x] GET /api/v1/timelines/public
  * [x] GET /api/v1/timelines/tag/:hashtag

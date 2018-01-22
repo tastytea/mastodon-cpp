@@ -27,8 +27,6 @@ const std::uint16_t API::patch(const Mastodon::API::v1 &call,
                                const parametermap &parameters,
                                string &answer)
 {
-    std::cerr << "NOT IMPLEMENTED\n";
-    return 2;
     string strcall = "";
     switch (call)
     {

@@ -117,19 +117,42 @@ const string API::maptoformdata(const parametermap &map)
 
     header = "Content-type: multipart/form-data, boundary=" + boundary + "\r\n";
     header += "Content-Length: ";
-    body = "--" + boundary + "\r\n";
+    body = "--" + boundary;
 
     for (const auto &it : map)
     {
+        // This is directly after the last boundary
+        body += "\r\n";
         if (it.second.size() == 1)
         {
-            body += ("content-disposition: form-data; name=\"" +
-                       it.first + "\"\r\n\r\n");
-            body += (it.second.front() + "\r\n--" + boundary + "\r\n");
+            if (it.first == "avatar" ||
+                it.first == "header" ||
+                it.first == "file")
+            {
+                body += "Content-Transfer-Encoding: base64\r\n";
+            }
+            else
+            {
+                body += "Content-Transfer-Encoding: 8bit\r\n";
+            }
+            body += ("Content-Disposition: form-data; name=\"" +
+                     it.first + "\"\r\n\r\n");
+            body += (it.second.front() + "\r\n--" + boundary);
+        }
+        else
+        {
+            for (const string &str : it.second)
+            {
+                body += ("Content-Disposition: form-data; name=\"" +
+                     it.first + "[]\"\r\n\r\n");
+                body += (str + "\r\n--" + boundary);
+            }
         }
     }
+    // The last segment has to have "--" after the boundary
+    body += "--\r\n";
 
-    header += (std::to_string(body.length() - 2) + "\r\n\r\n");
+    header += (std::to_string(body.length()) + "\r\n\r\n");
 
     ttdebug << "Form data: \n" << header << body;
     return header + body;

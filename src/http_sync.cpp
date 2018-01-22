@@ -187,7 +187,11 @@ const std::uint16_t API::http::request_sync(const method &meth,
         }
         if (error != boost::asio::error::eof)
         {
-            throw boost::system::system_error(error);
+            // TODO: Find out why the "short read" error occurs
+            // with PATCH and POST
+            //throw boost::system::system_error(error);
+            ttdebug << "ERROR: " << error.message() << '\n';
+            ttdebug << "The preceding error is ignored.\n";
         }
         answer = oss.str();
         ttdebug << "Answer from server: " << oss.str() << '\n';

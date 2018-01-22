@@ -28,11 +28,14 @@
  *  @example example1_dump_json.cpp
  *  @example example2_parse_account.cpp
  *  @example example3_mastocron.cpp
+ *  @example example4_update_credentials.cpp
+ *  @example example5_follow_unfollow.cpp
  */
 namespace Mastodon
 {
 /*!
  *  @brief  Class for the Mastodon API. All input is expected to be UTF-8.
+ *          Binary data must be base64-encoded.
  *  @section error Error codes
  *  |      Code | Explanation                   |
  *  | --------: |:------------------------------|
@@ -197,7 +200,7 @@ public:
      *
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  parameters  A Mastodon::API::parametermap containing optional
-     *                      parameters.
+     *                      parameters
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
@@ -214,7 +217,7 @@ public:
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  argument    The non-optional argument
      *  @param  parameters  A Mastodon::API::parametermap containing optional
-     *                      parameters.
+     *                      parameters
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
@@ -240,11 +243,11 @@ public:
     /*!
      *  @brief  Make a PATCH request.
      *
-     *          Couldn't make it work yet.
+     *          Binary data must be base64-encoded.
      *
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  parameters  A Mastodon::API::parametermap containing optional
-     *                      parameters.
+     *                      parameters
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
@@ -283,9 +286,11 @@ public:
      *  @brief  Make a POST request which doesn't require an argument, pass
      *          optional parameters.
      *
+     *          Binary data must be base64-encoded.
+     *
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  parameters  A Mastodon::API::parametermap containing optional
-     *                      parameters.
+     *                      parameters
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
@@ -299,10 +304,12 @@ public:
      *  @brief  Make a POST request which requires an argument, pass optional
      *          parameters.
      *
+     *          Binary data must be base64-encoded.
+     *
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  argument    The non-optional argument
      *  @param  parameters  A Mastodon::API::parametermap containing optional
-     *                      parameters.
+     *                      parameters
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
@@ -316,14 +323,19 @@ public:
     /*!
      *  @brief  Make a custom POST request.
      *
-     *  @param  call    String in the form `/api/v1/example`
-     *  @param  answer  The answer from the server. Usually JSON. On error an
-     *                  empty string.
+     *          Binary data must be base64-encoded.
+     *
+     *  @param  call        String in the form `/api/v1/example`
+     *  @param  parameters  A Mastodon::API::parametermap containing optional
+     *                      parameters
+     *  @param  answer      The answer from the server. Usually JSON. On error
+     *                      an empty string.
      *
      *  @return @ref error "Error code".
      */
     const std::uint16_t post(const std::string &call,
-                            std::string &answer);
+                             const parametermap &parameters,
+                             std::string &answer);
 
 private:
     const std::string _instance;

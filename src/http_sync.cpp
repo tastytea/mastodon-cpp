@@ -98,15 +98,23 @@ const std::uint16_t API::http::request_sync(const method &meth,
         {
             case http::method::GET:
                 request_stream << "GET";
+                ttdebug << "Method is GET\n";
                 break;
             case http::method::PATCH:
                 request_stream << "PATCH";
+                ttdebug << "Method is PATCH\n";
                 break;
             case http::method::POST:
                 request_stream << "POST";
+                ttdebug << "Method is POST\n";
+                break;
+            case http::method::PUT:
+                request_stream << "PUT";
+                ttdebug << "Method is PUT\n";
                 break;
             case http::method::DELETE:
                 request_stream << "DELETE";
+                ttdebug << "Method is DELETE\n";
                 break;
                 default:
                     ttdebug << "ERROR: Not implemented\n";
@@ -129,6 +137,8 @@ const std::uint16_t API::http::request_sync(const method &meth,
                 request_stream << formdata;
                 break;
             case http::method::POST:
+            case http::method::PUT:
+            case http::method::DELETE:
                 if (formdata.empty())
                 {
                     request_stream << "\r\n";

@@ -89,8 +89,8 @@ If you use a debug build, you get more verbose error messages.
      * [x] Escape user input
      * [x] Implement all PATCH calls
      * [x] Implement all POST calls
-     * [ ] Implement all PUT calls
-     * [ ] Implement all DELETE calls
+     * [x] Implement all PUT calls
+     * [x] Implement all DELETE calls
  * Version 0.3.0
     * [ ] Handle HTTP statuses 301 & 302
     * [ ] Support registering as an application
@@ -119,7 +119,7 @@ If you use a debug build, you get more verbose error messages.
  * [x] GET /api/v1/blocks
  * [x] GET /api/v1/domain_blocks
  * [x] POST /api/v1/domain_blocks
- * [ ] DELETE /api/v1/domain_blocks
+ * [x] DELETE /api/v1/domain_blocks
  * [x] GET /api/v1/favourites
  * [x] GET /api/v1/follow_requests
  * [x] POST /api/v1/follow_requests/:id/authorize
@@ -132,10 +132,10 @@ If you use a debug build, you get more verbose error messages.
  * [x] GET /api/v1/lists/:id/accounts
  * [x] GET /api/v1/lists/:id
  * [x] POST /api/v1/lists
- * [ ] PUT /api/v1/lists/:id
- * [ ] DELETE /api/v1/lists/:id
+ * [x] PUT /api/v1/lists/:id
+ * [x] DELETE /api/v1/lists/:id
  * [x] POST /api/v1/lists/:id/accounts
- * [ ] DELETE /api/v1/lists/:id/accounts
+ * [x] DELETE /api/v1/lists/:id/accounts
  * [x] POST /api/v1/media
  * [x] GET /api/v1/mutes
  * [x] GET /api/v1/notifications
@@ -151,7 +151,7 @@ If you use a debug build, you get more verbose error messages.
  * [x] GET /api/v1/statuses/:id/reblogged_by
  * [x] GET /api/v1/statuses/:id/favourited_by
  * [x] POST /api/v1/statuses
- * [ ] DELETE /api/v1/statuses/:id
+ * [x] DELETE /api/v1/statuses/:id
  * [x] POST /api/v1/statuses/:id/reblog
  * [x] POST /api/v1/statuses/:id/unreblog
  * [x] POST /api/v1/statuses/:id/favourite

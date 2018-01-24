@@ -22,7 +22,7 @@
 
 using namespace Mastodon;
 using std::string;
-using std::cerr;
+
 const std::uint16_t API::post(const Mastodon::API::v1 &call, string &answer)
 {
     const parametermap p;
@@ -89,55 +89,55 @@ const std::uint16_t API::post(const Mastodon::API::v1 &call,
     switch (call)
     {
         case v1::accounts_id_follow:
-            strcall = "/api/v1/accounts/" + argument + "/follow";
+            strcall = "/api/v1/accounts/" + argument_encoded + "/follow";
             break;
         case v1::accounts_id_unfollow:
-            strcall = "/api/v1/accounts/" + argument + "/unfollow";
+            strcall = "/api/v1/accounts/" + argument_encoded + "/unfollow";
             break;
         case v1::accounts_id_block:
-            strcall = "/api/v1/accounts/" + argument + "/block";
+            strcall = "/api/v1/accounts/" + argument_encoded + "/block";
             break;
         case v1::accounts_id_unblock:
-            strcall = "/api/v1/accounts/" + argument + "/unblock";
+            strcall = "/api/v1/accounts/" + argument_encoded + "/unblock";
             break;
         case v1::accounts_id_mute:
-            strcall = "/api/v1/accounts/" + argument + "/mute";
+            strcall = "/api/v1/accounts/" + argument_encoded + "/mute";
             break;
         case v1::accounts_id_unmute:
-            strcall = "/api/v1/accounts/" + argument + "/unmute";
+            strcall = "/api/v1/accounts/" + argument_encoded + "/unmute";
             break;
         case v1::follow_requests_id_authorize:
-            strcall = "/api/v1/folow_requests/" + argument + "/authorize";
+            strcall = "/api/v1/folow_requests/" + argument_encoded + "/authorize";
             break;
         case v1::follow_requests_id_reject:
-            strcall = "/api/v1/folow_requests/" + argument + "/reject";
+            strcall = "/api/v1/folow_requests/" + argument_encoded + "/reject";
             break;
         case v1::lists_id_accounts:
-            strcall = "/api/v1/lists/" + argument + "/accounts";
+            strcall = "/api/v1/lists/" + argument_encoded + "/accounts";
             break;
         case v1::statuses_id_reblog:
-            strcall = "/api/v1/statuses/" + argument + "/reblog";
+            strcall = "/api/v1/statuses/" + argument_encoded + "/reblog";
             break;
         case v1::statuses_id_unreblog:
-            strcall = "/api/v1/statuses/" + argument + "/unreblog";
+            strcall = "/api/v1/statuses/" + argument_encoded + "/unreblog";
             break;
         case v1::statuses_id_favourite:
-            strcall = "/api/v1/statuses/" + argument + "/favourite";
+            strcall = "/api/v1/statuses/" + argument_encoded + "/favourite";
             break;
         case v1::statuses_id_unfavourite:
-            strcall = "/api/v1/statuses/" + argument + "/unfavourite";
+            strcall = "/api/v1/statuses/" + argument_encoded + "/unfavourite";
             break;
         case v1::statuses_id_pin:
-            strcall = "/api/v1/statuses/" + argument + "/pin";
+            strcall = "/api/v1/statuses/" + argument_encoded + "/pin";
             break;
         case v1::statuses_id_unpin:
-            strcall = "/api/v1/statuses/" + argument + "/unpin";
+            strcall = "/api/v1/statuses/" + argument_encoded + "/unpin";
             break;
         case v1::statuses_id_mute:
-            strcall = "/api/v1/statuses/" + argument + "/mute";
+            strcall = "/api/v1/statuses/" + argument_encoded + "/mute";
             break;
         case v1::statuses_id_unmute:
-            strcall = "/api/v1/statuses/" + argument + "/unmute";
+            strcall = "/api/v1/statuses/" + argument_encoded + "/unmute";
             break;
         default:
             ttdebug << "ERROR: Invalid call.\n";

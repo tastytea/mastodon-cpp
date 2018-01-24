@@ -52,7 +52,7 @@ class API
 {
 public:
     /*!
-     *  @brief Used for passing optional parameters.
+     *  @brief Used for passing (most of the time) optional parameters.
      *  
      *  Example:
      *  @code
@@ -196,11 +196,10 @@ public:
 
     /*!
      *  @brief  Make a GET request which doesn't require an argument, pass
-     *          optional parameters.
+     *          parameters.
      *
      *  @param  call        A call defined in Mastodon::API::v1
-     *  @param  parameters  A Mastodon::API::parametermap containing optional
-     *                      parameters
+     *  @param  parameters  A Mastodon::API::parametermap containing parameters
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
@@ -211,13 +210,11 @@ public:
                             std::string &answer);
 
     /*!
-     *  @brief  Make a GET request which requires an argument, pass optional
-     *          parameters.
+     *  @brief  Make a GET request which requires an argument, pass parameters.
      *
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  argument    The non-optional argument
-     *  @param  parameters  A Mastodon::API::parametermap containing optional
-     *                      parameters
+     *  @param  parameters  A Mastodon::API::parametermap containing parameters
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
@@ -246,8 +243,7 @@ public:
      *          Binary data must be base64-encoded.
      *
      *  @param  call        A call defined in Mastodon::API::v1
-     *  @param  parameters  A Mastodon::API::parametermap containing optional
-     *                      parameters
+     *  @param  parameters  A Mastodon::API::parametermap containing parameters
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
@@ -255,7 +251,7 @@ public:
      */
     const std::uint16_t patch(const Mastodon::API::v1 &call,
                               const parametermap &parameters,
-                             std::string &answer);
+                              std::string &answer);
 
     /*!
      *  @brief  Make a POST request which doesn't require an argument.
@@ -266,7 +262,8 @@ public:
      *
      *  @return @ref error "Error code".
      */
-    const std::uint16_t post(const Mastodon::API::v1 &call, std::string &answer);
+    const std::uint16_t post(const Mastodon::API::v1 &call,
+                             std::string &answer);
 
     /*!
      *  @brief  Make a POST request which requires an argument
@@ -284,13 +281,12 @@ public:
 
     /*!
      *  @brief  Make a POST request which doesn't require an argument, pass
-     *          optional parameters.
+     *          parameters.
      *
      *          Binary data must be base64-encoded.
      *
      *  @param  call        A call defined in Mastodon::API::v1
-     *  @param  parameters  A Mastodon::API::parametermap containing optional
-     *                      parameters
+     *  @param  parameters  A Mastodon::API::parametermap containing parameters
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
@@ -301,24 +297,22 @@ public:
                              std::string &answer);
 
     /*!
-     *  @brief  Make a POST request which requires an argument, pass optional
-     *          parameters.
+     *  @brief  Make a POST request which requires an argument, pass parameters.
      *
      *          Binary data must be base64-encoded.
      *
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  argument    The non-optional argument
-     *  @param  parameters  A Mastodon::API::parametermap containing optional
-     *                      parameters
+     *  @param  parameters  A Mastodon::API::parametermap containing parameters
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
      *  @return @ref error "Error code".
      */
     const std::uint16_t post(const Mastodon::API::v1 &call,
-                            const std::string &argument,
-                            const parametermap &parameters,
-                            std::string &answer);
+                             const std::string &argument,
+                             const parametermap &parameters,
+                             std::string &answer);
 
     /*!
      *  @brief  Make a custom POST request.
@@ -326,8 +320,7 @@ public:
      *          Binary data must be base64-encoded.
      *
      *  @param  call        String in the form `/api/v1/example`
-     *  @param  parameters  A Mastodon::API::parametermap containing optional
-     *                      parameters
+     *  @param  parameters  A Mastodon::API::parametermap containing parameters
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
@@ -336,6 +329,91 @@ public:
     const std::uint16_t post(const std::string &call,
                              const parametermap &parameters,
                              std::string &answer);
+
+    /*!
+     *  @brief  Make a PUT request which requires an argument, pass parameters.
+     *
+     *  @param  call        A call defined in Mastodon::API::v1
+     *  @param  argument    The non-optional argument
+     *  @param  parameters  A Mastodon::API::parametermap containing
+     *                      parameters
+     *  @param  answer      The answer from the server. Usually JSON. On error
+     *                      an empty string.
+     *
+     *  @return @ref error "Error code".
+     */
+    const std::uint16_t put(const Mastodon::API::v1 &call,
+                            const std::string &argument,
+                            const parametermap &parameters,
+                            std::string &answer);
+
+    /*!
+     *  @brief  Make a custom PUT request.
+     *
+     *  @param  call        String in the form `/api/v1/example`
+     *  @param  parameters  A Mastodon::API::parametermap containing
+     *                      parameters
+     *  @param  answer      The answer from the server. Usually JSON. On error
+     *                      an empty string.
+     *
+     *  @return @ref error "Error code".
+     */
+    const std::uint16_t put(const std::string &call,
+                            const parametermap &parameters,
+                            std::string &answer);
+
+    /*!
+     *  @brief  Make a DELETE request which requires an argument
+     *
+     *  @param  call      A call defined in Mastodon::API::v1
+     *  @param  argument  The non-optional argument
+     *  @param  answer    The answer from the server. Usually JSON. On error an
+     *                    empty string.
+     *
+     *  @return @ref error "Error code".
+     */
+    const std::uint16_t del(const Mastodon::API::v1 &call,
+                            const std::string &argument);
+
+    /*!
+     *  @brief  Make a DELETE request which doesn't require an argument, pass
+     *          parameters.
+     *
+     *  @param  call        A call defined in Mastodon::API::v1
+     *  @param  parameters  A Mastodon::API::parametermap containing parameters
+     *
+     *  @return @ref error "Error code".
+     */
+    const std::uint16_t del(const Mastodon::API::v1 &call,
+                            const parametermap &parameters);
+
+    /*!
+     *  @brief  Make a DELETE request which requires an argument, pass
+     *          parameters.
+     *
+     *  @param  call        A call defined in Mastodon::API::v1
+     *  @param  argument    The non-optional argument
+     *  @param  parameters  A Mastodon::API::parametermap containing parameters
+     *
+     *  @return @ref error "Error code".
+     */
+    const std::uint16_t del(const Mastodon::API::v1 &call,
+                            const std::string &argument,
+                            const parametermap &parameters);
+
+    /*!
+     *  @brief  Make a custom DELETE request.
+     *
+     *  @param  call        String in the form `/api/v1/example`
+     *  @param  parameters  A Mastodon::API::parametermap containing parameters
+     *  @param  answer      The answer from the server. Usually JSON. On error
+     *                      an empty string.
+     *
+     *  @return @ref error "Error code".
+     */
+    const std::uint16_t del(const std::string &call,
+                            const parametermap &parameters,
+                            std::string &answer);
 
 private:
     const std::string _instance;
@@ -362,6 +440,7 @@ private:
             GET,
             PATCH,
             POST,
+            PUT,
             DELETE
         };
 

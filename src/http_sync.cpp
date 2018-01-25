@@ -126,8 +126,11 @@ const std::uint16_t API::http::request_sync(const method &meth,
         request_stream << "Accept: */*\r\n";
         request_stream << "Connection: close\r\n";
         request_stream << "User-Agent: " << parent.get_useragent() << "\r\n";
-        request_stream << "Authorization: Bearer "
-                       << _access_token << "\r\n";
+        if (!_access_token.empty())
+        {
+            request_stream << "Authorization: Bearer "
+                           << _access_token << "\r\n";
+        }
         switch (meth)
         {
             case http::method::GET:

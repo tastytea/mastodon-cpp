@@ -36,7 +36,7 @@ const std::uint16_t API::post(const Mastodon::API::v1 &call,
 
     switch (call)
     {
-        case v1::accounts_id_follow:
+        case v1::apps:
             strcall = "/api/v1/apps";
             break;
         case v1::domain_blocks:

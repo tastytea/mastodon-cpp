@@ -7,7 +7,7 @@ All versions below 1.0.0 (SOVERSION 0) are considered insecure, unstable and can
 ## Dependencies
 
  * Tested OS: Linux
- * C++ compiler (tested: gcc 6.4)
+ * C++ compiler (tested: gcc 6.4, clang 5.0)
  * [cmake](https://cmake.org/) (tested: 3.9.6)
  * [boost](http://www.boost.org/) (tested: 1.63.0)
  * Optional: [doxygen](https://www.stack.nl/~dimitri/doxygen/) (tested: 1.8.13)

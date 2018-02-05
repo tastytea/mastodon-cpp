@@ -157,3 +157,22 @@ const string API::maptoformdata(const parametermap &map)
     ttdebug << "Form data: \n" << header << body;
     return header + body;
 }
+
+// const string API::register_app(const std::string &instance,
+//                                const std::string &client_name,
+//                                const std::string &redirect_uris,
+//                                const std::string &scopes,
+//                                const std::string &website)
+// {
+//     API::parametermap parameters =
+//     {
+//         { "client_name", { client_name } },
+//         { "redirect_uris", { redirect_uris } },
+//         { "scopes", { scopes } },
+//         { "website", { website } }
+//     };
+
+//     string answer;
+//     std::uint16_t ret = post(API::v1::apps, parameters, answer);
+    
+// }

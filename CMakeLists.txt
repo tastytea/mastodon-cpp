@@ -5,8 +5,11 @@ project (mastodon-cpp
          VERSION 0.2.1
          LANGUAGES CXX
 )
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -fPIC")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(${MY_SOURCE_DIR}/src)
 include_directories(${PROJECT_BINARY_DIR})

@@ -436,6 +436,14 @@ private:
      */
     const std::string maptostr(const parametermap &map,
                                const bool &firstparam = true);
+
+    /*!
+     *  @brief  Converts map of parameters into form data
+     *
+     *  @param  map     Map of parameters
+     *
+     *  @return Form data as curlpp::Forms
+     */
     const curlpp::Forms maptoformdata(const parametermap &map);
 
     class http

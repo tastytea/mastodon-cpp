@@ -9,7 +9,8 @@ All versions below 1.0.0 (SOVERSION 0) are considered insecure, unstable and can
  * Tested OS: Linux
  * C++ compiler (tested: gcc 6.4, clang 5.0)
  * [cmake](https://cmake.org/) (tested: 3.9.6)
- * [boost](http://www.boost.org/) (tested: 1.63.0)
+ * [libcurl](https://curl.haxx.se/) (tested: 7.58.0)
+ * [curlpp](http://www.curlpp.org/) (tested: 0.8.1)
  * Optional: [doxygen](https://www.stack.nl/~dimitri/doxygen/) (tested: 1.8.13)
 
 ## Get sourcecode
@@ -53,7 +54,7 @@ The HTML reference can be generated with `build_doc.sh`, if doxygen is installed
     {
         Mastodon::API masto("social.example.com", "auth_token");
         std::string answer;
-        masto.get(API::v1::accounts_verify_credentials, answer);
+        masto.get(Mastodon::API::v1::accounts_verify_credentials, answer);
         std::cout << answer << '\n';
     }
 
@@ -61,7 +62,7 @@ The HTML reference can be generated with `build_doc.sh`, if doxygen is installed
 
 After you did a `make install`, a project consisting of one file can be compiled as follows:
 
-    g++ -std=c++14 -lmastodon-cpp -lboost_system -lssl -lcrypto example.cpp
+    g++ -std=c++14 -lmastodon-cpp example.cpp
 
 ## Error codes
 

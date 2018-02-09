@@ -18,6 +18,7 @@
 #include <map>
 #include <vector>
 #include <sstream>
+#include <regex>
 #include <curlpp/cURLpp.hpp>
 #include <curlpp/Easy.hpp>
 #include "version.hpp"
@@ -149,21 +150,87 @@ const curlpp::Forms API::maptoformdata(const parametermap &map)
     return formdata;
 }
 
-// const string API::register_app(const std::string &instance,
-//                                const std::string &client_name,
-//                                const std::string &redirect_uris,
-//                                const std::string &scopes,
-//                                const std::string &website)
-// {
-//     API::parametermap parameters =
-//     {
-//         { "client_name", { client_name } },
-//         { "redirect_uris", { redirect_uris } },
-//         { "scopes", { scopes } },
-//         { "website", { website } }
-//     };
+const std::uint16_t API::register_app1(const string &instance,
+                                       const string &client_name,
+                                       const string &redirect_uri,
+                                       const string &scopes,
+                                       const string &website,
+                                       string &client_id,
+                                       string &client_secret,
+                                       string &url)
+{
+    API::parametermap parameters =
+    {
+        { "client_name", { client_name } },
+        { "redirect_uris", { redirect_uri } },
+        { "scopes", { scopes } },
+        { "website", { website } }
+    };
 
-//     string answer;
-//     std::uint16_t ret = post(API::v1::apps, parameters, answer);
+    string answer;
+    std::uint16_t ret = post(API::v1::apps, parameters, answer);
+
+    if (ret == 0)
+    {
+        std::smatch match;
+        std::regex reid("client_id\":\"([0-9a-fA-F]+)\"");
+        std::regex resecret("client_secret\":\"([0-9a-fA-F]+)\"");
+
+        std::regex_search(answer, match, reid);
+        client_id = match[1].str();
+        std::regex_search(answer, match, resecret);
+        client_secret = match[1].str();
+
+        url = "https://" + instance + "/oauth/authorize" +
+              "?scope=" + urlencode(scopes) + "&response_type=code" +
+              "&redirect_uri=" + urlencode(redirect_uri) +
+              "&client_id=" + client_id;
+        if (!website.empty())
+        {
+            url += "&website=" + website;
+        }
+
+        return 0;
+    }
+    else
+    {
+        std::cerr << "Error code: " << ret << '\n';
+        return ret;
+    }
     
-// }
+}
+
+const std::uint16_t API::register_app2(const string &instance,
+                                       const string &client_id,
+                                       const string &client_secret,
+                                       const string &redirect_uri,
+                                       const string &code,
+                                       string &access_token)
+{
+    API::parametermap parameters =
+    {
+        { "client_id", { client_id } },
+        { "client_secret", { client_secret } },
+        { "grant_type", { "authorization_code" } },
+        { "redirect_uri", { redirect_uri } },
+        { "code", { code } },
+    };
+
+    std::string answer;
+    std::uint16_t ret = post("/oauth/token", parameters, answer);
+    if (ret == 0)
+    {
+        std::smatch match;
+        std::regex retoken("access_token\":\"([0-9a-fA-F]+)\"");
+
+        std::regex_search(answer, match, retoken);
+        access_token = match[1].str();
+
+        return 0;
+    }
+    else
+    {
+        std::cerr << "Error code: " << ret << '\n';
+        return ret;
+    }
+}

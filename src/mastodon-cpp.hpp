@@ -169,11 +169,20 @@ public:
      */
     const std::string urlencode(const std::string &str) const;
 
-    // const std::string register_app(const std::string &instance,
-    //                                const std::string &client_name,
-    //                                const std::string &redirect_uris,
-    //                                const std::string &scopes,
-    //                                const std::string &website = "");
+    const std::uint16_t register_app1(const std::string &instance,
+                                      const std::string &client_name,
+                                      const std::string &redirect_uri,
+                                      const std::string &scopes,
+                                      const std::string &website,
+                                      std::string &client_id,
+                                      std::string &client_secret,
+                                      std::string &url);
+    const std::uint16_t register_app2(const std::string &instance,
+                                      const std::string &client_id,
+                                      const std::string &client_secret,
+                                      const std::string &redirect_uri,
+                                      const std::string &code,
+                                      std::string &access_token);
 
     /*!
      *  @brief  Make a GET request which doesn't require an argument.

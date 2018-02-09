@@ -93,12 +93,11 @@ If you use a debug build, you get more verbose error messages.
      * [x] Implement all PUT calls
      * [x] Implement all DELETE calls
  * Version 0.3.0
-    * [ ] Handle HTTP statuses 301 & 302
-    * [ ] Support registering as an application
+    * [x] Handle HTTP statuses 301 & 302
+    * [x] Support registering as an application
  * Later
     * [ ] Asynchronous I/O
     * [ ] Handle X-RateLimit header
-    * [ ] Find out why the "short read" error occurs with PATCH and POST
 
 ## Status of implementation
 

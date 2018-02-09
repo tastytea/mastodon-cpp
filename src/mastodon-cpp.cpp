@@ -17,6 +17,9 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <sstream>
+#include <curlpp/cURLpp.hpp>
+#include <curlpp/Easy.hpp>
 #include "version.hpp"
 #include "macros.hpp"
 #include "mastodon-cpp.hpp"
@@ -104,58 +107,34 @@ const string API::maptostr(const parametermap &map, const bool &firstparam)
     ttdebug << "Constructed parameter string: " << result << '\n';
     return result;
 }
-const string API::maptoformdata(const parametermap &map)
+
+const curlpp::Forms API::maptoformdata(const parametermap &map)
 {
+    curlpp::Forms formdata;
+
     if (map.size() == 0)
     {
-        return "";
+        return formdata;
     }
-    
-    const string boundary = "MEEP";
-    string header;
-    string body;
-
-    header = "Content-type: multipart/form-data, boundary=" + boundary + "\r\n";
-    header += "Content-Length: ";
-    body = "--" + boundary;
 
     for (const auto &it : map)
     {
-        // This is directly after the last boundary
-        body += "\r\n";
         if (it.second.size() == 1)
         {
-            if (it.first == "avatar" ||
-                it.first == "header" ||
-                it.first == "file")
-            {
-                body += "Content-Transfer-Encoding: base64\r\n";
-            }
-            else
-            {
-                body += "Content-Transfer-Encoding: 8bit\r\n";
-            }
-            body += ("Content-Disposition: form-data; name=\"" +
-                     it.first + "\"\r\n\r\n");
-            body += (it.second.front() + "\r\n--" + boundary);
+            formdata.push_back(new curlpp::FormParts::Content(it.first,
+                                                           it.second.front()));
         }
         else
         {
             for (const string &str : it.second)
             {
-                body += ("Content-Disposition: form-data; name=\"" +
-                     it.first + "[]\"\r\n\r\n");
-                body += (str + "\r\n--" + boundary);
+                formdata.push_back(new curlpp::FormParts::Content(it.first + "[]",
+                                                               str));
             }
         }
     }
-    // The last segment has to have "--" after the boundary
-    body += "--\r\n";
 
-    header += (std::to_string(body.length()) + "\r\n\r\n");
-
-    ttdebug << "Form data: \n" << header << body;
-    return header + body;
+    return formdata;
 }
 
 // const string API::register_app(const std::string &instance,

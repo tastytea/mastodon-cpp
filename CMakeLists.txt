@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 3.7)
 include(GNUInstallDirs)
 
 project (mastodon-cpp
-         VERSION 0.2.1
+         VERSION 0.2.10
          LANGUAGES CXX
 )
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
@@ -24,6 +24,9 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_definitions(-DDEBUG=1)
 endif()
 
+include(FindCURL)
+find_package(CURL REQUIRED)
+
 # Library
 file(GLOB sources src/*.cpp src/*.hpp)
 add_library(mastodon-cpp SHARED ${sources})
@@ -31,7 +34,7 @@ set_target_properties(mastodon-cpp PROPERTIES
     VERSION ${PROJECT_VERSION}
     SOVERSION ${mastodon-cpp_VERSION_MAJOR}
 )
-target_link_libraries(mastodon-cpp boost_system ssl crypto)
+target_link_libraries(mastodon-cpp ${CURL_LIBRARIES} ssl crypto curlpp)
 install(TARGETS mastodon-cpp LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(FILES ${PROJECT_SOURCE_DIR}/src/mastodon-cpp.hpp
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})

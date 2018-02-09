@@ -120,9 +120,21 @@ const curlpp::Forms API::maptoformdata(const parametermap &map)
     for (const auto &it : map)
     {
         if (it.second.size() == 1)
-        {
-            formdata.push_back(new curlpp::FormParts::Content(it.first,
-                                                           it.second.front()));
+        {   // If the file is not base64-encoded, treat as filename
+            if ((it.first == "avatar" ||
+                it.first == "header" ||
+                it.first == "file") &&
+                it.second.front().substr(0, 4).compare("data") != 0)
+             {
+                ttdebug << it.first << ": Filename detected.\n";
+                formdata.push_back(
+                    new curlpp::FormParts::File(it.first, it.second.front()));
+             }
+             else
+             {
+                formdata.push_back(
+                    new curlpp::FormParts::Content(it.first, it.second.front()));
+            }
         }
         else
         {

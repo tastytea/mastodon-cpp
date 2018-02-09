@@ -35,7 +35,7 @@ namespace Mastodon
 {
 /*!
  *  @brief  Class for the Mastodon API. All input is expected to be UTF-8.
- *          Binary data must be base64-encoded.
+ *          Binary data must be base64-encoded or a filename.
  *  @section error Error codes
  *  |      Code | Explanation                   |
  *  | --------: |:------------------------------|
@@ -246,7 +246,7 @@ public:
     /*!
      *  @brief  Make a PATCH request.
      *
-     *          Binary data must be base64-encoded.
+     *          Binary data must be base64-encoded or a filename.
      *
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  parameters  A Mastodon::API::parametermap containing parameters
@@ -289,7 +289,7 @@ public:
      *  @brief  Make a POST request which doesn't require an argument, pass
      *          parameters.
      *
-     *          Binary data must be base64-encoded.
+     *          Binary data must be base64-encoded or a filename.
      *
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  parameters  A Mastodon::API::parametermap containing parameters
@@ -305,7 +305,7 @@ public:
     /*!
      *  @brief  Make a POST request which requires an argument, pass parameters.
      *
-     *          Binary data must be base64-encoded.
+     *          Binary data must be base64-encoded or a filename.
      *
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  argument    The non-optional argument
@@ -323,7 +323,7 @@ public:
     /*!
      *  @brief  Make a custom POST request.
      *
-     *          Binary data must be base64-encoded.
+     *          Binary data must be base64-encoded or a filename.
      *
      *  @param  call        String in the form `/api/v1/example`
      *  @param  parameters  A Mastodon::API::parametermap containing parameters

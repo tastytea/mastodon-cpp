@@ -17,201 +17,87 @@
 #include <string>
 #include <cstdint>
 #include <iostream>
-#include <istream>
-#include <ostream>
 #include <sstream>
-#include <boost/asio.hpp>
-#include <boost/asio/ssl.hpp>
+#include <curlpp/cURLpp.hpp>
+#include <curlpp/Easy.hpp>
+#include <curlpp/Options.hpp>
+#include <curlpp/Exception.hpp>
 #include "macros.hpp"
 #include "mastodon-cpp.hpp"
 
 using namespace Mastodon;
+namespace curlopts = curlpp::options;
 using std::string;
 using std::cerr;
-
-using boost::asio::ip::tcp;
-namespace ssl = boost::asio::ssl;
-typedef ssl::stream<tcp::socket> ssl_socket;
 
 API::http::http(const API &api, const string &instance,
                 const string &access_token)
 : parent(api)
 , _instance(instance)
 , _access_token(access_token)
-, _ctx(ssl::context::tlsv12)
-, _resolver(_io_service)
-, _socket(_io_service, _ctx)
 {
-    _ctx.set_options(ssl::context::tlsv12 | ssl::context::tlsv11 |
-                    ssl::context::no_sslv3 | ssl::context::no_sslv2 |
-                    ssl::context::no_tlsv1);
-    _ctx.set_default_verify_paths();
+    curlpp::initialize();
 }
 
 const std::uint16_t API::http::request_sync(const method &meth,
                                             const string &path,
                                             string &answer)
 {
-    return request_sync(meth, path, "", answer);
+    return request_sync(meth, path, curlpp::Forms(), answer);
 }
 
 const std::uint16_t API::http::request_sync(const method &meth,
                                             const string &path,
-                                            const string &formdata,
+                                            const curlpp::Forms &formdata,
                                             string &answer)
 {
     ttdebug << "Path is: " << path << '\n';
+    
     try
     {
-        tcp::resolver::query query(_instance, "https");
-        tcp::resolver::iterator endpoint_iterator = _resolver.resolve(query);
-        boost::asio::connect(_socket.lowest_layer(), endpoint_iterator);
-        _socket.lowest_layer().set_option(tcp::no_delay(true));
-    }
-    catch (const std::exception &e)
-    {
-        ttdebug << "ERROR: " << e.what() << "\n";
-        return 16;
-    }
+        std::ostringstream oss;
+        curlpp::Easy request;
+        request.setOpt<curlopts::Url>("https://" + _instance + path);
+        request.setOpt<curlopts::UserAgent>(parent.get_useragent());
+        request.setOpt<curlopts::HttpHeader>(
+        {
+            "Connection: close",
+            "Authorization: Bearer " + _access_token
+        });
+        if (!formdata.empty())
+        {
+            request.setOpt<curlopts::HttpPost>(formdata);
+        }
 
-    try
-    {
-        // Server Name Indication (SNI)
-        SSL_set_tlsext_host_name(_socket.native_handle(), _instance.c_str());
-
-        _socket.set_verify_mode(ssl::verify_peer);
-        _socket.set_verify_callback(ssl::rfc2818_verification(_instance));
-
-        _socket.handshake(ssl_socket::client);
-    }
-    catch (const std::exception &e)
-    {
-        ttdebug << "ERROR: " << e.what() << "\n";
-        return 17;
-    }
-
-    try
-    {
-        boost::asio::streambuf request;
-        std::ostream request_stream(&request);
         switch (meth)
         {
             case http::method::GET:
-                request_stream << "GET";
-                ttdebug << "Method is GET\n";
                 break;
             case http::method::PATCH:
-                request_stream << "PATCH";
-                ttdebug << "Method is PATCH\n";
+                request.setOpt<curlopts::CustomRequest>("PATCH");
                 break;
             case http::method::POST:
-                request_stream << "POST";
-                ttdebug << "Method is POST\n";
+                request.setOpt<curlopts::CustomRequest>("POST");
                 break;
             case http::method::PUT:
-                request_stream << "PUT";
-                ttdebug << "Method is PUT\n";
-                break;
+                request.setOpt<curlopts::CustomRequest>("PUT");
             case http::method::DELETE:
-                request_stream << "DELETE";
-                ttdebug << "Method is DELETE\n";
-                break;
-                default:
-                    ttdebug << "ERROR: Not implemented\n";
-                    return 2;
-        }
-        request_stream << " " << path;
-        request_stream << " HTTP/1.0\r\n";
-        request_stream << "Host: " << _instance << "\r\n";
-        request_stream << "Accept: */*\r\n";
-        request_stream << "Connection: close\r\n";
-        request_stream << "User-Agent: " << parent.get_useragent() << "\r\n";
-        if (!_access_token.empty())
-        {
-            request_stream << "Authorization: Bearer "
-                           << _access_token << "\r\n";
-        }
-        switch (meth)
-        {
-            case http::method::GET:
-                request_stream << "\r\n";
-                break;
-            case http::method::PATCH:
-                request_stream << formdata;
-                break;
-            case http::method::POST:
-            case http::method::PUT:
-            case http::method::DELETE:
-                if (formdata.empty())
-                {
-                    request_stream << "\r\n";
-                }
-                else
-                {
-                    request_stream << formdata;
-                }
+                request.setOpt<curlopts::CustomRequest>("DELETE");
             default:
                 break;
         }
-        boost::asio::write(_socket, request);
-
-        boost::asio::streambuf response;
-        boost::asio::read_until(_socket, response, "\r\n");
-
-        // Check that response is OK.
-        std::istream response_stream(&response);
-        std::string http_version;
-        std::uint16_t status_code;
-        std::string status_message;
-        response_stream >> http_version;
-        response_stream >> status_code;
-        std::getline(response_stream, status_message);
-        if (!response_stream || http_version.substr(0, 5) != "HTTP/")
-        {
-            ttdebug << "ERROR: Invalid response from server\n";
-            ttdebug << "Response was: " << http_version << " " << status_code
-                    << " " << status_message << '\n';
-            return 18;
-        }
-        if (status_code != 200)
-        {
-            ttdebug << "ERROR: Response returned with status code "
-                    << status_code << ": " << status_message << "\n";
-            return status_code;
-        }
-
-        // Read headers
-        boost::asio::read_until(_socket, response, "\r\n\r\n");
-        std::string header;
-        // ttdebug << "Header: \n";
-        while (std::getline(response_stream, header) && header != "\r")
-        {
-            // ttdebug << header << '\n';
-        }
-
-        // Read body
-        boost::system::error_code error;
-        answer = "";
-        std::ostringstream oss;
-        while (boost::asio::read(_socket, response,
-                                 boost::asio::transfer_at_least(1), error))
-        {
-            oss << &response;
-        }
-        if (error != boost::asio::error::eof)
-        {
-            // TODO: Find out why the "short read" error occurs
-            // with PATCH and POST
-            //throw boost::system::system_error(error);
-            ttdebug << "ERROR: " << error.message() << '\n';
-            ttdebug << "The preceding error is ignored.\n";
-        }
+        
+        oss << request;
         answer = oss.str();
-        ttdebug << "Answer from server: " << oss.str() << '\n';
     }
-    catch (const std::exception &e)
+    catch (curlpp::RuntimeError &e)
     {
-        ttdebug << "Exception: " << e.what() << "\n";
+        cerr << "RUNTIME ERROR: " << e.what() << std::endl;
+        return 0xffff;
+    }
+    catch (curlpp::LogicError &e)
+    {
+        cerr << "LOGIC ERROR: " << e.what() << std::endl;
         return 0xffff;
     }
 

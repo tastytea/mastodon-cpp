@@ -21,8 +21,8 @@
 #include <vector>
 #include <cstdint>
 #include <map>
-#include <boost/asio.hpp>
-#include <boost/asio/ssl.hpp>
+#include <curlpp/cURLpp.hpp>
+#include <curlpp/Easy.hpp>
 
 /*!
  *  @example example1_dump_json.cpp
@@ -436,7 +436,15 @@ private:
      */
     const std::string maptostr(const parametermap &map,
                                const bool &firstparam = true);
-    const std::string maptoformdata(const parametermap &map);
+
+    /*!
+     *  @brief  Converts map of parameters into form data
+     *
+     *  @param  map     Map of parameters
+     *
+     *  @return Form data as curlpp::Forms
+     */
+    const curlpp::Forms maptoformdata(const parametermap &map);
 
     class http
     {
@@ -468,17 +476,13 @@ private:
          */
         const std::uint16_t request_sync(const method &meth,
                                          const std::string &path,
-                                         const std::string &formdata,
+                                         const curlpp::Forms &formdata,
                                          std::string &answer);
 
     private:
         const API &parent;
         const std::string _instance;
         const std::string _access_token;
-        boost::asio::ssl::context _ctx;
-        boost::asio::io_service _io_service;
-        boost::asio::ip::tcp::resolver _resolver;
-        boost::asio::ssl::stream<boost::asio::ip::tcp::socket> _socket;
     } _http;
 };
 }

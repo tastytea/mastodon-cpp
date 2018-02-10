@@ -22,6 +22,7 @@
 #include <curlpp/Easy.hpp>
 #include <curlpp/Options.hpp>
 #include <curlpp/Exception.hpp>
+#include <curlpp/Infos.hpp>
 #include "macros.hpp"
 #include "mastodon-cpp.hpp"
 
@@ -64,6 +65,8 @@ const std::uint16_t API::http::request_sync(const method &meth,
             "Connection: close",
             "Authorization: Bearer " + _access_token
         });
+        request.setOpt<curlopts::FollowLocation>(true);
+        request.setOpt<curlopts::WriteStream>(&oss);
         if (!formdata.empty())
         {
             request.setOpt<curlopts::HttpPost>(formdata);
@@ -87,8 +90,23 @@ const std::uint16_t API::http::request_sync(const method &meth,
                 break;
         }
         
-        oss << request;
-        answer = oss.str();
+        request.perform();
+        std::uint16_t ret = curlpp::infos::ResponseCode::get(request);
+        ttdebug << "Response code: " << ret << '\n';
+        if (ret == 200 || ret == 302 || ret == 307)
+        {   // OK or Found or Temporary Redirect
+            answer = oss.str();
+        }
+        else if (ret == 301 || ret == 308)
+        {
+            // Moved Permanently or Permanent Redirect
+            // FIXME: The new URL should be passed back somehow
+            answer = oss.str();
+        }
+        else
+        {
+            return ret;
+        }
     }
     catch (curlpp::RuntimeError &e)
     {

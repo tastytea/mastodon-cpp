@@ -93,7 +93,7 @@ If you use a debug build, you get more verbose error messages.
      * [x] Implement all PUT calls
      * [x] Implement all DELETE calls
  * Version 0.3.0
-    * [x] Handle HTTP statuses 301 & 302
+    * [ ] Handle HTTP statuses 301 & 302
     * [x] Support registering as an application
  * Later
     * [ ] Asynchronous I/O

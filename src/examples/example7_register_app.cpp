@@ -44,15 +44,26 @@ int main(int argc, char *argv[])
         std::cin >> code;
 
         std::string access_token;
-        masto.register_app2(argv[1],
-                            client_id,
-                            client_secret,
-                            "urn:ietf:wg:oauth:2.0:oob",
-                            code,
-                            access_token);
+        ret = masto.register_app2(argv[1],
+                                  client_id,
+                                  client_secret,
+                                  "urn:ietf:wg:oauth:2.0:oob",
+                                  code,
+                                  access_token);
         if (ret == 0)
         {
             std::cout << "Success!\nAccess-token: " << access_token << '\n';
+            std::cout << "Testing access token...\n";
+            ret = masto.get(API::v1::accounts_verify_credentials, answer);
+            if (ret == 0)
+            {
+                std::cout << answer;
+            }
+            else
+            {
+                std::cerr << "Error code: " << ret << '\n';
+                return ret;
+            }
         }
         else
         {

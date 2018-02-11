@@ -69,8 +69,7 @@ public:
     /*!
      *  @brief  A list of all API calls.
      *
-     *          The original `/` are substituted by `_`. Currently only GET
-     *          requests.
+     *          The original `/` are substituted by `_`.
      */
     enum class v1
     {

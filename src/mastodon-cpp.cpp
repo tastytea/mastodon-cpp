@@ -225,6 +225,7 @@ const std::uint16_t API::register_app2(const string &instance,
 
         std::regex_search(answer, match, retoken);
         access_token = match[1].str();
+        _access_token = access_token;
 
         return 0;
     }

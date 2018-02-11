@@ -30,6 +30,8 @@
  *  @example example3_mastocron.cpp
  *  @example example4_update_credentials.cpp
  *  @example example5_follow_unfollow.cpp
+ *  @example example6_toot_delete-toot.cpp
+ *  @example example7_register_app.cpp
  */
 namespace Mastodon
 {
@@ -133,9 +135,11 @@ public:
     /*!
      *  @brief  Constructs a new API object.
      *
+     *          To register your application, leave access_token blank and call
+     *          register_app1() and register_app2().
+     *
      *  @param  instance      The hostname of your instance
-     *  @param  access_token  Your access token. You have to generate it
-     *                        manually for now.
+     *  @param  access_token  Your access token.
      */
     explicit API(const std::string &instance,
                  const std::string &access_token);
@@ -194,6 +198,8 @@ public:
 
     /*!
      *  @brief  Register application, step 2/2
+     *  
+     *          The access token will be used in all subsequent calls.
      *
      *  @param  instance       
      *  @param  client_id      
@@ -457,7 +463,7 @@ public:
 
 private:
     const std::string _instance;
-    const std::string _access_token;
+    std::string _access_token;
     std::string _useragent;
 
     /*!

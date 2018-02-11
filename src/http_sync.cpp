@@ -98,8 +98,7 @@ const std::uint16_t API::http::request_sync(const method &meth,
             answer = oss.str();
         }
         else if (ret == 301 || ret == 308)
-        {
-            // Moved Permanently or Permanent Redirect
+        {   // Moved Permanently or Permanent Redirect
             // FIXME: The new URL should be passed back somehow
             answer = oss.str();
         }
@@ -111,6 +110,7 @@ const std::uint16_t API::http::request_sync(const method &meth,
     catch (curlpp::RuntimeError &e)
     {
         cerr << "RUNTIME ERROR: " << e.what() << std::endl;
+        
         return 0xffff;
     }
     catch (curlpp::LogicError &e)

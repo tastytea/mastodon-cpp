@@ -97,9 +97,11 @@ If you use a debug build, you get more verbose error messages.
  * Version 0.3.0
     * [ ] Handle HTTP statuses 301 & 302
     * [x] Support registering as an application
+ * Version 0.4.0
+    * [ ] Handle X-RateLimit header
+    * [ ] Streaming API
  * Later
     * [ ] Asynchronous I/O
-    * [ ] Handle X-RateLimit header
 
 ## Status of implementation
 
@@ -166,8 +168,14 @@ If you use a debug build, you get more verbose error messages.
  * [x] GET /api/v1/timelines/public
  * [x] GET /api/v1/timelines/tag/:hashtag
  * [x] GET /api/v1/timelines/list/:list_id
+ * [ ] GET /api/v1/streaming/user
+ * [ ] GET /api/v1/streaming/public
+ * [ ] GET /api/v1/streaming/public/local
+ * [ ] GET /api/v1/streaming/hashtag
+ * [ ] GET /api/v1/streaming/list
 
-[Full reference](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md)
+[Mastodon API reference](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md) – 
+[Mastodon streaming API reference](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
 
 # Copyright
 

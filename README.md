@@ -11,7 +11,8 @@ All versions below 1.0.0 (SOVERSION 0) are considered insecure, unstable and can
  * [cmake](https://cmake.org/) (tested: 3.9.6)
  * [libcurl](https://curl.haxx.se/) (tested: 7.58.0)
  * [curlpp](http://www.curlpp.org/) (tested: 0.8.1)
- * Optional: [doxygen](https://www.stack.nl/~dimitri/doxygen/) (tested: 1.8.13)
+ * Optional, documentation: [doxygen](https://www.stack.nl/~dimitri/doxygen/) (tested: 1.8.13)
+ * Optional, examples: [boost](http://www.boost.org/) (tested: 1.63.0)
 
 ## Get sourcecode
 
@@ -73,11 +74,14 @@ After you did a `make install`, a project consisting of one file can be compiled
 |         0 | No error                      |
 |         1 | Invalid call                  |
 |         2 | Not implemented               |
+| 100 - 999 | HTTP status codes             |
+|     65535 | Unknown error                 |
+
+|           | Deprecated (since 0.2.10)     |
+| --------: |:------------------------------|
 |        16 | Connection failed             |
 |        17 | TLS error                     |
 |        18 | Invalid response from server  |
-| 100 - 999 | HTTP status codes             |
-|     65535 | Unknown exception             |
 
 If you use a debug build, you get more verbose error messages.
 

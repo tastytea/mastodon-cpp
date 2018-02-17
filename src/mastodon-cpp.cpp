@@ -192,6 +192,11 @@ const std::uint16_t API::register_app1(const string &instance,
 
         return 0;
     }
+    else if (ret == 3)
+    {
+        url = answer;
+        return ret;
+    }
     else
     {
         std::cerr << "Error code: " << ret << '\n';

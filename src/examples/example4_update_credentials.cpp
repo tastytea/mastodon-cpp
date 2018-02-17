@@ -62,6 +62,12 @@ int main(int argc, char *argv[])
     {
         std::cout << answer << '\n';
     }
+    else if (ret == 3)
+    {
+        std::cerr << "The URL has permanently changed.\n" <<
+                     "New URL: " << answer << '\n';
+        return ret;
+    }
     else
     {
         std::cerr << "Error code: " << ret << '\n';

@@ -74,6 +74,7 @@ After you did a `make install`, a project consisting of one file can be compiled
 |         0 | No error                      |
 |         1 | Invalid call                  |
 |         2 | Not implemented               |
+|         3 | URL changed (HTTP 301 or 308) |
 | 100 - 999 | HTTP status codes             |
 |     65535 | Unknown error                 |
 
@@ -99,13 +100,14 @@ If you use a debug build, you get more verbose error messages.
      * [x] Implement all PUT calls
      * [x] Implement all DELETE calls
  * Version 0.3.0
-    * [ ] Handle HTTP statuses 301 & 302
+    * [x] Handle HTTP statuses 301, 302, 307 and 308
     * [x] Support registering as an application
  * Version 0.4.0
     * [ ] Handle X-RateLimit header
     * [ ] Streaming API
  * Later
     * [ ] Asynchronous I/O
+    * [ ] Improve error reporting
 
 ## Status of implementation
 

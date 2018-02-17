@@ -99,8 +99,9 @@ const std::uint16_t API::http::request_sync(const method &meth,
         }
         else if (ret == 301 || ret == 308)
         {   // Moved Permanently or Permanent Redirect
-            // FIXME: The new URL should be passed back somehow
-            answer = oss.str();
+            // return new URL
+            answer = curlpp::infos::EffectiveUrl::get(request);
+            return 3;
         }
         else
         {

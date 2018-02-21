@@ -1,17 +1,19 @@
 cmake_minimum_required (VERSION 3.7)
-include(GNUInstallDirs)
-
 project (mastodon-cpp
-         VERSION 0.3.0
+         VERSION 0.3.1
          LANGUAGES CXX
 )
+
+include(GNUInstallDirs)
+include(FindCURL)
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include_directories(${MY_SOURCE_DIR}/src)
+include_directories(${PROJECT_SOURCE_DIR}/src)
 include_directories(${PROJECT_BINARY_DIR})
 
 # Write version in header
@@ -24,8 +26,8 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_definitions(-DDEBUG=1)
 endif()
 
-include(FindCURL)
 find_package(CURL REQUIRED)
+include_directories(${CURL_INCLUDE_DIR})
 
 # Library
 file(GLOB sources src/*.cpp src/*.hpp)
@@ -51,11 +53,17 @@ endif()
 
 # Examples
 if(WITH_EXAMPLES)
+    include(FindBoost)
+    find_package(Boost REQUIRED COMPONENTS system filesystem)
+    include_directories(${Boost_INCLUDE_DIRS})
+    link_directories(${Boost_LIBRARY_DIRS})
+    add_definitions(${Boost_DEFINITIONS})
+
     file(GLOB sources_examples src/examples/*.cpp)
     foreach(src ${sources_examples})
         get_filename_component(bin ${src} NAME_WE)
         add_executable(${bin} ${src})
-        target_link_libraries(${bin} mastodon-cpp)
+        target_link_libraries(${bin} ${Boost_LIBRARIES} mastodon-cpp)
     endforeach()
 endif()
 

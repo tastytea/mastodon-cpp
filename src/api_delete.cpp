@@ -17,6 +17,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <curlpp/cURLpp.hpp>
 #include "macros.hpp"
 #include "mastodon-cpp.hpp"
 
@@ -55,7 +56,7 @@ const std::uint16_t API::del(const Mastodon::API::v1 &call,
                               const parametermap &parameters)
 {
     string strcall = "";
-    const string argument_encoded = urlencode(argument);
+    const string argument_encoded = curlpp::escape(argument);
 
     switch (call)
     {

@@ -1,6 +1,6 @@
 **mastodon-cpp** is a C++ wrapper for the Mastodon API. The aim is to be as simple as possible.
 The library takes care of the network stuff. You submit a query and get the raw JSON.
-All versions below 1.0.0 (SOVERSION 0) are considered insecure, unstable and can change any time.
+All versions below 1.0.0 (SOVERSION 0) are considered unstable and can change any time.
 
 # Install
 
@@ -88,24 +88,24 @@ If you use a debug build, you get more verbose error messages.
 
 # TODO
 
- * Version 0.1.0
+* Version 0.1.0
     * [x] Implement all GET calls
     * [x] Usable error handling
     * [x] Network stuff
     * [x] Comprehensive example
- * Version 0.2.0
-     * [x] Escape user input
-     * [x] Implement all PATCH calls
-     * [x] Implement all POST calls
-     * [x] Implement all PUT calls
-     * [x] Implement all DELETE calls
- * Version 0.3.0
+* Version 0.2.0
+    * [x] Escape user input
+    * [x] Implement all PATCH calls
+    * [x] Implement all POST calls
+    * [x] Implement all PUT calls
+    * [x] Implement all DELETE calls
+* Version 0.3.0
     * [x] Handle HTTP statuses 301, 302, 307 and 308
     * [x] Support registering as an application
- * Version 0.4.0
+* Version 0.4.0
     * [ ] Handle X-RateLimit header
     * [ ] Streaming API
- * Later
+* Later
     * [ ] Asynchronous I/O
     * [ ] Improve error reporting
 

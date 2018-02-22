@@ -17,6 +17,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <curlpp/cURLpp.hpp>
 #include "macros.hpp"
 #include "mastodon-cpp.hpp"
 
@@ -100,7 +101,7 @@ const std::uint16_t API::get(const Mastodon::API::v1 &call,
 {
     string strcall = "";
     bool firstparam = true;
-    const string argument_encoded = urlencode(argument);
+    const string argument_encoded = curlpp::escape(argument);
 
     switch (call)
     {

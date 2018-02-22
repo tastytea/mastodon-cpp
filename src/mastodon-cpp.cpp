@@ -49,30 +49,6 @@ const string API::get_useragent() const
     return _useragent;
 }
 
-const std::string API::urlencode(const string &str) const
-{
-    std::ostringstream oss;
-
-    for (const std::uint8_t &b: str)
-    {
-        // Check for unreserved characters (RFC 3986 section 2.3)
-        if ((b >= 0x30 && b <= 0x39) || // 0-9
-            (b >= 0x41 && b <= 0x5A) || // A-Z
-            (b >= 0x61 && b <= 0x7A) || // a-z
-            b == 0x2D || b == 0x2E ||   // -, .
-            b == 0x5F || b == 0x7E)     // _, ~
-        {
-            oss << b;
-        }
-        else
-        {
-            oss << '%' << std::hex << std::uppercase << (int)(unsigned char)b;
-        }
-    }
-
-    return oss.str();
-}
-
 const string API::maptostr(const parametermap &map, const bool &firstparam)
 {
     string result = "";
@@ -86,7 +62,7 @@ const string API::maptostr(const parametermap &map, const bool &firstparam)
     {
         if (it.second.size() == 1)
         {
-            result += (delim + it.first + "=" + urlencode(it.second.front()));
+            result += (delim + it.first + "=" + curlpp::escape(it.second.front()));
             if (delim == '?')
             {
                 delim = '&';
@@ -96,7 +72,7 @@ const string API::maptostr(const parametermap &map, const bool &firstparam)
         {
             for (const string &str : it.second)
             {
-                result += (delim + it.first + "[]=" + urlencode(str));
+                result += (delim + it.first + "[]=" + curlpp::escape(str));
                 if (delim == '?')
                 {
                     delim = '&';
@@ -182,8 +158,8 @@ const std::uint16_t API::register_app1(const string &instance,
         client_secret = match[1].str();
 
         url = "https://" + instance + "/oauth/authorize" +
-              "?scope=" + urlencode(scopes) + "&response_type=code" +
-              "&redirect_uri=" + urlencode(redirect_uri) +
+              "?scope=" + curlpp::escape(scopes) + "&response_type=code" +
+              "&redirect_uri=" + curlpp::escape(redirect_uri) +
               "&client_id=" + client_id;
         if (!website.empty())
         {

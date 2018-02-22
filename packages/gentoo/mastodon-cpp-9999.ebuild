@@ -51,6 +51,7 @@ src_install() {
     fi
 
     if use examples; then
+        docinto examples
         for file in src/examples/*.cpp; do
             dodoc ${file}
         done

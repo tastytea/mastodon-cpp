@@ -86,6 +86,11 @@ After you did a `make install`, a project consisting of one file can be compiled
 
 If you use a debug build, you get more verbose error messages.
 
+## Useful links
+
+* [Mastodon API reference](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md)
+* [Mastodon streaming API reference](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
+
 # TODO
 
 * Version 0.1.0
@@ -179,9 +184,6 @@ If you use a debug build, you get more verbose error messages.
  * [ ] GET /api/v1/streaming/public/local
  * [ ] GET /api/v1/streaming/hashtag
  * [ ] GET /api/v1/streaming/list
-
-[Mastodon API reference](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md) – 
-[Mastodon streaming API reference](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
 
 # Copyright
 

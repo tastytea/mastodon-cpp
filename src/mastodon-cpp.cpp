@@ -216,3 +216,18 @@ const std::uint16_t API::register_app2(const string &instance,
         return ret;
     }
 }
+
+const string API::get_header(const std::string &header) const
+{
+    string headers;
+    _http.get_headers(headers);
+    size_t startpos = headers.find(header);
+    if (startpos != std::string::npos)
+    {
+        startpos = headers.find(':', startpos) + 2;
+        size_t endpos = headers.find("\r\n", startpos);
+        return headers.substr(startpos, endpos - startpos);
+    }
+
+    return "";
+}

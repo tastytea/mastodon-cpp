@@ -65,6 +65,8 @@ const std::uint16_t API::http::request_sync(const method &meth,
             "Connection: close",
             "Authorization: Bearer " + _access_token
         });
+        // Get headers from server
+        request.setOpt<curlpp::options::Header>(true);
         request.setOpt<curlopts::FollowLocation>(true);
         request.setOpt<curlopts::WriteStream>(&oss);
         if (!formdata.empty())
@@ -93,9 +95,13 @@ const std::uint16_t API::http::request_sync(const method &meth,
         request.perform();
         std::uint16_t ret = curlpp::infos::ResponseCode::get(request);
         ttdebug << "Response code: " << ret << '\n';
+        size_t pos = oss.str().find("\r\n\r\n");
+        _headers = oss.str().substr(0, pos);
+
         if (ret == 200 || ret == 302 || ret == 307)
         {   // OK or Found or Temporary Redirect
-            answer = oss.str();
+            // Only return body
+            answer = oss.str().substr(pos + 4);
         }
         else if (ret == 301 || ret == 308)
         {   // Moved Permanently or Permanent Redirect
@@ -121,4 +127,9 @@ const std::uint16_t API::http::request_sync(const method &meth,
     }
 
     return 0;
+}
+
+const void API::http::get_headers(string &headers) const
+{
+    headers = _headers;
 }

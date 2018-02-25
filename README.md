@@ -108,7 +108,7 @@ If you use a debug build, you get more verbose error messages.
     * [x] Handle HTTP statuses 301, 302, 307 and 308
     * [x] Support registering as an application
 * Version 0.4.0
-    * [ ] Handle X-RateLimit header
+    * [x] Handle X-RateLimit header
     * [ ] Streaming API
 * Later
     * [ ] Asynchronous I/O

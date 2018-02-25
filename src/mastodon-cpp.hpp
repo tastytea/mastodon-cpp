@@ -32,6 +32,7 @@
  *  @example example5_follow_unfollow.cpp
  *  @example example6_toot_delete-toot.cpp
  *  @example example7_register_app.cpp
+ *  @example example8_rate_limiting.cpp
  */
 namespace Mastodon
 {
@@ -472,6 +473,15 @@ public:
                             const parametermap &parameters,
                             std::string &answer);
 
+    /*!
+         *  @brief  Gets the header from the last answer.
+         *
+         *  @param  header  The header to search
+         *
+         *  @return The header, or "" on error.
+         */
+        const std::string get_header(const std::string &header) const;
+
 private:
     const std::string _instance;
     std::string _access_token;
@@ -531,10 +541,13 @@ private:
                                          const curlpp::Forms &formdata,
                                          std::string &answer);
 
+        const void get_headers(std::string &headers) const;
+
     private:
         const API &parent;
         const std::string _instance;
         const std::string _access_token;
+        std::string _headers;
     } _http;
 };
 }

@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.7)
 project (mastodon-cpp
-         VERSION 0.3.3
+         VERSION 0.4.0
          LANGUAGES CXX
 )
 
@@ -63,7 +63,7 @@ if(WITH_EXAMPLES)
     foreach(src ${sources_examples})
         get_filename_component(bin ${src} NAME_WE)
         add_executable(${bin} ${src})
-        target_link_libraries(${bin} ${Boost_LIBRARIES} mastodon-cpp)
+        target_link_libraries(${bin} -lpthread ${Boost_LIBRARIES} mastodon-cpp)
     endforeach()
 endif()
 

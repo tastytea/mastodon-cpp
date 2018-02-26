@@ -21,6 +21,7 @@
 #include <vector>
 #include <cstdint>
 #include <map>
+#include <memory>
 #include <curlpp/cURLpp.hpp>
 #include <curlpp/Easy.hpp>
 
@@ -33,6 +34,7 @@
  *  @example example6_toot_delete-toot.cpp
  *  @example example7_register_app.cpp
  *  @example example8_rate_limiting.cpp
+ *  @example example9_streaming_api.cpp
  */
 namespace Mastodon
 {
@@ -52,6 +54,8 @@ namespace Mastodon
 class API
 {
 public:
+    class http;
+
     /*!
      *  @brief Used for passing (most of the time) optional parameters.
      *  
@@ -127,7 +131,13 @@ public:
         statuses_id_pin,
         statuses_id_unpin,
         statuses_id_mute,
-        statuses_id_unmute
+        statuses_id_unmute,
+        // Streaming
+        streaming_user,
+        streaming_public,
+        streaming_public_local,
+        streaming_hashtag,
+        streaming_list
     };
 
     /*!
@@ -287,6 +297,56 @@ public:
      */
     const std::uint16_t get(const std::string &call,
                             std::string &answer);
+
+    /*!
+     *  @brief  Make a streaming GET request.
+     *
+     *  @param  call      A call defined in Mastodon::API::v1
+     *  @param  argument  The non-optional argument
+     *  @param  answer    The answer from the server. Usually JSON. On error an
+     *                    empty string.
+     *  @param  ptr       Pointer to the http object. Can be used to call
+     *                    ptr->abort_stream()
+     *
+     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  is returned and answer is set to the new URL.
+     */
+    const std::uint16_t get_stream(const Mastodon::API::v1 &call,
+                                   const std::string &argument,
+                                   std::string &answer,
+                                   std::unique_ptr<Mastodon::API::http> &ptr);
+
+    /*!
+     *  @brief  Make a streaming GET request.
+     *
+     *  @param  call      A call defined in Mastodon::API::v1
+     *  @param  answer    The answer from the server. Usually JSON. On error an
+     *                    empty string.
+     *  @param  ptr       Pointer to the http object. Can be used to call
+     *                    ptr->abort_stream()
+     *
+     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  is returned and answer is set to the new URL.
+     */
+    const std::uint16_t get_stream(const Mastodon::API::v1 &call,
+                                   std::string &answer,
+                                   std::unique_ptr<Mastodon::API::http> &ptr);
+
+    /*!
+     *  @brief  Make a streaming GET request.
+     *
+     *  @param  call      String in the form `/api/v1/example`
+     *  @param  answer    The answer from the server. Usually JSON. On error an
+     *                    empty string.
+     *  @param  ptr       Pointer to the http object. Can be used to call
+     *                    ptr->abort_stream()
+     *
+     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  is returned and answer is set to the new URL.
+     */
+    const std::uint16_t get_stream(const std::string &call,
+                                   std::string &answer,
+                                   std::unique_ptr<Mastodon::API::http> &ptr);
 
     /*!
      *  @brief  Make a PATCH request.
@@ -507,6 +567,10 @@ private:
      */
     const curlpp::Forms maptoformdata(const parametermap &map);
 
+public:
+    /*!
+     *  @brief  http class. Do not use this directly.
+     */
     class http
     {
     public:
@@ -516,17 +580,21 @@ private:
             PATCH,
             POST,
             PUT,
-            DELETE
+            DELETE,
+            GET_STREAM
         };
 
         explicit http(const API &api, const std::string &instance,
                       const std::string &access_token);
+        ~http();
         const std::uint16_t request_sync(const method &meth,
                                          const std::string &path,
                                          std::string &answer);
 
         /*!
          *  @brief  Blocking request.
+         *  
+         *  
          *
          *  @param  meth      The method defined in http::method
          *  @param  path      The api call as string
@@ -543,11 +611,25 @@ private:
 
         const void get_headers(std::string &headers) const;
 
+        const size_t callback(char* data, size_t size, size_t nmemb,
+                              std::string *oss);
+
+        /*!
+         *  @brief  Aborts the stream. Use only with streams.
+         *  
+         *          Aborts the stream next time data comes in. Can take a few
+         *          seconds.
+         *          This works only with streams, because only streams have an
+         *          own http object.
+         */ 
+        const void abort_stream();
+
     private:
         const API &parent;
         const std::string _instance;
         const std::string _access_token;
         std::string _headers;
+        bool _abort_stream;
     } _http;
 };
 }

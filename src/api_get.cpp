@@ -17,6 +17,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 #include <curlpp/cURLpp.hpp>
 #include "macros.hpp"
 #include "mastodon-cpp.hpp"
@@ -24,6 +25,7 @@
 using namespace Mastodon;
 using std::string;
 using std::cerr;
+
 const std::uint16_t API::get(const Mastodon::API::v1 &call, string &answer)
 {
     const parametermap p;

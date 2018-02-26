@@ -17,7 +17,9 @@
 #include <string>
 #include <cstdint>
 #include <iostream>
-#include <sstream>
+#include <functional>   // std::bind
+#include <list>
+#include <cstring>      // std::strncmp
 #include <curlpp/cURLpp.hpp>
 #include <curlpp/Easy.hpp>
 #include <curlpp/Options.hpp>
@@ -36,8 +38,14 @@ API::http::http(const API &api, const string &instance,
 : parent(api)
 , _instance(instance)
 , _access_token(access_token)
+, _abort_stream(false)
 {
     curlpp::initialize();
+}
+
+API::http::~http()
+{
+    curlpp::terminate();
 }
 
 const std::uint16_t API::http::request_sync(const method &meth,
@@ -52,23 +60,34 @@ const std::uint16_t API::http::request_sync(const method &meth,
                                             const curlpp::Forms &formdata,
                                             string &answer)
 {
+    using namespace std::placeholders;  // _1, _2, _3
+
+    std::uint16_t ret;
     ttdebug << "Path is: " << path << '\n';
     
     try
     {
-        std::ostringstream oss;
         curlpp::Easy request;
+        std::list<string> headers;
+
         request.setOpt<curlopts::Url>("https://" + _instance + path);
         request.setOpt<curlopts::UserAgent>(parent.get_useragent());
-        request.setOpt<curlopts::HttpHeader>(
+
+        headers.push_back("Connection: close");
+        if (!_access_token.empty())
         {
-            "Connection: close",
-            "Authorization: Bearer " + _access_token
-        });
+            headers.push_back("Authorization: Bearer " + _access_token);
+        }
+        request.setOpt<curlopts::HttpHeader>(headers);
+
         // Get headers from server
-        request.setOpt<curlpp::options::Header>(true);
+        if (meth != http::method::GET_STREAM)
+        {
+            request.setOpt<curlpp::options::Header>(true);
+        }
         request.setOpt<curlopts::FollowLocation>(true);
-        request.setOpt<curlopts::WriteStream>(&oss);
+        request.setOpt<curlpp::options::WriteFunction>
+            (std::bind(&http::callback, this, _1, _2, _3, &answer));
         if (!formdata.empty())
         {
             request.setOpt<curlopts::HttpPost>(formdata);
@@ -93,15 +112,15 @@ const std::uint16_t API::http::request_sync(const method &meth,
         }
         
         request.perform();
-        std::uint16_t ret = curlpp::infos::ResponseCode::get(request);
+        ret = curlpp::infos::ResponseCode::get(request);
         ttdebug << "Response code: " << ret << '\n';
-        size_t pos = oss.str().find("\r\n\r\n");
-        _headers = oss.str().substr(0, pos);
+        size_t pos = answer.find("\r\n\r\n");
+        _headers = answer.substr(0, pos);
 
         if (ret == 200 || ret == 302 || ret == 307)
         {   // OK or Found or Temporary Redirect
             // Only return body
-            answer = oss.str().substr(pos + 4);
+            answer = answer.substr(pos + 4);
         }
         else if (ret == 301 || ret == 308)
         {   // Moved Permanently or Permanent Redirect
@@ -116,9 +135,25 @@ const std::uint16_t API::http::request_sync(const method &meth,
     }
     catch (curlpp::RuntimeError &e)
     {
-        cerr << "RUNTIME ERROR: " << e.what() << std::endl;
+        if (std::strncmp(e.what(),
+                         "Failed writing body", 19) == 0)
+        {
+            ttdebug << "Request was aborted by user\n";
+            return 4;
+        }
+        else if (std::strncmp(e.what(),
+                         "Failed to connect to", 20) == 0)
+        {
+            ret = 10;
+        }
+        else
+        {
+            cerr << "RUNTIME ERROR: " << e.what() << std::endl;
+            ret = 0xffff;
+        }
+        ttdebug << e.what() << std::endl;
         
-        return 0xffff;
+        return ret;
     }
     catch (curlpp::LogicError &e)
     {
@@ -132,4 +167,22 @@ const std::uint16_t API::http::request_sync(const method &meth,
 const void API::http::get_headers(string &headers) const
 {
     headers = _headers;
+}
+
+const size_t API::http::callback(char* data, size_t size, size_t nmemb,
+                                 string *str)
+{
+    if (_abort_stream)
+    {
+        // This throws the runtime error: Failed writing body
+        return 0;
+    }
+    str->append(data);
+    // ttdebug << "Received " << size * nmemb << " Bytes\n";
+    return size * nmemb;
+};
+
+const void API::http::abort_stream()
+{
+    _abort_stream = true;
 }

@@ -75,6 +75,8 @@ After you did a `make install`, a project consisting of one file can be compiled
 |         1 | Invalid call                  |
 |         2 | Not implemented               |
 |         3 | URL changed (HTTP 301 or 308) |
+|         4 | Aborted by user               |
+|        10 | Failed to connect             |
 | 100 - 999 | HTTP status codes             |
 |     65535 | Unknown error                 |
 
@@ -109,7 +111,7 @@ If you use a debug build, you get more verbose error messages.
     * [x] Support registering as an application
 * Version 0.4.0
     * [x] Handle X-RateLimit header
-    * [ ] Streaming API
+    * [x] Streaming API
 * Later
     * [ ] Asynchronous I/O
     * [ ] Improve error reporting
@@ -179,11 +181,11 @@ If you use a debug build, you get more verbose error messages.
  * [x] GET /api/v1/timelines/public
  * [x] GET /api/v1/timelines/tag/:hashtag
  * [x] GET /api/v1/timelines/list/:list_id
- * [ ] GET /api/v1/streaming/user
- * [ ] GET /api/v1/streaming/public
- * [ ] GET /api/v1/streaming/public/local
- * [ ] GET /api/v1/streaming/hashtag
- * [ ] GET /api/v1/streaming/list
+ * [x] GET /api/v1/streaming/user
+ * [x] GET /api/v1/streaming/public
+ * [x] GET /api/v1/streaming/public/local
+ * [x] GET /api/v1/streaming/hashtag
+ * [x] GET /api/v1/streaming/list
 
 # Copyright
 

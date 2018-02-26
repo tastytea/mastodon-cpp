@@ -1,4 +1,5 @@
 /*  This file is part of mastodon-cpp.
+ *  Register as an application.
  */
 
 #include <iostream>

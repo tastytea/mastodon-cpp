@@ -1,4 +1,5 @@
 /*  This file is part of mastodon-cpp.
+ *  Updates your name, description and avatar.
  */
 
 #include <iostream>

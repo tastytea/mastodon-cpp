@@ -110,7 +110,7 @@ If you use a debug build, you get more verbose error messages.
     * [x] Handle HTTP statuses 301, 302, 307 and 308
     * [x] Support registering as an application
 * Version 0.4.0
-    * [x] Handle X-RateLimit header
+    * [x] Make HTTP header available
     * [x] Streaming API
 * Later
     * [ ] Asynchronous I/O

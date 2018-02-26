@@ -1,9 +1,7 @@
 /*  This file is part of mastodon-cpp.
- *  How to use the streaming API
+ *  Streaming API example
  */
 
-/*  This file is part of mastodon-cpp.
- */
 
 #include <iostream>
 #include <string>

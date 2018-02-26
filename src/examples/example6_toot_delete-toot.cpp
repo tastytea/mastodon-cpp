@@ -1,4 +1,5 @@
 /*  This file is part of mastodon-cpp.
+ *  Post a status, then delete it.
  */
 
 #include <iostream>

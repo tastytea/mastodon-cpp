@@ -188,7 +188,7 @@ const size_t API::http::callback(char* data, size_t size, size_t nmemb,
         // This throws the runtime error: Failed writing body
         return 0;
     }
-    str->append(data);
+    str->append(data, size * nmemb);
     // ttdebug << "Received " << size * nmemb << " Bytes\n";
     return size * nmemb;
 };

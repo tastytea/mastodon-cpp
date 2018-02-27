@@ -151,6 +151,11 @@ const std::uint16_t API::http::request_sync(const method &meth,
         {
             ret = 11;
         }
+        else if (std::strncmp(e.what(),
+                              "Network is unreachable", 22) == 0)
+        {
+            ret = 12;
+        }
         else
         {
             cerr << "RUNTIME ERROR: " << e.what() << std::endl;

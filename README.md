@@ -78,6 +78,7 @@ After you did a `make install`, a project consisting of one file can be compiled
 |         4 | Aborted by user               |
 |        10 | Failed to connect             |
 |        11 | Couldn't resolve host         |
+|        12 | Network is unreachable        |
 | 100 - 999 | HTTP status codes             |
 |     65535 | Unknown error                 |
 

@@ -62,7 +62,7 @@ const std::uint16_t API::http::request_sync(const method &meth,
 {
     using namespace std::placeholders;  // _1, _2, _3
 
-    std::uint16_t ret;
+    std::uint16_t ret = 0;
     ttdebug << "Path is: " << path << '\n';
     
     try
@@ -142,9 +142,14 @@ const std::uint16_t API::http::request_sync(const method &meth,
             return 4;
         }
         else if (std::strncmp(e.what(),
-                         "Failed to connect to", 20) == 0)
+                              "Failed to connect to", 20) == 0)
         {
             ret = 10;
+        }
+        else if (std::strncmp(e.what(),
+                              "Couldn't resolve host", 21) == 0)
+        {
+            ret = 11;
         }
         else
         {
@@ -161,7 +166,7 @@ const std::uint16_t API::http::request_sync(const method &meth,
         return 0xffff;
     }
 
-    return 0;
+    return ret;
 }
 
 const void API::http::get_headers(string &headers) const

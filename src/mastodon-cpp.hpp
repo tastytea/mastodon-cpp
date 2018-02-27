@@ -48,6 +48,9 @@ namespace Mastodon
  *  |         1 | Invalid call                  |
  *  |         2 | Not implemented               |
  *  |         3 | URL changed (HTTP 301 or 308) |
+ *  |         4 | Aborted by user               |
+*   |        10 | Failed to connect             |
+*   |        11 | Couldn't resolve host         |
  *  | 100 - 999 | HTTP status codes             |
  *  |     65535 | Unknown exception             |
  */

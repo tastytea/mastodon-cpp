@@ -6,7 +6,7 @@ All versions below 1.0.0 (SOVERSION 0) are considered unstable and can change an
 
 ## Dependencies
 
- * Tested OS: Linux
+ * Tested OS: GNU/Linux, Termux/Android
  * C++ compiler (tested: gcc 6.4, clang 5.0)
  * [cmake](https://cmake.org/) (tested: 3.9.6)
  * [libcurl](https://curl.haxx.se/) (tested: 7.58.0)
@@ -77,6 +77,7 @@ After you did a `make install`, a project consisting of one file can be compiled
 |         3 | URL changed (HTTP 301 or 308) |
 |         4 | Aborted by user               |
 |        10 | Failed to connect             |
+|        11 | Couldn't resolve host         |
 | 100 - 999 | HTTP status codes             |
 |     65535 | Unknown error                 |
 

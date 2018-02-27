@@ -121,6 +121,7 @@ const std::uint16_t API::http::request_sync(const method &meth,
         {   // OK or Found or Temporary Redirect
             // Only return body
             answer = answer.substr(pos + 4);
+            return 0;
         }
         else if (ret == 301 || ret == 308)
         {   // Moved Permanently or Permanent Redirect

@@ -58,7 +58,69 @@ namespace Mastodon
 class API
 {
 public:
-    class http;
+    /*!
+     *  @brief  http class. Do not use this directly.
+     */
+    class http
+    {
+    public:
+        enum class method
+        {
+            GET,
+            PATCH,
+            POST,
+            PUT,
+            DELETE,
+            GET_STREAM
+        };
+
+        explicit http(const API &api, const std::string &instance,
+                      const std::string &access_token);
+        ~http();
+        const std::uint16_t request_sync(const method &meth,
+                                         const std::string &path,
+                                         std::string &answer);
+
+        /*!
+         *  @brief  Blocking request.
+         *  
+         *  
+         *
+         *  @param  meth      The method defined in http::method
+         *  @param  path      The api call as string
+         *  @param  formdata  The form data for PATCH and POST request.
+         *  @param  answer    The answer from the server
+         *
+         *  @return @ref error "Error code". If the URL has permanently changed, 3
+         *  is returned and answer is set to the new URL.
+         */
+        const std::uint16_t request_sync(const method &meth,
+                                         const std::string &path,
+                                         const curlpp::Forms &formdata,
+                                         std::string &answer);
+
+        const void get_headers(std::string &headers) const;
+
+        const size_t callback(char* data, size_t size, size_t nmemb,
+                              std::string *oss);
+
+        /*!
+         *  @brief  Aborts the stream. Use only with streams.
+         *  
+         *          Aborts the stream next time data comes in. Can take a few
+         *          seconds.
+         *          This works only with streams, because only streams have an
+         *          own http object.
+         */ 
+        const void abort_stream();
+
+    private:
+        const API &parent;
+        const std::string _instance;
+        const std::string _access_token;
+        std::string _headers;
+        bool _abort_stream;
+    };
 
     /*!
      *  @brief Used for passing (most of the time) optional parameters.
@@ -550,6 +612,7 @@ private:
     const std::string _instance;
     std::string _access_token;
     std::string _useragent;
+    http _http;
 
     /*!
      *  @brief  Converts map of parameters into a string.
@@ -570,71 +633,6 @@ private:
      *  @return Form data as curlpp::Forms
      */
     const curlpp::Forms maptoformdata(const parametermap &map);
-
-public:
-    /*!
-     *  @brief  http class. Do not use this directly.
-     */
-    class http
-    {
-    public:
-        enum class method
-        {
-            GET,
-            PATCH,
-            POST,
-            PUT,
-            DELETE,
-            GET_STREAM
-        };
-
-        explicit http(const API &api, const std::string &instance,
-                      const std::string &access_token);
-        ~http();
-        const std::uint16_t request_sync(const method &meth,
-                                         const std::string &path,
-                                         std::string &answer);
-
-        /*!
-         *  @brief  Blocking request.
-         *  
-         *  
-         *
-         *  @param  meth      The method defined in http::method
-         *  @param  path      The api call as string
-         *  @param  formdata  The form data for PATCH and POST request.
-         *  @param  answer    The answer from the server
-         *
-         *  @return @ref error "Error code". If the URL has permanently changed, 3
-         *  is returned and answer is set to the new URL.
-         */
-        const std::uint16_t request_sync(const method &meth,
-                                         const std::string &path,
-                                         const curlpp::Forms &formdata,
-                                         std::string &answer);
-
-        const void get_headers(std::string &headers) const;
-
-        const size_t callback(char* data, size_t size, size_t nmemb,
-                              std::string *oss);
-
-        /*!
-         *  @brief  Aborts the stream. Use only with streams.
-         *  
-         *          Aborts the stream next time data comes in. Can take a few
-         *          seconds.
-         *          This works only with streams, because only streams have an
-         *          own http object.
-         */ 
-        const void abort_stream();
-
-    private:
-        const API &parent;
-        const std::string _instance;
-        const std::string _access_token;
-        std::string _headers;
-        bool _abort_stream;
-    } _http;
 };
 }
 

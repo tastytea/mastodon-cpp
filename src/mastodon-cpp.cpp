@@ -140,7 +140,7 @@ const std::uint16_t API::register_app1(const string &instance,
                                        string &client_secret,
                                        string &url)
 {
-    register_app1(client_name, redirect_uri, scopes, website,
+    return register_app1(client_name, redirect_uri, scopes, website,
                   client_id, client_secret, url);
 }
 const std::uint16_t API::register_app1(const string &client_name,
@@ -204,7 +204,7 @@ const std::uint16_t API::register_app2(const string &instance,
                                        const string &code,
                                        string &access_token)
 {
-    register_app2(client_id, client_secret, redirect_uri, code, access_token);
+    return register_app2(client_id, client_secret, redirect_uri, code, access_token);
 }
 
 const std::uint16_t API::register_app2(const string &client_id,

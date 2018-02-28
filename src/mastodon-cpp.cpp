@@ -126,6 +126,11 @@ const curlpp::Forms API::maptoformdata(const parametermap &map)
     return formdata;
 }
 
+const std::string API::urlencode(const std::string &str) const
+{
+    return curlpp::escape(str);
+}
+
 const std::uint16_t API::register_app1(const string &instance,
                                        const string &client_name,
                                        const string &redirect_uri,

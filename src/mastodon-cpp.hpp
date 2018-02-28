@@ -244,6 +244,9 @@ public:
      *  @param  str     The string
      *
      *  @return The percent-encoded string
+     *  
+     *  @deprecated You should use curlpp::escape instead. Will be removed in
+     *  1.0.0
      */
     const std::string urlencode(const std::string &str) const;
 

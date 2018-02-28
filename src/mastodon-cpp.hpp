@@ -42,16 +42,17 @@ namespace Mastodon
  *  @brief  Class for the Mastodon API. All input is expected to be UTF-8.
  *          Binary data must be base64-encoded or a filename.
  *  @section error Error codes
+ *  mastodon-cpp will never use error codes below 11, except 0.
  *  |      Code | Explanation                   |
  *  | --------: |:------------------------------|
  *  |         0 | No error                      |
- *  |         1 | Invalid call                  |
- *  |         2 | Not implemented               |
- *  |         3 | URL changed (HTTP 301 or 308) |
- *  |         4 | Aborted by user               |
- *  |        10 | Failed to connect             |
- *  |        11 | Couldn't resolve host         |
- *  |        12 | Network is unreachable        |
+ *  |        11 | Invalid call                  |
+ *  |        12 | Not implemented               |
+ *  |        13 | URL changed (HTTP 301 or 308) |
+ *  |        14 | Aborted by user               |
+ *  |        20 | Failed to connect             |
+ *  |        21 | Couldn't resolve host         |
+ *  |        22 | Network is unreachable        |
  *  | 100 - 999 | HTTP status codes             |
  *  |     65535 | Unknown exception             |
  */
@@ -91,8 +92,8 @@ public:
          *  @param  formdata  The form data for PATCH and POST request.
          *  @param  answer    The answer from the server
          *
-         *  @return @ref error "Error code". If the URL has permanently changed, 3
-         *  is returned and answer is set to the new URL.
+         *  @return @ref error "Error code". If the URL has permanently changed,
+         *  13 is returned and answer is set to the new URL.
          */
         const std::uint16_t request_sync(const method &meth,
                                          const std::string &path,
@@ -261,7 +262,7 @@ public:
      *  @param  client_secret  Returned
      *  @param  url            Returned, used to generate code for register_app2
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and url is set to the new URL.
      */
     const std::uint16_t register_app1(const std::string &client_name,
@@ -332,7 +333,7 @@ public:
      *  @param  answer    The answer from the server. Usually JSON. On error an
      *                    empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
     const std::uint16_t get(const Mastodon::API::v1 &call,
@@ -348,7 +349,7 @@ public:
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
     const std::uint16_t get(const Mastodon::API::v1 &call,
@@ -364,7 +365,7 @@ public:
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
     const std::uint16_t get(const Mastodon::API::v1 &call,
@@ -379,7 +380,7 @@ public:
      *  @param  answer  The answer from the server. Usually JSON. On error an
      *                  empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
     const std::uint16_t get(const std::string &call,
@@ -395,7 +396,7 @@ public:
      *  @param  ptr       Pointer to the http object. Can be used to call
      *                    ptr->abort_stream()
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
     const std::uint16_t get_stream(const Mastodon::API::v1 &call,
@@ -412,7 +413,7 @@ public:
      *  @param  ptr       Pointer to the http object. Can be used to call
      *                    ptr->abort_stream()
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
     const std::uint16_t get_stream(const Mastodon::API::v1 &call,
@@ -428,7 +429,7 @@ public:
      *  @param  ptr       Pointer to the http object. Can be used to call
      *                    ptr->abort_stream()
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
     const std::uint16_t get_stream(const std::string &call,
@@ -445,7 +446,7 @@ public:
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
     const std::uint16_t patch(const Mastodon::API::v1 &call,
@@ -459,7 +460,7 @@ public:
      *  @param  answer  The answer from the server. Usually JSON. On error an
      *                  empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
     const std::uint16_t post(const Mastodon::API::v1 &call,
@@ -473,7 +474,7 @@ public:
      *  @param  answer    The answer from the server. Usually JSON. On error an
      *                    empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
     const std::uint16_t post(const Mastodon::API::v1 &call,
@@ -491,7 +492,7 @@ public:
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
     const std::uint16_t post(const Mastodon::API::v1 &call,
@@ -509,7 +510,7 @@ public:
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
     const std::uint16_t post(const Mastodon::API::v1 &call,
@@ -527,7 +528,7 @@ public:
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
     const std::uint16_t post(const std::string &call,
@@ -544,7 +545,7 @@ public:
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
     const std::uint16_t put(const Mastodon::API::v1 &call,
@@ -561,7 +562,7 @@ public:
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
     const std::uint16_t put(const std::string &call,
@@ -613,7 +614,7 @@ public:
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 3
+     *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
     const std::uint16_t del(const std::string &call,

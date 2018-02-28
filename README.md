@@ -69,24 +69,20 @@ After you did a `make install`, a project consisting of one file can be compiled
 
 ## Error codes
 
+mastodon-cpp will never use error codes below 11, except 0.
+
 |      Code | Explanation                   |
 | --------: |:------------------------------|
 |         0 | No error                      |
-|         1 | Invalid call                  |
-|         2 | Not implemented               |
-|         3 | URL changed (HTTP 301 or 308) |
-|         4 | Aborted by user               |
-|        10 | Failed to connect             |
-|        11 | Couldn't resolve host         |
-|        12 | Network is unreachable        |
+|        11 | Invalid call                  |
+|        12 | Not implemented               |
+|        13 | URL changed (HTTP 301 or 308) |
+|        14 | Aborted by user               |
+|        20 | Failed to connect             |
+|        21 | Couldn't resolve host         |
+|        22 | Network is unreachable        |
 | 100 - 999 | HTTP status codes             |
 |     65535 | Unknown error                 |
-
-|           | Deprecated (since 0.2.10)     |
-| --------: |:------------------------------|
-|        16 | Connection failed             |
-|        17 | TLS error                     |
-|        18 | Invalid response from server  |
 
 If you use a debug build, you get more verbose error messages.
 

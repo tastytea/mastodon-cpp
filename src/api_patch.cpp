@@ -35,7 +35,7 @@ const std::uint16_t API::patch(const Mastodon::API::v1 &call,
             break;
         default:
             ttdebug << "ERROR: Invalid call.\n";
-            return 1;
+            return 11;
             break;
     }
 

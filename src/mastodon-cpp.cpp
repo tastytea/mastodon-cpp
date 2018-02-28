@@ -184,7 +184,7 @@ const std::uint16_t API::register_app1(const string &client_name,
 
         return 0;
     }
-    else if (ret == 3)
+    else if (ret == 13)
     {
         url = answer;
         return ret;

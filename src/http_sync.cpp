@@ -71,6 +71,7 @@ const std::uint16_t API::http::request_sync(const method &meth,
         std::list<string> headers;
 
         request.setOpt<curlopts::Url>("https://" + _instance + path);
+        ttdebug << "User-Agent: " << parent.get_useragent() << "\n";
         request.setOpt<curlopts::UserAgent>(parent.get_useragent());
 
         headers.push_back("Connection: close");
@@ -127,7 +128,7 @@ const std::uint16_t API::http::request_sync(const method &meth,
         {   // Moved Permanently or Permanent Redirect
             // return new URL
             answer = curlpp::infos::EffectiveUrl::get(request);
-            return 3;
+            return 13;
         }
         else
         {
@@ -140,22 +141,24 @@ const std::uint16_t API::http::request_sync(const method &meth,
                          "Failed writing body", 19) == 0)
         {
             ttdebug << "Request was aborted by user\n";
-            return 4;
+            return 14;
         }
         else if (std::strncmp(e.what(),
                               "Failed to connect to", 20) == 0)
         {
-            ret = 10;
+            ret = 20;
         }
         else if (std::strncmp(e.what(),
-                              "Couldn't resolve host", 21) == 0)
+                              "Couldn't resolve host", 21) == 0 ||
+                 std::strncmp(e.what(),
+                              "Could not resolve host", 22) == 0)
         {
-            ret = 11;
+            ret = 21;
         }
         else if (std::strncmp(e.what(),
                               "Network is unreachable", 22) == 0)
         {
-            ret = 12;
+            ret = 22;
         }
         else
         {

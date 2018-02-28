@@ -135,6 +135,17 @@ const std::uint16_t API::register_app1(const string &instance,
                                        string &client_secret,
                                        string &url)
 {
+    register_app1(client_name, redirect_uri, scopes, website,
+                  client_id, client_secret, url);
+}
+const std::uint16_t API::register_app1(const string &client_name,
+                                       const string &redirect_uri,
+                                       const string &scopes,
+                                       const string &website,
+                                       string &client_id,
+                                       string &client_secret,
+                                       string &url)
+{
     API::parametermap parameters =
     {
         { "client_name", { client_name } },
@@ -157,7 +168,7 @@ const std::uint16_t API::register_app1(const string &instance,
         std::regex_search(answer, match, resecret);
         client_secret = match[1].str();
 
-        url = "https://" + instance + "/oauth/authorize" +
+        url = "https://" + _instance + "/oauth/authorize" +
               "?scope=" + curlpp::escape(scopes) + "&response_type=code" +
               "&redirect_uri=" + curlpp::escape(redirect_uri) +
               "&client_id=" + client_id;
@@ -183,6 +194,15 @@ const std::uint16_t API::register_app1(const string &instance,
 
 const std::uint16_t API::register_app2(const string &instance,
                                        const string &client_id,
+                                       const string &client_secret,
+                                       const string &redirect_uri,
+                                       const string &code,
+                                       string &access_token)
+{
+    register_app2(client_id, client_secret, redirect_uri, code, access_token);
+}
+
+const std::uint16_t API::register_app2(const string &client_id,
                                        const string &client_secret,
                                        const string &redirect_uri,
                                        const string &code,

@@ -250,7 +250,6 @@ public:
     /*!
      *  @brief  Register application, step 1/2
      *
-     *  @param  instance       
      *  @param  client_name    The name of the application
      *  @param  redirect_uri   urn:ietf:wg:oauth:2.0:oob for none
      *  @param  scopes         Scopes (read, write, follow, space separated)
@@ -261,6 +260,17 @@ public:
      *
      *  @return @ref error "Error code". If the URL has permanently changed, 3
      *  is returned and url is set to the new URL.
+     */
+    const std::uint16_t register_app1(const std::string &client_name,
+                                      const std::string &redirect_uri,
+                                      const std::string &scopes,
+                                      const std::string &website,
+                                      std::string &client_id,
+                                      std::string &client_secret,
+                                      std::string &url);
+
+    /*!
+     *  @deprecated Will vanish in 0.5.0
      */
     const std::uint16_t register_app1(const std::string &instance,
                                       const std::string &client_name,
@@ -276,7 +286,6 @@ public:
      *  
      *          The access token will be used in all subsequent calls.
      *
-     *  @param  instance       
      *  @param  client_id      
      *  @param  client_secret  
      *  @param  redirect_uri   urn:ietf:wg:oauth:2.0:oob for none
@@ -284,6 +293,15 @@ public:
      *  @param  access_token   Returned
      *
      *  @return @ref error "Error code".
+     */
+    const std::uint16_t register_app2(const std::string &client_id,
+                                      const std::string &client_secret,
+                                      const std::string &redirect_uri,
+                                      const std::string &code,
+                                      std::string &access_token);
+
+    /*!
+     *  @deprecated Will vanish in 0.5.0
      */
     const std::uint16_t register_app2(const std::string &instance,
                                       const std::string &client_id,

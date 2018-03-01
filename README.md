@@ -111,7 +111,6 @@ If you use a debug build, you get more verbose error messages.
     * [x] Make HTTP header available
     * [x] Streaming API
 * Later
-    * [ ] Asynchronous I/O
     * [ ] Improve error reporting
 
 ## Status of implementation

@@ -1,6 +1,7 @@
 #!/bin/sh
+
 mkdir -p build && \
-cd build/ &&
+cd build/ && \
 cmake .. && \
 make
 

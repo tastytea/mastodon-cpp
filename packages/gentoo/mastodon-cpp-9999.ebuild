@@ -12,10 +12,10 @@ LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
 IUSE="doc debug examples"
-RDEPEND=">=dev-cpp/curlpp-0.8.1"
+RDEPEND=">=dev-cpp/curlpp-0.8.1
+         examples? ( >=dev-libs/boost-1.63.0 )"
 DEPEND=">=dev-util/cmake-3.9.6
         doc? ( >=app-doc/doxygen-1.8.13-r1 )
-        examples? ( >=dev-libs/boost-1.63.0 )
         ${RDEPEND}"
 
 src_unpack() {

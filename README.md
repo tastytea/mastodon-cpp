@@ -115,6 +115,8 @@ If you use a debug build, you get more verbose error messages.
 
 ## Status of implementation
 
+Feature complete as of Mastodon 2.2.0
+
  * [x] GET /api/v1/accounts/:id
  * [x] GET /api/v1/accounts/verify_credentials
  * [x] PATCH /api/v1/accounts/update_credentials

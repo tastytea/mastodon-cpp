@@ -26,15 +26,16 @@
 #include <curlpp/Easy.hpp>
 
 /*!
- *  @example example1_dump_json.cpp
- *  @example example2_parse_account.cpp
- *  @example example3_mastocron.cpp
- *  @example example4_update_credentials.cpp
- *  @example example5_follow_unfollow.cpp
- *  @example example6_toot_delete-toot.cpp
- *  @example example7_register_app.cpp
- *  @example example8_rate_limiting.cpp
- *  @example example9_streaming_api.cpp
+ *  @example example01_dump_json.cpp
+ *  @example example02_parse_account.cpp
+ *  @example example03_mastocron.cpp
+ *  @example example04_update_credentials.cpp
+ *  @example example05_follow_unfollow.cpp
+ *  @example example06_toot_delete-toot.cpp
+ *  @example example07_register_app.cpp
+ *  @example example08_rate_limiting.cpp
+ *  @example example09_streaming_api.cpp
+ *  @example example10_simplify.cpp
  */
 namespace Mastodon
 {

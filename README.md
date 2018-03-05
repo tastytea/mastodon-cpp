@@ -6,7 +6,7 @@ All versions below 1.0.0 (SOVERSION 0) are considered unstable and can change an
 
 ## Dependencies
 
- * Tested OS: GNU/Linux, Termux/Android
+ * Tested OS: GNU/Linux, Android/Linux
  * C++ compiler (tested: gcc 6.4, clang 5.0)
  * [cmake](https://cmake.org/) (tested: 3.9.6)
  * [libcurl](https://curl.haxx.se/) (tested: 7.58.0)

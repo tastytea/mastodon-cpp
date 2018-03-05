@@ -391,8 +391,7 @@ public:
      *
      *  @param  call      A call defined in Mastodon::API::v1
      *  @param  argument  The non-optional argument
-     *  @param  answer    The answer from the server. Usually JSON. On error an
-     *                    empty string.
+     *  @param  answer    The answer from the server. Events with JSON-payload.
      *  @param  ptr       Pointer to the http object. Can be used to call
      *                    ptr->abort_stream()
      *
@@ -408,8 +407,7 @@ public:
      *  @brief  Make a streaming GET request.
      *
      *  @param  call      A call defined in Mastodon::API::v1
-     *  @param  answer    The answer from the server. Usually JSON. On error an
-     *                    empty string.
+     *  @param  answer    The answer from the server. Events with JSON-payload.
      *  @param  ptr       Pointer to the http object. Can be used to call
      *                    ptr->abort_stream()
      *

@@ -184,7 +184,7 @@ const std::uint16_t API::register_app1(const string &client_name,
               "&client_id=" + client_id;
         if (!website.empty())
         {
-            url += "&website=" + website;
+            url += "&website=" + curlpp::escape(website);
         }
 
         return 0;

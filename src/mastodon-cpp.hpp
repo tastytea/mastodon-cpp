@@ -235,6 +235,13 @@ public:
     const std::string get_useragent() const;
 
     /*!
+     *  @brief  Returns the instance.
+     *
+     *  @return The instance.
+     */
+    const std::string get_instance() const;
+
+    /*!
      *  @brief  Percent-encodes a string. This is done automatically, unless you
      *          make a custom request.
      *

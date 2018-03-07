@@ -49,6 +49,11 @@ const string API::get_useragent() const
     return _useragent;
 }
 
+const string API::get_instance() const
+{
+    return _instance;
+}
+
 const string API::maptostr(const parametermap &map, const bool &firstparam)
 {
     string result = "";

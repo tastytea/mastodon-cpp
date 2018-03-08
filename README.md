@@ -5,13 +5,15 @@ The library takes care of the network stuff. You submit a query and get the raw 
 
 ## Dependencies
 
- * Tested OS: GNU/Linux
- * C++ compiler (tested: gcc 6.4, clang 5.0)
- * [cmake](https://cmake.org/) (tested: 3.9.6)
- * [libcurl](https://curl.haxx.se/) (tested: 7.58.0)
- * [curlpp](http://www.curlpp.org/) (tested: 0.8.1)
- * Optional, documentation: [doxygen](https://www.stack.nl/~dimitri/doxygen/) (tested: 1.8.13)
- * Optional, examples: [boost](http://www.boost.org/) (tested: 1.63.0)
+* Tested OS: GNU/Linux
+* C++ compiler (tested: gcc 6.4, clang 5.0)
+* [cmake](https://cmake.org/) (tested: 3.9.6)
+* [libcurl](https://curl.haxx.se/) (tested: 7.58.0)
+* [curlpp](http://www.curlpp.org/) (tested: 0.8.1)
+* Optional
+    * Documentation: [doxygen](https://www.stack.nl/~dimitri/doxygen/) (tested: 1.8.13)
+    * Examples: [boost](http://www.boost.org/) (tested: 1.63.0)
+    * DEB package: [dpkg](https://packages.qa.debian.org/dpkg) (tested: 1.19.0.5)
 
 ## Get sourcecode
 
@@ -36,9 +38,28 @@ cmake options:
  * `-DWITH_EXAMPLES=ON` if you want to compile the examples
  * `-DWITH_TESTS=ON` if you want to compile the tests
  * `-DWITH_DOC=ON` if you want to compile the HTML reference
+ * `-DWITH_DEB=ON` if you want to be able to generate a deb-package
+ * `-DWITH_RPM=ON` if you want to be able to generate an rpm-package
 
 You can run the tests with `ctest ..` inside the build directory.
-Install with `make install`.
+
+## Packages
+
+### Gentoo
+
+Put the ebuild in `packages/gentoo` into your [local overlay](https://wiki.gentoo.org/wiki/Custom_repository).
+
+### DEB and RPM
+
+Compile with `-DWITH_DEB=ON` or `-DWITH_RPM=ON`.
+Run `make package` from the build directory to generate a DEB/RPM package.
+
+RPM packages are untested and DEB packages are tested sporadically.
+To use the DEB package on stretch, you will need libcurlpp0(https://packages.debian.org/de/libcurlpp0) from buster.
+
+### Other
+
+Run `make install` from the build directory to install.
 
 # Usage
 
@@ -90,7 +111,7 @@ If you use a debug build, you get more verbose error messages.
 * [Mastodon API reference](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md)
 * [Mastodon streaming API reference](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
 
-## Status of implementation
+# Status of implementation
 
 Feature complete as of Mastodon 2.2.0
 

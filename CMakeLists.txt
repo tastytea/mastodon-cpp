@@ -5,7 +5,6 @@ project (mastodon-cpp
 )
 
 include(GNUInstallDirs)
-include(FindCURL)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
@@ -26,9 +25,6 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_definitions(-DDEBUG=1)
 endif()
 
-find_package(CURL REQUIRED)
-include_directories(${CURL_INCLUDE_DIR})
-
 # Library
 file(GLOB sources src/*.cpp src/*.hpp)
 add_library(mastodon-cpp SHARED ${sources})
@@ -36,7 +32,7 @@ set_target_properties(mastodon-cpp PROPERTIES
     VERSION ${PROJECT_VERSION}
     SOVERSION ${mastodon-cpp_VERSION_MAJOR}
 )
-target_link_libraries(mastodon-cpp ${CURL_LIBRARIES} curlpp)
+target_link_libraries(mastodon-cpp curlpp)
 install(TARGETS mastodon-cpp LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(FILES ${PROJECT_SOURCE_DIR}/src/mastodon-cpp.hpp
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
@@ -80,7 +76,7 @@ if(WITH_TESTS)
     endforeach()
 endif()
 
-
+# Packages
 set(CPACK_PACKAGE_NAME ${CMAKE_PROJECT_NAME})
 set(CPACK_PACKAGE_VERSION_MAJOR ${mastodon-cpp_VERSION_MAJOR})
 set(CPACK_PACKAGE_VERSION_MINOR ${mastodon-cpp_VERSION_MINOR})
@@ -90,7 +86,6 @@ set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "C++ wrapper for the Mastodon API")
 set(CPACK_PACKAGE_CONTACT "tastytea <tastytea@tastytea.de>")
 set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
 set(CPACK_RESOURCE_FILE_README "${PROJECT_SOURCE_DIR}/README.md")
-set(CPACK_PACKAGE_FILE_NAME, "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}")
 set(CPACK_SOURCE_PACKAGE_FILE_NAME, "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}")
 set(CPACK_SOURCE_IGNORE_FILES, "/\\\\.git/;/build/;/doc/;.\\\\.sublime-")
 set(CPACK_GENERATOR "TGZ")

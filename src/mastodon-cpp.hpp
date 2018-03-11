@@ -244,6 +244,8 @@ public:
     /*!
      *  @brief  Percent-encodes a string. This is done automatically, unless you
      *          make a custom request.
+     *          
+     *          Calls curlpp::escape(str)
      *
      *          The only time you should use this, is if you use
      *          get(const std::string &call, std::string &answer).
@@ -253,9 +255,6 @@ public:
      *  @param  str     The string
      *
      *  @return The percent-encoded string
-     *  
-     *  @deprecated You should use curlpp::escape instead. Will be removed in
-     *  1.0.0
      */
     const std::string urlencode(const std::string &str) const;
 

@@ -251,7 +251,7 @@ const string API::get_header(const std::string &header) const
 {
     string headers;
     _http.get_headers(headers);
-    size_t startpos = headers.find(header);
+    size_t startpos = headers.find(header + ':');
     if (startpos != std::string::npos)
     {
         startpos = headers.find(':', startpos) + 2;

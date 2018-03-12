@@ -10,10 +10,10 @@ addons:
     packages:
       - g++-5
       - libcurlpp-dev
-# env:
-#   - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
 api_key:
   secure: "QxqO8SkFDG1XzbFUhZRmP+13t0ASwBfW75H9iO6f6N9CICUV1jx8jxtIb5QGRRwxl6c+WHUgk79ApU38x3cw4NPXU8kCgXPpSHUMJM2+8C7HFKuaaAzANoU1M24o5dfsxq0ocHlxC8Dz1BH6WoawK57L2f0AIx1kOYO3k7IxjgzEBXusTTJSU7bxfPDV6jqdpnL+ihflrM2kHf9w5eeHrwFFKxT0dN1zXvyPg2XJZPCviyXFZFMfEtTBRta06/e7Y/JHRB69Plt5wiLX+syONuXIFZMEoTVbFjpw1+StAymvtV0PCGoetnhOK7eTOAnHFns7k9lhwuHMqtzPNDN3uEtsmb/gf+Nydr7xatLDwWtEANZUdIxfae0kG83H+SSpjzB/8C5Cgb2ywF9wZEWwBElpRQ1Q0Y6n5IbCaOKw2d+OuqlPIJ8Gs79fq5p5lZGP1O5t9uXyVEY53GQKCFdBGGo8A5+D5l12wy41XaMmq0t3t3kX6pUmYzQG+dWl44nDygmyy6ze98vg8sNTSsqCsJeI7RRJY+n4EJg5KIvRo9PEk77kYd+mPjRUsW8SnL7pCwL+zQ7nh3rYnlkqtzJLFpESV687YrOqngvnK600oA+eZ8tySPmFKb9n8ulpA6+RKva51MRkyFMnHh529VLmO495PyAUi/eeKSIM0qwnhvQ="
+before_install:
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 60
 script:
   - mkdir -p build && cd build
   - cmake ..

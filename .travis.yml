@@ -21,6 +21,7 @@ script:
   - cd ..
 
 before_deploy:
+  - sudo apt-get install rpm
   - cp -v packages/gentoo/mastodon-cpp-{0.0.0,${TRAVIS_TAG}}.ebuild
   - cd build
   - cmake -DWITH_DEB=ON ..

@@ -14,6 +14,7 @@ The library takes care of the network stuff. You submit a query and get the raw 
     * Documentation: [doxygen](https://www.stack.nl/~dimitri/doxygen/) (tested: 1.8.13)
     * Examples: [boost](http://www.boost.org/) (tested: 1.63.0/1.54.0)
     * DEB package: [dpkg](https://packages.qa.debian.org/dpkg) (tested: 1.19.0.5)
+    * RPM package: [rpm](http://www.rpm.org) (tested: 4.11.0.1)
 
 ## Get sourcecode
 

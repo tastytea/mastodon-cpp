@@ -17,15 +17,12 @@ script:
   - mkdir -p build && cd build
   - cmake -DWITH_EXAMPLES=ON ..
   - make VERBOSE=1
-  - sudo make install
+  - make install DESTDIR=install
   - cd ..
-on:
-    tags: false
 
 before_deploy:
   - cp -v packages/gentoo/mastodon-cpp-{0.0.0,${TRAVIS_TAG}}.ebuild
   - cd build
-  - ls -l
   - cmake -DWITH_DEB=ON ..
   - make package
   - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..

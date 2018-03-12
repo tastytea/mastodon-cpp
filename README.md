@@ -49,7 +49,9 @@ You can run the tests with `ctest ..` inside the build directory.
 
 ### Gentoo
 
-Put the ebuild in `packages/gentoo` into your [local overlay](https://wiki.gentoo.org/wiki/Custom_repository).
+Put the ebuild in `packages/gentoo` into your [local overlay](https://wiki.gentoo.org/wiki/Custom_repository) and rename it to match the desired version.
+
+Or use the ebuild from the [releases](https://github.com/tastytea/mastodon-cpp/releases) page.
 
 ### DEB and RPM
 
@@ -59,7 +61,7 @@ Run `make package` from the build directory to generate a DEB/RPM package.
 RPM packages are untested and DEB packages are tested sporadically.
 To use the DEB package on stretch, you will need [libcurlpp0](https://packages.debian.org/de/libcurlpp0) from buster or jessie.
 
-Prebuilt packages for x86_64(amd64) are provided with each release.
+Prebuilt packages for x86_64(amd64) are provided with each [release](https://github.com/tastytea/mastodon-cpp/releases).
 
 ### Other
 

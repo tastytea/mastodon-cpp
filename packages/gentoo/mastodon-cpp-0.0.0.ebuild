@@ -3,7 +3,7 @@ inherit cmake-utils
 
 DESCRIPTION="mastodon-cpp is a C++ wrapper for the Mastodon API."
 HOMEPAGE="https://github.com/tastytea/mastodon-cpp"
-SRC_URI="https://github.com/tastytea/mastodon-cpp/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/tastytea/mastodon-cpp/archive/${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""

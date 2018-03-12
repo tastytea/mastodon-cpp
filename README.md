@@ -23,6 +23,8 @@ Download the current release at [GitHub](https://github.com/tastytea/mastodon-cp
 
 ### Development version
 
+[![Build Status](https://travis-ci.org/tastytea/mastodon-cpp.svg?branch=master)](https://travis-ci.org/tastytea/mastodon-cpp)
+
     git clone https://github.com/tastytea/mastodon-cpp.git
 
 ## Compile

@@ -22,8 +22,8 @@ script:
 
 before_deploy:
   - sudo apt-get install rpm
-  - cp -v packages/gentoo/mastodon-cpp-{0.0.0,${TRAVIS_TAG}}.ebuild
   - cd build
+  - cp -v packages/gentoo/mastodon-cpp-0.0.0.ebuild mastodon-cpp-${TRAVIS_TAG}.ebuild
   - cmake -DWITH_DEB=ON ..
   - make package
   - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
@@ -31,9 +31,9 @@ before_deploy:
 deploy:
   provider: releases
   api_key:
-    secure: "QxqO8SkFDG1XzbFUhZRmP+13t0ASwBfW75H9iO6f6N9CICUV1jx8jxtIb5QGRRwxl6c+WHUgk79ApU38x3cw4NPXU8kCgXPpSHUMJM2+8C7HFKuaaAzANoU1M24o5dfsxq0ocHlxC8Dz1BH6WoawK57L2f0AIx1kOYO3k7IxjgzEBXusTTJSU7bxfPDV6jqdpnL+ihflrM2kHf9w5eeHrwFFKxT0dN1zXvyPg2XJZPCviyXFZFMfEtTBRta06/e7Y/JHRB69Plt5wiLX+syONuXIFZMEoTVbFjpw1+StAymvtV0PCGoetnhOK7eTOAnHFns7k9lhwuHMqtzPNDN3uEtsmb/gf+Nydr7xatLDwWtEANZUdIxfae0kG83H+SSpjzB/8C5Cgb2ywF9wZEWwBElpRQ1Q0Y6n5IbCaOKw2d+OuqlPIJ8Gs79fq5p5lZGP1O5t9uXyVEY53GQKCFdBGGo8A5+D5l12wy41XaMmq0t3t3kX6pUmYzQG+dWl44nDygmyy6ze98vg8sNTSsqCsJeI7RRJY+n4EJg5KIvRo9PEk77kYd+mPjRUsW8SnL7pCwL+zQ7nh3rYnlkqtzJLFpESV687YrOqngvnK600oA+eZ8tySPmFKb9n8ulpA6+RKva51MRkyFMnHh529VLmO495PyAUi/eeKSIM0qwnhvQ="
+    secure: "rdEd2cytMZb6oS5DBuGKjaQoccspMWlrlr/fKpdJkhfLgFOXI6lWSEvtWSB8Gmej9J++0dZPGbQ6fhRuSRwMa7LM3c2yM7kqhfeKcQiFgol33UbMBPZU/OkohJJl49Bp32qwLUQpfeL7B6ukVkxv7XPetE0ks+29vGsEWLowjLj3jEvHTzucgvxblwCdshekYnMUH+4lkLoSqTenCjjTcRbKI7yLLlGSa92PudzrfeAsz0lV4GiXiMIffTPP9dOfi4ceRB4qkKxb35CZbZUjxlZoppghh1uFvi9GYsGseIQl/iGvOtzoUj6c5AoTEZeDa96pD1x/QpjVk2lPYqtmzfIgzIueQW/BUddwaUbzw/8dVTXMsgy3ocTICqPic8LxNWjMGbt/v2E7wiY+TitNWqoNlgoZQjrlrYQ/21yoilvGfpnqRllzr4ofiHq4CI94kgxtuhd3De4O/aJvbrxj8liToqHSwX/taJHwV5rQ2Afl9vhTFgPWzyAbYXFNuulmG2ew6Q1ywyf+GXCPBk22w0IvLom5lqtFD/WSS0LFTzstDiDQEg/fnOo7bGzcQYQR5jq8hfj9EDaIZYek5BpNLeRmkqIbvtu6vwy4ufx3MIDR+69H1Xn5BlpXdhII7r4ZRKlUiw4mqHm76LPwoxLoWL36a+mySOgBxjAgJQdifYU="
   file:
-    - "packages/gentoo/mastodon-cpp-${TRAVIS_TAG}.ebuild"
+    - "mastodon-cpp-${TRAVIS_TAG}.ebuild"
     - "libmastodon-cpp_${TRAVIS_TAG}-0_amd64.deb"
     - "libmastodon-cpp-${TRAVIS_TAG}-0.x86_64.rpm"
   skip_cleanup: true

@@ -5,11 +5,10 @@ compiler:
 dist: trusty
 addons:
   apt:
-    # sources:
-    #   - ubuntu-toolchain-r-test
+    sources:
+      - ubuntu-toolchain-r-test
     packages:
-      # - g++-5
-      - g++-4.9
+      - g++-5
       - libcurlpp-dev
 # env:
 #   - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi

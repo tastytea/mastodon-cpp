@@ -23,6 +23,7 @@ before_deploy:
   - cp -v packages/gentoo/mastodon-cpp-{0.0.0,${TRAVIS_TAG}}.ebuild
   - cd build
   - cmake -DWITH_DEB=ON ..
+  - make install
   - make package
   - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
   - make package

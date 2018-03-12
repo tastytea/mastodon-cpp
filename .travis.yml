@@ -9,6 +9,7 @@ addons:
     #   - ubuntu-toolchain-r-test
     packages:
       # - g++-5
+      - g++-4.9
       - libcurlpp-dev
 # env:
 #   - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi

@@ -23,7 +23,7 @@ script:
 before_deploy:
   - sudo apt-get install rpm
   - cd build
-  - cp -v packages/gentoo/mastodon-cpp-0.0.0.ebuild mastodon-cpp-${TRAVIS_TAG}.ebuild
+  - cp -v ../packages/gentoo/mastodon-cpp-0.0.0.ebuild mastodon-cpp-${TRAVIS_TAG}.ebuild
   - cmake -DWITH_DEB=ON ..
   - make package
   - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..

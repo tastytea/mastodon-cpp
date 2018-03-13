@@ -36,6 +36,7 @@
  *  @example example08_rate_limiting.cpp
  *  @example example09_streaming_api.cpp
  *  @example example10_simplify.cpp
+ *  @example example11_post_media.cpp
  */
 namespace Mastodon
 {

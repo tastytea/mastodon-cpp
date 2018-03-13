@@ -77,6 +77,14 @@ const std::uint16_t API::get(const Mastodon::API::v1 &call,
         case v1::timelines_public:
             strcall = "/api/v1/timelines/public";
             break;
+        case v1::accounts_relationships:
+            strcall = "/api/v1/accounts/relationships";
+            break;
+        case v1::accounts_search:
+            strcall = "/api/v1/accounts/search";
+            break;
+        case v1::search:
+            strcall = "/api/v1/search";
         default:
             ttdebug << "ERROR: Invalid call.\n";
             return 11;

@@ -87,13 +87,11 @@ public:
                                     std::string &answer);
 
         /*!
-         *  @brief  Blocking request.
-         *  
-         *  
+         *  @brief  HTTP Request.
          *
          *  @param  meth      The method defined in http::method
          *  @param  path      The api call as string
-         *  @param  formdata  The form data for PATCH and POST request.
+         *  @param  formdata  The form data for PATCH and POST requests.
          *  @param  answer    The answer from the server
          *
          *  @return @ref error "Error code". If the URL has permanently changed,
@@ -128,7 +126,7 @@ public:
     };
 
     /*!
-     *  @brief Used for passing (most of the time) optional parameters.
+     *  @brief Used for passing parameters.
      *  
      *  Example:
      *  @code
@@ -325,7 +323,7 @@ public:
                                       std::string &access_token);
 
     /*!
-     *  @brief  Make a GET request which doesn't require an argument.
+     *  @brief  Make a GET request which doesn't require parameters.
      *
      *  @param  call    A call defined in Mastodon::API::v1
      *  @param  answer  The answer from the server. Usually JSON. On error an
@@ -336,10 +334,11 @@ public:
     const std::uint16_t get(const Mastodon::API::v1 &call, std::string &answer);
 
     /*!
-     *  @brief  Make a GET request which requires an argument
+     *  @brief  Make a GET request which requires a parameter as part of the
+     *          call.
      *
      *  @param  call      A call defined in Mastodon::API::v1
-     *  @param  argument  The non-optional argument
+     *  @param  argument  The parameter that is part of the call
      *  @param  answer    The answer from the server. Usually JSON. On error an
      *                    empty string.
      *
@@ -351,8 +350,7 @@ public:
                             std::string &answer);
 
     /*!
-     *  @brief  Make a GET request which doesn't require an argument, pass
-     *          parameters.
+     *  @brief  Make a GET request which requires parameters.
      *
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  parameters  A Mastodon::API::parametermap containing parameters
@@ -367,10 +365,11 @@ public:
                             std::string &answer);
 
     /*!
-     *  @brief  Make a GET request which requires an argument, pass parameters.
+     *  @brief  Make a GET request which requires a parameter as part of the
+     *          call and parameters.
      *
      *  @param  call        A call defined in Mastodon::API::v1
-     *  @param  argument    The non-optional argument
+     *  @param  argument    The parameter that is part of the call
      *  @param  parameters  A Mastodon::API::parametermap containing parameters
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
@@ -400,7 +399,7 @@ public:
      *  @brief  Make a streaming GET request.
      *
      *  @param  call      A call defined in Mastodon::API::v1
-     *  @param  argument  The non-optional argument
+     *  @param  argument  The parameter that is part of the call
      *  @param  answer    The answer from the server. Events with JSON-payload.
      *  @param  ptr       Pointer to the http object. Can be used to call
      *                    ptr->abort_stream()
@@ -462,7 +461,7 @@ public:
                               std::string &answer);
 
     /*!
-     *  @brief  Make a POST request which doesn't require an argument.
+     *  @brief  Make a POST request which doesn't require parameters.
      *
      *  @param  call    A call defined in Mastodon::API::v1
      *  @param  answer  The answer from the server. Usually JSON. On error an
@@ -475,10 +474,11 @@ public:
                              std::string &answer);
 
     /*!
-     *  @brief  Make a POST request which requires an argument
+     *  @brief  Make a POST request which requires a parameter as part of the
+     *          call.
      *
      *  @param  call      A call defined in Mastodon::API::v1
-     *  @param  argument  The non-optional argument
+     *  @param  argument  The parameter that is part of the call
      *  @param  answer    The answer from the server. Usually JSON. On error an
      *                    empty string.
      *
@@ -490,8 +490,7 @@ public:
                              std::string &answer);
 
     /*!
-     *  @brief  Make a POST request which doesn't require an argument, pass
-     *          parameters.
+     *  @brief  Make a POST request which requires parameters.
      *
      *          Binary data must be base64-encoded or a filename.
      *
@@ -508,12 +507,13 @@ public:
                              std::string &answer);
 
     /*!
-     *  @brief  Make a POST request which requires an argument, pass parameters.
+     *  @brief  Make a POST request which requires a parameter as part of the
+     *          call and parameters.
      *
      *          Binary data must be base64-encoded or a filename.
      *
      *  @param  call        A call defined in Mastodon::API::v1
-     *  @param  argument    The non-optional argument
+     *  @param  argument    The parameter that is part of the call
      *  @param  parameters  A Mastodon::API::parametermap containing parameters
      *  @param  answer      The answer from the server. Usually JSON. On error
      *                      an empty string.
@@ -544,10 +544,11 @@ public:
                              std::string &answer);
 
     /*!
-     *  @brief  Make a PUT request which requires an argument, pass parameters.
+     *  @brief  Make a PUT request which requires a parameter as part of the
+     *          call and parameters.
      *
      *  @param  call        A call defined in Mastodon::API::v1
-     *  @param  argument    The non-optional argument
+     *  @param  argument    The parameter that is part of the call
      *  @param  parameters  A Mastodon::API::parametermap containing
      *                      parameters
      *  @param  answer      The answer from the server. Usually JSON. On error
@@ -578,10 +579,11 @@ public:
                             std::string &answer);
 
     /*!
-     *  @brief  Make a DELETE request which requires an argument
+     *  @brief  Make a DELETE request which requires a parameter as part of the
+     *          call.
      *
      *  @param  call      A call defined in Mastodon::API::v1
-     *  @param  argument  The non-optional argument
+     *  @param  argument  The parameter that is part of the call
      *
      *  @return @ref error "Error code".
      */
@@ -589,8 +591,7 @@ public:
                             const std::string &argument);
 
     /*!
-     *  @brief  Make a DELETE request which doesn't require an argument, pass
-     *          parameters.
+     *  @brief  Make a DELETE request which requires parameters.
      *
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  parameters  A Mastodon::API::parametermap containing parameters
@@ -601,11 +602,11 @@ public:
                             const parametermap &parameters);
 
     /*!
-     *  @brief  Make a DELETE request which requires an argument, pass
-     *          parameters.
+     *  @brief  Make a DELETE request which requires a parameter as part of the
+     *          call and parameters.
      *
      *  @param  call        A call defined in Mastodon::API::v1
-     *  @param  argument    The non-optional argument
+     *  @param  argument    The parameter that is part of the call
      *  @param  parameters  A Mastodon::API::parametermap containing parameters
      *
      *  @return @ref error "Error code".
@@ -632,7 +633,7 @@ public:
     /*!
          *  @brief  Gets the header from the last answer.
          *
-         *  @param  header  The header to search
+         *  @param  header  The header to get
          *
          *  @return The header, or "" on error.
          */

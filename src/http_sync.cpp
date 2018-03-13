@@ -112,10 +112,14 @@ const std::uint16_t API::http::request_sync(const method &meth,
                 break;
         }
         
+        //request.setOpt<curlopts::Verbose>(true);
+
+        answer.clear();
         request.perform();
         ret = curlpp::infos::ResponseCode::get(request);
         ttdebug << "Response code: " << ret << '\n';
-        size_t pos = answer.find("\r\n\r\n");
+        // Work around "HTTP/1.1 100 Continue\r\n\r\nHTTP/1.1 200 OK"
+        size_t pos = answer.find("\r\n\r\n", 25);
         _headers = answer.substr(0, pos);
 
         if (ret == 200 || ret == 302 || ret == 307)

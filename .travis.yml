@@ -37,6 +37,8 @@ deploy:
     - "libmastodon-cpp_${TRAVIS_TAG}-0_amd64.deb"
     - "libmastodon-cpp-${TRAVIS_TAG}-0.x86_64.rpm"
   skip_cleanup: true
+  options:
+    - prerelease: true
   on:
     tags: true
     condition: $CC = gcc

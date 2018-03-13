@@ -48,17 +48,17 @@ API::http::~http()
     curlpp::terminate();
 }
 
-const std::uint16_t API::http::request_sync(const method &meth,
-                                            const string &path,
-                                            string &answer)
+const std::uint16_t API::http::request(const method &meth,
+                                       const string &path,
+                                       string &answer)
 {
-    return request_sync(meth, path, curlpp::Forms(), answer);
+    return request(meth, path, curlpp::Forms(), answer);
 }
 
-const std::uint16_t API::http::request_sync(const method &meth,
-                                            const string &path,
-                                            const curlpp::Forms &formdata,
-                                            string &answer)
+const std::uint16_t API::http::request(const method &meth,
+                                       const string &path,
+                                       const curlpp::Forms &formdata,
+                                       string &answer)
 {
     using namespace std::placeholders;  // _1, _2, _3
 

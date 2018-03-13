@@ -82,9 +82,9 @@ public:
         explicit http(const API &api, const std::string &instance,
                       const std::string &access_token);
         ~http();
-        const std::uint16_t request_sync(const method &meth,
-                                         const std::string &path,
-                                         std::string &answer);
+        const std::uint16_t request(const method &meth,
+                                    const std::string &path,
+                                    std::string &answer);
 
         /*!
          *  @brief  Blocking request.
@@ -99,10 +99,10 @@ public:
          *  @return @ref error "Error code". If the URL has permanently changed,
          *  13 is returned and answer is set to the new URL.
          */
-        const std::uint16_t request_sync(const method &meth,
-                                         const std::string &path,
-                                         const curlpp::Forms &formdata,
-                                         std::string &answer);
+        const std::uint16_t request(const method &meth,
+                                    const std::string &path,
+                                    const curlpp::Forms &formdata,
+                                    std::string &answer);
 
         const void get_headers(std::string &headers) const;
 

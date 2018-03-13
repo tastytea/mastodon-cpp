@@ -39,6 +39,6 @@ const std::uint16_t API::patch(const Mastodon::API::v1 &call,
             break;
     }
 
-    return _http.request_sync(API::http::method::PATCH,
-                              strcall, maptoformdata(parameters), answer);
+    return _http.request(API::http::method::PATCH,
+                         strcall, maptoformdata(parameters), answer);
 }

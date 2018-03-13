@@ -70,8 +70,8 @@ const std::uint16_t API::post(const Mastodon::API::v1 &call,
             break;
     }
 
-    return _http.request_sync(http::method::POST, strcall,
-                              maptoformdata(parameters), answer);
+    return _http.request(http::method::POST, strcall,
+                         maptoformdata(parameters), answer);
 }
 
 const std::uint16_t API::post(const Mastodon::API::v1 &call,
@@ -146,14 +146,14 @@ const std::uint16_t API::post(const Mastodon::API::v1 &call,
             break;
     }
 
-    return _http.request_sync(http::method::POST, strcall,
-                              maptoformdata(parameters), answer);
+    return _http.request(http::method::POST, strcall,
+                         maptoformdata(parameters), answer);
 }
 
 const std::uint16_t API::post(const std::string &call,
                               const parametermap &parameters, string &answer)
 {
 
-    return _http.request_sync(http::method::POST, call,
-                              maptoformdata(parameters), answer);
+    return _http.request(http::method::POST, call,
+                         maptoformdata(parameters), answer);
 }

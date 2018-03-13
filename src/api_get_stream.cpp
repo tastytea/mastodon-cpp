@@ -47,7 +47,7 @@ const std::uint16_t API::get_stream(const Mastodon::API::v1 &call,
     }
 
     ptr = std::make_unique<http>(*this, _instance, _access_token);
-    return ptr->request_sync(http::method::GET_STREAM, strcall, answer);
+    return ptr->request(http::method::GET_STREAM, strcall, answer);
 }
 
 const std::uint16_t API::get_stream(const Mastodon::API::v1 &call,
@@ -74,12 +74,12 @@ const std::uint16_t API::get_stream(const Mastodon::API::v1 &call,
     }
 
     ptr = std::make_unique<http>(*this, _instance, _access_token);
-    return ptr->request_sync(http::method::GET_STREAM, strcall, answer);
+    return ptr->request(http::method::GET_STREAM, strcall, answer);
 }
 
 const std::uint16_t API::get_stream(const std::string &call, string &answer,
                                     std::unique_ptr<http> &ptr)
 {
     ptr = std::make_unique<http>(*this, _instance, _access_token);
-    return ptr->request_sync(http::method::GET_STREAM, call, answer);
+    return ptr->request(http::method::GET_STREAM, call, answer);
 }

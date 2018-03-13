@@ -42,14 +42,14 @@ const std::uint16_t API::put(const Mastodon::API::v1 &call,
             break;
     }
 
-    return _http.request_sync(http::method::PUT, strcall,
-                              maptoformdata(parameters), answer);
+    return _http.request(http::method::PUT, strcall,
+                         maptoformdata(parameters), answer);
 }
 
 const std::uint16_t API::put(const std::string &call,
                              const parametermap &parameters, string &answer)
 {
 
-    return _http.request_sync(http::method::PUT, call,
-                              maptoformdata(parameters), answer);
+    return _http.request(http::method::PUT, call,
+                         maptoformdata(parameters), answer);
 }

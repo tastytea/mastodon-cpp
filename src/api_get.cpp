@@ -88,7 +88,7 @@ const std::uint16_t API::get(const Mastodon::API::v1 &call,
         strcall += maptostr(parameters);
     }
 
-    return _http.request_sync(http::method::GET, strcall, answer);
+    return _http.request(http::method::GET, strcall, answer);
 }
 
 const std::uint16_t API::get(const Mastodon::API::v1 &call,
@@ -175,10 +175,10 @@ const std::uint16_t API::get(const Mastodon::API::v1 &call,
         strcall += maptostr(parameters, firstparam);
     }
 
-    return _http.request_sync(http::method::GET, strcall, answer);
+    return _http.request(http::method::GET, strcall, answer);
 }
 
 const std::uint16_t API::get(const std::string &call, string &answer)
 {
-    return _http.request_sync(http::method::GET, call, answer);
+    return _http.request(http::method::GET, call, answer);
 }

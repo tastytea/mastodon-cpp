@@ -41,8 +41,8 @@ const std::uint16_t API::del(const Mastodon::API::v1 &call,
     }
 
     string answer;
-    return _http.request_sync(http::method::DELETE, strcall,
-                              maptoformdata(parameters), answer);
+    return _http.request(http::method::DELETE, strcall,
+                         maptoformdata(parameters), answer);
 }
 
 const std::uint16_t API::del(const Mastodon::API::v1 &call,
@@ -76,14 +76,14 @@ const std::uint16_t API::del(const Mastodon::API::v1 &call,
     }
 
     string answer;
-    return _http.request_sync(http::method::DELETE, strcall,
-                              maptoformdata(parameters), answer);
+    return _http.request(http::method::DELETE, strcall,
+                         maptoformdata(parameters), answer);
 }
 
 const std::uint16_t API::del(const std::string &call,
                               const parametermap &parameters, string &answer)
 {
 
-    return _http.request_sync(http::method::DELETE, call,
-                              maptoformdata(parameters), answer);
+    return _http.request(http::method::DELETE, call,
+                         maptoformdata(parameters), answer);
 }

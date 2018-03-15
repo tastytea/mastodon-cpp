@@ -74,18 +74,18 @@ const std::uint16_t API::http::request(const method &meth,
         ttdebug << "User-Agent: " << parent.get_useragent() << "\n";
         request.setOpt<curlopts::UserAgent>(parent.get_useragent());
 
-        headers.push_back("Connection: close");
         if (!_access_token.empty())
         {
             headers.push_back("Authorization: Bearer " + _access_token);
         }
-        request.setOpt<curlopts::HttpHeader>(headers);
-
-        // Get headers from server
         if (meth != http::method::GET_STREAM)
         {
+            headers.push_back("Connection: close");
+            // Get headers from server
             request.setOpt<curlpp::options::Header>(true);
         }
+
+        request.setOpt<curlopts::HttpHeader>(headers);
         request.setOpt<curlopts::FollowLocation>(true);
         request.setOpt<curlpp::options::WriteFunction>
             (std::bind(&http::callback, this, _1, _2, _3, &answer));

@@ -3,7 +3,27 @@ The library takes care of the network stuff. You submit a query and get the raw 
 
 # Install
 
-## Dependencies
+## Packages
+
+Every [release](https://github.com/tastytea/mastodon-cpp/releases) includes
+packages for the package managers of Gentoo, Debian and Red Hat.
+
+### Gentoo
+
+Put the ebuild into your [local overlay](https://wiki.gentoo.org/wiki/Custom_repository) and run ebuild \<ebuild path\> manifest.
+Install with `emerge mastodon-cpp`.
+
+### DEB and RPM
+
+Prebuilt DEB and RPM packages for x86_64(amd64) are provided with each release.
+These packages are automatically built and not tested.
+Install with `dpkg -i` or `rpm -i`, respectively.
+
+To use the DEB package on stretch, you will need [libcurlpp0](https://packages.debian.org/de/libcurlpp0) from buster or jessie.
+
+## From source
+
+### Dependencies
 
 * Tested OS: GNU/Linux
 * C++ compiler (tested: gcc 6.4/5.4, clang 5.0)
@@ -16,19 +36,19 @@ The library takes care of the network stuff. You submit a query and get the raw 
     * DEB package: [dpkg](https://packages.qa.debian.org/dpkg) (tested: 1.19.0.5)
     * RPM package: [rpm](http://www.rpm.org) (tested: 4.11.0.1)
 
-## Get sourcecode
+### Get sourcecode
 
-### Release
+#### Release
 
 Download the current release at [GitHub](https://github.com/tastytea/mastodon-cpp/releases).
 
-### Development version
+#### Development version
 
 [![Build Status](https://travis-ci.org/tastytea/mastodon-cpp.svg?branch=master)](https://travis-ci.org/tastytea/mastodon-cpp)
 
     git clone https://github.com/tastytea/mastodon-cpp.git
 
-## Compile
+### Compile
 
     mkdir build
     cd build/
@@ -45,28 +65,22 @@ cmake options:
  * `-DWITH_RPM=ON` if you want to be able to generate an rpm-package
 
 You can run the tests with `ctest ..` inside the build directory.
+To install, run `make install`
 
-## Packages
+### Packages
 
-### Gentoo
+#### Gentoo
 
-Put the ebuild in `packages/gentoo` into your [local overlay](https://wiki.gentoo.org/wiki/Custom_repository) and rename it to match the desired version.
+Put the ebuild in `packages/gentoo` into your [local overlay](https://wiki.gentoo.org/wiki/Custom_repository) and rename it to match the desired version or use the live-ebuild (mastodon-cpp-9999.ebuild) to install the development version.
 
-Or use the ebuild from the [releases](https://github.com/tastytea/mastodon-cpp/releases) page.
-
-### DEB and RPM
+#### DEB and RPM
 
 Compile with `-DWITH_DEB=ON` or `-DWITH_RPM=ON`.
 Run `make package` from the build directory to generate a DEB/RPM package.
 
-RPM packages are untested and DEB packages are tested sporadically.
-To use the DEB package on stretch, you will need [libcurlpp0](https://packages.debian.org/de/libcurlpp0) from buster or jessie.
+#### Other
 
-Prebuilt packages for x86_64(amd64) are provided with each [release](https://github.com/tastytea/mastodon-cpp/releases).
-
-### Other
-
-Run `make install` from the build directory to install.
+Run `make package` from the build directory to generate a tar.gz archive.
 
 # Usage
 

@@ -26,7 +26,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 endif()
 
 # Library
-file(GLOB sources src/*.cpp src/*.hpp)
+file(GLOB sources src/*.cpp src/*.hpp src/api/*.cpp)
 add_library(mastodon-cpp SHARED ${sources})
 set_target_properties(mastodon-cpp PROPERTIES
     VERSION ${PROJECT_VERSION}

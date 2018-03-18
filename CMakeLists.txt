@@ -50,17 +50,11 @@ endif()
 
 # Examples
 if(WITH_EXAMPLES)
-    include(FindBoost)
-    find_package(Boost REQUIRED COMPONENTS system filesystem)
-    include_directories(${Boost_INCLUDE_DIRS})
-    link_directories(${Boost_LIBRARY_DIRS})
-    add_definitions(${Boost_DEFINITIONS})
-
     file(GLOB sources_examples src/examples/*.cpp)
     foreach(src ${sources_examples})
         get_filename_component(bin ${src} NAME_WE)
         add_executable(${bin} ${src})
-        target_link_libraries(${bin} -lpthread ${Boost_LIBRARIES} -ljsoncpp mastodon-cpp)
+        target_link_libraries(${bin} -lpthread -ljsoncpp mastodon-cpp)
     endforeach()
 endif()
 

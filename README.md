@@ -1,6 +1,8 @@
 **mastodon-cpp** is a C++ wrapper for the Mastodon API.
 The library takes care of the network stuff. You submit a query and get the raw JSON.
 
+[TODO-list](https://github.com/tastytea/mastodon-cpp/milestones)
+
 # Usage
 
 The HTML reference can be generated with `build_doc.sh`, if doxygen is installed.

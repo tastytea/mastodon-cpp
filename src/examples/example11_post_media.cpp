@@ -6,12 +6,10 @@
 #include <vector>
 #include <string>
 #include <cstdint>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/json_parser.hpp>
+#include <jsoncpp/json/json.h>
 #include "../mastodon-cpp.hpp"
 
 using Mastodon::API;
-namespace pt = boost::property_tree;
 
 int main(int argc, char *argv[])
 {
@@ -23,8 +21,8 @@ int main(int argc, char *argv[])
 
     Mastodon::API masto(argv[1], argv[2]);
     std::string answer;
-    std::istringstream iss;
-    pt::ptree tree;
+    Json::Value json;
+    Json::Reader reader;
     std::uint16_t ret;
     std::string filepath;
 
@@ -38,10 +36,9 @@ int main(int argc, char *argv[])
     ret = masto.post(API::v1::media, parameters, answer);
     if (ret == 0)
     {
-        iss.str(answer);
-        pt::read_json(iss, tree);
-        std::string image1_id = tree.get<std::string>("id");
-        std::string image1_url = tree.get<std::string>("url");
+        reader.parse(answer, json);
+        std::string image1_id = json["id"].asString();
+        std::string image1_url = json["url"].asString();
         parameters =
         {
             { "file", { filepath } }
@@ -49,10 +46,9 @@ int main(int argc, char *argv[])
         ret = masto.post(API::v1::media, parameters, answer);
         if (ret == 0)
         {
-            iss.str(answer);
-            pt::read_json(iss, tree);
-            std::string image2_id = tree.get<std::string>("id");
-            std::string image2_url = tree.get<std::string>("url");
+            reader.parse(answer, json);
+            std::string image2_id = json["id"].asString();
+            std::string image2_url = json["url"].asString();
             parameters =
             {
                 { "status", { image1_url + " \n" + image2_url } },

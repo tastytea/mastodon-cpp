@@ -6,14 +6,12 @@
 #include <vector>
 #include <string>
 #include <cstdint>
-#include <sstream>
 #include <regex>
 #include <cstdlib>
+#include <fstream>
+#include <jsoncpp/json/json.h>
 #include "../mastodon-cpp.hpp"
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/json_parser.hpp>
 
-namespace pt = boost::property_tree;
 using Mastodon::API;
 using std::cout;
 using std::string;
@@ -36,14 +34,16 @@ int main(int argc, char *argv[])
     string hashtag = argv[2];
     string answer;
     std::uint16_t ret;
-    pt::ptree config;
+    Json::Value config;
     string lastid = "0";
     string filename = string(getenv("HOME")) + "/.config/mastocron.json";
 
     // Read config file, get last seen toot-id
     try {
-        pt::read_json(filename, config);
-        lastid = config.get(hashtag, "0");
+        Json::Reader reader;
+        std::ifstream file(filename, std::ifstream::binary);
+        file >> config;
+        lastid = config.get(hashtag, "0").asString();
     }
     catch (std::exception &e)
     {
@@ -73,13 +73,13 @@ int main(int argc, char *argv[])
             cout << "  + " << hashtag << ": +\n";
             cout << ornament << '\n';
 
-            std::istringstream iss(answer);
-            pt::ptree tree;
+            Json::Value tree;
+            Json::Reader reader;
             
-            pt::read_json(iss, tree);
-            for (const pt::ptree::value_type &toot : tree.get_child(""))
+            reader.parse(answer, tree);
+            for (const auto &toot : tree)
             {
-                string content = toot.second.get<string>("content");
+                string content = toot["content"].asString();
                 std::regex reparagraph("</p><p>");
                 std::regex restrip("<[^>]*>");
 
@@ -87,21 +87,29 @@ int main(int argc, char *argv[])
                 content = std::regex_replace(content, reparagraph, "\n\n");
                 cout << std::regex_replace(content, restrip, "") << '\n';
                 cout << "  – ";
-                cout << toot.second.get<string>("account.display_name")
-                     << " (" << toot.second.get<string>("account.acct") << ") at "
-                     << toot.second.get<string>("created_at") << "\n";
-                cout << "    " << toot.second.get<string>("url") << '\n';
-                for (const pt::ptree::value_type &media : toot.second.get_child("media_attachments"))
+                cout << toot["account"]["display_name"].asString()
+                     << " (" << toot["account"]["acct"] << ") at "
+                     << toot["created_at"].asString() << "\n";
+                cout << "    " << toot["url"].asString() << '\n';
+                for (const auto &media : toot["media_attachments"])
                 {
-                    cout << "Attachment: <" << media.second.get<string>("url") << ">\n";
+                    cout << "Attachment: <" << media["url"].asString() << ">\n";
                 }
                 cout << "++++++++\n";
             }
 
             // Write the id of the newest toot in the config file
-            lastid = tree.front().second.get<string>("id");
-            config.put(hashtag, lastid);
-            pt::write_json(filename, config);
+            lastid = tree[0]["id"].asString();
+            config[hashtag] = lastid;
+
+            Json::StyledWriter writer;
+            const string output = writer.write(config);
+            std::ofstream outfile(filename);
+            if (outfile.is_open())
+            {
+                outfile.write(output.c_str(), output.length());
+                outfile.close();
+            }
         }
     }
     else if (ret == 13)

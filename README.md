@@ -86,7 +86,7 @@ To use the DEB package on stretch, you will need [libcurlpp0](https://packages.d
 * [curlpp](http://www.curlpp.org/) (tested: 0.8.1/0.7.3)
 * Optional
     * Documentation: [doxygen](https://www.stack.nl/~dimitri/doxygen/) (tested: 1.8.13)
-    * Examples: [boost](http://www.boost.org/) (tested: 1.63.0/1.54.0)
+    * Examples: [jsoncpp](https://github.com/open-source-parsers/jsoncpp) (tested: 1.8.1)
     * DEB package: [dpkg](https://packages.qa.debian.org/dpkg) (tested: 1.19.0.5)
     * RPM package: [rpm](http://www.rpm.org) (tested: 4.11.0.1)
 

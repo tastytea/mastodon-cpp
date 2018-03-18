@@ -6,13 +6,10 @@
 #include <vector>
 #include <string>
 #include <cstdint>
-#include <sstream>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/json_parser.hpp>
+#include <jsoncpp/json/json.h>
 #include "../mastodon-cpp.hpp"
 
 using Mastodon::API;
-namespace pt = boost::property_tree;
 using std::cout;
 
 int main(int argc, char *argv[])
@@ -30,29 +27,29 @@ int main(int argc, char *argv[])
     ret = masto.get(API::v1::accounts_verify_credentials, answer);
     if (ret == 0)
     {
-        std::istringstream iss(answer);
-        pt::ptree tree;
-        
-        pt::read_json(iss, tree);
-        std::string uid = tree.get<std::string>("id");
+        Json::Reader reader;
+        Json::Value json;
+        reader.parse(answer, json);
+
+        std::string uid = json["id"].asString();
         cout << "Your ID is: " << uid << '\n';
         cout << "Your whole acount tree:\n";
         
-        for (const pt::ptree::value_type &v : tree.get_child(""))
+        for (auto it = json.begin(); it != json.end(); ++it)
         {
-            cout << "    ";
-            if (v.second.size() > 0)
+            if (it.name().compare("source") == 0)
             {
-                cout << v.first.data() << ": \n";
-                for (const pt::ptree::value_type &vc : v.second.get_child(""))
+                cout << it.name() << '\n';
+                for (auto it_s = (*it).begin(); it_s != (*it).end(); ++it_s)
                 {
-                    cout << "        ";
-                    cout << vc.first.data() << ": " << vc.second.data() << '\n';
+                    cout << '\t' << it_s.name() << ": ";
+                    cout << *it_s << '\n';
                 }
             }
             else
             {
-                cout << v.first.data() << ": " << v.second.data() << '\n';
+                cout << it.name() << ": ";
+                cout << *it << '\n';
             }
         }
     }

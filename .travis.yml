@@ -10,7 +10,7 @@ addons:
     packages:
       - g++-5
       - libcurlpp-dev
-      - libboost-all-dev
+      - libjsoncpp-dev
 before_install:
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 60
 script:

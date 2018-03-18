@@ -87,7 +87,7 @@ set(CPACK_GENERATOR "TGZ")
 if (WITH_DEB)
     set(CPACK_GENERATOR "DEB")
     set(CPACK_DEBIAN_PACKAGE_HOMEPAGE "https://github.com/tastytea/mastodon-cpp")
-    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libcurlpp0 (>= 0.7.3)")
+    #set(CPACK_DEBIAN_PACKAGE_DEPENDS "libcurlpp0 (>= 0.7.3)")
     set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
     execute_process(COMMAND dpkg --print-architecture
                     OUTPUT_VARIABLE CPACK_DEBIAN_PACKAGE_ARCHITECTURE

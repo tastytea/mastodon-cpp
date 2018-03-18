@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include <cstdint>
+#include <sstream>
 #include <jsoncpp/json/json.h>
 #include "../mastodon-cpp.hpp"
 
@@ -21,8 +22,8 @@ int main(int argc, char *argv[])
 
     Mastodon::API masto(argv[1], argv[2]);
     std::string answer;
+    std::stringstream ss;
     Json::Value json;
-    Json::Reader reader;
     std::uint16_t ret;
     std::string filepath;
 
@@ -36,7 +37,8 @@ int main(int argc, char *argv[])
     ret = masto.post(API::v1::media, parameters, answer);
     if (ret == 0)
     {
-        reader.parse(answer, json);
+        ss.str(answer);
+        ss >> json;
         std::string image1_id = json["id"].asString();
         std::string image1_url = json["url"].asString();
         parameters =
@@ -46,7 +48,8 @@ int main(int argc, char *argv[])
         ret = masto.post(API::v1::media, parameters, answer);
         if (ret == 0)
         {
-            reader.parse(answer, json);
+            ss.str(answer);
+            ss >> json;
             std::string image2_id = json["id"].asString();
             std::string image2_url = json["url"].asString();
             parameters =

@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include <cstdint>
+#include <sstream>
 #include <jsoncpp/json/json.h>
 #include "../mastodon-cpp.hpp"
 
@@ -22,14 +23,15 @@ int main(int argc, char *argv[])
 
     Mastodon::API masto(argv[1], argv[2]);
     std::string answer;
+    std::stringstream ss;
     std::uint16_t ret;
 
     ret = masto.get(API::v1::accounts_verify_credentials, answer);
     if (ret == 0)
     {
-        Json::Reader reader;
+        ss.str(answer);
         Json::Value json;
-        reader.parse(answer, json);
+        ss >> json;
 
         std::string uid = json["id"].asString();
         cout << "Your ID is: " << uid << '\n';

@@ -9,6 +9,7 @@
 #include <regex>
 #include <cstdlib>
 #include <fstream>
+#include <sstream>
 #include <jsoncpp/json/json.h>
 #include "../mastodon-cpp.hpp"
 
@@ -33,6 +34,7 @@ int main(int argc, char *argv[])
     Mastodon::API masto(argv[1], "");
     string hashtag = argv[2];
     string answer;
+    std::stringstream ss;
     std::uint16_t ret;
     Json::Value config;
     string lastid = "0";
@@ -40,7 +42,6 @@ int main(int argc, char *argv[])
 
     // Read config file, get last seen toot-id
     try {
-        Json::Reader reader;
         std::ifstream file(filename, std::ifstream::binary);
         file >> config;
         lastid = config.get(hashtag, "0").asString();
@@ -74,9 +75,9 @@ int main(int argc, char *argv[])
             cout << ornament << '\n';
 
             Json::Value tree;
-            Json::Reader reader;
+            ss.str(answer);
+            ss >> tree;
             
-            reader.parse(answer, tree);
             for (const auto &toot : tree)
             {
                 string content = toot["content"].asString();
@@ -102,8 +103,8 @@ int main(int argc, char *argv[])
             lastid = tree[0]["id"].asString();
             config[hashtag] = lastid;
 
-            Json::StyledWriter writer;
-            const string output = writer.write(config);
+            Json::StreamWriterBuilder wbuilder;
+            const string output = Json::writeString(wbuilder, config);
             std::ofstream outfile(filename);
             if (outfile.is_open())
             {

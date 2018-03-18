@@ -1,6 +1,58 @@
 **mastodon-cpp** is a C++ wrapper for the Mastodon API.
 The library takes care of the network stuff. You submit a query and get the raw JSON.
 
+# Usage
+
+The HTML reference can be generated with `build_doc.sh`, if doxygen is installed.
+Or just look in `src/mastodon-cpp.hpp`. It is also available at [tastytea.github.io/mastodon-cpp/](https://tastytea.github.io/mastodon-cpp/docs/classMastodon_1_1API.html).
+There are [examples](https://github.com/tastytea/mastodon-cpp/tree/master/src/examples) in `src/examples/`.
+
+## Most basic example
+
+```C++
+#include <iostream>
+#include <string>
+#include <mastodon-cpp.hpp>
+
+int main()
+{
+    Mastodon::API masto("social.example.com", "auth_token");
+    std::string answer;
+    masto.get(Mastodon::API::v1::accounts_verify_credentials, answer);
+    std::cout << answer << '\n';
+}
+```
+
+## Compiling your project
+
+After you did a `make install`, a project consisting of one file can be compiled as follows:
+
+    g++ -std=c++14 -lmastodon-cpp example.cpp
+
+## Error codes
+
+mastodon-cpp will never use error codes below 11, except 0.
+
+|      Code | Explanation                   |
+| --------: |:------------------------------|
+|         0 | No error                      |
+|        11 | Invalid call                  |
+|        12 | Not implemented               |
+|        13 | URL changed (HTTP 301 or 308) |
+|        14 | Aborted by user               |
+|        20 | Failed to connect             |
+|        21 | Couldn't resolve host         |
+|        22 | Network is unreachable        |
+| 100 - 999 | HTTP status codes             |
+|     65535 | Unknown error                 |
+
+If you use a debug build, you get more verbose error messages.
+
+## Useful links
+
+* [Mastodon API reference](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md)
+* [Mastodon streaming API reference](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
+
 # Install
 
 ## Packages
@@ -10,7 +62,7 @@ packages for the package managers of Gentoo, Debian and Red Hat.
 
 ### Gentoo
 
-Put the ebuild into your [local overlay](https://wiki.gentoo.org/wiki/Custom_repository) and run ebuild \<ebuild path\> manifest.
+Put the ebuild into your [local overlay](https://wiki.gentoo.org/wiki/Custom_repository) and run `ebuild \<ebuild path\> manifest`.
 Install with `emerge mastodon-cpp`.
 
 ### DEB and RPM
@@ -71,7 +123,7 @@ To install, run `make install`
 
 #### Gentoo
 
-Put the ebuild in `packages/gentoo` into your [local overlay](https://wiki.gentoo.org/wiki/Custom_repository) and rename it to match the desired version or use the live-ebuild (mastodon-cpp-9999.ebuild) to install the development version.
+Put the ebuild in `packages/gentoo` into your [local overlay](https://wiki.gentoo.org/wiki/Custom_repository) and rename it to match the desired version or use the live-ebuild (`mastodon-cpp-9999.ebuild`) to install the development version.
 
 #### DEB and RPM
 
@@ -81,56 +133,6 @@ Run `make package` from the build directory to generate a DEB/RPM package.
 #### Other
 
 Run `make package` from the build directory to generate a tar.gz archive.
-
-# Usage
-
-The HTML reference can be generated with `build_doc.sh`, if doxygen is installed.
-Or just look in `src/mastodon-cpp.hpp`. It is also available at [tastytea.github.io/mastodon-cpp/](https://tastytea.github.io/mastodon-cpp/docs/classMastodon_1_1API.html).
-There are examples in `src/examples/`.
-
-## Most basic example
-
-    #include <iostream>
-    #include <string>
-    #include <mastodon-cpp.hpp>
-
-    int main()
-    {
-        Mastodon::API masto("social.example.com", "auth_token");
-        std::string answer;
-        masto.get(Mastodon::API::v1::accounts_verify_credentials, answer);
-        std::cout << answer << '\n';
-    }
-
-## Compiling your project
-
-After you did a `make install`, a project consisting of one file can be compiled as follows:
-
-    g++ -std=c++14 -lmastodon-cpp example.cpp
-
-## Error codes
-
-mastodon-cpp will never use error codes below 11, except 0.
-
-|      Code | Explanation                   |
-| --------: |:------------------------------|
-|         0 | No error                      |
-|        11 | Invalid call                  |
-|        12 | Not implemented               |
-|        13 | URL changed (HTTP 301 or 308) |
-|        14 | Aborted by user               |
-|        20 | Failed to connect             |
-|        21 | Couldn't resolve host         |
-|        22 | Network is unreachable        |
-| 100 - 999 | HTTP status codes             |
-|     65535 | Unknown error                 |
-
-If you use a debug build, you get more verbose error messages.
-
-## Useful links
-
-* [Mastodon API reference](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md)
-* [Mastodon streaming API reference](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
 
 # Status of implementation
 

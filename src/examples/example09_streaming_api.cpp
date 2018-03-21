@@ -9,7 +9,7 @@
 #include <thread>
 #include <chrono>
 #include <memory>
-#include "../mastodon-cpp.hpp"
+#include "mastodon-cpp/mastodon-cpp.hpp"
 
 using Mastodon::API;
 

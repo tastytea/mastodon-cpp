@@ -7,7 +7,7 @@
 #include <string>
 #include <cstdint>
 #include <sstream>
-#include "../mastodon-cpp.hpp"
+#include "mastodon-cpp/mastodon-cpp.hpp"
 
 using Mastodon::API;
 

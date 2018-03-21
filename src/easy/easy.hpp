@@ -21,7 +21,7 @@
 #include <cstdint>
 #include <chrono>
 #include <jsoncpp/json/json.h>
-#include "mastodon-cpp.hpp"
+#include "mastodon-cpp/mastodon-cpp.hpp"
 
 using std::string;
 using std::uint16_t;

@@ -9,12 +9,16 @@ The HTML reference can be generated with `build_doc.sh`, if doxygen is installed
 Or just look in `src/mastodon-cpp.hpp`. It is also available at [tastytea.github.io/mastodon-cpp/](https://tastytea.github.io/mastodon-cpp/docs/classMastodon_1_1API.html).
 There are [examples](https://github.com/tastytea/mastodon-cpp/tree/master/src/examples) in `src/examples/`.
 
+## Upgrading from below 0.7.0
+
+The header location has changed. It is now in `mastodon-cpp/`.
+
 ## Most basic example
 
 ```C++
 #include <iostream>
 #include <string>
-#include <mastodon-cpp.hpp>
+#include <mastodon-cpp/mastodon-cpp.hpp>
 
 int main()
 {
@@ -85,8 +89,8 @@ To use the DEB package on stretch, you will need [libcurlpp0](https://packages.d
 * [libcurl](https://curl.haxx.se/) (tested: 7.58.0/7.35.0)
 * [curlpp](http://www.curlpp.org/) (tested: 0.8.1/0.7.3)
 * Optional
+    * Easy interface & Examples: [jsoncpp](https://github.com/open-source-parsers/jsoncpp) (tested: 1.8.1 / 1.7.2)
     * Documentation: [doxygen](https://www.stack.nl/~dimitri/doxygen/) (tested: 1.8.13)
-    * Examples: [jsoncpp](https://github.com/open-source-parsers/jsoncpp) (tested: 1.8.1 / 1.7.2)
     * DEB package: [dpkg](https://packages.qa.debian.org/dpkg) (tested: 1.19.0.5)
     * RPM package: [rpm](http://www.rpm.org) (tested: 4.11.0.1)
 
@@ -112,6 +116,7 @@ Download the current release at [GitHub](https://github.com/tastytea/mastodon-cp
 cmake options:
 
  * `-DCMAKE_BUILD_TYPE=Debug` for a debug build
+ * `-DWITHOUT_EASY=ON` to not build the Easy abstractions and to get rid of the jsoncpp-dependency (not recommended)
  * `-DWITH_EXAMPLES=ON` if you want to compile the examples
  * `-DWITH_TESTS=ON` if you want to compile the tests
  * `-DWITH_DOC=ON` if you want to compile the HTML reference

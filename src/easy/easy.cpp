@@ -14,15 +14,14 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MACROS_HPP
-#define MACROS_HPP
+#include <string>
+#include "easy.hpp"
 
-#include <iostream>
+using namespace Mastodon;
+using std::string;
 
-#ifdef DEBUG
-    #define ttdebug std::cerr << "[" << __FILE__ << ":" << __LINE__ << "] DEBUG: "
-#else
-    #define ttdebug false && std::cerr
-#endif
-
-#endif // MACROS_HPP
+Easy::Easy(const string &instance, const string &access_token)
+: API(instance, access_token)
+{
+    //
+}

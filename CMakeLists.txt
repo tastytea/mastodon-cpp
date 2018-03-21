@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.7)
 project (mastodon-cpp
-         VERSION 0.7.0
+         VERSION 0.7.1
          LANGUAGES CXX
 )
 
@@ -26,6 +26,10 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_definitions(-DDEBUG=1)
 endif()
 
+if(WITHOUT_EASY)
+    add_definitions(-DWITHOUT_EASY=1)
+endif()
+
 # Library
 if(WITHOUT_EASY)
     file(GLOB sources src/*.cpp src/api/*.cpp)
@@ -39,16 +43,16 @@ set_target_properties(mastodon-cpp PROPERTIES
 )
 if(WITHOUT_EASY)
     target_link_libraries(mastodon-cpp curlpp)
-    install(FILES src/mastodon-cpp.hpp
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp)
 else()
     target_link_libraries(mastodon-cpp curlpp jsoncpp)
-    install(FILES src/mastodon-cpp.hpp src/easy/easy.hpp
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp)
 endif()
 install(TARGETS mastodon-cpp LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
-install(FILES ${PROJECT_SOURCE_DIR}/src/mastodon-cpp.hpp
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+install(FILES src/mastodon-cpp.hpp
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp)
+if(NOT WITHOUT_EASY)
+    install(FILES src/easy/easy.hpp
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp)
+endif()
 
 # Documentation
 if(WITH_DOC)

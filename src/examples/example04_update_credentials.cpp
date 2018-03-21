@@ -6,7 +6,7 @@
 #include <vector>
 #include <string>
 #include <cstdint>
-#include "../mastodon-cpp.hpp"
+#include "mastodon-cpp/mastodon-cpp.hpp"
 
 using Mastodon::API;
 

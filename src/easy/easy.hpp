@@ -20,6 +20,7 @@
 #include <string>
 #include <cstdint>
 #include <chrono>
+#include <array>
 #include <jsoncpp/json/json.h>
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
@@ -84,7 +85,7 @@ public:
     {
     public:
         /*!
-         *  @brief  Constructs an account object from a JSON string.
+         *  @brief  Constructs an Account object from a JSON string.
          *
          *  @param  json    JSON string
          */
@@ -211,7 +212,7 @@ public:
     {
     public:
         /*!
-         *  @brief  Constructs an attachment object from a JSON string.
+         *  @brief  Constructs an Attachment object from a JSON string.
          *
          *  @param  json    JSON string
          */
@@ -223,9 +224,35 @@ public:
         const bool valid() const;
 
         /*!
+         *  @brief  Aspect of original image
+         */
+        const double aspect() const;
+
+        /*!
+         *  @brief  Aspect of preview image
+         */
+        const double aspect_small() const;
+
+        /*!
          *  @brief  Returns the image description
          */
         const string description() const;
+
+        /*!
+         *  @brief  Returns the focus point (x, y)
+         */
+        // TODO: find attachment with focus
+        const std::array<uint64_t, 2> focus() const;
+
+        /*!
+         *  @brief  Returns the height of the original image
+         */
+        const uint64_t height() const;
+
+        /*!
+         *  @brief  Returns the height of the preview image
+         */
+        const uint64_t height_small() const;
 
         /*!
          *  @brief  Returns the ID of the attachment
@@ -243,6 +270,16 @@ public:
         const string remote_url() const;
 
         /*!
+         *  @brief  Returns the size of the original image
+         */
+        const string size() const;
+
+        /*!
+         *  @brief  Returns the size of the preview image
+         */
+        const string size_small() const;
+
+        /*!
          *  @brief  Returns shorter URL for the image
          */
         const string text_url() const;
@@ -256,6 +293,58 @@ public:
          *  @brief  Returns URL of the locally hosted version of the image
          */
         const string url() const;
+
+        /*!
+         *  @brief  Returns the width of the original image
+         */
+        const uint64_t width() const;
+
+        /*!
+         *  @brief  Returns the width of the preview image
+         */
+        const uint64_t width_small() const;
+
+
+        // TODO: find an attachment with framerate, duration or bitrate set
+        // const uint16_t framerate() const;
+        // const std::chrono::seconds duration() const;
+        // const uint64_t bitrate() const;
+
+    private:
+        Json::Value _tree;
+        bool _valid;
+    };
+
+    /*!
+     *  @brief  Class to hold cards
+     */
+    class Card
+    {
+    public:
+        /*!
+         *  @brief  Constructs a Card object from a JSON string.
+         *
+         *  @param  json    JSON string
+         */
+        explicit Card(const string &json);
+
+        /*!
+         *  @brief  Returns true if the card holds valid data
+         */
+        const bool valid() const;
+
+        const string url() const;
+        const string title() const;
+        const string description() const;
+        const string image() const;
+        const string type() const;
+        const string author_name() const;
+        const string author_url() const;
+        const string provider_name() const;
+        const string provider_url() const;
+        const string html() const;
+        const string width() const;
+        const string height() const;
 
     private:
         Json::Value _tree;

@@ -191,7 +191,7 @@ const Account Account::moved() const
 {
     if (has_moved())
     {
-        // TODO: Find an account with this node and test
+        // TODO: Find an account with moved-node and test
         return Account(_tree["moved"].toStyledString());
     }
 

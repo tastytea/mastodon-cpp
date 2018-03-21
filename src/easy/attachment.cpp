@@ -16,6 +16,7 @@
 
 #include <string>
 #include <sstream>
+#include <array>
 #include <jsoncpp/json/json.h>
 #include "easy.hpp"
 #include "macros.hpp"
@@ -25,6 +26,7 @@ using Attachment = Easy::Attachment;
 using std::string;
 
 Attachment::Attachment(const string &json)
+: _valid(false)
 {
     std::stringstream ss(json);
     ss >> _tree;
@@ -45,6 +47,28 @@ const bool Attachment::valid() const
     return _valid;
 }
 
+const double Attachment::aspect() const
+{
+    if (_tree["meta"]["original"]["aspect"].isDouble())
+    {
+        return _tree["meta"]["original"]["aspect"].asDouble();
+    }
+
+    ttdebug << "Could not get attachment data: aspect\n";
+    return 0;
+}
+
+const double Attachment::aspect_small() const
+{
+    if (_tree["meta"]["small"]["aspect"].isDouble())
+    {
+        return _tree["meta"]["small"]["aspect"].asDouble();
+    }
+
+    ttdebug << "Could not get attachment data: aspect_small\n";
+    return 0;
+}
+
 const string Attachment::description() const
 {
     if (_tree["description"].isString())
@@ -54,6 +78,43 @@ const string Attachment::description() const
 
     ttdebug << "Could not get attachment data: description\n";
     return "";
+}
+
+const std::array<uint64_t, 2> Attachment::focus() const
+{
+    if (_tree["meta"]["focus"]["x"].isUInt64())
+    {
+        return
+        {
+            _tree["meta"]["focus"]["x"].asUInt64(),
+            _tree["meta"]["focus"]["y"].asUInt64()
+        };
+    }
+
+    ttdebug << "Could not get attachment data: focus\n";
+    return {};
+}
+
+const uint64_t Attachment::height() const
+{
+    if (_tree["meta"]["original"]["height"].isDouble())
+    {
+        return _tree["meta"]["original"]["height"].asDouble();
+    }
+
+    ttdebug << "Could not get attachment data: height\n";
+    return 0;
+}
+
+const uint64_t Attachment::height_small() const
+{
+    if (_tree["meta"]["small"]["height"].isDouble())
+    {
+        return _tree["meta"]["small"]["height"].asDouble();
+    }
+
+    ttdebug << "Could not get attachment data: height_small\n";
+    return 0;
 }
 
 const std::uint64_t Attachment::id() const
@@ -86,6 +147,28 @@ const string Attachment::remote_url() const
     }
 
     ttdebug << "Could not get attachment data: remote_url\n";
+    return "";
+}
+
+const string Attachment::size() const
+{
+    if (_tree["meta"]["original"]["size"].isString())
+    {
+        return _tree["meta"]["original"]["size"].asString();
+    }
+
+    ttdebug << "Could not get attachment data: size\n";
+    return "";
+}
+
+const string Attachment::size_small() const
+{
+    if (_tree["meta"]["original"]["size"].isString())
+    {
+        return _tree["meta"]["original"]["size"].asString();
+    }
+
+    ttdebug << "Could not get attachment data: size_small\n";
     return "";
 }
 
@@ -125,4 +208,26 @@ const string Attachment::url() const
 
     ttdebug << "Could not get attachment data: url\n";
     return "";
+}
+
+const uint64_t Attachment::width() const
+{
+    if (_tree["meta"]["original"]["width"].isDouble())
+    {
+        return _tree["meta"]["original"]["width"].asDouble();
+    }
+
+    ttdebug << "Could not get attachment data: width\n";
+    return 0;
+}
+
+const uint64_t Attachment::width_small() const
+{
+    if (_tree["meta"]["small"]["width"].isDouble())
+    {
+        return _tree["meta"]["small"]["width"].asDouble();
+    }
+
+    ttdebug << "Could not get attachment data: width_small\n";
+    return 0;
 }

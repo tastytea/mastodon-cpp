@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.7)
 project (mastodon-cpp
-         VERSION 0.6.6
+         VERSION 0.7.0
          LANGUAGES CXX
 )
 
@@ -9,6 +9,7 @@ include(GNUInstallDirs)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
 
+set(CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -26,13 +27,25 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 endif()
 
 # Library
-file(GLOB sources src/*.cpp src/*.hpp src/api/*.cpp)
+if(WITHOUT_EASY)
+    file(GLOB sources src/*.cpp src/api/*.cpp)
+else()
+    file(GLOB sources src/*.cpp src/api/*.cpp src/easy/*.cpp)
+endif()
 add_library(mastodon-cpp SHARED ${sources})
 set_target_properties(mastodon-cpp PROPERTIES
     VERSION ${PROJECT_VERSION}
     SOVERSION ${mastodon-cpp_VERSION_MAJOR}
 )
-target_link_libraries(mastodon-cpp curlpp)
+if(WITHOUT_EASY)
+    target_link_libraries(mastodon-cpp curlpp)
+    install(FILES src/mastodon-cpp.hpp
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp)
+else()
+    target_link_libraries(mastodon-cpp curlpp jsoncpp)
+    install(FILES src/mastodon-cpp.hpp src/easy/easy.hpp
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp)
+endif()
 install(TARGETS mastodon-cpp LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(FILES ${PROJECT_SOURCE_DIR}/src/mastodon-cpp.hpp
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
@@ -54,7 +67,7 @@ if(WITH_EXAMPLES)
     foreach(src ${sources_examples})
         get_filename_component(bin ${src} NAME_WE)
         add_executable(${bin} ${src})
-        target_link_libraries(${bin} -lpthread -ljsoncpp mastodon-cpp)
+        target_link_libraries(${bin} pthread jsoncpp mastodon-cpp)
     endforeach()
 endif()
 

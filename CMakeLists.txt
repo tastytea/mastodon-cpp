@@ -70,7 +70,7 @@ endif()
 
 # Examples
 if(WITH_EXAMPLES)
-    file(GLOB sources_examples src/examples/*.cpp)
+    file(GLOB sources_examples examples/*.cpp)
     foreach(src ${sources_examples})
         get_filename_component(bin ${src} NAME_WE)
         add_executable(${bin} ${src})
@@ -81,7 +81,7 @@ endif()
 # Tests
 if(WITH_TESTS)
     include(CTest)
-    file(GLOB sources_tests src/tests/test_*.cpp)
+    file(GLOB sources_tests tests/test_*.cpp)
     foreach(src ${sources_tests})
         get_filename_component(bin ${src} NAME_WE)
         add_executable(${bin} ${src})

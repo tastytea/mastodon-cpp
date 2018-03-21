@@ -44,7 +44,7 @@ src_install() {
 
     if use examples; then
         docinto examples
-        for file in src/examples/*.cpp; do
+        for file in examples/*.cpp; do
             dodoc ${file}
         done
     fi

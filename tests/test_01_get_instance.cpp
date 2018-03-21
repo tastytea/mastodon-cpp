@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <cstdint>
-#include "../mastodon-cpp.hpp"
+#include "mastodon-cpp.hpp"
 
 int main(int argc, char *argv[])
 {

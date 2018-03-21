@@ -1,6 +1,6 @@
 /*  This file is part of mastodon-cpp.
  *  Copyright © 2018 tastytea <tastytea@tastytea.de>
- *                                                                   
+ *  
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, version 3.
@@ -175,6 +175,28 @@ const bool Account::locked() const
 
     ttdebug << "Could not get account data: locked\n";
     return false;
+}
+
+const bool Account::has_moved() const
+{
+    if (_tree["moved"].isObject())
+    {
+        return true;
+    }
+
+    return false;
+}
+
+const Account Account::moved() const
+{
+    if (has_moved())
+    {
+        // TODO: Find an account with this node and test
+        return Account(_tree["moved"].toStyledString());
+    }
+
+    ttdebug << "Could not get account data: moved\n";
+    return Account("");
 }
 
 const string Account::note() const

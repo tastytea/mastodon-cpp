@@ -180,7 +180,7 @@ public:
         const visibility privacy() const;
 
         /*!
-         *  @brief  Returns if media is amrked as sensitive by default
+         *  @brief  Returns if media is marked as sensitive by default
          */
         const bool sensitive() const;
 
@@ -222,13 +222,40 @@ public:
          */
         const bool valid() const;
 
-        const uint64_t id() const;
-        const attachment_type type() const;
-        const string url() const;
-        const string remote_url() const;
-        const string preview_url() const;
-        const string text_url() const;
+        /*!
+         *  @brief  Returns the image description
+         */
         const string description() const;
+
+        /*!
+         *  @brief  Returns the ID of the attachment
+         */
+        const uint64_t id() const;
+
+        /*!
+         *  @brief  Returns the URL of the preview image
+         */
+        const string preview_url() const;
+
+        /*!
+         *  @brief  Returns the remote URL of the original image
+         */
+        const string remote_url() const;
+
+        /*!
+         *  @brief  Returns shorter URL for the image
+         */
+        const string text_url() const;
+
+        /*!
+         *  @brief  Returns attachment type
+         */
+        const attachment_type type() const;
+
+        /*!
+         *  @brief  Returns URL of the locally hosted version of the image
+         */
+        const string url() const;
 
     private:
         Json::Value _tree;

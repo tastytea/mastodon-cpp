@@ -22,7 +22,7 @@
 #include <iomanip>  // get_time
 #include <sstream>
 #include <jsoncpp/json/json.h>
-#include "easy.hpp"
+#include "account.hpp"
 #include "macros.hpp"
 
 using namespace Mastodon;
@@ -30,25 +30,9 @@ using Account = Easy::Account;
 using std::string;
 
 Account::Account(const string &json)
-: _valid(false)
+: Entity(json)
 {
-    std::stringstream ss(json);
-    ss >> _tree;
-
-    if (_tree.isNull())
-    {
-        std::cerr << "ERROR: Could not build Account from JSON string\n";
-        ttdebug << "String was: " << json << '\n';
-    }
-    else
-    {
-        _valid = true;
-    }
-}
-
-const bool Account::valid() const
-{
-    return _valid;
+    //
 }
 
 const string Account::acct() const

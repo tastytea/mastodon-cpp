@@ -1,6 +1,6 @@
 /*  This file is part of mastodon-cpp.
  *  Copyright © 2018 tastytea <tastytea@tastytea.de>
- *  
+ *                                                                   
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, version 3.
@@ -14,38 +14,19 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <string>
-#include <sstream>
-#include "easy.hpp"
-#include "macros.hpp"
+#ifndef MASTODON_CPP_EASY_ALL_HPP
+#define MASTODON_CPP_EASY_ALL_HPP
 
-using namespace Mastodon;
-using std::string;
+#ifdef MASTODON_CPP
+    #include "easy.hpp"
+    #include "easy/account.hpp"
+    #include "easy/attachment.hpp"
+    //#include "easy/card.hpp"
+#else
+    #include <mastodon-cpp/easy.hpp>
+    #include <mastodon-cpp/easy/account.hpp>
+    #include <mastodon-cpp/easy/attachment.hpp>
+    //#include <mastodon-cpp/easy/card.hpp>
+#endif
 
-Easy::Easy(const string &instance, const string &access_token)
-: API(instance, access_token)
-{
-    //
-}
-
-Easy::Entity::Entity(const string &json)
-: _valid(false)
-{
-    std::stringstream ss(json);
-    ss >> _tree;
-
-    if (_tree.isNull())
-    {
-        std::cerr << "ERROR: Could not build Entity from JSON string\n";
-        ttdebug << "String was: " << json << '\n';
-    }
-    else
-    {
-        _valid = true;
-    }
-}
-
-const bool Easy::Entity::valid() const
-{
-    return _valid;
-}
+#endif  // MASTODON_CPP_EASY_ALL_HPP

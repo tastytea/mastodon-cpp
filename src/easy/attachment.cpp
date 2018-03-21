@@ -18,7 +18,7 @@
 #include <sstream>
 #include <array>
 #include <jsoncpp/json/json.h>
-#include "easy.hpp"
+#include "attachment.hpp"
 #include "macros.hpp"
 
 using namespace Mastodon;
@@ -26,25 +26,9 @@ using Attachment = Easy::Attachment;
 using std::string;
 
 Attachment::Attachment(const string &json)
-: _valid(false)
+: Entity(json)
 {
-    std::stringstream ss(json);
-    ss >> _tree;
-
-    if (_tree.isNull())
-    {
-        std::cerr << "ERROR: Could not build Attachment from JSON string\n";
-        ttdebug << "String was: " << json << '\n';
-    }
-    else
-    {
-        _valid = true;
-    }
-}
-
-const bool Attachment::valid() const
-{
-    return _valid;
+    //
 }
 
 const double Attachment::aspect() const
@@ -85,10 +69,10 @@ const std::array<uint64_t, 2> Attachment::focus() const
     if (_tree["meta"]["focus"]["x"].isUInt64())
     {
         return
-        {
+        {{
             _tree["meta"]["focus"]["x"].asUInt64(),
             _tree["meta"]["focus"]["y"].asUInt64()
-        };
+        }};
     }
 
     ttdebug << "Could not get attachment data: focus\n";

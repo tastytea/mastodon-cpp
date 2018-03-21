@@ -21,10 +21,16 @@
 #include <cstdint>
 #include <chrono>
 #include <jsoncpp/json/json.h>
-#include "mastodon-cpp/mastodon-cpp.hpp"
+// If we are compiling mastodon-cpp, use another include path
+#ifdef MASTODON_CPP
+    #include "mastodon-cpp.hpp"
+#else
+    #include <mastodon-cpp/mastodon-cpp.hpp>
+#endif
 
 using std::string;
 using std::uint16_t;
+using std::uint64_t;
 
 namespace Mastodon
 {
@@ -50,6 +56,17 @@ public:
     };
 
     /*!
+     *  @brief  Describes the attachment type
+     */
+    enum class attachment_type
+    {
+        image,
+        video,
+        gifv,
+        unknown
+    };
+
+    /*!
      *  @brief  Constructs a new Easy object.
      *  
      *          To register your application, leave access_token blank and call
@@ -71,7 +88,7 @@ public:
          *
          *  @param  json    JSON string
          */
-        Account(const string &json);
+        explicit Account(const string &json);
 
         /*!
          *  @brief  Returns true if the account holds valid data
@@ -109,12 +126,12 @@ public:
         /*!
          *  @brief  Returns number of followers
          */
-        const std::uint64_t followers_count() const;
+        const uint64_t followers_count() const;
 
         /*!
          *  @brief  Returns number of people this account follows
          */
-        const std::uint64_t following_count() const;
+        const uint64_t following_count() const;
 
         /*!
          *  @brief  Returns URL of header image
@@ -129,12 +146,23 @@ public:
         /*!
          *  @brief  Returns account-ID
          */
-        const std::uint64_t id() const;
+        const uint64_t id() const;
 
         /*!
          *  @brief  Returns true if the account is locked
          */
         const bool locked() const;
+
+        /*!
+         *  @brief  Returns true if the account has been moved
+         */
+        const bool has_moved() const;
+
+        /*!
+         *  @brief  If the owner decided to switch accounts, new account is in
+         *          this attribute
+         */
+        const Account moved() const;
 
         /*!
          *  @brief  Returns note
@@ -159,7 +187,7 @@ public:
         /*!
          *  @brief  Returns number of statuses
          */
-        const std::uint64_t statuses_count() const;
+        const uint64_t statuses_count() const;
 
         /*!
          *  @brief  Returns URL of the profile
@@ -170,6 +198,37 @@ public:
          *  @brief  Returns username (without @hostname)
          */
         const string username() const;
+
+    private:
+        Json::Value _tree;
+        bool _valid;
+    };
+
+    /*!
+     *  @brief  Class to hold attachments
+     */
+    class Attachment
+    {
+    public:
+        /*!
+         *  @brief  Constructs an attachment object from a JSON string.
+         *
+         *  @param  json    JSON string
+         */
+        explicit Attachment(const string &json);
+
+        /*!
+         *  @brief  Returns true if the attachment holds valid data
+         */
+        const bool valid() const;
+
+        const uint64_t id() const;
+        const attachment_type type() const;
+        const string url() const;
+        const string remote_url() const;
+        const string preview_url() const;
+        const string text_url() const;
+        const string description() const;
 
     private:
         Json::Value _tree;

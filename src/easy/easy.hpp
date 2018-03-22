@@ -74,6 +74,9 @@ public:
      */
     explicit Easy(const string &instance, const string &access_token);
 
+    /*!
+     *  @brief  Base class for entities.
+     */
     class Entity
     {
     public:

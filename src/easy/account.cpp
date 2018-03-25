@@ -28,6 +28,7 @@
 using namespace Mastodon;
 using Account = Easy::Account;
 using std::string;
+using std::uint64_t;
 
 Account::Account(const string &json)
 : Entity(json)

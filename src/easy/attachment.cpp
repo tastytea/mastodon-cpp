@@ -24,6 +24,7 @@
 using namespace Mastodon;
 using Attachment = Easy::Attachment;
 using std::string;
+using std::uint64_t;
 
 Attachment::Attachment(const string &json)
 : Entity(json)

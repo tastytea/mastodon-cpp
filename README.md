@@ -6,12 +6,12 @@ The library takes care of the network stuff. You submit a query and get the raw 
 # Usage
 
 The HTML reference can be generated with `build_doc.sh`, if doxygen is installed.
-Or just look in `src/mastodon-cpp.hpp`. It is also available at [tastytea.github.io/mastodon-cpp/](https://tastytea.github.io/mastodon-cpp/docs/classMastodon_1_1API.html).
-There are [examples](https://github.com/tastytea/mastodon-cpp/tree/master/src/examples) in `src/examples/`.
+It is also available at [tastytea.github.io/mastodon-cpp/](https://tastytea.github.io/mastodon-cpp/docs/annotated.html).
+There are [examples](https://github.com/tastytea/mastodon-cpp/tree/master/examples) in `examples/`.
 
 ## Upgrading from below 0.7.0
 
-The header location has changed. It is now in `mastodon-cpp/`.
+The header location has changed. They are now in `mastodon-cpp/`.
 
 ## Most basic example
 
@@ -31,7 +31,7 @@ int main()
 
 ## Compiling your project
 
-After you did a `make install`, a project consisting of one file can be compiled as follows:
+A project consisting of one file can be compiled as follows:
 
     g++ -std=c++14 -lmastodon-cpp example.cpp
 
@@ -68,7 +68,7 @@ packages for the package managers of Gentoo, Debian and Red Hat.
 
 ### Gentoo
 
-Put the ebuild into your [local overlay](https://wiki.gentoo.org/wiki/Custom_repository) and run `ebuild \<ebuild path\> manifest`.
+Put the ebuild into your [local overlay](https://wiki.gentoo.org/wiki/Custom_repository) and run `ebuild <ebuild path> manifest`.
 Install with `emerge mastodon-cpp`.
 
 ### DEB and RPM
@@ -83,11 +83,11 @@ To use the DEB package on stretch, you will need [libcurlpp0](https://packages.d
 
 ### Dependencies
 
-* Tested OS: GNU/Linux
-* C++ compiler (tested: gcc 6.4/5.4, clang 5.0)
+* Tested OS: Linux
+* C++ compiler (tested: gcc 6.4 / 5.4, clang 5.0)
 * [cmake](https://cmake.org/) (tested: 3.9.6)
-* [libcurl](https://curl.haxx.se/) (tested: 7.58.0/7.35.0)
-* [curlpp](http://www.curlpp.org/) (tested: 0.8.1/0.7.3)
+* [libcurl](https://curl.haxx.se/) (tested: 7.58.0 / 7.35.0)
+* [curlpp](http://www.curlpp.org/) (tested: 0.8.1 / 0.7.3)
 * Optional
     * Easy interface & Examples: [jsoncpp](https://github.com/open-source-parsers/jsoncpp) (tested: 1.8.1 / 1.7.2)
     * Documentation: [doxygen](https://www.stack.nl/~dimitri/doxygen/) (tested: 1.8.13)
@@ -124,13 +124,13 @@ cmake options:
  * `-DWITH_RPM=ON` if you want to be able to generate an rpm-package
 
 You can run the tests with `ctest ..` inside the build directory.
-To install, run `make install`
+To install, run `make install`.
 
 ### Packages
 
 #### Gentoo
 
-Put the ebuild in `packages/gentoo` into your [local overlay](https://wiki.gentoo.org/wiki/Custom_repository) and rename it to match the desired version or use the live-ebuild (`mastodon-cpp-9999.ebuild`) to install the development version.
+Put the ebuild from `packages/gentoo` into your [local overlay](https://wiki.gentoo.org/wiki/Custom_repository) and rename it to match the desired version or use the live-ebuild (`mastodon-cpp-9999.ebuild`) to install the development version.
 
 #### DEB and RPM
 

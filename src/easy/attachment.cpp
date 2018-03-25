@@ -28,191 +28,105 @@ using std::uint64_t;
 
 Attachment::Attachment(const string &json)
 : Entity(json)
-{
-    //
-}
+{}
 
 const double Attachment::aspect() const
 {
-    if (_tree["meta"]["original"]["aspect"].isDouble())
-    {
-        return _tree["meta"]["original"]["aspect"].asDouble();
-    }
-
-    ttdebug << "Could not get attachment data: aspect\n";
-    return 0;
+    return get_double("meta.original.aspect");
 }
 
 const double Attachment::aspect_small() const
 {
-    if (_tree["meta"]["small"]["aspect"].isDouble())
-    {
-        return _tree["meta"]["small"]["aspect"].asDouble();
-    }
-
-    ttdebug << "Could not get attachment data: aspect_small\n";
-    return 0;
+    return get_double("meta.small.aspect");
 }
 
 const string Attachment::description() const
 {
-    if (_tree["description"].isString())
-    {
-        return _tree["description"].asString();
-    }
-
-    ttdebug << "Could not get attachment data: description\n";
-    return "";
+    return get_string("description");
 }
 
 const std::array<uint64_t, 2> Attachment::focus() const
 {
-    if (_tree["meta"]["focus"]["x"].isUInt64())
+    const Json::Value x = get("meta.focus.x");
+    const Json::Value y = get("meta.focus.y");
+    if (x.isUInt64() && y.isUInt64())
     {
         return
         {{
-            _tree["meta"]["focus"]["x"].asUInt64(),
-            _tree["meta"]["focus"]["y"].asUInt64()
+            x.asUInt64(),
+            y.asUInt64()
         }};
     }
 
-    ttdebug << "Could not get attachment data: focus\n";
     return {};
 }
 
 const uint64_t Attachment::height() const
 {
-    if (_tree["meta"]["original"]["height"].isDouble())
-    {
-        return _tree["meta"]["original"]["height"].asDouble();
-    }
-
-    ttdebug << "Could not get attachment data: height\n";
-    return 0;
+    return get_uint64("meta.original.height");
 }
 
 const uint64_t Attachment::height_small() const
 {
-    if (_tree["meta"]["small"]["height"].isDouble())
-    {
-        return _tree["meta"]["small"]["height"].asDouble();
-    }
-
-    ttdebug << "Could not get attachment data: height_small\n";
-    return 0;
+    return get_uint64("meta.small.height");
 }
 
 const std::uint64_t Attachment::id() const
 {
-    if (_tree["id"].isUInt64())
-    {
-        return _tree["id"].asUInt64();
-    }
-
-    ttdebug << "Could not get attachment data: id\n";
-    return 0;
+    return get_uint64("id");
 }
 
 const string Attachment::preview_url() const
 {
-    if (_tree["preview_url"].isString())
-    {
-        return _tree["preview_url"].asString();
-    }
-
-    ttdebug << "Could not get attachment data: preview_url\n";
-    return "";
+    return get_string("preview_url");
 }
 
 const string Attachment::remote_url() const
 {
-    if (_tree["remote_url"].isString())
-    {
-        return _tree["remote_url"].asString();
-    }
-
-    ttdebug << "Could not get attachment data: remote_url\n";
-    return "";
+    return get_string("remote_url");
 }
 
 const string Attachment::size() const
 {
-    if (_tree["meta"]["original"]["size"].isString())
-    {
-        return _tree["meta"]["original"]["size"].asString();
-    }
-
-    ttdebug << "Could not get attachment data: size\n";
-    return "";
+    return get_string("meta.original.size");
 }
 
 const string Attachment::size_small() const
 {
-    if (_tree["meta"]["original"]["size"].isString())
-    {
-        return _tree["meta"]["original"]["size"].asString();
-    }
-
-    ttdebug << "Could not get attachment data: size_small\n";
-    return "";
+    return get_string("meta.small.size");
 }
 
 const string Attachment::text_url() const
 {
-    if (_tree["text_url"].isString())
-    {
-        return _tree["text_url"].asString();
-    }
-
-    ttdebug << "Could not get attachment data: text_url\n";
-    return "";
+    return get_string("text_url");
 }
 
 const Easy::attachment_type Attachment::type() const
 {
-    const string strtype = _tree["type"].asString();
-        if (strtype.compare("image"))
-            return attachment_type::image;
-        else if (strtype.compare("video"))
-            return attachment_type::video;
-        else if (strtype.compare("gifv"))
-            return attachment_type::gifv;
-        else if (strtype.compare("unknown"))
-            return attachment_type::unknown;
+    const string strtype = get_string("type");
+    if (strtype.compare("image") == 0)
+        return attachment_type::image;
+    else if (strtype.compare("video") == 0)
+        return attachment_type::video;
+    else if (strtype.compare("gifv") == 0)
+        return attachment_type::gifv;
+    else if (strtype.compare("unknown") == 0)
+        return attachment_type::unknown;
 
-    ttdebug << "Could not get account data: type\n";
     return attachment_type::unknown;
 }
 
 const string Attachment::url() const
 {
-    if (_tree["url"].isString())
-    {
-        return _tree["url"].asString();
-    }
-
-    ttdebug << "Could not get attachment data: url\n";
-    return "";
+    return get_string("url");
 }
 
 const uint64_t Attachment::width() const
 {
-    if (_tree["meta"]["original"]["width"].isDouble())
-    {
-        return _tree["meta"]["original"]["width"].asDouble();
-    }
-
-    ttdebug << "Could not get attachment data: width\n";
-    return 0;
+    return get_uint64("meta.original.width");
 }
 
 const uint64_t Attachment::width_small() const
 {
-    if (_tree["meta"]["small"]["width"].isDouble())
-    {
-        return _tree["meta"]["small"]["width"].asDouble();
-    }
-
-    ttdebug << "Could not get attachment data: width_small\n";
-    return 0;
+    return get_uint64("meta.small.width");
 }

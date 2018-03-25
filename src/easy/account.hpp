@@ -20,6 +20,7 @@
 #include <string>
 #include <cstdint>
 #include <chrono>
+#include <jsoncpp/json/json.h>
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP

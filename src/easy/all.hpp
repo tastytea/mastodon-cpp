@@ -21,12 +21,12 @@
     #include "easy.hpp"
     #include "easy/account.hpp"
     #include "easy/attachment.hpp"
-    //#include "easy/card.hpp"
+    #include "easy/card.hpp"
 #else
     #include <mastodon-cpp/easy.hpp>
     #include <mastodon-cpp/easy/account.hpp>
     #include <mastodon-cpp/easy/attachment.hpp>
-    //#include <mastodon-cpp/easy/card.hpp>
+    #include <mastodon-cpp/easy/card.hpp>
 #endif
 
 #endif  // MASTODON_CPP_EASY_ALL_HPP

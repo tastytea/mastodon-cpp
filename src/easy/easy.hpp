@@ -64,6 +64,18 @@ public:
     };
 
     /*!
+     *  @brief  Describes the card type
+     */
+    enum class card_type
+    {
+        link,
+        photo,
+        video,
+        rich,
+        unknown
+    };
+
+    /*!
      *  @brief  Constructs a new Easy object.
      *  
      *          To register your application, leave access_token blank and call

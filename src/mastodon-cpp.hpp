@@ -284,6 +284,7 @@ public:
     /*!
      *  @deprecated Will vanish in 1.0.0
      */
+    [[deprecated("Will vanish in 1.0.0")]]
     const std::uint16_t register_app1(const std::string &instance,
                                       const std::string &client_name,
                                       const std::string &redirect_uri,
@@ -315,6 +316,7 @@ public:
     /*!
      *  @deprecated Will vanish in 1.0.0
      */
+    [[deprecated("Will vanish in 1.0.0")]]
     const std::uint16_t register_app2(const std::string &instance,
                                       const std::string &client_id,
                                       const std::string &client_secret,

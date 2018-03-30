@@ -81,6 +81,18 @@ public:
     };
 
     /*!
+     *  @brief  Describes the notification type
+     */
+    enum class notification_type
+    {
+        mention,
+        reblog,
+        favourite,
+        follow,
+        unknown
+    };
+
+    /*!
      *  @brief  Constructs a new Easy object.
      *  
      *          To register your application, leave access_token blank and call
@@ -181,6 +193,8 @@ public:
     class Emoji;
     class Instance;
     class List;
+    class Mention;
+    class Notification;
 };
 }
 

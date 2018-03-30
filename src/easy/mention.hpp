@@ -14,11 +14,10 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MASTODON_CPP_EASY_LIST_HPP
-#define MASTODON_CPP_EASY_LIST_HPP
+#ifndef MASTODON_CPP_EASY_MENTION_HPP
+#define MASTODON_CPP_EASY_MENTION_HPP
 
 #include <string>
-#include <vector>
 #include <cstdint>
 
 // If we are compiling mastodon-cpp, use another include path
@@ -32,37 +31,48 @@
 
 using std::string;
 using std::uint64_t;
+using std::chrono::system_clock;
 
 namespace Mastodon
 {
     /*!
-     *  @brief  Class to hold lists
+     *  @brief  Class to hold mentions
      */
-    class Easy::List : public Easy::Entity
+    class Easy::Mention : public Easy::Entity
     {
     public:
         /*!
-         *  @brief  Constructs a List object from a JSON string.
+         *  @brief  Constructs a Mention object from a JSON string.
          *
          *  @param  json    JSON string
          */
-        explicit List(const string &json);
+        explicit Mention(const string &json);
 
         /*!
-         *  @brief  Constructs an empty List object.
+         *  @brief  Constructs an empty Mention object.
          */
-        List();
+        Mention();
 
         /*!
-         *  @brief  Returns list-ID
+         *  @brief  Returns acct
+         */
+        const string acct() const;
+
+        /*!
+         *  @brief  Returns account ID
          */
         const uint64_t id() const;
 
         /*!
-         *  @brief  Returns title
+         *  @brief  Returns the URL of user's profile
          */
-        const string title() const;
+        const string url() const;
+
+        /*!
+         *  @brief  Returns the username of the account
+         */
+        const string username() const;
     };
 }
 
-#endif  // MASTODON_CPP_EASY_LIST_HPP
+#endif  // MASTODON_CPP_EASY_MENTION_HPP

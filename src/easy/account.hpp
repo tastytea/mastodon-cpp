@@ -33,6 +33,7 @@
 
 using std::string;
 using std::uint64_t;
+using std::chrono::system_clock;
 
 namespace Mastodon
 {
@@ -75,7 +76,7 @@ namespace Mastodon
         /*!
          *  @brief  Returns time of creation
          */
-        const std::chrono::system_clock::time_point created_at() const;
+        const system_clock::time_point created_at() const;
 
         /*!
          *  @brief  Returns display name

@@ -32,9 +32,7 @@ using std::chrono::system_clock;
 
 Easy::Easy(const string &instance, const string &access_token)
 : API(instance, access_token)
-{
-    //
-}
+{}
 
 Easy::Entity::Entity(const string &json)
 : _valid(false)
@@ -44,7 +42,12 @@ Easy::Entity::Entity(const string &json)
 
     if (_tree.isNull())
     {
-        std::cerr << "ERROR: Could not build Entity from JSON string\n";
+        ttdebug << "ERROR: JSON string holds no object\n";
+        ttdebug << "String was: " << json << '\n';
+    }
+    else if (_tree["error"].isString())
+    {
+        ttdebug << "ERROR: Server returned an error\n";
         ttdebug << "String was: " << json << '\n';
     }
     else
@@ -53,9 +56,18 @@ Easy::Entity::Entity(const string &json)
     }
 }
 
+Easy::Entity::Entity()
+: _valid(false)
+{}
+
 const bool Easy::Entity::valid() const
 {
     return _valid;
+}
+
+const string Easy::Entity::error() const
+{
+    return get_string("error");
 }
 
 const Json::Value Easy::Entity::get(const string &key) const

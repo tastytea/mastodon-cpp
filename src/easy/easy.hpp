@@ -101,12 +101,22 @@ public:
          *
          *  @param  json    JSON string
          */
-        Entity(const string &json);
+        explicit Entity(const string &json);
+
+        /*!
+         *  @brief  Constructs an empty Entity object.
+         */
+        explicit Entity();
 
         /*!
          *  @brief  Returns true if the Entity holds valid data
          */
         const bool valid() const;
+
+        /*!
+         *  @brief  Returns error string
+         */
+        const string error() const;
 
         /*!
          *  @brief  Returns the value of node as Json::Value
@@ -161,6 +171,7 @@ public:
     class Card;
     class Context;
     class Emoji;
+    class Instance;
 };
 }
 

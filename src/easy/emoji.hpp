@@ -33,7 +33,7 @@ using std::string;
 namespace Mastodon
 {
     /*!
-     *  @brief  Class to hold cards
+     *  @brief  Class to hold emojis
      */
     class Easy::Emoji : public Easy::Entity
     {

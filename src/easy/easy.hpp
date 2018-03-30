@@ -180,6 +180,7 @@ public:
     class Context;
     class Emoji;
     class Instance;
+    class List;
 };
 }
 

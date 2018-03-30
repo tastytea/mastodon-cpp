@@ -25,6 +25,7 @@
     //#include "easy/context.hpp"
     #include "easy/emoji.hpp"
     #include "easy/instance.hpp"
+    #include "easy/list.hpp"
 #else
     #include <mastodon-cpp/easy.hpp>
     #include <mastodon-cpp/easy/account.hpp>
@@ -33,6 +34,7 @@
     #include <mastodon-cpp/easy/card.hpp>
     //#include <mastodon-cpp/easy/context.hpp>
     #include <mastodon-cpp/easy/emoji.hpp>
+    #include "easy/list.hpp"
 #endif
 
 #endif  // MASTODON_CPP_EASY_ALL_HPP

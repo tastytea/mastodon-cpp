@@ -25,7 +25,6 @@
 using namespace Mastodon;
 using Instance = Easy::Instance;
 using std::string;
-using std::uint64_t;
 
 Instance::Instance(const string &json)
 : Entity(json)

@@ -30,7 +30,6 @@
 #endif
 
 using std::string;
-using std::uint16_t;
 using std::uint64_t;
 
 namespace Mastodon

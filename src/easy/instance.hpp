@@ -36,7 +36,7 @@ using std::string;
 namespace Mastodon
 {
     /*!
-     *  @brief  Class to hold cards
+     *  @brief  Class to hold instances
      */
     class Easy::Instance : public Easy::Entity
     {

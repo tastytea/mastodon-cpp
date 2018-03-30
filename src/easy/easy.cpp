@@ -21,6 +21,7 @@
 #include <ctime>
 #include <iomanip>  // get_time
 #include <sstream>
+#include <vector>
 #include <jsoncpp/json/json.h>
 #include "easy.hpp"
 #include "macros.hpp"
@@ -173,4 +174,21 @@ const system_clock::time_point
 
     // Return clocks epoch
     return system_clock::time_point();
+}
+
+const std::vector<string> Easy::Entity::get_vector(const string &key) const
+{
+    const Json::Value node = get(key);
+
+    if (node.isArray())
+    {
+        std::vector<string> vec;
+        for (const Json::Value &value : node)
+        {
+            vec.push_back(value.asString());
+        }
+        return vec;
+    }
+
+    return {};
 }

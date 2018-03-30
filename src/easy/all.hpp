@@ -24,10 +24,12 @@
     #include "easy/card.hpp"
     //#include "easy/context.hpp"
     #include "easy/emoji.hpp"
+    #include "easy/instance.hpp"
 #else
     #include <mastodon-cpp/easy.hpp>
     #include <mastodon-cpp/easy/account.hpp>
     #include <mastodon-cpp/easy/attachment.hpp>
+    #include <mastodon-cpp/easy/instance.hpp>
     #include <mastodon-cpp/easy/card.hpp>
     //#include <mastodon-cpp/easy/context.hpp>
     #include <mastodon-cpp/easy/emoji.hpp>

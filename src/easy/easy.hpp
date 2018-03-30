@@ -20,6 +20,7 @@
 #include <string>
 #include <cstdint>
 #include <chrono>
+#include <vector>
 #include <jsoncpp/json/json.h>
 
 // If we are compiling mastodon-cpp, use another include path
@@ -106,7 +107,7 @@ public:
         /*!
          *  @brief  Constructs an empty Entity object.
          */
-        explicit Entity();
+        Entity();
 
         /*!
          *  @brief  Returns true if the Entity holds valid data
@@ -160,6 +161,13 @@ public:
          *          Returns clocks epoch on error.
          */
         const system_clock::time_point get_time_point(const string &key) const;
+
+        /*!
+         *  @brief  Returns the value of node as vector
+         *  
+         *          Returns false on error.
+         */
+        const std::vector<string> get_vector(const string &key) const;
 
     protected:
         Json::Value _tree;

@@ -27,9 +27,11 @@ using std::uint64_t;
 
 Emoji::Emoji(const string &json)
 : Entity(json)
-{
-    //
-}
+{}
+
+Emoji::Emoji()
+: Entity()
+{}
 
 const string Emoji::shortcode() const
 {

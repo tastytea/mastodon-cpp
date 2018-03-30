@@ -27,9 +27,11 @@ using std::uint64_t;
 
 Card::Card(const string &json)
 : Entity(json)
-{
-    //
-}
+{}
+
+Card::Card()
+: Entity()
+{}
 
 const string Card::author_name() const
 {

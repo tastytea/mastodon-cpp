@@ -32,6 +32,10 @@ Account::Account(const string &json)
 : Entity(json)
 {}
 
+Account::Account()
+: Entity()
+{}
+
 const string Account::acct() const
 {
     return get_string("acct");
@@ -105,7 +109,7 @@ const Account Account::moved() const
         return Account(get("moved").toStyledString());
     }
 
-    return Account("");
+    return Account();
 }
 
 const string Account::note() const

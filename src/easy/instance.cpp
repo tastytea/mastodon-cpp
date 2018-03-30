@@ -44,7 +44,7 @@ const Easy::Account Instance::contact_account() const
     }
 
     ttdebug << "Could not get data: contact_account\n";
-    return Easy::Account("");
+    return Easy::Account();
 }
 
 const string Instance::description() const

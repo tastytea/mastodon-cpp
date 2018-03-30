@@ -49,6 +49,11 @@ namespace Mastodon
         explicit Card(const string &json);
 
         /*!
+         *  @brief  Constructs an empty Card object.
+         */
+        Card();
+
+        /*!
          *  @brief  Returns the name of the author
          */
         const string author_name() const;

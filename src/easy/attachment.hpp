@@ -51,6 +51,11 @@ namespace Mastodon
         explicit Attachment(const string &json);
 
         /*!
+         *  @brief  Constructs an empty Attachment object.
+         */
+        Attachment();
+
+        /*!
          *  @brief  Aspect of original image
          */
         const double aspect() const;

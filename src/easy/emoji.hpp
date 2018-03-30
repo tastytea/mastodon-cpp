@@ -14,8 +14,8 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MASTODON_CPP_EASY_CARD_HPP
-#define MASTODON_CPP_EASY_CARD_HPP
+#ifndef MASTODON_CPP_EASY_EMOJI_HPP
+#define MASTODON_CPP_EASY_EMOJI_HPP
 
 #include <string>
 
@@ -39,11 +39,16 @@ namespace Mastodon
     {
     public:
         /*!
-         *  @brief  Constructs a Emoji object from a JSON string.
+         *  @brief  Constructs an Emoji object from a JSON string.
          *
          *  @param  json    JSON string
          */
         explicit Emoji(const string &json);
+
+        /*!
+         *  @brief  Constructs an empty Emoji object.
+         */
+        Emoji();
 
         /*!
          *  @brief  Returns the shortcode of the emoji
@@ -62,4 +67,4 @@ namespace Mastodon
     };
 }
 
-#endif  // MASTODON_CPP_EASY_CARD_HPP
+#endif  // MASTODON_CPP_EASY_EMOJI_HPP

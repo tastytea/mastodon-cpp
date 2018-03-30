@@ -51,6 +51,11 @@ namespace Mastodon
         explicit Account(const string &json);
 
         /*!
+         *  @brief  Constructs an empty Account object.
+         */
+        Account();
+
+        /*!
          *  @brief  Returns username
          *
          *          `username` for users on the same instance, `user@hostname`

@@ -30,6 +30,10 @@ Attachment::Attachment(const string &json)
 : Entity(json)
 {}
 
+Attachment::Attachment()
+: Entity()
+{}
+
 const double Attachment::aspect() const
 {
     return get_double("meta.original.aspect");

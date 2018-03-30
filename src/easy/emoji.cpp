@@ -1,6 +1,6 @@
 /*  This file is part of mastodon-cpp.
  *  Copyright © 2018 tastytea <tastytea@tastytea.de>
- *                                                                   
+ *  
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, version 3.
@@ -14,23 +14,34 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MASTODON_CPP_EASY_ALL_HPP
-#define MASTODON_CPP_EASY_ALL_HPP
+#include <string>
+#include <sstream>
+#include <jsoncpp/json/json.h>
+#include "emoji.hpp"
+#include "macros.hpp"
 
-#ifdef MASTODON_CPP
-    #include "easy.hpp"
-    #include "easy/account.hpp"
-    #include "easy/attachment.hpp"
-    #include "easy/card.hpp"
-    //#include "easy/context.hpp"
-    #include "easy/emoji.hpp"
-#else
-    #include <mastodon-cpp/easy.hpp>
-    #include <mastodon-cpp/easy/account.hpp>
-    #include <mastodon-cpp/easy/attachment.hpp>
-    #include <mastodon-cpp/easy/card.hpp>
-    //#include <mastodon-cpp/easy/context.hpp>
-    #include <mastodon-cpp/easy/emoji.hpp>
-#endif
+using namespace Mastodon;
+using Emoji = Easy::Emoji;
+using std::string;
+using std::uint64_t;
 
-#endif  // MASTODON_CPP_EASY_ALL_HPP
+Emoji::Emoji(const string &json)
+: Entity(json)
+{
+    //
+}
+
+const string Emoji::shortcode() const
+{
+    return get_string("shortcode");
+}
+
+const string Emoji::static_url() const
+{
+    return get_string("static_url");
+}
+
+const string Emoji::url() const
+{
+    return get_string("url");
+}

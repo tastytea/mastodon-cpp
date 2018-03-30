@@ -159,6 +159,8 @@ public:
     class Account;
     class Attachment;
     class Card;
+    class Context;
+    class Emoji;
 };
 }
 

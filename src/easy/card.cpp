@@ -14,16 +14,11 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <string>
-#include <sstream>
-#include <jsoncpp/json/json.h>
 #include "card.hpp"
 #include "macros.hpp"
 
 using namespace Mastodon;
 using Card = Easy::Card;
-using std::string;
-using std::uint64_t;
 
 Card::Card(const string &json)
 : Entity(json)
@@ -90,6 +85,7 @@ const Easy::card_type Card::type() const
     else if (strtype.compare("rich") == 0)
         return card_type::rich;
 
+    ttdebug << "Could not get data: type\n";
     return card_type::unknown;
 }
 

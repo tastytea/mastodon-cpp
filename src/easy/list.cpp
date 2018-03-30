@@ -14,10 +14,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <string>
-#include <jsoncpp/json/json.h>
 #include "list.hpp"
-#include "macros.hpp"
 
 using namespace Mastodon;
 using List = Easy::List;

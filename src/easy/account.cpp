@@ -14,19 +14,11 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <string>
-#include <cstdint>
-#include <iostream>
-#include <chrono>
-#include <jsoncpp/json/json.h>
 #include "account.hpp"
 #include "macros.hpp"
 
 using namespace Mastodon;
 using Account = Easy::Account;
-using std::string;
-using std::uint64_t;
-using std::chrono::system_clock;
 
 Account::Account(const string &json)
 : Entity(json)
@@ -134,6 +126,7 @@ const Easy::visibility Account::privacy() const
     else if (strprivacy.compare("direct") == 0)
         return visibility::Direct;
 
+    ttdebug << "Could not get data: source.privacy\n";
     return visibility::Undefined;
 }
 

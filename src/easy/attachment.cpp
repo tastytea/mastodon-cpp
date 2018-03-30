@@ -14,17 +14,12 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <string>
 #include <sstream>
-#include <array>
-#include <jsoncpp/json/json.h>
 #include "attachment.hpp"
 #include "macros.hpp"
 
 using namespace Mastodon;
 using Attachment = Easy::Attachment;
-using std::string;
-using std::uint64_t;
 
 Attachment::Attachment(const string &json)
 : Entity(json)
@@ -117,6 +112,7 @@ const Easy::attachment_type Attachment::type() const
     else if (strtype.compare("unknown") == 0)
         return attachment_type::unknown;
 
+    ttdebug << "Could not get data: type\n";
     return attachment_type::unknown;
 }
 

@@ -14,16 +14,11 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <string>
-#include <sstream>
-#include <jsoncpp/json/json.h>
 #include "emoji.hpp"
 #include "macros.hpp"
 
 using namespace Mastodon;
 using Emoji = Easy::Emoji;
-using std::string;
-using std::uint64_t;
 
 Emoji::Emoji(const string &json)
 : Entity(json)

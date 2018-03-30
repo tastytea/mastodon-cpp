@@ -19,8 +19,6 @@
 
 using namespace Mastodon;
 using Notification = Easy::Notification;
-using std::string;
-using std::uint64_t;
 
 Notification::Notification(const string &json)
 : Entity(json)

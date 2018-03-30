@@ -14,14 +14,10 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <string>
 #include "mention.hpp"
-#include "macros.hpp"
 
 using namespace Mastodon;
 using Mention = Easy::Mention;
-using std::string;
-using std::uint64_t;
 
 Mention::Mention(const string &json)
 : Entity(json)

@@ -14,17 +14,12 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <string>
-#include <sstream>
-#include <vector>
-#include <jsoncpp/json/json.h>
 #include "instance.hpp"
 #include "account.hpp"
 #include "macros.hpp"
 
 using namespace Mastodon;
 using Instance = Easy::Instance;
-using std::string;
 
 Instance::Instance(const string &json)
 : Entity(json)

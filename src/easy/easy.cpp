@@ -14,15 +14,9 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <string>
-#include <sstream>
-#include <cstdint>
-#include <chrono>
 #include <ctime>
 #include <iomanip>  // get_time
 #include <sstream>
-#include <vector>
-#include <jsoncpp/json/json.h>
 #include "easy.hpp"
 #include "macros.hpp"
 

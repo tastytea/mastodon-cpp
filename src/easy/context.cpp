@@ -14,15 +14,10 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <string>
-#include <jsoncpp/json/json.h>
 #include "context.hpp"
-#include "macros.hpp"
 
 using namespace Mastodon;
 using Context = Easy::Context;
-using std::string;
-using std::uint64_t;
 
 Context::Context(const string &json)
 : Entity(json)

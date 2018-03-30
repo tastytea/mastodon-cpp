@@ -17,6 +17,7 @@
 #ifndef MASTODON_CPP_EASY_ALL_HPP
 #define MASTODON_CPP_EASY_ALL_HPP
 
+// If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "easy.hpp"
     #include "easy/account.hpp"
@@ -32,10 +33,10 @@
     #include <mastodon-cpp/easy.hpp>
     #include <mastodon-cpp/easy/account.hpp>
     #include <mastodon-cpp/easy/attachment.hpp>
-    #include <mastodon-cpp/easy/instance.hpp>
     #include <mastodon-cpp/easy/card.hpp>
     //#include <mastodon-cpp/easy/context.hpp>
     #include <mastodon-cpp/easy/emoji.hpp>
+    #include <mastodon-cpp/easy/instance.hpp>
     #include <mastodon-cpp/easy/list.hpp>
     #include <mastodon-cpp/easy/mention.hpp>
     //#include <mastodon-cpp/easy/notification.hpp>

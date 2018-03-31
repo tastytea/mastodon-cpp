@@ -30,17 +30,25 @@ Easy::Easy(const string &instance, const string &access_token)
 {}
 
 Easy::Entity::Entity(const string &json)
-: _valid(false)
+: _tree(Json::nullValue)
+, _valid(false)
 {
     std::stringstream ss(json);
     ss >> _tree;
+
+    // If the JSON is a single object encapsulated in an array,
+    // transform it into an object. If the JSON string is [], transform to null
+    if (_tree.type() == Json::ValueType::arrayValue && _tree.size() <= 1)
+    {
+        _tree = _tree[0];
+    }
 
     if (_tree.isNull())
     {
         ttdebug << "ERROR: JSON string holds no object\n";
         ttdebug << "String was: " << json << '\n';
     }
-    else if (_tree["error"].isString())
+    else if (!_tree["error"].isNull())
     {
         ttdebug << "ERROR: Server returned an error\n";
         ttdebug << "String was: " << json << '\n';

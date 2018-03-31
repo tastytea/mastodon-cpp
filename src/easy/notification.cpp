@@ -47,7 +47,7 @@ const system_clock::time_point Notification::created_at() const
 
 const uint64_t Notification::id() const
 {
-    return get_uint64("id");
+    return std::stoull(get_string("id"));
 }
 
 const Easy::Status Notification::status() const

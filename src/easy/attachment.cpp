@@ -72,7 +72,7 @@ const uint64_t Attachment::height_small() const
 
 const std::uint64_t Attachment::id() const
 {
-    return get_uint64("id");
+    return std::stoull(get_string("id"));
 }
 
 const string Attachment::preview_url() const

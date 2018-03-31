@@ -34,7 +34,7 @@ const string Mention::acct() const
 
 const uint64_t Mention::id() const
 {
-    return get_uint64("id");
+    return std::stoull(get_string("id"));
 }
 
 const string Mention::url() const

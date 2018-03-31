@@ -34,6 +34,6 @@ const bool Report::action_taken() const
 
 const uint64_t Report::id() const
 {
-    return get_uint64("id");
+    return std::stoull(get_string("id"));
 }
 

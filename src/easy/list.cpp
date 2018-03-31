@@ -31,7 +31,7 @@ List::List()
 
 const uint64_t List::id() const
 {
-    return get_uint64("id");
+    return std::stoull(get_string("id"));
 }
 
 const string List::title() const

@@ -85,6 +85,11 @@ const void Easy::Entity::from_string(const string &json)
     }
 }
 
+const Json::Value Easy::Entity::to_object() const
+{
+    return _tree;
+}
+
 Easy::Entity::Entity()
 : _valid(false)
 {}

@@ -131,12 +131,18 @@ public:
         Entity();
 
         /*!
-         *  @brief  Replaces the Entity object with a new one from a JSON
-         *          string.
+         *  @brief  Replaces the Entity with a new one from a JSON string.
          *
          *  @param  json    JSON string
          */
         const void from_string(const string &json);
+
+        /*!
+         *  @brief  Returns the JSON object of the Entity
+         *
+         *  @return JSON object
+         */
+        const Json::Value to_object() const;
 
         /*!
          *  @brief  Returns true if the Entity holds valid data

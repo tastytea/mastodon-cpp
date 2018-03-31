@@ -140,6 +140,11 @@ const std::uint64_t Account::statuses_count() const
     return get_uint64("statuses_count");
 }
 
+const string Account::url() const
+{
+    return get_string("url");
+}
+
 const string Account::username() const
 {
     return get_string("username");

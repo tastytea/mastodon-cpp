@@ -131,29 +131,30 @@ public:
          */
         const string error() const;
 
+    protected:
         /*!
-         *  @brief  Returns the value of node as Json::Value
-         *  
+         *  @brief  Returns the value of key as Json::Value
+         *
          *          Returns an empty object on error.
          */
         const Json::Value get(const string &key) const;
 
         /*!
-         *  @brief  Returns the value of node as std::string
+         *  @brief  Returns the value of key as std::string
          *  
          *          returns "" on error.
          */
         const string get_string(const string &key) const;
 
         /*!
-         *  @brief  Returns the value of node as std::uint64_t
+         *  @brief  Returns the value of key as std::uint64_t
          *  
          *          Returns 0 on error.
          */
         const uint64_t get_uint64(const string &key) const;
 
         /*!
-         *  @brief  Returns the value of node as double
+         *  @brief  Returns the value of key as double
          *  
          *          Returns 0.0 on error.
          */
@@ -161,27 +162,26 @@ public:
 
         // TODO: Investigate if uint8_t would be better
         /*!
-         *  @brief  Returns the value of node as bool
+         *  @brief  Returns the value of key as bool
          *  
          *          Returns false on error.
          */
         const bool get_bool(const string &key) const;
 
         /*!
-         *  @brief  Returns the value of node as time_point
+         *  @brief  Returns the value of key as time_point
          *  
          *          Returns clocks epoch on error.
          */
         const system_clock::time_point get_time_point(const string &key) const;
 
         /*!
-         *  @brief  Returns the value of node as vector
+         *  @brief  Returns the value of key as vector
          *  
          *          Returns false on error.
          */
         const std::vector<string> get_vector(const string &key) const;
 
-    protected:
         Json::Value _tree;
         bool _valid;
     };
@@ -195,6 +195,7 @@ public:
     class List;
     class Mention;
     class Notification;
+    class Relationship;
 };
 }
 

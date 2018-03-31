@@ -29,9 +29,35 @@ Easy::Easy(const string &instance, const string &access_token)
 : API(instance, access_token)
 {}
 
+const std::vector<string> Easy::json_array_to_vector(const string &json)
+{
+    Json::Value json_array;
+    std::stringstream ss(json);
+    ss >> json_array;
+
+    if (json_array.isArray())
+    {
+        std::vector<string> vec;
+        for (const Json::Value &value : json_array)
+        {
+            vec.push_back(value.toStyledString());
+        }
+        return vec;
+    }
+
+    ttdebug << "ERROR: JSON string holds no array\n";
+    ttdebug << "String was: " << json << '\n';
+    return {};
+}
+
 Easy::Entity::Entity(const string &json)
 : _tree(Json::nullValue)
 , _valid(false)
+{
+    from_string(json);
+}
+
+const void Easy::Entity::from_string(const string &json)
 {
     std::stringstream ss(json);
     ss >> _tree;

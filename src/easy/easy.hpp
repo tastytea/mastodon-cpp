@@ -104,6 +104,15 @@ public:
     explicit Easy(const string &instance, const string &access_token);
 
     /*!
+     *  @brief  Turns an JSON array into a vector of strings
+     *
+     *  @param  json    JSON string holding the array
+     *
+     *  @return vector of strings or an empty vector on error
+     */
+    static const std::vector<string> json_array_to_vector(const string &json);
+
+    /*!
      *  @brief  Base class for entities.
      */
     class Entity
@@ -120,6 +129,14 @@ public:
          *  @brief  Constructs an empty Entity object.
          */
         Entity();
+
+        /*!
+         *  @brief  Replaces the Entity object with a new one from a JSON
+         *          string.
+         *
+         *  @param  json    JSON string
+         */
+        const void from_string(const string &json);
 
         /*!
          *  @brief  Returns true if the Entity holds valid data

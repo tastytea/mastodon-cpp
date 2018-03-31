@@ -46,6 +46,23 @@ const std::vector<Easy::Account> Results::accounts() const
     return {};
 }
 
+const std::vector<Easy::Status> Results::statuses() const
+{
+    const Json::Value node = get("statuses");
+    if (node.isArray())
+    {
+        std::vector<Easy::Status> vec;
+        for (const Json::Value &value : node)
+        {
+            vec.push_back(Easy::Status(value.toStyledString()));
+        }
+        return vec;
+    }
+
+    ttdebug << "Could not get data: statuses\n";
+    return {};
+}
+
 const std::vector<string> Results::hashtags() const
 {
     return get_vector("hashtags");

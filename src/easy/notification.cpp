@@ -50,10 +50,17 @@ const uint64_t Notification::id() const
     return get_uint64("id");
 }
 
-// const Status Notification::status() const
-// {
-//     //
-// }
+const Easy::Status Notification::status() const
+{
+    const Json::Value node = get("restatusblog");
+    if (node.isObject())
+    {
+        return Easy::Status(node.toStyledString());
+    }
+
+    ttdebug << "Could not get data: status\n";
+    return Easy::Status();
+}
 
 const Easy::notification_type Notification::type() const
 {

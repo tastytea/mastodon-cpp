@@ -24,15 +24,15 @@
     #include "easy/application.hpp"
     #include "easy/attachment.hpp"
     #include "easy/card.hpp"
-    //#include "easy/context.hpp"
+    #include "easy/context.hpp"
     #include "easy/emoji.hpp"
     #include "easy/instance.hpp"
     #include "easy/list.hpp"
     #include "easy/mention.hpp"
-    //#include "easy/notification.hpp"
+    #include "easy/notification.hpp"
     #include "easy/relationship.hpp"
     #include "easy/report.hpp"
-    //#include "easy/results.hpp"
+    #include "easy/results.hpp"
     #include "easy/status.hpp"
     #include "easy/tag.hpp"
 #else
@@ -41,15 +41,15 @@
     #include <mastodon-cpp/easy/application.hpp>
     #include <mastodon-cpp/easy/attachment.hpp>
     #include <mastodon-cpp/easy/card.hpp>
-    //#include <mastodon-cpp/easy/context.hpp>
+    #include <mastodon-cpp/easy/context.hpp>
     #include <mastodon-cpp/easy/emoji.hpp>
     #include <mastodon-cpp/easy/instance.hpp>
     #include <mastodon-cpp/easy/list.hpp>
     #include <mastodon-cpp/easy/mention.hpp>
-    //#include <mastodon-cpp/easy/notification.hpp>
+    #include <mastodon-cpp/easy/notification.hpp>
     #include <mastodon-cpp/easy/relationship.hpp>
     #include <mastodon-cpp/easy/report.hpp>
-    //#include <mastodon-cpp/easy/results.hpp>
+    #include <mastodon-cpp/easy/results.hpp>
     #include <mastodon-cpp/easy/status.hpp>
     #include <mastodon-cpp/easy/tag.hpp>
 #endif

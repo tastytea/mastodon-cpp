@@ -15,6 +15,7 @@
  */
 
 #include "context.hpp"
+#include "macros.hpp"
 
 using namespace Mastodon;
 using Context = Easy::Context;
@@ -26,3 +27,37 @@ Context::Context(const string &json)
 Context::Context()
 : Entity()
 {}
+
+const std::vector<Easy::Status> Context::ancestors() const
+{
+    const Json::Value node = get("ancestors");
+    if (node.isArray())
+    {
+        std::vector<Easy::Status> vec;
+        for (const Json::Value &value : node)
+        {
+            vec.push_back(Easy::Status(value.toStyledString()));
+        }
+        return vec;
+    }
+
+    ttdebug << "Could not get data: ancestors\n";
+    return {};
+}
+
+const std::vector<Easy::Status> Context::descendants() const
+{
+    const Json::Value node = get("descendants");
+    if (node.isArray())
+    {
+        std::vector<Easy::Status> vec;
+        for (const Json::Value &value : node)
+        {
+            vec.push_back(Easy::Status(value.toStyledString()));
+        }
+        return vec;
+    }
+
+    ttdebug << "Could not get data: descendants\n";
+    return {};
+}

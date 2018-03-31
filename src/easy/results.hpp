@@ -25,10 +25,12 @@
     #include "mastodon-cpp.hpp"
     #include "easy.hpp"
     #include "account.hpp"
+    #include "status.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy.hpp>
     #include <mastodon-cpp/account.hpp>
+    #include <mastodon-cpp/status.hpp>
 #endif
 
 using std::string;
@@ -61,7 +63,7 @@ namespace Mastodon
         /*!
          *  @brief  Returns an array of matched Statuses
          */
-        // const std::vector<Status> statuses() const;
+        const std::vector<Status> statuses() const;
 
         /*!
          *  @brief  Returns an array of matched hashtags

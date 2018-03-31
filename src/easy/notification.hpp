@@ -26,10 +26,12 @@
     #include "mastodon-cpp.hpp"
     #include "easy.hpp"
     #include "account.hpp"
+    #include "status.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy.hpp>
     #include <mastodon-cpp/easy/account.hpp>
+    #include <mastodon-cpp/easy/status.hpp>
 #endif
 
 using std::string;
@@ -75,7 +77,7 @@ namespace Mastodon
          *  @brief  Returns the Status associated with the notification, if
          *          applicable
          */
-        // const Status status() const;
+        const Status status() const;
 
         /*!
          *  @brief  Returns notification type

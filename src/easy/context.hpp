@@ -24,9 +24,11 @@
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
     #include "easy.hpp"
+    #include "status.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy.hpp>
+    #include <mastodon-cpp/status.hpp>
 #endif
 
 using std::string;
@@ -51,15 +53,15 @@ namespace Mastodon
          */
         Context();
 
-        // /*!
-        //  *  @brief  Returns the ancestors of the Status as vector of Statuses
-        //  */
-        // const std::vector<Status> ancestors() const;
+        /*!
+         *  @brief  Returns the ancestors of the Status as vector of Statuses
+         */
+        const std::vector<Status> ancestors() const;
 
-        // /*!
-        //  *  @brief  Returns the descendants of the Status as vector of Statuses
-        //  */
-        // const std::vector<Status> descendants() const;
+        /*!
+         *  @brief  Returns the descendants of the Status as vector of Statuses
+         */
+        const std::vector<Status> descendants() const;
     };
 }
 

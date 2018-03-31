@@ -30,7 +30,7 @@
 #endif
 
 using std::string;
-using std::uint64_t;
+using std::uint_fast64_t;
 
 namespace Mastodon
 {
@@ -75,7 +75,7 @@ namespace Mastodon
         /*!
          *  @brief  Returns the target account ID
          */
-        const uint64_t id() const;
+        const uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns true if the user is muting the account

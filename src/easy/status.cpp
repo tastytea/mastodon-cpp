@@ -85,22 +85,22 @@ const bool Status::favourited() const
     return get_bool("favourited");
 }
 
-const uint64_t Status::favourites_count() const
+const uint_fast64_t Status::favourites_count() const
 {
     return get_uint64("favourites_count");
 }
 
-const uint64_t Status::id() const
+const uint_fast64_t Status::id() const
 {
     return get_uint64("id");
 }
 
-const uint64_t Status::in_reply_to_id() const
+const uint_fast64_t Status::in_reply_to_id() const
 {
     return get_uint64("in_reply_to_id");
 }
 
-const uint64_t Status::in_reply_to_account_id() const
+const uint_fast64_t Status::in_reply_to_account_id() const
 {
     return get_uint64("in_reply_to_account_id");
 }
@@ -171,7 +171,7 @@ const bool Status::reblogged() const
     return get_bool("reblogged");
 }
 
-const uint64_t Status::reblogs_count() const
+const uint_fast64_t Status::reblogs_count() const
 {
     return get_uint64("reblogs_count");
 }

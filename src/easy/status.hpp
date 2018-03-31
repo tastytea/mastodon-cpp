@@ -44,7 +44,7 @@
 #endif
 
 using std::string;
-using std::uint64_t;
+using std::uint_fast64_t;
 using std::chrono::system_clock;
 
 namespace Mastodon
@@ -100,22 +100,22 @@ namespace Mastodon
         /*!
          *  @brief  Returns the number of favourites
          */
-        const uint64_t favourites_count() const;
+        const uint_fast64_t favourites_count() const;
 
         /*!
          *  @brief  Returns the ID of the status
          */
-        const uint64_t id() const;
+        const uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns the ID of the status it replies to
          */
-        const uint64_t in_reply_to_id() const;
+        const uint_fast64_t in_reply_to_id() const;
 
         /*!
          *  @brief  Returns the ID of the account it replies to
          */
-        const uint64_t in_reply_to_account_id() const;
+        const uint_fast64_t in_reply_to_account_id() const;
 
         /*!
          *  @brief  Returns the language of the status
@@ -155,7 +155,7 @@ namespace Mastodon
         /*!
          *  @brief  Returns the number of reblogs for the status
          */
-        const uint64_t reblogs_count() const;
+        const uint_fast64_t reblogs_count() const;
 
         /*!
          *  @brief  Returns true if the attachments should be hidden by default

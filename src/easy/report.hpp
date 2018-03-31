@@ -30,7 +30,7 @@
 #endif
 
 using std::string;
-using std::uint64_t;
+using std::uint_fast64_t;
 
 namespace Mastodon
 {
@@ -61,7 +61,7 @@ namespace Mastodon
         /*!
          *  @brief  Returns the ID of the report
          */
-        const uint64_t id() const;
+        const uint_fast64_t id() const;
     };
 }
 

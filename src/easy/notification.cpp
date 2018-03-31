@@ -45,7 +45,7 @@ const system_clock::time_point Notification::created_at() const
     return get_time_point("created_at");
 }
 
-const uint64_t Notification::id() const
+const uint_fast64_t Notification::id() const
 {
     return std::stoull(get_string("id"));
 }

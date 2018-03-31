@@ -33,7 +33,7 @@
 
 using std::string;
 using std::uint16_t;
-using std::uint64_t;
+using std::uint_fast64_t;
 
 namespace Mastodon
 {
@@ -74,22 +74,22 @@ namespace Mastodon
          *  @brief  Returns the focus point (x, y)
          */
         // TODO: find attachment with focus
-        const std::array<uint64_t, 2> focus() const;
+        const std::array<uint_fast64_t, 2> focus() const;
 
         /*!
          *  @brief  Returns the height of the original image
          */
-        const uint64_t height() const;
+        const uint_fast64_t height() const;
 
         /*!
          *  @brief  Returns the height of the preview image
          */
-        const uint64_t height_small() const;
+        const uint_fast64_t height_small() const;
 
         /*!
          *  @brief  Returns the ID of the attachment
          */
-        const uint64_t id() const;
+        const uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns the URL of the preview image
@@ -129,18 +129,18 @@ namespace Mastodon
         /*!
          *  @brief  Returns the width of the original image
          */
-        const uint64_t width() const;
+        const uint_fast64_t width() const;
 
         /*!
          *  @brief  Returns the width of the preview image
          */
-        const uint64_t width_small() const;
+        const uint_fast64_t width_small() const;
 
 
         // TODO: find an attachment with framerate, duration or bitrate set
         // const uint16_t framerate() const;
         // const std::chrono::seconds duration() const;
-        // const uint64_t bitrate() const;
+        // const uint_fast64_t bitrate() const;
     };
 }
 

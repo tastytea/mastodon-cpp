@@ -44,7 +44,7 @@ const string Attachment::description() const
     return get_string("description");
 }
 
-const std::array<uint64_t, 2> Attachment::focus() const
+const std::array<uint_fast64_t, 2> Attachment::focus() const
 {
     const Json::Value x = get("meta.focus.x");
     const Json::Value y = get("meta.focus.y");
@@ -60,17 +60,17 @@ const std::array<uint64_t, 2> Attachment::focus() const
     return {};
 }
 
-const uint64_t Attachment::height() const
+const uint_fast64_t Attachment::height() const
 {
     return get_uint64("meta.original.height");
 }
 
-const uint64_t Attachment::height_small() const
+const uint_fast64_t Attachment::height_small() const
 {
     return get_uint64("meta.small.height");
 }
 
-const std::uint64_t Attachment::id() const
+const std::uint_fast64_t Attachment::id() const
 {
     return std::stoull(get_string("id"));
 }
@@ -121,12 +121,12 @@ const string Attachment::url() const
     return get_string("url");
 }
 
-const uint64_t Attachment::width() const
+const uint_fast64_t Attachment::width() const
 {
     return get_uint64("meta.original.width");
 }
 
-const uint64_t Attachment::width_small() const
+const uint_fast64_t Attachment::width_small() const
 {
     return get_uint64("meta.small.width");
 }

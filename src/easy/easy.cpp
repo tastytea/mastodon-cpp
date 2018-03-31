@@ -22,7 +22,7 @@
 
 using namespace Mastodon;
 using std::string;
-using std::uint64_t;
+using std::uint_fast64_t;
 using std::chrono::system_clock;
 
 Easy::Easy(const string &instance, const string &access_token)
@@ -124,7 +124,7 @@ const string Easy::Entity::get_string(const string &key) const
     return "";
 }
 
-const uint64_t Easy::Entity::get_uint64(const string &key) const
+const uint_fast64_t Easy::Entity::get_uint64(const string &key) const
 {
     const Json::Value node = get(key);
 

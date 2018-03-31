@@ -30,7 +30,7 @@
 #endif
 
 using std::string;
-using std::uint64_t;
+using std::uint_fast64_t;
 
 namespace Mastodon
 {
@@ -70,7 +70,7 @@ namespace Mastodon
         /*!
          *  @brief  Returns the height of the card
          */
-        const uint64_t height() const;
+        const uint_fast64_t height() const;
 
         /*!
          *  @brief  Returns the HTML
@@ -110,7 +110,7 @@ namespace Mastodon
         /*!
          *  @brief  Returns the width of the card
          */
-        const uint64_t width() const;
+        const uint_fast64_t width() const;
     };
 }
 

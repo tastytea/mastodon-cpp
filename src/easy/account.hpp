@@ -31,7 +31,7 @@
 #endif
 
 using std::string;
-using std::uint64_t;
+using std::uint_fast64_t;
 using std::chrono::system_clock;
 
 namespace Mastodon
@@ -85,12 +85,12 @@ namespace Mastodon
         /*!
          *  @brief  Returns number of followers
          */
-        const uint64_t followers_count() const;
+        const uint_fast64_t followers_count() const;
 
         /*!
          *  @brief  Returns number of people this account follows
          */
-        const uint64_t following_count() const;
+        const uint_fast64_t following_count() const;
 
         /*!
          *  @brief  Returns URL of header image
@@ -105,7 +105,7 @@ namespace Mastodon
         /*!
          *  @brief  Returns account-ID
          */
-        const uint64_t id() const;
+        const uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns true if the account is locked
@@ -146,7 +146,7 @@ namespace Mastodon
         /*!
          *  @brief  Returns number of statuses
          */
-        const uint64_t statuses_count() const;
+        const uint_fast64_t statuses_count() const;
 
         /*!
          *  @brief  Returns URL of the profile

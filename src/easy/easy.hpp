@@ -31,7 +31,7 @@
 #endif
 
 using std::string;
-using std::uint64_t;
+using std::uint_fast64_t;
 using std::chrono::system_clock;
 
 namespace Mastodon
@@ -147,11 +147,11 @@ public:
         const string get_string(const string &key) const;
 
         /*!
-         *  @brief  Returns the value of key as std::uint64_t
+         *  @brief  Returns the value of key as std::uint_fast64_t
          *  
          *          Returns 0 on error.
          */
-        const uint64_t get_uint64(const string &key) const;
+        const uint_fast64_t get_uint64(const string &key) const;
 
         /*!
          *  @brief  Returns the value of key as double

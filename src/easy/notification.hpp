@@ -35,7 +35,7 @@
 #endif
 
 using std::string;
-using std::uint64_t;
+using std::uint_fast64_t;
 using std::chrono::system_clock;
 
 namespace Mastodon
@@ -71,7 +71,7 @@ namespace Mastodon
         /*!
          *  @brief  Returns notification ID
          */
-        const uint64_t id() const;
+        const uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns the Status associated with the notification, if

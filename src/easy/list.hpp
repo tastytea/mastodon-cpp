@@ -31,7 +31,7 @@
 #endif
 
 using std::string;
-using std::uint64_t;
+using std::uint_fast64_t;
 
 namespace Mastodon
 {
@@ -56,7 +56,7 @@ namespace Mastodon
         /*!
          *  @brief  Returns list-ID
          */
-        const uint64_t id() const;
+        const uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns title

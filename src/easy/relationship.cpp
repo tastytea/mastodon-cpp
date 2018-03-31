@@ -47,7 +47,7 @@ const bool Relationship::following() const
     return get_bool("following");
 }
 
-const uint64_t Relationship::id() const
+const uint_fast64_t Relationship::id() const
 {
     return std::stoull(get_string("id"));
 }

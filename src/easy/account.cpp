@@ -53,12 +53,12 @@ const string Account::display_name() const
     return get_string("display_name");
 }
 
-const std::uint64_t Account::followers_count() const
+const std::uint_fast64_t Account::followers_count() const
 {
     return get_uint64("followers_count");
 }
 
-const std::uint64_t Account::following_count() const
+const std::uint_fast64_t Account::following_count() const
 {
     return get_uint64("following_count");
 }
@@ -73,7 +73,7 @@ const string Account::header_static() const
     return get_string("header_static");
 }
 
-const std::uint64_t Account::id() const
+const std::uint_fast64_t Account::id() const
 {
     return std::stoull(get_string("id"));
 }
@@ -135,7 +135,7 @@ const bool Account::sensitive() const
     return get_bool("source.sensitive");
 }
 
-const std::uint64_t Account::statuses_count() const
+const std::uint_fast64_t Account::statuses_count() const
 {
     return get_uint64("statuses_count");
 }

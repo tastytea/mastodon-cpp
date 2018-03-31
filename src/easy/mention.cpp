@@ -32,7 +32,7 @@ const string Mention::acct() const
     return get_string("acct");
 }
 
-const uint64_t Mention::id() const
+const uint_fast64_t Mention::id() const
 {
     return std::stoull(get_string("id"));
 }

@@ -32,7 +32,7 @@ const bool Report::action_taken() const
     return get_bool("action_taken");
 }
 
-const uint64_t Report::id() const
+const uint_fast64_t Report::id() const
 {
     return std::stoull(get_string("id"));
 }

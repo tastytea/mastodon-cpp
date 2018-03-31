@@ -19,7 +19,7 @@
 using namespace Mastodon;
 using List = Easy::List;
 using std::string;
-using std::uint64_t;
+using std::uint_fast64_t;
 
 List::List(const string &json)
 : Entity(json)
@@ -29,7 +29,7 @@ List::List()
 : Entity()
 {}
 
-const uint64_t List::id() const
+const uint_fast64_t List::id() const
 {
     return std::stoull(get_string("id"));
 }

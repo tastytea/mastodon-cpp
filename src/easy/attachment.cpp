@@ -39,25 +39,58 @@ const double Attachment::aspect_small() const
     return get_double("meta.small.aspect");
 }
 
+const uint_fast64_t Attachment::bitrate() const
+{
+    return get_uint64("meta.original.bitrate");
+}
+
 const string Attachment::description() const
 {
     return get_string("description");
 }
 
-const std::array<uint_fast64_t, 2> Attachment::focus() const
+const std::chrono::duration<double> Attachment::duration() const
+{
+    const double sec = get_double("meta.original.duration");
+
+    if (sec > 0.0)
+    {
+        return std::chrono::duration<double>(sec);
+    }
+}
+
+const std::array<double, 2> Attachment::focus() const
 {
     const Json::Value x = get("meta.focus.x");
     const Json::Value y = get("meta.focus.y");
-    if (x.isUInt64() && y.isUInt64())
+    if (x.isDouble() && y.isDouble())
     {
         return
         {{
-            x.asUInt64(),
-            y.asUInt64()
+            x.asDouble(),
+            y.asDouble()
         }};
     }
 
     return {};
+}
+
+const double Attachment::framerate() const
+{
+    string strframes = get_string("meta.original.frame_rate");
+
+    if (!strframes.empty())
+    {
+        std::size_t pos = strframes.find('/');
+        if (pos != std::string::npos)
+        {
+            std::uint_fast16_t frames = std::stoul(strframes.substr(0, pos));
+            std::uint_fast16_t divider = std::stoul(strframes.substr(pos + 1));
+
+            return frames / divider;
+        }
+    }
+
 }
 
 const uint_fast64_t Attachment::height() const

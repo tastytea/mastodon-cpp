@@ -32,7 +32,6 @@
 #endif
 
 using std::string;
-using std::uint16_t;
 using std::uint_fast64_t;
 
 namespace Mastodon
@@ -66,15 +65,28 @@ namespace Mastodon
         const double aspect_small() const;
 
         /*!
+         *  @brief  Returns the bitrate of a video
+         */
+        const uint_fast64_t bitrate() const;
+        /*!
          *  @brief  Returns the image description
          */
         const string description() const;
 
         /*!
+         *  @brief  Returns the duration of a video in seconds
+         */
+        const std::chrono::duration<double> duration() const;
+
+        /*!
          *  @brief  Returns the focus point (x, y)
          */
-        // TODO: find attachment with focus
-        const std::array<uint_fast64_t, 2> focus() const;
+        const std::array<double, 2> focus() const;
+
+        /*!
+         *  @brief  Returns the framerate of a video in frames per second
+         */
+        const double framerate() const;
 
         /*!
          *  @brief  Returns the height of the original image
@@ -137,10 +149,6 @@ namespace Mastodon
         const uint_fast64_t width_small() const;
 
 
-        // TODO: find an attachment with framerate, duration or bitrate set
-        // const uint16_t framerate() const;
-        // const std::chrono::seconds duration() const;
-        // const uint_fast64_t bitrate() const;
     };
 }
 

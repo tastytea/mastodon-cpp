@@ -90,11 +90,10 @@ namespace Mastodon
          */
         const string version() const;
 
-        // TODO: Find out what Instance.urls is about
         /*!
-         *  @brief  Returns the a vector of URLs for the streaming API (?)
+         *  @brief  Returns the URL for the streaming API
          */
-        const std::vector<string> urls() const;
+        const string streaming_api() const;
     };
 }
 

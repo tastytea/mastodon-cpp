@@ -183,7 +183,7 @@ public:
          */
         const double get_double(const string &key) const;
 
-        // TODO: Investigate if uint8_t would be better
+        // TODO: Maybe an enum would be better?
         /*!
          *  @brief  Returns the value of key as bool
          *  

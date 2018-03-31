@@ -72,7 +72,7 @@ const string Instance::version() const
     return get_string("version");
 }
 
-const std::vector<string> Instance::urls() const
+const string Instance::streaming_api() const
 {
-    return get_vector("urls");
+    return get_string("urls.streaming_api");
 }

@@ -29,10 +29,10 @@ Application::Application()
 
 const string Application::name() const
 {
-    get_string("name");
+    return get_string("name");
 }
 
 const string Application::website() const
 {
-    get_string("website");
+    return get_string("website");
 }

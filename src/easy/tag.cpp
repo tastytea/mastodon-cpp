@@ -29,10 +29,10 @@ Tag::Tag()
 
 const string Tag::name() const
 {
-    get_string("name");
+    return get_string("name");
 }
 
 const string Tag::url() const
 {
-    get_string("url");
+    return get_string("url");
 }

@@ -136,7 +136,7 @@ namespace Mastodon
         /*!
          *  @brief  Returns default privacy of new toots
          */
-        const visibility privacy() const;
+        const visibility_type privacy() const;
 
         /*!
          *  @brief  Returns if media is marked as sensitive by default

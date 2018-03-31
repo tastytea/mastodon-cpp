@@ -48,7 +48,7 @@ public:
      *          The names begin with a capital letter because some of them
      *          are reserved keywords when written in all-lowercase.
      */
-    enum class visibility
+    enum class visibility_type
     {
         Direct,
         Private,

@@ -30,6 +30,8 @@
     #include "easy/mention.hpp"
     //#include "easy/notification.hpp"
     #include "easy/relationship.hpp"
+    #include "easy/report.hpp"
+    //#include "easy/results.hpp"
 #else
     #include <mastodon-cpp/easy.hpp>
     #include <mastodon-cpp/easy/account.hpp>
@@ -42,6 +44,8 @@
     #include <mastodon-cpp/easy/mention.hpp>
     //#include <mastodon-cpp/easy/notification.hpp>
     #include <mastodon-cpp/easy/relationship.hpp>
+    #include <mastodon-cpp/easy/report.hpp>
+    //#include <mastodon-cpp/easy/results.hpp>
 #endif
 
 #endif  // MASTODON_CPP_EASY_ALL_HPP

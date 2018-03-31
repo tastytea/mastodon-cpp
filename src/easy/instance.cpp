@@ -14,6 +14,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <jsoncpp/json/json.h>
 #include "instance.hpp"
 #include "account.hpp"
 #include "macros.hpp"
@@ -31,7 +32,7 @@ Instance::Instance()
 
 const Easy::Account Instance::contact_account() const
 {
-    const Json::Value node = _tree["contact_account"];
+    const Json::Value node = get("contact_account");
     if (node.isObject())
     {
         return Easy::Account(node.toStyledString());

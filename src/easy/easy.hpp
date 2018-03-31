@@ -196,6 +196,8 @@ public:
     class Mention;
     class Notification;
     class Relationship;
+    class Report;
+    class Results;
 };
 }
 

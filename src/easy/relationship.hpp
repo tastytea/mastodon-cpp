@@ -17,6 +17,7 @@
 #ifndef MASTODON_CPP_EASY_RELATIONSHIP_HPP
 #define MASTODON_CPP_EASY_RELATIONSHIP_HPP
 
+#include <string>
 #include <cstdint>
 
 // If we are compiling mastodon-cpp, use another include path
@@ -28,6 +29,7 @@
     #include <mastodon-cpp/easy.hpp>
 #endif
 
+using std::string;
 using std::uint64_t;
 
 namespace Mastodon

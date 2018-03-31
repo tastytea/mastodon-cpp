@@ -187,6 +187,7 @@ public:
     };
 
     class Account;
+    class Application;
     class Attachment;
     class Card;
     class Context;
@@ -198,6 +199,8 @@ public:
     class Relationship;
     class Report;
     class Results;
+    class Status;
+    class Tag;
 };
 }
 

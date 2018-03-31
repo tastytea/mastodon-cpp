@@ -21,6 +21,7 @@
 #ifdef MASTODON_CPP
     #include "easy.hpp"
     #include "easy/account.hpp"
+    #include "easy/application.hpp"
     #include "easy/attachment.hpp"
     #include "easy/card.hpp"
     //#include "easy/context.hpp"
@@ -32,9 +33,12 @@
     #include "easy/relationship.hpp"
     #include "easy/report.hpp"
     //#include "easy/results.hpp"
+    #include "easy/status.hpp"
+    #include "easy/tag.hpp"
 #else
     #include <mastodon-cpp/easy.hpp>
     #include <mastodon-cpp/easy/account.hpp>
+    #include <mastodon-cpp/easy/application.hpp>
     #include <mastodon-cpp/easy/attachment.hpp>
     #include <mastodon-cpp/easy/card.hpp>
     //#include <mastodon-cpp/easy/context.hpp>
@@ -46,6 +50,8 @@
     #include <mastodon-cpp/easy/relationship.hpp>
     #include <mastodon-cpp/easy/report.hpp>
     //#include <mastodon-cpp/easy/results.hpp>
+    #include <mastodon-cpp/easy/status.hpp>
+    #include <mastodon-cpp/easy/tag.hpp>
 #endif
 
 #endif  // MASTODON_CPP_EASY_ALL_HPP

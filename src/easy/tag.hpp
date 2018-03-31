@@ -14,21 +14,18 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MASTODON_CPP_EASY_RESULTS_HPP
-#define MASTODON_CPP_EASY_RESULTS_HPP
+#ifndef MASTODON_CPP_EASY_TAG_HPP
+#define MASTODON_CPP_EASY_TAG_HPP
 
 #include <string>
-#include <vector>
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
     #include "easy.hpp"
-    #include "account.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy.hpp>
-    #include <mastodon-cpp/account.hpp>
 #endif
 
 using std::string;
@@ -36,38 +33,33 @@ using std::string;
 namespace Mastodon
 {
     /*!
-     *  @brief  Class to hold results
+     *  @brief  Class to hold tags.
      */
-    class Easy::Results : public Easy::Entity
+    class Easy::Tag : public Easy::Entity
     {
     public:
         /*!
-         *  @brief  Constructs a Results object from a JSON string.
+         *  @brief  Constructs an Tag object from a JSON string.
          *
          *  @param  json    JSON string
          */
-        explicit Results(const string &json);
+        explicit Tag(const string &json);
 
         /*!
-         *  @brief  Constructs an empty Results object.
+         *  @brief  Constructs an empty Tag object.
          */
-        Results();
+        Tag();
 
         /*!
-         *  @brief  Returns an array of matched Accounts
+         *  @brief  Returns the name of the application
          */
-        const std::vector<Account> accounts() const;
+        const string name() const;
 
         /*!
-         *  @brief  Returns an array of matched Statuses
+         *  @brief  Returns the URL of the application
          */
-        // const std::vector<Status> statuses() const;
-
-        /*!
-         *  @brief  Returns an array of matched hashtags
-         */
-        const std::vector<string> hashtags() const;
-    };
+        const string url() const;
+};
 }
 
-#endif  // MASTODON_CPP_EASY_RESULTS_HPP
+#endif  // MASTODON_CPP_EASY_TAG_HPP

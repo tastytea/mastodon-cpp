@@ -92,7 +92,7 @@ const uint_fast64_t Status::favourites_count() const
 
 const uint_fast64_t Status::id() const
 {
-    return get_uint64("id");
+    return std::stoull(get_string("id"));
 }
 
 const uint_fast64_t Status::in_reply_to_id() const

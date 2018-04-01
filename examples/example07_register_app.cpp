@@ -30,8 +30,7 @@ int main(int argc, char *argv[])
     std::uint16_t ret;
     std::string client_id, client_secret, url;
 
-    ret = masto.register_app1(argv[1],
-                              "test123",
+    ret = masto.register_app1("test123",
                               "urn:ietf:wg:oauth:2.0:oob",
                               "read follow",
                               "",
@@ -47,8 +46,7 @@ int main(int argc, char *argv[])
         std::cin >> code;
 
         std::string access_token;
-        ret = masto.register_app2(argv[1],
-                                  client_id,
+        ret = masto.register_app2(client_id,
                                   client_secret,
                                   "urn:ietf:wg:oauth:2.0:oob",
                                   code,

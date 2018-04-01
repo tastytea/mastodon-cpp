@@ -15,15 +15,13 @@
  */
 
 #include <iostream>
-#include <string>
-#include <vector>
 #include "macros.hpp"
 #include "mastodon-cpp.hpp"
 
 using namespace Mastodon;
-using std::string;
 using std::cerr;
-const std::uint16_t API::patch(const Mastodon::API::v1 &call,
+
+const uint_fast16_t API::patch(const Mastodon::API::v1 &call,
                                const parametermap &parameters,
                                string &answer)
 {

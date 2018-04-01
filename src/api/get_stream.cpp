@@ -15,22 +15,19 @@
  */
 
 #include <iostream>
-#include <string>
-#include <memory>
 #include "macros.hpp"
 #include "mastodon-cpp.hpp"
 
 using namespace Mastodon;
-using std::string;
 using std::cerr;
 
-const std::uint16_t API::get_stream(const Mastodon::API::v1 &call,
+const uint_fast16_t API::get_stream(const Mastodon::API::v1 &call,
                                     const string &argument,
                                     string &answer,
                                     std::unique_ptr<Mastodon::API::http> &ptr)
 {
     string strcall = "";
-    const string argument_encoded = curlpp::escape(argument);
+    const string argument_encoded = urlencode(argument);
 
     switch (call)
     {
@@ -50,7 +47,7 @@ const std::uint16_t API::get_stream(const Mastodon::API::v1 &call,
     return ptr->request(http::method::GET_STREAM, strcall, answer);
 }
 
-const std::uint16_t API::get_stream(const Mastodon::API::v1 &call,
+const uint_fast16_t API::get_stream(const Mastodon::API::v1 &call,
                                     string &answer,
                                     std::unique_ptr<Mastodon::API::http> &ptr)
 {
@@ -77,7 +74,7 @@ const std::uint16_t API::get_stream(const Mastodon::API::v1 &call,
     return ptr->request(http::method::GET_STREAM, strcall, answer);
 }
 
-const std::uint16_t API::get_stream(const std::string &call, string &answer,
+const uint_fast16_t API::get_stream(const std::string &call, string &answer,
                                     std::unique_ptr<http> &ptr)
 {
     ptr = std::make_unique<http>(*this, _instance, _access_token);

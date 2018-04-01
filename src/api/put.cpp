@@ -15,21 +15,17 @@
  */
 
 #include <iostream>
-#include <string>
-#include <vector>
-#include <curlpp/cURLpp.hpp>
 #include "macros.hpp"
 #include "mastodon-cpp.hpp"
 
 using namespace Mastodon;
-using std::string;
 
-const std::uint16_t API::put(const Mastodon::API::v1 &call,
+const uint_fast16_t API::put(const Mastodon::API::v1 &call,
                              const string &argument,
                              const parametermap &parameters, string &answer)
 {
     string strcall = "";
-    const string argument_encoded = curlpp::escape(argument);
+    const string argument_encoded = urlencode(argument);
 
     switch (call)
     {
@@ -46,7 +42,7 @@ const std::uint16_t API::put(const Mastodon::API::v1 &call,
                          maptoformdata(parameters), answer);
 }
 
-const std::uint16_t API::put(const std::string &call,
+const uint_fast16_t API::put(const string &call,
                              const parametermap &parameters, string &answer)
 {
 

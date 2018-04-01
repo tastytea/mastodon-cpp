@@ -15,22 +15,18 @@
  */
 
 #include <iostream>
-#include <string>
-#include <vector>
-#include <curlpp/cURLpp.hpp>
 #include "macros.hpp"
 #include "mastodon-cpp.hpp"
 
 using namespace Mastodon;
-using std::string;
 
-const std::uint16_t API::post(const Mastodon::API::v1 &call, string &answer)
+const uint_fast16_t API::post(const Mastodon::API::v1 &call, string &answer)
 {
     const parametermap p;
     return post(call, p, answer);
 }
 
-const std::uint16_t API::post(const Mastodon::API::v1 &call,
+const uint_fast16_t API::post(const Mastodon::API::v1 &call,
                               const parametermap &parameters, string &answer)
 {
     string strcall = "";
@@ -74,13 +70,13 @@ const std::uint16_t API::post(const Mastodon::API::v1 &call,
                          maptoformdata(parameters), answer);
 }
 
-const std::uint16_t API::post(const Mastodon::API::v1 &call,
+const uint_fast16_t API::post(const Mastodon::API::v1 &call,
                               const string &argument, string &answer)
 {
     const parametermap p;
     return post(call, argument, p, answer);
 }
-const std::uint16_t API::post(const Mastodon::API::v1 &call,
+const uint_fast16_t API::post(const Mastodon::API::v1 &call,
                               const string &argument,
                               const parametermap &parameters, string &answer)
 {
@@ -150,7 +146,7 @@ const std::uint16_t API::post(const Mastodon::API::v1 &call,
                          maptoformdata(parameters), answer);
 }
 
-const std::uint16_t API::post(const std::string &call,
+const uint_fast16_t API::post(const string &call,
                               const parametermap &parameters, string &answer)
 {
 

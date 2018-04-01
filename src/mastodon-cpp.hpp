@@ -25,6 +25,9 @@
 #include <curlpp/cURLpp.hpp>
 #include <curlpp/Easy.hpp>
 
+using std::uint_fast16_t;
+using std::string;
+
 /*!
  *  @example example01_dump_json.cpp
  *  @example example02_parse_account.cpp
@@ -84,12 +87,12 @@ public:
             GET_STREAM
         };
 
-        explicit http(const API &api, const std::string &instance,
-                      const std::string &access_token);
+        explicit http(const API &api, const string &instance,
+                      const string &access_token);
         ~http();
-        const std::uint16_t request(const method &meth,
-                                    const std::string &path,
-                                    std::string &answer);
+        const uint_fast16_t request(const method &meth,
+                                    const string &path,
+                                    string &answer);
 
         /*!
          *  @brief  HTTP Request.
@@ -102,15 +105,15 @@ public:
          *  @return @ref error "Error code". If the URL has permanently changed,
          *  13 is returned and answer is set to the new URL.
          */
-        const std::uint16_t request(const method &meth,
-                                    const std::string &path,
+        const uint_fast16_t request(const method &meth,
+                                    const string &path,
                                     const curlpp::Forms &formdata,
-                                    std::string &answer);
+                                    string &answer);
 
-        const void get_headers(std::string &headers) const;
+        const void get_headers(string &headers) const;
 
         const size_t callback(char* data, size_t size, size_t nmemb,
-                              std::string *oss);
+                              string *oss);
 
         /*!
          *  @brief  Aborts the stream. Use only with streams.
@@ -124,9 +127,9 @@ public:
 
     private:
         const API &parent;
-        const std::string _instance;
-        const std::string _access_token;
-        std::string _headers;
+        const string _instance;
+        const string _access_token;
+        string _headers;
         bool _abort_stream;
     };
 
@@ -142,7 +145,7 @@ public:
      *  }
      *  @endcode
      */
-    typedef std::map<std::string, std::vector<std::string>> parametermap;
+    typedef std::map<string, std::vector<string>> parametermap;
     /*!
      *  @brief  A list of all API calls.
      *
@@ -223,29 +226,28 @@ public:
      *  @param  instance      The hostname of your instance
      *  @param  access_token  Your access token.
      */
-    explicit API(const std::string &instance,
-                 const std::string &access_token);
+    explicit API(const string &instance, const string &access_token);
 
     /*!
      *  @brief  Sets the useragent. Default is mastodon-cpp/version.
      *
      *  @param  useragent  The useragent
      */
-    const void set_useragent(const std::string &useragent);
+    const void set_useragent(const string &useragent);
 
     /*!
      *  @brief  Gets the useragent.
      *
      *  @return The useragent.
      */
-    const std::string get_useragent() const;
+    const string get_useragent() const;
 
     /*!
      *  @brief  Returns the instance.
      *
      *  @return The instance.
      */
-    const std::string get_instance() const;
+    const string get_instance() const;
 
     /*!
      *  @brief  Percent-encodes a string. This is done automatically, unless you
@@ -254,7 +256,7 @@ public:
      *          Calls curlpp::escape(str)
      *
      *          The only time you should use this, is if you use
-     *          get(const std::string &call, std::string &answer).
+     *          get(const string &call, string &answer).
      *          
      *          See RFC 3986 section 2.1 for more info.
      *
@@ -262,7 +264,7 @@ public:
      *
      *  @return The percent-encoded string
      */
-    const std::string urlencode(const std::string &str) const;
+    const string urlencode(const string &str) const;
 
     /*!
      *  @brief  Register application, step 1/2
@@ -278,26 +280,26 @@ public:
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and url is set to the new URL.
      */
-    const std::uint16_t register_app1(const std::string &client_name,
-                                      const std::string &redirect_uri,
-                                      const std::string &scopes,
-                                      const std::string &website,
-                                      std::string &client_id,
-                                      std::string &client_secret,
-                                      std::string &url);
+    const uint_fast16_t register_app1(const string &client_name,
+                                      const string &redirect_uri,
+                                      const string &scopes,
+                                      const string &website,
+                                      string &client_id,
+                                      string &client_secret,
+                                      string &url);
 
     /*!
      *  @deprecated Will vanish in 1.0.0
      */
     [[deprecated("Will vanish in 1.0.0")]]
-    const std::uint16_t register_app1(const std::string &instance,
-                                      const std::string &client_name,
-                                      const std::string &redirect_uri,
-                                      const std::string &scopes,
-                                      const std::string &website,
-                                      std::string &client_id,
-                                      std::string &client_secret,
-                                      std::string &url);
+    const uint_fast16_t register_app1(const string &instance,
+                                      const string &client_name,
+                                      const string &redirect_uri,
+                                      const string &scopes,
+                                      const string &website,
+                                      string &client_id,
+                                      string &client_secret,
+                                      string &url);
 
     /*!
      *  @brief  Register application, step 2/2
@@ -312,22 +314,22 @@ public:
      *
      *  @return @ref error "Error code".
      */
-    const std::uint16_t register_app2(const std::string &client_id,
-                                      const std::string &client_secret,
-                                      const std::string &redirect_uri,
-                                      const std::string &code,
-                                      std::string &access_token);
+    const uint_fast16_t register_app2(const string &client_id,
+                                      const string &client_secret,
+                                      const string &redirect_uri,
+                                      const string &code,
+                                      string &access_token);
 
     /*!
      *  @deprecated Will vanish in 1.0.0
      */
     [[deprecated("Will vanish in 1.0.0")]]
-    const std::uint16_t register_app2(const std::string &instance,
-                                      const std::string &client_id,
-                                      const std::string &client_secret,
-                                      const std::string &redirect_uri,
-                                      const std::string &code,
-                                      std::string &access_token);
+    const uint_fast16_t register_app2(const string &instance,
+                                      const string &client_id,
+                                      const string &client_secret,
+                                      const string &redirect_uri,
+                                      const string &code,
+                                      string &access_token);
 
     /*!
      *  @brief  Make a GET request which doesn't require parameters.
@@ -338,7 +340,7 @@ public:
      *
      *  @return @ref error "Error code".
      */
-    const std::uint16_t get(const Mastodon::API::v1 &call, std::string &answer);
+    const uint_fast16_t get(const Mastodon::API::v1 &call, string &answer);
 
     /*!
      *  @brief  Make a GET request which requires a parameter as part of the
@@ -352,9 +354,9 @@ public:
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
-    const std::uint16_t get(const Mastodon::API::v1 &call,
-                            const std::string &argument,
-                            std::string &answer);
+    const uint_fast16_t get(const Mastodon::API::v1 &call,
+                            const string &argument,
+                            string &answer);
 
     /*!
      *  @brief  Make a GET request which requires parameters.
@@ -367,9 +369,9 @@ public:
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
-    const std::uint16_t get(const Mastodon::API::v1 &call,
+    const uint_fast16_t get(const Mastodon::API::v1 &call,
                             const parametermap &parameters,
-                            std::string &answer);
+                            string &answer);
 
     /*!
      *  @brief  Make a GET request which requires a parameter as part of the
@@ -384,10 +386,10 @@ public:
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
-    const std::uint16_t get(const Mastodon::API::v1 &call,
-                            const std::string &argument,
+    const uint_fast16_t get(const Mastodon::API::v1 &call,
+                            const string &argument,
                             const parametermap &parameters,
-                            std::string &answer);
+                            string &answer);
 
     /*!
      *  @brief  Make a custom GET request.
@@ -399,8 +401,7 @@ public:
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
-    const std::uint16_t get(const std::string &call,
-                            std::string &answer);
+    const uint_fast16_t get(const string &call, string &answer);
 
     /*!
      *  @brief  Make a streaming GET request.
@@ -414,9 +415,9 @@ public:
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
-    const std::uint16_t get_stream(const Mastodon::API::v1 &call,
-                                   const std::string &argument,
-                                   std::string &answer,
+    const uint_fast16_t get_stream(const Mastodon::API::v1 &call,
+                                   const string &argument,
+                                   string &answer,
                                    std::unique_ptr<Mastodon::API::http> &ptr);
 
     /*!
@@ -430,8 +431,8 @@ public:
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
-    const std::uint16_t get_stream(const Mastodon::API::v1 &call,
-                                   std::string &answer,
+    const uint_fast16_t get_stream(const Mastodon::API::v1 &call,
+                                   string &answer,
                                    std::unique_ptr<Mastodon::API::http> &ptr);
 
     /*!
@@ -446,8 +447,8 @@ public:
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
-    const std::uint16_t get_stream(const std::string &call,
-                                   std::string &answer,
+    const uint_fast16_t get_stream(const string &call,
+                                   string &answer,
                                    std::unique_ptr<Mastodon::API::http> &ptr);
 
     /*!
@@ -463,9 +464,9 @@ public:
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
-    const std::uint16_t patch(const Mastodon::API::v1 &call,
+    const uint_fast16_t patch(const Mastodon::API::v1 &call,
                               const parametermap &parameters,
-                              std::string &answer);
+                              string &answer);
 
     /*!
      *  @brief  Make a POST request which doesn't require parameters.
@@ -477,8 +478,7 @@ public:
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
-    const std::uint16_t post(const Mastodon::API::v1 &call,
-                             std::string &answer);
+    const uint_fast16_t post(const Mastodon::API::v1 &call, string &answer);
 
     /*!
      *  @brief  Make a POST request which requires a parameter as part of the
@@ -492,9 +492,9 @@ public:
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
-    const std::uint16_t post(const Mastodon::API::v1 &call,
-                             const std::string &argument,
-                             std::string &answer);
+    const uint_fast16_t post(const Mastodon::API::v1 &call,
+                             const string &argument,
+                             string &answer);
 
     /*!
      *  @brief  Make a POST request which requires parameters.
@@ -509,9 +509,9 @@ public:
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
-    const std::uint16_t post(const Mastodon::API::v1 &call,
+    const uint_fast16_t post(const Mastodon::API::v1 &call,
                              const parametermap &parameters,
-                             std::string &answer);
+                             string &answer);
 
     /*!
      *  @brief  Make a POST request which requires a parameter as part of the
@@ -528,10 +528,10 @@ public:
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
-    const std::uint16_t post(const Mastodon::API::v1 &call,
-                             const std::string &argument,
+    const uint_fast16_t post(const Mastodon::API::v1 &call,
+                             const string &argument,
                              const parametermap &parameters,
-                             std::string &answer);
+                             string &answer);
 
     /*!
      *  @brief  Make a custom POST request.
@@ -546,9 +546,9 @@ public:
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
-    const std::uint16_t post(const std::string &call,
+    const uint_fast16_t post(const string &call,
                              const parametermap &parameters,
-                             std::string &answer);
+                             string &answer);
 
     /*!
      *  @brief  Make a PUT request which requires a parameter as part of the
@@ -564,10 +564,10 @@ public:
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
-    const std::uint16_t put(const Mastodon::API::v1 &call,
-                            const std::string &argument,
+    const uint_fast16_t put(const Mastodon::API::v1 &call,
+                            const string &argument,
                             const parametermap &parameters,
-                            std::string &answer);
+                            string &answer);
 
     /*!
      *  @brief  Make a custom PUT request.
@@ -581,9 +581,9 @@ public:
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
-    const std::uint16_t put(const std::string &call,
+    const uint_fast16_t put(const string &call,
                             const parametermap &parameters,
-                            std::string &answer);
+                            string &answer);
 
     /*!
      *  @brief  Make a DELETE request which requires a parameter as part of the
@@ -594,8 +594,8 @@ public:
      *
      *  @return @ref error "Error code".
      */
-    const std::uint16_t del(const Mastodon::API::v1 &call,
-                            const std::string &argument);
+    const uint_fast16_t del(const Mastodon::API::v1 &call,
+                            const string &argument);
 
     /*!
      *  @brief  Make a DELETE request which requires parameters.
@@ -605,7 +605,7 @@ public:
      *
      *  @return @ref error "Error code".
      */
-    const std::uint16_t del(const Mastodon::API::v1 &call,
+    const uint_fast16_t del(const Mastodon::API::v1 &call,
                             const parametermap &parameters);
 
     /*!
@@ -618,8 +618,8 @@ public:
      *
      *  @return @ref error "Error code".
      */
-    const std::uint16_t del(const Mastodon::API::v1 &call,
-                            const std::string &argument,
+    const uint_fast16_t del(const Mastodon::API::v1 &call,
+                            const string &argument,
                             const parametermap &parameters);
 
     /*!
@@ -633,9 +633,9 @@ public:
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
-    const std::uint16_t del(const std::string &call,
+    const uint_fast16_t del(const string &call,
                             const parametermap &parameters,
-                            std::string &answer);
+                            string &answer);
 
     /*!
          *  @brief  Gets the header from the last answer.
@@ -644,12 +644,12 @@ public:
          *
          *  @return The header, or "" on error.
          */
-        const std::string get_header(const std::string &header) const;
+        const string get_header(const string &header) const;
 
 private:
-    const std::string _instance;
-    std::string _access_token;
-    std::string _useragent;
+    const string _instance;
+    string _access_token;
+    string _useragent;
     http _http;
 
     /*!
@@ -660,8 +660,8 @@ private:
      *
      *  @return String of parameters
      */
-    const std::string maptostr(const parametermap &map,
-                               const bool &firstparam = true);
+    const string maptostr(const parametermap &map,
+                          const bool &firstparam = true);
 
     /*!
      *  @brief  Converts map of parameters into form data

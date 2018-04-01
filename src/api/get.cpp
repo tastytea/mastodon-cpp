@@ -15,25 +15,20 @@
  */
 
 #include <iostream>
-#include <string>
-#include <vector>
-#include <memory>
-#include <curlpp/cURLpp.hpp>
 #include "macros.hpp"
 #include "mastodon-cpp.hpp"
 
 using namespace Mastodon;
-using std::string;
 using std::cerr;
 
-const std::uint16_t API::get(const Mastodon::API::v1 &call, string &answer)
+const uint_fast16_t API::get(const Mastodon::API::v1 &call, string &answer)
 {
     const parametermap p;
     return get(call, p, answer);
 }
 
-const std::uint16_t API::get(const Mastodon::API::v1 &call,
-                      const parametermap &parameters, string &answer)
+const uint_fast16_t API::get(const Mastodon::API::v1 &call,
+                             const parametermap &parameters, string &answer)
 {
     string strcall = "";
     switch (call)
@@ -99,19 +94,19 @@ const std::uint16_t API::get(const Mastodon::API::v1 &call,
     return _http.request(http::method::GET, strcall, answer);
 }
 
-const std::uint16_t API::get(const Mastodon::API::v1 &call,
-                      const string &argument, string &answer)
+const uint_fast16_t API::get(const Mastodon::API::v1 &call,
+                             const string &argument, string &answer)
 {
     const parametermap p;
     return get(call, argument, p, answer);
 }
-const std::uint16_t API::get(const Mastodon::API::v1 &call,
-                      const string &argument,
-                      const parametermap &parameters, string &answer)
+const uint_fast16_t API::get(const Mastodon::API::v1 &call,
+                             const string &argument,
+                             const parametermap &parameters, string &answer)
 {
     string strcall = "";
     bool firstparam = true;
-    const string argument_encoded = curlpp::escape(argument);
+    const string argument_encoded = urlencode(argument);
 
     switch (call)
     {
@@ -186,7 +181,7 @@ const std::uint16_t API::get(const Mastodon::API::v1 &call,
     return _http.request(http::method::GET, strcall, answer);
 }
 
-const std::uint16_t API::get(const std::string &call, string &answer)
+const uint_fast16_t API::get(const std::string &call, string &answer)
 {
     return _http.request(http::method::GET, call, answer);
 }

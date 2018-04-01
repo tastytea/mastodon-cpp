@@ -14,13 +14,8 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <string>
-#include <map>
-#include <vector>
 #include <sstream>
 #include <regex>
-#include <curlpp/cURLpp.hpp>
-#include <curlpp/Easy.hpp>
 #include "version.hpp"
 #include "macros.hpp"
 #include "mastodon-cpp.hpp"
@@ -28,7 +23,6 @@
 #include <iostream>
 
 using namespace Mastodon;
-using std::string;
 
 API::API(const string &instance, const string &access_token)
 : _instance(instance)
@@ -67,7 +61,7 @@ const string API::maptostr(const parametermap &map, const bool &firstparam)
     {
         if (it.second.size() == 1)
         {
-            result += (delim + it.first + "=" + curlpp::escape(it.second.front()));
+            result += (delim + it.first + "=" + urlencode(it.second.front()));
             if (delim == '?')
             {
                 delim = '&';
@@ -77,7 +71,7 @@ const string API::maptostr(const parametermap &map, const bool &firstparam)
         {
             for (const string &str : it.second)
             {
-                result += (delim + it.first + "[]=" + curlpp::escape(str));
+                result += (delim + it.first + "[]=" + urlencode(str));
                 if (delim == '?')
                 {
                     delim = '&';
@@ -136,7 +130,7 @@ const std::string API::urlencode(const std::string &str) const
     return curlpp::escape(str);
 }
 
-const std::uint16_t API::register_app1(const string &instance,
+const uint_fast16_t API::register_app1(const string &instance,
                                        const string &client_name,
                                        const string &redirect_uri,
                                        const string &scopes,
@@ -148,7 +142,7 @@ const std::uint16_t API::register_app1(const string &instance,
     return register_app1(client_name, redirect_uri, scopes, website,
                   client_id, client_secret, url);
 }
-const std::uint16_t API::register_app1(const string &client_name,
+const uint_fast16_t API::register_app1(const string &client_name,
                                        const string &redirect_uri,
                                        const string &scopes,
                                        const string &website,
@@ -165,7 +159,7 @@ const std::uint16_t API::register_app1(const string &client_name,
     };
 
     string answer;
-    std::uint16_t ret = post(API::v1::apps, parameters, answer);
+    uint_fast16_t ret = post(API::v1::apps, parameters, answer);
 
     if (ret == 0)
     {
@@ -179,12 +173,12 @@ const std::uint16_t API::register_app1(const string &client_name,
         client_secret = match[1].str();
 
         url = "https://" + _instance + "/oauth/authorize" +
-              "?scope=" + curlpp::escape(scopes) + "&response_type=code" +
-              "&redirect_uri=" + curlpp::escape(redirect_uri) +
+              "?scope=" + urlencode(scopes) + "&response_type=code" +
+              "&redirect_uri=" + urlencode(redirect_uri) +
               "&client_id=" + client_id;
         if (!website.empty())
         {
-            url += "&website=" + curlpp::escape(website);
+            url += "&website=" + urlencode(website);
         }
 
         return 0;
@@ -202,7 +196,7 @@ const std::uint16_t API::register_app1(const string &client_name,
     
 }
 
-const std::uint16_t API::register_app2(const string &instance,
+const uint_fast16_t API::register_app2(const string &instance,
                                        const string &client_id,
                                        const string &client_secret,
                                        const string &redirect_uri,
@@ -212,7 +206,7 @@ const std::uint16_t API::register_app2(const string &instance,
     return register_app2(client_id, client_secret, redirect_uri, code, access_token);
 }
 
-const std::uint16_t API::register_app2(const string &client_id,
+const uint_fast16_t API::register_app2(const string &client_id,
                                        const string &client_secret,
                                        const string &redirect_uri,
                                        const string &code,
@@ -228,7 +222,7 @@ const std::uint16_t API::register_app2(const string &client_id,
     };
 
     std::string answer;
-    std::uint16_t ret = post("/oauth/token", parameters, answer);
+    uint_fast16_t ret = post("/oauth/token", parameters, answer);
     if (ret == 0)
     {
         std::smatch match;

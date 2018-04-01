@@ -15,16 +15,12 @@
  */
 
 #include <iostream>
-#include <string>
-#include <vector>
-#include <curlpp/cURLpp.hpp>
 #include "macros.hpp"
 #include "mastodon-cpp.hpp"
 
 using namespace Mastodon;
-using std::string;
 
-const std::uint16_t API::del(const Mastodon::API::v1 &call,
+const uint_fast16_t API::del(const Mastodon::API::v1 &call,
                               const parametermap &parameters)
 {
     string strcall = "";
@@ -45,18 +41,18 @@ const std::uint16_t API::del(const Mastodon::API::v1 &call,
                          maptoformdata(parameters), answer);
 }
 
-const std::uint16_t API::del(const Mastodon::API::v1 &call,
-                              const string &argument)
+const uint_fast16_t API::del(const Mastodon::API::v1 &call,
+                             const string &argument)
 {
     const parametermap p = {};
     return del(call, argument, p);
 }
-const std::uint16_t API::del(const Mastodon::API::v1 &call,
-                              const string &argument,
-                              const parametermap &parameters)
+const uint_fast16_t API::del(const Mastodon::API::v1 &call,
+                             const string &argument,
+                             const parametermap &parameters)
 {
     string strcall = "";
-    const string argument_encoded = curlpp::escape(argument);
+    const string argument_encoded = urlencode(argument);
 
     switch (call)
     {
@@ -80,7 +76,7 @@ const std::uint16_t API::del(const Mastodon::API::v1 &call,
                          maptoformdata(parameters), answer);
 }
 
-const std::uint16_t API::del(const std::string &call,
+const uint_fast16_t API::del(const std::string &call,
                               const parametermap &parameters, string &answer)
 {
 

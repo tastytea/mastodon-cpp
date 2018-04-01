@@ -14,14 +14,10 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <string>
-#include <cstdint>
 #include <iostream>
 #include <functional>   // std::bind
 #include <list>
 #include <cstring>      // std::strncmp
-#include <curlpp/cURLpp.hpp>
-#include <curlpp/Easy.hpp>
 #include <curlpp/Options.hpp>
 #include <curlpp/Exception.hpp>
 #include <curlpp/Infos.hpp>
@@ -30,7 +26,6 @@
 
 using namespace Mastodon;
 namespace curlopts = curlpp::options;
-using std::string;
 using std::cerr;
 
 API::http::http(const API &api, const string &instance,
@@ -48,21 +43,21 @@ API::http::~http()
     curlpp::terminate();
 }
 
-const std::uint16_t API::http::request(const method &meth,
+const uint_fast16_t API::http::request(const method &meth,
                                        const string &path,
                                        string &answer)
 {
     return request(meth, path, curlpp::Forms(), answer);
 }
 
-const std::uint16_t API::http::request(const method &meth,
+const uint_fast16_t API::http::request(const method &meth,
                                        const string &path,
                                        const curlpp::Forms &formdata,
                                        string &answer)
 {
     using namespace std::placeholders;  // _1, _2, _3
 
-    std::uint16_t ret = 0;
+    uint_fast16_t ret = 0;
     ttdebug << "Path is: " << path << '\n';
     
     try

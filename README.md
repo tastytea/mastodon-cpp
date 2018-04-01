@@ -32,7 +32,7 @@ int main()
 
 ## Another simple example
 
-Using the `Easy-class`.
+Using the `Easy`-class.
 
 ```C++
 #include <iostream>

@@ -1,6 +1,6 @@
 /*  This file is part of mastodon-cpp.
  *  Copyright © 2018 tastytea <tastytea@tastytea.de>
- *                                                                   
+ *  
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, version 3.
@@ -14,15 +14,25 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MACROS_HPP
-#define MACROS_HPP
+#include "tag.hpp"
 
-#include <iostream>
+using namespace Mastodon;
+using Tag = Easy::Tag;
 
-#ifdef DEBUG
-    #define ttdebug std::cerr << "[" << __FILE__ << ":" << __LINE__ << "] DEBUG: "
-#else
-    #define ttdebug false && std::cerr
-#endif
+Tag::Tag(const string &json)
+: Entity(json)
+{}
 
-#endif // MACROS_HPP
+Tag::Tag()
+: Entity()
+{}
+
+const string Tag::name() const
+{
+    return get_string("name");
+}
+
+const string Tag::url() const
+{
+    return get_string("url");
+}

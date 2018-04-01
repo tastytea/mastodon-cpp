@@ -1,6 +1,6 @@
 /*  This file is part of mastodon-cpp.
  *  Copyright © 2018 tastytea <tastytea@tastytea.de>
- *                                                                   
+ *  
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, version 3.
@@ -14,15 +14,26 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MACROS_HPP
-#define MACROS_HPP
+#include "report.hpp"
 
-#include <iostream>
+using namespace Mastodon;
+using Report = Easy::Report;
 
-#ifdef DEBUG
-    #define ttdebug std::cerr << "[" << __FILE__ << ":" << __LINE__ << "] DEBUG: "
-#else
-    #define ttdebug false && std::cerr
-#endif
+Report::Report(const string &json)
+: Entity(json)
+{}
 
-#endif // MACROS_HPP
+Report::Report()
+: Entity()
+{}
+
+const bool Report::action_taken() const
+{
+    return get_bool("action_taken");
+}
+
+const uint_fast64_t Report::id() const
+{
+    return std::stoull(get_string("id"));
+}
+

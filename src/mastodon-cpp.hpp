@@ -37,14 +37,19 @@
  *  @example example09_streaming_api.cpp
  *  @example example10_simplify.cpp
  *  @example example11_post_media.cpp
+ *  @example example12_easy_laststatus.cpp
+ *  @example example13_easy_stream.cpp
  */
+
 namespace Mastodon
 {
 /*!
- *  @brief  Class for the Mastodon API. All input is expected to be UTF-8.
- *          Binary data must be base64-encoded or a filename.
- *          
+ *  @brief  Class for the Mastodon API.
+ *  
+ *          All input is expected to be UTF-8. Binary data must be
+ *          base64-encoded or a filename.
  *          It appears that media attachements can not be base64 encoded.
+ *  
  *  @section error Error codes
  *  mastodon-cpp will never use error codes below 11, except 0.
  *  |      Code | Explanation                   |

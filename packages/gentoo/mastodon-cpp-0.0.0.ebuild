@@ -9,7 +9,7 @@ SLOT="0"
 KEYWORDS=""
 IUSE="doc debug examples"
 RDEPEND=">=dev-cpp/curlpp-0.7.3
-         examples? ( >=dev-libs/boost-1.63.0 )"
+         >=dev-libs/jsoncpp-1.8.1"
 DEPEND=">=dev-util/cmake-3.9.6
         doc? ( >=app-doc/doxygen-1.8.13-r1 )
         ${RDEPEND}"
@@ -44,7 +44,7 @@ src_install() {
 
     if use examples; then
         docinto examples
-        for file in src/examples/*.cpp; do
+        for file in examples/*.cpp; do
             dodoc ${file}
         done
     fi

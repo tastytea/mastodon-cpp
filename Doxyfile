@@ -1,7 +1,7 @@
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = "mastodon-cpp"
 PROJECT_NUMBER         = 0.0.0
-INPUT                  = README.md src/mastodon-cpp.hpp
+INPUT                  = README.md src/ src/api/ src/easy/
 USE_MDFILE_AS_MAINPAGE = README.md
 CREATE_SUBDIRS         = NO
 ALLOW_UNICODE_NAMES    = YES
@@ -77,7 +77,7 @@ WARN_FORMAT            = "$file:$line: $text"
 INPUT_ENCODING         = UTF-8
 RECURSIVE              = NO
 EXCLUDE_SYMLINKS       = NO
-EXAMPLE_PATH           = src/examples
+EXAMPLE_PATH           = examples
 EXAMPLE_RECURSIVE      = YES
 FILTER_SOURCE_FILES    = NO
 SOURCE_BROWSER         = NO

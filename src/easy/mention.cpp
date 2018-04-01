@@ -1,6 +1,6 @@
 /*  This file is part of mastodon-cpp.
  *  Copyright © 2018 tastytea <tastytea@tastytea.de>
- *                                                                   
+ *  
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, version 3.
@@ -14,15 +14,35 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MACROS_HPP
-#define MACROS_HPP
+#include "mention.hpp"
 
-#include <iostream>
+using namespace Mastodon;
+using Mention = Easy::Mention;
 
-#ifdef DEBUG
-    #define ttdebug std::cerr << "[" << __FILE__ << ":" << __LINE__ << "] DEBUG: "
-#else
-    #define ttdebug false && std::cerr
-#endif
+Mention::Mention(const string &json)
+: Entity(json)
+{}
 
-#endif // MACROS_HPP
+Mention::Mention()
+: Entity()
+{}
+
+const string Mention::acct() const
+{
+    return get_string("acct");
+}
+
+const uint_fast64_t Mention::id() const
+{
+    return std::stoull(get_string("id"));
+}
+
+const string Mention::url() const
+{
+    return get_string("url");
+}
+
+const string Mention::username() const
+{
+    return get_string("username");
+}

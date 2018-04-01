@@ -8,7 +8,11 @@
 #include <cstdint>
 #include <sstream>
 #include <jsoncpp/json/json.h>
-#include "../mastodon-cpp.hpp"
+#ifdef MASTODON_CPP
+    #include "mastodon-cpp.hpp"
+#else
+    #include <mastodon-cpp/mastodon-cpp.hpp>
+#endif
 
 using Mastodon::API;
 

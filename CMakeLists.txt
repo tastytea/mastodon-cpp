@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.7)
 project (mastodon-cpp
-         VERSION 0.6.6
+         VERSION 0.7.22
          LANGUAGES CXX
 )
 
@@ -9,6 +9,7 @@ include(GNUInstallDirs)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
 
+set(CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -21,21 +22,41 @@ configure_file (
     "${PROJECT_BINARY_DIR}/version.hpp"
 )
 
+# Announce that we are compiling mastodon-cpp (used in easy.hpp and examples)
+add_definitions(-DMASTODON_CPP=1)
+
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_definitions(-DDEBUG=1)
 endif()
 
+if(WITHOUT_EASY)
+    add_definitions(-DWITHOUT_EASY=1)
+endif()
+
 # Library
-file(GLOB sources src/*.cpp src/*.hpp src/api/*.cpp)
+if(WITHOUT_EASY)
+    file(GLOB sources src/*.cpp src/api/*.cpp)
+else()
+    file(GLOB sources src/*.cpp src/api/*.cpp src/easy/*.cpp)
+endif()
 add_library(mastodon-cpp SHARED ${sources})
 set_target_properties(mastodon-cpp PROPERTIES
     VERSION ${PROJECT_VERSION}
     SOVERSION ${mastodon-cpp_VERSION_MAJOR}
 )
-target_link_libraries(mastodon-cpp curlpp)
+if(WITHOUT_EASY)
+    target_link_libraries(mastodon-cpp curlpp)
+else()
+    target_link_libraries(mastodon-cpp curlpp jsoncpp)
+endif()
 install(TARGETS mastodon-cpp LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
-install(FILES ${PROJECT_SOURCE_DIR}/src/mastodon-cpp.hpp
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+install(FILES src/mastodon-cpp.hpp
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp)
+if(NOT WITHOUT_EASY)
+    file(GLOB easy_header src/easy/*.hpp)
+    install(FILES ${easy_header}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp/easy)
+endif()
 
 # Documentation
 if(WITH_DOC)
@@ -50,18 +71,18 @@ endif()
 
 # Examples
 if(WITH_EXAMPLES)
-    file(GLOB sources_examples src/examples/*.cpp)
+    file(GLOB sources_examples examples/*.cpp)
     foreach(src ${sources_examples})
         get_filename_component(bin ${src} NAME_WE)
         add_executable(${bin} ${src})
-        target_link_libraries(${bin} -lpthread -ljsoncpp mastodon-cpp)
+        target_link_libraries(${bin} pthread jsoncpp mastodon-cpp)
     endforeach()
 endif()
 
 # Tests
 if(WITH_TESTS)
     include(CTest)
-    file(GLOB sources_tests src/tests/test_*.cpp)
+    file(GLOB sources_tests tests/test_*.cpp)
     foreach(src ${sources_tests})
         get_filename_component(bin ${src} NAME_WE)
         add_executable(${bin} ${src})

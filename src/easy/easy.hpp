@@ -172,7 +172,7 @@ public:
         const bool valid() const;
 
         /*!
-         *  @brief  Returns error string
+         *  @brief  Returns error string sent by the server
          */
         const string error() const;
 
@@ -180,28 +180,29 @@ public:
         /*!
          *  @brief  Returns the value of key as Json::Value
          *
-         *          Returns an empty object on error.
+         *          Returns an empty object if the value does not exist or is
+         *          null.
          */
         const Json::Value get(const string &key) const;
 
         /*!
          *  @brief  Returns the value of key as std::string
          *  
-         *          returns "" on error.
+         *          returns "" if the value does not exist or is null.
          */
         const string get_string(const string &key) const;
 
         /*!
          *  @brief  Returns the value of key as std::uint_fast64_t
          *  
-         *          Returns 0 on error.
+         *          Returns 0 if the value does not exist or is null.
          */
         const uint_fast64_t get_uint64(const string &key) const;
 
         /*!
          *  @brief  Returns the value of key as double
          *  
-         *          Returns 0.0 on error.
+         *          Returns 0.0 if the value does not exist or is null.
          */
         const double get_double(const string &key) const;
 
@@ -209,21 +210,22 @@ public:
         /*!
          *  @brief  Returns the value of key as bool
          *  
-         *          Returns false on error.
+         *          Returns false if the value does not exist or is null.
          */
         const bool get_bool(const string &key) const;
 
         /*!
          *  @brief  Returns the value of key as time_point
          *  
-         *          Returns clocks epoch on error.
+         *          Returns clocks epoch if the value does not exist or is null.
          */
         const system_clock::time_point get_time_point(const string &key) const;
 
         /*!
          *  @brief  Returns the value of key as vector
          *  
-         *          Returns false on error.
+         *          Returns an empty vector if the value does not exist or is
+         *          null.
          */
         const std::vector<string> get_vector(const string &key) const;
 

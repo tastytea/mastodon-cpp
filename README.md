@@ -1,5 +1,6 @@
 **mastodon-cpp** is a C++ wrapper for the Mastodon API.
-The library takes care of the network stuff. You submit a query and get the raw JSON.
+The library takes care of the network stuff. You submit a query and use the raw
+JSON or abstract classes.
 
 [TODO-list](https://github.com/tastytea/mastodon-cpp/milestones)
 
@@ -26,6 +27,34 @@ int main()
     std::string answer;
     masto.get(Mastodon::API::v1::accounts_verify_credentials, answer);
     std::cout << answer << '\n';
+}
+```
+
+## Another simple example
+
+Using the `Easy-class`.
+
+```C++
+#include <iostream>
+#include <string>
+#include <vector>
+#include <mastodon-cpp/mastodon-cpp.hpp>
+#include <mastodon-cpp/easy/all.hpp>
+
+using Mastodon::Easy;
+
+int main()
+{
+    Easy masto("social.example", "");
+    std::string answer;
+    masto.get(Mastodon::API::v1::timelines_public, answer);
+
+    for (const std::string &str : Easy::json_array_to_vector(answer))
+    {
+        Easy::Status status(str);
+        std::cout << "  " << status.account().acct() << " wrote:\n";
+        std::cout << status.content() << '\n';
+    }
 }
 ```
 

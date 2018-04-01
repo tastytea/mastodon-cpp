@@ -16,7 +16,7 @@ before_install:
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 60
 script:
   - mkdir -p build && cd build
-  - cmake -DWITH_EXAMPLES=ON ..
+  - cmake -DWITH_EXAMPLES=ON -DWITH_TESTS=ON ..
   - make VERBOSE=1
   - make install DESTDIR=install
   - ctest ..

@@ -43,11 +43,10 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    std::string answer;
     std::uint16_t ret = 0;
     EasyToot masto(argv[1], argv[2]);
 
-    masto.toot("Test");
+    ret = masto.toot("Test");
     if (ret != 0)
     {
         std::cerr << "Error: " << ret << '\n';

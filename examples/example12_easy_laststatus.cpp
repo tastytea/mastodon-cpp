@@ -1,4 +1,5 @@
 /*  This file is part of mastodon-cpp.
+ *  Prints some information about your last status.
  */
 
 // Don't compile this if the Easy-interface is turned off

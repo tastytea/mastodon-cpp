@@ -23,14 +23,14 @@
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
-    #include "easy.hpp"
-    #include "account.hpp"
-    #include "status.hpp"
+    #include "easy/easy.hpp"
+    #include "easy/account.hpp"
+    #include "easy/status.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
-    #include <mastodon-cpp/easy.hpp>
-    #include <mastodon-cpp/account.hpp>
-    #include <mastodon-cpp/status.hpp>
+    #include <mastodon-cpp/easy/easy.hpp>
+    #include <mastodon-cpp/easy/account.hpp>
+    #include <mastodon-cpp/easy/status.hpp>
 #endif
 
 using std::string;

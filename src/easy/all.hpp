@@ -19,7 +19,7 @@
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
-    #include "easy.hpp"
+    #include "easy/easy.hpp"
     #include "easy/account.hpp"
     #include "easy/application.hpp"
     #include "easy/attachment.hpp"
@@ -36,7 +36,7 @@
     #include "easy/status.hpp"
     #include "easy/tag.hpp"
 #else
-    #include <mastodon-cpp/easy.hpp>
+    #include <mastodon-cpp/easy/easy.hpp>
     #include <mastodon-cpp/easy/account.hpp>
     #include <mastodon-cpp/easy/application.hpp>
     #include <mastodon-cpp/easy/attachment.hpp>

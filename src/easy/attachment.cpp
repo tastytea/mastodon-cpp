@@ -53,10 +53,7 @@ const std::chrono::duration<double> Attachment::duration() const
 {
     const double sec = get_double("meta.original.duration");
 
-    if (sec > 0.0)
-    {
-        return std::chrono::duration<double>(sec);
-    }
+    return std::chrono::duration<double>(sec);
 }
 
 const std::array<double, 2> Attachment::focus() const

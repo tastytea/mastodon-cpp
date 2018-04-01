@@ -25,22 +25,22 @@
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
-    #include "easy.hpp"
-    #include "account.hpp"
-    #include "emoji.hpp"
-    #include "attachment.hpp"
-    #include "mention.hpp"
-    #include "tag.hpp"
-    #include "application.hpp"
+    #include "easy/easy.hpp"
+    #include "easy/account.hpp"
+    #include "easy/emoji.hpp"
+    #include "easy/attachment.hpp"
+    #include "easy/mention.hpp"
+    #include "easy/tag.hpp"
+    #include "easy/application.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
-    #include <mastodon-cpp/easy.hpp>
-    #include <mastodon-cpp/account.hpp>
-    #include <mastodon-cpp/emoji.hpp>
-    #include <mastodon-cpp/attachment.hpp>
-    #include <mastodon-cpp/mention.hpp>
-    #include <mastodon-cpp/tag.hpp>
-    #include <mastodon-cpp/application.hpp>
+    #include <mastodon-cpp/easy/easy.hpp>
+    #include <mastodon-cpp/easy/account.hpp>
+    #include <mastodon-cpp/easy/emoji.hpp>
+    #include <mastodon-cpp/easy/attachment.hpp>
+    #include <mastodon-cpp/easy/mention.hpp>
+    #include <mastodon-cpp/easy/tag.hpp>
+    #include <mastodon-cpp/easy/application.hpp>
 #endif
 
 using std::string;

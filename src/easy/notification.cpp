@@ -66,13 +66,13 @@ const Easy::notification_type Notification::type() const
 {
     const string strtype = get_string("type");
     if (strtype.compare("mention") == 0)
-        return notification_type::mention;
+        return notification_type::Mention;
     else if (strtype.compare("reblog") == 0)
-        return notification_type::reblog;
+        return notification_type::Reblog;
     else if (strtype.compare("favourite") == 0)
-        return notification_type::favourite;
+        return notification_type::Favourite;
     else if (strtype.compare("follow") == 0)
-        return notification_type::follow;
+        return notification_type::Follow;
 
-    return notification_type::unknown;
+    return notification_type::Undefined;
 }

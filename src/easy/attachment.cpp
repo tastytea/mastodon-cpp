@@ -135,16 +135,16 @@ const Easy::attachment_type Attachment::type() const
 {
     const string strtype = get_string("type");
     if (strtype.compare("image") == 0)
-        return attachment_type::image;
+        return attachment_type::Image;
     else if (strtype.compare("video") == 0)
-        return attachment_type::video;
+        return attachment_type::Video;
     else if (strtype.compare("gifv") == 0)
-        return attachment_type::gifv;
+        return attachment_type::Gifv;
     else if (strtype.compare("unknown") == 0)
-        return attachment_type::unknown;
+        return attachment_type::Unknown;
 
     ttdebug << "Could not get data: type\n";
-    return attachment_type::unknown;
+    return attachment_type::Undefined;
 }
 
 const string Attachment::url() const

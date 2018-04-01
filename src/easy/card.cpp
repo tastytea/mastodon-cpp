@@ -77,16 +77,16 @@ const Easy::card_type Card::type() const
 {
     const string strtype = get_string("type");
     if (strtype.compare("link") == 0)
-        return card_type::link;
+        return card_type::Link;
     else if (strtype.compare("photo") == 0)
-        return card_type::photo;
+        return card_type::Photo;
     else if (strtype.compare("video") == 0)
-        return card_type::video;
+        return card_type::Video;
     else if (strtype.compare("rich") == 0)
-        return card_type::rich;
+        return card_type::Rich;
 
     ttdebug << "Could not get data: type\n";
-    return card_type::unknown;
+    return card_type::Undefined;
 }
 
 const string Card::url() const

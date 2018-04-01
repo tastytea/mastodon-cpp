@@ -56,9 +56,6 @@ public:
 
     /*!
      *  @brief  Describes visibility of toots.
-     *  
-     *          The names begin with a capital letter because some of them
-     *          are reserved keywords when written in all-lowercase.
      */
     enum class visibility_type
     {
@@ -74,10 +71,11 @@ public:
      */
     enum class attachment_type
     {
-        image,
-        video,
-        gifv,
-        unknown
+        Image,
+        Video,
+        Gifv,
+        Unknown,
+        Undefined
     };
 
     /*!
@@ -85,11 +83,11 @@ public:
      */
     enum class card_type
     {
-        link,
-        photo,
-        video,
-        rich,
-        unknown
+        Link,
+        Photo,
+        Video,
+        Rich,
+        Undefined
     };
 
     /*!
@@ -97,11 +95,11 @@ public:
      */
     enum class notification_type
     {
-        mention,
-        reblog,
-        favourite,
-        follow,
-        unknown
+        Mention,
+        Reblog,
+        Favourite,
+        Follow,
+        Undefined
     };
 
     typedef std::pair<event_type, string> stream_event;

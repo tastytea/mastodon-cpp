@@ -91,6 +91,7 @@ const double Attachment::framerate() const
         }
     }
 
+    return 0.0;
 }
 
 const uint_fast64_t Attachment::height() const

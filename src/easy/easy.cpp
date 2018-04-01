@@ -17,6 +17,7 @@
 #include <ctime>
 #include <iomanip>  // get_time
 #include <sstream>
+#include <regex>
 #include "easy.hpp"
 #include "macros.hpp"
 
@@ -83,6 +84,34 @@ const void Easy::Entity::from_string(const string &json)
     {
         _valid = true;
     }
+}
+
+const std::vector<Easy::stream_event>
+    Easy::parse_stream(const std::string &streamdata)
+{
+    string stream = streamdata;
+    std::regex reevent("event: (update|notification|delete)\ndata: (.*)\n");
+    std::smatch match;
+    std::vector<stream_event> vec = {};
+
+    while (std::regex_search(stream, match, reevent))
+    {
+        const string &event = match[1].str();
+        const string &data = match[2].str();
+        event_type type = event_type::Undefined;
+
+        if (event.compare("update") == 0)
+            type = event_type::Update;
+        else if (event.compare("notification") == 0)
+            type = event_type::Notification;
+        else if (event.compare("delete") == 0)
+            type = event_type::Delete;
+
+        vec.push_back(stream_event(type, data));
+        stream = match.suffix().str();
+    }
+
+    return vec;
 }
 
 const Json::Value Easy::Entity::to_object() const

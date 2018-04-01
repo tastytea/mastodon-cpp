@@ -21,6 +21,7 @@
 #include <cstdint>
 #include <chrono>
 #include <vector>
+#include <utility>
 #include <jsoncpp/json/json.h>
 
 // If we are compiling mastodon-cpp, use another include path
@@ -42,6 +43,17 @@ namespace Mastodon
 class Easy : public API
 {
 public:
+    /*!
+     *  @brief  Describes the event type
+     */
+    enum class event_type
+    {
+        Update,
+        Notification,
+        Delete,
+        Undefined
+    };
+
     /*!
      *  @brief  Describes visibility of toots.
      *  
@@ -92,6 +104,8 @@ public:
         unknown
     };
 
+    typedef std::pair<event_type, string> stream_event;
+
     /*!
      *  @brief  Constructs a new Easy object.
      *  
@@ -111,6 +125,16 @@ public:
      *  @return vector of strings or an empty vector on error
      */
     static const std::vector<string> json_array_to_vector(const string &json);
+
+    /*!
+     *  @brief  Split stream into a vector of events
+     *
+     *  @param  streamdata  Data from get_stream()
+     *
+     *  @return vector of stream events
+     */
+    static const std::vector<stream_event>
+        parse_stream(const std::string &streamdata);
 
     /*!
      *  @brief  Base class for entities.

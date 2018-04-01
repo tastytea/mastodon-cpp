@@ -136,6 +136,9 @@ public:
     static const std::vector<stream_event>
         parse_stream(const std::string &streamdata);
 
+    /*!
+     *  @brief  Base class for all entities.
+     */
     class Entity
     {
     public:

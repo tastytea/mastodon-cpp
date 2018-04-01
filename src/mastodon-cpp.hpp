@@ -38,8 +38,9 @@
  *  @example example10_simplify.cpp
  *  @example example11_post_media.cpp
  *  @example example12_easy_laststatus.cpp
- *  @example example13_easy_laststatus.cpp
+ *  @example example13_easy_stream.cpp
  */
+
 namespace Mastodon
 {
 /*!

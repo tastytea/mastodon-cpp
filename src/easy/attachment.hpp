@@ -80,6 +80,8 @@ namespace Mastodon
 
         /*!
          *  @brief  Returns the focus point (x, y)
+         *  
+         *          Values are between -1.0 and 1.0.
          */
         const std::array<double, 2> focus() const;
 

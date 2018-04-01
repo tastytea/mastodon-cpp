@@ -37,6 +37,7 @@
  *  @example example09_streaming_api.cpp
  *  @example example10_simplify.cpp
  *  @example example11_post_media.cpp
+ *  @example example12_easy_laststatus.cpp
  */
 namespace Mastodon
 {

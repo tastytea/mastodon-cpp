@@ -104,7 +104,7 @@ public:
     explicit Easy(const string &instance, const string &access_token);
 
     /*!
-     *  @brief  Turns an JSON array into a vector of strings
+     *  @brief  Turns a JSON array into a vector of strings
      *
      *  @param  json    JSON string holding the array
      *

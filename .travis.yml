@@ -19,6 +19,7 @@ script:
   - cmake -DWITH_EXAMPLES=ON ..
   - make VERBOSE=1
   - make install DESTDIR=install
+  - ctest ..
   - cd ..
 
 before_deploy:

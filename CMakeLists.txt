@@ -54,9 +54,6 @@ install(FILES src/mastodon-cpp.hpp
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp)
 if(NOT WITHOUT_EASY)
     file(GLOB easy_header src/easy/*.hpp)
-    list(FILTER easy_header EXCLUDE REGEX "easy\.hpp$")
-    install(FILES src/easy/easy.hpp
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp)
     install(FILES ${easy_header}
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp/easy)
 endif()

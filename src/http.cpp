@@ -159,6 +159,11 @@ const uint_fast16_t API::http::request(const method &meth,
         {
             ret = 22;
         }
+        else if (std::strncmp(e.what(),
+                              "transfer closed with outstanding", 32) == 0)
+        {
+            ret = 23;
+        }
         else
         {
             cerr << "RUNTIME ERROR: " << e.what() << std::endl;

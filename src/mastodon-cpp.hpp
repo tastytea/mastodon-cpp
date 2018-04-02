@@ -65,6 +65,7 @@ namespace Mastodon
  *  |        20 | Failed to connect             |
  *  |        21 | Couldn't resolve host         |
  *  |        22 | Network is unreachable        |
+ *  |        23 | Transfer interrupted          |
  *  | 100 - 999 | HTTP status codes             |
  *  |     65535 | Unknown exception             |
  */

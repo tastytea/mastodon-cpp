@@ -24,13 +24,13 @@
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
     #include "easy/easy.hpp"
-    #include "easy/account.hpp"
-    #include "easy/status.hpp"
+    #include "easy/entities/account.hpp"
+    #include "easy/entities/status.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy/easy.hpp>
-    #include <mastodon-cpp/easy/account.hpp>
-    #include <mastodon-cpp/easy/status.hpp>
+    #include <mastodon-cpp/easy/entities/account.hpp>
+    #include <mastodon-cpp/easy/entities/status.hpp>
 #endif
 
 using std::string;

@@ -5,7 +5,7 @@
 #include <cstdint>
 #include "mastodon-cpp.hpp"
 #include "easy/easy.hpp"
-#include "easy/status.hpp"
+#include "easy/entities/status.hpp"
 
 int main(int argc, char *argv[])
 {

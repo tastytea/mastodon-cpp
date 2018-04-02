@@ -26,21 +26,21 @@
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
     #include "easy/easy.hpp"
-    #include "easy/account.hpp"
-    #include "easy/emoji.hpp"
-    #include "easy/attachment.hpp"
-    #include "easy/mention.hpp"
-    #include "easy/tag.hpp"
-    #include "easy/application.hpp"
+    #include "easy/entities/account.hpp"
+    #include "easy/entities/emoji.hpp"
+    #include "easy/entities/attachment.hpp"
+    #include "easy/entities/mention.hpp"
+    #include "easy/entities/tag.hpp"
+    #include "easy/entities/application.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy/easy.hpp>
-    #include <mastodon-cpp/easy/account.hpp>
-    #include <mastodon-cpp/easy/emoji.hpp>
-    #include <mastodon-cpp/easy/attachment.hpp>
-    #include <mastodon-cpp/easy/mention.hpp>
-    #include <mastodon-cpp/easy/tag.hpp>
-    #include <mastodon-cpp/easy/application.hpp>
+    #include <mastodon-cpp/easy/entities/account.hpp>
+    #include <mastodon-cpp/easy/entities/emoji.hpp>
+    #include <mastodon-cpp/easy/entities/attachment.hpp>
+    #include <mastodon-cpp/easy/entities/mention.hpp>
+    #include <mastodon-cpp/easy/entities/tag.hpp>
+    #include <mastodon-cpp/easy/entities/application.hpp>
 #endif
 
 using std::string;

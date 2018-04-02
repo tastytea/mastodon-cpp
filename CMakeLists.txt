@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.7)
 project (mastodon-cpp
-         VERSION 0.8.1
+         VERSION 0.8.2
          LANGUAGES CXX
 )
 
@@ -22,7 +22,8 @@ configure_file (
     "${PROJECT_BINARY_DIR}/version.hpp"
 )
 
-# Announce that we are compiling mastodon-cpp (used in easy.hpp and examples)
+# Announce that we are compiling mastodon-cpp (used to figure out where the
+# headers are)
 add_definitions(-DMASTODON_CPP=1)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -37,7 +38,8 @@ endif()
 if(WITHOUT_EASY)
     file(GLOB sources src/*.cpp src/api/*.cpp)
 else()
-    file(GLOB sources src/*.cpp src/api/*.cpp src/easy/*.cpp)
+    file(GLOB sources src/*.cpp src/api/*.cpp
+                      src/easy/*.cpp src/easy/entities/*.cpp)
 endif()
 add_library(mastodon-cpp SHARED ${sources})
 set_target_properties(mastodon-cpp PROPERTIES
@@ -56,6 +58,9 @@ if(NOT WITHOUT_EASY)
     file(GLOB easy_header src/easy/*.hpp)
     install(FILES ${easy_header}
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp/easy)
+    file(GLOB easy_entities_header src/easy/entities/*.hpp)
+    install(FILES ${easy_entities_header}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp/easy/entities)
 endif()
 
 # Documentation

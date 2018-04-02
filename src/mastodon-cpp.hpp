@@ -22,6 +22,7 @@
 #include <cstdint>
 #include <map>
 #include <memory>
+#include <array>
 #include <curlpp/cURLpp.hpp>
 #include <curlpp/Easy.hpp>
 
@@ -333,6 +334,15 @@ public:
                                       string &access_token);
 
     /*!
+     *  @brief  Gets the header from the last answer.
+     *
+     *  @param  header  The header to get
+     *
+     *  @return The header, or "" on error.
+     */
+    const string get_header(const string &header) const;
+
+    /*!
      *  @brief  Make a GET request which doesn't require parameters.
      *
      *  @param  call    A call defined in Mastodon::API::v1
@@ -637,15 +647,6 @@ public:
     const uint_fast16_t del(const string &call,
                             const parametermap &parameters,
                             string &answer);
-
-    /*!
-         *  @brief  Gets the header from the last answer.
-         *
-         *  @param  header  The header to get
-         *
-         *  @return The header, or "" on error.
-         */
-        const string get_header(const string &header) const;
 
 private:
     const string _instance;

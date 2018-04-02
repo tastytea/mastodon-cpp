@@ -105,6 +105,31 @@ public:
     typedef std::pair<event_type, string> stream_event;
 
     /*!
+     *  @brief  Class to hold the `Link`-header.
+     *  
+     *          Extracts max_id and since_id from the `Link:`-header
+     */
+    class Link
+    {
+    public:
+        explicit Link(const string &link_header);
+
+        /*!
+         *  @brief  Returns max_id
+         */
+        const uint_fast64_t next() const;
+
+        /*!
+         *  @brief  Returns since_id
+         */
+        const uint_fast64_t prev() const;
+
+    private:
+        uint_fast64_t _next;
+        uint_fast64_t _prev;
+    };
+
+    /*!
      *  @brief  Constructs a new Easy object.
      *  
      *          To register your application, leave access_token blank and call
@@ -133,6 +158,11 @@ public:
      */
     static const std::vector<stream_event>
         parse_stream(const std::string &streamdata);
+
+    /*!
+     *  @brief  Gets the links from the last answer
+     */
+    const Link get_link() const;
 
     /*!
      *  @brief  Base class for all entities.

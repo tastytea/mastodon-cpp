@@ -76,3 +76,36 @@ const std::vector<Easy::stream_event>
 
     return vec;
 }
+
+Easy::Link::Link(const string &link_header)
+: _next(0)
+, _prev(0)
+{
+    std::regex renext("max_id=([[:digit:]]*)");
+    std::regex reprev("since_id=([[:digit:]]*)");
+    std::smatch match;
+
+    if (std::regex_search(link_header, match, renext))
+    {
+        _next = std::stoull(match[1].str());
+    }
+    if (std::regex_search(link_header, match, reprev))
+    {
+        _prev = std::stoull(match[1].str());
+    }
+}
+
+const uint_fast64_t Easy::Link::next() const
+{
+    return _next;
+}
+
+const uint_fast64_t Easy::Link::prev() const
+{
+    return _prev;
+}
+
+const Easy::Link Easy::get_link() const
+{
+    return Link(get_header("Link"));
+}

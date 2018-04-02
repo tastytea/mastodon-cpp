@@ -22,6 +22,7 @@
 #include <chrono>
 #include <vector>
 #include <utility>
+#include <functional>
 #include <jsoncpp/json/json.h>
 
 // If we are compiling mastodon-cpp, use another include path
@@ -102,12 +103,15 @@ public:
         Undefined
     };
 
+    /*!
+     *  @brief Used for stream events.
+     */
     typedef std::pair<event_type, string> stream_event;
 
     /*!
      *  @brief  Class to hold the `Link`-header.
      *  
-     *          Extracts max_id and since_id from the `Link:`-header
+     *          Extracts max_id and since_id from the `Link`-header
      */
     class Link
     {
@@ -120,9 +124,19 @@ public:
         const uint_fast64_t next() const;
 
         /*!
+         *  @brief  Returns max_id
+         */
+        const uint_fast64_t max_id() const;
+
+        /*!
          *  @brief  Returns since_id
          */
         const uint_fast64_t prev() const;
+
+        /*!
+         *  @brief  Returns since_id
+         */
+        const uint_fast64_t since_id() const;
 
     private:
         uint_fast64_t _next;

@@ -77,6 +77,11 @@ const std::vector<Easy::stream_event>
     return vec;
 }
 
+const Easy::Link Easy::get_link() const
+{
+    return Link(get_header("Link"));
+}
+
 Easy::Link::Link(const string &link_header)
 : _next(0)
 , _prev(0)
@@ -100,12 +105,17 @@ const uint_fast64_t Easy::Link::next() const
     return _next;
 }
 
+const uint_fast64_t Easy::Link::max_id() const
+{
+    return _next;
+}
+
 const uint_fast64_t Easy::Link::prev() const
 {
     return _prev;
 }
 
-const Easy::Link Easy::get_link() const
+const uint_fast64_t Easy::Link::since_id() const
 {
-    return Link(get_header("Link"));
+    return _prev;
 }

@@ -1,6 +1,6 @@
 **mastodon-cpp** is a C++ wrapper for the Mastodon API.
-The library takes care of the network stuff. You submit a query and use the raw
-JSON or abstract classes.
+The library takes care of the network stuff. You submit a query and get the raw
+JSON. You can then put that JSON into easy to use classes.
 
 [TODO-list](https://github.com/tastytea/mastodon-cpp/milestones)
 

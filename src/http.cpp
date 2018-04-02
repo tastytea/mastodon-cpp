@@ -116,11 +116,11 @@ const uint_fast16_t API::http::request(const method &meth,
         // Work around "HTTP/1.1 100 Continue\r\n\r\nHTTP/1.1 200 OK"
         size_t pos = answer.find("\r\n\r\n", 25);
         _headers = answer.substr(0, pos);
+        // Only return body
+        answer = answer.substr(pos + 4);
 
         if (ret == 200 || ret == 302 || ret == 307)
         {   // OK or Found or Temporary Redirect
-            // Only return body
-            answer = answer.substr(pos + 4);
             return 0;
         }
         else if (ret == 301 || ret == 308)

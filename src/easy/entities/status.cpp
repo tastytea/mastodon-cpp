@@ -97,12 +97,12 @@ const uint_fast64_t Status::id() const
 
 const uint_fast64_t Status::in_reply_to_id() const
 {
-    return get_uint64("in_reply_to_id");
+    return std::stoull(get_string("in_reply_to_id"));
 }
 
 const uint_fast64_t Status::in_reply_to_account_id() const
 {
-    return get_uint64("in_reply_to_account_id");
+    return std::stoull(get_string("in_reply_to_account_id"));
 }
 
 const string Status::language() const

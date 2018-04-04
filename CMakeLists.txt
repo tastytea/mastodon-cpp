@@ -6,12 +6,11 @@ project (mastodon-cpp
 
 include(GNUInstallDirs)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
 
-set(CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 include_directories(${PROJECT_SOURCE_DIR}/src)
 include_directories(${PROJECT_BINARY_DIR})
@@ -34,7 +33,7 @@ if(WITHOUT_EASY)
     add_definitions(-DWITHOUT_EASY=1)
 endif()
 
-# Library
+# Compile library
 if(WITHOUT_EASY)
     file(GLOB sources src/*.cpp src/api/*.cpp)
 else()
@@ -51,6 +50,30 @@ if(WITHOUT_EASY)
 else()
     target_link_libraries(mastodon-cpp curlpp jsoncpp)
 endif()
+
+# Compile examples
+if(WITH_EXAMPLES)
+    file(GLOB sources_examples examples/*.cpp)
+    foreach(src ${sources_examples})
+        get_filename_component(bin ${src} NAME_WE)
+        add_executable(${bin} ${src})
+        target_link_libraries(${bin} pthread jsoncpp mastodon-cpp)
+    endforeach()
+endif()
+
+# Compile tests
+if(WITH_TESTS)
+    include(CTest)
+    file(GLOB sources_tests tests/test_*.cpp)
+    foreach(src ${sources_tests})
+        get_filename_component(bin ${src} NAME_WE)
+        add_executable(${bin} ${src})
+        target_link_libraries(${bin} mastodon-cpp)
+        add_test(${bin} ${bin})
+    endforeach()
+endif()
+
+# Install library and header files
 install(TARGETS mastodon-cpp LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(FILES src/mastodon-cpp.hpp
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp)
@@ -63,37 +86,15 @@ if(NOT WITHOUT_EASY)
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp/easy/entities)
 endif()
 
-# Documentation
+# Compile & install documentation
 if(WITH_DOC)
     execute_process(COMMAND ./build_doc.sh
                     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
     install(DIRECTORY ${PROJECT_SOURCE_DIR}/doc/html
             DESTINATION ${CMAKE_INSTALL_DOCDIR}/mastodon-cpp-${PROJECT_VERSION})
-    file(GLOB examples src/examples/example*.cpp)
+    file(GLOB examples examples/example*.cpp)
     install(FILES ${examples}
             DESTINATION ${CMAKE_INSTALL_DOCDIR}/mastodon-cpp-${PROJECT_VERSION}/examples)
-endif()
-
-# Examples
-if(WITH_EXAMPLES)
-    file(GLOB sources_examples examples/*.cpp)
-    foreach(src ${sources_examples})
-        get_filename_component(bin ${src} NAME_WE)
-        add_executable(${bin} ${src})
-        target_link_libraries(${bin} pthread jsoncpp mastodon-cpp)
-    endforeach()
-endif()
-
-# Tests
-if(WITH_TESTS)
-    include(CTest)
-    file(GLOB sources_tests tests/test_*.cpp)
-    foreach(src ${sources_tests})
-        get_filename_component(bin ${src} NAME_WE)
-        add_executable(${bin} ${src})
-        target_link_libraries(${bin} mastodon-cpp)
-        add_test(${bin} ${bin})
-    endforeach()
 endif()
 
 # Packages

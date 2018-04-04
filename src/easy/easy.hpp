@@ -116,6 +116,9 @@ public:
     class Link
     {
     public:
+        /*!
+         *  @param  link_header  The content of the `Link` header
+         */
         explicit Link(const string &link_header);
 
         /*!
@@ -273,6 +276,7 @@ public:
          */
         const std::vector<string> get_vector(const string &key) const;
 
+    private:
         Json::Value _tree;
         bool _valid;
     };

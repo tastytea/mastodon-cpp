@@ -30,7 +30,7 @@ Notification::Notification()
 
 const Easy::Account Notification::account() const
 {
-    const Json::Value node = _tree["account"];
+    const Json::Value node = get("account");
     if (node.isObject())
     {
         return Easy::Account(node.toStyledString());

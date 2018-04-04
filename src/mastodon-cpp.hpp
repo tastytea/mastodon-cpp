@@ -80,6 +80,9 @@ public:
     class http
     {
     public:
+        /*!
+         *  @brief  HTTP methods
+         */
         enum class method
         {
             GET,
@@ -113,10 +116,10 @@ public:
                                     const curlpp::Forms &formdata,
                                     string &answer);
 
+        /*!
+         *  @brief  Get all headers in a string
+         */
         const void get_headers(string &headers) const;
-
-        const size_t callback(char* data, size_t size, size_t nmemb,
-                              string *oss);
 
         /*!
          *  @brief  Aborts the stream. Use only with streams.
@@ -134,6 +137,9 @@ public:
         const string _access_token;
         string _headers;
         bool _abort_stream;
+
+        const size_t callback(char* data, size_t size, size_t nmemb,
+                              string *oss);
     };
 
     /*!

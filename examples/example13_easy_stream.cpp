@@ -28,7 +28,7 @@ using Mastodon::Easy;
 using std::cout;
 using std::chrono::system_clock;
 
-// Transform time_point into a tm holding time info for the local timezone
+// Transform time_point into a string with the local time
 std::string get_localtime(const system_clock::time_point &timepoint)
 {
     std::time_t time = system_clock::to_time_t(timepoint);

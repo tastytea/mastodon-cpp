@@ -79,6 +79,8 @@ mastodon-cpp will never use error codes below 11, except 0.
 |        21 | Couldn't resolve host         |
 |        22 | Network is unreachable        |
 |        23 | Transfer interrupted          |
+|        24 | SSL error                     |
+|        25 | Timeout                       |
 | 100 - 999 | HTTP status codes             |
 |     65535 | Unknown error                 |
 

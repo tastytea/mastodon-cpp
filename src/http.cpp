@@ -136,6 +136,7 @@ const uint_fast16_t API::http::request(const method &meth,
     }
     catch (curlpp::RuntimeError &e)
     {
+        // FIXME: There has to be a better way
         if (std::strncmp(e.what(),
                          "Failed writing body", 19) == 0)
         {
@@ -163,6 +164,16 @@ const uint_fast16_t API::http::request(const method &meth,
                               "transfer closed with outstanding", 32) == 0)
         {
             ret = 23;
+        }
+        else if (std::strncmp(e.what(),
+                              "OpenSSL SSL_read: SSL_ERROR_SYSCALL", 35) == 0)
+        {
+            ret = 24;
+        }
+        else if (std::strncmp(e.what(),
+                              "Operation timed out", 19) == 0)
+        {
+            ret = 25;
         }
         else
         {

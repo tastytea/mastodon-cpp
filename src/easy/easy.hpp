@@ -223,6 +223,34 @@ public:
          */
         const string error() const;
 
+        /*!
+         *  @brief  Returns true if the last requested value was set, false if
+         *          it was unset.
+         *          
+         *          Members of Easy::Entity-derived classes return a default
+         *          value depending on its type when the requested value is not
+         *          found in the JSON. "" for strings, false for bools and so
+         *          on. Most of the time this is no problem, but sometimes you
+         *          need to know for sure.
+         *  
+         *  Example:
+         *  @code
+         *  Easy::Account a(jsonstring);
+         *  if (a.note().empty())
+         *  {
+         *      if (a.was_set())
+         *      {
+         *          cout << "Account has an empty description.\n";
+         *      }
+         *      else
+         *      {
+         *          cout << "Account has no description.\n";
+         *      }
+         *  }
+         *  @endcode
+         */
+        const bool was_set() const;
+
     protected:
         /*!
          *  @brief  Returns the value of key as Json::Value
@@ -279,6 +307,9 @@ public:
     private:
         Json::Value _tree;
         bool _valid;
+        bool _was_set;
+        // TODO: Look up if this is such a good idea
+        bool *_ptr_was_set;
     };
 
     class Account;

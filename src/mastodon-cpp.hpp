@@ -352,6 +352,23 @@ public:
     const string get_header(const string &header) const;
 
     /*!
+     *  @brief  Turn exceptions on or off. Defaults to off.
+     *  
+     *          This applies to exceptions from curlpp. curlpp::RuntimeError and
+     *          curlpp::LogicError.
+     *
+     *  @param  value   true for on, false for off
+     *
+     *  @return true if exceptions are turned on, false otherwise
+     */
+    bool exceptions(const bool &value);
+
+    /*!
+     *  @brief  Returns true if exceptions are turned on, false otherwise
+     */
+    const bool exceptions() const;
+
+    /*!
      *  @brief  Make a GET request which doesn't require parameters.
      *
      *  @param  call    A call defined in Mastodon::API::v1
@@ -662,6 +679,7 @@ private:
     string _access_token;
     string _useragent;
     http _http;
+    bool _exceptions;
 
     /*!
      *  @brief  Converts map of parameters into a string.

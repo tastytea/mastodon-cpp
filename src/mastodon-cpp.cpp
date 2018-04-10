@@ -29,6 +29,7 @@ API::API(const string &instance, const string &access_token)
 , _access_token(access_token)
 , _useragent(string("mastodon-cpp/") + global::version)
 , _http(*this, instance, access_token)
+, _exceptions(false)
 {
     //
 }
@@ -254,4 +255,15 @@ const string API::get_header(const std::string &header) const
     }
 
     return "";
+}
+
+bool API::exceptions(const bool &value)
+{
+    _exceptions = value;
+    return _exceptions;
+}
+
+const bool API::exceptions() const
+{
+    return _exceptions;
 }

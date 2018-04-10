@@ -18,6 +18,7 @@
 #include <functional>   // std::bind
 #include <list>
 #include <cstring>      // std::strncmp
+#include <exception>
 #include <curlpp/Options.hpp>
 #include <curlpp/Exception.hpp>
 #include <curlpp/Infos.hpp>
@@ -136,6 +137,11 @@ const uint_fast16_t API::http::request(const method &meth,
     }
     catch (curlpp::RuntimeError &e)
     {
+        if (parent.exceptions())
+        {
+            std::rethrow_exception(std::current_exception());
+        }
+
         // FIXME: There has to be a better way
         if (std::strncmp(e.what(),
                          "Failed writing body", 19) == 0)
@@ -186,6 +192,11 @@ const uint_fast16_t API::http::request(const method &meth,
     }
     catch (curlpp::LogicError &e)
     {
+        if (parent.exceptions())
+        {
+            std::rethrow_exception(std::current_exception());
+        }
+
         cerr << "LOGIC ERROR: " << e.what() << std::endl;
         return 0xffff;
     }

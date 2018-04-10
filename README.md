@@ -12,7 +12,11 @@ There are [examples](https://github.com/tastytea/mastodon-cpp/tree/master/exampl
 
 ## Upgrading from below 0.7.0
 
-The header location has changed. They are now in `mastodon-cpp/`.
+Your projects will break, sorry. Here are the important changes:
+
+* The header location has changed. They are now in `mastodon-cpp/`.
+* Specific network error messages have been replaced by 15, "Network error".
+  You can get the exceptions from curlpp with `Mastodon::API::exceptions(true)`.
 
 ## Most basic example
 
@@ -68,23 +72,24 @@ A project consisting of one file can be compiled as follows:
 
 mastodon-cpp will never use error codes below 11, except 0.
 
-|      Code | Explanation                   |
-| --------: |:------------------------------|
-|         0 | No error                      |
-|        11 | Invalid call                  |
-|        12 | Not implemented               |
-|        13 | URL changed (HTTP 301 or 308) |
-|        14 | Aborted by user               |
-|        20 | Failed to connect             |
-|        21 | Couldn't resolve host         |
-|        22 | Network is unreachable        |
-|        23 | Transfer interrupted          |
-|        24 | SSL error                     |
-|        25 | Timeout                       |
-| 100 - 999 | HTTP status codes             |
-|     65535 | Unknown error                 |
+|      Code | Explanation                      |
+| --------: |:---------------------------------|
+|         0 | No error                         |
+|        11 | Invalid call                     |
+|        12 | Not implemented                  |
+|        13 | URL changed (HTTP 301 or 308)    |
+|        14 | Aborted by user                  |
+|        15 | Network error (curlpp exception) |
+|    ~~20~~ | ~~Failed to connect~~            |
+|    ~~21~~ | ~~Couldn't resolve host~~        |
+|    ~~22~~ | ~~Network is unreachable~~       |
+|    ~~23~~ | ~~Transfer interrupted~~         |
+|    ~~24~~ | ~~SSL error~~                    |
+|    ~~25~~ | ~~Timeout~~                      |
+| 100 - 999 | HTTP status codes                |
+|     65535 | Unknown error                    |
 
-If you use a debug build, you get more verbose error messages.
+If you use a debug build, you get more verbose error messages. Errors 20-25 are no longer in use (since 0.8.9).
 
 ## Useful links
 

@@ -137,58 +137,22 @@ const uint_fast16_t API::http::request(const method &meth,
     }
     catch (curlpp::RuntimeError &e)
     {
-        if (parent.exceptions())
-        {
-            std::rethrow_exception(std::current_exception());
-        }
-
-        // FIXME: There has to be a better way
-        if (std::strncmp(e.what(),
-                         "Failed writing body", 19) == 0)
+        // This error is thrown if http.abort_stream() is used.
+        if (std::strncmp(e.what(), "Failed writing body", 19) == 0)
         {
             ttdebug << "Request was aborted by user\n";
             return 14;
         }
-        else if (std::strncmp(e.what(),
-                              "Failed to connect to", 20) == 0)
+
+        if (parent.exceptions())
         {
-            ret = 20;
-        }
-        else if (std::strncmp(e.what(),
-                              "Couldn't resolve host", 21) == 0 ||
-                 std::strncmp(e.what(),
-                              "Could not resolve host", 22) == 0)
-        {
-            ret = 21;
-        }
-        else if (std::strncmp(e.what(),
-                              "Network is unreachable", 22) == 0)
-        {
-            ret = 22;
-        }
-        else if (std::strncmp(e.what(),
-                              "transfer closed with outstanding", 32) == 0)
-        {
-            ret = 23;
-        }
-        else if (std::strncmp(e.what(),
-                              "OpenSSL SSL_read: SSL_ERROR_SYSCALL", 35) == 0)
-        {
-            ret = 24;
-        }
-        else if (std::strncmp(e.what(),
-                              "Operation timed out", 19) == 0)
-        {
-            ret = 25;
+            std::rethrow_exception(std::current_exception());
         }
         else
         {
-            cerr << "RUNTIME ERROR: " << e.what() << std::endl;
-            ret = 0xffff;
+            ttdebug << "curlpp::RuntimeError: " << e.what() << std::endl;
+            return 15;
         }
-        ttdebug << e.what() << std::endl;
-        
-        return ret;
     }
     catch (curlpp::LogicError &e)
     {
@@ -197,8 +161,8 @@ const uint_fast16_t API::http::request(const method &meth,
             std::rethrow_exception(std::current_exception());
         }
 
-        cerr << "LOGIC ERROR: " << e.what() << std::endl;
-        return 0xffff;
+        ttdebug << "curlpp::LogicError: " << e.what() << std::endl;
+        return 15;
     }
 
     return ret;

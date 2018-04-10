@@ -57,21 +57,18 @@ namespace Mastodon
  *  
  *  @section error Error codes
  *  mastodon-cpp will never use error codes below 11, except 0.
- *  |      Code | Explanation                   |
- *  | --------: |:------------------------------|
- *  |         0 | No error                      |
- *  |        11 | Invalid call                  |
- *  |        12 | Not implemented               |
- *  |        13 | URL changed (HTTP 301 or 308) |
- *  |        14 | Aborted by user               |
- *  |        20 | Failed to connect             |
- *  |        21 | Couldn't resolve host         |
- *  |        22 | Network is unreachable        |
- *  |        23 | Transfer interrupted          |
- *  |        24 | SSL error                     |
- *  |        25 | Timeout                       |
- *  | 100 - 999 | HTTP status codes             |
- *  |     65535 | Unknown exception             |
+ *  |      Code | Explanation                      |
+ *  | --------: |:---------------------------------|
+ *  |         0 | No error                         |
+ *  |        11 | Invalid call                     |
+ *  |        12 | Not implemented                  |
+ *  |        13 | URL changed (HTTP 301 or 308)    |
+ *  |        14 | Aborted by user                  |
+ *  |        15 | Network error (curlpp exception) |
+ *  | 100 - 999 | HTTP status codes                |
+ *  |     65535 | Unknown error                    |
+ *  
+ *  @deprecated Errors 20-25 are no longer in use.
  */
 class API
 {

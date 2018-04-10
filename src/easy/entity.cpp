@@ -30,7 +30,6 @@ Easy::Entity::Entity(const string &json)
 : _tree(Json::nullValue)
 , _valid(false)
 ,_was_set(false)
-,_ptr_was_set(&_was_set)
 {
     from_string(json);
 }
@@ -118,13 +117,13 @@ const Json::Value Easy::Entity::get(const string &key) const
 
     if (!node->isNull())
     {
-        *_ptr_was_set = true;
+        _was_set = true;
         return *node;
     }
 
     error:
     ttdebug << "Could not get data: " << key << '\n';
-    *_ptr_was_set = false;
+    _was_set = false;
     return Json::Value();
 }
 
@@ -134,11 +133,11 @@ const string Easy::Entity::get_string(const string &key) const
 
     if (node.isString())
     {
-        *_ptr_was_set = true;
+        _was_set = true;
         return node.asString();
     }
 
-    *_ptr_was_set = false;
+    _was_set = false;
     return "";
 }
 
@@ -148,11 +147,11 @@ const uint_fast64_t Easy::Entity::get_uint64(const string &key) const
 
     if (node.isUInt64())
     {
-        *_ptr_was_set = true;
+        _was_set = true;
         return node.asUInt64();
     }
 
-    *_ptr_was_set = false;
+    _was_set = false;
     return 0;
 }
 
@@ -162,11 +161,11 @@ const double Easy::Entity::get_double(const string &key) const
 
     if (node.isDouble())
     {
-        *_ptr_was_set = true;
+        _was_set = true;
         return node.asDouble();
     }
 
-    *_ptr_was_set = false;
+    _was_set = false;
     return 0.0;
 }
 
@@ -176,11 +175,11 @@ const bool Easy::Entity::get_bool(const string &key) const
 
     if (node.isBool())
     {
-        *_ptr_was_set = true;
+        _was_set = true;
         return node.asBool();
     }
 
-    *_ptr_was_set = false;
+    _was_set = false;
     return false;
 }
 
@@ -195,11 +194,11 @@ const system_clock::time_point
         struct std::tm tm = {0};
         sstime >> std::get_time(&tm, "%Y-%m-%dT%T");
         std::time_t time = timegm(&tm);
-        *_ptr_was_set = true;
+        _was_set = true;
         return system_clock::from_time_t(time);
     }
 
-    *_ptr_was_set = false;
+    _was_set = false;
     // Return clocks epoch
     return system_clock::time_point();
 }
@@ -215,10 +214,10 @@ const std::vector<string> Easy::Entity::get_vector(const string &key) const
         {
             vec.push_back(value.asString());
         }
-        *_ptr_was_set = true;
+        _was_set = true;
         return vec;
     }
 
-    *_ptr_was_set = false;
+    _was_set = false;
     return {};
 }

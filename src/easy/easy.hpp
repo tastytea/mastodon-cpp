@@ -307,9 +307,7 @@ public:
     private:
         Json::Value _tree;
         bool _valid;
-        bool _was_set;
-        // TODO: Look up if this is such a good idea
-        bool *_ptr_was_set;
+        mutable bool _was_set;
     };
 
     class Account;

@@ -30,8 +30,8 @@
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy/easy.hpp>
-    #include <mastodon-cpp/entities/easy/account.hpp>
-    #include <mastodon-cpp/entities/easy/status.hpp>
+    #include <mastodon-cpp/easy/entities/account.hpp>
+    #include <mastodon-cpp/easy/entities/status.hpp>
 #endif
 
 using std::string;

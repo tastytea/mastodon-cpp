@@ -52,7 +52,7 @@ const uint_fast64_t Notification::id() const
 
 const Easy::Status Notification::status() const
 {
-    const Json::Value node = get("restatusblog");
+    const Json::Value node = get("status");
     if (node.isObject())
     {
         return Easy::Status(node.toStyledString());

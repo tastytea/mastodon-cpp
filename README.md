@@ -10,6 +10,12 @@ The HTML reference can be generated with `build_doc.sh`, if doxygen is installed
 It is also available at [tastytea.github.io/mastodon-cpp/](https://tastytea.github.io/mastodon-cpp/docs/annotated.html).
 There are [examples](https://github.com/tastytea/mastodon-cpp/tree/master/examples) in `examples/`.
 
+## Upgrading from below 0.10.0
+
+`Mastodon::API::get`, `::get_stream`, `::post`, `::put` and `::del` don't take
+std::string as parameter anymore, only `parametermap`s. The old behaviour is
+still supported but is deprecated and will be removed in version 1.0.0.
+
 ## Upgrading from below 0.7.0
 
 Your projects will break, sorry. Here are the important changes:

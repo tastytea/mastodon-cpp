@@ -298,9 +298,6 @@ public:
                                       string &client_secret,
                                       string &url);
 
-    /*!
-     *  @deprecated Will vanish in 1.0.0
-     */
     [[deprecated("Will vanish in 1.0.0")]]
     const uint_fast16_t register_app1(const string &instance,
                                       const string &client_name,
@@ -330,9 +327,6 @@ public:
                                       const string &code,
                                       string &access_token);
 
-    /*!
-     *  @deprecated Will vanish in 1.0.0
-     */
     [[deprecated("Will vanish in 1.0.0")]]
     const uint_fast16_t register_app2(const string &instance,
                                       const string &client_id,
@@ -405,40 +399,11 @@ public:
      */
     const uint_fast16_t get(const string &call, string &answer);
 
-    /*!
-     *  @brief  Make a GET request which requires a parameter as part of the
-     *          call.
-     *
-     *  @param  call      A call defined in Mastodon::API::v1
-     *  @param  argument  The parameter that is part of the call
-     *  @param  answer    The answer from the server. Usually JSON. On error an
-     *                    empty string.
-     *
-     *  @return @ref error "Error code". If the URL has permanently changed, 13
-     *  is returned and answer is set to the new URL.
-     *
-     *  @deprecated Will vanish in 1.0.0
-     */
     [[deprecated("Will vanish in 1.0.0, use get() without argument instead.")]]
     const uint_fast16_t get(const Mastodon::API::v1 &call,
                             const string &argument,
                             string &answer);
 
-    /*!
-     *  @brief  Make a GET request which requires a parameter as part of the
-     *          call and parameters.
-     *
-     *  @param  call        A call defined in Mastodon::API::v1
-     *  @param  argument    The parameter that is part of the call
-     *  @param  parameters  A Mastodon::API::parametermap containing parameters
-     *  @param  answer      The answer from the server. Usually JSON. On error
-     *                      an empty string.
-     *
-     *  @return @ref error "Error code". If the URL has permanently changed, 13
-     *  is returned and answer is set to the new URL.
-     *  
-     *  @deprecated Will vanish in 1.0.0
-     */
     [[deprecated("Will vanish in 1.0.0, use get() without argument instead.")]]
     const uint_fast16_t get(const Mastodon::API::v1 &call,
                             const string &argument,
@@ -493,20 +458,6 @@ public:
                                    string &answer,
                                    std::unique_ptr<Mastodon::API::http> &ptr);
 
-    /*!
-     *  @brief  Make a streaming GET request.
-     *
-     *  @param  call      A call defined in Mastodon::API::v1
-     *  @param  argument  The parameter that is part of the call
-     *  @param  answer    The answer from the server. Events with JSON-payload.
-     *  @param  ptr       Pointer to the http object. Can be used to call
-     *                    ptr->abort_stream()
-     *
-     *  @return @ref error "Error code". If the URL has permanently changed, 13
-     *  is returned and answer is set to the new URL.
-     *  
-     *  @deprecated Vill vanish in 1.0.0
-     */
     [[deprecated("Will vanish in 1.0.0, use get_stream() without argument instead.")]]
     const uint_fast16_t get_stream(const Mastodon::API::v1 &call,
                                    const string &argument,
@@ -576,42 +527,11 @@ public:
                              const parametermap &parameters,
                              string &answer);
 
-    /*!
-     *  @brief  Make a POST request which requires a parameter as part of the
-     *          call.
-     *
-     *  @param  call      A call defined in Mastodon::API::v1
-     *  @param  argument  The parameter that is part of the call
-     *  @param  answer    The answer from the server. Usually JSON. On error an
-     *                    empty string.
-     *
-     *  @return @ref error "Error code". If the URL has permanently changed, 13
-     *  is returned and answer is set to the new URL.
-     *
-     *  @deprecated Will vanish in 1.0.0
-     */
     [[deprecated("Will vanish in 1.0.0, use post() without argument instead.")]]
     const uint_fast16_t post(const Mastodon::API::v1 &call,
                              const string &argument,
                              string &answer);
 
-    /*!
-     *  @brief  Make a POST request which requires a parameter as part of the
-     *          call and parameters.
-     *
-     *          Binary data must be base64-encoded or a filename.
-     *
-     *  @param  call        A call defined in Mastodon::API::v1
-     *  @param  argument    The parameter that is part of the call
-     *  @param  parameters  A Mastodon::API::parametermap containing parameters
-     *  @param  answer      The answer from the server. Usually JSON. On error
-     *                      an empty string.
-     *
-     *  @return @ref error "Error code". If the URL has permanently changed, 13
-     *  is returned and answer is set to the new URL.
-     *
-     *  @deprecated Will vanish in 1.0.0
-     */
     [[deprecated("Will vanish in 1.0.0, use post() without argument instead.")]]
     const uint_fast16_t post(const Mastodon::API::v1 &call,
                              const string &argument,
@@ -650,22 +570,6 @@ public:
                             const parametermap &parameters,
                             string &answer);
 
-    /*!
-     *  @brief  Make a PUT request which requires a parameter as part of the
-     *          call and parameters.
-     *
-     *  @param  call        A call defined in Mastodon::API::v1
-     *  @param  argument    The parameter that is part of the call
-     *  @param  parameters  A Mastodon::API::parametermap containing
-     *                      parameters
-     *  @param  answer      The answer from the server. Usually JSON. On error
-     *                      an empty string.
-     *
-     *  @return @ref error "Error code". If the URL has permanently changed, 13
-     *  is returned and answer is set to the new URL.
-     *
-     *  @deprecated Will vanish in 1.0.0
-     */
     [[deprecated("Will vanish in 1.0.0, use put() without argument instead.")]]
     const uint_fast16_t put(const Mastodon::API::v1 &call,
                             const string &argument,
@@ -698,33 +602,10 @@ public:
                             const parametermap &parameters,
                             string &answer);
 
-    /*!
-     *  @brief  Make a DELETE request which requires a parameter as part of the
-     *          call.
-     *
-     *  @param  call      A call defined in Mastodon::API::v1
-     *  @param  argument  The parameter that is part of the call
-     *
-     *  @return @ref error "Error code".
-     *  
-     *  @deprecated Will vanish in 1.0.0
-     */
     [[deprecated("Will vanish in 1.0.0, use del() without argument instead.")]]
     const uint_fast16_t del(const Mastodon::API::v1 &call,
                             const string &argument);
 
-    /*!
-     *  @brief  Make a DELETE request which requires a parameter as part of the
-     *          call and parameters.
-     *
-     *  @param  call        A call defined in Mastodon::API::v1
-     *  @param  argument    The parameter that is part of the call
-     *  @param  parameters  A Mastodon::API::parametermap containing parameters
-     *
-     *  @return @ref error "Error code".
-     *  
-     *  @deprecated Will vanish in 1.0.0
-     */
     [[deprecated("Will vanish in 1.0.0, use del() without argument instead.")]]
     const uint_fast16_t del(const Mastodon::API::v1 &call,
                             const string &argument,

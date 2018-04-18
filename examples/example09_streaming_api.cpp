@@ -59,7 +59,8 @@ int main(int argc, char *argv[])
     {
         Mastodon::API masto(argv[1], argv[2]);
         masto.set_useragent("mastodon-cpp-example/1.3.3.7");
-        masto.get_stream(API::v1::streaming_hashtag, "np", answer, ptr);
+        masto.get_stream(API::v1::streaming_hashtag, {{ "hashtag", {"np"} }},
+                         answer, ptr);
     });
     std::this_thread::sleep_for(std::chrono::seconds(20));
     ptr->abort_stream();

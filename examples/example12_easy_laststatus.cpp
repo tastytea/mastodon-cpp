@@ -44,8 +44,10 @@ int main(int argc, char *argv[])
 
         // Get last status
         ret = masto.get(API::v1::accounts_id_statuses,
-                        std::to_string(acc.id()),
-                        {{ "limit", { "1" } }},
+                        {
+                            { "id", { std::to_string(acc.id()) } },
+                            { "limit", { "1" } }
+                        },
                         answer);
         if (ret == 0)
         {

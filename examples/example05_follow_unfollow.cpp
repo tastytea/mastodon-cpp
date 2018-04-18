@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
     // If no @ is found, it is presumably an ID
     if (id.find('@') == std::string::npos)
     {
-        ret = masto.post(API::v1::accounts_id_follow, id, answer);
+        ret = masto.post(API::v1::accounts_id_follow, {{"id", {id}}}, answer);
         if (ret == 0)
         {
             // std::cout << answer << '\n';
@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 
         std::cout << "Unfollowing in 30 seconds...\n";
         std::this_thread::sleep_for(std::chrono::seconds(30));
-        ret = masto.post(API::v1::accounts_id_unfollow, id, answer);
+        ret = masto.post(API::v1::accounts_id_unfollow, {{"id", {id}}}, answer);
         if (ret == 0)
         {
             // std::cout << answer << '\n';
@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
 
         std::cout << "Unfollowing " << id << " in 30 seconds...\n";
         std::this_thread::sleep_for(std::chrono::seconds(30));
-        ret = masto.post(API::v1::accounts_id_unfollow, id, answer);
+        ret = masto.post(API::v1::accounts_id_unfollow, {{"id", {id}}}, answer);
         if (ret == 0)
         {
             // std::cout << answer << '\n';

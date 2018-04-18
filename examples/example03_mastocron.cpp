@@ -58,10 +58,11 @@ int main(int argc, char *argv[])
     // Only get toots we haven't seen yet
     API::parametermap params =
     {
+        { "hashtag", { hashtag } },
         { "limit", { limit } },
         { "since_id", { lastid } }
     };
-    ret = masto.get(API::v1::timelines_tag_hashtag, hashtag, params, answer);
+    ret = masto.get(API::v1::timelines_tag_hashtag, params, answer);
 
     if (ret == 0)
     {

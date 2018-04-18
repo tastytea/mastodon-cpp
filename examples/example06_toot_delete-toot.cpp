@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 
         std::cout << "Deleting in 30 seconds...\n";
         std::this_thread::sleep_for(std::chrono::seconds(30));
-        ret = masto.del(API::v1::statuses_id, id);
+        ret = masto.del(API::v1::statuses_id, {{"id", {id}}});
         if (ret == 0)
         {
             std::cout << "Status " << id << " deleted.\n";

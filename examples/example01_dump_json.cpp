@@ -35,11 +35,12 @@ int main(int argc, char *argv[])
         std::string uid = answer.substr(7, answer.find("\"", 7) - 7);
         API::parametermap parameters =
         {
+            { "id", { uid } },
             { "limit", { "1" } },
             { "only_media", { "1" } }
         };
 
-        ret = masto.get(API::v1::accounts_id_statuses, uid,parameters, answer);
+        ret = masto.get(API::v1::accounts_id_statuses, parameters, answer);
         if (ret == 0)
         {
             std::cout << answer << '\n';

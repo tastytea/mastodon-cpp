@@ -224,6 +224,7 @@ Feature complete as of Mastodon 2.3.0
  * [x] POST /api/v1/lists/:id/accounts
  * [x] DELETE /api/v1/lists/:id/accounts
  * [x] POST /api/v1/media
+ * [x] PUT /api/v1/media/:id
  * [x] GET /api/v1/mutes
  * [x] GET /api/v1/notifications
  * [x] GET /api/v1/notifications/:id

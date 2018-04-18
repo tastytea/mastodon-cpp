@@ -1,7 +1,7 @@
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = "mastodon-cpp"
 PROJECT_NUMBER         = 0.0.0
-INPUT                  = README.md src/ src/api/ src/easy/
+INPUT                  = README.md src/ src/api/ src/easy/ src/easy/entities/
 USE_MDFILE_AS_MAINPAGE = README.md
 CREATE_SUBDIRS         = NO
 ALLOW_UNICODE_NAMES    = YES

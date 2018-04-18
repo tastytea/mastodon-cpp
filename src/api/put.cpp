@@ -67,12 +67,7 @@ const uint_fast16_t API::put(const Mastodon::API::v1 &call,
     parametermap newparameters = parameters;
 
     // Emulate old behaviour
-    switch (call)
-    {
-        default:
-            newparameters["id"] = { argument };
-            break;
-    }
+    newparameters["id"] = { argument };
 
     return put(call, newparameters, answer);
 }

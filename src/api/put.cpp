@@ -21,16 +21,25 @@
 using namespace Mastodon;
 
 const uint_fast16_t API::put(const Mastodon::API::v1 &call,
-                             const string &argument,
                              const parametermap &parameters, string &answer)
 {
     string strcall = "";
-    const string argument_encoded = urlencode(argument);
+    string strid = "";
+
+    // The ID is part of the path
+    const auto &it = parameters.find("id");
+    if (it != parameters.end())
+    {
+        strid = it->second[0];
+    }
 
     switch (call)
     {
         case v1::lists_id:
-            strcall = "/api/v1/lists/" + argument_encoded;
+            strcall = "/api/v1/lists/" + strid;
+            break;
+        case v1::media_id:
+            strcall = "/api/v1/media/" + strid;
             break;
         default:
             ttdebug << "ERROR: Invalid call.\n";
@@ -38,8 +47,7 @@ const uint_fast16_t API::put(const Mastodon::API::v1 &call,
             break;
     }
 
-    return _http.request(http::method::PUT, strcall,
-                         maptoformdata(parameters), answer);
+    return put(strcall, parameters, answer);
 }
 
 const uint_fast16_t API::put(const string &call,
@@ -48,4 +56,23 @@ const uint_fast16_t API::put(const string &call,
 
     return _http.request(http::method::PUT, call,
                          maptoformdata(parameters), answer);
+}
+
+
+// ↓↓ DEPRECATED ↓↓
+const uint_fast16_t API::put(const Mastodon::API::v1 &call,
+                             const string &argument,
+                             const parametermap &parameters, string &answer)
+{
+    parametermap newparameters = parameters;
+
+    // Emulate old behaviour
+    switch (call)
+    {
+        default:
+            newparameters["id"] = { argument };
+            break;
+    }
+
+    return put(call, newparameters, answer);
 }

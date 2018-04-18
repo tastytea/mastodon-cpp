@@ -21,16 +21,19 @@
 using namespace Mastodon;
 using std::cerr;
 
-const uint_fast16_t API::get(const Mastodon::API::v1 &call, string &answer)
-{
-    const parametermap p;
-    return get(call, p, answer);
-}
-
 const uint_fast16_t API::get(const Mastodon::API::v1 &call,
                              const parametermap &parameters, string &answer)
 {
     string strcall = "";
+    string strid = "";
+
+    // The ID is part of the path
+    const auto &it = parameters.find("id");
+    if (it != parameters.end())
+    {
+        strid = it->second[0];
+    }
+
     switch (call)
     {
         case v1::accounts_verify_credentials:
@@ -75,11 +78,69 @@ const uint_fast16_t API::get(const Mastodon::API::v1 &call,
         case v1::accounts_relationships:
             strcall = "/api/v1/accounts/relationships";
             break;
+        case v1::accounts_id:
+            strcall = "/api/v1/accounts/" + strid;
+            break;
+        case v1::accounts_id_followers:
+            strcall = "/api/v1/accounts/" + strid + "/followers";
+            break;
+        case v1::accounts_id_following:
+            strcall = "/api/v1/accounts/" + strid + "/following";
+            break;
+        case v1::accounts_id_statuses:
+            strcall = "/api/v1/accounts/" + strid + "/statuses";
+            break;
         case v1::accounts_search:
             strcall = "/api/v1/accounts/search";
             break;
+        case v1::accounts_id_lists:
+            strcall = "/api/v1/accounts/" + strid + "/lists";
+            break;
+        case v1::lists_id_accounts:
+            strcall = "/api/v1/lists/" + strid + "/accounts";
+            break;
+        case v1::lists_id:
+            strcall = "/api/v1/lists/" + strid;
+            break;
+        case v1::notifications_id:
+            strcall = "/api/v1/notifications/" + strid;
+            break;
         case v1::search:
             strcall = "/api/v1/search";
+            break;
+        case v1::statuses_id:
+            strcall = "/api/v1/statuses/" + strid;
+            break;
+        case v1::statuses_id_context:
+            strcall = "/api/v1/statuses/" + strid + "/context";
+            break;
+        case v1::statuses_id_card:
+            strcall = "/api/v1/statuses/" + strid + "/card";
+            break;
+        case v1::statuses_id_reblogged_by:
+            strcall = "/api/v1/statuses/" + strid + "/reblogged_by";
+            break;
+        case v1::statuses_id_favourited_by:
+            strcall = "/api/v1/statuses/" + strid + "/favourited_by";
+            break;
+        case v1::timelines_tag_hashtag:
+            {
+                // The hashtag is part of the path
+                const auto &it = parameters.find("hashtag");
+                if (it != parameters.end())
+                {
+                    strcall = "/api/v1/timelines/tag/" + urlencode(it->second[0]);
+                }
+                else
+                {
+                    ttdebug << "ERROR: Invalid call.\n";
+                    return 11;
+                }
+            }
+            break;
+        case v1::timelines_list_list_id:
+            strcall = "/api/v1/timelines/list/" + strid;
+            break;
         default:
             ttdebug << "ERROR: Invalid call.\n";
             return 11;
@@ -88,10 +149,53 @@ const uint_fast16_t API::get(const Mastodon::API::v1 &call,
 
     if (parameters.size() > 0)
     {
-        strcall += maptostr(parameters);
+        // Delete the parameters that are already in strcall
+        parametermap newparameters = parameters;
+        newparameters.erase("id");
+        newparameters.erase("hashtag");
+        strcall += maptostr(newparameters);
     }
 
-    return _http.request(http::method::GET, strcall, answer);
+    return get(strcall, answer);
+}
+
+const uint_fast16_t API::get(const Mastodon::API::v1 &call, string &answer)
+{
+    const parametermap p;
+    return get(call, p, answer);
+}
+
+const uint_fast16_t API::get(const std::string &call, string &answer)
+{
+    return _http.request(http::method::GET, call, answer);
+}
+
+
+
+// ↓↓ DEPRECATED ↓↓
+
+const uint_fast16_t API::get(const Mastodon::API::v1 &call,
+                             const string &argument,
+                             const parametermap &parameters, string &answer)
+{
+    parametermap newparameters = parameters;
+
+    // Emulate old behaviour
+    switch (call)
+    {
+        case v1::search:
+        case v1::accounts_search:
+            newparameters["q"] = { argument };
+            break;
+        case v1::timelines_tag_hashtag:
+            newparameters["hashtag"] = { argument };
+            break;
+        default:
+            newparameters["id"] = { argument };
+            break;
+    }
+
+    return get(call, newparameters, answer);
 }
 
 const uint_fast16_t API::get(const Mastodon::API::v1 &call,
@@ -99,89 +203,4 @@ const uint_fast16_t API::get(const Mastodon::API::v1 &call,
 {
     const parametermap p;
     return get(call, argument, p, answer);
-}
-const uint_fast16_t API::get(const Mastodon::API::v1 &call,
-                             const string &argument,
-                             const parametermap &parameters, string &answer)
-{
-    string strcall = "";
-    bool firstparam = true;
-    const string argument_encoded = urlencode(argument);
-
-    switch (call)
-    {
-        case v1::accounts_id:
-            strcall = "/api/v1/accounts/" + argument_encoded;
-            break;
-        case v1::accounts_id_followers:
-            strcall = "/api/v1/accounts/" + argument_encoded + "/followers";
-            break;
-        case v1::accounts_id_following:
-            strcall = "/api/v1/accounts/" + argument_encoded + "/following";
-            break;
-        case v1::accounts_id_statuses:
-            strcall = "/api/v1/accounts/" + argument_encoded + "/statuses";
-            break;
-        case v1::accounts_relationships:
-            strcall = "/api/v1/accounts/relationships?id=" + argument_encoded;
-            firstparam = false;
-            break;
-        case v1::accounts_search:
-            strcall = "/api/v1/accounts/search?q=" + argument_encoded;
-            firstparam = false;
-            break;
-        case v1::accounts_id_lists:
-            strcall = "/api/v1/accounts/" + argument_encoded + "/lists";
-            break;
-        case v1::lists_id_accounts:
-            strcall = "/api/v1/lists/" + argument_encoded + "/accounts";
-            break;
-        case v1::lists_id:
-            strcall = "/api/v1/lists/" + argument_encoded;
-            break;
-        case v1::notifications_id:
-            strcall = "/api/v1/notifications/" + argument_encoded;
-            break;
-        case v1::search:
-            strcall = "/api/v1/search?q=" + argument_encoded;
-            firstparam = false;
-            break;
-        case v1::statuses_id:
-            strcall = "/api/v1/statuses/" + argument_encoded;
-            break;
-        case v1::statuses_id_context:
-            strcall = "/api/v1/statuses/" + argument_encoded + "/context";
-            break;
-        case v1::statuses_id_card:
-            strcall = "/api/v1/statuses/" + argument_encoded + "/card";
-            break;
-        case v1::statuses_id_reblogged_by:
-            strcall = "/api/v1/statuses/" + argument_encoded + "/reblogged_by";
-            break;
-        case v1::statuses_id_favourited_by:
-            strcall = "/api/v1/statuses/" + argument_encoded + "/favourited_by";
-            break;
-        case v1::timelines_tag_hashtag:
-            strcall = "/api/v1/timelines/tag/" + argument_encoded;
-            break;
-        case v1::timelines_list_list_id:
-            strcall = "/api/v1/timelines/list/" + argument_encoded;
-            break;
-        default:
-            ttdebug << "ERROR: Invalid call.\n";
-            return 11;
-            break;
-    }
-
-    if (parameters.size() > 0)
-    {
-        strcall += maptostr(parameters, firstparam);
-    }
-
-    return _http.request(http::method::GET, strcall, answer);
-}
-
-const uint_fast16_t API::get(const std::string &call, string &answer)
-{
-    return _http.request(http::method::GET, call, answer);
 }

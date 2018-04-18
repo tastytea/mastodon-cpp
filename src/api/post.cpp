@@ -20,16 +20,18 @@
 
 using namespace Mastodon;
 
-const uint_fast16_t API::post(const Mastodon::API::v1 &call, string &answer)
-{
-    const parametermap p;
-    return post(call, p, answer);
-}
-
 const uint_fast16_t API::post(const Mastodon::API::v1 &call,
                               const parametermap &parameters, string &answer)
 {
     string strcall = "";
+    string strid = "";
+
+    // The ID is part of the path
+    const auto &it = parameters.find("id");
+    if (it != parameters.end())
+    {
+        strid = it->second[0];
+    }
 
     switch (call)
     {
@@ -60,81 +62,56 @@ const uint_fast16_t API::post(const Mastodon::API::v1 &call,
         case v1::statuses:
             strcall = "/api/v1/statuses";
             break;
-        default:
-            ttdebug << "ERROR: Invalid call.\n";
-            return 11;
-            break;
-    }
-
-    return _http.request(http::method::POST, strcall,
-                         maptoformdata(parameters), answer);
-}
-
-const uint_fast16_t API::post(const Mastodon::API::v1 &call,
-                              const string &argument, string &answer)
-{
-    const parametermap p;
-    return post(call, argument, p, answer);
-}
-const uint_fast16_t API::post(const Mastodon::API::v1 &call,
-                              const string &argument,
-                              const parametermap &parameters, string &answer)
-{
-    string strcall = "";
-    const string argument_encoded = curlpp::escape(argument);
-
-    switch (call)
-    {
         case v1::accounts_id_follow:
-            strcall = "/api/v1/accounts/" + argument_encoded + "/follow";
+            strcall = "/api/v1/accounts/" + strid + "/follow";
             break;
         case v1::accounts_id_unfollow:
-            strcall = "/api/v1/accounts/" + argument_encoded + "/unfollow";
+            strcall = "/api/v1/accounts/" + strid + "/unfollow";
             break;
         case v1::accounts_id_block:
-            strcall = "/api/v1/accounts/" + argument_encoded + "/block";
+            strcall = "/api/v1/accounts/" + strid + "/block";
             break;
         case v1::accounts_id_unblock:
-            strcall = "/api/v1/accounts/" + argument_encoded + "/unblock";
+            strcall = "/api/v1/accounts/" + strid + "/unblock";
             break;
         case v1::accounts_id_mute:
-            strcall = "/api/v1/accounts/" + argument_encoded + "/mute";
+            strcall = "/api/v1/accounts/" + strid + "/mute";
             break;
         case v1::accounts_id_unmute:
-            strcall = "/api/v1/accounts/" + argument_encoded + "/unmute";
+            strcall = "/api/v1/accounts/" + strid + "/unmute";
             break;
         case v1::follow_requests_id_authorize:
-            strcall = "/api/v1/folow_requests/" + argument_encoded + "/authorize";
+            strcall = "/api/v1/folow_requests/" + strid + "/authorize";
             break;
         case v1::follow_requests_id_reject:
-            strcall = "/api/v1/folow_requests/" + argument_encoded + "/reject";
+            strcall = "/api/v1/folow_requests/" + strid + "/reject";
             break;
         case v1::lists_id_accounts:
-            strcall = "/api/v1/lists/" + argument_encoded + "/accounts";
+            strcall = "/api/v1/lists/" + strid + "/accounts";
             break;
         case v1::statuses_id_reblog:
-            strcall = "/api/v1/statuses/" + argument_encoded + "/reblog";
+            strcall = "/api/v1/statuses/" + strid + "/reblog";
             break;
         case v1::statuses_id_unreblog:
-            strcall = "/api/v1/statuses/" + argument_encoded + "/unreblog";
+            strcall = "/api/v1/statuses/" + strid + "/unreblog";
             break;
         case v1::statuses_id_favourite:
-            strcall = "/api/v1/statuses/" + argument_encoded + "/favourite";
+            strcall = "/api/v1/statuses/" + strid + "/favourite";
             break;
         case v1::statuses_id_unfavourite:
-            strcall = "/api/v1/statuses/" + argument_encoded + "/unfavourite";
+            strcall = "/api/v1/statuses/" + strid + "/unfavourite";
             break;
         case v1::statuses_id_pin:
-            strcall = "/api/v1/statuses/" + argument_encoded + "/pin";
+            strcall = "/api/v1/statuses/" + strid + "/pin";
             break;
         case v1::statuses_id_unpin:
-            strcall = "/api/v1/statuses/" + argument_encoded + "/unpin";
+            strcall = "/api/v1/statuses/" + strid + "/unpin";
             break;
         case v1::statuses_id_mute:
-            strcall = "/api/v1/statuses/" + argument_encoded + "/mute";
+            strcall = "/api/v1/statuses/" + strid + "/mute";
             break;
         case v1::statuses_id_unmute:
-            strcall = "/api/v1/statuses/" + argument_encoded + "/unmute";
+            strcall = "/api/v1/statuses/" + strid + "/unmute";
             break;
         default:
             ttdebug << "ERROR: Invalid call.\n";
@@ -142,8 +119,13 @@ const uint_fast16_t API::post(const Mastodon::API::v1 &call,
             break;
     }
 
-    return _http.request(http::method::POST, strcall,
-                         maptoformdata(parameters), answer);
+    return post(strcall, parameters, answer);
+}
+
+const uint_fast16_t API::post(const Mastodon::API::v1 &call, string &answer)
+{
+    const parametermap p;
+    return post(call, p, answer);
 }
 
 const uint_fast16_t API::post(const string &call,
@@ -152,4 +134,31 @@ const uint_fast16_t API::post(const string &call,
 
     return _http.request(http::method::POST, call,
                          maptoformdata(parameters), answer);
+}
+
+
+// ↓↓ DEPRECATED ↓↓
+
+const uint_fast16_t API::post(const Mastodon::API::v1 &call,
+                              const string &argument,
+                              const parametermap &parameters, string &answer)
+{
+    parametermap newparameters = parameters;
+
+    // Emulate old behaviour
+    switch (call)
+    {
+        default:
+            newparameters["id"] = { argument };
+            break;
+    }
+
+    return post(call, newparameters, answer);
+}
+
+const uint_fast16_t API::post(const Mastodon::API::v1 &call,
+                              const string &argument, string &answer)
+{
+    const parametermap p;
+    return post(call, argument, p, answer);
 }

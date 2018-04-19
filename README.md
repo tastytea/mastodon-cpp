@@ -13,7 +13,7 @@ There are [examples](https://github.com/tastytea/mastodon-cpp/tree/master/exampl
 ## Upgrading from below 0.10.0
 
 `Mastodon::API::get`, `::get_stream`, `::post`, `::put` and `::del` don't take
-std::string as parameter anymore, only `parametermap`s. The old behaviour is
+`std::string` as parameter to API-calls anymore, only `parametermap`s. The old behaviour is
 still supported but is deprecated and will be removed in version 1.0.0.
 
 ## Upgrading from below 0.7.0

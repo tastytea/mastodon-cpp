@@ -182,6 +182,33 @@ public:
     const Link get_link() const;
 
     /*!
+     *  @brief  Converts a time_point to a string
+     *  
+     *          The return value can not exceed 1023 chars.
+     *
+     *  @param  timepoint  The timepoint
+     *  @param  format     The format of the string, same as with `strftime`.
+     *  
+     *  Example:
+     *  @code
+     *  auto timepoint = status.created_at();
+     *  cout << Easy::strtime_utc(timepoint, "%F, %T") << '\n';
+     *  @endcode
+     *
+     *  @return The UTC time as string
+     */
+    static const string strtime_utc(const system_clock::time_point &timepoint,
+                                    const string &format);
+
+    /*!
+     *  @brief  See strtime_utc
+     *
+     *  @return The local time as string
+     */
+    static const string strtime_local(const system_clock::time_point &timepoint,
+                                      const string &format);
+
+    /*!
      *  @brief  Base class for all entities.
      */
     class Entity

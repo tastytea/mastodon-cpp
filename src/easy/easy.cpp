@@ -82,6 +82,32 @@ const Easy::Link Easy::get_link() const
     return Link(get_header("Link"));
 }
 
+const string Easy::strtime_utc(const system_clock::time_point &timepoint,
+                               const string &format)
+{
+    constexpr std::uint_fast16_t bufsize = 1024;
+    std::time_t time = system_clock::to_time_t(timepoint);
+    std::tm *timeinfo = std::gmtime(&time);
+    char buffer[bufsize];
+
+    std::strftime(buffer, bufsize, format.c_str(), timeinfo);
+
+    return buffer;
+}
+
+const string Easy::strtime_local(const system_clock::time_point &timepoint,
+                                 const string &format)
+{
+    constexpr std::uint_fast16_t bufsize = 1024;
+    std::time_t time = system_clock::to_time_t(timepoint);
+    std::tm *timeinfo = std::localtime(&time);
+    char buffer[bufsize];
+
+    std::strftime(buffer, bufsize, format.c_str(), timeinfo);
+
+    return buffer;
+}
+
 Easy::Link::Link(const string &link_header)
 : _next(0)
 , _prev(0)

@@ -11,7 +11,6 @@
 #include <memory>
 #include <vector>
 #include <chrono>
-#include <ctime>
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
@@ -27,18 +26,6 @@ using Mastodon::API;
 using Mastodon::Easy;
 using std::cout;
 using std::chrono::system_clock;
-
-// Transform time_point into a string with the local time
-std::string get_localtime(const system_clock::time_point &timepoint)
-{
-    std::time_t time = system_clock::to_time_t(timepoint);
-    std::tm *timeinfo = std::localtime(&time);
-    char buffer[9];
-
-    std::strftime(buffer, 9, "%T", timeinfo);
-
-    return buffer;
-}
 
 int main(int argc, char *argv[])
 {
@@ -80,7 +67,8 @@ int main(int argc, char *argv[])
             {
                 case Easy::event_type::Update:
                     status.from_string(event.second);
-                    cout << "[" << get_localtime(status.created_at()) << "] ";
+                    cout << "[" <<
+                        Easy::strtime_local(status.created_at(), "%T") << "] ";
                     cout << "Status from: " << status.account().acct()
                          << " (" << status.url() << ")\n";
                     break;

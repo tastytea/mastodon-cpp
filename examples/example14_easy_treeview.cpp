@@ -31,18 +31,6 @@ using Mastodon::Easy;
 using std::cout;
 using std::chrono::system_clock;
 
-// Transform time_point into a string with the local time
-std::string get_localtime(const system_clock::time_point &timepoint)
-{
-    std::time_t time = system_clock::to_time_t(timepoint);
-    std::tm *timeinfo = std::localtime(&time);
-    char buffer[9];
-
-    std::strftime(buffer, 9, "%T", timeinfo);
-
-    return buffer;
-}
-
 // Print a status to stdout, nicely formatted
 void format_status(const Easy::Status &status, const std::uint8_t &level)
 {
@@ -67,7 +55,7 @@ void format_status(const Easy::Status &status, const std::uint8_t &level)
         }
     }
     cout << space << "|                                 "
-         << get_localtime(status.created_at()) << '\n';
+         << Easy::strtime_local(status.created_at(), "%T") << '\n';
     cout << space << "+-----------------------------------------" << std::endl;
 }
 
@@ -77,14 +65,19 @@ std::uint16_t print_status(Easy &masto, const std::string &id,
 {
     std::uint16_t ret;
     std::string answer;
+    API::parametermap parameters =
+    {
+        { "id", { id }}
+    };
 
-    ret = masto.get(Mastodon::API::v1::statuses_id, id, answer);
+    ret = masto.get(Mastodon::API::v1::statuses_id, parameters, answer);
 
     if (ret == 0)
     {
         format_status(Easy::Status(answer), level);
 
-        ret = masto.get(Mastodon::API::v1::statuses_id_context, id, answer);
+        ret = masto.get(Mastodon::API::v1::statuses_id_context,
+                        parameters, answer);
         if (ret == 0)
         {
             Easy::Context context(answer);

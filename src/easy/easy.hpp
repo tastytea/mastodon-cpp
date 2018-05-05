@@ -352,6 +352,11 @@ public:
     class Results;
     class Status;
     class Tag;
+
+protected:
+    inline static const string strtime
+        (const system_clock::time_point &timepoint,
+         const string &format, const bool &utc);
 };
 }
 

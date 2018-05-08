@@ -6,7 +6,7 @@ HOMEPAGE="https://github.com/tastytea/mastodon-cpp"
 SRC_URI="https://github.com/tastytea/mastodon-cpp/archive/${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64"
 IUSE="doc debug examples"
 RDEPEND=">=dev-cpp/curlpp-0.7.3
          >=dev-libs/jsoncpp-1.8.1"

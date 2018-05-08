@@ -114,6 +114,14 @@ packages for the package managers of Gentoo, Debian and Red Hat.
 Put the ebuild into your [local overlay](https://wiki.gentoo.org/wiki/Custom_repository) and run `ebuild <ebuild path> manifest`.
 Install with `emerge mastodon-cpp`.
 
+Or [add my repository](https://wiki.gentoo.org/wiki/Eselect/Repository) and
+install it from there.
+
+    eselect repository add tastytea git https://git.tastytea.de/repos/overlay-tastytea.git
+    echo 'dev-cpp/mastodon-cpp ~amd64' >> /etc/portage/package.keywords/mastodon-cpp
+    emaint sync -r tastytea
+    emerge -a dev-cpp/mastodon-cpp
+
 ### DEB and RPM
 
 Prebuilt DEB and RPM packages for x86_64(amd64) are provided with each release.

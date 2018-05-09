@@ -274,7 +274,7 @@ public:
      *
      *  @return The percent-encoded string
      */
-    const string urlencode(const string &str) const;
+    static const string urlencode(const string &str);
 
     /*!
      *  @brief  Register application, step 1/2

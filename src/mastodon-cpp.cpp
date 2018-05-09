@@ -129,7 +129,7 @@ const curlpp::Forms API::maptoformdata(const parametermap &map)
     return formdata;
 }
 
-const std::string API::urlencode(const std::string &str) const
+const std::string API::urlencode(const std::string &str)
 {
     return curlpp::escape(str);
 }

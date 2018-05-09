@@ -196,6 +196,8 @@ public:
      *  @endcode
      *
      *  @return The UTC time as string
+     *  
+     *  @since  0.11.0
      */
     static const string strtime_utc(const system_clock::time_point &timepoint,
                                     const string &format);
@@ -204,6 +206,8 @@ public:
      *  @brief  See strtime_utc
      *
      *  @return The local time as string
+     *  
+     *  @since  0.11.0
      */
     static const string strtime_local(const system_clock::time_point &timepoint,
                                       const string &format);

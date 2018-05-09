@@ -365,6 +365,8 @@ public:
      *  @brief  Replaces HTML entities with UTF-8 characters
      *
      *          Supports named and numbered entities, decimal and hexadecimal.
+     *          
+     *  @since  0.12.0
      */
     static const string unescape_html(const string &html);
 

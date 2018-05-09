@@ -362,6 +362,13 @@ public:
     const bool exceptions() const;
 
     /*!
+     *  @brief  Replaces HTML entities with UTF-8 characters
+     *
+     *          Supports named and numbered entities, decimal and hexadecimal.
+     */
+    static const string unescape_html(const string &html);
+
+    /*!
      *  @brief  Make a GET request which doesn't require parameters.
      *
      *  @param  call    A call defined in Mastodon::API::v1

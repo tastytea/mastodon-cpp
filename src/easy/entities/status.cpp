@@ -92,17 +92,17 @@ const uint_fast64_t Status::favourites_count() const
 
 const uint_fast64_t Status::id() const
 {
-    return std::stoull(get_string("id"));
+    return stouint64(get_string("id"));
 }
 
 const uint_fast64_t Status::in_reply_to_id() const
 {
-    return std::stoull(get_string("in_reply_to_id"));
+    return stouint64(get_string("in_reply_to_id"));
 }
 
 const uint_fast64_t Status::in_reply_to_account_id() const
 {
-    return std::stoull(get_string("in_reply_to_account_id"));
+    return stouint64(get_string("in_reply_to_account_id"));
 }
 
 const string Status::language() const

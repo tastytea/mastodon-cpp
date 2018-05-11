@@ -31,7 +31,7 @@ List::List()
 
 const uint_fast64_t List::id() const
 {
-    return std::stoull(get_string("id"));
+    return stouint64(get_string("id"));
 }
 
 const string List::title() const

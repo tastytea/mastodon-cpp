@@ -221,3 +221,15 @@ const std::vector<string> Easy::Entity::get_vector(const string &key) const
     _was_set = false;
     return {};
 }
+
+const std::uint_fast64_t Easy::Entity::stouint64(const string &str) const
+{
+    if (str == "")
+    {
+        return 0;
+    }
+    else
+    {
+        return stoull(str);
+    }
+}

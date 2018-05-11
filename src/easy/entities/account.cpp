@@ -75,7 +75,7 @@ const string Account::header_static() const
 
 const std::uint_fast64_t Account::id() const
 {
-    return std::stoull(get_string("id"));
+    return stouint64(get_string("id"));
 }
 
 const bool Account::locked() const

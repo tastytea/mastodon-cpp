@@ -49,7 +49,7 @@ const bool Relationship::following() const
 
 const uint_fast64_t Relationship::id() const
 {
-    return std::stoull(get_string("id"));
+    return stouint64(get_string("id"));
 }
 
 const bool Relationship::muting() const

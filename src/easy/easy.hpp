@@ -335,6 +335,8 @@ public:
          */
         const std::vector<string> get_vector(const string &key) const;
 
+        const std::uint_fast64_t stouint64(const string &str) const;
+
     private:
         Json::Value _tree;
         bool _valid;

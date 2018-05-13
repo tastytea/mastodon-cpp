@@ -44,8 +44,8 @@ int main(int argc, char *argv[])
         answer.clear();
         if (counter == 10)
         {
-            std::cerr << "Aborting...\n";
-            ptr->abort_stream();
+            std::cerr << "Cancelling...\n";
+            ptr->cancel_stream();
             break;
         }
         std::this_thread::sleep_for(std::chrono::seconds(2));
@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
                          answer, ptr);
     });
     std::this_thread::sleep_for(std::chrono::seconds(20));
-    ptr->abort_stream();
+    ptr->cancel_stream();
     std::cout << answer;
     std::cout << '\n';
     tag.join();

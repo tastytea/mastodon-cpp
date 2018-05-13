@@ -34,7 +34,7 @@ API::http::http(const API &api, const string &instance,
 : parent(api)
 , _instance(instance)
 , _access_token(access_token)
-, _abort_stream(false)
+, _cancel_stream(false)
 {
     curlpp::initialize();
 }
@@ -137,10 +137,10 @@ const uint_fast16_t API::http::request(const method &meth,
     }
     catch (curlpp::RuntimeError &e)
     {
-        // This error is thrown if http.abort_stream() is used.
+        // This error is thrown if http.cancel_stream() is used.
         if (std::strncmp(e.what(), "Failed writing body", 19) == 0)
         {
-            ttdebug << "Request was aborted by user\n";
+            ttdebug << "Request was cancelled by user\n";
             return 14;
         }
 
@@ -176,7 +176,7 @@ const void API::http::get_headers(string &headers) const
 const size_t API::http::callback(char* data, size_t size, size_t nmemb,
                                  string *str)
 {
-    if (_abort_stream)
+    if (_cancel_stream)
     {
         // This throws the runtime error: Failed writing body
         return 0;
@@ -186,7 +186,12 @@ const size_t API::http::callback(char* data, size_t size, size_t nmemb,
     return size * nmemb;
 };
 
+const void API::http::cancel_stream()
+{
+    _cancel_stream = true;
+}
+
 const void API::http::abort_stream()
 {
-    _abort_stream = true;
+    cancel_stream();
 }

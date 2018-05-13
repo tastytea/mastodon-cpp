@@ -35,11 +35,11 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    cout << "I'll show you the public timeline. Press CTRL-C to abort\n";
+    cout << "I'll show you the public timeline. Press CTRL-C to cancel\n";
 
     // These have to be static in order to use them in- and outside the thread
     static std::string stream;
-    // You can abort the stream with this pointer (ptr->abort_stream())
+    // You can cancel the stream with this pointer (ptr->cancel_stream())
     static std::unique_ptr<Mastodon::API::http> ptr;
 
     // Start a new thread for the stream

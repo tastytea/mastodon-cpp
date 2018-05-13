@@ -63,7 +63,7 @@ namespace Mastodon
  *  |        11 | Invalid call                     |
  *  |        12 | Not implemented                  |
  *  |        13 | URL changed (HTTP 301 or 308)    |
- *  |        14 | Aborted by user                  |
+ *  |        14 | Cancelled by user                |
  *  |        15 | Network error (curlpp exception) |
  *  | 100 - 999 | HTTP status codes                |
  *  |     65535 | Unknown error                    |
@@ -121,13 +121,18 @@ public:
         const void get_headers(string &headers) const;
 
         /*!
-         *  @brief  Aborts the stream. Use only with streams.
+         *  @brief  Cancels the stream. Use only with streams.
          *  
-         *          Aborts the stream next time data comes in. Can take a few
+         *          Cancels the stream next time data comes in. Can take a few
          *          seconds.
          *          This works only with streams, because only streams have an
          *          own http object.
+         *          
+         *  @since  0.12.2
          */ 
+        const void cancel_stream();
+
+        [[deprecated("Will vanish in 1.0.0. Use cancel_stream() instead.")]]
         const void abort_stream();
 
     private:
@@ -135,7 +140,7 @@ public:
         const string _instance;
         const string _access_token;
         string _headers;
-        bool _abort_stream;
+        bool _cancel_stream;
 
         const size_t callback(char* data, size_t size, size_t nmemb,
                               string *oss);
@@ -426,7 +431,7 @@ public:
      *  @param  parameters  A Mastodon::API::parametermap containing parameters
      *  @param  answer      The answer from the server. Events with JSON-payload.
      *  @param  ptr         Pointer to the http object. Can be used to call
-     *                      ptr->abort_stream()
+     *                      ptr->cancel_stream()
      *
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
@@ -442,7 +447,7 @@ public:
      *  @param  call      A call defined in Mastodon::API::v1
      *  @param  answer    The answer from the server. Events with JSON-payload.
      *  @param  ptr       Pointer to the http object. Can be used to call
-     *                    ptr->abort_stream()
+     *                    ptr->cancel_stream()
      *
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
@@ -458,7 +463,7 @@ public:
      *  @param  answer    The answer from the server. Usually JSON. On error an
      *                    empty string.
      *  @param  ptr       Pointer to the http object. Can be used to call
-     *                    ptr->abort_stream()
+     *                    ptr->cancel_stream()
      *
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.

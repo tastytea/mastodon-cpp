@@ -5,7 +5,10 @@ project (mastodon-cpp
 )
 
 include(GNUInstallDirs)
-
+find_package(PkgConfig REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(CURLPP REQUIRED curlpp)
+pkg_check_modules(JSONCPP REQUIRED jsoncpp)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -20,6 +23,14 @@ endif()
 
 include_directories(${PROJECT_SOURCE_DIR}/src)
 include_directories(${PROJECT_BINARY_DIR})
+
+include_directories(${CURL_INCLUDE_DIRS})
+include_directories(${CURLPP_INCLUDE_DIRS})
+include_directories(${JSONCPP_INCLUDE_DIRS})
+
+link_directories(${CURL_LIBRARY_DIRS})
+link_directories(${CURLPP_LIBRARY_DIRS})
+link_directories(${JSONCPP_LIBRARY_DIRS})
 
 # Write version in header
 configure_file (
@@ -52,9 +63,9 @@ set_target_properties(mastodon-cpp PROPERTIES
     SOVERSION ${mastodon-cpp_VERSION_MAJOR}
 )
 if(WITHOUT_EASY)
-    target_link_libraries(mastodon-cpp curlpp)
+    target_link_libraries(mastodon-cpp ${CURLPP_LIBRARIES})
 else()
-    target_link_libraries(mastodon-cpp curlpp jsoncpp)
+    target_link_libraries(mastodon-cpp ${CURLPP_LIBRARIES} ${JSONCPP_LIBRARIES})
 endif()
 
 # Compile examples
@@ -63,7 +74,7 @@ if(WITH_EXAMPLES)
     foreach(src ${sources_examples})
         get_filename_component(bin ${src} NAME_WE)
         add_executable(${bin} ${src})
-        target_link_libraries(${bin} pthread jsoncpp mastodon-cpp)
+        target_link_libraries(${bin} pthread ${JSONCPP_LIBRARIES} mastodon-cpp)
     endforeach()
 endif()
 

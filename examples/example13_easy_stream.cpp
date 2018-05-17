@@ -11,6 +11,7 @@
 #include <memory>
 #include <vector>
 #include <chrono>
+#include <mutex>
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
@@ -51,6 +52,16 @@ int main(int argc, char *argv[])
 
     while (true)
     {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        // Skip iteration if ptr points not to the Mastodon::API::http object
+        if (ptr != nullptr)
+        {
+            continue;
+        }
+
+        // Acquire lock to for the stream variable
+        std::lock_guard<std::mutex> lock(ptr->get_mutex());
+
         // Parse event stream and clear it afterwards
         std::vector<Easy::stream_event> events = Easy::parse_stream(stream);
         stream.clear();
@@ -85,7 +96,6 @@ int main(int argc, char *argv[])
                     cout << "Something undefined happened. 😱\n";
             }
         }
-        std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
     pub_tl.join();

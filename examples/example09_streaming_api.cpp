@@ -9,6 +9,7 @@
 #include <thread>
 #include <chrono>
 #include <memory>
+#include <mutex>
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
 #else
@@ -39,16 +40,20 @@ int main(int argc, char *argv[])
     std::uint8_t counter = 0;
     while (true)
     {
-        ++counter;
-        std::cout << answer;
-        answer.clear();
-        if (counter == 10)
-        {
-            std::cerr << "Cancelling...\n";
-            ptr->cancel_stream();
-            break;
-        }
         std::this_thread::sleep_for(std::chrono::seconds(2));
+        if (ptr != nullptr)
+        {
+            std::lock_guard<std::mutex> lock(ptr->get_mutex());
+            ++counter;
+            std::cout << answer;
+            answer.clear();
+            if (counter == 10)
+            {
+                std::cerr << "Cancelling...\n";
+                ptr->cancel_stream();
+                break;
+            }
+        }
     }
     pub.join();
     std::cout << '\n';

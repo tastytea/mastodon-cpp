@@ -54,12 +54,12 @@ int main(int argc, char *argv[])
     {
         std::this_thread::sleep_for(std::chrono::seconds(1));
         // Skip iteration if ptr points not to the Mastodon::API::http object
-        if (ptr != nullptr)
+        if (ptr == nullptr)
         {
             continue;
         }
 
-        // Acquire lock to for the stream variable
+        // Acquire lock for the stream variable
         std::lock_guard<std::mutex> lock(ptr->get_mutex());
 
         // Parse event stream and clear it afterwards

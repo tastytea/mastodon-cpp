@@ -83,7 +83,7 @@ const uint_fast16_t API::http::request(const method &meth,
 
         request.setOpt<curlopts::HttpHeader>(headers);
         request.setOpt<curlopts::FollowLocation>(true);
-        request.setOpt<curlpp::options::WriteFunction>
+        request.setOpt<curlopts::WriteFunction>
             (std::bind(&http::callback, this, _1, _2, _3, &answer));
         if (!formdata.empty())
         {
@@ -176,6 +176,7 @@ const void API::http::get_headers(string &headers) const
 const size_t API::http::callback(char* data, size_t size, size_t nmemb,
                                  string *str)
 {
+    std::lock_guard<std::mutex> lock(_mutex);
     if (_cancel_stream)
     {
         // This throws the runtime error: Failed writing body
@@ -194,4 +195,9 @@ const void API::http::cancel_stream()
 const void API::http::abort_stream()
 {
     cancel_stream();
+}
+
+std::mutex &API::http::get_mutex()
+{
+    return _mutex;
 }

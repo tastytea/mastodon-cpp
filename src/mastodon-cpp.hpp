@@ -23,6 +23,7 @@
 #include <map>
 #include <memory>
 #include <array>
+#include <mutex>
 #include <curlpp/cURLpp.hpp>
 #include <curlpp/Easy.hpp>
 
@@ -135,12 +136,23 @@ public:
         [[deprecated("Will vanish in 1.0.0. Use cancel_stream() instead.")]]
         const void abort_stream();
 
+        /*!
+         *  @brief  Gets the mutex guarding the string that is written to.
+         *  
+         *          The mutex guards the function that writes to the string you
+         *          specified in get_stream().
+         *
+         *  @return A reference of the mutex.
+         */
+        std::mutex &get_mutex();
+
     private:
         const API &parent;
         const string _instance;
         const string _access_token;
         string _headers;
         bool _cancel_stream;
+        std::mutex _mutex;
 
         const size_t callback(char* data, size_t size, size_t nmemb,
                               string *oss);

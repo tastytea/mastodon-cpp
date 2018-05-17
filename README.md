@@ -194,7 +194,7 @@ Run `make package` from the build directory to generate a tar.gz archive.
 
 # Status of implementation
 
-Feature complete as of Mastodon 2.3.0
+Feature complete as of Mastodon 2.4.0
 
  * [x] GET /api/v1/accounts/:id
  * [x] GET /api/v1/accounts/verify_credentials

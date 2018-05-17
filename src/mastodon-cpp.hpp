@@ -425,12 +425,14 @@ public:
      */
     const uint_fast16_t get(const string &call, string &answer);
 
-    [[deprecated("Will vanish in 1.0.0, use get() without argument instead.")]]
+    [[deprecated("Will vanish in 1.0.0, use get() without string argument "
+                 "instead.")]]
     const uint_fast16_t get(const Mastodon::API::v1 &call,
                             const string &argument,
                             string &answer);
 
-    [[deprecated("Will vanish in 1.0.0, use get() without argument instead.")]]
+    [[deprecated("Will vanish in 1.0.0, use get() without string argument "
+                 "instead.")]]
     const uint_fast16_t get(const Mastodon::API::v1 &call,
                             const string &argument,
                             const parametermap &parameters,
@@ -484,7 +486,8 @@ public:
                                    string &answer,
                                    std::unique_ptr<Mastodon::API::http> &ptr);
 
-    [[deprecated("Will vanish in 1.0.0, use get_stream() without argument instead.")]]
+    [[deprecated("Will vanish in 1.0.0, use get_stream() without string "
+                 "argument instead.")]]
     const uint_fast16_t get_stream(const Mastodon::API::v1 &call,
                                    const string &argument,
                                    string &answer,
@@ -553,12 +556,14 @@ public:
                              const parametermap &parameters,
                              string &answer);
 
-    [[deprecated("Will vanish in 1.0.0, use post() without argument instead.")]]
+    [[deprecated("Will vanish in 1.0.0, use post() without string argument "
+                 "instead.")]]
     const uint_fast16_t post(const Mastodon::API::v1 &call,
                              const string &argument,
                              string &answer);
 
-    [[deprecated("Will vanish in 1.0.0, use post() without argument instead.")]]
+    [[deprecated("Will vanish in 1.0.0, use post() without string argument "
+                 "instead.")]]
     const uint_fast16_t post(const Mastodon::API::v1 &call,
                              const string &argument,
                              const parametermap &parameters,
@@ -596,7 +601,8 @@ public:
                             const parametermap &parameters,
                             string &answer);
 
-    [[deprecated("Will vanish in 1.0.0, use put() without argument instead.")]]
+    [[deprecated("Will vanish in 1.0.0, use put() without string argument "
+                 "instead.")]]
     const uint_fast16_t put(const Mastodon::API::v1 &call,
                             const string &argument,
                             const parametermap &parameters,
@@ -628,11 +634,13 @@ public:
                             const parametermap &parameters,
                             string &answer);
 
-    [[deprecated("Will vanish in 1.0.0, use del() without argument instead.")]]
+    [[deprecated("Will vanish in 1.0.0, use del() without string argument "
+                 "instead.")]]
     const uint_fast16_t del(const Mastodon::API::v1 &call,
                             const string &argument);
 
-    [[deprecated("Will vanish in 1.0.0, use del() without argument instead.")]]
+    [[deprecated("Will vanish in 1.0.0, use del() without string argument "
+                 "instead.")]]
     const uint_fast16_t del(const Mastodon::API::v1 &call,
                             const string &argument,
                             const parametermap &parameters);

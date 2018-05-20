@@ -84,7 +84,10 @@ const uint_fast16_t API::http::request(const method &meth,
         request.setOpt<curlopts::HttpHeader>(headers);
         request.setOpt<curlopts::FollowLocation>(true);
         request.setOpt<curlopts::WriteFunction>
-            (std::bind(&http::callback, this, _1, _2, _3, &answer));
+            (std::bind(&http::callback_write, this, _1, _2, _3, &answer));
+        request.setOpt<curlopts::ProgressFunction>
+            (std::bind(&http::callback_progress, this, _1, _2, _3, _4));
+        request.setOpt<curlopts::NoProgress>(0);
         if (!formdata.empty())
         {
             request.setOpt<curlopts::HttpPost>(formdata);
@@ -138,7 +141,8 @@ const uint_fast16_t API::http::request(const method &meth,
     catch (curlpp::RuntimeError &e)
     {
         // This error is thrown if http.cancel_stream() is used.
-        if (std::strncmp(e.what(), "Failed writing body", 19) == 0)
+        if ((std::strncmp(e.what(), "Callback aborted", 16) == 0) ||
+            (std::strncmp(e.what(), "Failed writing body", 19) == 0))
         {
             ttdebug << "Request was cancelled by user\n";
             return 14;
@@ -173,18 +177,30 @@ const void API::http::get_headers(string &headers) const
     headers = _headers;
 }
 
-const size_t API::http::callback(char* data, size_t size, size_t nmemb,
-                                 string *str)
+const size_t API::http::callback_write(char* data, size_t size, size_t nmemb,
+                                       string *str)
 {
     std::lock_guard<std::mutex> lock(_mutex);
-    if (_cancel_stream)
-    {
-        // This throws the runtime error: Failed writing body
-        return 0;
-    }
     str->append(data, size * nmemb);
     // ttdebug << "Received " << size * nmemb << " Bytes\n";
     return size * nmemb;
+};
+
+const size_t API::http::callback(char* data, size_t size, size_t nmemb,
+                                 string *str)
+{
+    return callback_write(data, size, nmemb, str);
+};
+
+double API::http::callback_progress(double /* dltotal */, double /* dlnow */,
+                                    double /* ultotal */, double /* ulnow */)
+{
+    if (_cancel_stream)
+    {
+        // This throws the runtime error: Callback aborted
+        return 1;
+    }
+    return 0;
 };
 
 const void API::http::cancel_stream()

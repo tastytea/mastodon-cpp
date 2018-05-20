@@ -154,8 +154,13 @@ public:
         bool _cancel_stream;
         std::mutex _mutex;
 
+        const size_t callback_write(char* data, size_t size, size_t nmemb,
+                                    string *oss);
+        [[deprecated("Will vanish in 1.0.0. Use callback_write() instead.")]]
         const size_t callback(char* data, size_t size, size_t nmemb,
                               string *oss);
+        double callback_progress(double /* dltotal */, double /* dlnow */,
+                                 double /* ultotal */, double /* ulnow */);
     };
 
     /*!

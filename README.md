@@ -10,9 +10,10 @@ The HTML reference can be generated with `build_doc.sh`, if doxygen is installed
 It is also available at [tastytea.github.io/mastodon-cpp/](https://tastytea.github.io/mastodon-cpp/docs/annotated.html).
 There are [examples](https://github.com/tastytea/mastodon-cpp/tree/master/examples) in `examples/`.
 
-## Upgrading from below 0.10.0
+## Upgrading from below 0.13.0
 
-You have to recompile all applications linking against this library.
+* You have to recompile all applications linking against this library.
+* We use a mutex now to guard the string that is being written to. You can get a reference to it with `Mastodon::API::http::get_mutex()` (see examples 9 and 13 for more info). This is only relevant for streams.
 
 ## Upgrading from below 0.10.0
 

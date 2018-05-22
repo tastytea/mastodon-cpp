@@ -141,6 +141,9 @@ const uint_fast16_t API::get(const Mastodon::API::v1 &call,
         case v1::timelines_list_list_id:
             strcall = "/api/v1/timelines/list/" + strid;
             break;
+        case v1::push_subscription:
+            strcall = "/api/v1/push/subscription";
+            break;
         default:
             ttdebug << "ERROR: Invalid call.\n";
             return 11;

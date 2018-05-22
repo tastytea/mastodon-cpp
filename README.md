@@ -270,6 +270,10 @@ Feature complete as of Mastodon 2.4.0
  * [x] GET /api/v1/streaming/public/local
  * [x] GET /api/v1/streaming/hashtag
  * [x] GET /api/v1/streaming/list
+ * [x] POST /api/v1/push/subscription
+ * [x] GET /api/v1/push/subscription
+ * [x] PUT /api/v1/push/subscription
+ * [x] DELETE /api/v1/push/subscription
 
 # Copyright
 

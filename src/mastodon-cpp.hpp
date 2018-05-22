@@ -246,7 +246,9 @@ public:
         streaming_public,
         streaming_public_local,
         streaming_hashtag,
-        streaming_list
+        streaming_list,
+        // Push
+        push_subscription
     };
 
     /*!
@@ -303,14 +305,15 @@ public:
      *
      *  @param  client_name    The name of the application
      *  @param  redirect_uri   urn:ietf:wg:oauth:2.0:oob for none
-     *  @param  scopes         Scopes (read, write, follow, space separated)
+     *  @param  scopes         Scopes (`read`, `write`, `follow`, `push`; space
+     *                         separated)
      *  @param  website        The website of the application
      *  @param  client_id      Returned
      *  @param  client_secret  Returned
      *  @param  url            Returned, used to generate code for register_app2
      *
      *  @return @ref error "Error code". If the URL has permanently changed, 13
-     *  is returned and url is set to the new URL.
+     *          is returned and url is set to the new URL.
      */
     const uint_fast16_t register_app1(const string &client_name,
                                       const string &redirect_uri,

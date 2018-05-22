@@ -41,6 +41,9 @@ const uint_fast16_t API::put(const Mastodon::API::v1 &call,
         case v1::media_id:
             strcall = "/api/v1/media/" + strid;
             break;
+        case v1::push_subscription:
+            strcall = "/api/v1/push/subscription";
+            break;
         default:
             ttdebug << "ERROR: Invalid call.\n";
             return 11;

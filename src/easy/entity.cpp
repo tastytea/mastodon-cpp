@@ -69,6 +69,7 @@ const Json::Value Easy::Entity::to_object() const
 
 Easy::Entity::Entity()
 : _valid(false)
+, _was_set(false)
 {}
 
 const bool Easy::Entity::valid() const

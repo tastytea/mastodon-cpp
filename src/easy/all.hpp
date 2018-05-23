@@ -35,6 +35,7 @@
     #include "easy/entities/results.hpp"
     #include "easy/entities/status.hpp"
     #include "easy/entities/tag.hpp"
+    #include "easy/entities/pushsubscription.hpp"
 #else
     #include <mastodon-cpp/easy/easy.hpp>
     #include <mastodon-cpp/easy/entities/account.hpp>
@@ -52,6 +53,7 @@
     #include <mastodon-cpp/easy/entities/results.hpp>
     #include <mastodon-cpp/easy/entities/status.hpp>
     #include <mastodon-cpp/easy/entities/tag.hpp>
+    #include <mastodon-cpp/easy/entities/pushsubscription.hpp>
 #endif
 
 #endif  // MASTODON_CPP_EASY_ALL_HPP

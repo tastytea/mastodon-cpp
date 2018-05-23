@@ -109,6 +109,13 @@ public:
     typedef std::pair<event_type, string> stream_event;
 
     /*!
+     *  @brief  Map of 'notification type' and 'push is requested or not'
+     *
+     *          Used in PushSubscription::alerts().
+     */
+    typedef std::map<Easy::notification_type, bool> alertmap;
+
+    /*!
      *  @brief  Class to hold the `Link`-header.
      *  
      *          Extracts max_id and since_id from the `Link`-header
@@ -358,6 +365,7 @@ public:
     class Results;
     class Status;
     class Tag;
+    class PushSubscription;
 
 protected:
     inline static const string strtime

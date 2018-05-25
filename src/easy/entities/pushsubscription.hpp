@@ -37,6 +37,8 @@ namespace Mastodon
 {
     /*!
      *  @brief  Class to hold push subscriptions.
+     *
+     *  @since  0.14.0
      */
     class Easy::PushSubscription : public Easy::Entity
     {

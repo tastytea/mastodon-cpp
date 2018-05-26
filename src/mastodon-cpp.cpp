@@ -571,3 +571,8 @@ const string API::unescape_html(const string &html)
 
     return output;
 }
+
+const void API::set_proxy(const string &proxy, const string &userpw)
+{
+    _http.set_proxy(proxy, userpw);
+}

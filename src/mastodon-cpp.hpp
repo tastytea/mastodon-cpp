@@ -146,6 +146,16 @@ public:
          */
         std::mutex &get_mutex();
 
+        /*!
+         *  @brief  Sets the proxy.
+         *
+         *  @param  proxy    See `man 3 CURLOPT_PROXY`
+         *  @param  userpw   See `man 3 CURLOPT_PROXYUSERPWD` (optional)
+         *
+         *  @since  0.15.0
+         */
+        const void set_proxy(const string &proxy, const string &userpw = "");
+
     private:
         const API &parent;
         const string _instance;
@@ -153,6 +163,8 @@ public:
         string _headers;
         bool _cancel_stream;
         std::mutex _mutex;
+        string _proxy;
+        string _proxy_userpw;
 
         const size_t callback_write(char* data, size_t size, size_t nmemb,
                                     string *oss);
@@ -394,6 +406,13 @@ public:
      *  @since  0.12.0
      */
     static const string unescape_html(const string &html);
+
+    /*!
+     *  @brief  Calls Mastodon::API::http::set_proxy()
+     *
+     *  @since  0.15.0
+     */
+    const void set_proxy(const string &proxy, const string &userpw = "");
 
     /*!
      *  @brief  Make a GET request which doesn't require parameters.

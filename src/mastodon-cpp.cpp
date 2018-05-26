@@ -33,6 +33,8 @@ API::API(const string &instance, const string &access_token)
 , _useragent(string("mastodon-cpp/") + global::version)
 , _http(*this, instance, access_token)
 , _exceptions(false)
+, _proxy("")
+, _proxy_userpw("")
 {
     //
 }
@@ -574,5 +576,18 @@ const string API::unescape_html(const string &html)
 
 const void API::set_proxy(const string &proxy, const string &userpw)
 {
-    _http.set_proxy(proxy, userpw);
+    _proxy = proxy;
+    _proxy_userpw = userpw;
+}
+
+const void API::get_proxy(string &proxy, string &userpw) const
+{
+    if (!_proxy.empty())
+    {
+        proxy = _proxy;
+        if (!_proxy_userpw.empty())
+        {
+            userpw = _proxy_userpw;
+        }
+    }
 }

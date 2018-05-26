@@ -35,8 +35,6 @@ API::http::http(const API &api, const string &instance,
 , _instance(instance)
 , _access_token(access_token)
 , _cancel_stream(false)
-, _proxy("")
-, _proxy_userpw("")
 {
     curlpp::initialize();
 }
@@ -72,12 +70,17 @@ const uint_fast16_t API::http::request(const method &meth,
         ttdebug << "User-Agent: " << parent.get_useragent() << "\n";
         request.setOpt<curlopts::UserAgent>(parent.get_useragent());
 
-        if (!_proxy.empty())
         {
-            request.setOpt<curlopts::Proxy>(_proxy);
-            if (!_proxy_userpw.empty())
+            string proxy;
+            string userpw;
+            parent.get_proxy(proxy, userpw);
+            if (!proxy.empty())
             {
-                request.setOpt<curlopts::ProxyUserPwd>(_proxy_userpw);
+                request.setOpt<curlopts::Proxy>(proxy);
+                if (!userpw.empty())
+                {
+                    request.setOpt<curlopts::ProxyUserPwd>(userpw);
+                }
             }
         }
 
@@ -227,10 +230,4 @@ const void API::http::abort_stream()
 std::mutex &API::http::get_mutex()
 {
     return _mutex;
-}
-
-const void API::http::set_proxy(const string &proxy, const string &userpw)
-{
-    _proxy = proxy;
-    _proxy_userpw = userpw;
 }

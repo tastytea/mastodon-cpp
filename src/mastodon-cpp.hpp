@@ -146,21 +146,6 @@ public:
          */
         std::mutex &get_mutex();
 
-        /*!
-         *  @brief  Sets the proxy.
-         *
-         *          Since mastodon-cpp is built on libcurl, it respects the same
-         *          proxy environment variables. See `man curl`.
-         *
-         *  @param  proxy   See `man 3 CURLOPT_PROXY`
-         *  @param  userpw  See `man 3 CURLOPT_PROXYUSERPWD` (optional)
-         *
-         *  @since  0.15.0
-         *
-         *  @return { description_of_the_return_value }
-         */
-        const void set_proxy(const string &proxy, const string &userpw = "");
-
     private:
         const API &parent;
         const string _instance;
@@ -168,8 +153,6 @@ public:
         string _headers;
         bool _cancel_stream;
         std::mutex _mutex;
-        string _proxy;
-        string _proxy_userpw;
 
         const size_t callback_write(char* data, size_t size, size_t nmemb,
                                     string *oss);
@@ -413,11 +396,27 @@ public:
     static const string unescape_html(const string &html);
 
     /*!
-     *  @brief  Calls Mastodon::API::http::set_proxy()
+     *  @brief  Sets the proxy.
+     *
+     *          Since mastodon-cpp is built on libcurl, it respects the same
+     *          proxy environment variables. See `man curl`.
+     *
+     *  @param  proxy   See `man 3 CURLOPT_PROXY`
+     *  @param  userpw  See `man 3 CURLOPT_PROXYUSERPWD` (optional)
      *
      *  @since  0.15.0
      */
     const void set_proxy(const string &proxy, const string &userpw = "");
+
+    /*!
+     *  @brief  For internal use
+     *
+     *  @param  proxy   URL
+     *  @param  userpw  username:password
+     *
+     *  @since  0.15.1
+     */
+    const void get_proxy(string &proxy, string &userpw) const;
 
     /*!
      *  @brief  Make a GET request which doesn't require parameters.
@@ -683,6 +682,8 @@ private:
     string _useragent;
     http _http;
     bool _exceptions;
+    string _proxy;
+    string _proxy_userpw;
 
     /*!
      *  @brief  Converts map of parameters into a string.

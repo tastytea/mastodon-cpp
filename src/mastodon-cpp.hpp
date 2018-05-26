@@ -149,10 +149,15 @@ public:
         /*!
          *  @brief  Sets the proxy.
          *
-         *  @param  proxy    See `man 3 CURLOPT_PROXY`
-         *  @param  userpw   See `man 3 CURLOPT_PROXYUSERPWD` (optional)
+         *          Since mastodon-cpp is built on libcurl, it respects the same
+         *          proxy environment variables. See `man curl`.
+         *
+         *  @param  proxy   See `man 3 CURLOPT_PROXY`
+         *  @param  userpw  See `man 3 CURLOPT_PROXYUSERPWD` (optional)
          *
          *  @since  0.15.0
+         *
+         *  @return { description_of_the_return_value }
          */
         const void set_proxy(const string &proxy, const string &userpw = "");
 

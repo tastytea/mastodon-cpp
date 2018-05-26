@@ -45,6 +45,7 @@ using std::string;
  *  @example example12_easy_laststatus.cpp
  *  @example example13_easy_stream.cpp
  *  @example example14_easy_treeview.cpp
+ *  @example example15_proxy.cpp
  */
 
 namespace Mastodon

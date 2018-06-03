@@ -2,13 +2,13 @@
 The library takes care of the network stuff. You submit a query and get the raw
 JSON. You can then put that JSON into easy to use classes.
 
-[TODO-list](https://github.com/tastytea/mastodon-cpp/milestones)
+[TODO-list](https://git.schlomp.space/tastytea/mastodon-cpp/milestones)
 
 # Usage
 
 The HTML reference can be generated with `build_doc.sh`, if doxygen is installed.
 It is also available at [tastytea.github.io/mastodon-cpp/](https://tastytea.github.io/mastodon-cpp/docs/annotated.html).
-There are [examples](https://github.com/tastytea/mastodon-cpp/tree/master/examples) in `examples/`.
+There are [examples](https://git.schlomp.space/tastytea/mastodon-cpp/src/branch/master/examples) in `examples/`.
 
 ## Upgrading from below 0.13.0
 
@@ -160,7 +160,7 @@ Download the current release at [GitHub](https://github.com/tastytea/mastodon-cp
 
 [![Build Status](https://travis-ci.org/tastytea/mastodon-cpp.svg?branch=master)](https://travis-ci.org/tastytea/mastodon-cpp)
 
-    git clone https://github.com/tastytea/mastodon-cpp.git
+    git clone https://git.schlomp.space/tastytea/mastodon-cpp.git
 
 ### Compile
 

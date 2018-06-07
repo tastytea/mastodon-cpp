@@ -162,7 +162,9 @@ Download the current release at [schlomp.space](https://schlomp.space/tastytea/m
 
 [![Build Status](https://travis-ci.org/tastytea/mastodon-cpp.svg?branch=master)](https://travis-ci.org/tastytea/mastodon-cpp)
 
-    git clone https://schlomp.space/tastytea/mastodon-cpp.git
+```SH
+git clone https://schlomp.space/tastytea/mastodon-cpp.git
+```
 
 ### Compile
 
@@ -281,7 +283,7 @@ Feature complete as of Mastodon 2.4.0
 
 # Copyright
 
-```
+```PLAIN
 Copyright © 2018 tastytea <tastytea@tastytea.de>.
 License GPLv3: GNU GPL version 3 <https://www.gnu.org/licenses/gpl-3.0.html>.
 This program comes with ABSOLUTELY NO WARRANTY. This is free software,

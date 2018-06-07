@@ -77,7 +77,9 @@ int main()
 
 A project consisting of one file can be compiled as follows:
 
-    g++ -std=c++14 -lmastodon-cpp example.cpp
+```SH
+g++ -std=c++14 -lmastodon-cpp example.cpp
+```
 
 ## Error codes
 
@@ -129,7 +131,7 @@ Prebuilt DEB and RPM packages for x86_64(amd64) are provided with each release.
 These packages are automatically built and not tested.
 Install with `dpkg -i` or `rpm -i`, respectively.
 
-To use the DEB package on stretch, you will need [libcurlpp0](https://packages.debian.org/de/libcurlpp0) from buster or jessie.
+To use the DEB package on stretch, you will need [libcurlpp0](https://packages.debian.org/libcurlpp0) from buster or jessie.
 
 ## From source
 

@@ -1,4 +1,5 @@
-/build/
-/doc/
-/update_gh-pages.sh
-/examples/example99*
+*
+!.gitignore
+!index.html
+!/docs
+!/docs/**

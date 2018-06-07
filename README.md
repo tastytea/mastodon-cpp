@@ -6,8 +6,8 @@ JSON. You can then put that JSON into easy to use classes.
 
 # Usage
 
-The HTML reference can be generated with `build_doc.sh`, if doxygen is installed.
-It is also available at [tastytea.github.io/mastodon-cpp/](https://tastytea.github.io/mastodon-cpp/docs/annotated.html).
+The HTML reference can be generated with `build_doc.sh`, if doxygen is installed. It is also available at
+[doc.schlomp.space/mastodon-cpp/](https://doc.schlomp.space/mastodon-cpp/annotated.html).
 There are [examples](https://schlomp.space/tastytea/mastodon-cpp/src/branch/master/examples) in `examples/`.
 
 ## Upgrading from below 0.13.0
@@ -111,7 +111,7 @@ If you use a debug build, you get more verbose error messages. Errors 20-25 are 
 
 ## Packages
 
-Every [release](https://github.com/tastytea/mastodon-cpp/releases) includes
+Every [release](https://schlomp.space/tastytea/mastodon-cpp/releases) includes
 packages for the package managers of Gentoo, Debian and Red Hat.
 
 ### Gentoo
@@ -154,7 +154,7 @@ To use the DEB package on stretch, you will need [libcurlpp0](https://packages.d
 
 #### Release
 
-Download the current release at [GitHub](https://github.com/tastytea/mastodon-cpp/releases).
+Download the current release at [schlomp.space](https://schlomp.space/tastytea/mastodon-cpp/releases).
 
 #### Development version
 

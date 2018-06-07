@@ -91,12 +91,6 @@ mastodon-cpp will never use error codes below 11, except 0.
 |        13 | URL changed (HTTP 301 or 308)    |
 |        14 | Aborted by user                  |
 |        15 | Network error (curlpp exception) |
-|    ~~20~~ | ~~Failed to connect~~            |
-|    ~~21~~ | ~~Couldn't resolve host~~        |
-|    ~~22~~ | ~~Network is unreachable~~       |
-|    ~~23~~ | ~~Transfer interrupted~~         |
-|    ~~24~~ | ~~SSL error~~                    |
-|    ~~25~~ | ~~Timeout~~                      |
 | 100 - 999 | HTTP status codes                |
 |     65535 | Unknown error                    |
 

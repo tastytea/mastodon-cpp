@@ -69,8 +69,6 @@ namespace Mastodon
  *  |        15 | Network error (curlpp exception) |
  *  | 100 - 999 | HTTP status codes                |
  *  |     65535 | Unknown error                    |
- *  
- *  @deprecated Errors 20-25 are no longer in use.
  */
 class API
 {

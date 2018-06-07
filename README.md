@@ -123,7 +123,7 @@ Or [add my repository](https://wiki.gentoo.org/wiki/Eselect/Repository) and
 install it from there.
 
 ```SH
-eselect repository add tastytea git https://git.tastytea.de/repos/overlay-tastytea.git
+eselect repository add tastytea git https://schlomp.space/tastytea/overlay.git
 echo 'dev-cpp/mastodon-cpp ~amd64' >> /etc/portage/package.keywords/mastodon-cpp
 emaint sync -r tastytea
 emerge -a dev-cpp/mastodon-cpp

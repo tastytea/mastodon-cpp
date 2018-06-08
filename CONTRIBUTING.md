@@ -3,11 +3,11 @@
 ## Reporting bugs or suggesting enhancements
 
 Before reporting a bug , please
-[perform a search](https://github.com/tastytea/mastodon-cpp/issues?q=is%3Aissue)
+[perform a search](https://schlomp.space/tastytea/mastodon-cpp/issues)
 to see if the problem has already been reported. If it has, add a comment to the
 existing issue instead of opening a new one. Same for enhancements.
 
-You can also contact me via the Fediverse if you don't have a GitHub-account.
+You can also contact me via the Fediverse if you don't want to open an account.
 My account is [@tastytea@soc.ialis.me](https://soc.ialis.me/@tastytea).
 
 ## Pull requests

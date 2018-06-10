@@ -63,7 +63,24 @@ const std::vector<Easy::Status> Results::statuses() const
     return {};
 }
 
-const std::vector<string> Results::hashtags() const
+const std::vector<string> Results::hashtags_v1() const
 {
     return get_vector("hashtags");
+}
+
+const std::vector<Easy::Tag> Results::hashtags() const
+{
+    const Json::Value node = get("hashtags");
+    if (node.isArray())
+    {
+        std::vector<Easy::Tag> vec;
+        for (const Json::Value &value : node)
+        {
+            vec.push_back(Easy::Tag(value.toStyledString()));
+        }
+        return vec;
+    }
+
+    ttdebug << "Could not get data: hashstags\n";
+    return {};
 }

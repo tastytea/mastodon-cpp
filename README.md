@@ -276,6 +276,7 @@ Feature complete as of Mastodon 2.4.0
  * [x] GET /api/v1/push/subscription
  * [x] PUT /api/v1/push/subscription
  * [x] DELETE /api/v1/push/subscription
+ * [ ] GET /api/v2/search
 
 # Copyright
 

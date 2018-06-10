@@ -26,11 +26,13 @@
     #include "easy/easy.hpp"
     #include "easy/entities/account.hpp"
     #include "easy/entities/status.hpp"
+    #include "easy/entities/tag.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy/easy.hpp>
     #include <mastodon-cpp/easy/entities/account.hpp>
     #include <mastodon-cpp/easy/entities/status.hpp>
+    #include <mastodon-cpp/easy/entities/tag.hpp>
 #endif
 
 using std::string;
@@ -66,9 +68,18 @@ namespace Mastodon
         const std::vector<Status> statuses() const;
 
         /*!
-         *  @brief  Returns an array of matched hashtags
+         *  @brief  Returns an array of matched hashtags as string
+         *  
+         *  @since  0.16.0
          */
-        const std::vector<string> hashtags() const;
+        const std::vector<string> hashtags_v1() const;
+
+        /*!
+         *  @brief  Returns an array of matched hashtags as Easy::Tag
+         *
+         *  @since  0.16.0
+         */
+        const std::vector<Tag> hashtags() const;
     };
 }
 

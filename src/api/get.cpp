@@ -162,6 +162,42 @@ const uint_fast16_t API::get(const Mastodon::API::v1 &call,
     return get(strcall, answer);
 }
 
+const uint_fast16_t API::get(const Mastodon::API::v2 &call,
+                             const parametermap &parameters, string &answer)
+{
+    string strcall = "";
+    string strid = "";
+
+    // The ID is part of the path
+    const auto &it = parameters.find("id");
+    if (it != parameters.end())
+    {
+        strid = it->second[0];
+    }
+
+    switch (call)
+    {
+        case v2::search:
+            strcall = "/api/v2/search";
+            break;
+        default:
+            ttdebug << "ERROR: Invalid call.\n";
+            return 11;
+            break;
+    }
+
+    if (parameters.size() > 0)
+    {
+        // Delete the parameters that are already in strcall
+        parametermap newparameters = parameters;
+        newparameters.erase("id");
+        newparameters.erase("hashtag");
+        strcall += maptostr(newparameters);
+    }
+
+    return get(strcall, answer);
+}
+
 const uint_fast16_t API::get(const Mastodon::API::v1 &call, string &answer)
 {
     const parametermap p;

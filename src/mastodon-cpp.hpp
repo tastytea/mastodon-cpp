@@ -250,6 +250,11 @@ public:
         push_subscription
     };
 
+    enum class v2
+    {
+        search
+    };
+
     /*!
      *  @brief  Constructs a new API object.
      *
@@ -440,6 +445,15 @@ public:
      *  is returned and answer is set to the new URL.
      */
     const uint_fast16_t get(const Mastodon::API::v1 &call,
+                            const parametermap &parameters,
+                            string &answer);
+
+    /*!
+     *  @brief  Make a GET request which requires parameters.
+     *
+     *  @since  0.16.0
+     */
+    const uint_fast16_t get(const Mastodon::API::v2 &call,
                             const parametermap &parameters,
                             string &answer);
 

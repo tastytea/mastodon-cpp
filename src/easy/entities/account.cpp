@@ -43,6 +43,11 @@ const string Account::avatar_static() const
     return get_string("avatar_static");
 }
 
+const bool Account::bot() const
+{
+    return get_bool("bot");
+}
+
 const system_clock::time_point Account::created_at() const
 {
     return get_time_point("created_at");

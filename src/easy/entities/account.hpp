@@ -73,6 +73,11 @@ namespace Mastodon
         const string avatar_static() const;
 
         /*!
+         *  @brief  Returns true if the account performs automated actions
+         */
+        const bool bot() const;
+
+        /*!
          *  @brief  Returns time of creation
          */
         const system_clock::time_point created_at() const;

@@ -68,7 +68,7 @@ const std::vector<string> Results::hashtags_v1() const
     return get_vector("hashtags");
 }
 
-const std::vector<Easy::Tag> Results::hashtags() const
+const std::vector<Easy::Tag> Results::hashtags_v2() const
 {
     const Json::Value node = get("hashtags");
     if (node.isArray())
@@ -83,4 +83,9 @@ const std::vector<Easy::Tag> Results::hashtags() const
 
     ttdebug << "Could not get data: hashstags\n";
     return {};
+}
+
+const std::vector<string> Results::hashtags() const
+{
+    return hashtags_v1();
 }

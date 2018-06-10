@@ -79,7 +79,13 @@ namespace Mastodon
          *
          *  @since  0.16.0
          */
-        const std::vector<Tag> hashtags() const;
+        const std::vector<Tag> hashtags_v2() const;
+
+        /*!
+         *  @brief  Alias for hashtags_v1
+         */
+        [[deprecated("Will vanish in 1.0.0, use hashtags_v1() instead")]]
+        const std::vector<string> hashtags() const;
     };
 }
 

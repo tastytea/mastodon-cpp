@@ -18,6 +18,8 @@
 #define MASTODON_CPP_EASY_TAG_HPP
 
 #include <string>
+#include <chrono>
+#include <cstdint>
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
@@ -29,6 +31,8 @@
 #endif
 
 using std::string;
+using std::chrono::system_clock;
+using std::uint_fast64_t;
 
 namespace Mastodon
 {
@@ -38,6 +42,41 @@ namespace Mastodon
     class Easy::Tag : public Easy::Entity
     {
     public:
+        /*!
+         *  @brief  Class to hold Tag history
+         *  
+         *  @since  0.16.0
+         */
+        class History : public Easy::Entity
+        {
+        public:
+            /*!
+             *  @brief  Constructs an Tag::History object from a JSON string.
+             *
+             *  @param  json    JSON string
+             */
+            explicit History(const string &json);
+            /*!
+             *  @brief  Constructs an empty Tag::History object.
+             */
+            History();
+
+            /*!
+             *  @brief  Returns the number of accounts using that hashtag.
+             */
+            const uint_fast64_t accounts();
+
+            /*!
+             *  @brief  Returns the day.
+             */
+            const system_clock::time_point day();
+
+            /*!
+             *  @brief  Returns the number of accounts using that hashtag.
+             */
+            const uint_fast64_t uses();
+        };
+
         /*!
          *  @brief  Constructs an Tag object from a JSON string.
          *
@@ -51,14 +90,21 @@ namespace Mastodon
         Tag();
 
         /*!
-         *  @brief  Returns the name of the application
+         *  @brief  Returns the name of the tag
          */
         const string name() const;
 
         /*!
-         *  @brief  Returns the URL of the application
+         *  @brief  Returns the URL of the tag
          */
         const string url() const;
+
+        /*!
+         *  @brief  Returns the history of the tag
+         *  
+         *  @since  0.16.0
+         */
+        const std::vector<History> history() const;
 };
 }
 

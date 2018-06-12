@@ -16,7 +16,6 @@
 
 #include <jsoncpp/json/json.h>
 #include "results.hpp"
-#include "macros.hpp"
 
 using namespace Mastodon;
 using Results = Easy::Results;
@@ -42,7 +41,6 @@ const std::vector<Easy::Account> Results::accounts() const
         return vec;
     }
 
-    ttdebug << "Could not get data: accounts\n";
     return {};
 }
 
@@ -59,7 +57,6 @@ const std::vector<Easy::Status> Results::statuses() const
         return vec;
     }
 
-    ttdebug << "Could not get data: statuses\n";
     return {};
 }
 
@@ -81,7 +78,6 @@ const std::vector<Easy::Tag> Results::hashtags_v2() const
         return vec;
     }
 
-    ttdebug << "Could not get data: hashstags\n";
     return {};
 }
 

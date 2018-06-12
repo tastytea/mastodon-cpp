@@ -1,0 +1,30 @@
+pipeline:
+  build:
+    image: debian:buster-slim
+    pull: true
+    commands:
+      - apt-get update
+      - apt-get install -y build-essential cmake pkg-config
+      - apt-get install -y libcurl4-openssl-dev libcurlpp-dev libjsoncpp-dev
+      - apt-get install -y rpm file
+      - mkdir -p build && cd build
+      - cmake -DWITH_EXAMPLES=ON -DWITH_TESTS=ON ..
+      - make VERBOSE=1
+      - make install DESTDIR=install
+      - ctest ..
+      - cp -v ../packages/gentoo/mastodon-cpp-0.0.0.ebuild mastodon-cpp-${DRONE_TAG}.ebuild
+      - cmake -DWITH_DEB=ON ..
+      - make package
+      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
+      - make package
+
+pipeline:
+  gitea_release:
+    when:
+      event: tag
+    image: plugins/gitea-release
+    base_url: https://schlomp.space
+    files:
+      - "mastodon-cpp-${DRONE_TAG}.ebuild"
+      - "libmastodon-cpp_${DRONE_TAG}-0_amd64.deb"
+      - "libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm"

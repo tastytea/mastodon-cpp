@@ -24,6 +24,9 @@ pipeline:
       event: tag
     image: plugins/gitea-release
     base_url: https://schlomp.space
+    secrets: [ gitea_token ]
+    title: ${DRONE_TAG}
+    prerelease: true
     files:
       - "mastodon-cpp-${DRONE_TAG}.ebuild"
       - "libmastodon-cpp_${DRONE_TAG}-0_amd64.deb"

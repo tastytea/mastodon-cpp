@@ -157,8 +157,6 @@ Download the current release at [schlomp.space](https://schlomp.space/tastytea/m
 
 #### Development version
 
-[![Build Status](https://travis-ci.org/tastytea/mastodon-cpp.svg?branch=master)](https://travis-ci.org/tastytea/mastodon-cpp)
-
 ```SH
 git clone https://schlomp.space/tastytea/mastodon-cpp.git
 ```

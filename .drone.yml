@@ -17,8 +17,6 @@ pipeline:
       - make package
       - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
       - make package
-
-pipeline:
   gitea_release:
     when:
       event: tag

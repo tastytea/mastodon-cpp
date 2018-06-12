@@ -58,6 +58,24 @@ const string Account::display_name() const
     return get_string("display_name");
 }
 
+const std::vector<Account::fields_pair> Account::fields() const
+{
+    const Json::Value &node = get("fields");
+
+    if (node.isArray())
+    {
+        std::vector<Account::fields_pair> vec;
+        for (const Json::Value &value : node)
+        {
+            vec.push_back(Account::fields_pair(value["name"].asString(),
+                                               value["value"].asString()));
+        }
+        return vec;
+    }
+
+    return {};
+}
+
 const std::uint_fast64_t Account::followers_count() const
 {
     return get_uint64("followers_count");

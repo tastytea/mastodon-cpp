@@ -20,6 +20,8 @@
 #include <string>
 #include <cstdint>
 #include <chrono>
+#include <vector>
+#include <utility>
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
@@ -42,6 +44,13 @@ namespace Mastodon
     class Easy::Account : public Easy::Entity
     {
     public:
+        /*!
+         *  @brief  Describes a field. Format: name, value
+         *
+         *  @since  0.16.1
+         */
+        using fields_pair = std::pair<const string, const string>;
+
         /*!
          *  @brief  Constructs an Account object from a JSON string.
          *
@@ -86,6 +95,13 @@ namespace Mastodon
          *  @brief  Returns display name
          */
         const string display_name() const;
+
+        /*!
+         *  @brief  Returns metadata fields
+         *  
+         *  @since  0.16.1
+         */
+        const std::vector<fields_pair> fields() const;
 
         /*!
          *  @brief  Returns number of followers

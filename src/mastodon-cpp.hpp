@@ -46,6 +46,7 @@ using std::string;
  *  @example example13_easy_stream.cpp
  *  @example example14_easy_treeview.cpp
  *  @example example15_proxy.cpp
+ *  @example example16_account_fields.cpp
  */
 
 namespace Mastodon

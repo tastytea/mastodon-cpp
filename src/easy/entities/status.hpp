@@ -68,12 +68,12 @@ namespace Mastodon
         Status();
 
         /*!
-         *  @brief  Returns an array of matched accounts
+         *  @brief  Returns an array of matched accounts.
          */
         const Account account() const;
 
         /*!
-         *  @brief  Returns application from which the status was posted
+         *  @brief  Returns application from which the status was posted.
          */
         const Application application() const;
 
@@ -86,6 +86,11 @@ namespace Mastodon
          *  @brief  Returns content of status
          */
         const string content() const;
+
+        /*!
+         *  @brief  Sets content of status
+         */
+        Status content(const string &content);
 
         /*!
          *  @brief  Returns an array of emojis
@@ -113,6 +118,11 @@ namespace Mastodon
         const uint_fast64_t in_reply_to_id() const;
 
         /*!
+         *  @brief  Sets the ID of the status it replies to
+         */
+        Status in_reply_to_id(const uint_fast64_t &in_reply_to_id);
+
+        /*!
          *  @brief  Returns the ID of the account it replies to
          */
         const uint_fast64_t in_reply_to_account_id() const;
@@ -123,9 +133,20 @@ namespace Mastodon
         const string language() const;
 
         /*!
+         *  @brief  Sets the language of the status
+         */
+        Status language(const string &language);
+
+        /*!
          *  @brief  Returns the attachments
          */
         const std::vector<Attachment> media_attachments() const;
+
+        /*!
+         *  @brief  Sets the attachments
+         */
+        Status media_attachments
+            (const std::vector<Attachment> &media_attachments);
 
         /*!
          *  @brief  Returns the mentions
@@ -163,9 +184,19 @@ namespace Mastodon
         const bool sensitive() const;
 
         /*!
+         *  @brief  Sets sensitive flag for attachments
+         */
+        Status sensitive(const bool &sensitive);
+
+        /*!
          *  @brief  Returns the spoiler text
          */
         const string spoiler_text() const;
+
+        /*!
+         *  @brief  Sets the spoiler text
+         */
+        Status spoiler_text(const string &spoiler_text);
 
         /*!
          *  @brief  Returns the tags
@@ -188,9 +219,9 @@ namespace Mastodon
         const visibility_type visibility() const;
 
         /*!
-         *  @brief  Returns the 
+         *  @brief  Sets the visibility of the status
          */
-
+        Status visibility(const visibility_type &visibility);
     };
 }
 

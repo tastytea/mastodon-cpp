@@ -342,6 +342,11 @@ public:
          */
         const std::vector<string> get_vector(const string &key) const;
 
+        /*!
+         *  @brief  Sets the value of key
+         */
+        const void set(const string &key, const Json::Value &value);
+
         const std::uint_fast64_t stouint64(const string &str) const;
 
     private:

@@ -223,6 +223,11 @@ const std::vector<string> Easy::Entity::get_vector(const string &key) const
     return {};
 }
 
+const void Easy::Entity::set(const string &key, const Json::Value &value)
+{
+    _tree[key] = value;
+}
+
 const std::uint_fast64_t Easy::Entity::stouint64(const string &str) const
 {
     if (str == "")

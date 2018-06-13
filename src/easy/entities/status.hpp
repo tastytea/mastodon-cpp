@@ -89,6 +89,8 @@ namespace Mastodon
 
         /*!
          *  @brief  Sets content of status
+         *  
+         *  @since  0.17.0
          */
         Status content(const string &content);
 
@@ -119,6 +121,8 @@ namespace Mastodon
 
         /*!
          *  @brief  Sets the ID of the status it replies to
+         *  
+         *  @since  0.17.0
          */
         Status in_reply_to_id(const uint_fast64_t &in_reply_to_id);
 
@@ -134,6 +138,8 @@ namespace Mastodon
 
         /*!
          *  @brief  Sets the language of the status
+         *  
+         *  @since  0.17.0
          */
         Status language(const string &language);
 
@@ -144,6 +150,8 @@ namespace Mastodon
 
         /*!
          *  @brief  Sets the attachments
+         *  
+         *  @since  0.17.0
          */
         Status media_attachments
             (const std::vector<Attachment> &media_attachments);
@@ -185,6 +193,8 @@ namespace Mastodon
 
         /*!
          *  @brief  Sets sensitive flag for attachments
+         *  
+         *  @since  0.17.0
          */
         Status sensitive(const bool &sensitive);
 
@@ -195,6 +205,8 @@ namespace Mastodon
 
         /*!
          *  @brief  Sets the spoiler text
+         *  
+         *  @since  0.17.0
          */
         Status spoiler_text(const string &spoiler_text);
 
@@ -220,6 +232,8 @@ namespace Mastodon
 
         /*!
          *  @brief  Sets the visibility of the status
+         *  
+         *  @since  0.17.0
          */
         Status visibility(const visibility_type &visibility);
     };

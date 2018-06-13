@@ -344,6 +344,8 @@ public:
 
         /*!
          *  @brief  Sets the value of key
+         *  
+         *  @since  0.17.0
          */
         const void set(const string &key, const Json::Value &value);
 

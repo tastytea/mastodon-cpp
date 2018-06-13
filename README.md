@@ -138,16 +138,16 @@ To use the DEB package on stretch, you will need [libcurlpp0](https://packages.d
 ### Dependencies
 
 * Tested OS: Linux
-* C++ compiler (tested: gcc 6.4 / 5.4, clang 5.0)
-* [cmake](https://cmake.org/) (tested: 3.9.6)
-* [pkgconfig](https://pkgconfig.freedesktop.org/wiki/) (tested: 0.29.2)
-* [libcurl](https://curl.haxx.se/) (tested: 7.58.0 / 7.35.0)
-* [curlpp](http://www.curlpp.org/) (tested: 0.8.1 / 0.7.3)
+* C++ compiler (tested: gcc 6.4 / 7.3)
+* [cmake](https://cmake.org/) (tested: 3.9)
+* [pkgconfig](https://pkgconfig.freedesktop.org/wiki/) (tested: 0.29)
+* [libcurl](https://curl.haxx.se/) (tested: 7.60)
+* [curlpp](http://www.curlpp.org/) (tested: 0.8 / 0.7)
 * Optional
-    * Easy interface & Examples: [jsoncpp](https://github.com/open-source-parsers/jsoncpp) (tested: 1.8.1 / 1.7.2)
-    * Documentation: [doxygen](https://www.stack.nl/~dimitri/doxygen/) (tested: 1.8.13)
-    * DEB package: [dpkg](https://packages.qa.debian.org/dpkg) (tested: 1.19.0.5)
-    * RPM package: [rpm](http://www.rpm.org) (tested: 4.11.0.1)
+    * Easy interface & Examples: [jsoncpp](https://github.com/open-source-parsers/jsoncpp) (tested: 1.8 / 1.7)
+    * Documentation: [doxygen](https://www.stack.nl/~dimitri/doxygen/) (tested: 1.8)
+    * DEB package: [dpkg](https://packages.qa.debian.org/dpkg) (tested: 1.19)
+    * RPM package: [rpm](http://www.rpm.org) (tested: 4.14)
 
 ### Get sourcecode
 

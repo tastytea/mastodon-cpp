@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">mastodon-cpp
-   &#160;<span id="projectnumber">0.15.1</span>
+   &#160;<span id="projectnumber">0.16.1</span>
    </div>
   </td>
  </tr>
@@ -44,6 +44,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classMastodon_1_1Easy_1_1Account-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -65,6 +66,12 @@ Inheritance diagram for Mastodon::Easy::Account:</div>
 </map>
  </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ac7b57bc81d269622ca80f81a57f37dad"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Account.html#ac7b57bc81d269622ca80f81a57f37dad">fields_pair</a> = std::pair&lt; const string, const string &gt;</td></tr>
+<tr class="memdesc:ac7b57bc81d269622ca80f81a57f37dad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes a field. Format: name, value.  <a href="#ac7b57bc81d269622ca80f81a57f37dad">More...</a><br /></td></tr>
+<tr class="separator:ac7b57bc81d269622ca80f81a57f37dad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:abb91087f3b552e91cd67d46dd249cfd2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Account.html#abb91087f3b552e91cd67d46dd249cfd2">Account</a> (const string &amp;json)</td></tr>
@@ -85,6 +92,10 @@ const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Account.html#a38792e67e06b37c01f27ccd6b0335c6e">avatar_static</a> () const</td></tr>
 <tr class="memdesc:a38792e67e06b37c01f27ccd6b0335c6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns URL of static avatar. <br /></td></tr>
 <tr class="separator:a38792e67e06b37c01f27ccd6b0335c6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f76851724c76507f2d7f20eea892668"><td class="memItemLeft" align="right" valign="top"><a id="a3f76851724c76507f2d7f20eea892668"></a>
+const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Account.html#a3f76851724c76507f2d7f20eea892668">bot</a> () const</td></tr>
+<tr class="memdesc:a3f76851724c76507f2d7f20eea892668"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the account performs automated actions. <br /></td></tr>
+<tr class="separator:a3f76851724c76507f2d7f20eea892668"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27bcf2cd7895c69a2f48d2e5dfd0288e"><td class="memItemLeft" align="right" valign="top"><a id="a27bcf2cd7895c69a2f48d2e5dfd0288e"></a>
 const system_clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Account.html#a27bcf2cd7895c69a2f48d2e5dfd0288e">created_at</a> () const</td></tr>
 <tr class="memdesc:a27bcf2cd7895c69a2f48d2e5dfd0288e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns time of creation. <br /></td></tr>
@@ -93,6 +104,9 @@ const system_clock::time_point&#160;</td><td class="memItemRight" valign="bottom
 const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Account.html#a3014255fda93a58a1293852e7b1ecbb8">display_name</a> () const</td></tr>
 <tr class="memdesc:a3014255fda93a58a1293852e7b1ecbb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns display name. <br /></td></tr>
 <tr class="separator:a3014255fda93a58a1293852e7b1ecbb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6e4f7c73d7685182164b78a0a1aa7c8"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="classMastodon_1_1Easy_1_1Account.html#ac7b57bc81d269622ca80f81a57f37dad">fields_pair</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Account.html#ae6e4f7c73d7685182164b78a0a1aa7c8">fields</a> () const</td></tr>
+<tr class="memdesc:ae6e4f7c73d7685182164b78a0a1aa7c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns metadata fields.  <a href="#ae6e4f7c73d7685182164b78a0a1aa7c8">More...</a><br /></td></tr>
+<tr class="separator:ae6e4f7c73d7685182164b78a0a1aa7c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae428b1651f0249ab612a59b3d12ad603"><td class="memItemLeft" align="right" valign="top"><a id="ae428b1651f0249ab612a59b3d12ad603"></a>
 const uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Account.html#ae428b1651f0249ab612a59b3d12ad603">followers_count</a> () const</td></tr>
 <tr class="memdesc:ae428b1651f0249ab612a59b3d12ad603"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns number of followers. <br /></td></tr>
@@ -209,7 +223,25 @@ const std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>s
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to hold accounts. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="ac7b57bc81d269622ca80f81a57f37dad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7b57bc81d269622ca80f81a57f37dad">&#9670;&nbsp;</a></span>fields_pair</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMastodon_1_1Easy_1_1Account.html#ac7b57bc81d269622ca80f81a57f37dad">Mastodon::Easy::Account::fields_pair</a> =  std::pair&lt;const string, const string&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Describes a field. Format: name, value. </p>
+<dl class="section since"><dt>Since</dt><dd>0.16.1 </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="abb91087f3b552e91cd67d46dd249cfd2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abb91087f3b552e91cd67d46dd249cfd2">&#9670;&nbsp;</a></span>Account()</h2>
 
@@ -264,6 +296,27 @@ const std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>s
 <p>Returns username. </p>
 <p><code>username</code> for users on the same instance, <code>user@hostname</code> for users on other instances. </p>
 <div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;acct&quot;</span>);</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:131</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ae6e4f7c73d7685182164b78a0a1aa7c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6e4f7c73d7685182164b78a0a1aa7c8">&#9670;&nbsp;</a></span>fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; <a class="el" href="classMastodon_1_1Easy_1_1Account.html#ac7b57bc81d269622ca80f81a57f37dad">Account::fields_pair</a> &gt; Account::fields </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns metadata fields. </p>
+<dl class="section since"><dt>Since</dt><dd>0.16.1 </dd></dl>
+<div class="fragment"><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">const</span> Json::Value &amp;node = <span class="keyword">get</span>(<span class="stringliteral">&quot;fields&quot;</span>);</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">if</span> (node.isArray())</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    {</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        std::vector&lt;Account::fields_pair&gt; vec;</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">const</span> Json::Value &amp;value : node)</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        {</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            vec.push_back(<a class="code" href="classMastodon_1_1Easy_1_1Account.html#ac7b57bc81d269622ca80f81a57f37dad">Account::fields_pair</a>(value[<span class="stringliteral">&quot;name&quot;</span>].asString(),</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                                               value[<span class="stringliteral">&quot;value&quot;</span>].asString()));</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        }</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">return</span> vec;</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">return</span> {};</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Account_html_ac7b57bc81d269622ca80f81a57f37dad"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Account.html#ac7b57bc81d269622ca80f81a57f37dad">Mastodon::Easy::Account::fields_pair</a></div><div class="ttdeci">std::pair&lt; const string, const string &gt; fields_pair</div><div class="ttdoc">Describes a field. Format: name, value. </div><div class="ttdef"><b>Definition:</b> account.hpp:52</div></div>
 </div><!-- fragment -->
 </div>
 </div>

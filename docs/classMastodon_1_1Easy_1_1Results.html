@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">mastodon-cpp
-   &#160;<span id="projectnumber">0.15.1</span>
+   &#160;<span id="projectnumber">0.16.1</span>
    </div>
   </td>
  </tr>
@@ -82,9 +82,15 @@ const std::vector&lt; <a class="el" href="classMastodon_1_1Easy_1_1Account.html"
 const std::vector&lt; <a class="el" href="classMastodon_1_1Easy_1_1Status.html">Status</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Results.html#a85f9344479fc84906e51ab24ffbf5541">statuses</a> () const</td></tr>
 <tr class="memdesc:a85f9344479fc84906e51ab24ffbf5541"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an array of matched Statuses. <br /></td></tr>
 <tr class="separator:a85f9344479fc84906e51ab24ffbf5541"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad81aa961d70899d7527894a0cea83d41"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Results.html#ad81aa961d70899d7527894a0cea83d41">hashtags_v1</a> () const</td></tr>
+<tr class="memdesc:ad81aa961d70899d7527894a0cea83d41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an array of matched hashtags as string.  <a href="#ad81aa961d70899d7527894a0cea83d41">More...</a><br /></td></tr>
+<tr class="separator:ad81aa961d70899d7527894a0cea83d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5c13610bd86bf7d7f086bf7eae01eec"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="classMastodon_1_1Easy_1_1Tag.html">Tag</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Results.html#ad5c13610bd86bf7d7f086bf7eae01eec">hashtags_v2</a> () const</td></tr>
+<tr class="memdesc:ad5c13610bd86bf7d7f086bf7eae01eec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an array of matched hashtags as <a class="el" href="classMastodon_1_1Easy_1_1Tag.html" title="Class to hold tags. ">Easy::Tag</a>.  <a href="#ad5c13610bd86bf7d7f086bf7eae01eec">More...</a><br /></td></tr>
+<tr class="separator:ad5c13610bd86bf7d7f086bf7eae01eec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9a7e15eae225d48a3ea39eabce7d5f9"><td class="memItemLeft" align="right" valign="top"><a id="af9a7e15eae225d48a3ea39eabce7d5f9"></a>
 const std::vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Results.html#af9a7e15eae225d48a3ea39eabce7d5f9">hashtags</a> () const</td></tr>
-<tr class="memdesc:af9a7e15eae225d48a3ea39eabce7d5f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an array of matched hashtags. <br /></td></tr>
+<tr class="memdesc:af9a7e15eae225d48a3ea39eabce7d5f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias for hashtags_v1. <br /></td></tr>
 <tr class="separator:af9a7e15eae225d48a3ea39eabce7d5f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classMastodon_1_1Easy_1_1Entity"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMastodon_1_1Easy_1_1Entity')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMastodon_1_1Easy_1_1Entity.html">Mastodon::Easy::Entity</a></td></tr>
 <tr class="memitem:a753b382e29be6cb7b16772d4c609cedc inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#a753b382e29be6cb7b16772d4c609cedc">Entity</a> (const string &amp;json)</td></tr>
@@ -174,7 +180,50 @@ const std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>s
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;: <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a83eb2be5a13eaaa22b2796f05817f7a9">Entity</a>(json)</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a83eb2be5a13eaaa22b2796f05817f7a9"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a83eb2be5a13eaaa22b2796f05817f7a9">Mastodon::Easy::Entity::Entity</a></div><div class="ttdeci">Entity()</div><div class="ttdoc">Constructs an empty Entity object. </div><div class="ttdef"><b>Definition:</b> entity.cpp:70</div></div>
+<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;: <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a83eb2be5a13eaaa22b2796f05817f7a9">Entity</a>(json)</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a83eb2be5a13eaaa22b2796f05817f7a9"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a83eb2be5a13eaaa22b2796f05817f7a9">Mastodon::Easy::Entity::Entity</a></div><div class="ttdeci">Entity()</div><div class="ttdoc">Constructs an empty Entity object. </div><div class="ttdef"><b>Definition:</b> entity.cpp:70</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad81aa961d70899d7527894a0cea83d41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad81aa961d70899d7527894a0cea83d41">&#9670;&nbsp;</a></span>hashtags_v1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; string &gt; Results::hashtags_v1 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns an array of matched hashtags as string. </p>
+<dl class="section since"><dt>Since</dt><dd>0.16.0 </dd></dl>
+<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;{</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a00f1106c4143e070207b0a96ba736042">get_vector</a>(<span class="stringliteral">&quot;hashtags&quot;</span>);</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a00f1106c4143e070207b0a96ba736042"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a00f1106c4143e070207b0a96ba736042">Mastodon::Easy::Entity::get_vector</a></div><div class="ttdeci">const std::vector&lt; string &gt; get_vector(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as vector. </div><div class="ttdef"><b>Definition:</b> entity.cpp:207</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ad5c13610bd86bf7d7f086bf7eae01eec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5c13610bd86bf7d7f086bf7eae01eec">&#9670;&nbsp;</a></span>hashtags_v2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; <a class="el" href="classMastodon_1_1Easy_1_1Tag.html">Easy::Tag</a> &gt; Results::hashtags_v2 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns an array of matched hashtags as <a class="el" href="classMastodon_1_1Easy_1_1Tag.html" title="Class to hold tags. ">Easy::Tag</a>. </p>
+<dl class="section since"><dt>Since</dt><dd>0.16.0 </dd></dl>
+<div class="fragment"><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;{</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">const</span> Json::Value node = <span class="keyword">get</span>(<span class="stringliteral">&quot;hashtags&quot;</span>);</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">if</span> (node.isArray())</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    {</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        std::vector&lt;Easy::Tag&gt; vec;</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">const</span> Json::Value &amp;value : node)</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        {</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            vec.push_back(<a class="code" href="classMastodon_1_1Easy_1_1Tag.html">Easy::Tag</a>(value.toStyledString()));</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        }</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">return</span> vec;</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">return</span> {};</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Tag_html"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Tag.html">Mastodon::Easy::Tag</a></div><div class="ttdoc">Class to hold tags. </div><div class="ttdef"><b>Definition:</b> tag.hpp:42</div></div>
 </div><!-- fragment -->
 </div>
 </div>

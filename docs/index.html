@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">mastodon-cpp
-   &#160;<span id="projectnumber">0.15.1</span>
+   &#160;<span id="projectnumber">0.16.1</span>
    </div>
   </td>
  </tr>
@@ -46,7 +46,7 @@ $(function() {
 <div class="textblock"><p><b>mastodon-cpp</b> is a C++ wrapper for the Mastodon API. The library takes care of the network stuff. You submit a query and get the raw JSON. You can then put that JSON into easy to use classes.</p>
 <p><a href="https://schlomp.space/tastytea/mastodon-cpp/milestones">TODO-list</a></p>
 <h1>Usage</h1>
-<p>The HTML reference can be generated with <code>build_doc.sh</code>, if doxygen is installed. It is also available at <a href="https://tastytea.github.io/mastodon-cpp/docs/annotated.html">tastytea.github.io/mastodon-cpp/</a>. There are <a href="https://schlomp.space/tastytea/mastodon-cpp/src/branch/master/examples">examples</a> in <code>examples/</code>.</p>
+<p>The HTML reference can be generated with <code>build_doc.sh</code>, if doxygen is installed. It is also available at <a href="https://doc.schlomp.space/mastodon-cpp/annotated.html">doc.schlomp.space/mastodon-cpp/</a>. There are <a href="https://schlomp.space/tastytea/mastodon-cpp/src/branch/master/examples">examples</a> in <code>examples/</code>.</p>
 <h2>Upgrading from below 0.13.0</h2>
 <ul>
 <li>You have to recompile all applications linking against this library.</li>
@@ -64,8 +64,8 @@ $(function() {
 <div class="fragment"><div class="line">{C++}</div><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;string&gt;</div><div class="line">#include &lt;mastodon-cpp/mastodon-cpp.hpp&gt;</div><div class="line"></div><div class="line">int main()</div><div class="line">{</div><div class="line">    Mastodon::API masto(&quot;social.example.com&quot;, &quot;auth_token&quot;);</div><div class="line">    std::string answer;</div><div class="line">    masto.get(Mastodon::API::v1::accounts_verify_credentials, answer);</div><div class="line">    std::cout &lt;&lt; answer &lt;&lt; &#39;\n&#39;;</div><div class="line">}</div></div><!-- fragment --><h2>Another simple example</h2>
 <p>Using the <code>Easy</code>-class.</p>
 <div class="fragment"><div class="line">{C++}</div><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;string&gt;</div><div class="line">#include &lt;vector&gt;</div><div class="line">#include &lt;mastodon-cpp/mastodon-cpp.hpp&gt;</div><div class="line">#include &lt;mastodon-cpp/easy/all.hpp&gt;</div><div class="line"></div><div class="line">using Mastodon::Easy;</div><div class="line"></div><div class="line">int main()</div><div class="line">{</div><div class="line">    Easy masto(&quot;social.example&quot;, &quot;&quot;);</div><div class="line">    std::string answer;</div><div class="line">    masto.get(Mastodon::API::v1::timelines_public, answer);</div><div class="line"></div><div class="line">    for (const std::string &amp;str : Easy::json_array_to_vector(answer))</div><div class="line">    {</div><div class="line">        Easy::Status status(str);</div><div class="line">        std::cout &lt;&lt; &quot;  &quot; &lt;&lt; status.account().acct() &lt;&lt; &quot; wrote:\n&quot;;</div><div class="line">        std::cout &lt;&lt; status.content() &lt;&lt; &#39;\n&#39;;</div><div class="line">    }</div><div class="line">}</div></div><!-- fragment --><h2>Compiling your project</h2>
-<p>A project consisting of one file can be compiled as follows: </p><pre class="fragment">g++ -std=c++14 -lmastodon-cpp example.cpp
-</pre><h2>Error codes</h2>
+<p>A project consisting of one file can be compiled as follows:</p>
+<div class="fragment"><div class="line">g++ -std=c++14 -lmastodon-cpp example.cpp</div></div><!-- fragment --><h2>Error codes</h2>
 <p>mastodon-cpp will never use error codes below 11, except 0.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -83,18 +83,6 @@ $(function() {
 <tr class="markdownTableBody" class="markdownTableRowEven">
 <td class="markdownTableBodyRight">15  </td><td class="markdownTableBodyLeft">Network error (curlpp exception)   </td></tr>
 <tr class="markdownTableBody" class="markdownTableRowOdd">
-<td class="markdownTableBodyRight">~~20~~  </td><td class="markdownTableBodyLeft">~~Failed to connect~~   </td></tr>
-<tr class="markdownTableBody" class="markdownTableRowEven">
-<td class="markdownTableBodyRight">~~21~~  </td><td class="markdownTableBodyLeft">~~Couldn't resolve host~~   </td></tr>
-<tr class="markdownTableBody" class="markdownTableRowOdd">
-<td class="markdownTableBodyRight">~~22~~  </td><td class="markdownTableBodyLeft">~~Network is unreachable~~   </td></tr>
-<tr class="markdownTableBody" class="markdownTableRowEven">
-<td class="markdownTableBodyRight">~~23~~  </td><td class="markdownTableBodyLeft">~~Transfer interrupted~~   </td></tr>
-<tr class="markdownTableBody" class="markdownTableRowOdd">
-<td class="markdownTableBodyRight">~~24~~  </td><td class="markdownTableBodyLeft">~~SSL error~~   </td></tr>
-<tr class="markdownTableBody" class="markdownTableRowEven">
-<td class="markdownTableBodyRight">~~25~~  </td><td class="markdownTableBodyLeft">~~Timeout~~   </td></tr>
-<tr class="markdownTableBody" class="markdownTableRowOdd">
 <td class="markdownTableBodyRight">100 - 999  </td><td class="markdownTableBodyLeft">HTTP status codes   </td></tr>
 <tr class="markdownTableBody" class="markdownTableRowEven">
 <td class="markdownTableBodyRight">65535  </td><td class="markdownTableBodyLeft">Unknown error   </td></tr>
@@ -107,22 +95,20 @@ $(function() {
 </ul>
 <h1>Install</h1>
 <h2>Packages</h2>
-<p>Every <a href="https://github.com/tastytea/mastodon-cpp/releases">release</a> includes packages for the package managers of Gentoo, Debian and Red Hat.</p>
+<p>Every <a href="https://schlomp.space/tastytea/mastodon-cpp/releases">release</a> includes packages for the package managers of Gentoo, Debian and Red Hat.</p>
 <h3>Gentoo</h3>
 <p>Put the ebuild into your <a href="https://wiki.gentoo.org/wiki/Custom_repository">local overlay</a> and run <code>ebuild &lt;ebuild path&gt; manifest</code>. Install with <code>emerge mastodon-cpp</code>.</p>
-<p>Or <a href="https://wiki.gentoo.org/wiki/Eselect/Repository">add my repository</a> and install it from there. </p><pre class="fragment">eselect repository add tastytea git https://git.tastytea.de/repos/overlay-tastytea.git
-echo 'dev-cpp/mastodon-cpp ~amd64' &gt;&gt; /etc/portage/package.keywords/mastodon-cpp
-emaint sync -r tastytea
-emerge -a dev-cpp/mastodon-cpp
-</pre><h3>DEB and RPM</h3>
+<p>Or <a href="https://wiki.gentoo.org/wiki/Eselect/Repository">add my repository</a> and install it from there.</p>
+<div class="fragment"><div class="line">eselect repository add tastytea git https://schlomp.space/tastytea/overlay.git</div><div class="line">echo &#39;dev-cpp/mastodon-cpp ~amd64&#39; &gt;&gt; /etc/portage/package.keywords/mastodon-cpp</div><div class="line">emaint sync -r tastytea</div><div class="line">emerge -a dev-cpp/mastodon-cpp</div></div><!-- fragment --><h3>DEB and RPM</h3>
 <p>Prebuilt DEB and RPM packages for x86_64(amd64) are provided with each release. These packages are automatically built and not tested. Install with <code>dpkg -i</code> or <code>rpm -i</code>, respectively.</p>
-<p>To use the DEB package on stretch, you will need <a href="https://packages.debian.org/de/libcurlpp0">libcurlpp0</a> from buster or jessie.</p>
+<p>To use the DEB package on stretch, you will need <a href="https://packages.debian.org/libcurlpp0">libcurlpp0</a> from buster or jessie.</p>
 <h2>From source</h2>
 <h3>Dependencies</h3>
 <ul>
 <li>Tested OS: Linux</li>
 <li>C++ compiler (tested: gcc 6.4 / 5.4, clang 5.0)</li>
 <li><a href="https://cmake.org/">cmake</a> (tested: 3.9.6)</li>
+<li><a href="https://pkgconfig.freedesktop.org/wiki/">pkgconfig</a> (tested: 0.29.2)</li>
 <li><a href="https://curl.haxx.se/">libcurl</a> (tested: 7.58.0 / 7.35.0)</li>
 <li><a href="http://www.curlpp.org/">curlpp</a> (tested: 0.8.1 / 0.7.3)</li>
 <li>Optional<ul>
@@ -135,15 +121,10 @@ emerge -a dev-cpp/mastodon-cpp
 </ul>
 <h3>Get sourcecode</h3>
 <h4>Release</h4>
-<p>Download the current release at <a href="https://github.com/tastytea/mastodon-cpp/releases">GitHub</a>.</p>
+<p>Download the current release at <a href="https://schlomp.space/tastytea/mastodon-cpp/releases">schlomp.space</a>.</p>
 <h4>Development version</h4>
-<p><a href="https://travis-ci.org/tastytea/mastodon-cpp"></a> </p><pre class="fragment">git clone https://schlomp.space/tastytea/mastodon-cpp.git
-</pre><h3>Compile</h3>
-<pre class="fragment">mkdir build
-cd build/
-cmake ..
-make
-</pre><p>cmake options:</p>
+<div class="fragment"><div class="line">git clone https://schlomp.space/tastytea/mastodon-cpp.git</div></div><!-- fragment --><h3>Compile</h3>
+<div class="fragment"><div class="line">mkdir build</div><div class="line">cd build/</div><div class="line">cmake ..</div><div class="line">make</div></div><!-- fragment --><p>cmake options:</p>
 <ul>
 <li><code>-DCMAKE_BUILD_TYPE=Debug</code> for a debug build</li>
 <li><code>-DWITHOUT_EASY=ON</code> to not build the Easy abstractions and to get rid of the jsoncpp-dependency (not recommended)</li>
@@ -162,7 +143,7 @@ make
 <h4>Other</h4>
 <p>Run <code>make package</code> from the build directory to generate a tar.gz archive.</p>
 <h1>Status of implementation</h1>
-<p>Feature complete as of Mastodon 2.4.0</p>
+<p>Feature complete as of Mastodon 2.4.1</p>
 <ul>
 <li>[x] GET /api/v1/accounts/:id</li>
 <li>[x] GET /api/v1/accounts/verify_credentials</li>
@@ -237,12 +218,10 @@ make
 <li>[x] GET /api/v1/push/subscription</li>
 <li>[x] PUT /api/v1/push/subscription</li>
 <li>[x] DELETE /api/v1/push/subscription</li>
+<li>[x] GET /api/v2/search</li>
 </ul>
 <h1>Copyright</h1>
-<pre class="fragment">Copyright © 2018 tastytea &lt;tastytea@tastytea.de&gt;.
-License GPLv3: GNU GPL version 3 &lt;https://www.gnu.org/licenses/gpl-3.0.html&gt;.
-This program comes with ABSOLUTELY NO WARRANTY. This is free software,
-and you are welcome to redistribute it under certain conditions.</pre> </div></div><!-- contents -->
+<div class="fragment"><div class="line">Copyright © 2018 tastytea &lt;tastytea@tastytea.de&gt;.</div><div class="line">License GPLv3: GNU GPL version 3 &lt;https://www.gnu.org/licenses/gpl-3.0.html&gt;.</div><div class="line">This program comes with ABSOLUTELY NO WARRANTY. This is free software,</div><div class="line">and you are welcome to redistribute it under certain conditions.</div></div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

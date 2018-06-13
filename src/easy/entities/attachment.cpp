@@ -49,12 +49,30 @@ const string Attachment::description() const
     return get_string("description");
 }
 
+Attachment Attachment::description(const string &description)
+{
+    set("description", Json::Value(description));
+    return *this;
+}
+
 const std::chrono::duration<double> Attachment::duration() const
 {
     const double sec = get_double("meta.original.duration");
 
     return std::chrono::duration<double>(sec);
 }
+
+const string Attachment::file()
+{
+    return get_string("file");
+}
+
+Attachment Attachment::file(const string &file)
+{
+    set("file", Json::Value(file));
+    return *this;
+}
+
 
 const std::array<double, 2> Attachment::focus() const
 {
@@ -70,6 +88,13 @@ const std::array<double, 2> Attachment::focus() const
     }
 
     return {};
+}
+
+Attachment Attachment::focus(const std::array<double, 2> &focus)
+{
+    set("meta.focus.x", Json::Value(focus[0]));
+    set("meta.focus.y", Json::Value(focus[1]));
+    return *this;
 }
 
 const double Attachment::framerate() const

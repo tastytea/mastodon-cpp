@@ -68,10 +68,18 @@ namespace Mastodon
          *  @brief  Returns the bitrate of a video
          */
         const uint_fast64_t bitrate() const;
+
         /*!
          *  @brief  Returns the image description
          */
         const string description() const;
+
+        /*!
+         *  @brief  Sets the image description
+         *  
+         *  @since  0.17.0
+         */
+        Attachment description(const string &description);
 
         /*!
          *  @brief  Returns the duration of a video in seconds
@@ -79,11 +87,36 @@ namespace Mastodon
         const std::chrono::duration<double> duration() const;
 
         /*!
+         * @brief  Gets file to upload
+         * 
+         * @since  0.17.0
+         */
+        const string file();
+
+        /*!
+         * @brief  Sets file to upload
+         * 
+         * @since  0.17.0
+         *
+         * @param  file    Filename
+         */
+        Attachment file(const string &file);
+
+        /*!
          *  @brief  Returns the focus point (x, y)
          *  
          *          Values are between -1.0 and 1.0.
          */
         const std::array<double, 2> focus() const;
+
+        /*!
+         *  @brief  Sets the focus point (x, y)
+         *  
+         *          Values are between -1.0 and 1.0.
+         *          
+         *  @since  0.17.0
+         */
+        Attachment focus(const std::array<double, 2> &focus);
 
         /*!
          *  @brief  Returns the framerate of a video in frames per second

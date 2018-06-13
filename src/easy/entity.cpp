@@ -225,7 +225,40 @@ const std::vector<string> Easy::Entity::get_vector(const string &key) const
 
 const void Easy::Entity::set(const string &key, const Json::Value &value)
 {
-    _tree[key] = value;
+    if (key.find('.') == std::string::npos)
+    {
+        _tree[key] = value;
+        return;
+    }
+    else
+    {
+        std::size_t pos = 0;
+        string current_key = key;
+        Json::Value *node = &_tree;
+
+        while ((pos = current_key.find('.')) != std::string::npos)
+        {
+            try
+            {
+                node = &(*node)[current_key.substr(0, pos)];
+                if (node->isNull())
+                {
+                    *node = Json::Value(Json::objectValue);
+                }
+                current_key = current_key.substr(pos + 1);
+            }
+            catch (const Json::LogicError &e)
+            {
+                ttdebug << e.what() << '\n';
+                goto error;
+            }
+        }
+        (*node)[current_key] = value;
+        return;
+    }
+
+    error:
+    ttdebug << "Could not set data: " << key << '\n';
 }
 
 const std::uint_fast64_t Easy::Entity::stouint64(const string &str) const

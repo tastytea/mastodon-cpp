@@ -91,7 +91,7 @@ namespace Mastodon
          * 
          * @since  0.17.0
          */
-        const string file();
+        const string file() const;
 
         /*!
          * @brief  Sets file to upload

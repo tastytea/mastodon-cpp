@@ -34,6 +34,7 @@
 
 using std::string;
 using std::uint_fast64_t;
+using std::uint_fast16_t;
 using std::chrono::system_clock;
 
 namespace Mastodon
@@ -114,6 +115,23 @@ public:
      *          Used in PushSubscription::alerts().
      */
     typedef std::map<Easy::notification_type, bool> alertmap;
+
+    class Account;
+    class Application;
+    class Attachment;
+    class Card;
+    class Context;
+    class Emoji;
+    class Instance;
+    class List;
+    class Mention;
+    class Notification;
+    class Relationship;
+    class Report;
+    class Results;
+    class Status;
+    class Tag;
+    class PushSubscription;
 
     /*!
      *  @brief  Class to hold the `Link`-header.
@@ -218,6 +236,20 @@ public:
      */
     static const string strtime_local(const system_clock::time_point &timepoint,
                                       const string &format);
+
+    // #### simple calls ####
+    
+    /*!
+     *  @brief  Sends a toot.
+     *
+     *  @param  status  The status to send
+     *  @param  error   @ref error "Error code". If the URL has permanently
+     *                  changed, 13 is returned and answer is set to the new
+     *                  URL.
+     *
+     *  @return The new Easy::Status
+     */
+    const Status send_toot(const Status &status, uint_fast16_t error = 0);
 
     /*!
      *  @brief  Base class for all entities.
@@ -356,23 +388,6 @@ public:
         bool _valid;
         mutable bool _was_set;
     };
-
-    class Account;
-    class Application;
-    class Attachment;
-    class Card;
-    class Context;
-    class Emoji;
-    class Instance;
-    class List;
-    class Mention;
-    class Notification;
-    class Relationship;
-    class Report;
-    class Results;
-    class Status;
-    class Tag;
-    class PushSubscription;
 
 protected:
     inline static const string strtime

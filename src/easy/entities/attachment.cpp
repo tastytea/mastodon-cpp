@@ -62,7 +62,7 @@ const std::chrono::duration<double> Attachment::duration() const
     return std::chrono::duration<double>(sec);
 }
 
-const string Attachment::file()
+const string Attachment::file() const
 {
     return get_string("file");
 }

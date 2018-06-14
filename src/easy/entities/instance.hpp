@@ -37,6 +37,8 @@ namespace Mastodon
 {
     /*!
      *  @brief  Class to hold instances
+     *  
+     *  @since before 0.11.0
      */
     class Easy::Instance : public Easy::Entity
     {
@@ -45,53 +47,73 @@ namespace Mastodon
          *  @brief  Constructs an Instance object from a JSON string.
          *
          *  @param  json    JSON string
+         *  
+         *  @since before 0.11.0
          */
         explicit Instance(const string &json);
 
         /*!
          *  @brief  Constructs an empty Instance object.
+         *  
+         *  @since before 0.11.0
          */
         Instance();
 
         /*!
          *  @brief  Returns the Account of the admin or another contact person
+         *  
+         *  @since before 0.11.0
          */
         const Account contact_account() const;
 
         /*!
          *  @brief  Returns the description of the instance
+         *  
+         *  @since before 0.11.0
          */
         const string description() const;
 
         /*!
          *  @brief  Returns the email address which can be used to contact the
          *          instance administrator
+         *  
+         *  @since before 0.11.0
          */
         const string email() const;
 
         /*!
          *  @brief  Returns a vector of ISO 6391 language codes the instance has
          *          chosen to advertise
+         *  
+         *  @since before 0.11.0
          */
         const std::vector<string> languages() const;
 
         /*!
          *  @brief  Returns the title of the instance
+         *  
+         *  @since before 0.11.0
          */
         const string title() const;
 
         /*!
          *  @brief  Returns the URI of the instance
+         *  
+         *  @since before 0.11.0
          */
         const string uri() const;
 
         /*!
          *  @brief  Returns the version used by the instance
+         *  
+         *  @since before 0.11.0
          */
         const string version() const;
 
         /*!
          *  @brief  Returns the URL for the streaming API
+         *  
+         *  @since before 0.11.0
          */
         const string streaming_api() const;
     };

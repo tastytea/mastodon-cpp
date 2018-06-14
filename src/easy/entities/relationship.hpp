@@ -36,6 +36,8 @@ namespace Mastodon
 {
     /*!
      *  @brief  Class to hold relationships
+     *  
+     *  before 0.11.0
      */
     class Easy::Relationship : public Easy::Entity
     {
@@ -44,51 +46,71 @@ namespace Mastodon
          *  @brief  Constructs a Relationship object from a JSON string.
          *
          *  @param  json    JSON string
+         *  
+         *  @since  before 0.11.0
          */
         explicit Relationship(const string &json);
 
         /*!
          *  @brief  Constructs an empty Relationship object.
+         *  
+         *  @since  before 0.11.0
          */
         Relationship();
 
         /*!
          *  @brief  Returns true if the user is blocking the account
+         *  
+         *  @since  before 0.11.0
          */
         const bool blocking() const;
 
         /*!
          *  @brief  Returns true if the user is blocking the account's domain
+         *  
+         *  @since  before 0.11.0
          */
         const bool domain_blocking() const;
 
         /*!
          *  @brief  Returns true if the user is being followed by the account
+         *  
+         *  @since  before 0.11.0
          */
         const bool followed_by() const;
 
         /*!
          *  @brief  Returns true if the user is being following the account
+         *  
+         *  @since  before 0.11.0
          */
         const bool following() const;
 
         /*!
          *  @brief  Returns the target account ID
+         *  
+         *  @since  before 0.11.0
          */
         const uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns true if the user is muting the account
+         *  
+         *  @since  before 0.11.0
          */
         const bool muting() const;
 
         /*!
          *  @brief  Returns true if the user is also muting notifications
+         *  
+         *  @since  before 0.11.0
          */
         const bool muting_notifications() const;
 
         /*!
          *  @brief  Returns true if the user has requested to follow the account
+         *  
+         *  @since  before 0.11.0
          */
         const bool requested() const;
     };

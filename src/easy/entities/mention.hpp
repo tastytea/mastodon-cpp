@@ -37,6 +37,8 @@ namespace Mastodon
 {
     /*!
      *  @brief  Class to hold mentions
+     *  
+     *  before 0.11.0
      */
     class Easy::Mention : public Easy::Entity
     {
@@ -45,31 +47,43 @@ namespace Mastodon
          *  @brief  Constructs a Mention object from a JSON string.
          *
          *  @param  json    JSON string
+         *  
+         *  @since before 0.11.0
          */
         explicit Mention(const string &json);
 
         /*!
          *  @brief  Constructs an empty Mention object.
+         *  
+         *  @since before 0.11.0
          */
         Mention();
 
         /*!
          *  @brief  Returns acct
+         *  
+         *  @since before 0.11.0
          */
         const string acct() const;
 
         /*!
          *  @brief  Returns account ID
+         *  
+         *  @since before 0.11.0
          */
         const uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns the URL of user's profile
+         *  
+         *  @since before 0.11.0
          */
         const string url() const;
 
         /*!
          *  @brief  Returns the username of the account
+         *  
+         *  @since before 0.11.0
          */
         const string username() const;
     };

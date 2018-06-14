@@ -47,26 +47,36 @@ namespace Mastodon
          *  @brief  Constructs an PushSubscription object from a JSON string.
          *
          *  @param  json    JSON string
+         *  
+         *  @since  0.14.0
          */
         explicit PushSubscription(const string &json);
 
         /*!
          *  @brief  Constructs an empty PushSubscription object.
+         *  
+         *  @since  0.14.0
          */
         PushSubscription();
 
         /*!
          *  @brief  Returns push subscription ID
+         *  
+         *  @since  0.14.0
          */
         const uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns the endpoint URL
+         *  
+         *  @since  0.14.0
          */
         const string endpoint() const;
 
         /*!
          *  @brief  Returns the server public key for signature verification
+         *  
+         *  @since  0.14.0
          */
         const string server_key() const;
 
@@ -74,6 +84,8 @@ namespace Mastodon
         /*!
          *  @brief  Returns a map of 'notification event type' and
          *  'push is requested or not'
+         *  
+         *  @since  0.14.0
          */
         const Easy::alertmap alerts() const;
 

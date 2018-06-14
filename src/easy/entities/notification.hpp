@@ -42,6 +42,8 @@ namespace Mastodon
 {
     /*!
      *  @brief  Class to hold notifications
+     *  
+     *  @since before 0.11.0
      */
     class Easy::Notification : public Easy::Entity
     {
@@ -50,37 +52,51 @@ namespace Mastodon
          *  @brief  Constructs a Notification object from a JSON string.
          *
          *  @param  json    JSON string
+         *  
+         *  @since before 0.11.0
          */
         explicit Notification(const string &json);
 
         /*!
          *  @brief  Constructs an empty Notification object.
+         *  
+         *  @since before 0.11.0
          */
         Notification();
 
         /*!
          *  @brief  Returns the Account sending the notification to the user
+         *  
+         *  @since before 0.11.0
          */
         const Account account() const;
 
         /*!
          *  @brief  Returns time of creation
+         *  
+         *  @since before 0.11.0
          */
         const system_clock::time_point created_at() const;
 
         /*!
          *  @brief  Returns notification ID
+         *  
+         *  @since before 0.11.0
          */
         const uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns the Status associated with the notification, if
          *          applicable
+         *  
+         *  @since before 0.11.0
          */
         const Status status() const;
 
         /*!
          *  @brief  Returns notification type
+         *  
+         *  @since before 0.11.0
          */
         const Easy::notification_type type() const;
     };

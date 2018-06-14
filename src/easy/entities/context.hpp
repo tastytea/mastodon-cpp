@@ -37,6 +37,8 @@ namespace Mastodon
 {
     /*!
      *  @brief  Class to hold contexts
+     *  
+     *  @since before 0.11.0
      */
     class Easy::Context : public Easy::Entity
     {
@@ -45,21 +47,29 @@ namespace Mastodon
          *  @brief  Constructs a Context object from a JSON string.
          *
          *  @param  json    JSON string
+         *  
+         *  @since before 0.11.0
          */
         explicit Context(const string &json);
 
         /*!
          *  @brief  Constructs an empty Context object.
+         *  
+         *  @since before 0.11.0
          */
         Context();
 
         /*!
          *  @brief  Returns the ancestors of the Status as vector of Statuses
+         *  
+         *  @since before 0.11.0
          */
         const std::vector<Status> ancestors() const;
 
         /*!
          *  @brief  Returns the descendants of the Status as vector of Statuses
+         *  
+         *  @since before 0.11.0
          */
         const std::vector<Status> descendants() const;
     };

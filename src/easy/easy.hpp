@@ -41,12 +41,16 @@ namespace Mastodon
 {
 /*!
  *  @brief  Child of Mastodon::API with abstract methods.
+ *  
+ *  @since  before 0.11.0
  */
 class Easy : public API
 {
 public:
     /*!
      *  @brief  Describes the event type
+     *  
+     *  @since  before 0.11.0
      */
     enum class event_type
     {
@@ -58,6 +62,8 @@ public:
 
     /*!
      *  @brief  Describes visibility of toots.
+     *  
+     *  @since  before 0.11.0
      */
     enum class visibility_type
     {
@@ -70,6 +76,8 @@ public:
 
     /*!
      *  @brief  Describes the attachment type
+     *  
+     *  @since  before 0.11.0
      */
     enum class attachment_type
     {
@@ -82,6 +90,8 @@ public:
 
     /*!
      *  @brief  Describes the card type
+     *  
+     *  @since  before 0.11.0
      */
     enum class card_type
     {
@@ -94,6 +104,8 @@ public:
 
     /*!
      *  @brief  Describes the notification type
+     *  
+     *  @since  before 0.11.0
      */
     enum class notification_type
     {
@@ -106,6 +118,8 @@ public:
 
     /*!
      *  @brief Used for stream events.
+     *  
+     *  @since  before 0.11.0
      */
     typedef std::pair<event_type, string> stream_event;
 
@@ -113,6 +127,8 @@ public:
      *  @brief  Map of 'notification type' and 'push is requested or not'
      *
      *          Used in PushSubscription::alerts().
+     *  
+     *  @since  0.13.3
      */
     typedef std::map<Easy::notification_type, bool> alertmap;
 
@@ -137,32 +153,44 @@ public:
      *  @brief  Class to hold the `Link`-header.
      *  
      *          Extracts max_id and since_id from the `Link`-header
+     *  
+     *  @since  before 0.11.0
      */
     class Link
     {
     public:
         /*!
          *  @param  link_header  The content of the `Link` header
+         *  
+         *  @since  before 0.11.0
          */
         explicit Link(const string &link_header);
 
         /*!
          *  @brief  Returns max_id
+         *  
+         *  @since  before 0.11.0
          */
         const uint_fast64_t next() const;
 
         /*!
          *  @brief  Returns max_id
+         *  
+         *  @since  before 0.11.0
          */
         const uint_fast64_t max_id() const;
 
         /*!
          *  @brief  Returns since_id
+         *  
+         *  @since  before 0.11.0
          */
         const uint_fast64_t prev() const;
 
         /*!
          *  @brief  Returns since_id
+         *  
+         *  @since  before 0.11.0
          */
         const uint_fast64_t since_id() const;
 
@@ -179,6 +207,8 @@ public:
      *
      *  @param  instance      The hostname of your instance
      *  @param  access_token  The access token
+     *  
+     *  @since  before 0.11.0
      */
     explicit Easy(const string &instance, const string &access_token);
 
@@ -188,6 +218,8 @@ public:
      *  @param  json    JSON string holding the array
      *
      *  @return vector of strings or an empty vector on error
+     *  
+     *  @since  before 0.11.0
      */
     static const std::vector<string> json_array_to_vector(const string &json);
 
@@ -197,12 +229,16 @@ public:
      *  @param  streamdata  Data from get_stream()
      *
      *  @return vector of stream events
+     *  
+     *  @since  before 0.11.0
      */
     static const std::vector<stream_event>
         parse_stream(const std::string &streamdata);
 
     /*!
      *  @brief  Gets the links from the last answer
+     *  
+     *  @since  before 0.11.0
      */
     const Link get_link() const;
 
@@ -248,11 +284,15 @@ public:
      *                  URL.
      *
      *  @return The new Easy::Status
+     *  
+     *  @since  0.17.0
      */
     const Status send_toot(const Status &status, uint_fast16_t error = 0);
 
     /*!
      *  @brief  Base class for all entities.
+     *  
+     *  @since  before 0.11.0
      */
     class Entity
     {
@@ -261,11 +301,15 @@ public:
          *  @brief  Constructs an Entity object from a JSON string.
          *
          *  @param  json    JSON string
+         *  
+         *  @since  before 0.11.0
          */
         explicit Entity(const string &json);
 
         /*!
          *  @brief  Constructs an empty Entity object.
+         *  
+         *  @since  before 0.11.0
          */
         Entity();
 
@@ -273,6 +317,8 @@ public:
          *  @brief  Replaces the Entity with a new one from a JSON string.
          *
          *  @param  json    JSON string
+         *  
+         *  @since  before 0.11.0
          */
         const void from_string(const string &json);
 
@@ -280,16 +326,22 @@ public:
          *  @brief  Returns the JSON object of the Entity
          *
          *  @return JSON object
+         *  
+         *  @since  before 0.11.0
          */
         const Json::Value to_object() const;
 
         /*!
          *  @brief  Returns true if the Entity holds valid data
+         *  
+         *  @since  before 0.11.0
          */
         const bool valid() const;
 
         /*!
          *  @brief  Returns error string sent by the server
+         *  
+         *  @since  before 0.11.0
          */
         const string error() const;
 
@@ -318,6 +370,8 @@ public:
          *      }
          *  }
          *  @endcode
+         *  
+         *  @since  before 0.11.0
          */
         const bool was_set() const;
 

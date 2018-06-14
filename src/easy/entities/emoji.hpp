@@ -34,6 +34,8 @@ namespace Mastodon
 {
     /*!
      *  @brief  Class to hold emojis
+     *  
+     *  @since before 0.11.0
      */
     class Easy::Emoji : public Easy::Entity
     {
@@ -42,26 +44,36 @@ namespace Mastodon
          *  @brief  Constructs an Emoji object from a JSON string.
          *
          *  @param  json    JSON string
+         *  
+         *  @since before 0.11.0
          */
         explicit Emoji(const string &json);
 
         /*!
          *  @brief  Constructs an empty Emoji object.
+         *  
+         *  @since before 0.11.0
          */
         Emoji();
 
         /*!
          *  @brief  Returns the shortcode of the emoji
+         *  
+         *  @since before 0.11.0
          */
         const string shortcode() const;
 
         /*!
          *  @brief  Returns the URL to the emoji static image
+         *  
+         *  @since before 0.11.0
          */
         const string static_url() const;
 
         /*!
          *  @brief  Returns the URL to the emoji image
+         *  
+         *  @since before 0.11.0
          */
         const string url() const;
     };

@@ -51,6 +51,8 @@ namespace Mastodon
 {
     /*!
      *  @brief  Class to hold statuses
+         *  
+         *  @since  before 0.11.0
      */
     class Easy::Status : public Easy::Entity
     {
@@ -59,31 +61,43 @@ namespace Mastodon
          *  @brief  Constructs a Status object from a JSON string.
          *
          *  @param  json    JSON string
+         *  
+         *  @since  before 0.11.0
          */
         explicit Status(const string &json);
 
         /*!
          *  @brief  Constructs an empty Status object.
+         *  
+         *  @since  before 0.11.0
          */
         Status();
 
         /*!
          *  @brief  Returns an array of matched accounts.
+         *  
+         *  @since  before 0.11.0
          */
         const Account account() const;
 
         /*!
          *  @brief  Returns application from which the status was posted.
+         *  
+         *  @since  before 0.11.0
          */
         const Application application() const;
 
         /*!
          *  @brief  Returns time of creation
+         *  
+         *  @since  before 0.11.0
          */
         const system_clock::time_point created_at() const;
 
         /*!
          *  @brief  Returns content of status
+         *  
+         *  @since  before 0.11.0
          */
         const string content() const;
 
@@ -96,26 +110,36 @@ namespace Mastodon
 
         /*!
          *  @brief  Returns an array of emojis
+         *  
+         *  @since  before 0.11.0
          */
         const std::vector<Emoji> emojis() const;
 
         /*!
          *  @brief  Returns true if the user has favourited the status
+         *  
+         *  @since  before 0.11.0
          */
         const bool favourited() const;
 
         /*!
          *  @brief  Returns the number of favourites
+         *  
+         *  @since  before 0.11.0
          */
         const uint_fast64_t favourites_count() const;
 
         /*!
          *  @brief  Returns the ID of the status
+         *  
+         *  @since  before 0.11.0
          */
         const uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns the ID of the status it replies to
+         *  
+         *  @since  before 0.11.0
          */
         const uint_fast64_t in_reply_to_id() const;
 
@@ -128,11 +152,15 @@ namespace Mastodon
 
         /*!
          *  @brief  Returns the ID of the account it replies to
+         *  
+         *  @since  before 0.11.0
          */
         const uint_fast64_t in_reply_to_account_id() const;
 
         /*!
          *  @brief  Returns the language of the status
+         *  
+         *  @since  before 0.11.0
          */
         const string language() const;
 
@@ -145,6 +173,8 @@ namespace Mastodon
 
         /*!
          *  @brief  Returns the attachments
+         *  
+         *  @since  before 0.11.0
          */
         const std::vector<Attachment> media_attachments() const;
 
@@ -158,36 +188,50 @@ namespace Mastodon
 
         /*!
          *  @brief  Returns the mentions
+         *  
+         *  @since  before 0.11.0
          */
         const std::vector<Mention> mentions() const;
 
         /*!
          *  @brief  Returns true if the user muted the conversation
+         *  
+         *  @since  before 0.11.0
          */
         const bool muted() const;
 
         /*!
          *  @brief  Returns true if the status is pinned
+         *  
+         *  @since  before 0.11.0
          */
         const bool pinned() const;
 
         /*!
          *  @brief  Returns the reblogged Status
+         *  
+         *  @since  before 0.11.0
          */
         const Status reblog() const;
 
         /*!
          *  @brief  Returns true if the user has reblogged the status
+         *  
+         *  @since  before 0.11.0
          */
         const bool reblogged() const;
 
         /*!
          *  @brief  Returns the number of reblogs for the status
+         *  
+         *  @since  before 0.11.0
          */
         const uint_fast64_t reblogs_count() const;
 
         /*!
          *  @brief  Returns true if the attachments should be hidden by default
+         *  
+         *  @since  before 0.11.0
          */
         const bool sensitive() const;
 
@@ -200,6 +244,8 @@ namespace Mastodon
 
         /*!
          *  @brief  Returns the spoiler text
+         *  
+         *  @since  before 0.11.0
          */
         const string spoiler_text() const;
 
@@ -212,21 +258,29 @@ namespace Mastodon
 
         /*!
          *  @brief  Returns the tags
+         *  
+         *  @since  before 0.11.0
          */
         const std::vector<Tag> tags() const;
 
         /*!
          *  @brief  Returns the Fediverse-unique resource ID
+         *  
+         *  @since  before 0.11.0
          */
         const string uri() const;
 
         /*!
          *  @brief  Returns the URL to the status page
+         *  
+         *  @since  before 0.11.0
          */
         const string url() const;
 
         /*!
          *  @brief  Returns the visibility of the status
+         *  
+         *  @since  before 0.11.0
          */
         const visibility_type visibility() const;
 

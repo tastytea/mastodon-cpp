@@ -38,6 +38,8 @@ namespace Mastodon
 {
     /*!
      *  @brief  Class to hold tags.
+     *  
+     *  @since  before 0.11.0
      */
     class Easy::Tag : public Easy::Entity
     {
@@ -54,25 +56,36 @@ namespace Mastodon
              *  @brief  Constructs an Tag::History object from a JSON string.
              *
              *  @param  json    JSON string
+             *  
+             *  @since  0.16.0
              */
             explicit History(const string &json);
+
             /*!
              *  @brief  Constructs an empty Tag::History object.
+             *  
+             *  @since  0.16.0
              */
             History();
 
             /*!
              *  @brief  Returns the number of accounts using that hashtag.
+             *  
+             *  @since  0.16.0
              */
             const uint_fast64_t accounts();
 
             /*!
              *  @brief  Returns the day.
+             *  
+             *  @since  0.16.0
              */
             const system_clock::time_point day();
 
             /*!
              *  @brief  Returns the number of accounts using that hashtag.
+             *  
+             *  @since  0.16.0
              */
             const uint_fast64_t uses();
         };
@@ -81,21 +94,29 @@ namespace Mastodon
          *  @brief  Constructs an Tag object from a JSON string.
          *
          *  @param  json    JSON string
+         *  
+         *  @since  before 0.11.0
          */
         explicit Tag(const string &json);
 
         /*!
          *  @brief  Constructs an empty Tag object.
+         *  
+         *  @since  before 0.11.0
          */
         Tag();
 
         /*!
          *  @brief  Returns the name of the tag
+         *  
+         *  @since  before 0.11.0
          */
         const string name() const;
 
         /*!
          *  @brief  Returns the URL of the tag
+         *  
+         *  @since  before 0.11.0
          */
         const string url() const;
 

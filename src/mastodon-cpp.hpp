@@ -70,12 +70,16 @@ namespace Mastodon
  *  |        15 | Network error (curlpp exception) |
  *  | 100 - 999 | HTTP status codes                |
  *  |     65535 | Unknown error                    |
+ *  
+ *  @since  before 0.11.0
  */
 class API
 {
 public:
     /*!
      *  @brief  http class. Do not use this directly.
+     *  
+     *  @since  before 0.11.0
      */
     class http
     {
@@ -110,6 +114,8 @@ public:
          *
          *  @return @ref error "Error code". If the URL has permanently changed,
          *  13 is returned and answer is set to the new URL.
+         *  
+         *  @since  before 0.11.0
          */
         const uint_fast16_t request(const method &meth,
                                     const string &path,
@@ -143,6 +149,8 @@ public:
          *          specified in get_stream().
          *
          *  @return A reference of the mutex.
+         *  
+         *  @since  0.12.3
          */
         std::mutex &get_mutex();
 
@@ -174,12 +182,17 @@ public:
      *      {"field2", { "value" } }
      *  }
      *  @endcode
+     *  
+     *  @since  before 0.11.0
      */
     typedef std::map<string, std::vector<string>> parametermap;
+
     /*!
-     *  @brief  A list of all API calls.
-     *
+     *  @brief  A list of all v1 API calls.
+     *  
      *          The original `/` are substituted by `_`.
+     *  
+     *  @since  before 0.11.0
      */
     enum class v1
     {
@@ -251,6 +264,13 @@ public:
         push_subscription
     };
 
+    /*!
+     *  @brief  A list of all v2 API calls.
+     *  
+     *          The original `/` are substituted by `_`.
+     *  
+     *  @since  0.16.0
+     */
     enum class v2
     {
         search
@@ -264,6 +284,8 @@ public:
      *
      *  @param  instance      The hostname of your instance
      *  @param  access_token  Your access token.
+     *  
+     *  @since  before 0.11.0
      */
     explicit API(const string &instance, const string &access_token);
 
@@ -271,6 +293,8 @@ public:
      *  @brief  Sets the useragent. Default is mastodon-cpp/version.
      *
      *  @param  useragent  The useragent
+     *  
+     *  @since  before 0.11.0
      */
     const void set_useragent(const string &useragent);
 
@@ -278,6 +302,8 @@ public:
      *  @brief  Gets the useragent.
      *
      *  @return The useragent.
+     *  
+     *  @since  before 0.11.0
      */
     const string get_useragent() const;
 
@@ -285,6 +311,8 @@ public:
      *  @brief  Returns the instance.
      *
      *  @return The instance.
+     *  
+     *  @since  before 0.11.0
      */
     const string get_instance() const;
 
@@ -302,6 +330,8 @@ public:
      *  @param  str     The string
      *
      *  @return The percent-encoded string
+     *  
+     *  @since  before 0.11.0
      */
     static const string urlencode(const string &str);
 
@@ -319,6 +349,8 @@ public:
      *
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *          is returned and url is set to the new URL.
+     *  
+     *  @since  before 0.11.0
      */
     const uint_fast16_t register_app1(const string &client_name,
                                       const string &redirect_uri,
@@ -350,6 +382,8 @@ public:
      *  @param  access_token   Returned
      *
      *  @return @ref error "Error code".
+     *  
+     *  @since  before 0.11.0
      */
     const uint_fast16_t register_app2(const string &client_id,
                                       const string &client_secret,
@@ -371,6 +405,8 @@ public:
      *  @param  header  The header to get
      *
      *  @return The header, or "" on error.
+     *  
+     *  @since  before 0.11.0
      */
     const string get_header(const string &header) const;
 
@@ -383,6 +419,8 @@ public:
      *  @param  value   true for on, false for off
      *
      *  @return true if exceptions are turned on, false otherwise
+     *  
+     *  @since  before 0.11.0
      */
     bool exceptions(const bool &value);
 
@@ -431,6 +469,8 @@ public:
      *                  empty string.
      *
      *  @return @ref error "Error code".
+     *  
+     *  @since  before 0.11.0
      */
     const uint_fast16_t get(const Mastodon::API::v1 &call, string &answer);
 
@@ -467,6 +507,8 @@ public:
      *
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
+     *  
+     *  @since  before 0.11.0
      */
     const uint_fast16_t get(const string &call, string &answer);
 
@@ -494,6 +536,8 @@ public:
      *
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
+     *  
+     *  @since  before 0.11.0
      */
     const uint_fast16_t get_stream(const Mastodon::API::v1 &call,
                                    const parametermap &parameters,
@@ -510,6 +554,8 @@ public:
      *
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
+     *  
+     *  @since  before 0.11.0
      */
     const uint_fast16_t get_stream(const Mastodon::API::v1 &call,
                                    string &answer,
@@ -526,6 +572,8 @@ public:
      *
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
+     *  
+     *  @since  before 0.11.0
      */
     const uint_fast16_t get_stream(const string &call,
                                    string &answer,
@@ -550,6 +598,8 @@ public:
      *
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
+     *  
+     *  @since  before 0.11.0
      */
     const uint_fast16_t patch(const Mastodon::API::v1 &call,
                               const parametermap &parameters,
@@ -564,6 +614,8 @@ public:
      *
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
+     *  
+     *  @since  before 0.11.0
      */
     const uint_fast16_t post(const Mastodon::API::v1 &call, string &answer);
 
@@ -579,6 +631,8 @@ public:
      *
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
+     *  
+     *  @since  before 0.11.0
      */
     const uint_fast16_t post(const Mastodon::API::v1 &call,
                              const parametermap &parameters,
@@ -596,6 +650,8 @@ public:
      *
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
+     *  
+     *  @since  before 0.11.0
      */
     const uint_fast16_t post(const string &call,
                              const parametermap &parameters,
@@ -625,6 +681,8 @@ public:
      *
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
+     *  
+     *  @since  before 0.11.0
      */
     const uint_fast16_t put(const Mastodon::API::v1 &call,
                             const parametermap &parameters,
@@ -641,6 +699,8 @@ public:
      *
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
+     *  
+     *  @since  before 0.11.0
      */
     const uint_fast16_t put(const string &call,
                             const parametermap &parameters,
@@ -660,6 +720,8 @@ public:
      *  @param  parameters  A Mastodon::API::parametermap containing parameters
      *
      *  @return @ref error "Error code".
+     *  
+     *  @since  before 0.11.0
      */
     const uint_fast16_t del(const Mastodon::API::v1 &call,
                             const parametermap &parameters);
@@ -674,6 +736,8 @@ public:
      *
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
+     *  
+     *  @since  before 0.11.0
      */
     const uint_fast16_t del(const string &call,
                             const parametermap &parameters,

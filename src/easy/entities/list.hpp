@@ -37,6 +37,8 @@ namespace Mastodon
 {
     /*!
      *  @brief  Class to hold lists
+     *  
+     *  @since before 0.11.0
      */
     class Easy::List : public Easy::Entity
     {
@@ -45,21 +47,29 @@ namespace Mastodon
          *  @brief  Constructs a List object from a JSON string.
          *
          *  @param  json    JSON string
+         *  
+         *  @since before 0.11.0
          */
         explicit List(const string &json);
 
         /*!
          *  @brief  Constructs an empty List object.
+         *  
+         *  @since before 0.11.0
          */
         List();
 
         /*!
          *  @brief  Returns list-ID
+         *  
+         *  @since before 0.11.0
          */
         const uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns title
+         *  
+         *  @since before 0.11.0
          */
         const string title() const;
     };

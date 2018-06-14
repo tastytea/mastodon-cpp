@@ -34,6 +34,8 @@ namespace Mastodon
 {
     /*!
      *  @brief  Class to hold applications.
+     *  
+     *  @since before 0.11.0
      */
     class Easy::Application : public Easy::Entity
     {
@@ -42,21 +44,29 @@ namespace Mastodon
          *  @brief  Constructs an Application object from a JSON string.
          *
          *  @param  json    JSON string
+         *  
+         *  @since before 0.11.0
          */
         explicit Application(const string &json);
 
         /*!
          *  @brief  Constructs an empty Application object.
+         *  
+         *  @since before 0.11.0
          */
         Application();
 
         /*!
          *  @brief  Returns the name of the application
+         *  
+         *  @since before 0.11.0
          */
         const string name() const;
 
         /*!
          *  @brief  Returns the website of the application
+         *  
+         *  @since before 0.11.0
          */
         const string website() const;
 };

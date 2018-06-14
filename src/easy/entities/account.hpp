@@ -40,6 +40,8 @@ namespace Mastodon
 {
     /*!
      *  @brief  Class to hold accounts.
+     *  
+     *  @since before 0.11.0
      */
     class Easy::Account : public Easy::Entity
     {
@@ -55,11 +57,15 @@ namespace Mastodon
          *  @brief  Constructs an Account object from a JSON string.
          *
          *  @param  json    JSON string
+         *  
+         *  @since before 0.11.0
          */
         explicit Account(const string &json);
 
         /*!
          *  @brief  Constructs an empty Account object.
+         *  
+         *  @since before 0.11.0
          */
         Account();
 
@@ -68,31 +74,43 @@ namespace Mastodon
          *
          *          `username` for users on the same instance, `user@hostname`
          *          for users on other instances.
+         *  
+         *  @since before 0.11.0
          */
         const string acct() const;
 
         /*!
          *  @brief  Returns URL of avatar
+         *  
+         *  @since before 0.11.0
          */
         const string avatar() const;
 
         /*!
          *  @brief  Returns URL of static avatar
+         *  
+         *  @since before 0.11.0
          */
         const string avatar_static() const;
 
         /*!
          *  @brief  Returns true if the account performs automated actions
+         *  
+         *  @since  0.16.0
          */
         const bool bot() const;
 
         /*!
          *  @brief  Returns time of creation
+         *  
+         *  @since before 0.11.0
          */
         const system_clock::time_point created_at() const;
 
         /*!
          *  @brief  Returns display name
+         *  
+         *  @since before 0.11.0
          */
         const string display_name() const;
 
@@ -105,77 +123,107 @@ namespace Mastodon
 
         /*!
          *  @brief  Returns number of followers
+         *  
+         *  @since before 0.11.0
          */
         const uint_fast64_t followers_count() const;
 
         /*!
          *  @brief  Returns number of people this account follows
+         *  
+         *  @since before 0.11.0
          */
         const uint_fast64_t following_count() const;
 
         /*!
          *  @brief  Returns URL of header image
+         *  
+         *  @since before 0.11.0
          */
         const string header() const;
 
         /*!
          *  @brief  Returns URL of static header image
+         *  
+         *  @since before 0.11.0
          */
         const string header_static() const;
 
         /*!
          *  @brief  Returns account-ID
+         *  
+         *  @since before 0.11.0
          */
         const uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns true if the account is locked
+         *  
+         *  @since before 0.11.0
          */
         const bool locked() const;
 
         /*!
          *  @brief  Returns true if the account has been moved
+         *  
+         *  @since before 0.11.0
          */
         const bool has_moved() const;
 
         /*!
          *  @brief  If the owner decided to switch accounts, new account is in
          *          this attribute
+         *  
+         *  @since before 0.11.0
          */
         const Account moved() const;
 
         /*!
          *  @brief  Returns note
+         *  
+         *  @since before 0.11.0
          */
         const string note() const;
 
         /*!
          *  @brief  Returns plaintext version of note
+         *  
+         *  @since before 0.11.0
          */
         const string note_plain() const;
 
         /*!
          *  @brief  Returns default privacy of new toots
+         *  
+         *  @since before 0.11.0
          */
         const visibility_type privacy() const;
 
         /*!
          *  @brief  Returns if media is marked as sensitive by default
+         *  
+         *  @since before 0.11.0
          */
         const bool sensitive() const;
 
         /*!
          *  @brief  Returns number of statuses
+         *  
+         *  @since before 0.11.0
          */
         const uint_fast64_t statuses_count() const;
 
         /*!
          *  @brief  Returns URL of the profile
+         *  
+         *  @since before 0.11.0
          */
         const string url() const;
 
         /*!
          *  @brief  Returns username (without @hostname)
+         *  
+         *  @since before 0.11.0
          */
         const string username() const;
 };

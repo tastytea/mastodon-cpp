@@ -41,6 +41,8 @@ namespace Mastodon
 {
     /*!
      *  @brief  Class to hold results
+     *  
+     *  @since  before 0.11.0
      */
     class Easy::Results : public Easy::Entity
     {
@@ -49,21 +51,29 @@ namespace Mastodon
          *  @brief  Constructs a Results object from a JSON string.
          *
          *  @param  json    JSON string
+         *  
+         *  @since  before 0.11.0
          */
         explicit Results(const string &json);
 
         /*!
          *  @brief  Constructs an empty Results object.
+         *  
+         *  @since  before 0.11.0
          */
         Results();
 
         /*!
          *  @brief  Returns an array of matched Accounts
+         *  
+         *  @since  before 0.11.0
          */
         const std::vector<Account> accounts() const;
 
         /*!
          *  @brief  Returns an array of matched Statuses
+         *  
+         *  @since  before 0.11.0
          */
         const std::vector<Status> statuses() const;
 
@@ -83,6 +93,8 @@ namespace Mastodon
 
         /*!
          *  @brief  Alias for hashtags_v1
+         *  
+         *  @since  before 0.11.0
          */
         [[deprecated("Will vanish in 1.0.0, use hashtags_v1() instead")]]
         const std::vector<string> hashtags() const;

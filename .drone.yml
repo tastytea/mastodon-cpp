@@ -21,6 +21,7 @@ pipeline:
     when:
       event: tag
     image: plugins/gitea-release
+    pull: true
     base_url: https://schlomp.space
     secrets: [ gitea_token ]
     title: ${DRONE_TAG}
@@ -31,6 +32,7 @@ pipeline:
       - "libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm"
   notify:
     image: drillster/drone-email
+    pull: true
     host: cryptoparty-celle.de
     secrets: [ email_username, email_password ]
     from: drone@tzend.de

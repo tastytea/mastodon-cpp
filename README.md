@@ -112,18 +112,18 @@ packages for the package managers of Gentoo, Debian and Red Hat.
 
 ### Gentoo
 
-Put the ebuild into your [local overlay](https://wiki.gentoo.org/wiki/Custom_repository) and run `ebuild <ebuild path> manifest`.
-Install with `emerge mastodon-cpp`.
-
-Or [add my repository](https://wiki.gentoo.org/wiki/Eselect/Repository) and
+Add my [repository](https://schlomp.space/tastytea/overlay) and
 install it from there.
 
 ```SH
-eselect repository add tastytea git https://schlomp.space/tastytea/overlay.git
+eselect repository enable tastytea
 echo 'dev-cpp/mastodon-cpp ~amd64' >> /etc/portage/package.keywords/mastodon-cpp
 emaint sync -r tastytea
 emerge -a dev-cpp/mastodon-cpp
 ```
+
+Or put the ebuild into your [local overlay](https://wiki.gentoo.org/wiki/Custom_repository) and run `ebuild <ebuild path> manifest`.
+Install with `emerge mastodon-cpp`.
 
 ### DEB and RPM
 

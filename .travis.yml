@@ -9,11 +9,11 @@ addons:
       - ubuntu-toolchain-r-test
       - sourceline: 'ppa:cspensky/sda'
     packages:
-      - g++-5
+      - g++-6
       - libcurlpp-dev
       - libjsoncpp-dev
 before_install:
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 60
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 60
 script:
   - mkdir -p build && cd build
   - cmake -DWITH_EXAMPLES=ON -DWITH_TESTS=ON ..

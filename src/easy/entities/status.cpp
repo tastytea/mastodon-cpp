@@ -17,7 +17,6 @@
 #include <iostream>
 #include <jsoncpp/json/json.h>
 #include "status.hpp"
-#include "macros.hpp"
 
 using namespace Mastodon;
 using Status = Easy::Status;
@@ -38,7 +37,6 @@ const Easy::Account Status::account() const
         return Easy::Account(node.toStyledString());
     }
 
-    ttdebug << "Could not get data: account\n";
     return Easy::Account();
 }
 
@@ -50,7 +48,6 @@ const Easy::Application Status::application() const
         return Easy::Application(node.toStyledString());
     }
 
-    ttdebug << "Could not get data: application\n";
     return Easy::Application();
 }
 
@@ -83,7 +80,6 @@ const std::vector<Easy::Emoji> Status::emojis() const
         return vec;
     }
 
-    ttdebug << "Could not get data: emojis\n";
     return {};
 }
 
@@ -142,7 +138,6 @@ const std::vector<Easy::Attachment> Status::media_attachments() const
         return vec;
     }
 
-    ttdebug << "Could not get data: media_attachments\n";
     return {};
 }
 
@@ -173,7 +168,6 @@ const std::vector<Easy::Mention> Status::mentions() const
         return vec;
     }
 
-    ttdebug << "Could not get data: mentions\n";
     return {};
 }
 
@@ -195,7 +189,6 @@ const Status Status::reblog() const
         return Easy::Status(node.toStyledString());
     }
 
-    ttdebug << "Could not get data: reblog\n";
     return Easy::Status();
 }
 
@@ -244,7 +237,6 @@ const std::vector<Easy::Tag> Status::tags() const
         return vec;
     }
 
-    ttdebug << "Could not get data: tags\n";
     return {};
 }
 
@@ -270,7 +262,6 @@ const Easy::visibility_type Status::visibility() const
     else if (strvisibility.compare("direct") == 0)
         return visibility_type::Direct;
 
-    ttdebug << "Could not get data: visibility\n";
     return visibility_type::Undefined;
 }
 

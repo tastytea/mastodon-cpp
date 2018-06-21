@@ -131,23 +131,23 @@ Prebuilt DEB and RPM packages for x86_64(amd64) are provided with each release.
 These packages are automatically built and not tested.
 Install with `dpkg -i` or `rpm -i`, respectively.
 
-To use the DEB package on stretch, you will need [libcurlpp0](https://packages.debian.org/libcurlpp0) from buster or jessie.
+To use the DEB package on stretch, you will need [libcurlpp0](https://packages.debian.org/libcurlpp0) from buster.
 
 ## From source
 
 ### Dependencies
 
 * Tested OS: Linux
-* C++ compiler (tested: gcc 6.4 / 7.3)
-* [cmake](https://cmake.org/) (tested: 3.9)
+* C++ compiler (tested: gcc 6.3 / 7.3)
+* [cmake](https://cmake.org/) (tested: 3.9 / 3.11)
 * [pkgconfig](https://pkgconfig.freedesktop.org/wiki/) (tested: 0.29)
-* [libcurl](https://curl.haxx.se/) (tested: 7.60)
+* [libcurl](https://curl.haxx.se/) (tested: 7.60 / 7.52)
 * [curlpp](http://www.curlpp.org/) (tested: 0.8 / 0.7)
 * Optional
     * Easy interface & Examples: [jsoncpp](https://github.com/open-source-parsers/jsoncpp) (tested: 1.8 / 1.7)
     * Documentation: [doxygen](https://www.stack.nl/~dimitri/doxygen/) (tested: 1.8)
-    * DEB package: [dpkg](https://packages.qa.debian.org/dpkg) (tested: 1.19)
-    * RPM package: [rpm](http://www.rpm.org) (tested: 4.14)
+    * DEB package: [dpkg](https://packages.qa.debian.org/dpkg) (tested: 1.18)
+    * RPM package: [rpm](http://www.rpm.org) (tested: 4.12)
 
 ### Get sourcecode
 

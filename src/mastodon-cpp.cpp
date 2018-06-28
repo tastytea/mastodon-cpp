@@ -143,6 +143,11 @@ const std::string API::urlencode(const std::string &str)
     return curlpp::escape(str);
 }
 
+const std::string API::urldecode(const std::string &str)
+{
+    return curlpp::unescape(str);
+}
+
 const uint_fast16_t API::register_app1(const string &instance,
                                        const string &client_name,
                                        const string &redirect_uri,

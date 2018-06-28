@@ -336,6 +336,21 @@ public:
     static const string urlencode(const string &str);
 
     /*!
+     *  @brief  Decodes a percent-encoded string.
+     *
+     *          Calls curlpp::unescape(str)
+     *
+     *          See RFC 3986 section 2.1 for more info.
+     *
+     *  @param  str     The string
+     *
+     *  @return The decoded string
+     *
+     *  @since  0.18.0
+     */
+    static const string urldecode(const string &str);
+
+    /*!
      *  @brief  Register application, step 1/2
      *
      *  @param  client_name    The name of the application

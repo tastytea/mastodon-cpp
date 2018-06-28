@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.7)
 project (mastodon-cpp
-         VERSION 0.17.1
+         VERSION 0.18.0
          LANGUAGES CXX
 )
 

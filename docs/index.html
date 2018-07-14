@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">mastodon-cpp
-   &#160;<span id="projectnumber">0.17.0</span>
+   &#160;<span id="projectnumber">0.18.2</span>
    </div>
   </td>
  </tr>
@@ -97,25 +97,25 @@ $(function() {
 <h2>Packages</h2>
 <p>Every <a href="https://schlomp.space/tastytea/mastodon-cpp/releases">release</a> includes packages for the package managers of Gentoo, Debian and Red Hat.</p>
 <h3>Gentoo</h3>
-<p>Put the ebuild into your <a href="https://wiki.gentoo.org/wiki/Custom_repository">local overlay</a> and run <code>ebuild &lt;ebuild path&gt; manifest</code>. Install with <code>emerge mastodon-cpp</code>.</p>
-<p>Or <a href="https://wiki.gentoo.org/wiki/Eselect/Repository">add my repository</a> and install it from there.</p>
-<div class="fragment"><div class="line">eselect repository add tastytea git https://schlomp.space/tastytea/overlay.git</div><div class="line">echo &#39;dev-cpp/mastodon-cpp ~amd64&#39; &gt;&gt; /etc/portage/package.keywords/mastodon-cpp</div><div class="line">emaint sync -r tastytea</div><div class="line">emerge -a dev-cpp/mastodon-cpp</div></div><!-- fragment --><h3>DEB and RPM</h3>
+<p>Add my <a href="https://schlomp.space/tastytea/overlay">repository</a> and install it from there.</p>
+<div class="fragment"><div class="line">eselect repository enable tastytea</div><div class="line">echo &#39;dev-cpp/mastodon-cpp ~amd64&#39; &gt;&gt; /etc/portage/package.keywords/mastodon-cpp</div><div class="line">emaint sync -r tastytea</div><div class="line">emerge -a dev-cpp/mastodon-cpp</div></div><!-- fragment --><p>Or put the ebuild into your <a href="https://wiki.gentoo.org/wiki/Custom_repository">local overlay</a> and run <code>ebuild &lt;ebuild path&gt; manifest</code>. Install with <code>emerge mastodon-cpp</code>.</p>
+<h3>DEB and RPM</h3>
 <p>Prebuilt DEB and RPM packages for x86_64(amd64) are provided with each release. These packages are automatically built and not tested. Install with <code>dpkg -i</code> or <code>rpm -i</code>, respectively.</p>
-<p>To use the DEB package on stretch, you will need <a href="https://packages.debian.org/libcurlpp0">libcurlpp0</a> from buster or jessie.</p>
+<p>To use the DEB package on stretch, you will need <a href="https://packages.debian.org/libcurlpp0">libcurlpp0</a> from buster.</p>
 <h2>From source</h2>
 <h3>Dependencies</h3>
 <ul>
 <li>Tested OS: Linux</li>
-<li>C++ compiler (tested: gcc 6.4 / 7.3)</li>
-<li><a href="https://cmake.org/">cmake</a> (tested: 3.9)</li>
+<li>C++ compiler (tested: gcc 6.3 / 7.3)</li>
+<li><a href="https://cmake.org/">cmake</a> (tested: 3.9 / 3.11)</li>
 <li><a href="https://pkgconfig.freedesktop.org/wiki/">pkgconfig</a> (tested: 0.29)</li>
-<li><a href="https://curl.haxx.se/">libcurl</a> (tested: 7.60)</li>
+<li><a href="https://curl.haxx.se/">libcurl</a> (tested: 7.60 / 7.52)</li>
 <li><a href="http://www.curlpp.org/">curlpp</a> (tested: 0.8 / 0.7)</li>
 <li>Optional<ul>
 <li>Easy interface &amp; Examples: <a href="https://github.com/open-source-parsers/jsoncpp">jsoncpp</a> (tested: 1.8 / 1.7)</li>
 <li>Documentation: <a href="https://www.stack.nl/~dimitri/doxygen/">doxygen</a> (tested: 1.8)</li>
-<li>DEB package: <a href="https://packages.qa.debian.org/dpkg">dpkg</a> (tested: 1.19)</li>
-<li>RPM package: <a href="http://www.rpm.org">rpm</a> (tested: 4.14)</li>
+<li>DEB package: <a href="https://packages.qa.debian.org/dpkg">dpkg</a> (tested: 1.18)</li>
+<li>RPM package: <a href="http://www.rpm.org">rpm</a> (tested: 4.12)</li>
 </ul>
 </li>
 </ul>

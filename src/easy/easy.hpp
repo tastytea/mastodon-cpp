@@ -285,6 +285,13 @@ public:
      *
      *  @return The new Easy::Status
      *  
+     *  @since  0.18.1
+     */
+    const Status send_post(const Status &status, uint_fast16_t error = 0);
+
+    /*!
+     *  @brief  Alias for send_post()
+     *  
      *  @since  0.17.0
      */
     const Status send_toot(const Status &status, uint_fast16_t error = 0);

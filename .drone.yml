@@ -20,19 +20,22 @@ pipeline:
       - make package
       - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
       - make package
-  # gitea_release:
-  #   when:
-  #     event: tag
-  #   image: plugins/gitea-release
-  #   pull: true
-  #   base_url: https://schlomp.space
-  #   secrets: [ gitea_token ]
-  #   title: ${DRONE_TAG}
-  #   prerelease: true
-  #   files:
-  #     - build/"mastodon-cpp-${DRONE_TAG}.ebuild"
-  #     - build/"libmastodon-cpp_${DRONE_TAG}-0_amd64.deb"
-  #     - build/"libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm"
+  gitea_release:
+    when:
+      event: tag
+    image: plugins/gitea-release
+    pull: true
+    base_url: https://schlomp.space
+    secrets: [ gitea_token ]
+    title: ${DRONE_TAG}
+    prerelease: true
+    files:
+      - build/"mastodon-cpp-${DRONE_TAG}.ebuild"
+      - build/"libmastodon-cpp_${DRONE_TAG}-0_amd64.deb"
+      - build/"libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm"
+    checksum:
+      - sha256
+      - sha512
   notify:
     when:
       status: [ changed, failure ]

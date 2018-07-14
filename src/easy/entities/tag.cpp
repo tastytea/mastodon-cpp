@@ -30,6 +30,17 @@ Tag::Tag()
 : Entity()
 {}
 
+const bool Tag::valid() const
+{
+    const std::vector<string> attributes =
+    {{
+        "name",
+        "url"
+    }};
+
+    return Entity::check_valid(attributes);
+}
+
 const string Tag::name() const
 {
     return get_string("name");
@@ -65,6 +76,18 @@ Tag::History::History(const string &json)
 Tag::History::History()
 : Entity()
 {}
+
+const bool Tag::History::valid() const
+{
+    const std::vector<string> attributes =
+    {{
+        "day",
+        "uses",
+        "accounts"
+    }};
+
+    return Entity::check_valid(attributes);
+}
 
 const uint_fast64_t Tag::History::accounts()
 {

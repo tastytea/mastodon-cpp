@@ -30,6 +30,23 @@ Instance::Instance()
 : Entity()
 {}
 
+const bool Instance::valid() const
+{
+    const std::vector<string> attributes =
+    {{
+        "uri",
+        "title",
+        "description",
+        "email",
+        "version",
+        "urls",
+        "languages",
+        "contact_account"
+    }};
+
+    return Entity::check_valid(attributes);
+}
+
 const Easy::Account Instance::contact_account() const
 {
     const Json::Value node = get("contact_account");

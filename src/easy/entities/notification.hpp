@@ -64,6 +64,8 @@ namespace Mastodon
          */
         Notification();
 
+        virtual const bool valid() const;
+
         /*!
          *  @brief  Returns the Account sending the notification to the user
          *  

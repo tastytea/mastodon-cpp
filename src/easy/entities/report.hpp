@@ -58,6 +58,8 @@ namespace Mastodon
          */
         Report();
 
+        virtual const bool valid() const;
+
         /*!
          *  @brief  Returns true if an action was taken in response to the
          *          report

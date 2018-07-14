@@ -29,6 +29,17 @@ List::List()
 : Entity()
 {}
 
+const bool List::valid() const
+{
+    const std::vector<string> attributes =
+    {{
+        "id",
+        "title"
+    }};
+
+    return Entity::check_valid(attributes);
+}
+
 const uint_fast64_t List::id() const
 {
     return stouint64(get_string("id"));

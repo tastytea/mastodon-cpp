@@ -29,6 +29,19 @@ Attachment::Attachment()
 : Entity()
 {}
 
+const bool Attachment::valid() const
+{
+    const std::vector<string> attributes =
+    {{
+        "id",
+        "type",
+        "url",
+        "preview_url"
+    }};
+
+    return Entity::check_valid(attributes);
+}
+
 const double Attachment::aspect() const
 {
     return get_double("meta.original.aspect");

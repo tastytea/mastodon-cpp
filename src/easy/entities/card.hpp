@@ -58,6 +58,8 @@ namespace Mastodon
          */
         Card();
 
+        virtual const bool valid() const;
+
         /*!
          *  @brief  Returns the name of the author
          *  

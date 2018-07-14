@@ -59,6 +59,8 @@ namespace Mastodon
          */
         PushSubscription();
 
+        virtual const bool valid() const;
+
         /*!
          *  @brief  Returns push subscription ID
          *  

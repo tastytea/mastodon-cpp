@@ -28,6 +28,17 @@ Context::Context()
 : Entity()
 {}
 
+const bool Context::valid() const
+{
+    const std::vector<string> attributes =
+    {{
+        "ancestors",
+        "descendants"
+    }};
+
+    return Entity::check_valid(attributes);
+}
+
 const std::vector<Easy::Status> Context::ancestors() const
 {
     const Json::Value node = get("ancestors");

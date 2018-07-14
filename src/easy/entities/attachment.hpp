@@ -60,6 +60,8 @@ namespace Mastodon
          */
         Attachment();
 
+        virtual const bool valid() const;
+
         /*!
          *  @brief  Aspect of original image
          *  

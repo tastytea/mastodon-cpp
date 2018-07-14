@@ -59,6 +59,8 @@ namespace Mastodon
          */
         List();
 
+        virtual const bool valid() const;
+
         /*!
          *  @brief  Returns list-ID
          *  

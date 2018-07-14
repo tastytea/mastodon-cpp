@@ -59,6 +59,8 @@ namespace Mastodon
          */
         Instance();
 
+        virtual const bool valid() const;
+
         /*!
          *  @brief  Returns the Account of the admin or another contact person
          *  

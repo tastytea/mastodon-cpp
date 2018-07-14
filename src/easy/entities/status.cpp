@@ -29,6 +29,29 @@ Status::Status()
 : Entity()
 {}
 
+const bool Status::valid() const
+{
+    const std::vector<string> attributes =
+    {{
+        "id",
+        "uri",
+        "account",
+        "content",
+        "created_at",
+        "emojis",
+        "reblogs_count",
+        "favourites_count",
+        "sensitive",
+        "spoiler_text",
+        "visibility",
+        "media_attachments",
+        "mentions",
+        "tags"
+    }};
+
+    return Entity::check_valid(attributes);
+}
+
 const Easy::Account Status::account() const
 {
     const Json::Value node = get("account");

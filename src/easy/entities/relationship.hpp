@@ -58,6 +58,8 @@ namespace Mastodon
          */
         Relationship();
 
+        virtual const bool valid() const;
+
         /*!
          *  @brief  Returns true if the user is blocking the account
          *  

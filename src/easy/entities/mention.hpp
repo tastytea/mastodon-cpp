@@ -59,6 +59,8 @@ namespace Mastodon
          */
         Mention();
 
+        virtual const bool valid() const;
+
         /*!
          *  @brief  Returns acct
          *  

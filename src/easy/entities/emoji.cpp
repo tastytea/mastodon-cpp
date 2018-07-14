@@ -28,6 +28,18 @@ Emoji::Emoji()
 : Entity()
 {}
 
+const bool Emoji::valid() const
+{
+    const std::vector<string> attributes =
+    {{
+        "shortcode",
+        "static_url",
+        "url"
+    }};
+
+    return Entity::check_valid(attributes);
+}
+
 const string Emoji::shortcode() const
 {
     return get_string("shortcode");

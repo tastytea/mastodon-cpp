@@ -69,6 +69,8 @@ namespace Mastodon
          */
         Account();
 
+        virtual const bool valid() const;
+
         /*!
          *  @brief  Returns username
          *

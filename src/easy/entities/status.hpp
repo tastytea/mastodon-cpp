@@ -73,6 +73,8 @@ namespace Mastodon
          */
         Status();
 
+        virtual const bool valid() const;
+
         /*!
          *  @brief  Returns an array of matched accounts.
          *  

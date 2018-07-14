@@ -68,6 +68,8 @@ namespace Mastodon
              */
             History();
 
+            virtual const bool valid() const;
+
             /*!
              *  @brief  Returns the number of accounts using that hashtag.
              *  
@@ -105,6 +107,8 @@ namespace Mastodon
          *  @since  before 0.11.0
          */
         Tag();
+
+        virtual const bool valid() const;
 
         /*!
          *  @brief  Returns the name of the tag

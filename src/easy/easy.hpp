@@ -341,9 +341,9 @@ public:
         /*!
          *  @brief  Returns true if the Entity holds valid data
          *  
-         *  @since  before 0.11.0
+         *  @since  before 0.11.0 (virtual since 0.18.2)
          */
-        const bool valid() const;
+        virtual const bool valid() const = 0;
 
         /*!
          *  @brief  Returns error string sent by the server
@@ -444,9 +444,20 @@ public:
 
         const std::uint_fast64_t stouint64(const string &str) const;
 
+        /*!
+         *  @brief  Checks if an Entity is valid
+         *
+         *  @param  attributes  The attributes to check
+         *
+         *  @return true if all attributes are set
+         *  
+         *  @since  0.18.2
+         */
+        const bool
+        check_valid(const std::vector<string> &attributes) const;
+
     private:
         Json::Value _tree;
-        bool _valid;
         mutable bool _was_set;
     };
 

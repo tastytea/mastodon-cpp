@@ -28,6 +28,19 @@ Card::Card()
 : Entity()
 {}
 
+const bool Card::valid() const
+{
+    const std::vector<string> attributes =
+    {{
+        "url",
+        "title",
+        "description",
+        "type"
+    }};
+
+    return Entity::check_valid(attributes);
+}
+
 const string Card::author_name() const
 {
     return get_string("author_name");

@@ -56,6 +56,8 @@ namespace Mastodon
          */
         Application();
 
+        virtual const bool valid() const;
+
         /*!
          *  @brief  Returns the name of the application
          *  

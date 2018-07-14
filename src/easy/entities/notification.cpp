@@ -28,6 +28,19 @@ Notification::Notification()
 : Entity()
 {}
 
+const bool Notification::valid() const
+{
+    const std::vector<string> attributes =
+    {{
+        "id",
+        "type",
+        "created_at",
+        "account"
+    }};
+
+    return Entity::check_valid(attributes);
+}
+
 const Easy::Account Notification::account() const
 {
     const Json::Value node = get("account");

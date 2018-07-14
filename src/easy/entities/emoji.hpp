@@ -56,6 +56,8 @@ namespace Mastodon
          */
         Emoji();
 
+        virtual const bool valid() const;
+
         /*!
          *  @brief  Returns the shortcode of the emoji
          *  

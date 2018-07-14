@@ -28,6 +28,18 @@ Results::Results()
 : Entity()
 {}
 
+const bool Results::valid() const
+{
+    const std::vector<string> attributes =
+    {{
+        "accounts",
+        "statuses",
+        "hashtags"
+    }};
+
+    return Entity::check_valid(attributes);
+}
+
 const std::vector<Easy::Account> Results::accounts() const
 {
     const Json::Value node = get("accounts");

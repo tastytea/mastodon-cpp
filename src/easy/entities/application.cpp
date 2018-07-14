@@ -27,6 +27,11 @@ Application::Application()
 : Entity()
 {}
 
+const bool Application::valid() const
+{
+    return Entity::check_valid({"name"});
+}
+
 const string Application::name() const
 {
     return get_string("name");

@@ -59,6 +59,8 @@ namespace Mastodon
          */
         Context();
 
+        virtual const bool valid() const;
+
         /*!
          *  @brief  Returns the ancestors of the Status as vector of Statuses
          *  

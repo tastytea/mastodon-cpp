@@ -27,6 +27,19 @@ Mention::Mention()
 : Entity()
 {}
 
+const bool Mention::valid() const
+{
+    const std::vector<string> attributes =
+    {{
+        "url",
+        "username",
+        "acct",
+        "id"
+    }};
+
+    return Entity::check_valid(attributes);
+}
+
 const string Mention::acct() const
 {
     return get_string("acct");

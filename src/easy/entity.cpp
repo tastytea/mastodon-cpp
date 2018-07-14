@@ -28,7 +28,6 @@ using std::chrono::system_clock;
 
 Easy::Entity::Entity(const string &json)
 : _tree(Json::nullValue)
-, _valid(false)
 ,_was_set(false)
 {
     from_string(json);
@@ -56,10 +55,6 @@ const void Easy::Entity::from_string(const string &json)
         ttdebug << "ERROR: Server returned an error\n";
         ttdebug << "String was: " << json << '\n';
     }
-    else
-    {
-        _valid = true;
-    }
 }
 
 const Json::Value Easy::Entity::to_object() const
@@ -68,13 +63,22 @@ const Json::Value Easy::Entity::to_object() const
 }
 
 Easy::Entity::Entity()
-: _valid(false)
-, _was_set(false)
+: _was_set(false)
 {}
 
-const bool Easy::Entity::valid() const
+const bool
+Easy::Entity::check_valid(const std::vector<string> &attributes) const
 {
-    return _valid;
+    for (const string &attribute: attributes)
+    {
+        get(attribute);
+        if (!was_set())
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 const string Easy::Entity::error() const

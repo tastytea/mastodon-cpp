@@ -27,6 +27,17 @@ Report::Report()
 : Entity()
 {}
 
+const bool Report::valid() const
+{
+    const std::vector<string> attributes =
+    {{
+        "id",
+        "action_taken"
+    }};
+
+    return Entity::check_valid(attributes);
+}
+
 const bool Report::action_taken() const
 {
     return get_bool("action_taken");

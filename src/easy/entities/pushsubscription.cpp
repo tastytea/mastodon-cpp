@@ -32,6 +32,18 @@ PushSubscription::PushSubscription()
 : Entity()
 {}
 
+const bool PushSubscription::valid() const
+{
+    const std::vector<string> attributes =
+    {{
+        "id",
+        "endpoint",
+        "server_key"
+    }};
+
+    return Entity::check_valid(attributes);
+}
+
 const string PushSubscription::endpoint() const
 {
     return get_string("endpoint");

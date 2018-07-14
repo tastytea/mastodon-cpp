@@ -27,6 +27,23 @@ Relationship::Relationship()
 : Entity()
 {}
 
+const bool Relationship::valid() const
+{
+    const std::vector<string> attributes =
+    {{
+        "id",
+        "following",
+        "followed_by",
+        "blocking",
+        "muting",
+        "muting_notifications",
+        "requested",
+        "domain_blocking"
+    }};
+
+    return Entity::check_valid(attributes);
+}
+
 const bool Relationship::blocking() const
 {
     return get_bool("blocking");

@@ -10,7 +10,7 @@ EGIT_REPO_URI="https://schlomp.space/tastytea/mastodon-cpp.git"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="doc debug examples"
+IUSE="doc debug examples static-libs"
 RDEPEND=">=dev-cpp/curlpp-0.8.1
 		 >=dev-libs/jsoncpp-1.8.1"
 DEPEND=">=dev-util/cmake-3.9.6
@@ -31,6 +31,10 @@ src_configure() {
 		mycmakeargs+=(-DCMAKE_BUILD_TYPE=Debug)
 	else
 		mycmakeargs+=(-DCMAKE_BUILD_TYPE=Release)
+	fi
+
+	if use static-libs; then
+		mycmakeargs+=(-DWITH_STATIC=YES)
 	fi
 
 	cmake-utils_src_configure

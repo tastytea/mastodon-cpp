@@ -120,6 +120,7 @@ int main(int argc, char *argv[])
 }
 
 #else
+#include <cstdio>
 int main()
 {
     printf("mastodon-cpp was compiled without Easy support.\n");

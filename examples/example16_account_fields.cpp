@@ -2,6 +2,9 @@
  *  Get fields from own account.
  */
 
+// Don't compile this if the Easy-interface is turned off
+#ifndef WITHOUT_EASY
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -43,3 +46,12 @@ int main(int argc, char *argv[])
 
     return 0;
 }
+
+#else
+#include <cstdio>
+int main()
+{
+    printf("mastodon-cpp was compiled without Easy support.\n");
+    return 255;
+}
+#endif  // WITHOUT_EASY

@@ -1,6 +1,9 @@
 /*  This file is part of mastodon-cpp.
  */
 
+// Don't compile this if the Easy-interface is turned off
+#ifndef WITHOUT_EASY
+
 #include <iostream>
 #include <cstdint>
 #include "mastodon-cpp.hpp"
@@ -25,3 +28,12 @@ int main(int argc, char *argv[])
     std::cout << ret << ": " << answer << '\n';
     return 1;
 }
+
+#else
+#include <cstdio>
+int main()
+{
+    printf("mastodon-cpp was compiled without Easy support.\n");
+    return 0;
+}
+#endif  // WITHOUT_EASY

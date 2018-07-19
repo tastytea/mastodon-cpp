@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.7)
 project (mastodon-cpp
-         VERSION 0.18.2
+         VERSION 0.18.3
          LANGUAGES CXX
 )
 
@@ -8,7 +8,9 @@ include(GNUInstallDirs)
 find_package(PkgConfig REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(CURLPP REQUIRED curlpp)
-pkg_check_modules(JSONCPP REQUIRED jsoncpp)
+if(NOT WITHOUT_EASY)
+    pkg_check_modules(JSONCPP REQUIRED jsoncpp)
+endif()
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -62,6 +64,7 @@ set_target_properties(mastodon-cpp PROPERTIES
     VERSION ${PROJECT_VERSION}
     SOVERSION ${mastodon-cpp_VERSION_MAJOR}
 )
+
 if(WITHOUT_EASY)
     target_link_libraries(mastodon-cpp ${CURLPP_LIBRARIES})
 else()

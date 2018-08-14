@@ -95,10 +95,11 @@ pipeline:
     title: ${DRONE_TAG}
     prerelease: true
     commands:
+      - cd build
     files:
-      - build/mastodon-cpp-${DRONE_TAG}.ebuild
-      - build/libmastodon-cpp_${DRONE_TAG}-0_amd64.deb
-      - build/libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm
+      - mastodon-cpp-${DRONE_TAG}.ebuild
+      - libmastodon-cpp_${DRONE_TAG}-0_amd64.deb
+      - libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm
     checksum:
       - sha256
       - sha512

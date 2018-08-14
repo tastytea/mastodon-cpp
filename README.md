@@ -138,7 +138,7 @@ To use the DEB package on stretch, you will need [libcurlpp0](https://packages.d
 ### Dependencies
 
 * Tested OS: Linux
-* C++ compiler (tested: gcc 6.3 / 7.3)
+* C++ compiler (tested: gcc 6/7/8)
 * [cmake](https://cmake.org/) (tested: 3.9 / 3.11)
 * [pkgconfig](https://pkgconfig.freedesktop.org/wiki/) (tested: 0.29)
 * [libcurl](https://curl.haxx.se/) (tested: 7.60 / 7.52)

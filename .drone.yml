@@ -85,17 +85,23 @@ pipeline:
       - make package
       - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
       - make package
-  gitea_release:
+  prepare_release:
+    image: gcc:8
+    pull: true
     when:
       event: tag
+    commands:
+      - cp -v build/mastodon-cpp-${DRONE_TAG}.ebuild .
+      - cp -v build/libmastodon-cpp[_-]${DRONE_TAG}*{deb,rpm} .
+  gitea_release:
     image: plugins/gitea-release
     pull: true
+    when:
+      event: tag
     base_url: https://schlomp.space
     secrets: [ gitea_token ]
     title: ${DRONE_TAG}
     prerelease: true
-    commands:
-      - cd build
     files:
       - mastodon-cpp-${DRONE_TAG}.ebuild
       - libmastodon-cpp_${DRONE_TAG}-0_amd64.deb

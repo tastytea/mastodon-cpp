@@ -10,25 +10,6 @@ The HTML reference can be generated with `build_doc.sh`, if doxygen is installed
 [doc.schlomp.space/mastodon-cpp/](https://doc.schlomp.space/mastodon-cpp/annotated.html).
 There are [examples](https://schlomp.space/tastytea/mastodon-cpp/src/branch/master/examples) in `examples/`.
 
-## Upgrading from below 0.13.0
-
-* You have to recompile all applications linking against this library.
-* We use a mutex now to guard the string that is being written to. You can get a reference to it with `Mastodon::API::http::get_mutex()` (see examples 9 and 13 for more info). This is only relevant for streams.
-
-## Upgrading from below 0.10.0
-
-`Mastodon::API::get`, `::get_stream`, `::post`, `::put` and `::del` don't take
-`std::string` as parameter to API-calls anymore, only `parametermap`s. The old behaviour is
-still supported but is deprecated and will be removed in version 1.0.0.
-
-## Upgrading from below 0.7.0
-
-Your projects will break, sorry. Here are the important changes:
-
-* The header location has changed. They are now in `mastodon-cpp/`.
-* Specific network error messages have been replaced by 15, "Network error".
-  You can get the exceptions from curlpp with `Mastodon::API::exceptions(true)`.
-
 ## Most basic example
 
 ```C++
@@ -96,7 +77,7 @@ mastodon-cpp will never use error codes below 11, except 0.
 | 100 - 999 | HTTP status codes                |
 |     65535 | Unknown error                    |
 
-If you use a debug build, you get more verbose error messages. Errors 20-25 are no longer in use (since 0.8.9).
+If you use a debug build, you get more verbose error messages.
 
 ## Useful links
 
@@ -138,16 +119,16 @@ To use the DEB package on stretch, you will need [libcurlpp0](https://packages.d
 ### Dependencies
 
 * Tested OS: Linux
-* C++ compiler (tested: gcc 6/7/8)
-* [cmake](https://cmake.org/) (tested: 3.9 / 3.11)
+* C++ compiler (tested: gcc 6 / 7 / 8)
+* [cmake](https://cmake.org/) (tested: 3.9 / 3.7)
 * [pkgconfig](https://pkgconfig.freedesktop.org/wiki/) (tested: 0.29)
-* [libcurl](https://curl.haxx.se/) (tested: 7.60 / 7.52)
-* [curlpp](http://www.curlpp.org/) (tested: 0.8 / 0.7)
+* [libcurl](https://curl.haxx.se/) (tested: 7.61 / 7.60)
+* [curlpp](http://www.curlpp.org/) (tested: 0.8)
 * Optional
     * Easy interface & Examples: [jsoncpp](https://github.com/open-source-parsers/jsoncpp) (tested: 1.8 / 1.7)
     * Documentation: [doxygen](https://www.stack.nl/~dimitri/doxygen/) (tested: 1.8)
-    * DEB package: [dpkg](https://packages.qa.debian.org/dpkg) (tested: 1.18)
-    * RPM package: [rpm](http://www.rpm.org) (tested: 4.12)
+    * DEB package: [dpkg](https://packages.qa.debian.org/dpkg) (tested: 1.19)
+    * RPM package: [rpm](http://www.rpm.org) (tested: 4.14 / 4.11)
 
 ### Get sourcecode
 
@@ -176,6 +157,7 @@ cmake options:
  * `-DWITHOUT_EASY=ON` to not build the Easy abstractions and to get rid of the jsoncpp-dependency (not recommended)
  * `-DWITH_EXAMPLES=ON` if you want to compile the examples
  * `-DWITH_TESTS=ON` if you want to compile the tests
+ * `-DWITH_STATIC=ON` If you want a static library along with the dynamic one
  * `-DWITH_DOC=ON` if you want to compile the HTML reference
  * `-DWITH_DEB=ON` if you want to be able to generate a deb-package
  * `-DWITH_RPM=ON` if you want to be able to generate an rpm-package

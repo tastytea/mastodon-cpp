@@ -1,36 +1,13 @@
 pipeline:
-  # gcc5:
-  #   image: gcc:5
-  #   pull: true
-  #   commands:
-  #     - echo "deb http://deb.debian.org/debian stretch main" >> /etc/apt/sources.list.d/stretch.list
-  #     - echo "deb http://deb.debian.org/debian buster main" >> /etc/apt/sources.list.d/buster.list
-  #     - echo "APT::Default-Release \"jessie\";" >> /etc/apt/apt.conf.d/00default_release
-  #     - apt-get update -q
-  #     - apt-get install -qy -t stretch cmake libjsoncpp-dev
-  #     - apt-get install -qy libcurl4-openssl-dev
-  #     - apt-get install -qy -t buster libcurlpp-dev
-  #     - apt-get install -qy rpm file
-  #     - rm -rf build && mkdir -p build && cd build
-  #     - cmake -DWITH_EXAMPLES=ON -DWITH_TESTS=ON ..
-  #     - make VERBOSE=1
-  #     - make install DESTDIR=install
-  #     - ctest ..
-  #     - cp -v ../packages/gentoo/mastodon-cpp-0.0.0.ebuild mastodon-cpp-${DRONE_TAG}.ebuild
-  #     - cmake -DWITH_DEB=ON ..
-  #     - make package
-  #     - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
-  #     - make package
-  gcc6:
-    image: gcc:6
+  gcc8:
+    image: gcc:8
     pull: true
     commands:
-      - echo "deb http://deb.debian.org/debian stretch main" >> /etc/apt/sources.list.d/stretch.list
       - echo "deb http://deb.debian.org/debian buster main" >> /etc/apt/sources.list.d/buster.list
-      - echo "APT::Default-Release \"jessie\";" >> /etc/apt/apt.conf.d/00default_release
+      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
       - apt-get update -q
-      - apt-get install -qy -t stretch cmake libjsoncpp-dev
-      - apt-get install -qy libcurl4-openssl-dev
+      - apt-get install -qy cmake
+      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev
       - apt-get install -qy -t buster libcurlpp-dev
       - apt-get install -qy rpm file
       - rm -rf build && mkdir -p build && cd build
@@ -39,6 +16,7 @@ pipeline:
       - make install DESTDIR=install
       - ctest ..
       - cp -v ../packages/gentoo/mastodon-cpp-0.0.0.ebuild mastodon-cpp-${DRONE_TAG}.ebuild
+      - make package
       - cmake -DWITH_DEB=ON ..
       - make package
       - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
@@ -60,19 +38,21 @@ pipeline:
       - make install DESTDIR=install
       - ctest ..
       - cp -v ../packages/gentoo/mastodon-cpp-0.0.0.ebuild mastodon-cpp-${DRONE_TAG}.ebuild
+      - make package
       - cmake -DWITH_DEB=ON ..
       - make package
       - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
       - make package
-  gcc8:
-    image: gcc:8
+  gcc6:
+    image: gcc:6
     pull: true
     commands:
+      - echo "deb http://deb.debian.org/debian stretch main" >> /etc/apt/sources.list.d/stretch.list
       - echo "deb http://deb.debian.org/debian buster main" >> /etc/apt/sources.list.d/buster.list
-      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+      - echo "APT::Default-Release \"jessie\";" >> /etc/apt/apt.conf.d/00default_release
       - apt-get update -q
-      - apt-get install -qy cmake
-      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev
+      - apt-get install -qy -t stretch cmake libjsoncpp-dev
+      - apt-get install -qy libcurl4-openssl-dev
       - apt-get install -qy -t buster libcurlpp-dev
       - apt-get install -qy rpm file
       - rm -rf build && mkdir -p build && cd build
@@ -81,17 +61,42 @@ pipeline:
       - make install DESTDIR=install
       - ctest ..
       - cp -v ../packages/gentoo/mastodon-cpp-0.0.0.ebuild mastodon-cpp-${DRONE_TAG}.ebuild
+      - make package
       - cmake -DWITH_DEB=ON ..
       - make package
       - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
       - make package
+  # gcc5:
+  #   image: gcc:5
+  #   pull: true
+  #   commands:
+  #     - echo "deb http://deb.debian.org/debian stretch main" >> /etc/apt/sources.list.d/stretch.list
+  #     - echo "deb http://deb.debian.org/debian buster main" >> /etc/apt/sources.list.d/buster.list
+  #     - echo "APT::Default-Release \"jessie\";" >> /etc/apt/apt.conf.d/00default_release
+  #     - apt-get update -q
+  #     - apt-get install -qy -t stretch cmake libjsoncpp-dev
+  #     - apt-get install -qy libcurl4-openssl-dev
+  #     - apt-get install -qy -t buster libcurlpp-dev
+  #     - apt-get install -qy rpm file
+  #     - rm -rf build && mkdir -p build && cd build
+  #     - cmake -DWITH_EXAMPLES=ON -DWITH_TESTS=ON ..
+  #     - make VERBOSE=1
+  #     - make install DESTDIR=install
+  #     - ctest ..
+  #     - cp -v ../packages/gentoo/mastodon-cpp-0.0.0.ebuild mastodon-cpp-${DRONE_TAG}.ebuild
+  #     - make package
+  #     - cmake -DWITH_DEB=ON ..
+  #     - make package
+  #     - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
+  #     - make package
   prepare_release:
-    image: gcc:8
+    image: gcc:5
     pull: true
     when:
       event: tag
     commands:
       - cp -v build/mastodon-cpp-${DRONE_TAG}.ebuild .
+      - cp -v build/mastodon-cpp-${DRONE_TAG}_x86_64.tar.gz .
       - cp -v build/libmastodon-cpp[_-]${DRONE_TAG}*{deb,rpm} .
   gitea_release:
     image: plugins/gitea-release
@@ -104,6 +109,7 @@ pipeline:
     prerelease: true
     files:
       - mastodon-cpp-${DRONE_TAG}.ebuild
+      - build/mastodon-cpp-${DRONE_TAG}_x86_64.tar.gz
       - libmastodon-cpp_${DRONE_TAG}-0_amd64.deb
       - libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm
     checksum:

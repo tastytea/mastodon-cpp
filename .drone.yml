@@ -66,31 +66,31 @@ pipeline:
       - make package
       - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
       - make package
-  gcc5:
-    image: gcc:5
-    pull: true
-    commands:
-      - echo "deb http://deb.debian.org/debian jessie-backports main" >> /etc/apt/sources.list.d/backports.list
-      - echo "deb http://deb.debian.org/debian buster main" >> /etc/apt/sources.list.d/buster.list
-      - echo "APT::Default-Release \"jessie\";" >> /etc/apt/apt.conf.d/00default_release
-      - apt-get update -q
-      - apt-get install -qy -t jessie-backports cmake libjsoncpp-dev
-      - apt-get install -qy libcurl4-openssl-dev
-      - apt-get install -qy -t buster libcurlpp-dev
-      - apt-get install -qy rpm file
-      - rm -rf build && mkdir -p build && cd build
-      - cmake -DWITH_EXAMPLES=ON -DWITH_TESTS=ON ..
-      - make VERBOSE=1
-      - make install DESTDIR=install
-      - ctest ..
-      - cp -v ../packages/gentoo/mastodon-cpp-0.0.0.ebuild mastodon-cpp-${DRONE_TAG}.ebuild
-      - make package
-      - cmake -DWITH_DEB=ON ..
-      - make package
-      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
-      - make package
+  # gcc5:
+  #   image: gcc:5
+  #   pull: true
+  #   commands:
+  #     - echo "deb http://deb.debian.org/debian jessie-backports main" >> /etc/apt/sources.list.d/backports.list
+  #     - echo "deb http://deb.debian.org/debian buster main" >> /etc/apt/sources.list.d/buster.list
+  #     - echo "APT::Default-Release \"jessie\";" >> /etc/apt/apt.conf.d/00default_release
+  #     - apt-get update -q
+  #     - apt-get install -qy -t jessie-backports cmake libjsoncpp-dev
+  #     - apt-get install -qy libcurl4-openssl-dev
+  #     - apt-get install -qy -t buster libcurlpp-dev
+  #     - apt-get install -qy rpm file
+  #     - rm -rf build && mkdir -p build && cd build
+  #     - cmake -DWITH_EXAMPLES=ON -DWITH_TESTS=ON ..
+  #     - make VERBOSE=1
+  #     - make install DESTDIR=install
+  #     - ctest ..
+  #     - cp -v ../packages/gentoo/mastodon-cpp-0.0.0.ebuild mastodon-cpp-${DRONE_TAG}.ebuild
+  #     - make package
+  #     - cmake -DWITH_DEB=ON ..
+  #     - make package
+  #     - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
+  #     - make package
   prepare_release:
-    image: gcc:5
+    image: gcc:6
     pull: true
     when:
       event: tag

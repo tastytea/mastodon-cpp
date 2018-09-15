@@ -158,7 +158,7 @@ if (WITH_DEB)
     set(CPACK_GENERATOR "DEB")
     set(CPACK_SOURCE_GENERATOR "DEB")
     set(CPACK_DEBIAN_PACKAGE_HOMEPAGE "https://schlomp.space/tastytea/mastodon-cpp")
-    # set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+    set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
     execute_process(COMMAND dpkg --print-architecture
                     OUTPUT_VARIABLE CPACK_DEBIAN_PACKAGE_ARCHITECTURE
                     OUTPUT_STRIP_TRAILING_WHITESPACE)

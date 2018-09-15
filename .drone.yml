@@ -109,7 +109,7 @@ pipeline:
     prerelease: true
     files:
       - mastodon-cpp-${DRONE_TAG}.ebuild
-      - build/mastodon-cpp-${DRONE_TAG}_x86_64.tar.gz
+      - mastodon-cpp-${DRONE_TAG}_x86_64.tar.gz
       - libmastodon-cpp_${DRONE_TAG}-0_amd64.deb
       - libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm
     checksum:

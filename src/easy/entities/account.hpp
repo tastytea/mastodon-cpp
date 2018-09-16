@@ -89,6 +89,15 @@ namespace Mastodon
         const string avatar() const;
 
         /*!
+         *  @brief  Sets avatar
+         *  
+         *          Filename or base64-encoded
+         *  
+         *  @since  0.18.5
+         */
+        Account avatar(const string &avatar);
+
+        /*!
          *  @brief  Returns URL of static avatar
          *  
          *  @since before 0.11.0
@@ -117,11 +126,25 @@ namespace Mastodon
         const string display_name() const;
 
         /*!
+         *  @brief  Sets display name
+         *  
+         *  @since  0.18.5
+         */
+        Account display_name(const string &display_name);
+
+        /*!
          *  @brief  Returns metadata fields
          *  
          *  @since  0.16.1
          */
         const std::vector<fields_pair> fields() const;
+
+        /*!
+         *  @brief  Sets metadata fields
+         *  
+         *  @since  0.18.5
+         */
+        Account fields(std::vector<fields_pair> &fields);
 
         /*!
          *  @brief  Returns number of followers
@@ -145,6 +168,15 @@ namespace Mastodon
         const string header() const;
 
         /*!
+         *  @brief  Sets header image
+         *  
+         *          Filename or base64-encoded.
+         *  
+         *  @since  0.18.5
+         */
+        Account header(const string &header);
+
+        /*!
          *  @brief  Returns URL of static header image
          *  
          *  @since before 0.11.0
@@ -164,6 +196,13 @@ namespace Mastodon
          *  @since before 0.11.0
          */
         const bool locked() const;
+
+        /*!
+         *  @brief  Sets locked state
+         *  
+         *  @since  0.18.5
+         */
+        Account locked(const bool &locked);
 
         /*!
          *  @brief  Returns true if the account has been moved
@@ -188,10 +227,18 @@ namespace Mastodon
         const string note() const;
 
         /*!
+         *  @brief  Sets note
+         *  
+         *  @since  0.18.5
+         */
+        Account note(const string &note);
+
+        /*!
          *  @brief  Returns plaintext version of note
          *  
          *  @since before 0.11.0
          */
+        [[deprecated("Will vanish in 1.0.0. Use source() instead.")]]
         const string note_plain() const;
 
         /*!
@@ -207,6 +254,92 @@ namespace Mastodon
          *  @since before 0.11.0
          */
         const bool sensitive() const;
+
+        /*!
+         *  @brief  Class to hold source attribute
+         *  
+         *  @since  0.18.5
+         */
+        class Source : public Easy::Entity
+        {
+        public:
+            /*!
+             *  @brief  Constructs an Account::Source object from a JSON string.
+             *
+             *  @param  json    JSON string
+             *  
+             *  @since  0.18.5
+             */
+            explicit Source(const string &json);
+
+            /*!
+             *  @brief  Constructs an empty Account::Source object.
+             *  
+             *  @since  0.18.5
+             */
+            Source();
+
+            virtual const bool valid() const;
+
+            /*!
+             *  @brief  Returns metadata fields
+             *  
+             *  @since  0.18.5
+             */
+            const std::vector<fields_pair> fields() const;
+
+            /*!
+             *  @brief  Sets metadata fields
+             *  
+             *  @since  0.18.5
+             */
+            Source fields(std::vector<fields_pair> &fields);
+
+            /*!
+             *  @brief  Returns note in plain text
+             *  
+             *  @since 0.18.5
+             */
+            const string note() const;
+
+            /*!
+             *  @brief  Sets note
+             *  
+             *  @since  0.18.5
+             */
+            Source note(const string &note);
+
+            /*!
+             *  @brief  Returns default privacy of new toots
+             *  
+             *  @since 0.18.5
+             */
+            const visibility_type privacy() const;
+
+            /*!
+             *  @brief  Sets default privacy of new toots
+             *  
+             *  @since 0.18.5
+             */
+            Source privacy(const visibility_type &privacy);
+
+            /*!
+             *  @brief  Returns if media is marked as sensitive by default
+             *  
+             *  @since 0.18.5
+             */
+            const bool sensitive() const;
+
+            /*!
+             *  @brief  Sets if media is marked as sensitive by default
+             *  
+             *  @since 0.18.5
+             */
+            Source sensitive(const bool &sensitive);
+        };
+
+        const Source source() const;
+        Account source(const Source &source);
 
         /*!
          *  @brief  Returns number of statuses

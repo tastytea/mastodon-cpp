@@ -147,6 +147,10 @@ const uint_fast16_t API::http::request(const method &meth,
             answer = curlpp::infos::EffectiveUrl::get(request);
             return 13;
         }
+        else if (ret == 0)
+        {
+            return 0xffff;
+        }
         else
         {
             return ret;
@@ -154,12 +158,20 @@ const uint_fast16_t API::http::request(const method &meth,
     }
     catch (curlpp::RuntimeError &e)
     {
+        const string what = e.what();
+        ttdebug << what.compare(what.size() - 20, 20, "Connection timed out") << '\n';
+        ttdebug << what.substr(what.size() - 20, 20) << '\n';
         // This error is thrown if http.cancel_stream() is used.
-        if ((std::strncmp(e.what(), "Callback aborted", 16) == 0) ||
-            (std::strncmp(e.what(), "Failed writing body", 19) == 0))
+        if ((what.compare(0, 16, "Callback aborted") == 0) ||
+            (what.compare(0, 19, "Failed writing body") == 0))
         {
             ttdebug << "Request was cancelled by user\n";
             return 14;
+        }
+        else if (what.compare(what.size() - 20, 20, "Connection timed out") == 0)
+        {
+            ttdebug << "Timeout\n";
+            return 16;
         }
 
         if (parent.exceptions())
@@ -182,8 +194,6 @@ const uint_fast16_t API::http::request(const method &meth,
         ttdebug << "curlpp::LogicError: " << e.what() << std::endl;
         return 15;
     }
-
-    return ret;
 }
 
 const void API::http::get_headers(string &headers) const

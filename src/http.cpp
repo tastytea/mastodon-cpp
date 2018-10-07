@@ -159,8 +159,6 @@ const uint_fast16_t API::http::request(const method &meth,
     catch (curlpp::RuntimeError &e)
     {
         const string what = e.what();
-        ttdebug << what.compare(what.size() - 20, 20, "Connection timed out") << '\n';
-        ttdebug << what.substr(what.size() - 20, 20) << '\n';
         // This error is thrown if http.cancel_stream() is used.
         if ((what.compare(0, 16, "Callback aborted") == 0) ||
             (what.compare(0, 19, "Failed writing body") == 0))

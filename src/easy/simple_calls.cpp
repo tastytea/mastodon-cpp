@@ -21,12 +21,12 @@
 
 using namespace Mastodon;
 
-const Easy::Status Easy::send_toot(const Status &status, uint_fast16_t error)
+const Easy::Status Easy::send_toot(const Status &status, uint_fast16_t &error)
 {
     return send_post(status, error);
 }
 
-const Easy::Status Easy::send_post(const Status &status, uint_fast16_t error)
+const Easy::Status Easy::send_post(const Status &status, uint_fast16_t &error)
 {
     API::parametermap parameters;
     string answer;

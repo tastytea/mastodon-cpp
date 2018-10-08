@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">mastodon-cpp
-   &#160;<span id="projectnumber">0.18.4</span>
+   &#160;<span id="projectnumber">0.18.8</span>
    </div>
   </td>
  </tr>
@@ -47,19 +47,6 @@ $(function() {
 <p><a href="https://schlomp.space/tastytea/mastodon-cpp/milestones">TODO-list</a></p>
 <h1>Usage</h1>
 <p>The HTML reference can be generated with <code>build_doc.sh</code>, if doxygen is installed. It is also available at <a href="https://doc.schlomp.space/mastodon-cpp/annotated.html">doc.schlomp.space/mastodon-cpp/</a>. There are <a href="https://schlomp.space/tastytea/mastodon-cpp/src/branch/master/examples">examples</a> in <code>examples/</code>.</p>
-<h2>Upgrading from below 0.13.0</h2>
-<ul>
-<li>You have to recompile all applications linking against this library.</li>
-<li>We use a mutex now to guard the string that is being written to. You can get a reference to it with <code><a class="el" href="classMastodon_1_1API_1_1http.html#a73b74ebe9fb2d6a38a1ab8946abbb4f3" title="Gets the mutex guarding the string that is written to. ">Mastodon::API::http::get_mutex()</a></code> (see examples 9 and 13 for more info). This is only relevant for streams.</li>
-</ul>
-<h2>Upgrading from below 0.10.0</h2>
-<p><code><a class="el" href="classMastodon_1_1API.html#ac0a88999575530651306f10c0a5d4abb" title="Make a GET request which doesn&#39;t require parameters. ">Mastodon::API::get</a></code>, <code>::get_stream</code>, <code>::post</code>, <code>::put</code> and <code>::del</code> don't take <code>std::string</code> as parameter to API-calls anymore, only <code>parametermap</code>s. The old behaviour is still supported but is deprecated and will be removed in version 1.0.0.</p>
-<h2>Upgrading from below 0.7.0</h2>
-<p>Your projects will break, sorry. Here are the important changes:</p>
-<ul>
-<li>The header location has changed. They are now in <code>mastodon-cpp/</code>.</li>
-<li>Specific network error messages have been replaced by 15, "Network error". You can get the exceptions from curlpp with <code>Mastodon::API::exceptions(true)</code>.</li>
-</ul>
 <h2>Most basic example</h2>
 <div class="fragment"><div class="line">{C++}</div><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;string&gt;</div><div class="line">#include &lt;mastodon-cpp/mastodon-cpp.hpp&gt;</div><div class="line"></div><div class="line">int main()</div><div class="line">{</div><div class="line">    Mastodon::API masto(&quot;social.example.com&quot;, &quot;auth_token&quot;);</div><div class="line">    std::string answer;</div><div class="line">    masto.get(Mastodon::API::v1::accounts_verify_credentials, answer);</div><div class="line">    std::cout &lt;&lt; answer &lt;&lt; &#39;\n&#39;;</div><div class="line">}</div></div><!-- fragment --><h2>Another simple example</h2>
 <p>Using the <code>Easy</code>-class.</p>
@@ -83,11 +70,13 @@ $(function() {
 <tr class="markdownTableBody" class="markdownTableRowEven">
 <td class="markdownTableBodyRight">15  </td><td class="markdownTableBodyLeft">Network error (curlpp exception)   </td></tr>
 <tr class="markdownTableBody" class="markdownTableRowOdd">
-<td class="markdownTableBodyRight">100 - 999  </td><td class="markdownTableBodyLeft">HTTP status codes   </td></tr>
+<td class="markdownTableBodyRight">16  </td><td class="markdownTableBodyLeft">Timeout   </td></tr>
 <tr class="markdownTableBody" class="markdownTableRowEven">
+<td class="markdownTableBodyRight">100 - 999  </td><td class="markdownTableBodyLeft">HTTP status codes   </td></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
 <td class="markdownTableBodyRight">65535  </td><td class="markdownTableBodyLeft">Unknown error   </td></tr>
 </table>
-<p>If you use a debug build, you get more verbose error messages. Errors 20-25 are no longer in use (since 0.8.9).</p>
+<p>If you use a debug build, you get more verbose error messages.</p>
 <h2>Useful links</h2>
 <ul>
 <li>https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md "Mastodon API reference"</li>
@@ -95,27 +84,26 @@ $(function() {
 </ul>
 <h1>Install</h1>
 <h2>Packages</h2>
-<p>Every <a href="https://schlomp.space/tastytea/mastodon-cpp/releases">release</a> includes packages for the package managers of Gentoo, Debian and Red Hat.</p>
+<p>Every <a href="https://schlomp.space/tastytea/mastodon-cpp/releases">release</a> includes packages for the package managers of Debian and Red Hat. Gentoo packages are available in an overlay.</p>
 <h3>Gentoo</h3>
 <p>Add my <a href="https://schlomp.space/tastytea/overlay">repository</a> and install it from there.</p>
-<div class="fragment"><div class="line">eselect repository enable tastytea</div><div class="line">echo &#39;dev-cpp/mastodon-cpp ~amd64&#39; &gt;&gt; /etc/portage/package.keywords/mastodon-cpp</div><div class="line">emaint sync -r tastytea</div><div class="line">emerge -a dev-cpp/mastodon-cpp</div></div><!-- fragment --><p>Or put the ebuild into your <a href="https://wiki.gentoo.org/wiki/Custom_repository">local overlay</a> and run <code>ebuild &lt;ebuild path&gt; manifest</code>. Install with <code>emerge mastodon-cpp</code>.</p>
-<h3>DEB and RPM</h3>
+<div class="fragment"><div class="line">eselect repository enable tastytea</div><div class="line">echo &#39;dev-cpp/mastodon-cpp ~amd64&#39; &gt;&gt; /etc/portage/package.keywords/mastodon-cpp</div><div class="line">emaint sync -r tastytea</div><div class="line">emerge -a dev-cpp/mastodon-cpp</div></div><!-- fragment --><h3>DEB and RPM</h3>
 <p>Prebuilt DEB and RPM packages for x86_64(amd64) are provided with each release. These packages are automatically built and not tested. Install with <code>dpkg -i</code> or <code>rpm -i</code>, respectively.</p>
-<p>To use the DEB package on stretch, you will need <a href="https://packages.debian.org/libcurlpp0">libcurlpp0</a> from buster.</p>
+<p>To use the DEB package on stretch, you will need <a href="https://packages.debian.org/libcurlpp0">libcurlpp0</a> from sid.</p>
 <h2>From source</h2>
 <h3>Dependencies</h3>
 <ul>
 <li>Tested OS: Linux</li>
-<li>C++ compiler (tested: gcc 6/7/8)</li>
-<li><a href="https://cmake.org/">cmake</a> (tested: 3.9 / 3.11)</li>
+<li>C++ compiler (tested: gcc 6 / 7 / 8)</li>
+<li><a href="https://cmake.org/">cmake</a> (tested: 3.9 / 3.7)</li>
 <li><a href="https://pkgconfig.freedesktop.org/wiki/">pkgconfig</a> (tested: 0.29)</li>
-<li><a href="https://curl.haxx.se/">libcurl</a> (tested: 7.60 / 7.52)</li>
-<li><a href="http://www.curlpp.org/">curlpp</a> (tested: 0.8 / 0.7)</li>
+<li><a href="https://curl.haxx.se/">libcurl</a> (tested: 7.61 / 7.60)</li>
+<li><a href="http://www.curlpp.org/">curlpp</a> (tested: 0.8)</li>
 <li>Optional<ul>
 <li>Easy interface &amp; Examples: <a href="https://github.com/open-source-parsers/jsoncpp">jsoncpp</a> (tested: 1.8 / 1.7)</li>
 <li>Documentation: <a href="https://www.stack.nl/~dimitri/doxygen/">doxygen</a> (tested: 1.8)</li>
-<li>DEB package: <a href="https://packages.qa.debian.org/dpkg">dpkg</a> (tested: 1.18)</li>
-<li>RPM package: <a href="http://www.rpm.org">rpm</a> (tested: 4.12)</li>
+<li>DEB package: <a href="https://packages.qa.debian.org/dpkg">dpkg</a> (tested: 1.19)</li>
+<li>RPM package: <a href="http://www.rpm.org">rpm</a> (tested: 4.14 / 4.11)</li>
 </ul>
 </li>
 </ul>
@@ -130,14 +118,13 @@ $(function() {
 <li><code>-DWITHOUT_EASY=ON</code> to not build the Easy abstractions and to get rid of the jsoncpp-dependency (not recommended)</li>
 <li><code>-DWITH_EXAMPLES=ON</code> if you want to compile the examples</li>
 <li><code>-DWITH_TESTS=ON</code> if you want to compile the tests</li>
+<li><code>-DWITH_STATIC=ON</code> If you want a static library along with the dynamic one</li>
 <li><code>-DWITH_DOC=ON</code> if you want to compile the HTML reference</li>
 <li><code>-DWITH_DEB=ON</code> if you want to be able to generate a deb-package</li>
 <li><code>-DWITH_RPM=ON</code> if you want to be able to generate an rpm-package</li>
 </ul>
 <p>You can run the tests with <code>ctest ..</code> inside the build directory. To install, run <code>make install</code>.</p>
 <h3>Packages</h3>
-<h4>Gentoo</h4>
-<p>Put the ebuild from <code>packages/gentoo</code> into your <a href="https://wiki.gentoo.org/wiki/Custom_repository">local overlay</a> and rename it to match the desired version or use the live-ebuild (<code>mastodon-cpp-9999.ebuild</code>) to install the development version.</p>
 <h4>DEB and RPM</h4>
 <p>Compile with <code>-DWITH_DEB=ON</code> or <code>-DWITH_RPM=ON</code>. Run <code>make package</code> from the build directory to generate a DEB/RPM package.</p>
 <h4>Other</h4>

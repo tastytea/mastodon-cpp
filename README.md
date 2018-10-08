@@ -110,7 +110,7 @@ Prebuilt DEB and RPM packages for x86_64(amd64) are provided with each release.
 These packages are automatically built and not tested.
 Install with `dpkg -i` or `rpm -i`, respectively.
 
-To use the DEB package on stretch, you will need [libcurlpp0](https://packages.debian.org/libcurlpp0) from buster.
+To use the DEB package on stretch, you will need [libcurlpp0](https://packages.debian.org/libcurlpp0) from sid.
 
 ## From source
 

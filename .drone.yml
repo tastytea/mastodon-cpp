@@ -48,7 +48,8 @@ pipeline:
       event: tag
     commands:
       - cp -v build/mastodon-cpp-${DRONE_TAG}_x86_64.tar.gz .
-      - cp -v build/libmastodon-cpp[_-]${DRONE_TAG}*{deb,rpm} .
+      - cp -v build/libmastodon-cpp_${DRONE_TAG}-0_amd64.deb .
+      - cp -v build/libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm .
   gitea_release:
     image: plugins/gitea-release
     pull: true

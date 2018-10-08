@@ -90,7 +90,8 @@ If you use a debug build, you get more verbose error messages.
 ## Packages
 
 Every [release](https://schlomp.space/tastytea/mastodon-cpp/releases) includes
-packages for the package managers of Gentoo, Debian and Red Hat.
+packages for the package managers of Debian and Red Hat. Gentoo packages are
+available in an overlay.
 
 ### Gentoo
 

@@ -15,7 +15,6 @@ pipeline:
       - make VERBOSE=1
       - make install DESTDIR=install
       - ctest ..
-      - cp -v ../packages/gentoo/mastodon-cpp-0.0.0.ebuild mastodon-cpp-${DRONE_TAG}.ebuild
       - make package
       - cmake -DWITH_DEB=ON ..
       - make package
@@ -37,7 +36,6 @@ pipeline:
       - make VERBOSE=1
       - make install DESTDIR=install
       - ctest ..
-      - cp -v ../packages/gentoo/mastodon-cpp-0.0.0.ebuild mastodon-cpp-${DRONE_TAG}.ebuild
       - make package
       - cmake -DWITH_DEB=ON ..
       - make package
@@ -60,7 +58,6 @@ pipeline:
       - make VERBOSE=1
       - make install DESTDIR=install
       - ctest ..
-      - cp -v ../packages/gentoo/mastodon-cpp-0.0.0.ebuild mastodon-cpp-${DRONE_TAG}.ebuild
       - make package
       - cmake -DWITH_DEB=ON ..
       - make package
@@ -72,7 +69,6 @@ pipeline:
     when:
       event: tag
     commands:
-      - cp -v build/mastodon-cpp-${DRONE_TAG}.ebuild .
       - cp -v build/mastodon-cpp-${DRONE_TAG}_x86_64.tar.gz .
       - cp -v build/libmastodon-cpp[_-]${DRONE_TAG}*{deb,rpm} .
   gitea_release:
@@ -85,7 +81,6 @@ pipeline:
     title: ${DRONE_TAG}
     prerelease: true
     files:
-      - mastodon-cpp-${DRONE_TAG}.ebuild
       - mastodon-cpp-${DRONE_TAG}_x86_64.tar.gz
       - libmastodon-cpp_${DRONE_TAG}-0_amd64.deb
       - libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm

@@ -41,30 +41,8 @@ pipeline:
       - make package
       - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
       - make package
-  gcc6:
-    image: gcc:6
-    pull: true
-    commands:
-      - echo "deb http://deb.debian.org/debian jessie-backports main" >> /etc/apt/sources.list.d/backports.list
-      - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
-      - echo "APT::Default-Release \"jessie\";" >> /etc/apt/apt.conf.d/00default_release
-      - apt-get update -q
-      - apt-get install -qy -t jessie-backports cmake libjsoncpp-dev
-      - apt-get install -qy libcurl4-openssl-dev
-      - apt-get install -qy -t sid libcurlpp-dev
-      - apt-get install -qy rpm file
-      - rm -rf build && mkdir -p build && cd build
-      - cmake -DWITH_EXAMPLES=ON -DWITH_TESTS=ON ..
-      - make VERBOSE=1
-      - make install DESTDIR=install
-      - ctest ..
-      - make package
-      - cmake -DWITH_DEB=ON ..
-      - make package
-      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
-      - make package
   prepare_release:
-    image: gcc:6
+    image: gcc:7
     pull: true
     when:
       event: tag

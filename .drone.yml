@@ -1,12 +1,23 @@
 pipeline:
   gcc8:
-    image: gcc:8
+    image: debian:stretch-slim
     pull: true
+    environment:
+      - LANG=C.utf8
     commands:
-      - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
-      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+      - rm /etc/apt/apt.conf.d/docker-clean
       - apt-get update -q
-      - apt-get install -qy cmake
+      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+      - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
+      - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu bionic main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
+      - apt-get install -qy gnupg
+      - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
+      - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
+      - apt-get update -q
+      - apt-get install -qy build-essential cmake pkg-config
+      - apt-get install -qy -t bionic g++-8
+      - update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 100
+      - update-alternatives --set g++ /usr/bin/g++-8
       - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev
       - apt-get install -qy -t sid libcurlpp-dev
       - apt-get install -qy rpm file
@@ -20,14 +31,28 @@ pipeline:
       - make package
       - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
       - make package
+    volumes:
+      - /var/cache/debian-package-cache:/var/cache/apt/archives
+
   gcc7:
-    image: gcc:7
+    image: debian:stretch-slim
     pull: true
+    environment:
+      - LANG=C.utf8
     commands:
-      - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
-      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+      - rm /etc/apt/apt.conf.d/docker-clean
       - apt-get update -q
-      - apt-get install -qy cmake
+      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+      - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
+      - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu bionic main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
+      - apt-get install -qy gnupg
+      - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
+      - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
+      - apt-get update -q
+      - apt-get install -qy build-essential cmake pkg-config
+      - apt-get install -qy -t bionic g++-7
+      - update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100
+      - update-alternatives --set g++ /usr/bin/g++-7
       - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev
       - apt-get install -qy -t sid libcurlpp-dev
       - apt-get install -qy rpm file
@@ -41,8 +66,73 @@ pipeline:
       - make package
       - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
       - make package
+    volumes:
+      - /var/cache/debian-package-cache:/var/cache/apt/archives
+
+  gcc5:
+    image: debian:stretch-slim
+    pull: true
+    environment:
+      - LANG=C.utf8
+    commands:
+      - rm /etc/apt/apt.conf.d/docker-clean
+      - apt-get update -q
+      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+      - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
+      - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu bionic main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
+      - apt-get install -qy gnupg
+      - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
+      - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
+      - apt-get update -q
+      - apt-get install -qy build-essential cmake pkg-config
+      - apt-get install -qy -t bionic g++-5
+      - update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 100
+      - update-alternatives --set g++ /usr/bin/g++-5
+      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev
+      - apt-get install -qy -t sid libcurlpp-dev
+      - apt-get install -qy rpm file
+      - rm -rf build && mkdir -p build && cd build
+      - cmake -DWITH_EXAMPLES=ON -DWITH_TESTS=ON ..
+      - make VERBOSE=1
+      - make install DESTDIR=install
+      - ctest ..
+      - make package
+      - cmake -DWITH_DEB=ON ..
+      - make package
+      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
+      - make package
+    volumes:
+      - /var/cache/debian-package-cache:/var/cache/apt/archives
+
+  gcc6:
+    image: debian:stretch-slim
+    pull: true
+    environment:
+      - LANG=C.utf8
+    commands:
+      - rm /etc/apt/apt.conf.d/docker-clean
+      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+      - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
+      - apt-get update -q
+      - apt-get install -qy build-essential cmake pkg-config
+      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev
+      - apt-get install -qy -t sid libcurlpp-dev
+      - apt-get install -qy rpm file
+      - rm -rf build && mkdir -p build && cd build
+      - cmake -DWITH_EXAMPLES=ON -DWITH_TESTS=ON ..
+      - make VERBOSE=1
+      - make install DESTDIR=install
+      - ctest ..
+      - make package
+      - cmake -DWITH_DEB=ON ..
+      - make package
+      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
+      - make package
+    volumes:
+      - /var/cache/debian-package-cache:/var/cache/apt/archives
+
   prepare_release:
-    image: gcc:7
+    image: debian:stretch-slim
     pull: true
     when:
       event: tag
@@ -50,6 +140,7 @@ pipeline:
       - cp -v build/mastodon-cpp-${DRONE_TAG}_x86_64.tar.gz .
       - cp -v build/libmastodon-cpp_${DRONE_TAG}-0_amd64.deb .
       - cp -v build/libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm .
+
   gitea_release:
     image: plugins/gitea-release
     pull: true
@@ -66,6 +157,7 @@ pipeline:
     checksum:
       - sha256
       - sha512
+
   notify:
     when:
       status: [ changed, failure ]

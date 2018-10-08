@@ -104,9 +104,6 @@ emaint sync -r tastytea
 emerge -a dev-cpp/mastodon-cpp
 ```
 
-Or put the ebuild into your [local overlay](https://wiki.gentoo.org/wiki/Custom_repository) and run `ebuild <ebuild path> manifest`.
-Install with `emerge mastodon-cpp`.
-
 ### DEB and RPM
 
 Prebuilt DEB and RPM packages for x86_64(amd64) are provided with each release.
@@ -167,10 +164,6 @@ You can run the tests with `ctest ..` inside the build directory.
 To install, run `make install`.
 
 ### Packages
-
-#### Gentoo
-
-Put the ebuild from `packages/gentoo` into your [local overlay](https://wiki.gentoo.org/wiki/Custom_repository) and rename it to match the desired version or use the live-ebuild (`mastodon-cpp-9999.ebuild`) to install the development version.
 
 #### DEB and RPM
 

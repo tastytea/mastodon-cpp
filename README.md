@@ -4,6 +4,8 @@ JSON. You can then put that JSON into easy to use classes.
 
 [TODO-list](https://schlomp.space/tastytea/mastodon-cpp/milestones)
 
+**The ABI will be unstable in versions < 1.0.0**
+
 # Usage
 
 The HTML reference can be generated with `build_doc.sh`, if doxygen is installed. It is also available at

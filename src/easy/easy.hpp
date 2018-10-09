@@ -294,7 +294,7 @@ public:
      *  
      *  @since  0.17.0
      */
-    const Status send_toot(const Status &status, uint_fast16_t &error);
+    inline const Status send_toot(const Status &status, uint_fast16_t &error);
 
     /*!
      *  @brief  Base class for all entities.

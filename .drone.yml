@@ -9,13 +9,13 @@ pipeline:
       - apt-get update -q
       - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
       - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
-      - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu bionic main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
+      - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
       - apt-get install -qy gnupg
       - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
       - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
       - apt-get update -q
       - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy -t bionic g++-8
+      - apt-get install -qy -t xenial g++-8
       - update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 100
       - update-alternatives --set g++ /usr/bin/g++-8
       - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev
@@ -44,13 +44,13 @@ pipeline:
       - apt-get update -q
       - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
       - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
-      - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu bionic main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
+      - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
       - apt-get install -qy gnupg
       - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
       - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
       - apt-get update -q
       - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy -t bionic g++-7
+      - apt-get install -qy -t xenial g++-7
       - update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100
       - update-alternatives --set g++ /usr/bin/g++-7
       - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev
@@ -79,13 +79,13 @@ pipeline:
       - apt-get update -q
       - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
       - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
-      - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu bionic main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
+      - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
       - apt-get install -qy gnupg
       - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
       - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
       - apt-get update -q
       - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy -t bionic g++-5
+      - apt-get install -qy -t xenial g++-5
       - update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 100
       - update-alternatives --set g++ /usr/bin/g++-5
       - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev

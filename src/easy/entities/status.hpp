@@ -176,7 +176,7 @@ namespace Mastodon
         const string language() const;
 
         /*!
-         *  @brief  Sets the language of the status
+         *  @brief  Overrides the language of the status (ISO 639-2)
          *  
          *  @since  0.17.0
          */

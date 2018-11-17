@@ -225,6 +225,11 @@ const uint_fast64_t Status::reblogs_count() const
     return get_uint64("reblogs_count");
 }
 
+const uint_fast64_t Status::replies_count() const
+{
+    return get_uint64("replies_count");
+}
+
 const bool Status::sensitive() const
 {
     return get_bool("sensitive");

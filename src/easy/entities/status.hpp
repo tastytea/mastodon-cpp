@@ -231,6 +231,13 @@ namespace Mastodon
         const uint_fast64_t reblogs_count() const;
 
         /*!
+         *  @brief  Returns the number of replies for the status
+         *  
+         *  @since  0.19.0
+         */
+        const uint_fast64_t replies_count() const;
+
+        /*!
          *  @brief  Returns true if the attachments should be hidden by default
          *  
          *  @since  before 0.11.0

@@ -1,9 +1,13 @@
 pipeline:
-  gcc8:
+  gcc5:
     image: debian:stretch-slim
     pull: true
+    when:
+      event: [push, pull_request]
     environment:
       - LANG=C.utf8
+      - CXX=g++-5
+      - CXXFLAGS=-pipe -O2
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
       - apt-get update -q
@@ -15,9 +19,30 @@ pipeline:
       - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
       - apt-get update -q
       - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy -t xenial g++-8
-      - update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 100
-      - update-alternatives --set g++ /usr/bin/g++-8
+      - apt-get install -qy -t xenial g++-5
+      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev
+      - apt-get install -qy -t sid libcurlpp-dev
+      - apt-get install -qy rpm file
+      - rm -rf build && mkdir -p build && cd build
+      - cmake -DWITH_EXAMPLES=ON -DWITH_TESTS=ON ..
+      - make VERBOSE=1
+      - make install DESTDIR=install
+    volumes:
+      - /var/cache/debian-package-cache:/var/cache/apt/archives
+
+  gcc6:
+    image: debian:stretch-slim
+    pull: true
+    environment:
+      - LANG=C.utf8
+      - CXX=g++-6
+      - CXXFLAGS=-pipe -O2
+    commands:
+      - rm /etc/apt/apt.conf.d/docker-clean
+      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+      - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
+      - apt-get update -q
+      - apt-get install -qy build-essential cmake pkg-config
       - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev
       - apt-get install -qy -t sid libcurlpp-dev
       - apt-get install -qy rpm file
@@ -37,8 +62,12 @@ pipeline:
   gcc7:
     image: debian:stretch-slim
     pull: true
+    when:
+      event: [push, pull_request]
     environment:
       - LANG=C.utf8
+      - CXX=g++-7
+      - CXXFLAGS=-pipe -O2
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
       - apt-get update -q
@@ -51,8 +80,6 @@ pipeline:
       - apt-get update -q
       - apt-get install -qy build-essential cmake pkg-config
       - apt-get install -qy -t xenial g++-7
-      - update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100
-      - update-alternatives --set g++ /usr/bin/g++-7
       - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev
       - apt-get install -qy -t sid libcurlpp-dev
       - apt-get install -qy rpm file
@@ -60,20 +87,18 @@ pipeline:
       - cmake -DWITH_EXAMPLES=ON -DWITH_TESTS=ON ..
       - make VERBOSE=1
       - make install DESTDIR=install
-      - ctest ..
-      - make package
-      - cmake -DWITH_DEB=ON ..
-      - make package
-      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
-      - make package
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
 
-  gcc5:
+  gcc8:
     image: debian:stretch-slim
     pull: true
+    when:
+      event: [push, pull_request]
     environment:
       - LANG=C.utf8
+      - CXX=g++-8
+      - CXXFLAGS=-pipe -O2
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
       - apt-get update -q
@@ -85,9 +110,7 @@ pipeline:
       - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
       - apt-get update -q
       - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy -t xenial g++-5
-      - update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 100
-      - update-alternatives --set g++ /usr/bin/g++-5
+      - apt-get install -qy -t xenial g++-8
       - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev
       - apt-get install -qy -t sid libcurlpp-dev
       - apt-get install -qy rpm file
@@ -95,39 +118,6 @@ pipeline:
       - cmake -DWITH_EXAMPLES=ON -DWITH_TESTS=ON ..
       - make VERBOSE=1
       - make install DESTDIR=install
-      - ctest ..
-      - make package
-      - cmake -DWITH_DEB=ON ..
-      - make package
-      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
-      - make package
-    volumes:
-      - /var/cache/debian-package-cache:/var/cache/apt/archives
-
-  gcc6:
-    image: debian:stretch-slim
-    pull: true
-    environment:
-      - LANG=C.utf8
-    commands:
-      - rm /etc/apt/apt.conf.d/docker-clean
-      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
-      - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
-      - apt-get update -q
-      - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev
-      - apt-get install -qy -t sid libcurlpp-dev
-      - apt-get install -qy rpm file
-      - rm -rf build && mkdir -p build && cd build
-      - cmake -DWITH_EXAMPLES=ON -DWITH_TESTS=ON ..
-      - make VERBOSE=1
-      - make install DESTDIR=install
-      - ctest ..
-      - make package
-      - cmake -DWITH_DEB=ON ..
-      - make package
-      - cmake -DWITH_DEB=OFF -DWITH_RPM=ON ..
-      - make package
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
 

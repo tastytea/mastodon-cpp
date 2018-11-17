@@ -74,6 +74,17 @@ const Easy::Application Status::application() const
     return Easy::Application();
 }
 
+const Easy::Card Status::card() const
+{
+    const Json::Value node = get("card");
+    if (node.isObject())
+    {
+        return Easy::Card(node.toStyledString());
+    }
+
+    return Easy::Card();
+}
+
 const system_clock::time_point Status::created_at() const
 {
     return get_time_point("created_at");

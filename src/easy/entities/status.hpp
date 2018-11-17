@@ -32,6 +32,7 @@
     #include "easy/entities/mention.hpp"
     #include "easy/entities/tag.hpp"
     #include "easy/entities/application.hpp"
+    #include "easy/entities/card.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy/easy.hpp>
@@ -41,6 +42,7 @@
     #include <mastodon-cpp/easy/entities/mention.hpp>
     #include <mastodon-cpp/easy/entities/tag.hpp>
     #include <mastodon-cpp/easy/entities/application.hpp>
+    #include <mastodon-cpp/easy/entities/card.hpp>
 #endif
 
 using std::string;
@@ -88,6 +90,13 @@ namespace Mastodon
          *  @since  before 0.11.0
          */
         const Application application() const;
+
+        /*!
+         *  @brief  Returns card
+         *  
+         *  @since  0.19.0
+         */
+        const Card card() const;
 
         /*!
          *  @brief  Returns time of creation

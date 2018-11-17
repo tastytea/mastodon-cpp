@@ -75,6 +75,13 @@ namespace Mastodon
         const bool domain_blocking() const;
 
         /*!
+         *  @brief  Returns true if the account is endorsed by the user
+         *  
+         *  @since  0.19.0
+         */
+        const bool endorsed() const;
+
+        /*!
          *  @brief  Returns true if the user is being followed by the account
          *  
          *  @since  before 0.11.0
@@ -115,6 +122,13 @@ namespace Mastodon
          *  @since  before 0.11.0
          */
         const bool requested() const;
+
+        /*!
+         *  @brief  Returns true if the user is showing notifications
+         *  
+         *  @since  0.19.0
+         */
+        const bool showing_notifications() const;
     };
 }
 

@@ -54,6 +54,11 @@ const bool Relationship::domain_blocking() const
     return get_bool("domain_blocking");
 }
 
+const bool Relationship::endorsed() const
+{
+    return get_bool("endorsed");
+}
+
 const bool Relationship::followed_by() const
 {
     return get_bool("followed_by");
@@ -82,4 +87,9 @@ const bool Relationship::muting_notifications() const
 const bool Relationship::requested() const
 {
     return get_bool("requested");
+}
+
+const bool Relationship::showing_notifications() const
+{
+    return get_bool("showing_notifications");
 }

@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">mastodon-cpp
-   &#160;<span id="projectnumber">0.18.9</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -45,6 +45,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><p><b>mastodon-cpp</b> is a C++ wrapper for the Mastodon API. The library takes care of the network stuff. You submit a query and get the raw JSON. You can then put that JSON into easy to use classes.</p>
 <p><a href="https://schlomp.space/tastytea/mastodon-cpp/milestones">TODO-list</a></p>
+<p><b>The ABI will be unstable in versions &lt; 1.0.0</b></p>
 <h1>Usage</h1>
 <p>The HTML reference can be generated with <code>build_doc.sh</code>, if doxygen is installed. It is also available at <a href="https://doc.schlomp.space/mastodon-cpp/annotated.html">doc.schlomp.space/mastodon-cpp/</a>. There are <a href="https://schlomp.space/tastytea/mastodon-cpp/src/branch/master/examples">examples</a> in <code>examples/</code>.</p>
 <h2>Most basic example</h2>
@@ -129,7 +130,7 @@ $(function() {
 <h4>Other</h4>
 <p>Run <code>make package</code> from the build directory to generate a tar.gz archive.</p>
 <h1>Status of implementation</h1>
-<p>Feature complete as of Mastodon 2.4.1</p>
+<p>Feature complete as of Mastodon 2.6.1</p>
 <ul>
 <li>[x] GET /api/v1/accounts/:id</li>
 <li>[x] GET /api/v1/accounts/verify_credentials</li>
@@ -150,6 +151,9 @@ $(function() {
 <li>[x] GET /api/v1/domain_blocks</li>
 <li>[x] POST /api/v1/domain_blocks</li>
 <li>[x] DELETE /api/v1/domain_blocks</li>
+<li>[x] GET /api/v1/endorsements</li>
+<li>[x] POST /api/v1/accounts/:id/pin</li>
+<li>[x] POST /api/v1/accounts/:id/unpin</li>
 <li>[x] GET /api/v1/favourites</li>
 <li>[x] GET /api/v1/follow_requests</li>
 <li>[x] POST /api/v1/follow_requests/:id/authorize</li>

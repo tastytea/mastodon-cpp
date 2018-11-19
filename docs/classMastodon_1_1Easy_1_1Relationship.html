@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">mastodon-cpp
-   &#160;<span id="projectnumber">0.18.9</span>
+   &#160;<span id="projectnumber">0.19.0</span>
    </div>
   </td>
  </tr>
@@ -82,6 +82,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a491875266734712cdf107587dc76189f"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Relationship.html#a491875266734712cdf107587dc76189f">domain_blocking</a> () const</td></tr>
 <tr class="memdesc:a491875266734712cdf107587dc76189f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the user is blocking the account's domain.  <a href="#a491875266734712cdf107587dc76189f">More...</a><br /></td></tr>
 <tr class="separator:a491875266734712cdf107587dc76189f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a628fe1081ae6688aa7a8b219b4f36d1f"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Relationship.html#a628fe1081ae6688aa7a8b219b4f36d1f">endorsed</a> () const</td></tr>
+<tr class="memdesc:a628fe1081ae6688aa7a8b219b4f36d1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the account is endorsed by the user.  <a href="#a628fe1081ae6688aa7a8b219b4f36d1f">More...</a><br /></td></tr>
+<tr class="separator:a628fe1081ae6688aa7a8b219b4f36d1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d47f4c223c9f8946343c74dcae499de"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Relationship.html#a9d47f4c223c9f8946343c74dcae499de">followed_by</a> () const</td></tr>
 <tr class="memdesc:a9d47f4c223c9f8946343c74dcae499de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the user is being followed by the account.  <a href="#a9d47f4c223c9f8946343c74dcae499de">More...</a><br /></td></tr>
 <tr class="separator:a9d47f4c223c9f8946343c74dcae499de"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -100,6 +103,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4f11eae727da95bc0e8dbeadaba2bc3c"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Relationship.html#a4f11eae727da95bc0e8dbeadaba2bc3c">requested</a> () const</td></tr>
 <tr class="memdesc:a4f11eae727da95bc0e8dbeadaba2bc3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the user has requested to follow the account.  <a href="#a4f11eae727da95bc0e8dbeadaba2bc3c">More...</a><br /></td></tr>
 <tr class="separator:a4f11eae727da95bc0e8dbeadaba2bc3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3c324d21302956a693027b8e44bb34c"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Relationship.html#ad3c324d21302956a693027b8e44bb34c">showing_notifications</a> () const</td></tr>
+<tr class="memdesc:ad3c324d21302956a693027b8e44bb34c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the user is showing notifications.  <a href="#ad3c324d21302956a693027b8e44bb34c">More...</a><br /></td></tr>
+<tr class="separator:ad3c324d21302956a693027b8e44bb34c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classMastodon_1_1Easy_1_1Entity"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMastodon_1_1Easy_1_1Entity')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMastodon_1_1Easy_1_1Entity.html">Mastodon::Easy::Entity</a></td></tr>
 <tr class="memitem:a753b382e29be6cb7b16772d4c609cedc inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#a753b382e29be6cb7b16772d4c609cedc">Entity</a> (const string &amp;json)</td></tr>
 <tr class="memdesc:a753b382e29be6cb7b16772d4c609cedc inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Entity</a> object from a JSON string.  <a href="classMastodon_1_1Easy_1_1Entity.html#a753b382e29be6cb7b16772d4c609cedc">More...</a><br /></td></tr>
@@ -258,6 +264,27 @@ const std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>s
 </div><!-- fragment -->
 </div>
 </div>
+<a id="a628fe1081ae6688aa7a8b219b4f36d1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a628fe1081ae6688aa7a8b219b4f36d1f">&#9670;&nbsp;</a></span>endorsed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool Relationship::endorsed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns true if the account is endorsed by the user. </p>
+<dl class="section since"><dt>Since</dt><dd>0.19.0 </dd></dl>
+<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">get_bool</a>(<span class="stringliteral">&quot;endorsed&quot;</span>);</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a73a96c1e91e1629223570f42f9196039"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">Mastodon::Easy::Entity::get_bool</a></div><div class="ttdeci">const bool get_bool(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as bool. </div><div class="ttdef"><b>Definition:</b> entity.cpp:177</div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a9d47f4c223c9f8946343c74dcae499de"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9d47f4c223c9f8946343c74dcae499de">&#9670;&nbsp;</a></span>followed_by()</h2>
 
@@ -275,7 +302,7 @@ const std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>s
 
 <p>Returns true if the user is being followed by the account. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">get_bool</a>(<span class="stringliteral">&quot;followed_by&quot;</span>);</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a73a96c1e91e1629223570f42f9196039"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">Mastodon::Easy::Entity::get_bool</a></div><div class="ttdeci">const bool get_bool(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as bool. </div><div class="ttdef"><b>Definition:</b> entity.cpp:177</div></div>
+<div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">get_bool</a>(<span class="stringliteral">&quot;followed_by&quot;</span>);</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a73a96c1e91e1629223570f42f9196039"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">Mastodon::Easy::Entity::get_bool</a></div><div class="ttdeci">const bool get_bool(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as bool. </div><div class="ttdef"><b>Definition:</b> entity.cpp:177</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -296,7 +323,7 @@ const std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>s
 
 <p>Returns true if the user is being following the account. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">get_bool</a>(<span class="stringliteral">&quot;following&quot;</span>);</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a73a96c1e91e1629223570f42f9196039"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">Mastodon::Easy::Entity::get_bool</a></div><div class="ttdeci">const bool get_bool(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as bool. </div><div class="ttdef"><b>Definition:</b> entity.cpp:177</div></div>
+<div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">get_bool</a>(<span class="stringliteral">&quot;following&quot;</span>);</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a73a96c1e91e1629223570f42f9196039"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">Mastodon::Easy::Entity::get_bool</a></div><div class="ttdeci">const bool get_bool(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as bool. </div><div class="ttdef"><b>Definition:</b> entity.cpp:177</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -317,7 +344,7 @@ const std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>s
 
 <p>Returns the target account ID. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">return</span> stouint64(<a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;id&quot;</span>));</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:135</div></div>
+<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">return</span> stouint64(<a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;id&quot;</span>));</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:135</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -338,7 +365,7 @@ const std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>s
 
 <p>Returns true if the user is muting the account. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">get_bool</a>(<span class="stringliteral">&quot;muting&quot;</span>);</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a73a96c1e91e1629223570f42f9196039"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">Mastodon::Easy::Entity::get_bool</a></div><div class="ttdeci">const bool get_bool(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as bool. </div><div class="ttdef"><b>Definition:</b> entity.cpp:177</div></div>
+<div class="fragment"><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;{</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">get_bool</a>(<span class="stringliteral">&quot;muting&quot;</span>);</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a73a96c1e91e1629223570f42f9196039"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">Mastodon::Easy::Entity::get_bool</a></div><div class="ttdeci">const bool get_bool(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as bool. </div><div class="ttdef"><b>Definition:</b> entity.cpp:177</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -359,7 +386,7 @@ const std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>s
 
 <p>Returns true if the user is also muting notifications. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;{</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">get_bool</a>(<span class="stringliteral">&quot;muting_notifications&quot;</span>);</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a73a96c1e91e1629223570f42f9196039"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">Mastodon::Easy::Entity::get_bool</a></div><div class="ttdeci">const bool get_bool(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as bool. </div><div class="ttdef"><b>Definition:</b> entity.cpp:177</div></div>
+<div class="fragment"><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;{</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">get_bool</a>(<span class="stringliteral">&quot;muting_notifications&quot;</span>);</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a73a96c1e91e1629223570f42f9196039"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">Mastodon::Easy::Entity::get_bool</a></div><div class="ttdeci">const bool get_bool(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as bool. </div><div class="ttdef"><b>Definition:</b> entity.cpp:177</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -380,7 +407,28 @@ const std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>s
 
 <p>Returns true if the user has requested to follow the account. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;{</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">get_bool</a>(<span class="stringliteral">&quot;requested&quot;</span>);</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a73a96c1e91e1629223570f42f9196039"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">Mastodon::Easy::Entity::get_bool</a></div><div class="ttdeci">const bool get_bool(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as bool. </div><div class="ttdef"><b>Definition:</b> entity.cpp:177</div></div>
+<div class="fragment"><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;{</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">get_bool</a>(<span class="stringliteral">&quot;requested&quot;</span>);</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a73a96c1e91e1629223570f42f9196039"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">Mastodon::Easy::Entity::get_bool</a></div><div class="ttdeci">const bool get_bool(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as bool. </div><div class="ttdef"><b>Definition:</b> entity.cpp:177</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ad3c324d21302956a693027b8e44bb34c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3c324d21302956a693027b8e44bb34c">&#9670;&nbsp;</a></span>showing_notifications()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool Relationship::showing_notifications </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns true if the user is showing notifications. </p>
+<dl class="section since"><dt>Since</dt><dd>0.19.0 </dd></dl>
+<div class="fragment"><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;{</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">get_bool</a>(<span class="stringliteral">&quot;showing_notifications&quot;</span>);</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a73a96c1e91e1629223570f42f9196039"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a73a96c1e91e1629223570f42f9196039">Mastodon::Easy::Entity::get_bool</a></div><div class="ttdeci">const bool get_bool(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as bool. </div><div class="ttdef"><b>Definition:</b> entity.cpp:177</div></div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -20,6 +20,8 @@
 #include <string>
 #include <vector>
 
+using std::uint_fast64_t;
+
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
@@ -118,6 +120,16 @@ namespace Mastodon
          *  @since before 0.11.0
          */
         const string streaming_api() const;
+
+        /*!
+         *  @brief  Returns the maximum chars a post can have
+         *
+         *          This parameter is not supported by upstream Mastodon. If it
+         *          is not found, 500 is returned.
+         *
+         *  @since  0.20.0
+         */
+        const uint_fast64_t max_toot_chars() const;
     };
 }
 

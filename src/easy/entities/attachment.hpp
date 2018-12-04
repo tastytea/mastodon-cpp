@@ -60,28 +60,28 @@ namespace Mastodon
          */
         Attachment();
 
-        virtual const bool valid() const;
+        virtual bool valid() const;
 
         /*!
          *  @brief  Aspect of original image
          *  
          *  @since before 0.11.0
          */
-        const double aspect() const;
+        double aspect() const;
 
         /*!
          *  @brief  Aspect of preview image
          *  
          *  @since before 0.11.0
          */
-        const double aspect_small() const;
+        double aspect_small() const;
 
         /*!
          *  @brief  Returns the bitrate of a video
          *  
          *  @since before 0.11.0
          */
-        const uint_fast64_t bitrate() const;
+        uint_fast64_t bitrate() const;
 
         /*!
          *  @brief  Returns the image description
@@ -143,28 +143,28 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        const double framerate() const;
+        double framerate() const;
 
         /*!
          *  @brief  Returns the height of the original image
          *  
          *  @since before 0.11.0
          */
-        const uint_fast64_t height() const;
+        uint_fast64_t height() const;
 
         /*!
          *  @brief  Returns the height of the preview image
          *  
          *  @since before 0.11.0
          */
-        const uint_fast64_t height_small() const;
+        uint_fast64_t height_small() const;
 
         /*!
          *  @brief  Returns the ID of the attachment
          *  
          *  @since before 0.11.0
          */
-        const uint_fast64_t id() const;
+        uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns the URL of the preview image
@@ -206,7 +206,7 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        const attachment_type type() const;
+        attachment_type type() const;
 
         /*!
          *  @brief  Returns URL of the locally hosted version of the image
@@ -220,14 +220,14 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        const uint_fast64_t width() const;
+        uint_fast64_t width() const;
 
         /*!
          *  @brief  Returns the width of the preview image
          *  
          *  @since before 0.11.0
          */
-        const uint_fast64_t width_small() const;
+        uint_fast64_t width_small() const;
 
 
     };

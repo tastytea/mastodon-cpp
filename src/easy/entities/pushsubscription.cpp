@@ -23,7 +23,7 @@ PushSubscription::PushSubscription(const string &json)
 : Entity(json)
 {}
 
-const uint_fast64_t PushSubscription::id() const
+uint_fast64_t PushSubscription::id() const
 {
     return stouint64(get_string("id"));
 }
@@ -32,7 +32,7 @@ PushSubscription::PushSubscription()
 : Entity()
 {}
 
-const bool PushSubscription::valid() const
+bool PushSubscription::valid() const
 {
     const std::vector<string> attributes =
     {{
@@ -88,7 +88,7 @@ const Easy::alertmap PushSubscription::alerts() const
     return alerts;
 }
 
-const bool PushSubscription::s_to_b(const string &str) const
+bool PushSubscription::s_to_b(const string &str) const
 {
     if (str.compare("true") == 0)
     {

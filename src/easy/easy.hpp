@@ -171,28 +171,28 @@ public:
          *  
          *  @since  before 0.11.0
          */
-        const uint_fast64_t next() const;
+        uint_fast64_t next() const;
 
         /*!
          *  @brief  Returns max_id
          *  
          *  @since  before 0.11.0
          */
-        const uint_fast64_t max_id() const;
+        uint_fast64_t max_id() const;
 
         /*!
          *  @brief  Returns since_id
          *  
          *  @since  before 0.11.0
          */
-        const uint_fast64_t prev() const;
+        uint_fast64_t prev() const;
 
         /*!
          *  @brief  Returns since_id
          *  
          *  @since  before 0.11.0
          */
-        const uint_fast64_t since_id() const;
+        uint_fast64_t since_id() const;
 
     private:
         uint_fast64_t _next;
@@ -327,7 +327,7 @@ public:
          *  
          *  @since  before 0.11.0
          */
-        const void from_string(const string &json);
+        void from_string(const string &json);
 
         /*!
          *  @brief  Returns the JSON object of the Entity
@@ -343,7 +343,7 @@ public:
          *  
          *  @since  before 0.11.0 (virtual since 0.18.2)
          */
-        virtual const bool valid() const = 0;
+        virtual bool valid() const = 0;
 
         /*!
          *  @brief  Returns error string sent by the server
@@ -380,7 +380,7 @@ public:
          *  
          *  @since  before 0.11.0
          */
-        const bool was_set() const;
+        bool was_set() const;
 
     protected:
         /*!
@@ -403,14 +403,14 @@ public:
          *  
          *          Returns 0 if the value does not exist or is null.
          */
-        const uint_fast64_t get_uint64(const string &key) const;
+        uint_fast64_t get_uint64(const string &key) const;
 
         /*!
          *  @brief  Returns the value of key as double
          *  
          *          Returns 0.0 if the value does not exist or is null.
          */
-        const double get_double(const string &key) const;
+        double get_double(const string &key) const;
 
         // TODO: Maybe an enum would be better?
         /*!
@@ -418,7 +418,7 @@ public:
          *  
          *          Returns false if the value does not exist or is null.
          */
-        const bool get_bool(const string &key) const;
+        bool get_bool(const string &key) const;
 
         /*!
          *  @brief  Returns the value of key as time_point
@@ -440,9 +440,9 @@ public:
          *  
          *  @since  0.17.0
          */
-        const void set(const string &key, const Json::Value &value);
+        void set(const string &key, const Json::Value &value);
 
-        const std::uint_fast64_t stouint64(const string &str) const;
+        std::uint_fast64_t stouint64(const string &str) const;
 
         /*!
          *  @brief  Checks if an Entity is valid
@@ -453,8 +453,7 @@ public:
          *  
          *  @since  0.18.2
          */
-        const bool
-        check_valid(const std::vector<string> &attributes) const;
+        bool check_valid(const std::vector<string> &attributes) const;
 
     private:
         Json::Value _tree;

@@ -58,7 +58,7 @@ namespace Mastodon
          */
         Report();
 
-        virtual const bool valid() const;
+        virtual bool valid() const;
 
         /*!
          *  @brief  Returns true if an action was taken in response to the
@@ -66,14 +66,14 @@ namespace Mastodon
          *  
          *  @since  before 0.11.0
          */
-        const bool action_taken() const;
+        bool action_taken() const;
         
         /*!
          *  @brief  Returns the ID of the report
          *  
          *  @since  before 0.11.0
          */
-        const uint_fast64_t id() const;
+        uint_fast64_t id() const;
     };
 }
 

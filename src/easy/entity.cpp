@@ -33,7 +33,7 @@ Easy::Entity::Entity(const string &json)
     from_string(json);
 }
 
-const void Easy::Entity::from_string(const string &json)
+void Easy::Entity::from_string(const string &json)
 {
     std::stringstream ss(json);
     ss >> _tree;
@@ -66,8 +66,7 @@ Easy::Entity::Entity()
 : _was_set(false)
 {}
 
-const bool
-Easy::Entity::check_valid(const std::vector<string> &attributes) const
+bool Easy::Entity::check_valid(const std::vector<string> &attributes) const
 {
     for (const string &attribute: attributes)
     {
@@ -86,7 +85,7 @@ const string Easy::Entity::error() const
     return get_string("error");
 }
 
-const bool Easy::Entity::was_set() const
+bool Easy::Entity::was_set() const
 {
     return _was_set;
 }
@@ -146,7 +145,7 @@ const string Easy::Entity::get_string(const string &key) const
     return "";
 }
 
-const uint_fast64_t Easy::Entity::get_uint64(const string &key) const
+uint_fast64_t Easy::Entity::get_uint64(const string &key) const
 {
     const Json::Value node = get(key);
 
@@ -160,7 +159,7 @@ const uint_fast64_t Easy::Entity::get_uint64(const string &key) const
     return 0;
 }
 
-const double Easy::Entity::get_double(const string &key) const
+double Easy::Entity::get_double(const string &key) const
 {
     const Json::Value node = get(key);
 
@@ -174,7 +173,7 @@ const double Easy::Entity::get_double(const string &key) const
     return 0.0;
 }
 
-const bool Easy::Entity::get_bool(const string &key) const
+bool Easy::Entity::get_bool(const string &key) const
 {
     const Json::Value node = get(key);
 
@@ -196,7 +195,7 @@ const system_clock::time_point
     if (node.isString())
     {
         std::stringstream sstime(node.asString());
-        struct std::tm tm = {0};
+        struct std::tm tm;
         sstime >> std::get_time(&tm, "%Y-%m-%dT%T");
         std::time_t time = timegm(&tm);
         _was_set = true;
@@ -227,7 +226,7 @@ const std::vector<string> Easy::Entity::get_vector(const string &key) const
     return {};
 }
 
-const void Easy::Entity::set(const string &key, const Json::Value &value)
+void Easy::Entity::set(const string &key, const Json::Value &value)
 {
     if (key.find('.') == std::string::npos)
     {
@@ -265,7 +264,7 @@ const void Easy::Entity::set(const string &key, const Json::Value &value)
     ttdebug << "Could not set data: " << key << '\n';
 }
 
-const std::uint_fast64_t Easy::Entity::stouint64(const string &str) const
+std::uint_fast64_t Easy::Entity::stouint64(const string &str) const
 {
     if (str == "")
     {

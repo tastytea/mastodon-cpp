@@ -21,8 +21,8 @@
 using namespace Mastodon;
 using std::cerr;
 
-const uint_fast16_t API::get(const Mastodon::API::v1 &call,
-                             const parametermap &parameters, string &answer)
+uint_fast16_t API::get(const Mastodon::API::v1 &call,
+                       const parametermap &parameters, string &answer)
 {
     string strcall = "";
     string strid = "";
@@ -168,8 +168,8 @@ const uint_fast16_t API::get(const Mastodon::API::v1 &call,
     return get(strcall, answer);
 }
 
-const uint_fast16_t API::get(const Mastodon::API::v2 &call,
-                             const parametermap &parameters, string &answer)
+uint_fast16_t API::get(const Mastodon::API::v2 &call,
+                       const parametermap &parameters, string &answer)
 {
     string strcall = "";
     string strid = "";
@@ -204,13 +204,13 @@ const uint_fast16_t API::get(const Mastodon::API::v2 &call,
     return get(strcall, answer);
 }
 
-const uint_fast16_t API::get(const Mastodon::API::v1 &call, string &answer)
+uint_fast16_t API::get(const Mastodon::API::v1 &call, string &answer)
 {
     const parametermap p;
     return get(call, p, answer);
 }
 
-const uint_fast16_t API::get(const std::string &call, string &answer)
+uint_fast16_t API::get(const std::string &call, string &answer)
 {
     return _http.request(http::method::GET, call, answer);
 }
@@ -219,9 +219,9 @@ const uint_fast16_t API::get(const std::string &call, string &answer)
 
 // ↓↓ DEPRECATED ↓↓
 
-const uint_fast16_t API::get(const Mastodon::API::v1 &call,
-                             const string &argument,
-                             const parametermap &parameters, string &answer)
+uint_fast16_t API::get(const Mastodon::API::v1 &call,
+                       const string &argument,
+                       const parametermap &parameters, string &answer)
 {
     parametermap newparameters = parameters;
 
@@ -243,8 +243,8 @@ const uint_fast16_t API::get(const Mastodon::API::v1 &call,
     return get(call, newparameters, answer);
 }
 
-const uint_fast16_t API::get(const Mastodon::API::v1 &call,
-                             const string &argument, string &answer)
+uint_fast16_t API::get(const Mastodon::API::v1 &call,
+                       const string &argument, string &answer)
 {
     const parametermap p;
     return get(call, argument, p, answer);

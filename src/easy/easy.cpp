@@ -133,22 +133,22 @@ Easy::Link::Link(const string &link_header)
     }
 }
 
-const uint_fast64_t Easy::Link::next() const
+uint_fast64_t Easy::Link::next() const
 {
     return _next;
 }
 
-const uint_fast64_t Easy::Link::max_id() const
+uint_fast64_t Easy::Link::max_id() const
 {
     return _next;
 }
 
-const uint_fast64_t Easy::Link::prev() const
+uint_fast64_t Easy::Link::prev() const
 {
     return _prev;
 }
 
-const uint_fast64_t Easy::Link::since_id() const
+uint_fast64_t Easy::Link::since_id() const
 {
     return _prev;
 }

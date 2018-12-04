@@ -20,8 +20,8 @@
 
 using namespace Mastodon;
 
-const uint_fast16_t API::post(const Mastodon::API::v1 &call,
-                              const parametermap &parameters, string &answer)
+uint_fast16_t API::post(const Mastodon::API::v1 &call,
+                        const parametermap &parameters, string &answer)
 {
     string strcall = "";
     string strid = "";
@@ -137,14 +137,14 @@ const uint_fast16_t API::post(const Mastodon::API::v1 &call,
     return post(strcall, parameters, answer);
 }
 
-const uint_fast16_t API::post(const Mastodon::API::v1 &call, string &answer)
+uint_fast16_t API::post(const Mastodon::API::v1 &call, string &answer)
 {
     const parametermap p;
     return post(call, p, answer);
 }
 
-const uint_fast16_t API::post(const string &call,
-                              const parametermap &parameters, string &answer)
+uint_fast16_t API::post(const string &call,
+                        const parametermap &parameters, string &answer)
 {
 
     return _http.request(http::method::POST, call,
@@ -154,9 +154,9 @@ const uint_fast16_t API::post(const string &call,
 
 // ↓↓ DEPRECATED ↓↓
 
-const uint_fast16_t API::post(const Mastodon::API::v1 &call,
-                              const string &argument,
-                              const parametermap &parameters, string &answer)
+uint_fast16_t API::post(const Mastodon::API::v1 &call,
+                        const string &argument,
+                        const parametermap &parameters, string &answer)
 {
     parametermap newparameters = parameters;
 
@@ -166,8 +166,8 @@ const uint_fast16_t API::post(const Mastodon::API::v1 &call,
     return post(call, newparameters, answer);
 }
 
-const uint_fast16_t API::post(const Mastodon::API::v1 &call,
-                              const string &argument, string &answer)
+uint_fast16_t API::post(const Mastodon::API::v1 &call,
+                        const string &argument, string &answer)
 {
     const parametermap p;
     return post(call, argument, p, answer);

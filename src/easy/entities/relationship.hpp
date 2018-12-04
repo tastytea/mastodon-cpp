@@ -58,77 +58,77 @@ namespace Mastodon
          */
         Relationship();
 
-        virtual const bool valid() const;
+        virtual bool valid() const;
 
         /*!
          *  @brief  Returns true if the user is blocking the account
          *  
          *  @since  before 0.11.0
          */
-        const bool blocking() const;
+        bool blocking() const;
 
         /*!
          *  @brief  Returns true if the user is blocking the account's domain
          *  
          *  @since  before 0.11.0
          */
-        const bool domain_blocking() const;
+        bool domain_blocking() const;
 
         /*!
          *  @brief  Returns true if the account is endorsed by the user
          *  
          *  @since  0.19.0
          */
-        const bool endorsed() const;
+        bool endorsed() const;
 
         /*!
          *  @brief  Returns true if the user is being followed by the account
          *  
          *  @since  before 0.11.0
          */
-        const bool followed_by() const;
+        bool followed_by() const;
 
         /*!
          *  @brief  Returns true if the user is being following the account
          *  
          *  @since  before 0.11.0
          */
-        const bool following() const;
+        bool following() const;
 
         /*!
          *  @brief  Returns the target account ID
          *  
          *  @since  before 0.11.0
          */
-        const uint_fast64_t id() const;
+        uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns true if the user is muting the account
          *  
          *  @since  before 0.11.0
          */
-        const bool muting() const;
+        bool muting() const;
 
         /*!
          *  @brief  Returns true if the user is also muting notifications
          *  
          *  @since  before 0.11.0
          */
-        const bool muting_notifications() const;
+        bool muting_notifications() const;
 
         /*!
          *  @brief  Returns true if the user has requested to follow the account
          *  
          *  @since  before 0.11.0
          */
-        const bool requested() const;
+        bool requested() const;
 
         /*!
          *  @brief  Returns true if the user is showing notifications
          *  
          *  @since  0.19.0
          */
-        const bool showing_notifications() const;
+        bool showing_notifications() const;
     };
 }
 

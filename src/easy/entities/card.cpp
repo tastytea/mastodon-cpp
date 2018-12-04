@@ -28,7 +28,7 @@ Card::Card()
 : Entity()
 {}
 
-const bool Card::valid() const
+bool Card::valid() const
 {
     const std::vector<string> attributes =
     {{
@@ -56,7 +56,7 @@ const string Card::description() const
     return get_string("description");
 }
 
-const uint_fast64_t Card::height() const
+uint_fast64_t Card::height() const
 {
     return get_uint64("height");
 }
@@ -86,7 +86,7 @@ const string Card::title() const
     return get_string("title");
 }
 
-const Easy::card_type Card::type() const
+Easy::card_type Card::type() const
 {
     const string strtype = get_string("type");
     if (strtype.compare("link") == 0)
@@ -107,7 +107,7 @@ const string Card::url() const
     return get_string("url");
 }
 
-const uint_fast64_t Card::width() const
+uint_fast64_t Card::width() const
 {
     return get_uint64("width");
 }

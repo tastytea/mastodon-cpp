@@ -63,7 +63,7 @@ namespace Mastodon
          */
         Results();
 
-        virtual const bool valid() const;
+        virtual bool valid() const;
 
         /*!
          *  @brief  Returns an array of matched Accounts

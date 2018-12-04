@@ -59,14 +59,14 @@ namespace Mastodon
          */
         PushSubscription();
 
-        virtual const bool valid() const;
+        virtual bool valid() const;
 
         /*!
          *  @brief  Returns push subscription ID
          *  
          *  @since  0.14.0
          */
-        const uint_fast64_t id() const;
+        uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns the endpoint URL
@@ -97,7 +97,7 @@ namespace Mastodon
          *
          *  @return `true` if str is equal to "true", `false` otherwise
          */
-        const bool s_to_b(const string &str) const;
+        bool s_to_b(const string &str) const;
 };
 }
 

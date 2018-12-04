@@ -59,14 +59,14 @@ namespace Mastodon
          */
         List();
 
-        virtual const bool valid() const;
+        virtual bool valid() const;
 
         /*!
          *  @brief  Returns list-ID
          *  
          *  @since before 0.11.0
          */
-        const uint_fast64_t id() const;
+        uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns title

@@ -21,9 +21,9 @@
 using namespace Mastodon;
 using std::cerr;
 
-const uint_fast16_t API::patch(const Mastodon::API::v1 &call,
-                               const parametermap &parameters,
-                               string &answer)
+uint_fast16_t API::patch(const Mastodon::API::v1 &call,
+                         const parametermap &parameters,
+                         string &answer)
 {
     string strcall = "";
     switch (call)

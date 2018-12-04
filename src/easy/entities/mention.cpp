@@ -27,7 +27,7 @@ Mention::Mention()
 : Entity()
 {}
 
-const bool Mention::valid() const
+bool Mention::valid() const
 {
     const std::vector<string> attributes =
     {{
@@ -45,7 +45,7 @@ const string Mention::acct() const
     return get_string("acct");
 }
 
-const uint_fast64_t Mention::id() const
+uint_fast64_t Mention::id() const
 {
     return stouint64(get_string("id"));
 }

@@ -64,7 +64,7 @@ namespace Mastodon
          */
         Notification();
 
-        virtual const bool valid() const;
+        virtual bool valid() const;
 
         /*!
          *  @brief  Returns the Account sending the notification to the user
@@ -85,7 +85,7 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        const uint_fast64_t id() const;
+        uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns the Status associated with the notification, if
@@ -100,7 +100,7 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        const Easy::notification_type type() const;
+        Easy::notification_type type() const;
     };
 }
 

@@ -69,7 +69,7 @@ namespace Mastodon
          */
         Account();
 
-        virtual const bool valid() const;
+        virtual bool valid() const;
 
         /*!
          *  @brief  Returns username
@@ -109,7 +109,7 @@ namespace Mastodon
          *  
          *  @since  0.16.0
          */
-        const bool bot() const;
+        bool bot() const;
 
         /*!
          *  @brief  Returns time of creation
@@ -151,14 +151,14 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        const uint_fast64_t followers_count() const;
+        uint_fast64_t followers_count() const;
 
         /*!
          *  @brief  Returns number of people this account follows
          *  
          *  @since before 0.11.0
          */
-        const uint_fast64_t following_count() const;
+        uint_fast64_t following_count() const;
 
         /*!
          *  @brief  Returns URL of header image
@@ -188,14 +188,14 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        const uint_fast64_t id() const;
+        uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns true if the account is locked
          *  
          *  @since before 0.11.0
          */
-        const bool locked() const;
+        bool locked() const;
 
         /*!
          *  @brief  Sets locked state
@@ -209,7 +209,7 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        const bool has_moved() const;
+        bool has_moved() const;
 
         /*!
          *  @brief  If the owner decided to switch accounts, new account is in
@@ -246,14 +246,14 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        const visibility_type privacy() const;
+        visibility_type privacy() const;
 
         /*!
          *  @brief  Returns if media is marked as sensitive by default
          *  
          *  @since before 0.11.0
          */
-        const bool sensitive() const;
+        bool sensitive() const;
 
         /*!
          *  @brief  Class to hold source attribute
@@ -279,7 +279,7 @@ namespace Mastodon
              */
             Source();
 
-            virtual const bool valid() const;
+            virtual bool valid() const;
 
             /*!
              *  @brief  Returns metadata fields
@@ -314,7 +314,7 @@ namespace Mastodon
              *  
              *  @since 0.18.5
              */
-            const visibility_type privacy() const;
+            visibility_type privacy() const;
 
             /*!
              *  @brief  Sets default privacy of new toots
@@ -328,7 +328,7 @@ namespace Mastodon
              *  
              *  @since 0.18.5
              */
-            const bool sensitive() const;
+            bool sensitive() const;
 
             /*!
              *  @brief  Sets if media is marked as sensitive by default
@@ -346,7 +346,7 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        const uint_fast64_t statuses_count() const;
+        uint_fast64_t statuses_count() const;
 
         /*!
          *  @brief  Returns URL of the profile

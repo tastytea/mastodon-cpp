@@ -75,7 +75,7 @@ namespace Mastodon
          */
         Status();
 
-        virtual const bool valid() const;
+        virtual bool valid() const;
 
         /*!
          *  @brief  Returns an array of matched accounts.
@@ -131,28 +131,28 @@ namespace Mastodon
          *  
          *  @since  before 0.11.0
          */
-        const bool favourited() const;
+        bool favourited() const;
 
         /*!
          *  @brief  Returns the number of favourites
          *  
          *  @since  before 0.11.0
          */
-        const uint_fast64_t favourites_count() const;
+        uint_fast64_t favourites_count() const;
 
         /*!
          *  @brief  Returns the ID of the status
          *  
          *  @since  before 0.11.0
          */
-        const uint_fast64_t id() const;
+        uint_fast64_t id() const;
 
         /*!
          *  @brief  Returns the ID of the status it replies to
          *  
          *  @since  before 0.11.0
          */
-        const uint_fast64_t in_reply_to_id() const;
+        uint_fast64_t in_reply_to_id() const;
 
         /*!
          *  @brief  Sets the ID of the status it replies to
@@ -166,7 +166,7 @@ namespace Mastodon
          *  
          *  @since  before 0.11.0
          */
-        const uint_fast64_t in_reply_to_account_id() const;
+        uint_fast64_t in_reply_to_account_id() const;
 
         /*!
          *  @brief  Returns the language of the status
@@ -209,14 +209,14 @@ namespace Mastodon
          *  
          *  @since  before 0.11.0
          */
-        const bool muted() const;
+        bool muted() const;
 
         /*!
          *  @brief  Returns true if the status is pinned
          *  
          *  @since  before 0.11.0
          */
-        const bool pinned() const;
+        bool pinned() const;
 
         /*!
          *  @brief  Returns the reblogged Status
@@ -230,28 +230,28 @@ namespace Mastodon
          *  
          *  @since  before 0.11.0
          */
-        const bool reblogged() const;
+        bool reblogged() const;
 
         /*!
          *  @brief  Returns the number of reblogs for the status
          *  
          *  @since  before 0.11.0
          */
-        const uint_fast64_t reblogs_count() const;
+        uint_fast64_t reblogs_count() const;
 
         /*!
          *  @brief  Returns the number of replies for the status
          *  
          *  @since  0.19.0
          */
-        const uint_fast64_t replies_count() const;
+        uint_fast64_t replies_count() const;
 
         /*!
          *  @brief  Returns true if the attachments should be hidden by default
          *  
          *  @since  before 0.11.0
          */
-        const bool sensitive() const;
+        bool sensitive() const;
 
         /*!
          *  @brief  Sets sensitive flag for attachments
@@ -300,7 +300,7 @@ namespace Mastodon
          *  
          *  @since  before 0.11.0
          */
-        const visibility_type visibility() const;
+        visibility_type visibility() const;
 
         /*!
          *  @brief  Sets the visibility of the status

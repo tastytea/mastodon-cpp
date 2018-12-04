@@ -28,7 +28,7 @@ Emoji::Emoji()
 : Entity()
 {}
 
-const bool Emoji::valid() const
+bool Emoji::valid() const
 {
     const std::vector<string> attributes =
     {{

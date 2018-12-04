@@ -61,7 +61,7 @@ namespace Mastodon
          */
         Instance();
 
-        virtual const bool valid() const;
+        virtual bool valid() const;
 
         /*!
          *  @brief  Returns the Account of the admin or another contact person
@@ -129,7 +129,7 @@ namespace Mastodon
          *
          *  @since  0.20.0
          */
-        const uint_fast64_t max_toot_chars() const;
+        uint_fast64_t max_toot_chars() const;
     };
 }
 

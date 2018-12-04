@@ -28,7 +28,7 @@ Notification::Notification()
 : Entity()
 {}
 
-const bool Notification::valid() const
+bool Notification::valid() const
 {
     const std::vector<string> attributes =
     {{
@@ -58,7 +58,7 @@ const system_clock::time_point Notification::created_at() const
     return get_time_point("created_at");
 }
 
-const uint_fast64_t Notification::id() const
+uint_fast64_t Notification::id() const
 {
     return stouint64(get_string("id"));
 }
@@ -75,7 +75,7 @@ const Easy::Status Notification::status() const
     return Easy::Status();
 }
 
-const Easy::notification_type Notification::type() const
+Easy::notification_type Notification::type() const
 {
     const string strtype = get_string("type");
     if (strtype.compare("mention") == 0)

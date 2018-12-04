@@ -29,7 +29,7 @@ Account::Account()
 : Entity()
 {}
 
-const bool Account::valid() const
+bool Account::valid() const
 {
     const std::vector<string> attributes =
     {{
@@ -74,7 +74,7 @@ const string Account::avatar_static() const
     return get_string("avatar_static");
 }
 
-const bool Account::bot() const
+bool Account::bot() const
 {
     return get_bool("bot");
 }
@@ -128,12 +128,12 @@ Account Account::fields(std::vector<Account::fields_pair> &fields)
     return *this;
 }
 
-const std::uint_fast64_t Account::followers_count() const
+std::uint_fast64_t Account::followers_count() const
 {
     return get_uint64("followers_count");
 }
 
-const std::uint_fast64_t Account::following_count() const
+std::uint_fast64_t Account::following_count() const
 {
     return get_uint64("following_count");
 }
@@ -154,12 +154,12 @@ const string Account::header_static() const
     return get_string("header_static");
 }
 
-const std::uint_fast64_t Account::id() const
+std::uint_fast64_t Account::id() const
 {
     return stouint64(get_string("id"));
 }
 
-const bool Account::locked() const
+bool Account::locked() const
 {
     return get_bool("locked");
 }
@@ -170,7 +170,7 @@ Account Account::locked(const bool &locked)
     return *this;
 }
 
-const bool Account::has_moved() const
+bool Account::has_moved() const
 {
     if (get("moved").isObject())
     {
@@ -207,7 +207,7 @@ const string Account::note_plain() const
     return get_string("source.note");
 }
 
-const Easy::visibility_type Account::privacy() const
+Easy::visibility_type Account::privacy() const
 {
     const string strprivacy = get_string("source.privacy");
     if (strprivacy.compare("public") == 0)
@@ -223,7 +223,7 @@ const Easy::visibility_type Account::privacy() const
     return visibility_type::Undefined;
 }
 
-const bool Account::sensitive() const
+bool Account::sensitive() const
 {
     return get_bool("source.sensitive");
 }
@@ -236,7 +236,7 @@ Account::Source::Source()
 : Entity()
 {}
 
-const bool Account::Source::valid() const
+bool Account::Source::valid() const
 {
     return true;
 }
@@ -286,7 +286,7 @@ Account::Source Account::Source::note(const string &note)
     return *this;
 }
 
-const Easy::visibility_type Account::Source::privacy() const
+Easy::visibility_type Account::Source::privacy() const
 {
     const string strprivacy = get_string("privacy");
     if (strprivacy.compare("public") == 0)
@@ -337,7 +337,7 @@ Account::Source Account::Source::privacy(const Easy::visibility_type &privacy)
     return *this;
 }
 
-const bool Account::Source::sensitive() const
+bool Account::Source::sensitive() const
 {
     return get_bool("sensitive");
 }
@@ -359,7 +359,7 @@ Account Account::source(const Account::Source &source)
     return *this;
 }
 
-const std::uint_fast64_t Account::statuses_count() const
+std::uint_fast64_t Account::statuses_count() const
 {
     return get_uint64("statuses_count");
 }

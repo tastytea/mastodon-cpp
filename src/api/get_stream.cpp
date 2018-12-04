@@ -21,10 +21,10 @@
 using namespace Mastodon;
 using std::cerr;
 
-const uint_fast16_t API::get_stream(const Mastodon::API::v1 &call,
-                                    const parametermap &parameters,
-                                    string &answer,
-                                    std::unique_ptr<Mastodon::API::http> &ptr)
+uint_fast16_t API::get_stream(const Mastodon::API::v1 &call,
+                              const parametermap &parameters,
+                              string &answer,
+                              std::unique_ptr<Mastodon::API::http> &ptr)
 {
     string strcall = "";
 
@@ -59,16 +59,16 @@ const uint_fast16_t API::get_stream(const Mastodon::API::v1 &call,
     return get_stream(strcall, answer, ptr);
 }
 
-const uint_fast16_t API::get_stream(const Mastodon::API::v1 &call,
-                                    string &answer,
-                                    std::unique_ptr<Mastodon::API::http> &ptr)
+uint_fast16_t API::get_stream(const Mastodon::API::v1 &call,
+                              string &answer,
+                              std::unique_ptr<Mastodon::API::http> &ptr)
 {
     parametermap p = {};
     return get_stream(call, p, answer, ptr);
 }
 
-const uint_fast16_t API::get_stream(const std::string &call, string &answer,
-                                    std::unique_ptr<http> &ptr)
+uint_fast16_t API::get_stream(const std::string &call, string &answer,
+                              std::unique_ptr<http> &ptr)
 {
     ptr = std::make_unique<http>(*this, _instance, _access_token);
     return ptr->request(http::method::GET_STREAM, call, answer);
@@ -77,10 +77,10 @@ const uint_fast16_t API::get_stream(const std::string &call, string &answer,
 
 // ↓↓ DEPRECATED ↓↓
 
-const uint_fast16_t API::get_stream(const Mastodon::API::v1 &call,
-                                    const string &argument,
-                                    string &answer,
-                                    std::unique_ptr<Mastodon::API::http> &ptr)
+uint_fast16_t API::get_stream(const Mastodon::API::v1 &call,
+                              const string &argument,
+                              string &answer,
+                              std::unique_ptr<Mastodon::API::http> &ptr)
 {
     parametermap parameters;
 

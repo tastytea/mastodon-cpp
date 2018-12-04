@@ -39,7 +39,7 @@ API::API(const string &instance, const string &access_token)
     //
 }
 
-const void API::set_useragent(const std::string &useragent)
+void API::set_useragent(const std::string &useragent)
 {
     _useragent = useragent;
 }
@@ -148,25 +148,25 @@ const std::string API::urldecode(const std::string &str)
     return curlpp::unescape(str);
 }
 
-const uint_fast16_t API::register_app1(const string &instance,
-                                       const string &client_name,
-                                       const string &redirect_uri,
-                                       const string &scopes,
-                                       const string &website,
-                                       string &client_id,
-                                       string &client_secret,
-                                       string &url)
+uint_fast16_t API::register_app1(const string &instance,
+                                 const string &client_name,
+                                 const string &redirect_uri,
+                                 const string &scopes,
+                                 const string &website,
+                                 string &client_id,
+                                 string &client_secret,
+                                 string &url)
 {
     return register_app1(client_name, redirect_uri, scopes, website,
                   client_id, client_secret, url);
 }
-const uint_fast16_t API::register_app1(const string &client_name,
-                                       const string &redirect_uri,
-                                       const string &scopes,
-                                       const string &website,
-                                       string &client_id,
-                                       string &client_secret,
-                                       string &url)
+uint_fast16_t API::register_app1(const string &client_name,
+                                 const string &redirect_uri,
+                                 const string &scopes,
+                                 const string &website,
+                                 string &client_id,
+                                 string &client_secret,
+                                 string &url)
 {
     API::parametermap parameters =
     {
@@ -214,21 +214,21 @@ const uint_fast16_t API::register_app1(const string &client_name,
     
 }
 
-const uint_fast16_t API::register_app2(const string &instance,
-                                       const string &client_id,
-                                       const string &client_secret,
-                                       const string &redirect_uri,
-                                       const string &code,
-                                       string &access_token)
+uint_fast16_t API::register_app2(const string &instance,
+                                 const string &client_id,
+                                 const string &client_secret,
+                                 const string &redirect_uri,
+                                 const string &code,
+                                 string &access_token)
 {
     return register_app2(client_id, client_secret, redirect_uri, code, access_token);
 }
 
-const uint_fast16_t API::register_app2(const string &client_id,
-                                       const string &client_secret,
-                                       const string &redirect_uri,
-                                       const string &code,
-                                       string &access_token)
+uint_fast16_t API::register_app2(const string &client_id,
+                                 const string &client_secret,
+                                 const string &redirect_uri,
+                                 const string &code,
+                                 string &access_token)
 {
     API::parametermap parameters =
     {
@@ -280,7 +280,7 @@ bool API::exceptions(const bool &value)
     return _exceptions;
 }
 
-const bool API::exceptions() const
+bool API::exceptions() const
 {
     return _exceptions;
 }
@@ -586,13 +586,13 @@ const string API::unescape_html(const string &html)
     return output;
 }
 
-const void API::set_proxy(const string &proxy, const string &userpw)
+void API::set_proxy(const string &proxy, const string &userpw)
 {
     _proxy = proxy;
     _proxy_userpw = userpw;
 }
 
-const void API::get_proxy(string &proxy, string &userpw) const
+void API::get_proxy(string &proxy, string &userpw) const
 {
     if (!_proxy.empty())
     {

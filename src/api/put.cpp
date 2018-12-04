@@ -20,8 +20,8 @@
 
 using namespace Mastodon;
 
-const uint_fast16_t API::put(const Mastodon::API::v1 &call,
-                             const parametermap &parameters, string &answer)
+uint_fast16_t API::put(const Mastodon::API::v1 &call,
+                       const parametermap &parameters, string &answer)
 {
     string strcall = "";
     string strid = "";
@@ -53,8 +53,8 @@ const uint_fast16_t API::put(const Mastodon::API::v1 &call,
     return put(strcall, parameters, answer);
 }
 
-const uint_fast16_t API::put(const string &call,
-                             const parametermap &parameters, string &answer)
+uint_fast16_t API::put(const string &call,
+                       const parametermap &parameters, string &answer)
 {
 
     return _http.request(http::method::PUT, call,
@@ -63,9 +63,9 @@ const uint_fast16_t API::put(const string &call,
 
 
 // ↓↓ DEPRECATED ↓↓
-const uint_fast16_t API::put(const Mastodon::API::v1 &call,
-                             const string &argument,
-                             const parametermap &parameters, string &answer)
+uint_fast16_t API::put(const Mastodon::API::v1 &call,
+                       const string &argument,
+                       const parametermap &parameters, string &answer)
 {
     parametermap newparameters = parameters;
 

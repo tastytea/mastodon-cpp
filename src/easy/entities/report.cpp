@@ -27,7 +27,7 @@ Report::Report()
 : Entity()
 {}
 
-const bool Report::valid() const
+bool Report::valid() const
 {
     const std::vector<string> attributes =
     {{
@@ -38,12 +38,12 @@ const bool Report::valid() const
     return Entity::check_valid(attributes);
 }
 
-const bool Report::action_taken() const
+bool Report::action_taken() const
 {
     return get_bool("action_taken");
 }
 
-const uint_fast64_t Report::id() const
+uint_fast64_t Report::id() const
 {
     return stouint64(get_string("id"));
 }

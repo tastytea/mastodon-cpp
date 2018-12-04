@@ -28,7 +28,7 @@ Results::Results()
 : Entity()
 {}
 
-const bool Results::valid() const
+bool Results::valid() const
 {
     const std::vector<string> attributes =
     {{

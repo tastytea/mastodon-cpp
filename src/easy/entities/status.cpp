@@ -29,7 +29,7 @@ Status::Status()
 : Entity()
 {}
 
-const bool Status::valid() const
+bool Status::valid() const
 {
     const std::vector<string> attributes =
     {{
@@ -117,22 +117,22 @@ const std::vector<Easy::Emoji> Status::emojis() const
     return {};
 }
 
-const bool Status::favourited() const
+bool Status::favourited() const
 {
     return get_bool("favourited");
 }
 
-const uint_fast64_t Status::favourites_count() const
+uint_fast64_t Status::favourites_count() const
 {
     return get_uint64("favourites_count");
 }
 
-const uint_fast64_t Status::id() const
+uint_fast64_t Status::id() const
 {
     return stouint64(get_string("id"));
 }
 
-const uint_fast64_t Status::in_reply_to_id() const
+uint_fast64_t Status::in_reply_to_id() const
 {
     return stouint64(get_string("in_reply_to_id"));
 }
@@ -143,7 +143,7 @@ Status Status::in_reply_to_id(const uint_fast64_t &in_reply_to_id)
     return *this;
 }
 
-const uint_fast64_t Status::in_reply_to_account_id() const
+uint_fast64_t Status::in_reply_to_account_id() const
 {
     return stouint64(get_string("in_reply_to_account_id"));
 }
@@ -205,12 +205,12 @@ const std::vector<Easy::Mention> Status::mentions() const
     return {};
 }
 
-const bool Status::muted() const
+bool Status::muted() const
 {
     return get_bool("muted");
 }
 
-const bool Status::pinned() const
+bool Status::pinned() const
 {
     return get_bool("pinned");
 }
@@ -226,22 +226,22 @@ const Status Status::reblog() const
     return Easy::Status();
 }
 
-const bool Status::reblogged() const
+bool Status::reblogged() const
 {
     return get_bool("reblogged");
 }
 
-const uint_fast64_t Status::reblogs_count() const
+uint_fast64_t Status::reblogs_count() const
 {
     return get_uint64("reblogs_count");
 }
 
-const uint_fast64_t Status::replies_count() const
+uint_fast64_t Status::replies_count() const
 {
     return get_uint64("replies_count");
 }
 
-const bool Status::sensitive() const
+bool Status::sensitive() const
 {
     return get_bool("sensitive");
 }
@@ -289,7 +289,7 @@ const string Status::url() const
     return get_string("url");
 }
 
-const Easy::visibility_type Status::visibility() const
+Easy::visibility_type Status::visibility() const
 {
     const string strvisibility = get_string("visibility");
     if (strvisibility.compare("public") == 0)

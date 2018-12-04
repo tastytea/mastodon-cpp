@@ -58,7 +58,7 @@ namespace Mastodon
          */
         Card();
 
-        virtual const bool valid() const;
+        virtual bool valid() const;
 
         /*!
          *  @brief  Returns the name of the author
@@ -86,7 +86,7 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        const uint_fast64_t height() const;
+        uint_fast64_t height() const;
 
         /*!
          *  @brief  Returns the HTML
@@ -128,7 +128,7 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        const Easy::card_type type() const;
+        Easy::card_type type() const;
 
         /*!
          *  @brief  Returns the URL associated with the card
@@ -142,7 +142,7 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        const uint_fast64_t width() const;
+        uint_fast64_t width() const;
     };
 }
 

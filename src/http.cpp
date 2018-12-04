@@ -44,17 +44,17 @@ API::http::~http()
     curlpp::terminate();
 }
 
-const uint_fast16_t API::http::request(const method &meth,
-                                       const string &path,
-                                       string &answer)
+uint_fast16_t API::http::request(const method &meth,
+                                 const string &path,
+                                 string &answer)
 {
     return request(meth, path, curlpp::Forms(), answer);
 }
 
-const uint_fast16_t API::http::request(const method &meth,
-                                       const string &path,
-                                       const curlpp::Forms &formdata,
-                                       string &answer)
+uint_fast16_t API::http::request(const method &meth,
+                                 const string &path,
+                                 const curlpp::Forms &formdata,
+                                 string &answer)
 {
     using namespace std::placeholders;  // _1, _2, _3
 
@@ -119,8 +119,10 @@ const uint_fast16_t API::http::request(const method &meth,
                 break;
             case http::method::PUT:
                 request.setOpt<curlopts::CustomRequest>("PUT");
+                break;
             case http::method::DELETE:
                 request.setOpt<curlopts::CustomRequest>("DELETE");
+                break;
             default:
                 break;
         }
@@ -194,25 +196,25 @@ const uint_fast16_t API::http::request(const method &meth,
     }
 }
 
-const void API::http::get_headers(string &headers) const
+void API::http::get_headers(string &headers) const
 {
     headers = _headers;
 }
 
-const size_t API::http::callback_write(char* data, size_t size, size_t nmemb,
-                                       string *str)
+size_t API::http::callback_write(char* data, size_t size, size_t nmemb,
+                                 string *str)
 {
     std::lock_guard<std::mutex> lock(_mutex);
     str->append(data, size * nmemb);
     // ttdebug << "Received " << size * nmemb << " Bytes\n";
     return size * nmemb;
-};
+}
 
-const size_t API::http::callback(char* data, size_t size, size_t nmemb,
-                                 string *str)
+size_t API::http::callback(char* data, size_t size, size_t nmemb,
+                           string *str)
 {
     return callback_write(data, size, nmemb, str);
-};
+}
 
 double API::http::callback_progress(double /* dltotal */, double /* dlnow */,
                                     double /* ultotal */, double /* ulnow */)
@@ -223,14 +225,14 @@ double API::http::callback_progress(double /* dltotal */, double /* dlnow */,
         return 1;
     }
     return 0;
-};
+}
 
-const void API::http::cancel_stream()
+void API::http::cancel_stream()
 {
     _cancel_stream = true;
 }
 
-const void API::http::abort_stream()
+void API::http::abort_stream()
 {
     cancel_stream();
 }

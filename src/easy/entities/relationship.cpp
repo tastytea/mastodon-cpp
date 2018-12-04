@@ -27,7 +27,7 @@ Relationship::Relationship()
 : Entity()
 {}
 
-const bool Relationship::valid() const
+bool Relationship::valid() const
 {
     const std::vector<string> attributes =
     {{
@@ -44,52 +44,52 @@ const bool Relationship::valid() const
     return Entity::check_valid(attributes);
 }
 
-const bool Relationship::blocking() const
+bool Relationship::blocking() const
 {
     return get_bool("blocking");
 }
 
-const bool Relationship::domain_blocking() const
+bool Relationship::domain_blocking() const
 {
     return get_bool("domain_blocking");
 }
 
-const bool Relationship::endorsed() const
+bool Relationship::endorsed() const
 {
     return get_bool("endorsed");
 }
 
-const bool Relationship::followed_by() const
+bool Relationship::followed_by() const
 {
     return get_bool("followed_by");
 }
 
-const bool Relationship::following() const
+bool Relationship::following() const
 {
     return get_bool("following");
 }
 
-const uint_fast64_t Relationship::id() const
+uint_fast64_t Relationship::id() const
 {
     return stouint64(get_string("id"));
 }
 
-const bool Relationship::muting() const
+bool Relationship::muting() const
 {
     return get_bool("muting");
 }
 
-const bool Relationship::muting_notifications() const
+bool Relationship::muting_notifications() const
 {
     return get_bool("muting_notifications");
 }
 
-const bool Relationship::requested() const
+bool Relationship::requested() const
 {
     return get_bool("requested");
 }
 
-const bool Relationship::showing_notifications() const
+bool Relationship::showing_notifications() const
 {
     return get_bool("showing_notifications");
 }

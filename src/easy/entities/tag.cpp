@@ -30,7 +30,7 @@ Tag::Tag()
 : Entity()
 {}
 
-const bool Tag::valid() const
+bool Tag::valid() const
 {
     const std::vector<string> attributes =
     {{
@@ -77,7 +77,7 @@ Tag::History::History()
 : Entity()
 {}
 
-const bool Tag::History::valid() const
+bool Tag::History::valid() const
 {
     const std::vector<string> attributes =
     {{
@@ -89,7 +89,7 @@ const bool Tag::History::valid() const
     return Entity::check_valid(attributes);
 }
 
-const uint_fast64_t Tag::History::accounts()
+uint_fast64_t Tag::History::accounts()
 {
     return stouint64(get_string("accounts"));
 }
@@ -108,7 +108,7 @@ const system_clock::time_point Tag::History::day()
     return system_clock::time_point();
 }
 
-const uint_fast64_t Tag::History::uses()
+uint_fast64_t Tag::History::uses()
 {
     return stouint64(get_string("uses"));
 }

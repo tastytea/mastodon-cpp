@@ -68,14 +68,14 @@ namespace Mastodon
              */
             History();
 
-            virtual const bool valid() const;
+            virtual bool valid() const;
 
             /*!
              *  @brief  Returns the number of accounts using that hashtag.
              *  
              *  @since  0.16.0
              */
-            const uint_fast64_t accounts();
+            uint_fast64_t accounts();
 
             /*!
              *  @brief  Returns the day.
@@ -89,7 +89,7 @@ namespace Mastodon
              *  
              *  @since  0.16.0
              */
-            const uint_fast64_t uses();
+            uint_fast64_t uses();
         };
 
         /*!
@@ -108,7 +108,7 @@ namespace Mastodon
          */
         Tag();
 
-        virtual const bool valid() const;
+        virtual bool valid() const;
 
         /*!
          *  @brief  Returns the name of the tag

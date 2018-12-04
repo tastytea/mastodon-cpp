@@ -29,7 +29,7 @@ Attachment::Attachment()
 : Entity()
 {}
 
-const bool Attachment::valid() const
+bool Attachment::valid() const
 {
     const std::vector<string> attributes =
     {{
@@ -42,17 +42,17 @@ const bool Attachment::valid() const
     return Entity::check_valid(attributes);
 }
 
-const double Attachment::aspect() const
+double Attachment::aspect() const
 {
     return get_double("meta.original.aspect");
 }
 
-const double Attachment::aspect_small() const
+double Attachment::aspect_small() const
 {
     return get_double("meta.small.aspect");
 }
 
-const uint_fast64_t Attachment::bitrate() const
+uint_fast64_t Attachment::bitrate() const
 {
     return get_uint64("meta.original.bitrate");
 }
@@ -110,7 +110,7 @@ Attachment Attachment::focus(const std::array<double, 2> &focus)
     return *this;
 }
 
-const double Attachment::framerate() const
+double Attachment::framerate() const
 {
     string strframes = get_string("meta.original.frame_rate");
 
@@ -129,17 +129,17 @@ const double Attachment::framerate() const
     return 0.0;
 }
 
-const uint_fast64_t Attachment::height() const
+uint_fast64_t Attachment::height() const
 {
     return get_uint64("meta.original.height");
 }
 
-const uint_fast64_t Attachment::height_small() const
+uint_fast64_t Attachment::height_small() const
 {
     return get_uint64("meta.small.height");
 }
 
-const std::uint_fast64_t Attachment::id() const
+std::uint_fast64_t Attachment::id() const
 {
     return stouint64(get_string("id"));
 }
@@ -169,7 +169,7 @@ const string Attachment::text_url() const
     return get_string("text_url");
 }
 
-const Easy::attachment_type Attachment::type() const
+Easy::attachment_type Attachment::type() const
 {
     const string strtype = get_string("type");
     if (strtype.compare("image") == 0)
@@ -190,12 +190,12 @@ const string Attachment::url() const
     return get_string("url");
 }
 
-const uint_fast64_t Attachment::width() const
+uint_fast64_t Attachment::width() const
 {
     return get_uint64("meta.original.width");
 }
 
-const uint_fast64_t Attachment::width_small() const
+uint_fast64_t Attachment::width_small() const
 {
     return get_uint64("meta.small.width");
 }

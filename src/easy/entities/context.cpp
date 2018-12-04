@@ -28,7 +28,7 @@ Context::Context()
 : Entity()
 {}
 
-const bool Context::valid() const
+bool Context::valid() const
 {
     const std::vector<string> attributes =
     {{

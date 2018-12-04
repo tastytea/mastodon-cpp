@@ -20,8 +20,8 @@
 
 using namespace Mastodon;
 
-const uint_fast16_t API::del(const Mastodon::API::v1 &call,
-                              const parametermap &parameters)
+uint_fast16_t API::del(const Mastodon::API::v1 &call,
+                       const parametermap &parameters)
 {
     string strcall = "";
     string strid = "";
@@ -60,8 +60,8 @@ const uint_fast16_t API::del(const Mastodon::API::v1 &call,
     return del(strcall, parameters, answer);
 }
 
-const uint_fast16_t API::del(const std::string &call,
-                              const parametermap &parameters, string &answer)
+uint_fast16_t API::del(const std::string &call,
+                       const parametermap &parameters, string &answer)
 {
 
     return _http.request(http::method::DELETE, call,
@@ -71,16 +71,16 @@ const uint_fast16_t API::del(const std::string &call,
 
 // ↓↓ DEPRECATED ↓↓
 
-const uint_fast16_t API::del(const Mastodon::API::v1 &call,
-                             const string &argument)
+uint_fast16_t API::del(const Mastodon::API::v1 &call,
+                       const string &argument)
 {
     const parametermap p = {};
     return del(call, argument, p);
 }
 
-const uint_fast16_t API::del(const Mastodon::API::v1 &call,
-                             const string &argument,
-                             const parametermap &parameters)
+uint_fast16_t API::del(const Mastodon::API::v1 &call,
+                       const string &argument,
+                       const parametermap &parameters)
 {
     parametermap newparameters = parameters;
 

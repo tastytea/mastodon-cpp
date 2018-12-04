@@ -27,7 +27,7 @@ Application::Application()
 : Entity()
 {}
 
-const bool Application::valid() const
+bool Application::valid() const
 {
     return Entity::check_valid({"name"});
 }

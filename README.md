@@ -84,8 +84,7 @@ If you use a debug build, you get more verbose error messages.
 
 ## Useful links
 
-* [Mastodon API reference](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md)
-* [Mastodon streaming API reference](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
+* [Mastodon documentation](https://docs.joinmastodon.org/)
 
 # Install
 
@@ -261,7 +260,6 @@ Feature complete as of Mastodon 2.6.1
 ## Glitch-Soc support
 
 * [x] max_toot_chars in /api/v1/instance
-
 * [x] GET /api/v1/bookmarks
 * [x] POST /api/v1/statuses/:id/bookmark
 * [x] POST /api/v1/statuses/:id/unbookmark

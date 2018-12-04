@@ -258,6 +258,14 @@ Feature complete as of Mastodon 2.6.1
  * [x] DELETE /api/v1/push/subscription
  * [x] GET /api/v2/search
 
+## Glitch-Soc support
+
+* [x] max_toot_chars in /api/v1/instance
+
+* [ ] GET /api/v1/bookmarks
+* [ ] POST /api/v1/statuses/:id/bookmark
+* [ ] POST /api/v1/statuses/:id/underbookmark
+
 # Copyright
 
 ```PLAIN

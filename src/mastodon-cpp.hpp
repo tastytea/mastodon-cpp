@@ -265,7 +265,11 @@ public:
         streaming_hashtag,
         streaming_list,
         // Push
-        push_subscription
+        push_subscription,
+        // Glitch-Soc
+        bookmarks,
+        statuses_id_bookmark,
+        statuses_id_unbookmark
     };
 
     /*!

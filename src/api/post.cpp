@@ -122,6 +122,12 @@ const uint_fast16_t API::post(const Mastodon::API::v1 &call,
         case v1::accounts_id_unpin:
             strcall = "/api/v1/accounts/" + strid + "/unpin";
             break;
+        case v1::statuses_id_bookmark:
+            strcall = "/api/v1/statuses/" + strid + "/bookmark";
+            break;
+        case v1::statuses_id_unbookmark:
+            strcall = "/api/v1/statuses/" + strid + "/unbookmark";
+            break;
         default:
             ttdebug << "ERROR: Invalid call.\n";
             return 11;

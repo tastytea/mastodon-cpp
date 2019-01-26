@@ -33,6 +33,7 @@
 #endif
 
 using std::string;
+using std::vector;
 using std::uint_fast64_t;
 using std::uint_fast16_t;
 using std::chrono::system_clock;
@@ -295,6 +296,20 @@ public:
      *  @since  0.17.0
      */
     const Status send_toot(const Status &status, uint_fast16_t &error);
+
+    /*!
+     *  @brief  Gets notifications.
+     *
+     *  @param  since_id  
+     *  @param  max_id    
+     *
+     *  @return vector of Easy::Notification.
+     *  
+     *  @since  0.21.0
+     */
+    const vector<Notification> get_notifications(
+        uint_fast16_t &error, const uint_fast16_t limit = 20,
+        const uint_fast64_t since_id = 0, const uint_fast64_t max_id = 0);
 
     /*!
      *  @brief  Base class for all entities.

@@ -14,10 +14,12 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <algorithm>
 #include "easy.hpp"
 #include "macros.hpp"
 #include "easy/entities/status.hpp"
 #include "easy/entities/attachment.hpp"
+#include "easy/entities/notification.hpp"
 
 using namespace Mastodon;
 
@@ -133,5 +135,45 @@ const Easy::Status Easy::send_post(const Status &status, uint_fast16_t &error)
     else
     {
         return Status();
+    }
+}
+
+const vector<Easy::Notification> Easy::get_notifications(
+    uint_fast16_t &error, const uint_fast16_t limit,
+    const uint_fast64_t since_id, const uint_fast64_t max_id)
+{
+    API::parametermap parameters;
+    string answer;
+    error = 0;
+
+    parameters.insert({ "limit", { std::to_string(limit) } });
+    if (since_id != 0)
+    {
+        parameters.insert({ "since_id", { std::to_string(since_id) } });
+    }
+    if (max_id != 0)
+    {
+        parameters.insert({ "max_id", { std::to_string(max_id) } });
+    }
+
+    error = API::get(Mastodon::API::v1::notifications, parameters, answer);
+
+    if (error == 0)
+    {
+        const vector<string> &answer_v = json_array_to_vector(answer);
+        vector<Notification> notifications;
+        notifications.resize(answer_v.size());
+
+        // Transform vector of strings to vector of Notification.
+        std::transform(answer_v.begin(), answer_v.end(), notifications.begin(),
+                       [](const string s)
+                       { return Notification(s); });
+
+        return notifications;
+    }
+    else
+    {
+        ttdebug << "ERROR: Could not get notifications.\n";
+        return { Notification() };
     }
 }

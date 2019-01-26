@@ -280,9 +280,7 @@ public:
      *  @brief  Sends a toot.
      *
      *  @param  status  The status to send
-     *  @param  error   @ref error "Error code". If the URL has permanently
-     *                  changed, 13 is returned and answer is set to the new
-     *                  URL.
+     *  @param  error   @ref error "Error code"
      *
      *  @return The new Easy::Status
      *  
@@ -300,11 +298,13 @@ public:
     /*!
      *  @brief  Gets notifications.
      *
-     *  @param  since_id  
-     *  @param  max_id    
+     *  @param  error     @ref error "Error code"
+     *  @param  limit     Maximum number of notifications
+     *  @param  since_id  Return notifications newer than or equal to ID
+     *  @param  max_id    Return notifications older than or equal to ID
      *
      *  @return vector of Easy::Notification.
-     *  
+     *
      *  @since  0.21.0
      */
     const vector<Notification> get_notifications(

@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">mastodon-cpp
-   &#160;<span id="projectnumber">0.21.0</span>
+   &#160;<span id="projectnumber">0.30.0</span>
    </div>
   </td>
  </tr>
@@ -135,9 +135,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a091209c1fa9e3669e0ae4b45a3d6cf22"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Account.html#a091209c1fa9e3669e0ae4b45a3d6cf22">header_static</a> () const</td></tr>
 <tr class="memdesc:a091209c1fa9e3669e0ae4b45a3d6cf22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns URL of static header image.  <a href="#a091209c1fa9e3669e0ae4b45a3d6cf22">More...</a><br /></td></tr>
 <tr class="separator:a091209c1fa9e3669e0ae4b45a3d6cf22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a935eb84d05b8241fc5252713c0990d58"><td class="memItemLeft" align="right" valign="top">uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Account.html#a935eb84d05b8241fc5252713c0990d58">id</a> () const</td></tr>
-<tr class="memdesc:a935eb84d05b8241fc5252713c0990d58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns account-ID.  <a href="#a935eb84d05b8241fc5252713c0990d58">More...</a><br /></td></tr>
-<tr class="separator:a935eb84d05b8241fc5252713c0990d58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a768f17092ab5613e05c2906225ace2f8"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Account.html#a768f17092ab5613e05c2906225ace2f8">id</a> () const</td></tr>
+<tr class="memdesc:a768f17092ab5613e05c2906225ace2f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns account-ID.  <a href="#a768f17092ab5613e05c2906225ace2f8">More...</a><br /></td></tr>
+<tr class="separator:a768f17092ab5613e05c2906225ace2f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8edbddc38b31ca7fe686a1969331290"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Account.html#af8edbddc38b31ca7fe686a1969331290">locked</a> () const</td></tr>
 <tr class="memdesc:af8edbddc38b31ca7fe686a1969331290"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the account is locked.  <a href="#af8edbddc38b31ca7fe686a1969331290">More...</a><br /></td></tr>
 <tr class="separator:af8edbddc38b31ca7fe686a1969331290"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -655,14 +655,14 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a935eb84d05b8241fc5252713c0990d58"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a935eb84d05b8241fc5252713c0990d58">&#9670;&nbsp;</a></span>id()</h2>
+<a id="a768f17092ab5613e05c2906225ace2f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a768f17092ab5613e05c2906225ace2f8">&#9670;&nbsp;</a></span>id()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::uint_fast64_t Account::id </td>
+          <td class="memname">const string Account::id </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -672,7 +672,7 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 
 <p>Returns account-ID. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;{</div><div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keywordflow">return</span> stouint64(<a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;id&quot;</span>));</div><div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:134</div></div>
+<div class="fragment"><div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;{</div><div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;id&quot;</span>);</div><div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:134</div></div>
 </div><!-- fragment -->
 </div>
 </div>

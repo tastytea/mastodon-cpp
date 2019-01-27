@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">mastodon-cpp
-   &#160;<span id="projectnumber">0.21.0</span>
+   &#160;<span id="projectnumber">0.30.0</span>
    </div>
   </td>
  </tr>
@@ -91,9 +91,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a269736364ed42e3424204b31b9cd5ba2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Relationship.html#a269736364ed42e3424204b31b9cd5ba2">following</a> () const</td></tr>
 <tr class="memdesc:a269736364ed42e3424204b31b9cd5ba2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the user is being following the account.  <a href="#a269736364ed42e3424204b31b9cd5ba2">More...</a><br /></td></tr>
 <tr class="separator:a269736364ed42e3424204b31b9cd5ba2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1e574c97ef2893f638db36046d96118"><td class="memItemLeft" align="right" valign="top">uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Relationship.html#ad1e574c97ef2893f638db36046d96118">id</a> () const</td></tr>
-<tr class="memdesc:ad1e574c97ef2893f638db36046d96118"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the target account ID.  <a href="#ad1e574c97ef2893f638db36046d96118">More...</a><br /></td></tr>
-<tr class="separator:ad1e574c97ef2893f638db36046d96118"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc6987f74ebfd1c51a7a18a431713fd1"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Relationship.html#afc6987f74ebfd1c51a7a18a431713fd1">id</a> () const</td></tr>
+<tr class="memdesc:afc6987f74ebfd1c51a7a18a431713fd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the target account ID.  <a href="#afc6987f74ebfd1c51a7a18a431713fd1">More...</a><br /></td></tr>
+<tr class="separator:afc6987f74ebfd1c51a7a18a431713fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a683ecc9770ec59b063df4a1a02352b94"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Relationship.html#a683ecc9770ec59b063df4a1a02352b94">muting</a> () const</td></tr>
 <tr class="memdesc:a683ecc9770ec59b063df4a1a02352b94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the user is muting the account.  <a href="#a683ecc9770ec59b063df4a1a02352b94">More...</a><br /></td></tr>
 <tr class="separator:a683ecc9770ec59b063df4a1a02352b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -327,14 +327,14 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 </div><!-- fragment -->
 </div>
 </div>
-<a id="ad1e574c97ef2893f638db36046d96118"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad1e574c97ef2893f638db36046d96118">&#9670;&nbsp;</a></span>id()</h2>
+<a id="afc6987f74ebfd1c51a7a18a431713fd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc6987f74ebfd1c51a7a18a431713fd1">&#9670;&nbsp;</a></span>id()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint_fast64_t Relationship::id </td>
+          <td class="memname">const string Relationship::id </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -344,7 +344,7 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 
 <p>Returns the target account ID. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">return</span> stouint64(<a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;id&quot;</span>));</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:134</div></div>
+<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;id&quot;</span>);</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:134</div></div>
 </div><!-- fragment -->
 </div>
 </div>

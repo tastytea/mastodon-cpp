@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">mastodon-cpp
-   &#160;<span id="projectnumber">0.21.0</span>
+   &#160;<span id="projectnumber">0.30.0</span>
    </div>
   </td>
  </tr>
@@ -115,9 +115,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac1e87db7de1a7c7ab78287ffd10221b0"><td class="memItemLeft" align="right" valign="top">uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Attachment.html#ac1e87db7de1a7c7ab78287ffd10221b0">height_small</a> () const</td></tr>
 <tr class="memdesc:ac1e87db7de1a7c7ab78287ffd10221b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the height of the preview image.  <a href="#ac1e87db7de1a7c7ab78287ffd10221b0">More...</a><br /></td></tr>
 <tr class="separator:ac1e87db7de1a7c7ab78287ffd10221b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad45eea24ef31a726ea2d21d729b046ea"><td class="memItemLeft" align="right" valign="top">uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Attachment.html#ad45eea24ef31a726ea2d21d729b046ea">id</a> () const</td></tr>
-<tr class="memdesc:ad45eea24ef31a726ea2d21d729b046ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the ID of the attachment.  <a href="#ad45eea24ef31a726ea2d21d729b046ea">More...</a><br /></td></tr>
-<tr class="separator:ad45eea24ef31a726ea2d21d729b046ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a018bc1c07090b935cfa1187513878756"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Attachment.html#a018bc1c07090b935cfa1187513878756">id</a> () const</td></tr>
+<tr class="memdesc:a018bc1c07090b935cfa1187513878756"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the ID of the attachment.  <a href="#a018bc1c07090b935cfa1187513878756">More...</a><br /></td></tr>
+<tr class="separator:a018bc1c07090b935cfa1187513878756"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a717733a977a324b985b6bc1e1e94604b"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Attachment.html#a717733a977a324b985b6bc1e1e94604b">preview_url</a> () const</td></tr>
 <tr class="memdesc:a717733a977a324b985b6bc1e1e94604b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the URL of the preview image.  <a href="#a717733a977a324b985b6bc1e1e94604b">More...</a><br /></td></tr>
 <tr class="separator:a717733a977a324b985b6bc1e1e94604b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -544,14 +544,14 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 </div><!-- fragment -->
 </div>
 </div>
-<a id="ad45eea24ef31a726ea2d21d729b046ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad45eea24ef31a726ea2d21d729b046ea">&#9670;&nbsp;</a></span>id()</h2>
+<a id="a018bc1c07090b935cfa1187513878756"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a018bc1c07090b935cfa1187513878756">&#9670;&nbsp;</a></span>id()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::uint_fast64_t Attachment::id </td>
+          <td class="memname">const string Attachment::id </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -561,7 +561,7 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 
 <p>Returns the ID of the attachment. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;{</div><div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordflow">return</span> stouint64(<a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;id&quot;</span>));</div><div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:134</div></div>
+<div class="fragment"><div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;{</div><div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;id&quot;</span>);</div><div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:134</div></div>
 </div><!-- fragment -->
 </div>
 </div>

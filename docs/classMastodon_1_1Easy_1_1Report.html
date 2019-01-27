@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">mastodon-cpp
-   &#160;<span id="projectnumber">0.21.0</span>
+   &#160;<span id="projectnumber">0.30.0</span>
    </div>
   </td>
  </tr>
@@ -79,9 +79,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac2c2e18f665624c75cb855f02e4acaec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Report.html#ac2c2e18f665624c75cb855f02e4acaec">action_taken</a> () const</td></tr>
 <tr class="memdesc:ac2c2e18f665624c75cb855f02e4acaec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if an action was taken in response to the report.  <a href="#ac2c2e18f665624c75cb855f02e4acaec">More...</a><br /></td></tr>
 <tr class="separator:ac2c2e18f665624c75cb855f02e4acaec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a994ca1ee570662cfe00cb0c28c9b3669"><td class="memItemLeft" align="right" valign="top">uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Report.html#a994ca1ee570662cfe00cb0c28c9b3669">id</a> () const</td></tr>
-<tr class="memdesc:a994ca1ee570662cfe00cb0c28c9b3669"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the ID of the report.  <a href="#a994ca1ee570662cfe00cb0c28c9b3669">More...</a><br /></td></tr>
-<tr class="separator:a994ca1ee570662cfe00cb0c28c9b3669"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98d1849e8821e68e3dce12b5fa94c69c"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Report.html#a98d1849e8821e68e3dce12b5fa94c69c">id</a> () const</td></tr>
+<tr class="memdesc:a98d1849e8821e68e3dce12b5fa94c69c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the ID of the report.  <a href="#a98d1849e8821e68e3dce12b5fa94c69c">More...</a><br /></td></tr>
+<tr class="separator:a98d1849e8821e68e3dce12b5fa94c69c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classMastodon_1_1Easy_1_1Entity"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMastodon_1_1Easy_1_1Entity')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMastodon_1_1Easy_1_1Entity.html">Mastodon::Easy::Entity</a></td></tr>
 <tr class="memitem:a753b382e29be6cb7b16772d4c609cedc inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#a753b382e29be6cb7b16772d4c609cedc">Entity</a> (const string &amp;json)</td></tr>
 <tr class="memdesc:a753b382e29be6cb7b16772d4c609cedc inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Entity</a> object from a JSON string.  <a href="classMastodon_1_1Easy_1_1Entity.html#a753b382e29be6cb7b16772d4c609cedc">More...</a><br /></td></tr>
@@ -219,14 +219,14 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a994ca1ee570662cfe00cb0c28c9b3669"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a994ca1ee570662cfe00cb0c28c9b3669">&#9670;&nbsp;</a></span>id()</h2>
+<a id="a98d1849e8821e68e3dce12b5fa94c69c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98d1849e8821e68e3dce12b5fa94c69c">&#9670;&nbsp;</a></span>id()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint_fast64_t Report::id </td>
+          <td class="memname">const string Report::id </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -236,7 +236,7 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 
 <p>Returns the ID of the report. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">return</span> stouint64(<a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;id&quot;</span>));</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:134</div></div>
+<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;id&quot;</span>);</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:134</div></div>
 </div><!-- fragment -->
 </div>
 </div>

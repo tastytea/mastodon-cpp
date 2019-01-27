@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">mastodon-cpp
-   &#160;<span id="projectnumber">0.21.0</span>
+   &#160;<span id="projectnumber">0.30.0</span>
    </div>
   </td>
  </tr>
@@ -77,9 +77,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a915670a74b4a5982d6583eece0ecde0c"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1PushSubscription.html#a915670a74b4a5982d6583eece0ecde0c">valid</a> () const</td></tr>
 <tr class="memdesc:a915670a74b4a5982d6583eece0ecde0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the <a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Entity</a> holds valid data.  <a href="#a915670a74b4a5982d6583eece0ecde0c">More...</a><br /></td></tr>
 <tr class="separator:a915670a74b4a5982d6583eece0ecde0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a316a713b28168f2f88025ae46d95ca28"><td class="memItemLeft" align="right" valign="top">uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1PushSubscription.html#a316a713b28168f2f88025ae46d95ca28">id</a> () const</td></tr>
-<tr class="memdesc:a316a713b28168f2f88025ae46d95ca28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns push subscription ID.  <a href="#a316a713b28168f2f88025ae46d95ca28">More...</a><br /></td></tr>
-<tr class="separator:a316a713b28168f2f88025ae46d95ca28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3aaf7fc0fc9715b6f6954eeaa523836f"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1PushSubscription.html#a3aaf7fc0fc9715b6f6954eeaa523836f">id</a> () const</td></tr>
+<tr class="memdesc:a3aaf7fc0fc9715b6f6954eeaa523836f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns push subscription ID.  <a href="#a3aaf7fc0fc9715b6f6954eeaa523836f">More...</a><br /></td></tr>
+<tr class="separator:a3aaf7fc0fc9715b6f6954eeaa523836f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac99a87bcc2a21f8c54d3153785459ea6"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1PushSubscription.html#ac99a87bcc2a21f8c54d3153785459ea6">endpoint</a> () const</td></tr>
 <tr class="memdesc:ac99a87bcc2a21f8c54d3153785459ea6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the endpoint URL.  <a href="#ac99a87bcc2a21f8c54d3153785459ea6">More...</a><br /></td></tr>
 <tr class="separator:ac99a87bcc2a21f8c54d3153785459ea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -253,14 +253,14 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a316a713b28168f2f88025ae46d95ca28"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a316a713b28168f2f88025ae46d95ca28">&#9670;&nbsp;</a></span>id()</h2>
+<a id="a3aaf7fc0fc9715b6f6954eeaa523836f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3aaf7fc0fc9715b6f6954eeaa523836f">&#9670;&nbsp;</a></span>id()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint_fast64_t PushSubscription::id </td>
+          <td class="memname">const string PushSubscription::id </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -270,7 +270,7 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 
 <p>Returns push subscription ID. </p>
 <dl class="section since"><dt>Since</dt><dd>0.14.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">return</span> stouint64(<a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;id&quot;</span>));</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:134</div></div>
+<div class="fragment"><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;id&quot;</span>);</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:134</div></div>
 </div><!-- fragment -->
 </div>
 </div>

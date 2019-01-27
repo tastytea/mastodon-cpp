@@ -172,32 +172,32 @@ public:
          *  
          *  @since  before 0.11.0
          */
-        uint_fast64_t next() const;
+        const string next() const;
 
         /*!
          *  @brief  Returns max_id
          *  
          *  @since  before 0.11.0
          */
-        uint_fast64_t max_id() const;
+        const string max_id() const;
 
         /*!
          *  @brief  Returns since_id
          *  
          *  @since  before 0.11.0
          */
-        uint_fast64_t prev() const;
+        const string prev() const;
 
         /*!
          *  @brief  Returns since_id
          *  
          *  @since  before 0.11.0
          */
-        uint_fast64_t since_id() const;
+        const string since_id() const;
 
     private:
-        uint_fast64_t _next;
-        uint_fast64_t _prev;
+        string _next;
+        string _prev;
     };
 
     /*!
@@ -309,7 +309,7 @@ public:
      */
     const vector<Notification> get_notifications(
         uint_fast16_t &error, const uint_fast16_t limit = 20,
-        const uint_fast64_t since_id = 0, const uint_fast64_t max_id = 0);
+        const string since_id = 0, const string max_id = 0);
 
     /*!
      *  @brief  Base class for all entities.

@@ -116,8 +116,8 @@ const string Easy::strtime(const system_clock::time_point &timepoint,
 }
 
 Easy::Link::Link(const string &link_header)
-: _next(0)
-, _prev(0)
+: _next()
+, _prev()
 {
     std::regex renext("max_id=([[:digit:]]*)");
     std::regex reprev("since_id=([[:digit:]]*)");
@@ -125,30 +125,30 @@ Easy::Link::Link(const string &link_header)
 
     if (std::regex_search(link_header, match, renext))
     {
-        _next = std::stoull(match[1].str());
+        _next = match[1].str();
     }
     if (std::regex_search(link_header, match, reprev))
     {
-        _prev = std::stoull(match[1].str());
+        _prev = match[1].str();
     }
 }
 
-uint_fast64_t Easy::Link::next() const
+const string Easy::Link::next() const
 {
     return _next;
 }
 
-uint_fast64_t Easy::Link::max_id() const
+const string Easy::Link::max_id() const
 {
     return _next;
 }
 
-uint_fast64_t Easy::Link::prev() const
+const string Easy::Link::prev() const
 {
     return _prev;
 }
 
-uint_fast64_t Easy::Link::since_id() const
+const string Easy::Link::since_id() const
 {
     return _prev;
 }

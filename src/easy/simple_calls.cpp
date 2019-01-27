@@ -45,10 +45,10 @@ const Easy::Status Easy::send_post(const Status &status, uint_fast16_t &error)
         return Status();
     }
 
-    if (status.in_reply_to_id() != 0)
+    if (!status.in_reply_to_id().empty())
     {
         parameters.insert({ "in_reply_to_id",
-                          { std::to_string(status.in_reply_to_id()) }});
+                          { status.in_reply_to_id() }});
     }
     if (status.sensitive())
     {
@@ -115,7 +115,7 @@ const Easy::Status Easy::send_post(const Status &status, uint_fast16_t &error)
             if (error == 0)
             {
                 Attachment attachment(answer);
-                media_ids.push_back(std::to_string(attachment.id()));
+                media_ids.push_back(attachment.id());
             }
             else
             {
@@ -140,20 +140,20 @@ const Easy::Status Easy::send_post(const Status &status, uint_fast16_t &error)
 
 const vector<Easy::Notification> Easy::get_notifications(
     uint_fast16_t &error, const uint_fast16_t limit,
-    const uint_fast64_t since_id, const uint_fast64_t max_id)
+    const string since_id, const string max_id)
 {
     API::parametermap parameters;
     string answer;
     error = 0;
 
     parameters.insert({ "limit", { std::to_string(limit) } });
-    if (since_id != 0)
+    if (!since_id.empty())
     {
-        parameters.insert({ "since_id", { std::to_string(since_id) } });
+        parameters.insert({ "since_id", { since_id } });
     }
-    if (max_id != 0)
+    if (!max_id.empty())
     {
-        parameters.insert({ "max_id", { std::to_string(max_id) } });
+        parameters.insert({ "max_id", { max_id } });
     }
 
     error = API::get(Mastodon::API::v1::notifications, parameters, answer);

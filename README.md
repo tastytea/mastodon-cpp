@@ -6,6 +6,9 @@ JSON. You can then put that JSON into easy to use classes.
 
 **The ABI will be unstable in versions < 1.0.0**
 
+**Beginning with 0.30.0, all IDs are `const string` instead of
+`uint_fast64_t` as required by the Mastodon API. Sorry for the inconvenience.**
+
 # Usage
 
 The HTML reference can be generated with `build_doc.sh`, if doxygen is installed. It is also available at

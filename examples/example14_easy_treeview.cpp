@@ -86,9 +86,9 @@ std::uint16_t print_status(Easy &masto, const std::string &id,
                 // Only print descendant if it is a direct reply
                 // NOTE: This is a wasteful approach, I use it only in the
                 //       interest of more clarity. Don't do this at home. :-)
-                if (s.in_reply_to_id() == std::stoull(id))
+                if (s.in_reply_to_id() == id)
                 {
-                    print_status(masto, std::to_string(s.id()), level + 4);
+                    print_status(masto, s.id(), level + 4);
                 }
             }
         }

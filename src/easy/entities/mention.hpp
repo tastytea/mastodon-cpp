@@ -73,7 +73,7 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        uint_fast64_t id() const;
+        const string id() const;
 
         /*!
          *  @brief  Returns the URL of user's profile

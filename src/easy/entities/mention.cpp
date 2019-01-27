@@ -45,9 +45,9 @@ const string Mention::acct() const
     return get_string("acct");
 }
 
-uint_fast64_t Mention::id() const
+const string Mention::id() const
 {
-    return stouint64(get_string("id"));
+    return get_string("id");
 }
 
 const string Mention::url() const

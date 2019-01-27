@@ -43,8 +43,8 @@ bool Report::action_taken() const
     return get_bool("action_taken");
 }
 
-uint_fast64_t Report::id() const
+const string Report::id() const
 {
-    return stouint64(get_string("id"));
+    return get_string("id");
 }
 

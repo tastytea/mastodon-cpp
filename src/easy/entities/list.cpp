@@ -40,9 +40,9 @@ bool List::valid() const
     return Entity::check_valid(attributes);
 }
 
-uint_fast64_t List::id() const
+const string List::id() const
 {
-    return stouint64(get_string("id"));
+    return get_string("id");
 }
 
 const string List::title() const

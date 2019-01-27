@@ -30,7 +30,6 @@
 #endif
 
 using std::string;
-using std::uint_fast64_t;
 
 namespace Mastodon
 {
@@ -73,7 +72,7 @@ namespace Mastodon
          *  
          *  @since  before 0.11.0
          */
-        uint_fast64_t id() const;
+        const string id() const;
     };
 }
 

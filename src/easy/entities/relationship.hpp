@@ -100,7 +100,7 @@ namespace Mastodon
          *  
          *  @since  before 0.11.0
          */
-        uint_fast64_t id() const;
+        const string id() const;
 
         /*!
          *  @brief  Returns true if the user is muting the account

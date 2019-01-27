@@ -145,28 +145,28 @@ namespace Mastodon
          *  
          *  @since  before 0.11.0
          */
-        uint_fast64_t id() const;
+        const string id() const;
 
         /*!
          *  @brief  Returns the ID of the status it replies to
          *  
          *  @since  before 0.11.0
          */
-        uint_fast64_t in_reply_to_id() const;
+        const string in_reply_to_id() const;
 
         /*!
          *  @brief  Sets the ID of the status it replies to
          *  
          *  @since  0.17.0
          */
-        Status in_reply_to_id(const uint_fast64_t &in_reply_to_id);
+        Status in_reply_to_id(const string &in_reply_to_id);
 
         /*!
          *  @brief  Returns the ID of the account it replies to
          *  
          *  @since  before 0.11.0
          */
-        uint_fast64_t in_reply_to_account_id() const;
+        const string in_reply_to_account_id() const;
 
         /*!
          *  @brief  Returns the language of the status

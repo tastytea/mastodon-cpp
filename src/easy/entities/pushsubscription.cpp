@@ -23,9 +23,9 @@ PushSubscription::PushSubscription(const string &json)
 : Entity(json)
 {}
 
-uint_fast64_t PushSubscription::id() const
+const string PushSubscription::id() const
 {
-    return stouint64(get_string("id"));
+    return get_string("id");
 }
 
 PushSubscription::PushSubscription()

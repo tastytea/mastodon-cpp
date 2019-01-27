@@ -31,7 +31,6 @@
 #endif
 
 using std::string;
-using std::uint_fast64_t;
 
 namespace Mastodon
 {
@@ -66,7 +65,7 @@ namespace Mastodon
          *  
          *  @since  0.14.0
          */
-        uint_fast64_t id() const;
+        const string id() const;
 
         /*!
          *  @brief  Returns the endpoint URL

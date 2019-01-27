@@ -69,9 +69,9 @@ bool Relationship::following() const
     return get_bool("following");
 }
 
-uint_fast64_t Relationship::id() const
+const string Relationship::id() const
 {
-    return stouint64(get_string("id"));
+    return get_string("id");
 }
 
 bool Relationship::muting() const

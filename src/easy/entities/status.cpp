@@ -127,25 +127,25 @@ uint_fast64_t Status::favourites_count() const
     return get_uint64("favourites_count");
 }
 
-uint_fast64_t Status::id() const
+const string Status::id() const
 {
-    return stouint64(get_string("id"));
+    return get_string("id");
 }
 
-uint_fast64_t Status::in_reply_to_id() const
+const string Status::in_reply_to_id() const
 {
-    return stouint64(get_string("in_reply_to_id"));
+    return get_string("in_reply_to_id");
 }
 
-Status Status::in_reply_to_id(const uint_fast64_t &in_reply_to_id)
+Status Status::in_reply_to_id(const string &in_reply_to_id)
 {
-    set("in_reply_to_id", Json::Value(std::to_string(in_reply_to_id)));
+    set("in_reply_to_id", Json::Value(in_reply_to_id));
     return *this;
 }
 
-uint_fast64_t Status::in_reply_to_account_id() const
+const string Status::in_reply_to_account_id() const
 {
-    return stouint64(get_string("in_reply_to_account_id"));
+    return get_string("in_reply_to_account_id");
 }
 
 const string Status::language() const

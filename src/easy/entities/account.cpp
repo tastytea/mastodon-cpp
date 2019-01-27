@@ -154,9 +154,9 @@ const string Account::header_static() const
     return get_string("header_static");
 }
 
-std::uint_fast64_t Account::id() const
+const string Account::id() const
 {
-    return stouint64(get_string("id"));
+    return get_string("id");
 }
 
 bool Account::locked() const

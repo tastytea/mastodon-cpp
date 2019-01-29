@@ -300,8 +300,8 @@ public:
      *
      *  @param  error     @ref error "Error code"
      *  @param  limit     Maximum number of notifications
-     *  @param  since_id  Return notifications newer than or equal to ID
-     *  @param  max_id    Return notifications older than or equal to ID
+     *  @param  since_id  Return notifications newer than ID
+     *  @param  max_id    Return notifications older than ID
      *
      *  @return vector of Easy::Notification.
      *

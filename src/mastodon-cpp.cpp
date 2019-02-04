@@ -182,8 +182,8 @@ uint_fast16_t API::register_app1(const string &client_name,
     if (ret == 0)
     {
         std::smatch match;
-        std::regex reid("client_id\":\"([0-9a-fA-F]+)\"");
-        std::regex resecret("client_secret\":\"([0-9a-fA-F]+)\"");
+        std::regex reid("client_id\":\"([^\"]+)\"");
+        std::regex resecret("client_secret\":\"([^\"]+)\"");
 
         std::regex_search(answer, match, reid);
         client_id = match[1].str();
@@ -244,7 +244,7 @@ uint_fast16_t API::register_app2(const string &client_id,
     if (ret == 0)
     {
         std::smatch match;
-        std::regex retoken("access_token\":\"([0-9a-fA-F]+)\"");
+        std::regex retoken("access_token\":\"([^\"]+)\"");
 
         std::regex_search(answer, match, retoken);
         access_token = match[1].str();

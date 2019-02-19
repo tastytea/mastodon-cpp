@@ -356,7 +356,7 @@ namespace Mastodon
         const string url() const;
 
         /*!
-         *  @brief  Returns username (without @hostname)
+         *  @brief  Returns username (without \@hostname)
          *  
          *  @since before 0.11.0
          */

@@ -17,7 +17,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_CXX_FLAGS_DEBUG
-    "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wpedantic -Wextra -g -Og")
+    "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -Wpedantic -ftrapv -fsanitize=undefined -g -Og -fno-omit-frame-pointer")
 
 # Do not complain about compatibility-wrapper
 if(NOT CMAKE_BUILD_TYPE STREQUAL "Debug")

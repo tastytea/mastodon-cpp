@@ -1,5 +1,5 @@
 /*  This file is part of mastodon-cpp.
- *  Copyright © 2018 tastytea <tastytea@tastytea.de>
+ *  Copyright © 2018, 2019 tastytea <tastytea@tastytea.de>
  *                                                                   
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -21,9 +21,8 @@
 using namespace Mastodon;
 using std::cerr;
 
-uint16_t API::patch(const Mastodon::API::v1 &call,
-                         const parametermap &parameters,
-                         string &answer)
+return_call API::patch(const Mastodon::API::v1 &call,
+                       const parametermap &parameters)
 {
     string strcall = "";
     switch (call)
@@ -32,11 +31,11 @@ uint16_t API::patch(const Mastodon::API::v1 &call,
             strcall = "/api/v1/accounts/update_credentials";
             break;
         default:
-            ttdebug << "ERROR: Invalid call.\n";
-            return 11;
+            ttdebug << "ERROR: Invalid argument.\n";
+            return { 22, "Invalid argument", 0, "" };
             break;
     }
 
     return _http.request(API::http::method::PATCH,
-                         strcall, maptoformdata(parameters), answer);
+                         strcall, maptoformdata(parameters));
 }

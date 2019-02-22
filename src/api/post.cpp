@@ -1,6 +1,6 @@
 /*  This file is part of mastodon-cpp.
- *  Copyright © 2018 tastytea <tastytea@tastytea.de>
- *                                                                   
+ *  Copyright © 2018, 2019 tastytea <tastytea@tastytea.de>
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, version 3.
@@ -20,8 +20,8 @@
 
 using namespace Mastodon;
 
-uint16_t API::post(const Mastodon::API::v1 &call,
-                        const parametermap &parameters, string &answer)
+return_call API::post(const Mastodon::API::v1 &call,
+                      const parametermap &parameters)
 {
     string strcall = "";
     string strid = "";
@@ -129,24 +129,22 @@ uint16_t API::post(const Mastodon::API::v1 &call,
             strcall = "/api/v1/statuses/" + strid + "/unbookmark";
             break;
         default:
-            ttdebug << "ERROR: Invalid call.\n";
-            return 11;
+            ttdebug << "ERROR: Invalid argument.\n";
+            return { 22, "Invalid argument", 0, ""};
             break;
     }
 
-    return post(strcall, parameters, answer);
+    return post(strcall, parameters);
 }
 
-uint16_t API::post(const Mastodon::API::v1 &call, string &answer)
+return_call API::post(const Mastodon::API::v1 &call)
 {
     const parametermap p;
-    return post(call, p, answer);
+    return post(call, p);
 }
 
-uint16_t API::post(const string &call,
-                        const parametermap &parameters, string &answer)
+return_call API::post(const string &call, const parametermap &parameters)
 {
 
-    return _http.request(http::method::POST, call,
-                         maptoformdata(parameters), answer);
+    return _http.request(http::method::POST, call, maptoformdata(parameters));
 }

@@ -1,6 +1,6 @@
 /*  This file is part of mastodon-cpp.
- *  Copyright © 2018 tastytea <tastytea@tastytea.de>
- *                                                                   
+ *  Copyright © 2018, 2019 tastytea <tastytea@tastytea.de>
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, version 3.
@@ -21,10 +21,9 @@
 using namespace Mastodon;
 using std::cerr;
 
-uint16_t API::get_stream(const Mastodon::API::v1 &call,
-                              const parametermap &parameters,
-                              string &answer,
-                              std::unique_ptr<Mastodon::API::http> &ptr)
+return_call API::get_stream(const Mastodon::API::v1 &call,
+                            const parametermap &parameters,
+                            std::unique_ptr<Mastodon::API::http> &ptr)
 {
     string strcall = "";
 
@@ -47,7 +46,7 @@ uint16_t API::get_stream(const Mastodon::API::v1 &call,
             break;
         default:
             ttdebug << "ERROR: Invalid call.\n";
-            return 11;
+            return { 22, "Invalid argument", 0, "" };
             break;
     }
 
@@ -56,20 +55,18 @@ uint16_t API::get_stream(const Mastodon::API::v1 &call,
         strcall += maptostr(parameters);
     }
 
-    return get_stream(strcall, answer, ptr);
+    return get_stream(strcall, ptr);
 }
 
-uint16_t API::get_stream(const Mastodon::API::v1 &call,
-                              string &answer,
-                              std::unique_ptr<Mastodon::API::http> &ptr)
+return_call API::get_stream(const Mastodon::API::v1 &call,
+                            std::unique_ptr<Mastodon::API::http> &ptr)
 {
     parametermap p = {};
-    return get_stream(call, p, answer, ptr);
+    return get_stream(call, p, ptr);
 }
 
-uint16_t API::get_stream(const std::string &call, string &answer,
-                              std::unique_ptr<http> &ptr)
+return_call API::get_stream(const std::string &call, std::unique_ptr<http> &ptr)
 {
     ptr = std::make_unique<http>(*this, _instance, _access_token);
-    return ptr->request(http::method::GET_STREAM, call, answer);
+    return ptr->request(http::method::GET_STREAM, call);
 }

@@ -1,6 +1,6 @@
 /*  This file is part of mastodon-cpp.
- *  Copyright © 2018 tastytea <tastytea@tastytea.de>
- *                                                                   
+ *  Copyright © 2018, 2019 tastytea <tastytea@tastytea.de>
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, version 3.
@@ -476,12 +476,10 @@ public:
      *  @brief  Make a GET request which doesn't require parameters.
      *
      *  @param  call    A call defined in Mastodon::API::v1
-     *  @param  answer  The answer from the server. Usually JSON. On error an
-     *                  empty string.
      *
      *  @return @ref error "Error code".
-     *  
-     *  @since  before 0.11.0
+     *
+     *  @since  0.100.0
      */
     const return_call get(const Mastodon::API::v1 &call);
 
@@ -490,11 +488,8 @@ public:
      *
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  parameters  A Mastodon::API::parametermap containing parameters
-     *  @param  answer      The answer from the server. Usually JSON. On error
-     *                      an empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 13
-     *  is returned and answer is set to the new URL.
+     *  @return @ref error "Error code".
      */
     const return_call get(const Mastodon::API::v1 &call,
                           const parametermap &parameters);
@@ -502,7 +497,12 @@ public:
     /*!
      *  @brief  Make a GET request which requires parameters.
      *
-     *  @since  0.16.0
+     *  @since  0.100.0
+     *
+     *  @param  call        A call defined in Mastodon::API::v2
+     *  @param  parameters  A Mastodon::API::parametermap containing parameters
+     *
+     *  @return @ref error "Error code".
      */
     const return_call get(const Mastodon::API::v2 &call,
                           const parametermap &parameters);
@@ -511,13 +511,10 @@ public:
      *  @brief  Make a custom GET request.
      *
      *  @param  call    String in the form `/api/v1/example`
-     *  @param  answer  The answer from the server. Usually JSON. On error an
-     *                  empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 13
-     *  is returned and answer is set to the new URL.
-     *  
-     *  @since  before 0.11.0
+     *  @return @ref error "Error code".
+     *
+     *  @since  0.100.0
      */
     const return_call get(const string &call);
 
@@ -526,54 +523,44 @@ public:
      *
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  parameters  A Mastodon::API::parametermap containing parameters
-     *  @param  answer      The answer from the server. Events with JSON-payload.
      *  @param  ptr         Pointer to the http object. Can be used to call
      *                      ptr->cancel_stream()
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 13
-     *  is returned and answer is set to the new URL.
-     *  
-     *  @since  before 0.11.0
+     *  @return @ref error "Error code".
+     *
+     *  @since  0.100.0
      */
-    uint16_t get_stream(const Mastodon::API::v1 &call,
-                             const parametermap &parameters,
-                             string &answer,
-                             std::unique_ptr<Mastodon::API::http> &ptr);
+    return_call get_stream(const Mastodon::API::v1 &call,
+                           const parametermap &parameters,
+                           std::unique_ptr<Mastodon::API::http> &ptr);
 
     /*!
      *  @brief  Make a streaming GET request.
      *
-     *  @param  call      A call defined in Mastodon::API::v1
-     *  @param  answer    The answer from the server. Events with JSON-payload.
-     *  @param  ptr       Pointer to the http object. Can be used to call
-     *                    ptr->cancel_stream()
+     *  @param  call    A call defined in Mastodon::API::v1
+     *  @param  ptr     Pointer to the http object. Can be used to call
+     *                  ptr->cancel_stream()
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 13
-     *  is returned and answer is set to the new URL.
-     *  
-     *  @since  before 0.11.0
+     *  @return @ref error "Error code".
+     *
+     *  @since  0.100.0
      */
-    uint16_t get_stream(const Mastodon::API::v1 &call,
-                             string &answer,
-                             std::unique_ptr<Mastodon::API::http> &ptr);
+    return_call get_stream(const Mastodon::API::v1 &call,
+                           std::unique_ptr<Mastodon::API::http> &ptr);
 
     /*!
      *  @brief  Make a streaming GET request.
      *
-     *  @param  call      String in the form `/api/v1/example`
-     *  @param  answer    The answer from the server. Usually JSON. On error an
-     *                    empty string.
-     *  @param  ptr       Pointer to the http object. Can be used to call
-     *                    ptr->cancel_stream()
+     *  @param  call    String in the form `/api/v1/example`
+     *  @param  ptr     Pointer to the http object. Can be used to call
+     *                  ptr->cancel_stream()
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 13
-     *  is returned and answer is set to the new URL.
-     *  
-     *  @since  before 0.11.0
+     *  @return @ref error "Error code".
+     *
+     *  @since  0.100.0
      */
-    uint16_t get_stream(const string &call,
-                             string &answer,
-                             std::unique_ptr<Mastodon::API::http> &ptr);
+    return_call get_stream(const string &call,
+                           std::unique_ptr<Mastodon::API::http> &ptr);
 
     /*!
      *  @brief  Make a PATCH request.
@@ -582,31 +569,24 @@ public:
      *
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  parameters  A Mastodon::API::parametermap containing parameters
-     *  @param  answer      The answer from the server. Usually JSON. On error
-     *                      an empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 13
-     *  is returned and answer is set to the new URL.
-     *  
-     *  @since  before 0.11.0
+     *  @return @ref error "Error code".
+     *
+     *  @since  0.100.0
      */
-    uint16_t patch(const Mastodon::API::v1 &call,
-                        const parametermap &parameters,
-                        string &answer);
+    return_call patch(const Mastodon::API::v1 &call,
+                      const parametermap &parameters);
 
     /*!
      *  @brief  Make a POST request which doesn't require parameters.
      *
      *  @param  call    A call defined in Mastodon::API::v1
-     *  @param  answer  The answer from the server. Usually JSON. On error an
-     *                  empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 13
-     *  is returned and answer is set to the new URL.
-     *  
-     *  @since  before 0.11.0
+     *  @return @ref error "Error code".
+     *
+     *  @since  0.100.0
      */
-    uint16_t post(const Mastodon::API::v1 &call, string &answer);
+    return_call post(const Mastodon::API::v1 &call);
 
     /*!
      *  @brief  Make a POST request which requires parameters.
@@ -615,17 +595,13 @@ public:
      *
      *  @param  call        A call defined in Mastodon::API::v1
      *  @param  parameters  A Mastodon::API::parametermap containing parameters
-     *  @param  answer      The answer from the server. Usually JSON. On error
-     *                      an empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 13
-     *  is returned and answer is set to the new URL.
-     *  
-     *  @since  before 0.11.0
+     *  @return @ref error "Error code".
+     *
+     *  @since  0.100.0
      */
-     uint16_t post(const Mastodon::API::v1 &call,
-                        const parametermap &parameters,
-                        string &answer);
+     return_call post(const Mastodon::API::v1 &call,
+                        const parametermap &parameters);
 
     /*!
      *  @brief  Make a custom POST request.
@@ -634,53 +610,38 @@ public:
      *
      *  @param  call        String in the form `/api/v1/example`
      *  @param  parameters  A Mastodon::API::parametermap containing parameters
-     *  @param  answer      The answer from the server. Usually JSON. On error
-     *                      an empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 13
-     *  is returned and answer is set to the new URL.
-     *  
-     *  @since  before 0.11.0
+     *  @return @ref error "Error code".
+     *
+     *  @since  0.100.0
      */
-     uint16_t post(const string &call,
-                        const parametermap &parameters,
-                        string &answer);
+     return_call post(const string &call,
+                        const parametermap &parameters);
 
     /*!
      *  @brief  Make a PUT request which requires a parameters.
      *
      *  @param  call        A call defined in Mastodon::API::v1
-     *  @param  parameters  A Mastodon::API::parametermap containing
-     *                      parameters
-     *  @param  answer      The answer from the server. Usually JSON. On error
-     *                      an empty string.
+     *  @param  parameters  A Mastodon::API::parametermap containing parameters
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 13
-     *  is returned and answer is set to the new URL.
-     *  
-     *  @since  before 0.11.0
+     *  @return @ref error "Error code".
+     *
+     *  @since  0.100.0
      */
-    uint16_t put(const Mastodon::API::v1 &call,
-                      const parametermap &parameters,
-                      string &answer);
+    return_call put(const Mastodon::API::v1 &call,
+                    const parametermap &parameters);
 
     /*!
      *  @brief  Make a custom PUT request.
      *
      *  @param  call        String in the form `/api/v1/example`
-     *  @param  parameters  A Mastodon::API::parametermap containing
-     *                      parameters
-     *  @param  answer      The answer from the server. Usually JSON. On error
-     *                      an empty string.
+     *  @param  parameters  A Mastodon::API::parametermap containing parameters
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 13
-     *  is returned and answer is set to the new URL.
-     *  
-     *  @since  before 0.11.0
+     *  @return @ref error "Error code".
+     *
+     *  @since  0.100.0
      */
-    uint16_t put(const string &call,
-                            const parametermap &parameters,
-                            string &answer);
+    return_call put(const string &call, const parametermap &parameters);
 
     /*!
      *  @brief  Make a DELETE request which requires parameters.
@@ -689,28 +650,23 @@ public:
      *  @param  parameters  A Mastodon::API::parametermap containing parameters
      *
      *  @return @ref error "Error code".
-     *  
-     *  @since  before 0.11.0
+     *
+     *  @since  0.100.0
      */
-    uint16_t del(const Mastodon::API::v1 &call,
-                      const parametermap &parameters);
+    return_call del(const Mastodon::API::v1 &call,
+                    const parametermap &parameters);
 
     /*!
      *  @brief  Make a custom DELETE request.
      *
      *  @param  call        String in the form `/api/v1/example`
      *  @param  parameters  A Mastodon::API::parametermap containing parameters
-     *  @param  answer      The answer from the server. Usually JSON. On error
-     *                      an empty string.
      *
-     *  @return @ref error "Error code". If the URL has permanently changed, 13
-     *  is returned and answer is set to the new URL.
-     *  
-     *  @since  before 0.11.0
+     *  @return @ref error "Error code".
+     *
+     *  @since  0.100.0
      */
-    uint16_t del(const string &call,
-                      const parametermap &parameters,
-                      string &answer);
+    return_call del(const string &call, const parametermap &parameters);
 
 private:
     const string _instance;

@@ -1,6 +1,6 @@
 /*  This file is part of mastodon-cpp.
- *  Copyright © 2018 tastytea <tastytea@tastytea.de>
- *                                                                   
+ *  Copyright © 2018, 2019 tastytea <tastytea@tastytea.de>
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, version 3.
@@ -20,8 +20,8 @@
 
 using namespace Mastodon;
 
-uint16_t API::put(const Mastodon::API::v1 &call,
-                       const parametermap &parameters, string &answer)
+return_call API::put(const Mastodon::API::v1 &call,
+                     const parametermap &parameters)
 {
     string strcall = "";
     string strid = "";
@@ -45,18 +45,16 @@ uint16_t API::put(const Mastodon::API::v1 &call,
             strcall = "/api/v1/push/subscription";
             break;
         default:
-            ttdebug << "ERROR: Invalid call.\n";
-            return 11;
+            ttdebug << "ERROR: Invalid argument.\n";
+            return { 22, "Invalid argument", 0, "" };
             break;
     }
 
-    return put(strcall, parameters, answer);
+    return put(strcall, parameters);
 }
 
-uint16_t API::put(const string &call,
-                       const parametermap &parameters, string &answer)
+return_call API::put(const string &call, const parametermap &parameters)
 {
 
-    return _http.request(http::method::PUT, call,
-                         maptoformdata(parameters), answer);
+    return _http.request(http::method::PUT, call, maptoformdata(parameters));
 }

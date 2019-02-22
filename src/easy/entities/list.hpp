@@ -31,7 +31,7 @@
 #endif
 
 using std::string;
-using std::uint_fast64_t;
+using std::uint64_t;
 
 namespace Mastodon
 {

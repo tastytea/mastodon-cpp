@@ -128,12 +128,12 @@ Account Account::fields(std::vector<Account::fields_pair> &fields)
     return *this;
 }
 
-std::uint_fast64_t Account::followers_count() const
+std::uint64_t Account::followers_count() const
 {
     return get_uint64("followers_count");
 }
 
-std::uint_fast64_t Account::following_count() const
+std::uint64_t Account::following_count() const
 {
     return get_uint64("following_count");
 }
@@ -354,7 +354,7 @@ Account Account::source(const Account::Source &source)
     return *this;
 }
 
-std::uint_fast64_t Account::statuses_count() const
+std::uint64_t Account::statuses_count() const
 {
     return get_uint64("statuses_count");
 }

@@ -89,7 +89,7 @@ bool Tag::History::valid() const
     return Entity::check_valid(attributes);
 }
 
-uint_fast64_t Tag::History::accounts()
+uint64_t Tag::History::accounts()
 {
     return stouint64(get_string("accounts"));
 }
@@ -108,7 +108,7 @@ const system_clock::time_point Tag::History::day()
     return system_clock::time_point();
 }
 
-uint_fast64_t Tag::History::uses()
+uint64_t Tag::History::uses()
 {
     return stouint64(get_string("uses"));
 }

@@ -23,12 +23,12 @@
 
 using namespace Mastodon;
 
-const Easy::Status Easy::send_toot(const Status &status, uint_fast16_t &error)
+const Easy::Status Easy::send_toot(const Status &status, uint16_t &error)
 {
     return send_post(status, error);
 }
 
-const Easy::Status Easy::send_post(const Status &status, uint_fast16_t &error)
+const Easy::Status Easy::send_post(const Status &status, uint16_t &error)
 {
     API::parametermap parameters;
     string answer;
@@ -139,7 +139,7 @@ const Easy::Status Easy::send_post(const Status &status, uint_fast16_t &error)
 }
 
 const vector<Easy::Notification> Easy::get_notifications(
-    uint_fast16_t &error, const uint_fast16_t limit,
+    uint16_t &error, const uint16_t limit,
     const string since_id, const string max_id)
 {
     API::parametermap parameters;

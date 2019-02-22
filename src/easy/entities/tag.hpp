@@ -32,7 +32,7 @@
 
 using std::string;
 using std::chrono::system_clock;
-using std::uint_fast64_t;
+using std::uint64_t;
 
 namespace Mastodon
 {
@@ -75,7 +75,7 @@ namespace Mastodon
              *  
              *  @since  0.16.0
              */
-            uint_fast64_t accounts();
+            uint64_t accounts();
 
             /*!
              *  @brief  Returns the day.
@@ -89,7 +89,7 @@ namespace Mastodon
              *  
              *  @since  0.16.0
              */
-            uint_fast64_t uses();
+            uint64_t uses();
         };
 
         /*!

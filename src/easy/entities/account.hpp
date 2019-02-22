@@ -33,7 +33,7 @@
 #endif
 
 using std::string;
-using std::uint_fast64_t;
+using std::uint64_t;
 using std::chrono::system_clock;
 
 namespace Mastodon
@@ -151,14 +151,14 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        uint_fast64_t followers_count() const;
+        uint64_t followers_count() const;
 
         /*!
          *  @brief  Returns number of people this account follows
          *  
          *  @since before 0.11.0
          */
-        uint_fast64_t following_count() const;
+        uint64_t following_count() const;
 
         /*!
          *  @brief  Returns URL of header image
@@ -338,7 +338,7 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        uint_fast64_t statuses_count() const;
+        uint64_t statuses_count() const;
 
         /*!
          *  @brief  Returns URL of the profile

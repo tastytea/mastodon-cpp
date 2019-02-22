@@ -148,7 +148,7 @@ const std::string API::urldecode(const std::string &str)
     return curlpp::unescape(str);
 }
 
-uint_fast16_t API::register_app1(const string &client_name,
+uint16_t API::register_app1(const string &client_name,
                                  const string &redirect_uri,
                                  const string &scopes,
                                  const string &website,
@@ -165,7 +165,7 @@ uint_fast16_t API::register_app1(const string &client_name,
     };
 
     string answer;
-    uint_fast16_t ret = post(API::v1::apps, parameters, answer);
+    uint16_t ret = post(API::v1::apps, parameters, answer);
 
     if (ret == 0)
     {
@@ -202,7 +202,7 @@ uint_fast16_t API::register_app1(const string &client_name,
     
 }
 
-uint_fast16_t API::register_app2(const string &client_id,
+uint16_t API::register_app2(const string &client_id,
                                  const string &client_secret,
                                  const string &redirect_uri,
                                  const string &code,
@@ -218,7 +218,7 @@ uint_fast16_t API::register_app2(const string &client_id,
     };
 
     std::string answer;
-    uint_fast16_t ret = post("/oauth/token", parameters, answer);
+    uint16_t ret = post("/oauth/token", parameters, answer);
     if (ret == 0)
     {
         std::smatch match;

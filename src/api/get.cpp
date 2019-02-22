@@ -21,7 +21,7 @@
 using namespace Mastodon;
 using std::cerr;
 
-uint_fast16_t API::get(const Mastodon::API::v1 &call,
+uint16_t API::get(const Mastodon::API::v1 &call,
                        const parametermap &parameters, string &answer)
 {
     string strcall = "";
@@ -168,7 +168,7 @@ uint_fast16_t API::get(const Mastodon::API::v1 &call,
     return get(strcall, answer);
 }
 
-uint_fast16_t API::get(const Mastodon::API::v2 &call,
+uint16_t API::get(const Mastodon::API::v2 &call,
                        const parametermap &parameters, string &answer)
 {
     string strcall = "";
@@ -204,13 +204,13 @@ uint_fast16_t API::get(const Mastodon::API::v2 &call,
     return get(strcall, answer);
 }
 
-uint_fast16_t API::get(const Mastodon::API::v1 &call, string &answer)
+uint16_t API::get(const Mastodon::API::v1 &call, string &answer)
 {
     const parametermap p;
     return get(call, p, answer);
 }
 
-uint_fast16_t API::get(const std::string &call, string &answer)
+uint16_t API::get(const std::string &call, string &answer)
 {
     return _http.request(http::method::GET, call, answer);
 }

@@ -35,7 +35,7 @@
 #endif
 
 using std::string;
-using std::uint_fast64_t;
+using std::uint64_t;
 using std::chrono::system_clock;
 
 namespace Mastodon

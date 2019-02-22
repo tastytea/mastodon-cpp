@@ -122,7 +122,7 @@ bool Status::favourited() const
     return get_bool("favourited");
 }
 
-uint_fast64_t Status::favourites_count() const
+uint64_t Status::favourites_count() const
 {
     return get_uint64("favourites_count");
 }
@@ -231,12 +231,12 @@ bool Status::reblogged() const
     return get_bool("reblogged");
 }
 
-uint_fast64_t Status::reblogs_count() const
+uint64_t Status::reblogs_count() const
 {
     return get_uint64("reblogs_count");
 }
 
-uint_fast64_t Status::replies_count() const
+uint64_t Status::replies_count() const
 {
     return get_uint64("replies_count");
 }

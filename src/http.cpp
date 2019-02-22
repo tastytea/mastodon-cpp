@@ -44,21 +44,21 @@ API::http::~http()
     curlpp::terminate();
 }
 
-uint_fast16_t API::http::request(const method &meth,
+uint16_t API::http::request(const method &meth,
                                  const string &path,
                                  string &answer)
 {
     return request(meth, path, curlpp::Forms(), answer);
 }
 
-uint_fast16_t API::http::request(const method &meth,
+uint16_t API::http::request(const method &meth,
                                  const string &path,
                                  const curlpp::Forms &formdata,
                                  string &answer)
 {
     using namespace std::placeholders;  // _1, _2, _3
 
-    uint_fast16_t ret = 0;
+    uint16_t ret = 0;
     ttdebug << "Path is: " << path << '\n';
     
     try

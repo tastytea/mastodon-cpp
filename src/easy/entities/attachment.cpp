@@ -52,7 +52,7 @@ double Attachment::aspect_small() const
     return get_double("meta.small.aspect");
 }
 
-uint_fast64_t Attachment::bitrate() const
+uint64_t Attachment::bitrate() const
 {
     return get_uint64("meta.original.bitrate");
 }
@@ -119,8 +119,8 @@ double Attachment::framerate() const
         std::size_t pos = strframes.find('/');
         if (pos != std::string::npos)
         {
-            std::uint_fast16_t frames = std::stoul(strframes.substr(0, pos));
-            std::uint_fast16_t divider = std::stoul(strframes.substr(pos + 1));
+            std::uint16_t frames = std::stoul(strframes.substr(0, pos));
+            std::uint16_t divider = std::stoul(strframes.substr(pos + 1));
 
             return frames / divider;
         }
@@ -129,12 +129,12 @@ double Attachment::framerate() const
     return 0.0;
 }
 
-uint_fast64_t Attachment::height() const
+uint64_t Attachment::height() const
 {
     return get_uint64("meta.original.height");
 }
 
-uint_fast64_t Attachment::height_small() const
+uint64_t Attachment::height_small() const
 {
     return get_uint64("meta.small.height");
 }
@@ -190,12 +190,12 @@ const string Attachment::url() const
     return get_string("url");
 }
 
-uint_fast64_t Attachment::width() const
+uint64_t Attachment::width() const
 {
     return get_uint64("meta.original.width");
 }
 
-uint_fast64_t Attachment::width_small() const
+uint64_t Attachment::width_small() const
 {
     return get_uint64("meta.small.width");
 }

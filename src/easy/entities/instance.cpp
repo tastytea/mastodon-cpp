@@ -94,9 +94,9 @@ const string Instance::streaming_api() const
     return get_string("urls.streaming_api");
 }
 
-uint_fast64_t Instance::max_toot_chars() const
+uint64_t Instance::max_toot_chars() const
 {
-    const uint_fast64_t max_chars = get_uint64("max_toot_chars");
+    const uint64_t max_chars = get_uint64("max_toot_chars");
     if (was_set())
     {
         return max_chars;

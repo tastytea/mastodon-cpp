@@ -27,7 +27,7 @@
 #include <curlpp/cURLpp.hpp>
 #include <curlpp/Easy.hpp>
 
-using std::uint_fast16_t;
+using std::uint16_t;
 using std::string;
 
 /*!
@@ -101,7 +101,7 @@ public:
         explicit http(const API &api, const string &instance,
                       const string &access_token);
         ~http();
-        uint_fast16_t request(const method &meth,
+        uint16_t request(const method &meth,
                                     const string &path,
                                     string &answer);
 
@@ -118,7 +118,7 @@ public:
          *  
          *  @since  before 0.11.0
          */
-        uint_fast16_t request(const method &meth,
+        uint16_t request(const method &meth,
                                     const string &path,
                                     const curlpp::Forms &formdata,
                                     string &answer);
@@ -369,7 +369,7 @@ public:
      *  
      *  @since  before 0.11.0
      */
-    uint_fast16_t register_app1(const string &client_name,
+    uint16_t register_app1(const string &client_name,
                                 const string &redirect_uri,
                                 const string &scopes,
                                 const string &website,
@@ -393,7 +393,7 @@ public:
      *  
      *  @since  before 0.11.0
      */
-    uint_fast16_t register_app2(const string &client_id,
+    uint16_t register_app2(const string &client_id,
                                 const string &client_secret,
                                 const string &redirect_uri,
                                 const string &code,
@@ -472,7 +472,7 @@ public:
      *  
      *  @since  before 0.11.0
      */
-    uint_fast16_t get(const Mastodon::API::v1 &call, string &answer);
+    uint16_t get(const Mastodon::API::v1 &call, string &answer);
 
     /*!
      *  @brief  Make a GET request which requires parameters.
@@ -485,7 +485,7 @@ public:
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
-    uint_fast16_t get(const Mastodon::API::v1 &call,
+    uint16_t get(const Mastodon::API::v1 &call,
                       const parametermap &parameters,
                       string &answer);
 
@@ -494,7 +494,7 @@ public:
      *
      *  @since  0.16.0
      */
-    uint_fast16_t get(const Mastodon::API::v2 &call,
+    uint16_t get(const Mastodon::API::v2 &call,
                       const parametermap &parameters,
                       string &answer);
 
@@ -510,7 +510,7 @@ public:
      *  
      *  @since  before 0.11.0
      */
-    uint_fast16_t get(const string &call, string &answer);
+    uint16_t get(const string &call, string &answer);
 
     /*!
      *  @brief  Make a streaming GET request.
@@ -526,7 +526,7 @@ public:
      *  
      *  @since  before 0.11.0
      */
-    uint_fast16_t get_stream(const Mastodon::API::v1 &call,
+    uint16_t get_stream(const Mastodon::API::v1 &call,
                              const parametermap &parameters,
                              string &answer,
                              std::unique_ptr<Mastodon::API::http> &ptr);
@@ -544,7 +544,7 @@ public:
      *  
      *  @since  before 0.11.0
      */
-    uint_fast16_t get_stream(const Mastodon::API::v1 &call,
+    uint16_t get_stream(const Mastodon::API::v1 &call,
                              string &answer,
                              std::unique_ptr<Mastodon::API::http> &ptr);
 
@@ -562,7 +562,7 @@ public:
      *  
      *  @since  before 0.11.0
      */
-    uint_fast16_t get_stream(const string &call,
+    uint16_t get_stream(const string &call,
                              string &answer,
                              std::unique_ptr<Mastodon::API::http> &ptr);
 
@@ -581,7 +581,7 @@ public:
      *  
      *  @since  before 0.11.0
      */
-    uint_fast16_t patch(const Mastodon::API::v1 &call,
+    uint16_t patch(const Mastodon::API::v1 &call,
                         const parametermap &parameters,
                         string &answer);
 
@@ -597,7 +597,7 @@ public:
      *  
      *  @since  before 0.11.0
      */
-    uint_fast16_t post(const Mastodon::API::v1 &call, string &answer);
+    uint16_t post(const Mastodon::API::v1 &call, string &answer);
 
     /*!
      *  @brief  Make a POST request which requires parameters.
@@ -614,7 +614,7 @@ public:
      *  
      *  @since  before 0.11.0
      */
-     uint_fast16_t post(const Mastodon::API::v1 &call,
+     uint16_t post(const Mastodon::API::v1 &call,
                         const parametermap &parameters,
                         string &answer);
 
@@ -633,7 +633,7 @@ public:
      *  
      *  @since  before 0.11.0
      */
-     uint_fast16_t post(const string &call,
+     uint16_t post(const string &call,
                         const parametermap &parameters,
                         string &answer);
 
@@ -651,7 +651,7 @@ public:
      *  
      *  @since  before 0.11.0
      */
-    uint_fast16_t put(const Mastodon::API::v1 &call,
+    uint16_t put(const Mastodon::API::v1 &call,
                       const parametermap &parameters,
                       string &answer);
 
@@ -669,7 +669,7 @@ public:
      *  
      *  @since  before 0.11.0
      */
-    uint_fast16_t put(const string &call,
+    uint16_t put(const string &call,
                             const parametermap &parameters,
                             string &answer);
 
@@ -683,7 +683,7 @@ public:
      *  
      *  @since  before 0.11.0
      */
-    uint_fast16_t del(const Mastodon::API::v1 &call,
+    uint16_t del(const Mastodon::API::v1 &call,
                       const parametermap &parameters);
 
     /*!
@@ -699,7 +699,7 @@ public:
      *  
      *  @since  before 0.11.0
      */
-    uint_fast16_t del(const string &call,
+    uint16_t del(const string &call,
                       const parametermap &parameters,
                       string &answer);
 

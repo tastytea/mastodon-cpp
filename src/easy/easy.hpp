@@ -34,8 +34,8 @@
 
 using std::string;
 using std::vector;
-using std::uint_fast64_t;
-using std::uint_fast16_t;
+using std::uint64_t;
+using std::uint16_t;
 using std::chrono::system_clock;
 
 namespace Mastodon
@@ -286,14 +286,14 @@ public:
      *  
      *  @since  0.18.1
      */
-    const Status send_post(const Status &status, uint_fast16_t &error);
+    const Status send_post(const Status &status, uint16_t &error);
 
     /*!
      *  @brief  Alias for send_post()
      *  
      *  @since  0.17.0
      */
-    const Status send_toot(const Status &status, uint_fast16_t &error);
+    const Status send_toot(const Status &status, uint16_t &error);
 
     /*!
      *  @brief  Gets notifications.
@@ -308,7 +308,7 @@ public:
      *  @since  0.21.0
      */
     const vector<Notification> get_notifications(
-        uint_fast16_t &error, const uint_fast16_t limit = 20,
+        uint16_t &error, const uint16_t limit = 20,
         const string since_id = 0, const string max_id = 0);
 
     /*!
@@ -414,11 +414,11 @@ public:
         const string get_string(const string &key) const;
 
         /*!
-         *  @brief  Returns the value of key as std::uint_fast64_t
+         *  @brief  Returns the value of key as std::uint64_t
          *  
          *          Returns 0 if the value does not exist or is null.
          */
-        uint_fast64_t get_uint64(const string &key) const;
+        uint64_t get_uint64(const string &key) const;
 
         /*!
          *  @brief  Returns the value of key as double
@@ -457,7 +457,7 @@ public:
          */
         void set(const string &key, const Json::Value &value);
 
-        std::uint_fast64_t stouint64(const string &str) const;
+        std::uint64_t stouint64(const string &str) const;
 
         /*!
          *  @brief  Checks if an Entity is valid

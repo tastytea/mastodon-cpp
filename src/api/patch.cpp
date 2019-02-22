@@ -21,7 +21,7 @@
 using namespace Mastodon;
 using std::cerr;
 
-uint_fast16_t API::patch(const Mastodon::API::v1 &call,
+uint16_t API::patch(const Mastodon::API::v1 &call,
                          const parametermap &parameters,
                          string &answer)
 {

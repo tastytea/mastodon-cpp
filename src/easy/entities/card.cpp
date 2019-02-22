@@ -56,7 +56,7 @@ const string Card::description() const
     return get_string("description");
 }
 
-uint_fast64_t Card::height() const
+uint64_t Card::height() const
 {
     return get_uint64("height");
 }
@@ -107,7 +107,7 @@ const string Card::url() const
     return get_string("url");
 }
 
-uint_fast64_t Card::width() const
+uint64_t Card::width() const
 {
     return get_uint64("width");
 }

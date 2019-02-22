@@ -20,7 +20,7 @@
 
 using namespace Mastodon;
 
-uint_fast16_t API::put(const Mastodon::API::v1 &call,
+uint16_t API::put(const Mastodon::API::v1 &call,
                        const parametermap &parameters, string &answer)
 {
     string strcall = "";
@@ -53,7 +53,7 @@ uint_fast16_t API::put(const Mastodon::API::v1 &call,
     return put(strcall, parameters, answer);
 }
 
-uint_fast16_t API::put(const string &call,
+uint16_t API::put(const string &call,
                        const parametermap &parameters, string &answer)
 {
 

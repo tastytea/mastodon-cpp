@@ -145,7 +145,7 @@ const string Easy::Entity::get_string(const string &key) const
     return "";
 }
 
-uint_fast64_t Easy::Entity::get_uint64(const string &key) const
+uint64_t Easy::Entity::get_uint64(const string &key) const
 {
     const Json::Value node = get(key);
 
@@ -264,7 +264,7 @@ void Easy::Entity::set(const string &key, const Json::Value &value)
     ttdebug << "Could not set data: " << key << '\n';
 }
 
-std::uint_fast64_t Easy::Entity::stouint64(const string &str) const
+std::uint64_t Easy::Entity::stouint64(const string &str) const
 {
     if (str == "")
     {

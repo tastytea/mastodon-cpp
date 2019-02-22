@@ -46,7 +46,7 @@
 #endif
 
 using std::string;
-using std::uint_fast64_t;
+using std::uint64_t;
 using std::chrono::system_clock;
 
 namespace Mastodon
@@ -138,7 +138,7 @@ namespace Mastodon
          *  
          *  @since  before 0.11.0
          */
-        uint_fast64_t favourites_count() const;
+        uint64_t favourites_count() const;
 
         /*!
          *  @brief  Returns the ID of the status
@@ -237,14 +237,14 @@ namespace Mastodon
          *  
          *  @since  before 0.11.0
          */
-        uint_fast64_t reblogs_count() const;
+        uint64_t reblogs_count() const;
 
         /*!
          *  @brief  Returns the number of replies for the status
          *  
          *  @since  0.19.0
          */
-        uint_fast64_t replies_count() const;
+        uint64_t replies_count() const;
 
         /*!
          *  @brief  Returns true if the attachments should be hidden by default

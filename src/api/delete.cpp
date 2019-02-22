@@ -20,7 +20,7 @@
 
 using namespace Mastodon;
 
-uint_fast16_t API::del(const Mastodon::API::v1 &call,
+uint16_t API::del(const Mastodon::API::v1 &call,
                        const parametermap &parameters)
 {
     string strcall = "";
@@ -60,7 +60,7 @@ uint_fast16_t API::del(const Mastodon::API::v1 &call,
     return del(strcall, parameters, answer);
 }
 
-uint_fast16_t API::del(const std::string &call,
+uint16_t API::del(const std::string &call,
                        const parametermap &parameters, string &answer)
 {
 

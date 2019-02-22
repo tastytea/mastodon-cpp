@@ -21,7 +21,7 @@
 using namespace Mastodon;
 using std::cerr;
 
-uint_fast16_t API::get_stream(const Mastodon::API::v1 &call,
+uint16_t API::get_stream(const Mastodon::API::v1 &call,
                               const parametermap &parameters,
                               string &answer,
                               std::unique_ptr<Mastodon::API::http> &ptr)
@@ -59,7 +59,7 @@ uint_fast16_t API::get_stream(const Mastodon::API::v1 &call,
     return get_stream(strcall, answer, ptr);
 }
 
-uint_fast16_t API::get_stream(const Mastodon::API::v1 &call,
+uint16_t API::get_stream(const Mastodon::API::v1 &call,
                               string &answer,
                               std::unique_ptr<Mastodon::API::http> &ptr)
 {
@@ -67,7 +67,7 @@ uint_fast16_t API::get_stream(const Mastodon::API::v1 &call,
     return get_stream(call, p, answer, ptr);
 }
 
-uint_fast16_t API::get_stream(const std::string &call, string &answer,
+uint16_t API::get_stream(const std::string &call, string &answer,
                               std::unique_ptr<http> &ptr)
 {
     ptr = std::make_unique<http>(*this, _instance, _access_token);

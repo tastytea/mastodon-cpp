@@ -30,7 +30,7 @@
 #endif
 
 using std::string;
-using std::uint_fast64_t;
+using std::uint64_t;
 
 namespace Mastodon
 {
@@ -86,7 +86,7 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        uint_fast64_t height() const;
+        uint64_t height() const;
 
         /*!
          *  @brief  Returns the HTML
@@ -142,7 +142,7 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        uint_fast64_t width() const;
+        uint64_t width() const;
     };
 }
 

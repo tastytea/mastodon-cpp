@@ -20,7 +20,7 @@
 #include <string>
 #include <vector>
 
-using std::uint_fast64_t;
+using std::uint64_t;
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
@@ -129,7 +129,7 @@ namespace Mastodon
          *
          *  @since  0.20.0
          */
-        uint_fast64_t max_toot_chars() const;
+        uint64_t max_toot_chars() const;
     };
 }
 

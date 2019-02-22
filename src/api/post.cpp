@@ -20,7 +20,7 @@
 
 using namespace Mastodon;
 
-uint_fast16_t API::post(const Mastodon::API::v1 &call,
+uint16_t API::post(const Mastodon::API::v1 &call,
                         const parametermap &parameters, string &answer)
 {
     string strcall = "";
@@ -137,13 +137,13 @@ uint_fast16_t API::post(const Mastodon::API::v1 &call,
     return post(strcall, parameters, answer);
 }
 
-uint_fast16_t API::post(const Mastodon::API::v1 &call, string &answer)
+uint16_t API::post(const Mastodon::API::v1 &call, string &answer)
 {
     const parametermap p;
     return post(call, p, answer);
 }
 
-uint_fast16_t API::post(const string &call,
+uint16_t API::post(const string &call,
                         const parametermap &parameters, string &answer)
 {
 

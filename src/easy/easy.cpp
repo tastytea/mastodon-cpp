@@ -97,7 +97,7 @@ const string Easy::strtime_local(const system_clock::time_point &timepoint,
 const string Easy::strtime(const system_clock::time_point &timepoint,
                            const string &format, const bool &utc)
 {
-    constexpr std::uint_fast16_t bufsize = 1024;
+    constexpr std::uint16_t bufsize = 1024;
     std::time_t time = system_clock::to_time_t(timepoint);
     std::tm *timeinfo;
     if (utc)

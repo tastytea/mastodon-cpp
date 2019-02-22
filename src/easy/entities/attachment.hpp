@@ -32,7 +32,7 @@
 #endif
 
 using std::string;
-using std::uint_fast64_t;
+using std::uint64_t;
 
 namespace Mastodon
 {
@@ -81,7 +81,7 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        uint_fast64_t bitrate() const;
+        uint64_t bitrate() const;
 
         /*!
          *  @brief  Returns the image description
@@ -150,14 +150,14 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        uint_fast64_t height() const;
+        uint64_t height() const;
 
         /*!
          *  @brief  Returns the height of the preview image
          *  
          *  @since before 0.11.0
          */
-        uint_fast64_t height_small() const;
+        uint64_t height_small() const;
 
         /*!
          *  @brief  Returns the ID of the attachment
@@ -220,14 +220,14 @@ namespace Mastodon
          *  
          *  @since before 0.11.0
          */
-        uint_fast64_t width() const;
+        uint64_t width() const;
 
         /*!
          *  @brief  Returns the width of the preview image
          *  
          *  @since before 0.11.0
          */
-        uint_fast64_t width_small() const;
+        uint64_t width_small() const;
 
 
     };

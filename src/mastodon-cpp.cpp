@@ -148,18 +148,6 @@ const std::string API::urldecode(const std::string &str)
     return curlpp::unescape(str);
 }
 
-uint_fast16_t API::register_app1(const string &instance,
-                                 const string &client_name,
-                                 const string &redirect_uri,
-                                 const string &scopes,
-                                 const string &website,
-                                 string &client_id,
-                                 string &client_secret,
-                                 string &url)
-{
-    return register_app1(client_name, redirect_uri, scopes, website,
-                  client_id, client_secret, url);
-}
 uint_fast16_t API::register_app1(const string &client_name,
                                  const string &redirect_uri,
                                  const string &scopes,
@@ -212,16 +200,6 @@ uint_fast16_t API::register_app1(const string &client_name,
         return ret;
     }
     
-}
-
-uint_fast16_t API::register_app2(const string &instance,
-                                 const string &client_id,
-                                 const string &client_secret,
-                                 const string &redirect_uri,
-                                 const string &code,
-                                 string &access_token)
-{
-    return register_app2(client_id, client_secret, redirect_uri, code, access_token);
 }
 
 uint_fast16_t API::register_app2(const string &client_id,

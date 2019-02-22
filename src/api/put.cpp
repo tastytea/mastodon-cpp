@@ -60,17 +60,3 @@ uint_fast16_t API::put(const string &call,
     return _http.request(http::method::PUT, call,
                          maptoformdata(parameters), answer);
 }
-
-
-// ↓↓ DEPRECATED ↓↓
-uint_fast16_t API::put(const Mastodon::API::v1 &call,
-                       const string &argument,
-                       const parametermap &parameters, string &answer)
-{
-    parametermap newparameters = parameters;
-
-    // Emulate old behaviour
-    newparameters["id"] = { argument };
-
-    return put(call, newparameters, answer);
-}

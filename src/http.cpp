@@ -210,12 +210,6 @@ size_t API::http::callback_write(char* data, size_t size, size_t nmemb,
     return size * nmemb;
 }
 
-size_t API::http::callback(char* data, size_t size, size_t nmemb,
-                           string *str)
-{
-    return callback_write(data, size, nmemb, str);
-}
-
 double API::http::callback_progress(double /* dltotal */, double /* dlnow */,
                                     double /* ultotal */, double /* ulnow */)
 {
@@ -230,11 +224,6 @@ double API::http::callback_progress(double /* dltotal */, double /* dlnow */,
 void API::http::cancel_stream()
 {
     _cancel_stream = true;
-}
-
-void API::http::abort_stream()
-{
-    cancel_stream();
 }
 
 std::mutex &API::http::get_mutex()

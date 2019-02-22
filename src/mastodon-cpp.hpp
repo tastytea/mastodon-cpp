@@ -140,9 +140,6 @@ public:
          */ 
         void cancel_stream();
 
-        [[deprecated("Will vanish in 1.0.0. Use cancel_stream() instead.")]]
-        void abort_stream();
-
         /*!
          *  @brief  Gets the mutex guarding the string that is written to.
          *  
@@ -165,9 +162,6 @@ public:
 
         size_t callback_write(char* data, size_t size, size_t nmemb,
                                     string *oss);
-        [[deprecated("Will vanish in 1.0.0. Use callback_write() instead.")]]
-        size_t callback(char* data, size_t size, size_t nmemb,
-                              string *oss);
         double callback_progress(double /* dltotal */, double /* dlnow */,
                                  double /* ultotal */, double /* ulnow */);
     };
@@ -383,15 +377,6 @@ public:
                                 string &client_secret,
                                 string &url);
 
-    [[deprecated("Will vanish in 1.0.0")]]
-    uint_fast16_t register_app1(const string &instance,
-                                const string &client_name,
-                                const string &redirect_uri,
-                                const string &scopes,
-                                const string &website,
-                                string &client_id,
-                                string &client_secret,
-                                string &url);
 
     /*!
      *  @brief  Register application, step 2/2
@@ -409,14 +394,6 @@ public:
      *  @since  before 0.11.0
      */
     uint_fast16_t register_app2(const string &client_id,
-                                const string &client_secret,
-                                const string &redirect_uri,
-                                const string &code,
-                                string &access_token);
-
-    [[deprecated("Will vanish in 1.0.0")]]
-    uint_fast16_t register_app2(const string &instance,
-                                const string &client_id,
                                 const string &client_secret,
                                 const string &redirect_uri,
                                 const string &code,
@@ -535,19 +512,6 @@ public:
      */
     uint_fast16_t get(const string &call, string &answer);
 
-    [[deprecated("Will vanish in 1.0.0, use get() without string argument "
-                 "instead.")]]
-    uint_fast16_t get(const Mastodon::API::v1 &call,
-                      const string &argument,
-                      string &answer);
-
-    [[deprecated("Will vanish in 1.0.0, use get() without string argument "
-                 "instead.")]]
-    uint_fast16_t get(const Mastodon::API::v1 &call,
-                      const string &argument,
-                      const parametermap &parameters,
-                      string &answer);
-
     /*!
      *  @brief  Make a streaming GET request.
      *
@@ -599,13 +563,6 @@ public:
      *  @since  before 0.11.0
      */
     uint_fast16_t get_stream(const string &call,
-                             string &answer,
-                             std::unique_ptr<Mastodon::API::http> &ptr);
-
-    [[deprecated("Will vanish in 1.0.0, use get_stream() without string "
-                 "argument instead.")]]
-    uint_fast16_t get_stream(const Mastodon::API::v1 &call,
-                             const string &argument,
                              string &answer,
                              std::unique_ptr<Mastodon::API::http> &ptr);
 
@@ -680,19 +637,6 @@ public:
                         const parametermap &parameters,
                         string &answer);
 
-    [[deprecated("Will vanish in 1.0.0, use post() without string argument "
-                 "instead.")]]
-     uint_fast16_t post(const Mastodon::API::v1 &call,
-                        const string &argument,
-                        string &answer);
-
-    [[deprecated("Will vanish in 1.0.0, use post() without string argument "
-                 "instead.")]]
-     uint_fast16_t post(const Mastodon::API::v1 &call,
-                        const string &argument,
-                        const parametermap &parameters,
-                        string &answer);
-
     /*!
      *  @brief  Make a PUT request which requires a parameters.
      *
@@ -729,13 +673,6 @@ public:
                             const parametermap &parameters,
                             string &answer);
 
-    [[deprecated("Will vanish in 1.0.0, use put() without string argument "
-                 "instead.")]]
-    uint_fast16_t put(const Mastodon::API::v1 &call,
-                      const string &argument,
-                      const parametermap &parameters,
-                      string &answer);
-
     /*!
      *  @brief  Make a DELETE request which requires parameters.
      *
@@ -765,17 +702,6 @@ public:
     uint_fast16_t del(const string &call,
                       const parametermap &parameters,
                       string &answer);
-
-    [[deprecated("Will vanish in 1.0.0, use del() without string argument "
-                 "instead.")]]
-    uint_fast16_t del(const Mastodon::API::v1 &call,
-                      const string &argument);
-
-    [[deprecated("Will vanish in 1.0.0, use del() without string argument "
-                 "instead.")]]
-    uint_fast16_t del(const Mastodon::API::v1 &call,
-                      const string &argument,
-                      const parametermap &parameters);
 
 private:
     const string _instance;

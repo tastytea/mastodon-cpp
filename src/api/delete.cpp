@@ -67,25 +67,3 @@ uint_fast16_t API::del(const std::string &call,
     return _http.request(http::method::DELETE, call,
                          maptoformdata(parameters), answer);
 }
-
-
-// ↓↓ DEPRECATED ↓↓
-
-uint_fast16_t API::del(const Mastodon::API::v1 &call,
-                       const string &argument)
-{
-    const parametermap p = {};
-    return del(call, argument, p);
-}
-
-uint_fast16_t API::del(const Mastodon::API::v1 &call,
-                       const string &argument,
-                       const parametermap &parameters)
-{
-    parametermap newparameters = parameters;
-
-    // Emulate old behaviour
-    newparameters["id"] = { argument };
-
-    return del(call, parameters);
-}

@@ -214,38 +214,3 @@ uint_fast16_t API::get(const std::string &call, string &answer)
 {
     return _http.request(http::method::GET, call, answer);
 }
-
-
-
-// ↓↓ DEPRECATED ↓↓
-
-uint_fast16_t API::get(const Mastodon::API::v1 &call,
-                       const string &argument,
-                       const parametermap &parameters, string &answer)
-{
-    parametermap newparameters = parameters;
-
-    // Emulate old behaviour
-    switch (call)
-    {
-        case v1::search:
-        case v1::accounts_search:
-            newparameters["q"] = { argument };
-            break;
-        case v1::timelines_tag_hashtag:
-            newparameters["hashtag"] = { argument };
-            break;
-        default:
-            newparameters["id"] = { argument };
-            break;
-    }
-
-    return get(call, newparameters, answer);
-}
-
-uint_fast16_t API::get(const Mastodon::API::v1 &call,
-                       const string &argument, string &answer)
-{
-    const parametermap p;
-    return get(call, argument, p, answer);
-}

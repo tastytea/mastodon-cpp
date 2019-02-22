@@ -92,8 +92,3 @@ const std::vector<Easy::Tag> Results::hashtags_v2() const
 
     return {};
 }
-
-const std::vector<string> Results::hashtags() const
-{
-    return hashtags_v1();
-}

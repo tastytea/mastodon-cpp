@@ -202,11 +202,6 @@ Account Account::note(const string &note)
     return *this;
 }
 
-const string Account::note_plain() const
-{
-    return get_string("source.note");
-}
-
 Easy::visibility_type Account::privacy() const
 {
     const string strprivacy = get_string("source.privacy");

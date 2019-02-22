@@ -234,14 +234,6 @@ namespace Mastodon
         Account note(const string &note);
 
         /*!
-         *  @brief  Returns plaintext version of note
-         *  
-         *  @since before 0.11.0
-         */
-        [[deprecated("Will vanish in 1.0.0. Use source() instead.")]]
-        const string note_plain() const;
-
-        /*!
          *  @brief  Returns default privacy of new toots
          *  
          *  @since before 0.11.0

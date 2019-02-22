@@ -73,31 +73,3 @@ uint_fast16_t API::get_stream(const std::string &call, string &answer,
     ptr = std::make_unique<http>(*this, _instance, _access_token);
     return ptr->request(http::method::GET_STREAM, call, answer);
 }
-
-
-// ↓↓ DEPRECATED ↓↓
-
-uint_fast16_t API::get_stream(const Mastodon::API::v1 &call,
-                              const string &argument,
-                              string &answer,
-                              std::unique_ptr<Mastodon::API::http> &ptr)
-{
-    parametermap parameters;
-
-    // Emulate old behaviour
-    switch (call)
-    {
-        case v1::streaming_hashtag:
-            parameters["tag"] = { argument };
-            break;
-        case v1::streaming_list:
-            parameters["list"] = { argument };
-            break;
-        default:
-            ttdebug << "ERROR: Invalid call.\n";
-            return 11;
-            break;
-    }
-
-    return get_stream(call, parameters, answer, ptr);
-}

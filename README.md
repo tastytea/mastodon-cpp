@@ -9,6 +9,13 @@ JSON. You can then put that JSON into easy to use classes.
 **Beginning with 0.30.0, all IDs are `const string` instead of
 `uint_fast64_t` as required by the Mastodon API. Sorry for the inconvenience.**
 
+# Breaking API changes
+
+I'm going to rewrite key parts of this library. The new API will be incompatible
+with the old one. The new code will start with the version number `0.100.0`. The
+old code is archived in the branch "pre-0.100.0" and will get bugfixes for a
+while.
+
 # Usage
 
 The HTML reference can be generated with `build_doc.sh`, if doxygen is installed. It is also available at

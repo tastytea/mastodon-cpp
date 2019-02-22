@@ -16,7 +16,7 @@
 
 #include <array>
 #include "account.hpp"
-#include "macros.hpp"
+#include "debug.hpp"
 
 using namespace Mastodon;
 using Account = Easy::Account;

@@ -19,7 +19,7 @@
 #include <sstream>
 #include <regex>
 #include "easy.hpp"
-#include "macros.hpp"
+#include "debug.hpp"
 
 using namespace Mastodon;
 using std::string;

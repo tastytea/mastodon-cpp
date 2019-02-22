@@ -15,7 +15,7 @@
  */
 
 #include "notification.hpp"
-#include "macros.hpp"
+#include "debug.hpp"
 
 using namespace Mastodon;
 using Notification = Easy::Notification;

@@ -15,7 +15,7 @@
  */
 
 #include <iostream>
-#include "macros.hpp"
+#include "debug.hpp"
 #include "mastodon-cpp.hpp"
 
 using namespace Mastodon;

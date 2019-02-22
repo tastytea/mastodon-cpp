@@ -20,7 +20,7 @@
 #include <codecvt>
 #include <utility>
 #include "version.hpp"
-#include "macros.hpp"
+#include "debug.hpp"
 #include "mastodon-cpp.hpp"
 
 #include <iostream>

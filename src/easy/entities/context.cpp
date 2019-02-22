@@ -15,7 +15,7 @@
  */
 
 #include "context.hpp"
-#include "macros.hpp"
+#include "debug.hpp"
 
 using namespace Mastodon;
 using Context = Easy::Context;

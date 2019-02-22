@@ -15,7 +15,7 @@
  */
 
 #include "card.hpp"
-#include "macros.hpp"
+#include "debug.hpp"
 
 using namespace Mastodon;
 using Card = Easy::Card;

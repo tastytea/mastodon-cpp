@@ -17,7 +17,7 @@
 #include <sstream>
 #include <iomanip>
 #include "tag.hpp"
-#include "macros.hpp"
+#include "debug.hpp"
 
 using namespace Mastodon;
 using Tag = Easy::Tag;

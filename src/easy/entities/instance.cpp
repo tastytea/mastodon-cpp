@@ -17,7 +17,7 @@
 #include <jsoncpp/json/json.h>
 #include "instance.hpp"
 #include "account.hpp"
-#include "macros.hpp"
+#include "debug.hpp"
 
 using namespace Mastodon;
 using Instance = Easy::Instance;

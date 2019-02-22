@@ -15,7 +15,7 @@
  */
 
 #include "emoji.hpp"
-#include "macros.hpp"
+#include "debug.hpp"
 
 using namespace Mastodon;
 using Emoji = Easy::Emoji;

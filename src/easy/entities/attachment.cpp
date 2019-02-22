@@ -16,7 +16,7 @@
 
 #include <sstream>
 #include "attachment.hpp"
-#include "macros.hpp"
+#include "debug.hpp"
 
 using namespace Mastodon;
 using Attachment = Easy::Attachment;

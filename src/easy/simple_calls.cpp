@@ -16,7 +16,7 @@
 
 #include <algorithm>
 #include "easy.hpp"
-#include "macros.hpp"
+#include "debug.hpp"
 #include "easy/entities/status.hpp"
 #include "easy/entities/attachment.hpp"
 #include "easy/entities/notification.hpp"

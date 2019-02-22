@@ -27,6 +27,43 @@
 
 using namespace Mastodon;
 
+constexpr return_base::operator const bool() const
+{
+    if (error_code == 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+constexpr return_base::operator const uint8_t() const
+{
+    return error_code;
+}
+
+const return_call::operator const string() const
+{
+    return answer;
+}
+
+std::ostream &operator <<(std::ostream &out, const return_call &ret)
+{
+    out << ret.answer;
+    return out;
+}
+
+return_call::return_call(const uint8_t ec, const string &em,
+                         const uint16_t hec, const string &a)
+: http_error_code(hec)
+, answer(a)
+{
+    error_code = ec;
+    error_message = em;
+}
+
 API::API(const string &instance, const string &access_token)
 : _instance(instance)
 , _access_token(access_token)

@@ -24,33 +24,48 @@
 #include <memory>
 #include <array>
 #include <mutex>
+#include <ostream>
 #include <curlpp/cURLpp.hpp>
 #include <curlpp/Easy.hpp>
 
+using std::uint8_t;
 using std::uint16_t;
 using std::string;
 
 /*!
- *  @example example01_dump_json.cpp
- *  @example example02_parse_account.cpp
- *  @example example03_mastocron.cpp
- *  @example example04_update_credentials.cpp
- *  @example example05_follow_unfollow.cpp
- *  @example example06_toot_delete-toot.cpp
- *  @example example07_register_app.cpp
- *  @example example08_rate_limiting.cpp
- *  @example example09_streaming_api.cpp
- *  @example example10_simplify.cpp
- *  @example example11_post_media.cpp
- *  @example example12_easy_laststatus.cpp
- *  @example example13_easy_stream.cpp
- *  @example example14_easy_treeview.cpp
- *  @example example15_proxy.cpp
- *  @example example16_account_fields.cpp
+ *  @example example01_CHANGEME.cpp
  */
 
 namespace Mastodon
 {
+    /*!
+     *  Base return type.
+     */
+    typedef struct return_base
+    {
+        uint8_t error_code = 0;     // NOTE: http://mazack.org/unix/errno.php
+        string error_message;
+
+        constexpr operator const bool() const;
+        constexpr operator const uint8_t() const;
+    } return_base;
+
+    /*!
+     *  Return type for API calls.
+     */
+    typedef struct return_call : return_base
+    {
+        uint16_t http_error_code = 0;
+        string answer;
+
+        const operator const string() const;
+        friend std::ostream &operator <<(std::ostream &out,
+                                         const return_call &ret);
+
+        return_call(const uint8_t ec, const string &em,
+                    const uint16_t hec, const string &a);
+    } return_call;
+
 /*!
  *  @brief  Class for the Mastodon API.
  *  
@@ -472,7 +487,7 @@ public:
      *  
      *  @since  before 0.11.0
      */
-    uint16_t get(const Mastodon::API::v1 &call, string &answer);
+    const return_call get(const Mastodon::API::v1 &call);
 
     /*!
      *  @brief  Make a GET request which requires parameters.
@@ -485,18 +500,16 @@ public:
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *  is returned and answer is set to the new URL.
      */
-    uint16_t get(const Mastodon::API::v1 &call,
-                      const parametermap &parameters,
-                      string &answer);
+    const return_call get(const Mastodon::API::v1 &call,
+                          const parametermap &parameters);
 
     /*!
      *  @brief  Make a GET request which requires parameters.
      *
      *  @since  0.16.0
      */
-    uint16_t get(const Mastodon::API::v2 &call,
-                      const parametermap &parameters,
-                      string &answer);
+    const return_call get(const Mastodon::API::v2 &call,
+                          const parametermap &parameters);
 
     /*!
      *  @brief  Make a custom GET request.
@@ -510,7 +523,7 @@ public:
      *  
      *  @since  before 0.11.0
      */
-    uint16_t get(const string &call, string &answer);
+    const return_call get(const string &call);
 
     /*!
      *  @brief  Make a streaming GET request.

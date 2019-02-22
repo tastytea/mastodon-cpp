@@ -47,6 +47,8 @@ $(function() {
 <p><a href="https://schlomp.space/tastytea/mastodon-cpp/milestones">TODO-list</a></p>
 <p><b>The ABI will be unstable in versions &lt; 1.0.0</b></p>
 <p><b>Beginning with 0.30.0, all IDs are <code>const string</code> instead of <code>uint_fast64_t</code> as required by the Mastodon API. Sorry for the inconvenience.</b></p>
+<h1>Breaking API changes</h1>
+<p>I'm going to rewrite key parts of this library. The new API will be incompatible with the old one. The new code will start with the version number <code>0.100.0</code>. The old code is archived in the branch "pre-0.100.0" and will get bugfixes for a while.</p>
 <h1>Usage</h1>
 <p>The HTML reference can be generated with <code>build_doc.sh</code>, if doxygen is installed. It is also available at <a href="https://doc.schlomp.space/mastodon-cpp/annotated.html">doc.schlomp.space/mastodon-cpp/</a>. There are <a href="https://schlomp.space/tastytea/mastodon-cpp/src/branch/master/examples">examples</a> in <code>examples/</code>.</p>
 <h2>Most basic example</h2>

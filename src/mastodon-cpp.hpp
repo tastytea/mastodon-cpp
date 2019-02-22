@@ -62,6 +62,7 @@ namespace Mastodon
         friend std::ostream &operator <<(std::ostream &out,
                                          const return_call &ret);
 
+        return_call();
         return_call(const uint8_t ec, const string &em,
                     const uint16_t hec, const string &a);
     } return_call;
@@ -116,9 +117,7 @@ public:
         explicit http(const API &api, const string &instance,
                       const string &access_token);
         ~http();
-        uint16_t request(const method &meth,
-                                    const string &path,
-                                    string &answer);
+        return_call request(const method &meth, const string &path);
 
         /*!
          *  @brief  HTTP Request.
@@ -133,10 +132,9 @@ public:
          *  
          *  @since  before 0.11.0
          */
-        uint16_t request(const method &meth,
-                                    const string &path,
-                                    const curlpp::Forms &formdata,
-                                    string &answer);
+        return_call request(const method &meth,
+                            const string &path,
+                            const curlpp::Forms &formdata);
 
         /*!
          *  @brief  Get all headers in a string

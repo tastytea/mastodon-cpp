@@ -55,6 +55,9 @@ std::ostream &operator <<(std::ostream &out, const return_call &ret)
     return out;
 }
 
+return_call::return_call()
+{}
+
 return_call::return_call(const uint8_t ec, const string &em,
                          const uint16_t hec, const string &a)
 : http_error_code(hec)

@@ -44,21 +44,18 @@ API::http::~http()
     curlpp::terminate();
 }
 
-uint16_t API::http::request(const method &meth,
-                                 const string &path,
-                                 string &answer)
+return_call API::http::request(const method &meth, const string &path)
 {
-    return request(meth, path, curlpp::Forms(), answer);
+    return request(meth, path, curlpp::Forms());
 }
 
-uint16_t API::http::request(const method &meth,
-                                 const string &path,
-                                 const curlpp::Forms &formdata,
-                                 string &answer)
+return_call API::http::request(const method &meth,
+                            const string &path,
+                            const curlpp::Forms &formdata)
 {
     using namespace std::placeholders;  // _1, _2, _3
 
-    uint16_t ret = 0;
+    string answer;
     ttdebug << "Path is: " << path << '\n';
     
     try
@@ -131,31 +128,31 @@ uint16_t API::http::request(const method &meth,
 
         answer.clear();
         request.perform();
-        ret = curlpp::infos::ResponseCode::get(request);
-        ttdebug << "Response code: " << ret << '\n';
+        uint16_t http_code = curlpp::infos::ResponseCode::get(request);
+        ttdebug << "Response code: " << http_code << '\n';
         // Work around "HTTP/1.1 100 Continue\r\n\r\nHTTP/1.1 200 OK"
         size_t pos = answer.find("\r\n\r\n", 25);
         _headers = answer.substr(0, pos);
         // Only return body
         answer = answer.substr(pos + 4);
 
-        if (ret == 200 || ret == 302 || ret == 307)
+        if (http_code == 200 || http_code == 302 || http_code == 307)
         {   // OK or Found or Temporary Redirect
-            return 0;
+            return { 0, "", http_code, answer };
         }
-        else if (ret == 301 || ret == 308)
+        else if (http_code == 301 || http_code == 308)
         {   // Moved Permanently or Permanent Redirect
             // return new URL
             answer = curlpp::infos::EffectiveUrl::get(request);
-            return 13;
+            return { 78, "Remote address changed", http_code, answer };
         }
-        else if (ret == 0)
+        else if (http_code == 0)
         {
-            return 0xffff;
+            return { 255, "Unknown error", http_code, answer };
         }
         else
         {
-            return ret;
+            return { 111, "Connection refused", http_code, answer };
         }
     }
     catch (curlpp::RuntimeError &e)
@@ -166,12 +163,12 @@ uint16_t API::http::request(const method &meth,
             (what.compare(0, 19, "Failed writing body") == 0))
         {
             ttdebug << "Request was cancelled by user\n";
-            return 14;
+            return { 0, "Request was cancelled by user", 0, "" };
         }
         else if (what.compare(what.size() - 20, 20, "Connection timed out") == 0)
         {
             ttdebug << "Timeout\n";
-            return 16;
+            return { 110, "Connection timed out", 0, "" };
         }
 
         if (parent.exceptions())
@@ -181,7 +178,7 @@ uint16_t API::http::request(const method &meth,
         else
         {
             ttdebug << "curlpp::RuntimeError: " << e.what() << std::endl;
-            return 15;
+            return { 132, e.what(), 0, "" };
         }
     }
     catch (curlpp::LogicError &e)
@@ -192,7 +189,7 @@ uint16_t API::http::request(const method &meth,
         }
 
         ttdebug << "curlpp::LogicError: " << e.what() << std::endl;
-        return 15;
+        return { 133, e.what(), 0, "" };
     }
 }
 

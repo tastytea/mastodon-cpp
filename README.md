@@ -79,19 +79,16 @@ g++ -std=c++14 -lmastodon-cpp example.cpp
 
 ## Error codes
 
-mastodon-cpp will never use error codes below 11, except 0.
-
 |      Code | Explanation                      |
 | --------: |:---------------------------------|
 |         0 | No error                         |
-|        11 | Invalid call                     |
-|        12 | Not implemented                  |
-|        13 | URL changed (HTTP 301 or 308)    |
-|        14 | Aborted by user                  |
-|        15 | Network error (curlpp exception) |
-|        16 | Timeout                          |
-| 100 - 999 | HTTP status codes                |
-|     65535 | Unknown error                    |
+|        22 | Invalid argument                 |
+|        78 | URL changed (HTTP 301 or 308)    |
+|       110 | Connection timed out             |
+|       111 | Connection refused               |
+|       132 | curlpp runtime error             |
+|       133 | curlpp logic error               |
+|       255 | Unknown error                    |
 
 If you use a debug build, you get more verbose error messages.
 

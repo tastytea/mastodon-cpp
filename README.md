@@ -13,8 +13,11 @@ JSON. You can then put that JSON into easy to use classes.
 
 I'm going to rewrite key parts of this library. The new API will be incompatible
 with the old one. The new code will start with the version number `0.100.0`. The
-old code is archived in the branch "pre-0.100.0" and will get bugfixes for a
+old code is archived in the branch `pre-0.100.0` and will get bugfixes for a
 while.
+
+**The code on the `master`-branch is not usable at the moment, stick to the
+releases, please.**
 
 # Usage
 

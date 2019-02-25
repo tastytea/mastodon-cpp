@@ -305,6 +305,13 @@ public:
     explicit API(const string &instance, const string &access_token);
 
     /*!
+     *  @brief  Destroys the object.
+     *
+     *  @since  0.100.0
+     */
+    virtual ~API();
+
+    /*!
      *  @brief  Sets the useragent. Default is mastodon-cpp/version.
      *
      *  @param  useragent  The useragent

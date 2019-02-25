@@ -340,11 +340,11 @@ public:
         Entity();
 
         /*!
-         *  @brief  Constructs an Entity object from a JSON object.
+         *  @brief  Destroys the object.
          *
-         *  @param  generic  The generic
+         *  @since  0.100.0
          */
-        Entity(const Json::Value &object);
+        virtual ~Entity();
 
         /*!
          *  @brief  Replaces the Entity with a new one from a JSON string.
@@ -354,6 +354,24 @@ public:
          *  @since  before 0.11.0
          */
         void from_string(const string &json);
+
+        /*!
+         *  @brief  Returns the JSON object of the Entity
+         *
+         *  @return JSON object
+         *  
+         *  @since  before 0.11.0
+         */
+        const string to_string() const;
+
+        /*!
+         *  @brief  Replaces the Entity with a new one from a JSON object.
+         *
+         *  @param  object  JSON object
+         *
+         *  @since  0.100.0
+         */
+        void from_object(const Json::Value &object);
 
         /*!
          *  @brief  Returns the JSON object of the Entity
@@ -520,7 +538,7 @@ protected:
 };
 
 /*!
- * Return type for simple calls.
+ * Return type for Easy calls, with an Easy::Entity.
  * @since  0.100.0
  */
 typedef struct return_entity : return_base
@@ -532,6 +550,10 @@ typedef struct return_entity : return_base
                   const Easy::GenericEntity &ent);
 } return_entity;
 
+/*!
+ * Return type for Easy calls, with a vector of Easy::Entity.
+ * @since  0.100.0
+ */
 typedef struct return_entity_vector : return_base
 {
     vector<Easy::GenericEntity> entities;

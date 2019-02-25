@@ -75,9 +75,10 @@ API::API(const string &instance, const string &access_token)
 , _exceptions(false)
 , _proxy("")
 , _proxy_userpw("")
-{
-    //
-}
+{}
+
+API::~API()
+{}
 
 void API::set_useragent(const std::string &useragent)
 {

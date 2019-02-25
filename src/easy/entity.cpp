@@ -33,6 +33,13 @@ Easy::Entity::Entity(const string &json)
     from_string(json);
 }
 
+Easy::Entity::Entity()
+: _was_set(false)
+{}
+
+Easy::Entity::~Entity()
+{}
+
 void Easy::Entity::from_string(const string &json)
 {
     std::stringstream ss(json);
@@ -57,19 +64,20 @@ void Easy::Entity::from_string(const string &json)
     }
 }
 
+const string Easy::Entity::to_string() const
+{
+    return _tree.toStyledString();
+}
+
+void Easy::Entity::from_object(const Json::Value &object)
+{
+    _tree = object;
+}
+
 const Json::Value Easy::Entity::to_object() const
 {
     return _tree;
 }
-
-Easy::Entity::Entity(const Json::Value &object)
-: _tree(object)
-, _was_set(false)
-{}
-
-Easy::Entity::Entity()
-: _was_set(false)
-{}
 
 bool Easy::Entity::check_valid(const std::vector<string> &attributes) const
 {

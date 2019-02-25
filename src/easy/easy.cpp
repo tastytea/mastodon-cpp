@@ -24,6 +24,30 @@
 using namespace Mastodon;
 using std::string;
 
+return_entity::return_entity()
+: entity()
+{}
+
+return_entity::return_entity(const uint8_t ec, const string &em,
+                             const Easy::GenericEntity &ent)
+: entity(ent)
+{
+    error_code = ec;
+    error_message = em;
+}
+
+return_entity_vector::return_entity_vector()
+: entities()
+{}
+
+return_entity_vector::return_entity_vector(const uint8_t ec, const string &em,
+                                        const vector<Easy::GenericEntity> &vec)
+: entities(vec)
+{
+    error_code = ec;
+    error_message = em;
+}
+
 Easy::Easy(const string &instance, const string &access_token)
 : API(instance, access_token)
 {}

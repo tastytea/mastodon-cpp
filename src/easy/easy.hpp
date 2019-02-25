@@ -40,6 +40,10 @@ using std::chrono::system_clock;
 
 namespace Mastodon
 {
+// Defined at the bottom
+typedef struct return_entity return_entity;
+typedef struct return_entity_vector return_entity_vector;
+
 /*!
  *  @brief  Child of Mastodon::API with abstract methods.
  *  
@@ -286,14 +290,14 @@ public:
      *  
      *  @since  0.18.1
      */
-    const Status send_post(const Status &status, uint16_t &error);
+    const return_entity send_post(const Status &status);
 
     /*!
      *  @brief  Alias for send_post()
      *  
      *  @since  0.17.0
      */
-    const Status send_toot(const Status &status, uint16_t &error);
+    const return_entity send_toot(const Status &status);
 
     /*!
      *  @brief  Gets notifications.
@@ -307,9 +311,9 @@ public:
      *
      *  @since  0.21.0
      */
-    const vector<Notification> get_notifications(
-        uint16_t &error, const uint16_t limit = 20,
-        const string since_id = 0, const string max_id = 0);
+    const return_entity_vector get_notifications(const uint16_t limit = 20,
+                                                 const string since_id = 0,
+                                                 const string max_id = 0);
 
     /*!
      *  @brief  Base class for all entities.
@@ -334,6 +338,13 @@ public:
          *  @since  before 0.11.0
          */
         Entity();
+
+        /*!
+         *  @brief  Constructs an Entity object from a JSON object.
+         *
+         *  @param  generic  The generic
+         */
+        Entity(const Json::Value &object);
 
         /*!
          *  @brief  Replaces the Entity with a new one from a JSON string.
@@ -475,11 +486,60 @@ public:
         mutable bool _was_set;
     };
 
+    /*!
+     *  @brief  Class to hold generic entities.
+     *
+     *  @since  0.100.0
+     */
+    class GenericEntity : public Easy::Entity
+    {
+    public:
+        /*!
+         *  @brief  Constructs an GenericEntity object from a JSON string.
+         *
+         *  @param  json    JSON string
+         *
+         *  @since  0.100.0
+         */
+        explicit GenericEntity(const string &json);
+
+        /*!
+         *  @brief  Constructs an empty GenericEntity object.
+         *
+         *  @since  0.100.0
+         */
+        explicit GenericEntity();
+
+        virtual bool valid() const override;
+    };
+
 protected:
     inline static const string strtime
         (const system_clock::time_point &timepoint,
          const string &format, const bool &utc);
 };
+
+/*!
+ * Return type for simple calls.
+ * @since  0.100.0
+ */
+typedef struct return_entity : return_base
+{
+    Easy::GenericEntity entity;
+
+    return_entity();
+    return_entity(const uint8_t ec, const string &em,
+                  const Easy::GenericEntity &ent);
+} return_entity;
+
+typedef struct return_entity_vector : return_base
+{
+    vector<Easy::GenericEntity> entities;
+
+    return_entity_vector();
+    return_entity_vector(const uint8_t ec, const string &em,
+                  const vector<Easy::GenericEntity> &vec);
+} return_entity_vector;
 }
 
 #endif  // MASTODON_EASY_CPP_HPP

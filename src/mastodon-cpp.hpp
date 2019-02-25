@@ -39,7 +39,8 @@ using std::string;
 namespace Mastodon
 {
     /*!
-     *  Base return type.
+     * Base return type.
+     * @since  0.100.0
      */
     typedef struct return_base
     {
@@ -51,7 +52,8 @@ namespace Mastodon
     } return_base;
 
     /*!
-     *  Return type for API calls.
+     * Return type for API calls.
+     * @since  0.100.0
      */
     typedef struct return_call : return_base
     {

@@ -23,16 +23,14 @@
 
 using namespace Mastodon;
 
-const Easy::Status Easy::send_toot(const Status &status, uint16_t &error)
+const return_entity Easy::send_toot(const Status &status)
 {
-    return send_post(status, error);
+    return send_post(status);
 }
 
-const Easy::Status Easy::send_post(const Status &status, uint16_t &error)
+const return_entity Easy::send_post(const Status &status)
 {
     API::parametermap parameters;
-    string answer;
-    error = 0;
 
     if (!status.content().empty())
     {
@@ -41,8 +39,7 @@ const Easy::Status Easy::send_post(const Status &status, uint16_t &error)
     else
     {
         ttdebug << "ERROR: Easy::Status::content can not be empty.\n";
-        error = 11;
-        return Status();
+        return {22, "Easy::Status::content can not be empty", GenericEntity()};
     }
 
     if (!status.in_reply_to_id().empty())
@@ -97,8 +94,8 @@ const Easy::Status Easy::send_post(const Status &status, uint16_t &error)
             else
             {
                 ttdebug << "ERROR: Easy::Attachment::file can not be empty.\n";
-                error = 11;
-                return Status();
+                return { 22, "Easy::Attachment::file can not be empty",
+                    GenericEntity() };
             }
             if (!att.description().empty())
             {
@@ -111,40 +108,32 @@ const Easy::Status Easy::send_post(const Status &status, uint16_t &error)
                                    std::to_string(att.focus()[1]) }});
             }
 
-            error = post(API::v1::media, param_att, answer);
-            if (error == 0)
+            return_call ret = post(API::v1::media, param_att);
+            if (ret.error_code == 0)
             {
-                Attachment attachment(answer);
+                Attachment attachment(ret.answer);
                 media_ids.push_back(attachment.id());
             }
             else
             {
                 ttdebug << "ERROR: Could not upload file.\n";
-                return Status();
+                return { ret.error_code, ret.error_message,
+                    GenericEntity(ret.answer) };
             }
         }
 
         parameters.insert({ "media_ids", media_ids });
     }
 
-    error = post(API::v1::statuses, parameters, answer);
-    if (error == 0)
-    {
-        return Status(answer);
-    }
-    else
-    {
-        return Status();
-    }
+    return_call ret = post(API::v1::statuses, parameters);
+    return { ret.error_code, ret.error_message, GenericEntity(ret.answer) };
 }
 
-const vector<Easy::Notification> Easy::get_notifications(
-    uint16_t &error, const uint16_t limit,
-    const string since_id, const string max_id)
+const return_entity_vector Easy::get_notifications(const uint16_t limit,
+                                                   const string since_id,
+                                                   const string max_id)
 {
     API::parametermap parameters;
-    string answer;
-    error = 0;
 
     parameters.insert({ "limit", { std::to_string(limit) } });
     if (!since_id.empty())
@@ -156,24 +145,24 @@ const vector<Easy::Notification> Easy::get_notifications(
         parameters.insert({ "max_id", { max_id } });
     }
 
-    error = API::get(Mastodon::API::v1::notifications, parameters, answer);
+    return_call ret = API::get(API::v1::notifications, parameters);
 
-    if (error == 0)
+    if (ret.error_code == 0)
     {
-        const vector<string> &answer_v = json_array_to_vector(answer);
-        vector<Notification> notifications;
+        const vector<string> &answer_v = json_array_to_vector(ret.answer);
+        vector<GenericEntity> notifications;
         notifications.resize(answer_v.size());
 
         // Transform vector of strings to vector of Notification.
         std::transform(answer_v.begin(), answer_v.end(), notifications.begin(),
                        [](const string s)
-                       { return Notification(s); });
+                       { return GenericEntity(s); });
 
-        return notifications;
+        return { ret.error_code, ret.error_message, notifications };
     }
     else
     {
         ttdebug << "ERROR: Could not get notifications.\n";
-        return { Notification() };
+        return { ret.error_code, ret.error_message, {} };
     }
 }

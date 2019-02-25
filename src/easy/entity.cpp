@@ -62,6 +62,11 @@ const Json::Value Easy::Entity::to_object() const
     return _tree;
 }
 
+Easy::Entity::Entity(const Json::Value &object)
+: _tree(object)
+, _was_set(false)
+{}
+
 Easy::Entity::Entity()
 : _was_set(false)
 {}
@@ -274,4 +279,17 @@ std::uint64_t Easy::Entity::stouint64(const string &str) const
     {
         return stoull(str);
     }
+}
+
+Easy::GenericEntity::GenericEntity(const string &json)
+: Entity(json)
+{}
+
+Easy::GenericEntity::GenericEntity()
+: Entity()
+{}
+
+bool Easy::GenericEntity::valid() const
+{
+    return true;
 }

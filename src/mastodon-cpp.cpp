@@ -188,13 +188,13 @@ const std::string API::urldecode(const std::string &str)
     return curlpp::unescape(str);
 }
 
-uint16_t API::register_app1(const string &client_name,
-                                 const string &redirect_uri,
-                                 const string &scopes,
-                                 const string &website,
-                                 string &client_id,
-                                 string &client_secret,
-                                 string &url)
+return_call API::register_app1(const string &client_name,
+                               const string &redirect_uri,
+                               const string &scopes,
+                               const string &website,
+                               string &client_id,
+                               string &client_secret,
+                               string &url)
 {
     API::parametermap parameters =
     {
@@ -204,18 +204,17 @@ uint16_t API::register_app1(const string &client_name,
         { "website", { website } }
     };
 
-    string answer;
-    uint16_t ret = post(API::v1::apps, parameters, answer);
+    return_call ret = post(API::v1::apps, parameters);
 
-    if (ret == 0)
+    if (ret.error_code == 0)
     {
         std::smatch match;
         std::regex reid("client_id\":\"([^\"]+)\"");
         std::regex resecret("client_secret\":\"([^\"]+)\"");
 
-        std::regex_search(answer, match, reid);
+        std::regex_search(ret.answer, match, reid);
         client_id = match[1].str();
-        std::regex_search(answer, match, resecret);
+        std::regex_search(ret.answer, match, resecret);
         client_secret = match[1].str();
 
         url = "https://" + _instance + "/oauth/authorize" +
@@ -226,27 +225,24 @@ uint16_t API::register_app1(const string &client_name,
         {
             url += "&website=" + urlencode(website);
         }
-
-        return 0;
     }
-    else if (ret == 13)
+    else if (ret.error_code == 78)
     {
-        url = answer;
-        return ret;
+        url = ret.answer;
     }
     else
     {
-        std::cerr << "Error code: " << ret << '\n';
-        return ret;
+        std::cerr << "Error code: " << std::to_string(ret.error_code) << '\n';
     }
-    
+
+    return ret;
 }
 
-uint16_t API::register_app2(const string &client_id,
-                                 const string &client_secret,
-                                 const string &redirect_uri,
-                                 const string &code,
-                                 string &access_token)
+return_call API::register_app2(const string &client_id,
+                               const string &client_secret,
+                               const string &redirect_uri,
+                               const string &code,
+                               string &access_token)
 {
     API::parametermap parameters =
     {
@@ -257,24 +253,22 @@ uint16_t API::register_app2(const string &client_id,
         { "code", { code } },
     };
 
-    std::string answer;
-    uint16_t ret = post("/oauth/token", parameters, answer);
-    if (ret == 0)
+    return_call ret = post("/oauth/token", parameters);
+    if (ret.error_code == 0)
     {
         std::smatch match;
         std::regex retoken("access_token\":\"([^\"]+)\"");
 
-        std::regex_search(answer, match, retoken);
+        std::regex_search(ret.answer, match, retoken);
         access_token = match[1].str();
         _access_token = access_token;
-
-        return 0;
     }
     else
     {
-        std::cerr << "Error code: " << ret << '\n';
-        return ret;
+        std::cerr << "Error code: " << std::to_string(ret.error_code) << '\n';
     }
+
+    return ret;
 }
 
 const string API::get_header(const std::string &header) const

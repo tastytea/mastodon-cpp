@@ -380,13 +380,13 @@ public:
      *  
      *  @since  before 0.11.0
      */
-    uint16_t register_app1(const string &client_name,
-                                const string &redirect_uri,
-                                const string &scopes,
-                                const string &website,
-                                string &client_id,
-                                string &client_secret,
-                                string &url);
+    return_call register_app1(const string &client_name,
+                              const string &redirect_uri,
+                              const string &scopes,
+                              const string &website,
+                              string &client_id,
+                              string &client_secret,
+                              string &url);
 
 
     /*!
@@ -404,11 +404,11 @@ public:
      *  
      *  @since  before 0.11.0
      */
-    uint16_t register_app2(const string &client_id,
-                                const string &client_secret,
-                                const string &redirect_uri,
-                                const string &code,
-                                string &access_token);
+    return_call register_app2(const string &client_id,
+                              const string &client_secret,
+                              const string &redirect_uri,
+                              const string &code,
+                              string &access_token);
 
     /*!
      *  @brief  Gets the header from the last answer.

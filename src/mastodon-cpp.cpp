@@ -26,8 +26,7 @@
 #include <iostream>
 
 using namespace Mastodon;
-
-constexpr return_base::operator const bool() const
+return_base::operator const bool() const
 {
     if (error_code == 0)
     {
@@ -39,12 +38,12 @@ constexpr return_base::operator const bool() const
     }
 }
 
-constexpr return_base::operator const uint8_t() const
+return_base::operator const uint8_t() const
 {
     return error_code;
 }
 
-const return_call::operator const string() const
+return_call::operator const string() const
 {
     return answer;
 }

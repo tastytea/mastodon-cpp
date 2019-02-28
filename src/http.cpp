@@ -178,7 +178,7 @@ return_call API::http::request(const method &meth,
         else
         {
             ttdebug << "curlpp::RuntimeError: " << e.what() << std::endl;
-            return { 132, e.what(), 0, "" };
+            return { 192, e.what(), 0, "" };
         }
     }
     catch (curlpp::LogicError &e)
@@ -189,7 +189,7 @@ return_call API::http::request(const method &meth,
         }
 
         ttdebug << "curlpp::LogicError: " << e.what() << std::endl;
-        return { 133, e.what(), 0, "" };
+        return { 193, e.what(), 0, "" };
     }
 }
 

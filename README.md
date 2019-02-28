@@ -86,8 +86,8 @@ g++ -std=c++14 -lmastodon-cpp example.cpp
 |        78 | URL changed (HTTP 301 or 308)              |
 |       110 | Connection timed out                       |
 |       111 | Connection refused (check http_error_code) |
-|       132 | curlpp runtime error                       |
-|       133 | curlpp logic error                         |
+|       192 | curlpp runtime error                       |
+|       193 | curlpp logic error                         |
 |       255 | Unknown error                              |
 
 If you use a debug build, you get more verbose error messages.

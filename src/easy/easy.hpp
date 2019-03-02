@@ -538,7 +538,7 @@ protected:
 };
 
 /*!
- * Return type for Easy calls, with an Easy::Entity.
+ * Return type for Easy calls, with an Easy::GenericEntity.
  * @since  0.100.0
  */
 typedef struct return_entity : return_base
@@ -551,7 +551,7 @@ typedef struct return_entity : return_base
 } return_entity;
 
 /*!
- * Return type for Easy calls, with a vector of Easy::Entity.
+ * Return type for Easy calls, with a vector of Easy::GenericEntity.
  * @since  0.100.0
  */
 typedef struct return_entity_vector : return_base

@@ -309,7 +309,7 @@ public:
      */
     const vector<Notification> get_notifications(
         uint_fast16_t &error, const uint_fast16_t limit = 20,
-        const string since_id = 0, const string max_id = 0);
+        const string since_id = "", const string max_id = "");
 
     /*!
      *  @brief  Base class for all entities.

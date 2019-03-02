@@ -33,7 +33,7 @@ using std::uint16_t;
 using std::string;
 
 /*!
- *  @example example01_CHANGEME.cpp
+ *  @example example01_get_public_timeline.cpp
  */
 
 namespace Mastodon

@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 #include <cstdio>
 int main()
 {
-    printf("mastodon-cpp was compiled without Easy support.\n");
+    std::printf("mastodon-cpp was compiled without Easy support.\n");
     return 255;
 }
 #endif  // WITHOUT_EASY

@@ -36,6 +36,22 @@ return_entity::return_entity(const uint8_t ec, const string &em,
     error_message = em;
 }
 
+return_entity::operator const Easy::GenericEntity() const
+{
+    return entity;
+}
+
+return_entity::operator const string() const
+{
+    return entity.to_string();
+}
+
+std::ostream &operator <<(std::ostream &out, const return_entity &ret)
+{
+    out << ret.entity.to_string();
+    return out;
+}
+
 return_entity_vector::return_entity_vector()
 : entities()
 {}
@@ -46,6 +62,11 @@ return_entity_vector::return_entity_vector(const uint8_t ec, const string &em,
 {
     error_code = ec;
     error_message = em;
+}
+
+return_entity_vector::operator const vector<Easy::GenericEntity>() const
+{
+    return entities;
 }
 
 Easy::Easy(const string &instance, const string &access_token)

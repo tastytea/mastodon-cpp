@@ -23,6 +23,7 @@
 #include <vector>
 #include <utility>
 #include <functional>
+#include <ostream>
 #include <jsoncpp/json/json.h>
 
 // If we are compiling mastodon-cpp, use another include path
@@ -548,6 +549,10 @@ typedef struct return_entity : return_base
     return_entity();
     return_entity(const uint8_t ec, const string &em,
                   const Easy::GenericEntity &ent);
+
+    operator const Easy::GenericEntity() const;
+    operator const string() const;
+    friend std::ostream &operator <<(std::ostream &out, const return_entity &ret);
 } return_entity;
 
 /*!
@@ -561,6 +566,8 @@ typedef struct return_entity_vector : return_base
     return_entity_vector();
     return_entity_vector(const uint8_t ec, const string &em,
                   const vector<Easy::GenericEntity> &vec);
+
+    operator const vector<Easy::GenericEntity>() const;
 } return_entity_vector;
 }
 

@@ -312,8 +312,8 @@ public:
      *  @since  0.21.0
      */
     const return_entity_vector get_notifications(const uint16_t limit = 20,
-                                                 const string since_id = 0,
-                                                 const string max_id = 0);
+                                                 const string since_id = "",
+                                                 const string max_id = "");
 
     /*!
      *  @brief  Base class for all entities.

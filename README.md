@@ -29,15 +29,13 @@ There are [examples](https://schlomp.space/tastytea/mastodon-cpp/src/branch/mast
 
 ```C++
 #include <iostream>
-#include <string>
 #include <mastodon-cpp/mastodon-cpp.hpp>
 
 int main()
 {
     Mastodon::API masto("social.example.com", "auth_token");
-    std::string answer;
-    masto.get(Mastodon::API::v1::accounts_verify_credentials, answer);
-    std::cout << answer << '\n';
+    std::cout << masto.get(Mastodon::API::v1::accounts_verify_credentials);
+    std::cout << std::endl;
 }
 ```
 
@@ -48,7 +46,6 @@ Using the `Easy`-class.
 ```C++
 #include <iostream>
 #include <string>
-#include <vector>
 #include <mastodon-cpp/mastodon-cpp.hpp>
 #include <mastodon-cpp/easy/all.hpp>
 
@@ -57,10 +54,9 @@ using Mastodon::Easy;
 int main()
 {
     Easy masto("social.example", "");
-    std::string answer;
-    masto.get(Mastodon::API::v1::timelines_public, answer);
+    return_call ret = masto.get(Mastodon::API::v1::timelines_public);
 
-    for (const std::string &str : Easy::json_array_to_vector(answer))
+    for (const std::string &str : Easy::json_array_to_vector(ret.answer))
     {
         Easy::Status status(str);
         std::cout << "  " << status.account().acct() << " wrote:\n";

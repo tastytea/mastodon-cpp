@@ -41,9 +41,6 @@ return_call API::post(const Mastodon::API::v1 &call,
         case v1::domain_blocks:
             strcall = "/api/v1/domain_blocks";
             break;
-        case v1::follows:
-            strcall = "/api/v1/follows";
-            break;
         case v1::lists:
             strcall = "/api/v1/lists";
             break;

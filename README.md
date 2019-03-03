@@ -187,9 +187,10 @@ Run `make package` from the build directory to generate a tar.gz archive.
 
 # Status of implementation
 
-Feature complete as of Mastodon 2.6.1
+~~Feature complete as of Mastodon 2.6.1~~
 
  * [x] GET /api/v1/accounts/:id
+ * [ ] POST /api/v1/accounts
  * [x] GET /api/v1/accounts/verify_credentials
  * [x] PATCH /api/v1/accounts/update_credentials
  * [x] GET /api/v1/accounts/:id/followers
@@ -197,14 +198,14 @@ Feature complete as of Mastodon 2.6.1
  * [x] GET /api/v1/accounts/:id/statuses
  * [x] POST /api/v1/accounts/:id/follow
  * [x] POST /api/v1/accounts/:id/unfollow
- * [x] POST /api/v1/accounts/:id/block
- * [x] POST /api/v1/accounts/:id/unblock
- * [x] POST /api/v1/accounts/:id/mute
- * [x] POST /api/v1/accounts/:id/unmute
  * [x] GET /api/v1/accounts/relationships
  * [x] GET /api/v1/accounts/search
  * [x] POST /api/v1/apps
+ * [ ] GET /api/v1/apps/verify_credentials
  * [x] GET /api/v1/blocks
+ * [x] POST /api/v1/accounts/:id/block
+ * [x] POST /api/v1/accounts/:id/unblock
+ * [x] GET /api/v1/custom_emojis
  * [x] GET /api/v1/domain_blocks
  * [x] POST /api/v1/domain_blocks
  * [x] DELETE /api/v1/domain_blocks
@@ -212,12 +213,18 @@ Feature complete as of Mastodon 2.6.1
  * [x] POST /api/v1/accounts/:id/pin
  * [x] POST /api/v1/accounts/:id/unpin
  * [x] GET /api/v1/favourites
+ * [x] POST /api/v1/statuses/:id/favourite
+ * [x] POST /api/v1/statuses/:id/unfavourite
+ * [ ] GET /api/v1/filters
+ * [ ] POST /api/v1/filters
+ * [ ] GET /api/v1/filters/:id
+ * [ ] DELETE /api/v1/filters/:id
  * [x] GET /api/v1/follow_requests
  * [x] POST /api/v1/follow_requests/:id/authorize
  * [x] POST /api/v1/follow_requests/:id/reject
- * [x] POST /api/v1/follows
+ * [ ] GET /api/v1/suggestions
+ * [ ] DELETE /api/v1/suggestions/:account_id
  * [x] GET /api/v1/instance
- * [x] GET /api/v1/custom_emojis
  * [x] GET /api/v1/lists
  * [x] GET /api/v1/accounts/:id/lists
  * [x] GET /api/v1/lists/:id/accounts
@@ -230,13 +237,26 @@ Feature complete as of Mastodon 2.6.1
  * [x] POST /api/v1/media
  * [x] PUT /api/v1/media/:id
  * [x] GET /api/v1/mutes
+ * [x] POST /api/v1/accounts/:id/mute
+ * [x] POST /api/v1/accounts/:id/unmute
+ * [x] POST /api/v1/statuses/:id/mute
+ * [x] POST /api/v1/statuses/:id/unmute
  * [x] GET /api/v1/notifications
  * [x] GET /api/v1/notifications/:id
  * [x] POST /api/v1/notifications/clear
  * [x] POST /api/v1/notifications/dismiss
- * [x] GET /api/v1/reports
+ * [x] POST /api/v1/push/subscription
+ * [x] GET /api/v1/push/subscription
+ * [x] PUT /api/v1/push/subscription
+ * [x] DELETE /api/v1/push/subscription
+ * [x] ~~GET /api/v1/reports~~ (Deprecated)
  * [x] POST /api/v1/reports
- * [x] GET /api/v1/search
+ * [ ] GET /api/v1/scheduled_statuses
+ * [ ] GET /api/v1/scheduled_statuses/:id
+ * [ ] PUT /api/v1/scheduled_statuses/:id
+ * [ ] DELETE /api/v1/scheduled_statuses/:id
+ * [x] ~~GET /api/v1/search~~ (Deprecated)
+ * [x] GET /api/v2/search
  * [x] GET /api/v1/statuses/:id
  * [x] GET /api/v1/statuses/:id/context
  * [x] GET /api/v1/statuses/:id/card
@@ -246,13 +266,10 @@ Feature complete as of Mastodon 2.6.1
  * [x] DELETE /api/v1/statuses/:id
  * [x] POST /api/v1/statuses/:id/reblog
  * [x] POST /api/v1/statuses/:id/unreblog
- * [x] POST /api/v1/statuses/:id/favourite
- * [x] POST /api/v1/statuses/:id/unfavourite
  * [x] POST /api/v1/statuses/:id/pin
  * [x] POST /api/v1/statuses/:id/unpin
- * [x] POST /api/v1/statuses/:id/mute
- * [x] POST /api/v1/statuses/:id/unmute
  * [x] GET /api/v1/timelines/home
+ * [ ] GET /api/v1/conversations
  * [x] GET /api/v1/timelines/public
  * [x] GET /api/v1/timelines/tag/:hashtag
  * [x] GET /api/v1/timelines/list/:list_id
@@ -260,12 +277,9 @@ Feature complete as of Mastodon 2.6.1
  * [x] GET /api/v1/streaming/public
  * [x] GET /api/v1/streaming/public/local
  * [x] GET /api/v1/streaming/hashtag
+ * [ ] GET /api/v1/streaming/hashtag/local
  * [x] GET /api/v1/streaming/list
- * [x] POST /api/v1/push/subscription
- * [x] GET /api/v1/push/subscription
- * [x] PUT /api/v1/push/subscription
- * [x] DELETE /api/v1/push/subscription
- * [x] GET /api/v2/search
+ * [ ] GET /api/v1/streaming/direct
 
 ## Glitch-Soc support
 
@@ -277,7 +291,7 @@ Feature complete as of Mastodon 2.6.1
 # Copyright
 
 ```PLAIN
-Copyright © 2018 tastytea <tastytea@tastytea.de>.
+Copyright © 2018, 2019 tastytea <tastytea@tastytea.de>.
 License GPLv3: GNU GPL version 3 <https://www.gnu.org/licenses/gpl-3.0.html>.
 This program comes with ABSOLUTELY NO WARRANTY. This is free software,
 and you are welcome to redistribute it under certain conditions.

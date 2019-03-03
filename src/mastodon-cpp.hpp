@@ -204,75 +204,102 @@ public:
      */
     enum class v1
     {
+        // Mastodon
         accounts_id,
+        // accounts,
         accounts_verify_credentials,
+        accounts_update_credentials,
         accounts_id_followers,
         accounts_id_following,
         accounts_id_statuses,
+        accounts_id_follow,
+        accounts_id_unfollow,
         accounts_relationships,
         accounts_search,
+
+        apps,
+        // apps_verify_credentials,
+
         blocks,
-        domain_blocks,
-        endorsements,
-        favourites,
-        follow_requests,
-        instance,
+        accounts_id_block,
+        accounts_id_unblock,
+
         custom_emojis,
+
+        domain_blocks,
+
+        endorsements,
+        accounts_id_pin,
+        accounts_id_unpin,
+
+        favourites,
+        statuses_id_favourite,
+        statuses_id_unfavourite,
+
+        // filters,
+        // filters_id,
+
+        follow_requests,
+        follow_requests_id_authorize,
+        follow_requests_id_reject,
+
+        // suggestions,
+        // suggestions_id,
+
+        instance,
+
         lists,
         accounts_id_lists,
-        lists_id_accounts,
         lists_id,
+        lists_id_accounts,
+
+        media,
+        media_id,
+
         mutes,
+        accounts_id_mute,
+        accounts_id_unmute,
+        statuses_id_mute,
+        statuses_id_unmute,
+
         notifications,
         notifications_id,
+        notifications_clear,
+        notifications_dismiss,
+        push_subscription,
+
         reports,
+
+        // scheduled_statuses,
+        // scheduled_statuses_id,
+
         search,
+
+        statuses,
         statuses_id,
         statuses_id_context,
         statuses_id_card,
         statuses_id_reblogged_by,
         statuses_id_favourited_by,
+        statuses_id_reblog,
+        statuses_id_unreblog,
+        statuses_id_pin,
+        statuses_id_unpin,
+
         timelines_home,
+        // timelines_conversations,
         timelines_public,
         timelines_tag_hashtag,
         timelines_list_list_id,
-        // PATCH
-        accounts_update_credentials,
-        // POST
-        accounts_id_follow,
-        accounts_id_unfollow,
-        accounts_id_block,
-        accounts_id_unblock,
-        accounts_id_mute,
-        accounts_id_unmute,
-        accounts_id_pin,
-        accounts_id_unpin,
-        apps,
-        follow_requests_id_authorize,
-        follow_requests_id_reject,
-        follows,
-        media,
-        notifications_clear,
-        notifications_dismiss,
-        statuses,
-        statuses_id_reblog,
-        statuses_id_unreblog,
-        statuses_id_favourite,
-        statuses_id_unfavourite,
-        statuses_id_pin,
-        statuses_id_unpin,
-        statuses_id_mute,
-        statuses_id_unmute,
-        // PUT
-        media_id,
-        // Streaming
+
         streaming_user,
         streaming_public,
         streaming_public_local,
         streaming_hashtag,
+        // streaming_hashtag_local,
         streaming_list,
-        // Push
-        push_subscription,
+        // streaming_direct,
+
         // Glitch-Soc
         bookmarks,
         statuses_id_bookmark,

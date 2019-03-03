@@ -48,7 +48,7 @@ return_call::operator const string() const
     return answer;
 }
 
-std::ostream &operator <<(std::ostream &out, const return_call &ret)
+std::ostream &Mastodon::operator <<(std::ostream &out, const return_call &ret)
 {
     out << ret.answer;
     return out;

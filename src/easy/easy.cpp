@@ -46,7 +46,7 @@ return_entity::operator const string() const
     return entity.to_string();
 }
 
-std::ostream &operator <<(std::ostream &out, const return_entity &ret)
+std::ostream &Mastodon::operator <<(std::ostream &out, const return_entity &ret)
 {
     out << ret.entity.to_string();
     return out;

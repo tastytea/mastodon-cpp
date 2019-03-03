@@ -60,13 +60,13 @@ namespace Mastodon
         uint16_t http_error_code = 0;
         string answer;
 
-        operator const string() const;
-        friend std::ostream &operator <<(std::ostream &out,
-                                         const return_call &ret);
-
         return_call();
         return_call(const uint8_t ec, const string &em,
                     const uint16_t hec, const string &a);
+
+        operator const string() const;
+        friend std::ostream &operator <<(std::ostream &out,
+                                         const return_call &ret);
     } return_call;
 
 /*!

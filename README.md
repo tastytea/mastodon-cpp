@@ -162,10 +162,10 @@ cmake options:
  * `-DWITHOUT_EASY=ON` to not build the Easy abstractions and to get rid of the jsoncpp-dependency (not recommended)
  * `-DWITH_EXAMPLES=ON` if you want to compile the examples
  * `-DWITH_TESTS=ON` if you want to compile the tests
- * `-DWITH_STATIC=ON` If you want a static library along with the dynamic one
  * `-DWITH_DOC=ON` if you want to compile the HTML reference
- * `-DWITH_DEB=ON` if you want to be able to generate a deb-package
- * `-DWITH_RPM=ON` if you want to be able to generate an rpm-package
+ * One of:
+    * `-DWITH_DEB=ON` if you want to be able to generate a deb-package
+    * `-DWITH_RPM=ON` if you want to be able to generate an rpm-package
 
 You can run the tests with `ctest ..` inside the build directory.
 To install, run `make install`.

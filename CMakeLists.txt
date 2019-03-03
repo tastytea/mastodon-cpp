@@ -72,12 +72,6 @@ else()
     target_link_libraries(mastodon-cpp ${CURLPP_LIBRARIES} ${JSONCPP_LIBRARIES})
 endif()
 
-if(WITH_STATIC)
-    add_library(mastodon-cpp_static STATIC ${sources})
-    set_target_properties(mastodon-cpp_static PROPERTIES
-                          OUTPUT_NAME mastodon-cpp)
-endif()
-
 # Compile examples
 if(WITH_EXAMPLES)
     file(GLOB sources_examples examples/*.cpp)
@@ -102,10 +96,6 @@ endif()
 
 # Install library and header files
 install(TARGETS mastodon-cpp LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
-if(WITH_STATIC)
-    install(TARGETS mastodon-cpp_static LIBRARY
-            DESTINATION ${CMAKE_INSTALL_LIBDIR})
-endif()
 install(FILES src/mastodon-cpp.hpp
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp)
 if(NOT WITHOUT_EASY)

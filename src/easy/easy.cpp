@@ -36,18 +36,17 @@ return_entity::return_entity(const uint8_t ec, const string &em,
     error_message = em;
 }
 
-const return_entity::operator const Easy::GenericEntity() const
+return_entity::operator const Easy::GenericEntity() const
 {
     return entity;
 }
 
-const return_entity::operator const string() const
+return_entity::operator const string() const
 {
     return entity.to_string();
 }
 
-const std::ostream &Mastodon::operator <<(std::ostream &out,
-                                          const return_entity &ret)
+std::ostream &Mastodon::operator <<(std::ostream &out, const return_entity &ret)
 {
     out << ret.entity.to_string();
     return out;

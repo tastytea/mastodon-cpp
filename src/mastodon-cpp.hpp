@@ -47,8 +47,8 @@ namespace Mastodon
         uint8_t error_code = 0;     // NOTE: http://mazack.org/unix/errno.php
         string error_message;
 
-        const operator const bool() const;
-        const operator const uint8_t() const;
+        operator const bool() const;
+        operator const uint8_t() const;
     } return_base;
 
     /*!
@@ -64,9 +64,9 @@ namespace Mastodon
         return_call(const uint8_t ec, const string &em,
                     const uint16_t hec, const string &a);
 
-        const operator const string() const;
-        friend const std::ostream &operator <<(std::ostream &out,
-                                               const return_call &ret);
+        operator const string() const;
+        friend std::ostream &operator <<(std::ostream &out,
+                                         const return_call &ret);
     } return_call;
 
 /*!

@@ -550,9 +550,10 @@ typedef struct return_entity : return_base
     return_entity(const uint8_t ec, const string &em,
                   const Easy::GenericEntity &ent);
 
-    operator const Easy::GenericEntity() const;
-    operator const string() const;
-    friend std::ostream &operator <<(std::ostream &out, const return_entity &ret);
+    const operator const Easy::GenericEntity() const;
+    const operator const string() const;
+    friend const std::ostream &operator <<(std::ostream &out,
+                                           const return_entity &ret);
 } return_entity;
 
 /*!

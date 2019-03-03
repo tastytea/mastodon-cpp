@@ -26,7 +26,7 @@
 #include <iostream>
 
 using namespace Mastodon;
-return_base::operator const bool() const
+const return_base::operator const bool() const
 {
     if (error_code == 0)
     {
@@ -38,17 +38,18 @@ return_base::operator const bool() const
     }
 }
 
-return_base::operator const uint8_t() const
+const return_base::operator const uint8_t() const
 {
     return error_code;
 }
 
-return_call::operator const string() const
+const return_call::operator const string() const
 {
     return answer;
 }
 
-std::ostream &Mastodon::operator <<(std::ostream &out, const return_call &ret)
+const std::ostream &Mastodon::operator <<(std::ostream &out,
+                                          const return_call &ret)
 {
     out << ret.answer;
     return out;

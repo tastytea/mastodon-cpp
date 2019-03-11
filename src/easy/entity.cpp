@@ -39,7 +39,8 @@ Easy::Entity::Entity(const Json::Value &object)
 {}
 
 Easy::Entity::Entity()
-: _was_set(false)
+: _tree(Json::nullValue)
+, _was_set(false)
 {}
 
 Easy::Entity::~Entity()

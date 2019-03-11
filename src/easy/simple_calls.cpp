@@ -155,7 +155,7 @@ const return_entity_vector Easy::get_notifications(const uint16_t limit,
 
         // Transform vector of strings to vector of Notification.
         std::transform(answer_v.begin(), answer_v.end(), notifications.begin(),
-                       [](const string s)
+                       [](const string &s)
                        { return GenericEntity(s); });
 
         return { ret.error_code, ret.error_message, notifications };

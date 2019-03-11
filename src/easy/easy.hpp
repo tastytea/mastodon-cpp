@@ -356,6 +356,11 @@ public:
          */
         virtual ~Entity();
 
+        /*!
+         *  Returns the JSON object of the Entity
+         *
+         *  @since  0.100.0
+         */
         operator const Json::Value() const;
 
         /*!

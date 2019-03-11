@@ -334,6 +334,15 @@ public:
         explicit Entity(const string &json);
 
         /*!
+         *  @brief  Constructs an Entity object from a JSON object.
+         *
+         *  @param  object  JSON object
+         *
+         *  @since  0.100.0
+         */
+        explicit Entity(const Json::Value &object);
+
+        /*!
          *  @brief  Constructs an empty Entity object.
          *  
          *  @since  before 0.11.0
@@ -346,6 +355,8 @@ public:
          *  @since  0.100.0
          */
         virtual ~Entity();
+
+        operator const Json::Value() const;
 
         /*!
          *  @brief  Replaces the Entity with a new one from a JSON string.

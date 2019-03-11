@@ -33,12 +33,22 @@ Easy::Entity::Entity(const string &json)
     from_string(json);
 }
 
+Easy::Entity::Entity(const Json::Value &object)
+: _tree(object)
+,_was_set(false)
+{}
+
 Easy::Entity::Entity()
 : _was_set(false)
 {}
 
 Easy::Entity::~Entity()
 {}
+
+Easy::Entity::operator const Json::Value() const
+{
+    return to_object();
+}
 
 void Easy::Entity::from_string(const string &json)
 {

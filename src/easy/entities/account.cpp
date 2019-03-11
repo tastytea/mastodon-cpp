@@ -21,14 +21,6 @@
 using namespace Mastodon;
 using Account = Easy::Account;
 
-Account::Account(const string &json)
-: Entity(json)
-{}
-
-Account::Account()
-: Entity()
-{}
-
 bool Account::valid() const
 {
     const std::vector<string> attributes =

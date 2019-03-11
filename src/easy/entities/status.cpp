@@ -21,14 +21,6 @@
 using namespace Mastodon;
 using Status = Easy::Status;
 
-Status::Status(const string &json)
-: Entity(json)
-{}
-
-Status::Status()
-: Entity()
-{}
-
 bool Status::valid() const
 {
     const std::vector<string> attributes =

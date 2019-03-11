@@ -20,14 +20,6 @@
 using namespace Mastodon;
 using Results = Easy::Results;
 
-Results::Results(const string &json)
-: Entity(json)
-{}
-
-Results::Results()
-: Entity()
-{}
-
 bool Results::valid() const
 {
     const std::vector<string> attributes =

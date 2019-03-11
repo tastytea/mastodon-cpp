@@ -20,14 +20,6 @@
 using namespace Mastodon;
 using Context = Easy::Context;
 
-Context::Context(const string &json)
-: Entity(json)
-{}
-
-Context::Context()
-: Entity()
-{}
-
 bool Context::valid() const
 {
     const std::vector<string> attributes =

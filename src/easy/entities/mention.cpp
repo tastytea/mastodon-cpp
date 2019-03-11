@@ -19,14 +19,6 @@
 using namespace Mastodon;
 using Mention = Easy::Mention;
 
-Mention::Mention(const string &json)
-: Entity(json)
-{}
-
-Mention::Mention()
-: Entity()
-{}
-
 bool Mention::valid() const
 {
     const std::vector<string> attributes =

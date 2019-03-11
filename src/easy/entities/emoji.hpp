@@ -40,21 +40,7 @@ namespace Mastodon
     class Easy::Emoji : public Easy::Entity
     {
     public:
-        /*!
-         *  @brief  Constructs an Emoji object from a JSON string.
-         *
-         *  @param  json    JSON string
-         *  
-         *  @since before 0.11.0
-         */
-        explicit Emoji(const string &json);
-
-        /*!
-         *  @brief  Constructs an empty Emoji object.
-         *  
-         *  @since before 0.11.0
-         */
-        Emoji();
+        using Entity::Entity;
 
         virtual bool valid() const;
 

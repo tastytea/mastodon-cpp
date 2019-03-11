@@ -44,21 +44,7 @@ namespace Mastodon
     class Easy::Attachment : public Easy::Entity
     {
     public:
-        /*!
-         *  @brief  Constructs an Attachment object from a JSON string.
-         *
-         *  @param  json    JSON string
-         *  
-         *  @since before 0.11.0
-         */
-        explicit Attachment(const string &json);
-
-        /*!
-         *  @brief  Constructs an empty Attachment object.
-         *  
-         *  @since before 0.11.0
-         */
-        Attachment();
+        using Entity::Entity;
 
         virtual bool valid() const;
 

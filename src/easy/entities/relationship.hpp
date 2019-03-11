@@ -42,21 +42,7 @@ namespace Mastodon
     class Easy::Relationship : public Easy::Entity
     {
     public:
-        /*!
-         *  @brief  Constructs a Relationship object from a JSON string.
-         *
-         *  @param  json    JSON string
-         *  
-         *  @since  before 0.11.0
-         */
-        explicit Relationship(const string &json);
-
-        /*!
-         *  @brief  Constructs an empty Relationship object.
-         *  
-         *  @since  before 0.11.0
-         */
-        Relationship();
+        using Entity::Entity;
 
         virtual bool valid() const;
 

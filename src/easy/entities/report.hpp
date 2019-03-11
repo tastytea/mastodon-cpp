@@ -41,21 +41,7 @@ namespace Mastodon
     class Easy::Report : public Easy::Entity
     {
     public:
-        /*!
-         *  @brief  Constructs a Report object from a JSON string.
-         *
-         *  @param  json    JSON string
-         *  
-         *  @since  before 0.11.0
-         */
-        explicit Report(const string &json);
-
-        /*!
-         *  @brief  Constructs an empty Report object.
-         *  
-         *  @since  before 0.11.0
-         */
-        Report();
+        using Entity::Entity;
 
         virtual bool valid() const;
 

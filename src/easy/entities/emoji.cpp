@@ -20,14 +20,6 @@
 using namespace Mastodon;
 using Emoji = Easy::Emoji;
 
-Emoji::Emoji(const string &json)
-: Entity(json)
-{}
-
-Emoji::Emoji()
-: Entity()
-{}
-
 bool Emoji::valid() const
 {
     const std::vector<string> attributes =

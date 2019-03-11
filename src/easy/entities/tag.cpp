@@ -22,14 +22,6 @@
 using namespace Mastodon;
 using Tag = Easy::Tag;
 
-Tag::Tag(const string &json)
-: Entity(json)
-{}
-
-Tag::Tag()
-: Entity()
-{}
-
 bool Tag::valid() const
 {
     const std::vector<string> attributes =
@@ -67,15 +59,6 @@ const std::vector<Tag::History> Tag::history() const
     ttdebug << "Could not get data: history\n";
     return {};
 }
-
-
-Tag::History::History(const string &json)
-: Entity(json)
-{}
-
-Tag::History::History()
-: Entity()
-{}
 
 bool Tag::History::valid() const
 {

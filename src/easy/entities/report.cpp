@@ -19,14 +19,6 @@
 using namespace Mastodon;
 using Report = Easy::Report;
 
-Report::Report(const string &json)
-: Entity(json)
-{}
-
-Report::Report()
-: Entity()
-{}
-
 bool Report::valid() const
 {
     const std::vector<string> attributes =

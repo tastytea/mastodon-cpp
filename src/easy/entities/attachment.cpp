@@ -21,14 +21,6 @@
 using namespace Mastodon;
 using Attachment = Easy::Attachment;
 
-Attachment::Attachment(const string &json)
-: Entity(json)
-{}
-
-Attachment::Attachment()
-: Entity()
-{}
-
 bool Attachment::valid() const
 {
     const std::vector<string> attributes =

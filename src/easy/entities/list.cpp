@@ -21,14 +21,6 @@ using List = Easy::List;
 using std::string;
 using std::uint64_t;
 
-List::List(const string &json)
-: Entity(json)
-{}
-
-List::List()
-: Entity()
-{}
-
 bool List::valid() const
 {
     const std::vector<string> attributes =

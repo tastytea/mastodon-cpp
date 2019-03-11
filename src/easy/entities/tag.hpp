@@ -52,21 +52,7 @@ namespace Mastodon
         class History : public Easy::Entity
         {
         public:
-            /*!
-             *  @brief  Constructs an Tag::History object from a JSON string.
-             *
-             *  @param  json    JSON string
-             *  
-             *  @since  0.16.0
-             */
-            explicit History(const string &json);
-
-            /*!
-             *  @brief  Constructs an empty Tag::History object.
-             *  
-             *  @since  0.16.0
-             */
-            History();
+            using Entity::Entity;
 
             virtual bool valid() const;
 
@@ -92,21 +78,7 @@ namespace Mastodon
             uint64_t uses();
         };
 
-        /*!
-         *  @brief  Constructs an Tag object from a JSON string.
-         *
-         *  @param  json    JSON string
-         *  
-         *  @since  before 0.11.0
-         */
-        explicit Tag(const string &json);
-
-        /*!
-         *  @brief  Constructs an empty Tag object.
-         *  
-         *  @since  before 0.11.0
-         */
-        Tag();
+        using Entity::Entity;
 
         virtual bool valid() const;
 

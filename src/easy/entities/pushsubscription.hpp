@@ -42,21 +42,7 @@ namespace Mastodon
     class Easy::PushSubscription : public Easy::Entity
     {
     public:
-        /*!
-         *  @brief  Constructs an PushSubscription object from a JSON string.
-         *
-         *  @param  json    JSON string
-         *  
-         *  @since  0.14.0
-         */
-        explicit PushSubscription(const string &json);
-
-        /*!
-         *  @brief  Constructs an empty PushSubscription object.
-         *  
-         *  @since  0.14.0
-         */
-        PushSubscription();
+        using Entity::Entity;
 
         virtual bool valid() const;
 

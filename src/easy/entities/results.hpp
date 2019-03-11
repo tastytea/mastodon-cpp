@@ -47,21 +47,7 @@ namespace Mastodon
     class Easy::Results : public Easy::Entity
     {
     public:
-        /*!
-         *  @brief  Constructs a Results object from a JSON string.
-         *
-         *  @param  json    JSON string
-         *  
-         *  @since  before 0.11.0
-         */
-        explicit Results(const string &json);
-
-        /*!
-         *  @brief  Constructs an empty Results object.
-         *  
-         *  @since  before 0.11.0
-         */
-        Results();
+        using Entity::Entity;
 
         virtual bool valid() const;
 

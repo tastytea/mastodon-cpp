@@ -19,14 +19,6 @@
 using namespace Mastodon;
 using Relationship = Easy::Relationship;
 
-Relationship::Relationship(const string &json)
-: Entity(json)
-{}
-
-Relationship::Relationship()
-: Entity()
-{}
-
 bool Relationship::valid() const
 {
     const std::vector<string> attributes =

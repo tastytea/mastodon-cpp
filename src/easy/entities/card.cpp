@@ -20,14 +20,6 @@
 using namespace Mastodon;
 using Card = Easy::Card;
 
-Card::Card(const string &json)
-: Entity(json)
-{}
-
-Card::Card()
-: Entity()
-{}
-
 bool Card::valid() const
 {
     const std::vector<string> attributes =

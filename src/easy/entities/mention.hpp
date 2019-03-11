@@ -43,21 +43,7 @@ namespace Mastodon
     class Easy::Mention : public Easy::Entity
     {
     public:
-        /*!
-         *  @brief  Constructs a Mention object from a JSON string.
-         *
-         *  @param  json    JSON string
-         *  
-         *  @since before 0.11.0
-         */
-        explicit Mention(const string &json);
-
-        /*!
-         *  @brief  Constructs an empty Mention object.
-         *  
-         *  @since before 0.11.0
-         */
-        Mention();
+        using Entity::Entity;
 
         virtual bool valid() const;
 

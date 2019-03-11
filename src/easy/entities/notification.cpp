@@ -20,14 +20,6 @@
 using namespace Mastodon;
 using Notification = Easy::Notification;
 
-Notification::Notification(const string &json)
-: Entity(json)
-{}
-
-Notification::Notification()
-: Entity()
-{}
-
 bool Notification::valid() const
 {
     const std::vector<string> attributes =

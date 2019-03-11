@@ -43,21 +43,7 @@ namespace Mastodon
     class Easy::List : public Easy::Entity
     {
     public:
-        /*!
-         *  @brief  Constructs a List object from a JSON string.
-         *
-         *  @param  json    JSON string
-         *  
-         *  @since before 0.11.0
-         */
-        explicit List(const string &json);
-
-        /*!
-         *  @brief  Constructs an empty List object.
-         *  
-         *  @since before 0.11.0
-         */
-        List();
+        using Entity::Entity;
 
         virtual bool valid() const;
 

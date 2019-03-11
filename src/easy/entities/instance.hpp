@@ -45,21 +45,7 @@ namespace Mastodon
     class Easy::Instance : public Easy::Entity
     {
     public:
-        /*!
-         *  @brief  Constructs an Instance object from a JSON string.
-         *
-         *  @param  json    JSON string
-         *  
-         *  @since before 0.11.0
-         */
-        explicit Instance(const string &json);
-
-        /*!
-         *  @brief  Constructs an empty Instance object.
-         *  
-         *  @since before 0.11.0
-         */
-        Instance();
+        using Entity::Entity;
 
         virtual bool valid() const;
 

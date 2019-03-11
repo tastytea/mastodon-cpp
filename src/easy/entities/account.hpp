@@ -46,28 +46,14 @@ namespace Mastodon
     class Easy::Account : public Easy::Entity
     {
     public:
+        using Entity::Entity;
+
         /*!
          *  @brief  Describes a field. Format: name, value
          *
          *  @since  0.16.1
          */
         using fields_pair = std::pair<const string, const string>;
-
-        /*!
-         *  @brief  Constructs an Account object from a JSON string.
-         *
-         *  @param  json    JSON string
-         *  
-         *  @since before 0.11.0
-         */
-        explicit Account(const string &json);
-
-        /*!
-         *  @brief  Constructs an empty Account object.
-         *  
-         *  @since before 0.11.0
-         */
-        Account();
 
         virtual bool valid() const;
 

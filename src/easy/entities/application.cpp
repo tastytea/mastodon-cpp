@@ -19,14 +19,6 @@
 using namespace Mastodon;
 using Application = Easy::Application;
 
-Application::Application(const string &json)
-: Entity(json)
-{}
-
-Application::Application()
-: Entity()
-{}
-
 bool Application::valid() const
 {
     return Entity::check_valid({"name"});

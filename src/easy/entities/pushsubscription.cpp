@@ -19,18 +19,10 @@
 using namespace Mastodon;
 using PushSubscription = Easy::PushSubscription;
 
-PushSubscription::PushSubscription(const string &json)
-: Entity(json)
-{}
-
 const string PushSubscription::id() const
 {
     return get_string("id");
 }
-
-PushSubscription::PushSubscription()
-: Entity()
-{}
 
 bool PushSubscription::valid() const
 {

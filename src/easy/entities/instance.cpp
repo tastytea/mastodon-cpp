@@ -22,14 +22,6 @@
 using namespace Mastodon;
 using Instance = Easy::Instance;
 
-Instance::Instance(const string &json)
-: Entity(json)
-{}
-
-Instance::Instance()
-: Entity()
-{}
-
 bool Instance::valid() const
 {
     const std::vector<string> attributes =

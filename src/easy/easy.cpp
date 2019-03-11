@@ -18,6 +18,7 @@
 #include <iomanip>  // get_time
 #include <sstream>
 #include <regex>
+#include <algorithm>
 #include "easy.hpp"
 #include "debug.hpp"
 
@@ -81,11 +82,11 @@ const std::vector<string> Easy::json_array_to_vector(const string &json)
 
     if (json_array.isArray())
     {
-        std::vector<string> vec;
-        for (const Json::Value &value : json_array)
-        {
-            vec.push_back(value.toStyledString());
-        }
+        // Transform array of Json::Value to vector of string.
+        std::vector<string> vec(json_array.size());
+        std::transform(json_array.begin(), json_array.end(), vec.begin(),
+                       [](const Json::Value &j)
+                       { return j.toStyledString(); });
         return vec;
     }
 

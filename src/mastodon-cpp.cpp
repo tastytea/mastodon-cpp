@@ -169,8 +169,8 @@ const curlpp::Forms API::maptoformdata(const parametermap &map)
         {
             for (const string &str : it.second)
             {
-                formdata.push_back(new curlpp::FormParts::Content(it.first + "[]",
-                                                               str));
+                formdata.push_back(
+                    new curlpp::FormParts::Content(it.first + "[]", str));
             }
         }
     }

@@ -19,11 +19,10 @@
 #include <locale>
 #include <codecvt>
 #include <utility>
+#include <iostream>
 #include "version.hpp"
 #include "debug.hpp"
 #include "mastodon-cpp.hpp"
-
-#include <iostream>
 
 using namespace Mastodon;
 return_base::operator const bool() const

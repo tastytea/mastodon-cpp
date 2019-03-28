@@ -23,7 +23,6 @@
 #include "debug.hpp"
 
 using namespace Mastodon;
-using namespace Mastodon::Easy;
 using std::string;
 
 Easy::API::API(const string &instance, const string &access_token)
@@ -51,8 +50,8 @@ const std::vector<string> Easy::json_array_to_vector(const string &json)
     return {};
 }
 
-const std::vector<Easy::stream_event>
-    Easy::parse_stream(const std::string &streamdata)
+const vector<Easy::stream_event> Easy::parse_stream(
+    const std::string &streamdata)
 {
     string stream = streamdata;
     std::regex reevent("event: (update|notification|delete)\ndata: (.*)\n");
@@ -85,19 +84,19 @@ const Easy::Link Easy::API::get_link() const
 }
 
 const string Easy::API::strtime_utc(const system_clock::time_point &timepoint,
-                               const string &format)
+                                    const string &format)
 {
     return strtime(timepoint, format, true);
 }
 
 const string Easy::API::strtime_local(const system_clock::time_point &timepoint,
-                                 const string &format)
+                                      const string &format)
 {
     return strtime(timepoint, format, false);
 }
 
 const string Easy::API::strtime(const system_clock::time_point &timepoint,
-                           const string &format, const bool &utc)
+                                const string &format, const bool &utc)
 {
     constexpr std::uint16_t bufsize = 1024;
     std::time_t time = system_clock::to_time_t(timepoint);

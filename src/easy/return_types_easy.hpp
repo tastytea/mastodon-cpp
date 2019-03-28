@@ -20,101 +20,55 @@
 #include <string>
 #include <vector>
 #include <ostream>
+#include <cstdint>
 #include "mastodon-cpp.hpp"
 
 using std::string;
 using std::vector;
+using std::uint8_t;
 
 namespace Mastodon
 {
-template <typename T>
-struct return_entity;
-// https://stackoverflow.com/a/4661372/5965450
-template <typename T>
-std::ostream &operator <<(std::ostream&, const return_entity<T>&);
-
-template <typename T>
-struct return_entity : return_base
+namespace Easy
 {
-    T entity;
+    template <typename T>
+    struct return_entity;
+    template <typename T>       // https://stackoverflow.com/a/4661372/5965450
+    std::ostream &operator <<(std::ostream&, const return_entity<T>&);
 
-    return_entity();
-    return_entity(const uint8_t ec, const string &em, const T &ent);
+    /*!
+     *  @brief  Return types for calls that return a single `Easy::Entity`.
+     */
+    template <typename T>
+    struct return_entity : return_base
+    {
+        T entity;
 
-    operator const T() const;
-    operator const string() const;
+        return_entity();
+        return_entity(const uint8_t ec, const string &em, const T &ent);
 
-    friend std::ostream &operator <<<T>(std::ostream &out,
-                                     const return_entity<T> &ret);
-};
+        operator const T() const;
+        operator const string() const;
 
-template <typename T>
-struct return_entity_vector : return_base
-{
-    vector<T> entities;
+        // FIXME: Can't get it to work, don't know why.
+        friend std::ostream &operator <<<T>(std::ostream &out,
+                                            const return_entity<T> &ret);
+    };
 
-    return_entity_vector();
-    return_entity_vector(const uint8_t ec, const string &em,
-                         const vector<T> &vec);
+    /*!
+     *  @brief  Return types for calls that return multiple `Easy::Entity`s.
+     */
+    template <typename T>
+    struct return_entity_vector : return_base
+    {
+        vector<T> entities;
 
-    operator const vector<T>() const;
-};
+        return_entity_vector();
+        return_entity_vector(const uint8_t ec, const string &em,
+                             const vector<T> &vec);
 
-
-template<typename T>
-return_entity<T>::return_entity()
-    : entity()
-{}
-
-template<typename T>
-return_entity<T>::return_entity(const uint8_t ec, const string &em,
-                                const T &ent)
-    : entity(ent)
-{
-    error_code = ec;
-    error_message = em;
-}
-
-template<typename T>
-return_entity<T>::return_entity::operator const T() const
-{
-    return entity;
-}
-
-template<typename T>
-return_entity<T>::return_entity::operator const string() const
-{
-    return entity.to_string();
-}
-
-template<typename T>
-std::ostream &operator <<(std::ostream &out, const return_entity<T> &ret)
-{
-    out << ret.entity.to_string();
-    return out;
-}
-
-// Explicit instantiation
-// template struct Mastodon::return_entity<Easy::Status>;
-
-template<typename T>
-return_entity_vector<T>::return_entity_vector::return_entity_vector()
-: entities()
-{}
-
-template<typename T>
-return_entity_vector<T>::return_entity_vector::return_entity_vector(
-    const uint8_t ec, const string &em, const vector<T> &vec)
-: entities(vec)
-{
-    error_code = ec;
-    error_message = em;
-}
-
-template<typename T>
-return_entity_vector<T>::return_entity_vector::operator const vector<T>() const
-{
-    return entities;
+        operator const vector<T>() const;
+    };
 }
 }
 

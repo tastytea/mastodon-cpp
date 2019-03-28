@@ -70,7 +70,7 @@ namespace Mastodon
     } return_call;
 
 /*!
- *  @brief  Class for the Mastodon API.
+ *  @brief  Interface to the Mastodon API.
  *  
  *          All input is expected to be UTF-8. Binary data must be
  *          base64-encoded or a filename.

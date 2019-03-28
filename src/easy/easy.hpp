@@ -44,14 +44,14 @@ namespace Mastodon
 {
 /*!
  *  @brief  Child of Mastodon::API with abstract methods.
- *  
+ *
  *  @since  before 0.11.0
  */
 namespace Easy
 {
     /*!
      *  @brief  Describes the event type
-     *  
+     *
      *  @since  before 0.11.0
      */
     enum class event_type
@@ -64,7 +64,7 @@ namespace Easy
 
     /*!
      *  @brief  Describes visibility of toots.
-     *  
+     *
      *  @since  before 0.11.0
      */
     enum class visibility_type
@@ -78,7 +78,7 @@ namespace Easy
 
     /*!
      *  @brief  Describes the attachment type
-     *  
+     *
      *  @since  before 0.11.0
      */
     enum class attachment_type
@@ -92,7 +92,7 @@ namespace Easy
 
     /*!
      *  @brief  Describes the card type
-     *  
+     *
      *  @since  before 0.11.0
      */
     enum class card_type
@@ -106,7 +106,7 @@ namespace Easy
 
     /*!
      *  @brief  Describes the notification type
-     *  
+     *
      *  @since  before 0.11.0
      */
     enum class notification_type
@@ -120,7 +120,7 @@ namespace Easy
 
     /*!
      *  @brief Used for stream events.
-     *  
+     *
      *  @since  before 0.11.0
      */
     typedef std::pair<event_type, string> stream_event;
@@ -129,11 +129,12 @@ namespace Easy
      *  @brief  Map of 'notification type' and 'push is requested or not'
      *
      *          Used in PushSubscription::alerts().
-     *  
+     *
      *  @since  0.13.3
      */
     typedef std::map<Easy::notification_type, bool> alertmap;
 
+    // TODO: Get rid of forward declarations.
     class Account;
     class Application;
     class Attachment;
@@ -153,9 +154,9 @@ namespace Easy
 
     /*!
      *  @brief  Class to hold the `Link`-header.
-     *  
+     *
      *          Extracts max_id and since_id from the `Link`-header
-     *  
+     *
      *  @since  before 0.11.0
      */
     // TODO: Convert to struct?
@@ -164,35 +165,35 @@ namespace Easy
     public:
         /*!
          *  @param  link_header  The content of the `Link` header
-         *  
+         *
          *  @since  before 0.11.0
          */
         explicit Link(const string &link_header);
 
         /*!
          *  @brief  Returns max_id
-         *  
+         *
          *  @since  before 0.11.0
          */
         const string next() const;
 
         /*!
          *  @brief  Returns max_id
-         *  
+         *
          *  @since  before 0.11.0
          */
         const string max_id() const;
 
         /*!
          *  @brief  Returns since_id
-         *  
+         *
          *  @since  before 0.11.0
          */
         const string prev() const;
 
         /*!
          *  @brief  Returns since_id
-         *  
+         *
          *  @since  before 0.11.0
          */
         const string since_id() const;
@@ -208,7 +209,7 @@ namespace Easy
      *  @param  json    JSON string holding the array
      *
      *  @return vector of strings or an empty vector on error
-     *  
+     *
      *  @since  before 0.11.0
      */
     const std::vector<string> json_array_to_vector(const string &json);
@@ -219,106 +220,112 @@ namespace Easy
      *  @param  streamdata  Data from get_stream()
      *
      *  @return vector of stream events
-     *  
+     *
      *  @since  before 0.11.0
      */
-    const std::vector<stream_event>
-        parse_stream(const std::string &streamdata);
+    const std::vector<stream_event> parse_stream(const std::string &streamdata);
 
+    /*!
+     *  @brief  Interface to the Mastodon API, easy version.
+     *
+     *  Provides convenient functions to deal with the responses you get.
+     */
     class API : public Mastodon::API
     {
     public:
-    /*!
-     *  @brief  Constructs a new Easy object.
-     *  
-     *          To register your application, leave access_token blank and call
-     *          register_app1() and register_app2().
-     *
-     *  @param  instance      The hostname of your instance
-     *  @param  access_token  The access token
-     *  
-     *  @since  before 0.11.0
-     */
-    explicit API(const string &instance, const string &access_token);
+        /*!
+         *  @brief  Constructs a new Easy object.
+         *
+         *          To register your application, leave access_token blank and
+         *          call register_app1() and register_app2().
+         *
+         *  @param  instance      The hostname of your instance
+         *  @param  access_token  The access token
+         *
+         *  @since  before 0.11.0
+         */
+        explicit API(const string &instance, const string &access_token);
 
-    /*!
-     *  @brief  Gets the links from the last answer
-     *  
-     *  @since  before 0.11.0
-     */
-    const Link get_link() const;
+        /*!
+         *  @brief  Gets the links from the last answer
+         *
+         *  @since  before 0.11.0
+         */
+        const Link get_link() const;
 
-    /*!
-     *  @brief  Converts a time_point to a string
-     *  
-     *          The return value can not exceed 1023 chars.
-     *
-     *  @param  timepoint  The timepoint
-     *  @param  format     The format of the string, same as with `strftime`.
-     *  
-     *  Example:
-     *  @code
-     *  auto timepoint = status.created_at();
-     *  cout << Easy::strtime_utc(timepoint, "%F, %T") << '\n';
-     *  @endcode
-     *
-     *  @return The UTC time as string
-     *  
-     *  @since  0.11.0
-     */
+        /*!
+         *  @brief  Converts a time_point to a string
+         *
+         *          The return value can not exceed 1023 chars.
+         *
+         *  @param  timepoint  The timepoint
+         *  @param  format     The format of the string, same as with
+         *                     `strftime`.
+         *
+         *  Example:
+         *  @code
+         *  auto timepoint = status.created_at();
+         *  cout << Easy::strtime_utc(timepoint, "%F, %T") << '\n';
+         *  @endcode
+         *
+         *  @return The UTC time as string
+         *
+         *  @since  0.11.0
+         */
         // TODO: Time type, convertible to time_point, str_utc and str_local.
-    static const string strtime_utc(const system_clock::time_point &timepoint,
-                                    const string &format);
+        static const string strtime_utc(const system_clock::time_point &timepoint,
+                                        const string &format);
 
-    /*!
-     *  @brief  See strtime_utc
-     *
-     *  @return The local time as string
-     *  
-     *  @since  0.11.0
-     */
-    static const string strtime_local(const system_clock::time_point &timepoint,
-                                      const string &format);
+        /*!
+         *  @brief  See strtime_utc
+         *
+         *  @return The local time as string
+         *
+         *  @since  0.11.0
+         */
+        static const string strtime_local(const system_clock::time_point &timepoint,
+                                          const string &format);
 
-    // #### simple calls ####
-    
-    /*!
-     *  @brief  Sends a toot.
-     *
-     *  @param  status  The status to send
-     *  @param  error   @ref error "Error code"
-     *
-     *  @return The new Easy::Status
-     *  
-     *  @since  0.18.1
-     */
-    const return_entity<Easy::Status> send_post(const Status &status);
+        // #### simple calls ####
+        // TODO: Own file.
 
-    /*!
-     *  @brief  Alias for send_post()
-     *  
-     *  @since  0.17.0
-     */
-    const return_entity<Easy::Status> send_toot(const Status &status);
+        /*!
+         *  @brief  Sends a post.
+         *
+         *  @param  status  The status to send
+         *  @param  error   @ref error "Error code"
+         *
+         *  @return The new Easy::Status
+         *
+         *  @since  0.18.1
+         */
+        const return_entity<Easy::Status> send_post(const Status &status);
 
-    /*!
-     *  @brief  Gets notifications.
-     *
-     *  @param  error     @ref error "Error code"
-     *  @param  limit     Maximum number of notifications
-     *  @param  since_id  Return notifications newer than ID
-     *  @param  max_id    Return notifications older than ID
-     *
-     *  @return vector of Easy::Notification.
-     *
-     *  @since  0.21.0
-     */
-    const return_entity_vector<Easy::Notification> get_notifications(
-        const uint16_t limit = 20, const string since_id = "",
-        const string max_id = "");
+        /*!
+         *  @brief  Alias for send_post()
+         *
+         *  @since  0.17.0
+         */
+        const return_entity<Easy::Status> send_toot(const Status &status);
 
-protected:
-    inline static const string strtime
+        /*!
+         *  @brief  Gets notifications.
+         *
+         *  @param  error     @ref error "Error code"
+         *  @param  limit     Maximum number of notifications
+         *  @param  since_id  Return notifications newer than ID
+         *  @param  max_id    Return notifications older than ID
+         *
+         *  @return vector of Easy::Notification.
+         *
+         *  @since  0.21.0
+         */
+        const return_entity_vector<Easy::Notification> get_notifications(
+            const uint16_t limit = 20, const string since_id = "",
+            const string max_id = "");
+
+    protected:
+        inline static const string strtime
         (const system_clock::time_point &timepoint,
          const string &format, const bool &utc);
 };

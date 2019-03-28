@@ -73,6 +73,7 @@ else()
 endif()
 
 # Compile examples
+set(WITH_EXAMPLES "YES" CACHE STRING "WITH_EXAMPLES defaults to \"YES\"")
 if(WITH_EXAMPLES)
     file(GLOB sources_examples examples/*.cpp)
     foreach(src ${sources_examples})
@@ -84,14 +85,7 @@ endif()
 
 # Compile tests
 if(WITH_TESTS)
-    include(CTest)
-    file(GLOB sources_tests tests/test_*.cpp)
-    foreach(src ${sources_tests})
-        get_filename_component(bin ${src} NAME_WE)
-        add_executable(${bin} ${src})
-        target_link_libraries(${bin} mastodon-cpp)
-        add_test(${bin} ${bin})
-    endforeach()
+    # Disabled for now.
 endif()
 
 # Install library and header files

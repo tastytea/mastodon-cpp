@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
     }
 
     // Construct a Mastodon::Easy object without authorization token.
-    Easy masto(argv[1], "");
+    Easy::API masto(argv[1], "");
     // Retrieve the last 4 local statuses.
     return_call ret = masto.get(API::v1::timelines_public,
                                 {

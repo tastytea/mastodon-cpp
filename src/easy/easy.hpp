@@ -25,6 +25,7 @@
 #include <functional>
 #include <ostream>
 #include <jsoncpp/json/json.h>
+#include "return_types_easy.hpp"
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
@@ -41,54 +42,13 @@ using std::chrono::system_clock;
 
 namespace Mastodon
 {
-// Defined at the bottom
-// typedef struct return_entity return_entity;
-// typedef struct return_entity_vector return_entity_vector;
-
-template <typename T>
-struct return_entity;
-// https://stackoverflow.com/a/4661372/5965450
-template <typename T>
-std::ostream &operator <<(std::ostream&, const return_entity<T>&);
-
-template <typename T>
-struct return_entity : return_base
-{
-    T entity;
-
-    return_entity();
-    return_entity(const uint8_t ec, const string &em, const T &ent);
-
-    operator const T() const;
-    operator const string() const;
-
-    friend std::ostream &operator <<<T>(std::ostream &out,
-                                     const return_entity<T> &ret);
-};
-// template <typename T>
-// std::ostream &operator <<(std::ostream &out,
-//                           const return_entity<T> &ret);
-
-template <typename T>
-struct return_entity_vector : return_base
-{
-    vector<T> entities;
-
-    return_entity_vector();
-    return_entity_vector(const uint8_t ec, const string &em,
-                         const vector<T> &vec);
-
-    operator const vector<T>() const;
-};
-
 /*!
  *  @brief  Child of Mastodon::API with abstract methods.
  *  
  *  @since  before 0.11.0
  */
-class Easy : public API
+namespace Easy
 {
-public:
     /*!
      *  @brief  Describes the event type
      *  
@@ -198,6 +158,7 @@ public:
      *  
      *  @since  before 0.11.0
      */
+    // TODO: Convert to struct?
     class Link
     {
     public:
@@ -242,19 +203,6 @@ public:
     };
 
     /*!
-     *  @brief  Constructs a new Easy object.
-     *  
-     *          To register your application, leave access_token blank and call
-     *          register_app1() and register_app2().
-     *
-     *  @param  instance      The hostname of your instance
-     *  @param  access_token  The access token
-     *  
-     *  @since  before 0.11.0
-     */
-    explicit Easy(const string &instance, const string &access_token);
-
-    /*!
      *  @brief  Turns a JSON array into a vector of strings
      *
      *  @param  json    JSON string holding the array
@@ -263,7 +211,7 @@ public:
      *  
      *  @since  before 0.11.0
      */
-    static const std::vector<string> json_array_to_vector(const string &json);
+    const std::vector<string> json_array_to_vector(const string &json);
 
     /*!
      *  @brief  Split stream into a vector of events
@@ -274,8 +222,24 @@ public:
      *  
      *  @since  before 0.11.0
      */
-    static const std::vector<stream_event>
+    const std::vector<stream_event>
         parse_stream(const std::string &streamdata);
+
+    class API : public Mastodon::API
+    {
+    public:
+    /*!
+     *  @brief  Constructs a new Easy object.
+     *  
+     *          To register your application, leave access_token blank and call
+     *          register_app1() and register_app2().
+     *
+     *  @param  instance      The hostname of your instance
+     *  @param  access_token  The access token
+     *  
+     *  @since  before 0.11.0
+     */
+    explicit API(const string &instance, const string &access_token);
 
     /*!
      *  @brief  Gets the links from the last answer
@@ -302,6 +266,7 @@ public:
      *  
      *  @since  0.11.0
      */
+        // TODO: Time type, convertible to time_point, str_utc and str_local.
     static const string strtime_utc(const system_clock::time_point &timepoint,
                                     const string &format);
 
@@ -352,286 +317,12 @@ public:
         const uint16_t limit = 20, const string since_id = "",
         const string max_id = "");
 
-    /*!
-     *  @brief  Base class for all entities.
-     *  
-     *  @since  before 0.11.0
-     */
-    class Entity
-    {
-    public:
-        /*!
-         *  @brief  Constructs an Entity object from a JSON string.
-         *
-         *  @param  json    JSON string
-         *  
-         *  @since  before 0.11.0
-         */
-        explicit Entity(const string &json);
-
-        /*!
-         *  @brief  Constructs an Entity object from a JSON object.
-         *
-         *  @param  object  JSON object
-         *
-         *  @since  0.100.0
-         */
-        explicit Entity(const Json::Value &object);
-
-        /*!
-         *  @brief  Constructs an empty Entity object.
-         *  
-         *  @since  before 0.11.0
-         */
-        Entity();
-
-        /*!
-         *  @brief  Destroys the object.
-         *
-         *  @since  0.100.0
-         */
-        virtual ~Entity();
-
-        /*!
-         *  Returns the JSON object of the Entity
-         *
-         *  @since  0.100.0
-         */
-        operator const Json::Value() const;
-
-        /*!
-         *  @brief  Replaces the Entity with a new one from a JSON string.
-         *
-         *  @param  json    JSON string
-         *  
-         *  @since  before 0.11.0
-         */
-        void from_string(const string &json);
-
-        /*!
-         *  @brief  Returns the JSON object of the Entity
-         *
-         *  @return JSON object
-         *  
-         *  @since  before 0.11.0
-         */
-        const string to_string() const;
-
-        /*!
-         *  @brief  Replaces the Entity with a new one from a JSON object.
-         *
-         *  @param  object  JSON object
-         *
-         *  @since  0.100.0
-         */
-        void from_object(const Json::Value &object);
-
-        /*!
-         *  @brief  Returns the JSON object of the Entity
-         *
-         *  @return JSON object
-         *  
-         *  @since  before 0.11.0
-         */
-        const Json::Value to_object() const;
-
-        /*!
-         *  @brief  Returns true if the Entity holds valid data
-         *  
-         *  @since  before 0.11.0 (virtual since 0.18.2)
-         */
-        virtual bool valid() const = 0;
-
-        /*!
-         *  @brief  Returns error string sent by the server
-         *  
-         *  @since  before 0.11.0
-         */
-        const string error() const;
-
-        /*!
-         *  @brief  Returns true if the last requested value was set, false if
-         *          it was unset.
-         *          
-         *          Members of Easy::Entity-derived classes return a default
-         *          value depending on its type when the requested value is not
-         *          found in the JSON. "" for strings, false for bools and so
-         *          on. Most of the time this is no problem, but sometimes you
-         *          need to know for sure.
-         *  
-         *  Example:
-         *  @code
-         *  Easy::Account a(jsonstring);
-         *  if (a.note().empty())
-         *  {
-         *      if (a.was_set())
-         *      {
-         *          cout << "Account has an empty description.\n";
-         *      }
-         *      else
-         *      {
-         *          cout << "Account has no description.\n";
-         *      }
-         *  }
-         *  @endcode
-         *  
-         *  @since  before 0.11.0
-         */
-        bool was_set() const;
-
-    protected:
-        /*!
-         *  @brief  Returns the value of key as Json::Value
-         *
-         *          Returns an empty object if the value does not exist or is
-         *          null.
-         */
-        const Json::Value get(const string &key) const;
-
-        /*!
-         *  @brief  Returns the value of key as std::string
-         *  
-         *          returns "" if the value does not exist or is null.
-         */
-        const string get_string(const string &key) const;
-
-        /*!
-         *  @brief  Returns the value of key as std::uint64_t
-         *  
-         *          Returns 0 if the value does not exist or is null.
-         */
-        uint64_t get_uint64(const string &key) const;
-
-        /*!
-         *  @brief  Returns the value of key as double
-         *  
-         *          Returns 0.0 if the value does not exist or is null.
-         */
-        double get_double(const string &key) const;
-
-        // TODO: Maybe an enum would be better?
-        /*!
-         *  @brief  Returns the value of key as bool
-         *  
-         *          Returns false if the value does not exist or is null.
-         */
-        bool get_bool(const string &key) const;
-
-        /*!
-         *  @brief  Returns the value of key as time_point
-         *  
-         *          Returns clocks epoch if the value does not exist or is null.
-         */
-        const system_clock::time_point get_time_point(const string &key) const;
-
-        /*!
-         *  @brief  Returns the value of key as vector
-         *  
-         *          Returns an empty vector if the value does not exist or is
-         *          null.
-         */
-        const std::vector<string> get_vector(const string &key) const;
-
-        /*!
-         *  @brief  Sets the value of key
-         *  
-         *  @since  0.17.0
-         */
-        void set(const string &key, const Json::Value &value);
-
-        std::uint64_t stouint64(const string &str) const;
-
-        /*!
-         *  @brief  Checks if an Entity is valid
-         *
-         *  @param  attributes  The attributes to check
-         *
-         *  @return true if all attributes are set
-         *  
-         *  @since  0.18.2
-         */
-        bool check_valid(const std::vector<string> &attributes) const;
-
-    private:
-        Json::Value _tree;
-        mutable bool _was_set;
-    };
-
-    // /*!
-    //  *  @brief  Class to hold generic entities.
-    //  *
-    //  *  @since  0.100.0
-    //  */
-    // class GenericEntity : public Easy::Entity
-    // {
-    // public:
-    //     /*!
-    //      *  @brief  Constructs an GenericEntity object from a JSON string.
-    //      *
-    //      *  @param  json    JSON string
-    //      *
-    //      *  @since  0.100.0
-    //      */
-    //     explicit GenericEntity(const string &json);
-
-    //     /*!
-    //      *  @brief  Constructs an empty GenericEntity object.
-    //      *
-    //      *  @since  0.100.0
-    //      */
-    //     explicit GenericEntity();
-
-    //     virtual bool valid() const override;
-    // };
-
-    // template <typename T>
-    // class GenericEntity : public Easy::Entity
-    // {
-    // public:
-    //     explicit GenericEntity(const string &json);
-    //     explicit GenericEntity();
-
-    //     virtual bool valid() const override;
-    // };
-
 protected:
     inline static const string strtime
         (const system_clock::time_point &timepoint,
          const string &format, const bool &utc);
 };
-
-/*!
- * Return type for Easy calls, with an Easy::GenericEntity.
- * @since  0.100.0
- */
-// typedef struct return_entity : return_base
-// {
-//     Easy::GenericEntity entity;
-
-//     return_entity();
-//     return_entity(const uint8_t ec, const string &em,
-//                   const Easy::GenericEntity &ent);
-
-//     operator const Easy::GenericEntity() const;
-//     operator const string() const;
-//     friend std::ostream &operator <<(std::ostream &out,
-//                                      const return_entity &ret);
-// } return_entity;
-
-// /*!
-//  * Return type for Easy calls, with a vector of Easy::GenericEntity.
-//  * @since  0.100.0
-//  */
-// typedef struct return_entity_vector : return_base
-// {
-//     vector<Easy::GenericEntity> entities;
-
-//     return_entity_vector();
-//     return_entity_vector(const uint8_t ec, const string &em,
-//                   const vector<Easy::GenericEntity> &vec);
-
-//     operator const vector<Easy::GenericEntity>() const;
-// } return_entity_vector;
+}
 }
 
 #endif  // MASTODON_EASY_CPP_HPP

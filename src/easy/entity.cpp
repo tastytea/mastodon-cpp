@@ -19,7 +19,8 @@
 #include <sstream>
 #include <chrono>
 #include <regex>
-#include "easy.hpp"
+// #include "easy.hpp"
+#include "easy/entity.hpp"
 #include "debug.hpp"
 
 using namespace Mastodon;

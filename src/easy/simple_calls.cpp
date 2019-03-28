@@ -23,12 +23,12 @@
 
 using namespace Mastodon;
 
-const return_entity<Easy::Status> Easy::send_toot(const Status &status)
+const return_entity<Easy::Status> Easy::API::send_toot(const Status &status)
 {
     return send_post(status);
 }
 
-const return_entity<Easy::Status> Easy::send_post(const Status &status)
+const return_entity<Easy::Status> Easy::API::send_post(const Status &status)
 {
     API::parametermap parameters;
 
@@ -129,7 +129,7 @@ const return_entity<Easy::Status> Easy::send_post(const Status &status)
     return { ret.error_code, ret.error_message, Status(ret.answer) };
 }
 
-const return_entity_vector<Easy::Notification> Easy::get_notifications(
+const return_entity_vector<Easy::Notification> Easy::API::get_notifications(
     const uint16_t limit, const string since_id, const string max_id)
 {
     API::parametermap parameters;

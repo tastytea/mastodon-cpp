@@ -23,108 +23,11 @@
 #include "debug.hpp"
 
 using namespace Mastodon;
+using namespace Mastodon::Easy;
 using std::string;
 
-// return_entity::return_entity()
-// : entity()
-// {}
-
-// return_entity::return_entity(const uint8_t ec, const string &em,
-//                              const Easy::GenericEntity &ent)
-// : entity(ent)
-// {
-//     error_code = ec;
-//     error_message = em;
-// }
-
-// return_entity::operator const Easy::GenericEntity() const
-// {
-//     return entity;
-// }
-
-// return_entity::operator const string() const
-// {
-//     return entity.to_string();
-// }
-
-// std::ostream &Mastodon::operator <<(std::ostream &out, const return_entity &ret)
-// {
-//     out << ret.entity.to_string();
-//     return out;
-// }
-
-template<typename T>
-return_entity<T>::return_entity()
-    : entity()
-{}
-
-template<typename T>
-return_entity<T>::return_entity(const uint8_t ec, const string &em,
-                                const T &ent)
-    : entity(ent)
-{
-    error_code = ec;
-    error_message = em;
-}
-
-template<typename T>
-return_entity<T>::return_entity::operator const T() const
-{
-    return entity;
-}
-
-template<typename T>
-return_entity<T>::return_entity::operator const string() const
-{
-    return entity.to_string();
-}
-
-template<typename T>
-std::ostream &operator <<(std::ostream &out, const return_entity<T> &ret)
-{
-    out << ret.entity.to_string();
-    return out;
-}
-
-// return_entity_vector::return_entity_vector()
-// : entities()
-// {}
-
-// return_entity_vector::return_entity_vector(const uint8_t ec, const string &em,
-//                                         const vector<Easy::GenericEntity> &vec)
-// : entities(vec)
-// {
-//     error_code = ec;
-//     error_message = em;
-// }
-
-// return_entity_vector::operator const vector<Easy::GenericEntity>() const
-// {
-//     return entities;
-// }
-
-template<typename T>
-return_entity_vector<T>::return_entity_vector::return_entity_vector()
-: entities()
-{}
-
-template<typename T>
-return_entity_vector<T>::return_entity_vector::return_entity_vector(
-    const uint8_t ec, const string &em, const vector<T> &vec)
-: entities(vec)
-{
-    error_code = ec;
-    error_message = em;
-}
-
-template<typename T>
-return_entity_vector<T>::return_entity_vector::operator const vector<T>() const
-{
-    return entities;
-}
-
-Easy::Easy(const string &instance, const string &access_token)
-: API(instance, access_token)
+Easy::API::API(const string &instance, const string &access_token)
+    : Mastodon::API(instance, access_token)
 {}
 
 const std::vector<string> Easy::json_array_to_vector(const string &json)
@@ -176,24 +79,24 @@ const std::vector<Easy::stream_event>
     return vec;
 }
 
-const Easy::Link Easy::get_link() const
+const Easy::Link Easy::API::get_link() const
 {
     return Link(get_header("Link"));
 }
 
-const string Easy::strtime_utc(const system_clock::time_point &timepoint,
+const string Easy::API::strtime_utc(const system_clock::time_point &timepoint,
                                const string &format)
 {
     return strtime(timepoint, format, true);
 }
 
-const string Easy::strtime_local(const system_clock::time_point &timepoint,
+const string Easy::API::strtime_local(const system_clock::time_point &timepoint,
                                  const string &format)
 {
     return strtime(timepoint, format, false);
 }
 
-const string Easy::strtime(const system_clock::time_point &timepoint,
+const string Easy::API::strtime(const system_clock::time_point &timepoint,
                            const string &format, const bool &utc)
 {
     constexpr std::uint16_t bufsize = 1024;

@@ -1,6 +1,6 @@
 /*  This file is part of mastodon-cpp.
  *  Copyright © 2018, 2019 tastytea <tastytea@tastytea.de>
- *  
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, version 3.
@@ -23,12 +23,12 @@
 
 using namespace Mastodon;
 
-const return_entity Easy::send_toot(const Status &status)
+const return_entity<Easy::Status> Easy::send_toot(const Status &status)
 {
     return send_post(status);
 }
 
-const return_entity Easy::send_post(const Status &status)
+const return_entity<Easy::Status> Easy::send_post(const Status &status)
 {
     API::parametermap parameters;
 
@@ -39,7 +39,7 @@ const return_entity Easy::send_post(const Status &status)
     else
     {
         ttdebug << "ERROR: Easy::Status::content can not be empty.\n";
-        return {22, "Easy::Status::content can not be empty", GenericEntity()};
+        return {22, "Easy::Status::content can not be empty", Status()};
     }
 
     if (!status.in_reply_to_id().empty())
@@ -95,7 +95,7 @@ const return_entity Easy::send_post(const Status &status)
             {
                 ttdebug << "ERROR: Easy::Attachment::file can not be empty.\n";
                 return { 22, "Easy::Attachment::file can not be empty",
-                    GenericEntity() };
+                    Status() };
             }
             if (!att.description().empty())
             {
@@ -118,7 +118,7 @@ const return_entity Easy::send_post(const Status &status)
             {
                 ttdebug << "ERROR: Could not upload file.\n";
                 return { ret.error_code, ret.error_message,
-                    GenericEntity(ret.answer) };
+                    Status(ret.answer) };
             }
         }
 
@@ -126,12 +126,11 @@ const return_entity Easy::send_post(const Status &status)
     }
 
     return_call ret = post(API::v1::statuses, parameters);
-    return { ret.error_code, ret.error_message, GenericEntity(ret.answer) };
+    return { ret.error_code, ret.error_message, Status(ret.answer) };
 }
 
-const return_entity_vector Easy::get_notifications(const uint16_t limit,
-                                                   const string since_id,
-                                                   const string max_id)
+const return_entity_vector<Easy::Notification> Easy::get_notifications(
+    const uint16_t limit, const string since_id, const string max_id)
 {
     API::parametermap parameters;
 
@@ -150,13 +149,13 @@ const return_entity_vector Easy::get_notifications(const uint16_t limit,
     if (ret.error_code == 0)
     {
         const vector<string> &answer_v = json_array_to_vector(ret.answer);
-        vector<GenericEntity> notifications;
+        vector<Notification> notifications;
         notifications.resize(answer_v.size());
 
         // Transform vector of strings to vector of Notification.
         std::transform(answer_v.begin(), answer_v.end(), notifications.begin(),
                        [](const string &s)
-                       { return GenericEntity(s); });
+                       { return Notification(s); });
 
         return { ret.error_code, ret.error_message, notifications };
     }

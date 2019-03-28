@@ -42,8 +42,44 @@ using std::chrono::system_clock;
 namespace Mastodon
 {
 // Defined at the bottom
-typedef struct return_entity return_entity;
-typedef struct return_entity_vector return_entity_vector;
+// typedef struct return_entity return_entity;
+// typedef struct return_entity_vector return_entity_vector;
+
+template <typename T>
+struct return_entity;
+// https://stackoverflow.com/a/4661372/5965450
+template <typename T>
+std::ostream &operator <<(std::ostream&, const return_entity<T>&);
+
+template <typename T>
+struct return_entity : return_base
+{
+    T entity;
+
+    return_entity();
+    return_entity(const uint8_t ec, const string &em, const T &ent);
+
+    operator const T() const;
+    operator const string() const;
+
+    friend std::ostream &operator <<<T>(std::ostream &out,
+                                     const return_entity<T> &ret);
+};
+// template <typename T>
+// std::ostream &operator <<(std::ostream &out,
+//                           const return_entity<T> &ret);
+
+template <typename T>
+struct return_entity_vector : return_base
+{
+    vector<T> entities;
+
+    return_entity_vector();
+    return_entity_vector(const uint8_t ec, const string &em,
+                         const vector<T> &vec);
+
+    operator const vector<T>() const;
+};
 
 /*!
  *  @brief  Child of Mastodon::API with abstract methods.
@@ -291,14 +327,14 @@ public:
      *  
      *  @since  0.18.1
      */
-    const return_entity send_post(const Status &status);
+    const return_entity<Easy::Status> send_post(const Status &status);
 
     /*!
      *  @brief  Alias for send_post()
      *  
      *  @since  0.17.0
      */
-    const return_entity send_toot(const Status &status);
+    const return_entity<Easy::Status> send_toot(const Status &status);
 
     /*!
      *  @brief  Gets notifications.
@@ -312,9 +348,9 @@ public:
      *
      *  @since  0.21.0
      */
-    const return_entity_vector get_notifications(const uint16_t limit = 20,
-                                                 const string since_id = "",
-                                                 const string max_id = "");
+    const return_entity_vector<Easy::Notification> get_notifications(
+        const uint16_t limit = 20, const string since_id = "",
+        const string max_id = "");
 
     /*!
      *  @brief  Base class for all entities.
@@ -521,32 +557,42 @@ public:
         mutable bool _was_set;
     };
 
-    /*!
-     *  @brief  Class to hold generic entities.
-     *
-     *  @since  0.100.0
-     */
-    class GenericEntity : public Easy::Entity
-    {
-    public:
-        /*!
-         *  @brief  Constructs an GenericEntity object from a JSON string.
-         *
-         *  @param  json    JSON string
-         *
-         *  @since  0.100.0
-         */
-        explicit GenericEntity(const string &json);
+    // /*!
+    //  *  @brief  Class to hold generic entities.
+    //  *
+    //  *  @since  0.100.0
+    //  */
+    // class GenericEntity : public Easy::Entity
+    // {
+    // public:
+    //     /*!
+    //      *  @brief  Constructs an GenericEntity object from a JSON string.
+    //      *
+    //      *  @param  json    JSON string
+    //      *
+    //      *  @since  0.100.0
+    //      */
+    //     explicit GenericEntity(const string &json);
 
-        /*!
-         *  @brief  Constructs an empty GenericEntity object.
-         *
-         *  @since  0.100.0
-         */
-        explicit GenericEntity();
+    //     /*!
+    //      *  @brief  Constructs an empty GenericEntity object.
+    //      *
+    //      *  @since  0.100.0
+    //      */
+    //     explicit GenericEntity();
 
-        virtual bool valid() const override;
-    };
+    //     virtual bool valid() const override;
+    // };
+
+    // template <typename T>
+    // class GenericEntity : public Easy::Entity
+    // {
+    // public:
+    //     explicit GenericEntity(const string &json);
+    //     explicit GenericEntity();
+
+    //     virtual bool valid() const override;
+    // };
 
 protected:
     inline static const string strtime
@@ -558,34 +604,34 @@ protected:
  * Return type for Easy calls, with an Easy::GenericEntity.
  * @since  0.100.0
  */
-typedef struct return_entity : return_base
-{
-    Easy::GenericEntity entity;
+// typedef struct return_entity : return_base
+// {
+//     Easy::GenericEntity entity;
 
-    return_entity();
-    return_entity(const uint8_t ec, const string &em,
-                  const Easy::GenericEntity &ent);
+//     return_entity();
+//     return_entity(const uint8_t ec, const string &em,
+//                   const Easy::GenericEntity &ent);
 
-    operator const Easy::GenericEntity() const;
-    operator const string() const;
-    friend std::ostream &operator <<(std::ostream &out,
-                                     const return_entity &ret);
-} return_entity;
+//     operator const Easy::GenericEntity() const;
+//     operator const string() const;
+//     friend std::ostream &operator <<(std::ostream &out,
+//                                      const return_entity &ret);
+// } return_entity;
 
-/*!
- * Return type for Easy calls, with a vector of Easy::GenericEntity.
- * @since  0.100.0
- */
-typedef struct return_entity_vector : return_base
-{
-    vector<Easy::GenericEntity> entities;
+// /*!
+//  * Return type for Easy calls, with a vector of Easy::GenericEntity.
+//  * @since  0.100.0
+//  */
+// typedef struct return_entity_vector : return_base
+// {
+//     vector<Easy::GenericEntity> entities;
 
-    return_entity_vector();
-    return_entity_vector(const uint8_t ec, const string &em,
-                  const vector<Easy::GenericEntity> &vec);
+//     return_entity_vector();
+//     return_entity_vector(const uint8_t ec, const string &em,
+//                   const vector<Easy::GenericEntity> &vec);
 
-    operator const vector<Easy::GenericEntity>() const;
-} return_entity_vector;
+//     operator const vector<Easy::GenericEntity>() const;
+// } return_entity_vector;
 }
 
 #endif  // MASTODON_EASY_CPP_HPP

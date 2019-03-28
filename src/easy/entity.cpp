@@ -1,6 +1,6 @@
 /*  This file is part of mastodon-cpp.
  *  Copyright © 2018, 2019 tastytea <tastytea@tastytea.de>
- *  
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, version 3.
@@ -300,15 +300,28 @@ std::uint64_t Easy::Entity::stouint64(const string &str) const
     }
 }
 
-Easy::GenericEntity::GenericEntity(const string &json)
-: Entity(json)
-{}
+// Easy::GenericEntity::GenericEntity(const string &json)
+// : Entity(json)
+// {}
 
-Easy::GenericEntity::GenericEntity()
-: Entity()
-{}
+// Easy::GenericEntity::GenericEntity()
+// : Entity()
+// {}
 
-bool Easy::GenericEntity::valid() const
-{
-    return true;
-}
+// bool Easy::GenericEntity::valid() const
+// {
+//     return true;
+// }
+
+// template<typename T> GenericEntity<T>::GenericEntity(const string &json)
+//     : Entity(json)
+// {}
+
+// template<typename T> GenericEntity<T>::GenericEntity()
+//     : Entity()
+// {}
+
+// template<typename T> bool GenericEntity<T>::valid() const
+// {
+//     return true;
+// }

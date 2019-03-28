@@ -1,6 +1,6 @@
 /*  This file is part of mastodon-cpp.
  *  Copyright © 2018, 2019 tastytea <tastytea@tastytea.de>
- *  
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, version 3.
@@ -25,47 +25,100 @@
 using namespace Mastodon;
 using std::string;
 
-return_entity::return_entity()
-: entity()
+// return_entity::return_entity()
+// : entity()
+// {}
+
+// return_entity::return_entity(const uint8_t ec, const string &em,
+//                              const Easy::GenericEntity &ent)
+// : entity(ent)
+// {
+//     error_code = ec;
+//     error_message = em;
+// }
+
+// return_entity::operator const Easy::GenericEntity() const
+// {
+//     return entity;
+// }
+
+// return_entity::operator const string() const
+// {
+//     return entity.to_string();
+// }
+
+// std::ostream &Mastodon::operator <<(std::ostream &out, const return_entity &ret)
+// {
+//     out << ret.entity.to_string();
+//     return out;
+// }
+
+template<typename T>
+return_entity<T>::return_entity()
+    : entity()
 {}
 
-return_entity::return_entity(const uint8_t ec, const string &em,
-                             const Easy::GenericEntity &ent)
-: entity(ent)
+template<typename T>
+return_entity<T>::return_entity(const uint8_t ec, const string &em,
+                                const T &ent)
+    : entity(ent)
 {
     error_code = ec;
     error_message = em;
 }
 
-return_entity::operator const Easy::GenericEntity() const
+template<typename T>
+return_entity<T>::return_entity::operator const T() const
 {
     return entity;
 }
 
-return_entity::operator const string() const
+template<typename T>
+return_entity<T>::return_entity::operator const string() const
 {
     return entity.to_string();
 }
 
-std::ostream &Mastodon::operator <<(std::ostream &out, const return_entity &ret)
+template<typename T>
+std::ostream &operator <<(std::ostream &out, const return_entity<T> &ret)
 {
     out << ret.entity.to_string();
     return out;
 }
 
-return_entity_vector::return_entity_vector()
+// return_entity_vector::return_entity_vector()
+// : entities()
+// {}
+
+// return_entity_vector::return_entity_vector(const uint8_t ec, const string &em,
+//                                         const vector<Easy::GenericEntity> &vec)
+// : entities(vec)
+// {
+//     error_code = ec;
+//     error_message = em;
+// }
+
+// return_entity_vector::operator const vector<Easy::GenericEntity>() const
+// {
+//     return entities;
+// }
+
+template<typename T>
+return_entity_vector<T>::return_entity_vector::return_entity_vector()
 : entities()
 {}
 
-return_entity_vector::return_entity_vector(const uint8_t ec, const string &em,
-                                        const vector<Easy::GenericEntity> &vec)
+template<typename T>
+return_entity_vector<T>::return_entity_vector::return_entity_vector(
+    const uint8_t ec, const string &em, const vector<T> &vec)
 : entities(vec)
 {
     error_code = ec;
     error_message = em;
 }
 
-return_entity_vector::operator const vector<Easy::GenericEntity>() const
+template<typename T>
+return_entity_vector<T>::return_entity_vector::operator const vector<T>() const
 {
     return entities;
 }

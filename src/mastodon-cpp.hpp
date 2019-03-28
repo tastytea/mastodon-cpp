@@ -47,8 +47,8 @@ namespace Mastodon
         uint8_t error_code = 0;     // NOTE: http://mazack.org/unix/errno.php
         string error_message;
 
-        operator const bool() const;
-        operator const uint8_t() const;
+        operator bool();
+        operator uint8_t();
     } return_base;
 
     /*!

@@ -25,7 +25,7 @@
 #include "mastodon-cpp.hpp"
 
 using namespace Mastodon;
-return_base::operator const bool() const
+return_base::operator bool()
 {
     if (error_code == 0)
     {
@@ -37,7 +37,7 @@ return_base::operator const bool() const
     }
 }
 
-return_base::operator const uint8_t() const
+return_base::operator uint8_t()
 {
     return error_code;
 }
@@ -47,7 +47,7 @@ return_call::operator const string() const
     return answer;
 }
 
-std::ostream &Mastodon::operator <<(std::ostream &out, const return_call &ret)
+std::ostream &operator <<(std::ostream &out, const return_call &ret)
 {
     out << ret.answer;
     return out;

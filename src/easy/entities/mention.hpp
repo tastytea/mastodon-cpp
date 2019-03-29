@@ -19,15 +19,16 @@
 
 #include <string>
 #include <cstdint>
-#include "easy/entity.hpp"
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
     #include "easy/easy.hpp"
+    #include "easy/entity.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy/easy.hpp>
+    #include <mastodon-cpp/easy/entity.hpp>
 #endif
 
 using std::string;
@@ -36,12 +37,14 @@ using std::chrono::system_clock;
 
 namespace Mastodon
 {
+namespace Easy
+{
     /*!
      *  @brief  Class to hold mentions
-     *  
+     *
      *  before 0.11.0
      */
-    class Easy::Mention : public Easy::Entity
+    class Mention : public Entity
     {
     public:
         using Entity::Entity;
@@ -50,32 +53,33 @@ namespace Mastodon
 
         /*!
          *  @brief  Returns acct
-         *  
+         *
          *  @since before 0.11.0
          */
         const string acct() const;
 
         /*!
          *  @brief  Returns account ID
-         *  
+         *
          *  @since before 0.11.0
          */
         const string id() const;
 
         /*!
          *  @brief  Returns the URL of user's profile
-         *  
+         *
          *  @since before 0.11.0
          */
         const string url() const;
 
         /*!
          *  @brief  Returns the username of the account
-         *  
+         *
          *  @since before 0.11.0
          */
         const string username() const;
     };
+}
 }
 
 #endif  // MASTODON_CPP_EASY_MENTION_HPP

@@ -18,36 +18,37 @@
 #define MASTODON_CPP_EASY_TAG_HPP
 
 #include <string>
-#include <chrono>
 #include <cstdint>
-#include "easy/entity.hpp"
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
     #include "easy/easy.hpp"
+    #include "easy/entity.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy/easy.hpp>
+    #include <mastodon-cpp/easy/entity.hpp>
 #endif
 
 using std::string;
-using std::chrono::system_clock;
 using std::uint64_t;
 
 namespace Mastodon
 {
+namespace Easy
+{
     /*!
      *  @brief  Class to hold tags.
-     *  
+     *
      *  @since  before 0.11.0
      */
-    class Easy::Tag : public Easy::Entity
+    class Tag : public Entity
     {
     public:
         /*!
          *  @brief  Class to hold Tag history
-         *  
+         *
          *  @since  0.16.0
          */
         class History : public Easy::Entity
@@ -59,21 +60,21 @@ namespace Mastodon
 
             /*!
              *  @brief  Returns the number of accounts using that hashtag.
-             *  
+             *
              *  @since  0.16.0
              */
             uint64_t accounts();
 
             /*!
              *  @brief  Returns the day.
-             *  
+             *
              *  @since  0.16.0
              */
-            const system_clock::time_point day();
+            const Easy::time day();
 
             /*!
              *  @brief  Returns the number of accounts using that hashtag.
-             *  
+             *
              *  @since  0.16.0
              */
             uint64_t uses();
@@ -85,25 +86,26 @@ namespace Mastodon
 
         /*!
          *  @brief  Returns the name of the tag
-         *  
+         *
          *  @since  before 0.11.0
          */
         const string name() const;
 
         /*!
          *  @brief  Returns the URL of the tag
-         *  
+         *
          *  @since  before 0.11.0
          */
         const string url() const;
 
         /*!
          *  @brief  Returns the history of the tag
-         *  
+         *
          *  @since  0.16.0
          */
         const std::vector<History> history() const;
 };
+}
 }
 
 #endif  // MASTODON_CPP_EASY_TAG_HPP

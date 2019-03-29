@@ -1,6 +1,6 @@
 /*  This file is part of mastodon-cpp.
  *  Copyright © 2018, 2019 tastytea <tastytea@tastytea.de>
- *  
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, version 3.
@@ -45,9 +45,9 @@ const Easy::Account Notification::account() const
     return Easy::Account();
 }
 
-const system_clock::time_point Notification::created_at() const
+const Easy::time Notification::created_at() const
 {
-    return get_time_point("created_at");
+    return get_time("created_at");
 }
 
 const string Notification::id() const

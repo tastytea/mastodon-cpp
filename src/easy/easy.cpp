@@ -25,6 +25,43 @@
 using namespace Mastodon;
 using std::string;
 
+Easy::time::operator const system_clock::time_point()
+{
+    return timepoint;
+}
+
+Easy::time::operator const string()
+{
+    return strtime("%FT%T%z", true);
+}
+
+const string Easy::time::strtime(const string &format, const bool &local) const
+{
+    constexpr std::uint16_t bufsize = 1024;
+    std::time_t time = system_clock::to_time_t(timepoint);
+    std::tm *timeinfo;
+    if (local)
+    {
+        timeinfo = std::localtime(&time);
+    }
+    else
+    {
+        timeinfo = std::gmtime(&time);
+    }
+    char buffer[bufsize];
+
+    std::strftime(buffer, bufsize, format.c_str(), timeinfo);
+
+    return buffer;
+}
+
+std::ostream &Mastodon::Easy::operator <<(std::ostream &out,
+                                          const Easy::time &t)
+{
+    out << t.strtime("%FT%T%z", true);
+    return out;
+}
+
 Easy::API::API(const string &instance, const string &access_token)
     : Mastodon::API(instance, access_token)
 {}
@@ -81,39 +118,6 @@ const vector<Easy::stream_event> Easy::parse_stream(
 const Easy::Link Easy::API::get_link() const
 {
     return Link(get_header("Link"));
-}
-
-const string Easy::API::strtime_utc(const system_clock::time_point &timepoint,
-                                    const string &format)
-{
-    return strtime(timepoint, format, true);
-}
-
-const string Easy::API::strtime_local(const system_clock::time_point &timepoint,
-                                      const string &format)
-{
-    return strtime(timepoint, format, false);
-}
-
-const string Easy::API::strtime(const system_clock::time_point &timepoint,
-                                const string &format, const bool &utc)
-{
-    constexpr std::uint16_t bufsize = 1024;
-    std::time_t time = system_clock::to_time_t(timepoint);
-    std::tm *timeinfo;
-    if (utc)
-    {
-        timeinfo = std::gmtime(&time);
-    }
-    else
-    {
-        timeinfo = std::localtime(&time);
-    }
-    char buffer[bufsize];
-
-    std::strftime(buffer, bufsize, format.c_str(), timeinfo);
-
-    return buffer;
 }
 
 Easy::Link::Link(const string &link_header)

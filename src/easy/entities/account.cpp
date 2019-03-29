@@ -1,6 +1,6 @@
 /*  This file is part of mastodon-cpp.
  *  Copyright © 2018, 2019 tastytea <tastytea@tastytea.de>
- *  
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, version 3.
@@ -71,9 +71,9 @@ bool Account::bot() const
     return get_bool("bot");
 }
 
-const system_clock::time_point Account::created_at() const
+const Easy::time Account::created_at() const
 {
-    return get_time_point("created_at");
+    return get_time("created_at");
 }
 
 const string Account::display_name() const
@@ -296,27 +296,27 @@ Account::Source Account::Source::privacy(const Easy::visibility_type &privacy)
     {
         case visibility_type::Public:
         {
-            strprivacy = "public"; 
+            strprivacy = "public";
             break;
         }
         case visibility_type::Unlisted:
         {
-            strprivacy = "unlisted"; 
+            strprivacy = "unlisted";
             break;
         }
         case visibility_type::Private:
         {
-            strprivacy = "private"; 
+            strprivacy = "private";
             break;
         }
         case visibility_type::Direct:
         {
-            strprivacy = "direct"; 
+            strprivacy = "direct";
             break;
         }
         default:
         {
-            strprivacy = "undefined"; 
+            strprivacy = "undefined";
             break;
         }
     }

@@ -18,27 +18,30 @@
 #define MASTODON_CPP_EASY_APPLICATION_HPP
 
 #include <string>
-#include "easy/entity.hpp"
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
     #include "easy/easy.hpp"
+    #include "easy/entity.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy/easy.hpp>
+    #include <mastodon-cpp/easy/entity.hpp>
 #endif
 
 using std::string;
 
 namespace Mastodon
 {
+namespace Easy
+{
     /*!
      *  @brief  Class to hold applications.
-     *  
+     *
      *  @since before 0.11.0
      */
-    class Easy::Application : public Easy::Entity
+    class Application : public Entity
     {
     public:
         using Entity::Entity;
@@ -47,18 +50,19 @@ namespace Mastodon
 
         /*!
          *  @brief  Returns the name of the application
-         *  
+         *
          *  @since before 0.11.0
          */
         const string name() const;
 
         /*!
          *  @brief  Returns the website of the application
-         *  
+         *
          *  @since before 0.11.0
          */
         const string website() const;
 };
+}
 }
 
 #endif  // MASTODON_CPP_EASY_APPLICATION_HPP

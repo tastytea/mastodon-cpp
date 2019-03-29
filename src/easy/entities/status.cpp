@@ -1,6 +1,6 @@
 /*  This file is part of mastodon-cpp.
  *  Copyright © 2018, 2019 tastytea <tastytea@tastytea.de>
- *  
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, version 3.
@@ -77,9 +77,9 @@ const Easy::Card Status::card() const
     return Easy::Card();
 }
 
-const system_clock::time_point Status::created_at() const
+const Easy::time Status::created_at() const
 {
-    return get_time_point("created_at");
+    return get_time("created_at");
 }
 
 const string Status::content() const

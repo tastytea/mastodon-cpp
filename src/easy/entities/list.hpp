@@ -20,15 +20,16 @@
 #include <string>
 #include <vector>
 #include <cstdint>
-#include "easy/entity.hpp"
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
     #include "easy/easy.hpp"
+    #include "easy/entity.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy/easy.hpp>
+    #include <mastodon-cpp/easy/entity.hpp>
 #endif
 
 using std::string;
@@ -36,12 +37,14 @@ using std::uint64_t;
 
 namespace Mastodon
 {
+namespace Easy
+{
     /*!
      *  @brief  Class to hold lists
-     *  
+     *
      *  @since before 0.11.0
      */
-    class Easy::List : public Easy::Entity
+    class List : public Entity
     {
     public:
         using Entity::Entity;
@@ -50,18 +53,19 @@ namespace Mastodon
 
         /*!
          *  @brief  Returns list-ID
-         *  
+         *
          *  @since before 0.11.0
          */
         const string id() const;
 
         /*!
          *  @brief  Returns title
-         *  
+         *
          *  @since before 0.11.0
          */
         const string title() const;
     };
+}
 }
 
 #endif  // MASTODON_CPP_EASY_LIST_HPP

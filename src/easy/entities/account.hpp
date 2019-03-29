@@ -19,32 +19,33 @@
 
 #include <string>
 #include <cstdint>
-#include <chrono>
 #include <vector>
 #include <utility>
-#include "easy/entity.hpp"
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
     #include "easy/easy.hpp"
+    #include "easy/entity.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy/easy.hpp>
+    #include <mastodon-cpp/easy/entity.hpp>
 #endif
 
 using std::string;
 using std::uint64_t;
-using std::chrono::system_clock;
 
 namespace Mastodon
 {
+namespace Easy
+{
     /*!
      *  @brief  Class to hold accounts.
-     *  
+     *
      *  @since before 0.11.0
      */
-    class Easy::Account : public Easy::Entity
+    class Account : public Entity
     {
     public:
         using Entity::Entity;
@@ -63,137 +64,137 @@ namespace Mastodon
          *
          *          `username` for users on the same instance, `user@hostname`
          *          for users on other instances.
-         *  
+         *
          *  @since before 0.11.0
          */
         const string acct() const;
 
         /*!
          *  @brief  Returns URL of avatar
-         *  
+         *
          *  @since before 0.11.0
          */
         const string avatar() const;
 
         /*!
          *  @brief  Sets avatar
-         *  
+         *
          *          Filename or base64-encoded
-         *  
+         *
          *  @since  0.18.5
          */
         Account avatar(const string &avatar);
 
         /*!
          *  @brief  Returns URL of static avatar
-         *  
+         *
          *  @since before 0.11.0
          */
         const string avatar_static() const;
 
         /*!
          *  @brief  Returns true if the account performs automated actions
-         *  
+         *
          *  @since  0.16.0
          */
         bool bot() const;
 
         /*!
          *  @brief  Returns time of creation
-         *  
+         *
          *  @since before 0.11.0
          */
-        const system_clock::time_point created_at() const;
+        const Easy::time created_at() const;
 
         /*!
          *  @brief  Returns display name
-         *  
+         *
          *  @since before 0.11.0
          */
         const string display_name() const;
 
         /*!
          *  @brief  Sets display name
-         *  
+         *
          *  @since  0.18.5
          */
         Account display_name(const string &display_name);
 
         /*!
          *  @brief  Returns metadata fields
-         *  
+         *
          *  @since  0.16.1
          */
         const std::vector<fields_pair> fields() const;
 
         /*!
          *  @brief  Sets metadata fields
-         *  
+         *
          *  @since  0.18.5
          */
         Account fields(std::vector<fields_pair> &fields);
 
         /*!
          *  @brief  Returns number of followers
-         *  
+         *
          *  @since before 0.11.0
          */
         uint64_t followers_count() const;
 
         /*!
          *  @brief  Returns number of people this account follows
-         *  
+         *
          *  @since before 0.11.0
          */
         uint64_t following_count() const;
 
         /*!
          *  @brief  Returns URL of header image
-         *  
+         *
          *  @since before 0.11.0
          */
         const string header() const;
 
         /*!
          *  @brief  Sets header image
-         *  
+         *
          *          Filename or base64-encoded.
-         *  
+         *
          *  @since  0.18.5
          */
         Account header(const string &header);
 
         /*!
          *  @brief  Returns URL of static header image
-         *  
+         *
          *  @since before 0.11.0
          */
         const string header_static() const;
 
         /*!
          *  @brief  Returns account-ID
-         *  
+         *
          *  @since before 0.11.0
          */
         const string id() const;
 
         /*!
          *  @brief  Returns true if the account is locked
-         *  
+         *
          *  @since before 0.11.0
          */
         bool locked() const;
 
         /*!
          *  @brief  Sets locked state
-         *  
+         *
          *  @since  0.18.5
          */
         Account locked(const bool &locked);
 
         /*!
          *  @brief  Returns true if the account has been moved
-         *  
+         *
          *  @since before 0.11.0
          */
         bool has_moved() const;
@@ -201,42 +202,42 @@ namespace Mastodon
         /*!
          *  @brief  If the owner decided to switch accounts, new account is in
          *          this attribute
-         *  
+         *
          *  @since before 0.11.0
          */
         const Account moved() const;
 
         /*!
          *  @brief  Returns note
-         *  
+         *
          *  @since before 0.11.0
          */
         const string note() const;
 
         /*!
          *  @brief  Sets note
-         *  
+         *
          *  @since  0.18.5
          */
         Account note(const string &note);
 
         /*!
          *  @brief  Returns default privacy of new toots
-         *  
+         *
          *  @since before 0.11.0
          */
         visibility_type privacy() const;
 
         /*!
          *  @brief  Returns if media is marked as sensitive by default
-         *  
+         *
          *  @since before 0.11.0
          */
         bool sensitive() const;
 
         /*!
          *  @brief  Class to hold source attribute
-         *  
+         *
          *  @since  0.18.5
          */
         class Source : public Easy::Entity
@@ -246,14 +247,14 @@ namespace Mastodon
              *  @brief  Constructs an Account::Source object from a JSON string.
              *
              *  @param  json    JSON string
-             *  
+             *
              *  @since  0.18.5
              */
             explicit Source(const string &json);
 
             /*!
              *  @brief  Constructs an empty Account::Source object.
-             *  
+             *
              *  @since  0.18.5
              */
             Source();
@@ -262,56 +263,56 @@ namespace Mastodon
 
             /*!
              *  @brief  Returns metadata fields
-             *  
+             *
              *  @since  0.18.5
              */
             const std::vector<fields_pair> fields() const;
 
             /*!
              *  @brief  Sets metadata fields
-             *  
+             *
              *  @since  0.18.5
              */
             Source fields(std::vector<fields_pair> &fields);
 
             /*!
              *  @brief  Returns note in plain text
-             *  
+             *
              *  @since 0.18.5
              */
             const string note() const;
 
             /*!
              *  @brief  Sets note
-             *  
+             *
              *  @since  0.18.5
              */
             Source note(const string &note);
 
             /*!
              *  @brief  Returns default privacy of new toots
-             *  
+             *
              *  @since 0.18.5
              */
             visibility_type privacy() const;
 
             /*!
              *  @brief  Sets default privacy of new toots
-             *  
+             *
              *  @since 0.18.5
              */
             Source privacy(const visibility_type &privacy);
 
             /*!
              *  @brief  Returns if media is marked as sensitive by default
-             *  
+             *
              *  @since 0.18.5
              */
             bool sensitive() const;
 
             /*!
              *  @brief  Sets if media is marked as sensitive by default
-             *  
+             *
              *  @since 0.18.5
              */
             Source sensitive(const bool &sensitive);
@@ -322,25 +323,26 @@ namespace Mastodon
 
         /*!
          *  @brief  Returns number of statuses
-         *  
+         *
          *  @since before 0.11.0
          */
         uint64_t statuses_count() const;
 
         /*!
          *  @brief  Returns URL of the profile
-         *  
+         *
          *  @since before 0.11.0
          */
         const string url() const;
 
         /*!
          *  @brief  Returns username (without \@hostname)
-         *  
+         *
          *  @since before 0.11.0
          */
         const string username() const;
 };
+}
 }
 
 #endif  // MASTODON_CPP_EASY_ACCOUNT_HPP

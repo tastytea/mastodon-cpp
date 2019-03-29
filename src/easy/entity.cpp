@@ -19,7 +19,6 @@
 #include <sstream>
 #include <chrono>
 #include <regex>
-// #include "easy.hpp"
 #include "easy/entity.hpp"
 #include "debug.hpp"
 
@@ -212,8 +211,7 @@ bool Easy::Entity::get_bool(const string &key) const
     return false;
 }
 
-const system_clock::time_point
-    Easy::Entity::get_time_point(const string &key) const
+const Easy::time Easy::Entity::get_time(const string &key) const
 {
     const Json::Value node = get(key);
 
@@ -224,12 +222,12 @@ const system_clock::time_point
         sstime >> std::get_time(&tm, "%Y-%m-%dT%T");
         std::time_t time = timegm(&tm);
         _was_set = true;
-        return system_clock::from_time_t(time);
+        return { system_clock::from_time_t(time) };
     }
 
     _was_set = false;
     // Return clocks epoch
-    return system_clock::time_point();
+    return { system_clock::time_point() };
 }
 
 const std::vector<string> Easy::Entity::get_vector(const string &key) const

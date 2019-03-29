@@ -1,6 +1,6 @@
 /*  This file is part of mastodon-cpp.
  *  Copyright © 2018, 2019 tastytea <tastytea@tastytea.de>
- *  
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, version 3.
@@ -77,18 +77,18 @@ uint64_t Tag::History::accounts()
     return stouint64(get_string("accounts"));
 }
 
-const system_clock::time_point Tag::History::day()
+const Easy::time Tag::History::day()
 {
     const Json::Value node = get("day");
 
     if (node.isString())
     {
         std::chrono::seconds seconds(stouint64(node.asString()));
-        return system_clock::time_point(seconds);
+        return {system_clock::time_point(seconds)};
     }
 
     ttdebug << "Could not get data: day\n";
-    return system_clock::time_point();
+    return Easy::time();
 }
 
 uint64_t Tag::History::uses()

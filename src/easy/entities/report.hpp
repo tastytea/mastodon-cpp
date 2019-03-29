@@ -19,27 +19,30 @@
 
 #include <string>
 #include <cstdint>
-#include "easy/entity.hpp"
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
     #include "easy/easy.hpp"
+    #include "easy/entity.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy/easy.hpp>
+    #include <mastodon-cpp/easy/entity.hpp>
 #endif
 
 using std::string;
 
 namespace Mastodon
 {
+namespace Easy
+{
     /*!
      *  @brief  Class to hold reports
-     *  
+     *
      *  before 0.11.0
      */
-    class Easy::Report : public Easy::Entity
+    class Report : public Entity
     {
     public:
         using Entity::Entity;
@@ -49,18 +52,19 @@ namespace Mastodon
         /*!
          *  @brief  Returns true if an action was taken in response to the
          *          report
-         *  
+         *
          *  @since  before 0.11.0
          */
         bool action_taken() const;
-        
+
         /*!
          *  @brief  Returns the ID of the report
-         *  
+         *
          *  @since  before 0.11.0
          */
         const string id() const;
     };
+}
 }
 
 #endif  // MASTODON_CPP_EASY_REPORT_HPP

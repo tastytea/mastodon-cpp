@@ -20,27 +20,30 @@
 #include <string>
 #include <cstdint>
 #include <map>
-#include "easy/entity.hpp"
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
     #include "easy/easy.hpp"
+    #include "easy/entity.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy/easy.hpp>
+    #include <mastodon-cpp/easy/entity.hpp>
 #endif
 
 using std::string;
 
 namespace Mastodon
 {
+namespace Easy
+{
     /*!
      *  @brief  Class to hold push subscriptions.
      *
      *  @since  0.14.0
      */
-    class Easy::PushSubscription : public Easy::Entity
+    class PushSubscription : public Entity
     {
     public:
         using Entity::Entity;
@@ -49,21 +52,21 @@ namespace Mastodon
 
         /*!
          *  @brief  Returns push subscription ID
-         *  
+         *
          *  @since  0.14.0
          */
         const string id() const;
 
         /*!
          *  @brief  Returns the endpoint URL
-         *  
+         *
          *  @since  0.14.0
          */
         const string endpoint() const;
 
         /*!
          *  @brief  Returns the server public key for signature verification
-         *  
+         *
          *  @since  0.14.0
          */
         const string server_key() const;
@@ -72,7 +75,7 @@ namespace Mastodon
         /*!
          *  @brief  Returns a map of 'notification event type' and
          *  'push is requested or not'
-         *  
+         *
          *  @since  0.14.0
          */
         const Easy::alertmap alerts() const;
@@ -85,6 +88,7 @@ namespace Mastodon
          */
         bool s_to_b(const string &str) const;
 };
+}
 }
 
 #endif  // MASTODON_CPP_EASY_PUSHSUBSCRIPTION_HPP

@@ -19,7 +19,6 @@
 
 #include <string>
 #include <vector>
-#include "easy/entity.hpp"
 
 using std::uint64_t;
 
@@ -28,22 +27,26 @@ using std::uint64_t;
     #include "mastodon-cpp.hpp"
     #include "easy/easy.hpp"
     #include "easy/entities/account.hpp"
+    #include "easy/entity.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy/easy.hpp>
     #include <mastodon-cpp/easy/entities/account.hpp>
+    #include <mastodon-cpp/easy/entity.hpp>
 #endif
 
 using std::string;
 
 namespace Mastodon
 {
+namespace Easy
+{
     /*!
      *  @brief  Class to hold instances
-     *  
+     *
      *  @since before 0.11.0
      */
-    class Easy::Instance : public Easy::Entity
+    class Instance : public Entity
     {
     public:
         using Entity::Entity;
@@ -52,14 +55,14 @@ namespace Mastodon
 
         /*!
          *  @brief  Returns the Account of the admin or another contact person
-         *  
+         *
          *  @since before 0.11.0
          */
         const Account contact_account() const;
 
         /*!
          *  @brief  Returns the description of the instance
-         *  
+         *
          *  @since before 0.11.0
          */
         const string description() const;
@@ -67,7 +70,7 @@ namespace Mastodon
         /*!
          *  @brief  Returns the email address which can be used to contact the
          *          instance administrator
-         *  
+         *
          *  @since before 0.11.0
          */
         const string email() const;
@@ -75,35 +78,35 @@ namespace Mastodon
         /*!
          *  @brief  Returns a vector of ISO 6391 language codes the instance has
          *          chosen to advertise
-         *  
+         *
          *  @since before 0.11.0
          */
         const std::vector<string> languages() const;
 
         /*!
          *  @brief  Returns the title of the instance
-         *  
+         *
          *  @since before 0.11.0
          */
         const string title() const;
 
         /*!
          *  @brief  Returns the URI of the instance
-         *  
+         *
          *  @since before 0.11.0
          */
         const string uri() const;
 
         /*!
          *  @brief  Returns the version used by the instance
-         *  
+         *
          *  @since before 0.11.0
          */
         const string version() const;
 
         /*!
          *  @brief  Returns the URL for the streaming API
-         *  
+         *
          *  @since before 0.11.0
          */
         const string streaming_api() const;
@@ -118,6 +121,7 @@ namespace Mastodon
          */
         uint64_t max_toot_chars() const;
     };
+}
 }
 
 #endif  // MASTODON_CPP_EASY_INSTANCE_HPP

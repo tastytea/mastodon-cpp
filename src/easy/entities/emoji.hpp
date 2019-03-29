@@ -18,27 +18,30 @@
 #define MASTODON_CPP_EASY_EMOJI_HPP
 
 #include <string>
-#include "easy/entity.hpp"
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
     #include "easy/easy.hpp"
+    #include "easy/entity.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy/easy.hpp>
+    #include <mastodon-cpp/easy/entity.hpp>
 #endif
 
 using std::string;
 
 namespace Mastodon
 {
+namespace Easy
+{
     /*!
      *  @brief  Class to hold emojis
-     *  
+     *
      *  @since before 0.11.0
      */
-    class Easy::Emoji : public Easy::Entity
+    class Emoji : public Entity
     {
     public:
         using Entity::Entity;
@@ -47,25 +50,26 @@ namespace Mastodon
 
         /*!
          *  @brief  Returns the shortcode of the emoji
-         *  
+         *
          *  @since before 0.11.0
          */
         const string shortcode() const;
 
         /*!
          *  @brief  Returns the URL to the emoji static image
-         *  
+         *
          *  @since before 0.11.0
          */
         const string static_url() const;
 
         /*!
          *  @brief  Returns the URL to the emoji image
-         *  
+         *
          *  @since before 0.11.0
          */
         const string url() const;
     };
+}
 }
 
 #endif  // MASTODON_CPP_EASY_EMOJI_HPP

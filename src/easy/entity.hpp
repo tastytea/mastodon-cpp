@@ -18,11 +18,16 @@
 #define ENTITY_HPP
 
 #include <string>
-#include <chrono>
 #include <jsoncpp/json/json.h>
 
+// If we are compiling mastodon-cpp, use another include path
+#ifdef MASTODON_CPP
+    #include "easy/easy.hpp"
+#else
+    #include <mastodon-cpp/easy/easy.hpp>
+#endif
+
 using std::string;
-using std::chrono::system_clock;
 
 namespace Mastodon
 {
@@ -194,11 +199,11 @@ namespace Easy
         bool get_bool(const string &key) const;
 
         /*!
-         *  @brief  Returns the value of key as time_point
+         *  @brief  Returns the value of key as Easy::time.
          *
          *          Returns clocks epoch if the value does not exist or is null.
          */
-        const system_clock::time_point get_time_point(const string &key) const;
+        const Easy::time get_time(const string &key) const;
 
         /*!
          *  @brief  Returns the value of key as vector

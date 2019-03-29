@@ -19,8 +19,6 @@
 
 #include <string>
 #include <cstdint>
-#include <chrono>
-#include "easy/entity.hpp"
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
@@ -28,25 +26,28 @@
     #include "easy/easy.hpp"
     #include "easy/entities/account.hpp"
     #include "easy/entities/status.hpp"
+    #include "easy/entity.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy/easy.hpp>
     #include <mastodon-cpp/easy/entities/account.hpp>
     #include <mastodon-cpp/easy/entities/status.hpp>
+    #include <mastodon-cpp/easy/entity.hpp>
 #endif
 
 using std::string;
 using std::uint64_t;
-using std::chrono::system_clock;
 
 namespace Mastodon
 {
+namespace Easy
+{
     /*!
      *  @brief  Class to hold notifications
-     *  
+     *
      *  @since before 0.11.0
      */
-    class Easy::Notification : public Easy::Entity
+    class Notification : public Entity
     {
     public:
         using Entity::Entity;
@@ -55,21 +56,21 @@ namespace Mastodon
 
         /*!
          *  @brief  Returns the Account sending the notification to the user
-         *  
+         *
          *  @since before 0.11.0
          */
         const Account account() const;
 
         /*!
          *  @brief  Returns time of creation
-         *  
+         *
          *  @since before 0.11.0
          */
-        const system_clock::time_point created_at() const;
+        const Easy::time created_at() const;
 
         /*!
          *  @brief  Returns notification ID
-         *  
+         *
          *  @since before 0.11.0
          */
         const string id() const;
@@ -77,18 +78,19 @@ namespace Mastodon
         /*!
          *  @brief  Returns the Status associated with the notification, if
          *          applicable
-         *  
+         *
          *  @since before 0.11.0
          */
         const Status status() const;
 
         /*!
          *  @brief  Returns notification type
-         *  
+         *
          *  @since before 0.11.0
          */
         Easy::notification_type type() const;
     };
+}
 }
 
 #endif  // MASTODON_CPP_EASY_NOTIFICATION_HPP

@@ -19,29 +19,32 @@
 
 #include <string>
 #include <vector>
-#include "easy/entity.hpp"
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
     #include "easy/easy.hpp"
     #include "easy/entities/status.hpp"
+    #include "easy/entity.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy/easy.hpp>
     #include <mastodon-cpp/easy/entities/status.hpp>
+    #include <mastodon-cpp/easy/entity.hpp>
 #endif
 
 using std::string;
 
 namespace Mastodon
 {
+namespace Easy
+{
     /*!
      *  @brief  Class to hold contexts
-     *  
+     *
      *  @since before 0.11.0
      */
-    class Easy::Context : public Easy::Entity
+    class Context : public Entity
     {
     public:
         using Entity::Entity;
@@ -50,18 +53,19 @@ namespace Mastodon
 
         /*!
          *  @brief  Returns the ancestors of the Status as vector of Statuses
-         *  
+         *
          *  @since before 0.11.0
          */
         const std::vector<Status> ancestors() const;
 
         /*!
          *  @brief  Returns the descendants of the Status as vector of Statuses
-         *  
+         *
          *  @since before 0.11.0
          */
         const std::vector<Status> descendants() const;
     };
+}
 }
 
 #endif  // MASTODON_CPP_EASY_CONTEXT_HPP

@@ -19,15 +19,16 @@
 
 #include <string>
 #include <cstdint>
-#include "easy/entity.hpp"
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
     #include "easy/easy.hpp"
+    #include "easy/entity.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy/easy.hpp>
+    #include <mastodon-cpp/easy/entity.hpp>
 #endif
 
 using std::string;
@@ -35,12 +36,14 @@ using std::uint64_t;
 
 namespace Mastodon
 {
+namespace Easy
+{
     /*!
      *  @brief  Class to hold relationships
-     *  
+     *
      *  before 0.11.0
      */
-    class Easy::Relationship : public Easy::Entity
+    class Relationship : public Entity
     {
     public:
         using Entity::Entity;
@@ -49,74 +52,75 @@ namespace Mastodon
 
         /*!
          *  @brief  Returns true if the user is blocking the account
-         *  
+         *
          *  @since  before 0.11.0
          */
         bool blocking() const;
 
         /*!
          *  @brief  Returns true if the user is blocking the account's domain
-         *  
+         *
          *  @since  before 0.11.0
          */
         bool domain_blocking() const;
 
         /*!
          *  @brief  Returns true if the account is endorsed by the user
-         *  
+         *
          *  @since  0.19.0
          */
         bool endorsed() const;
 
         /*!
          *  @brief  Returns true if the user is being followed by the account
-         *  
+         *
          *  @since  before 0.11.0
          */
         bool followed_by() const;
 
         /*!
          *  @brief  Returns true if the user is being following the account
-         *  
+         *
          *  @since  before 0.11.0
          */
         bool following() const;
 
         /*!
          *  @brief  Returns the target account ID
-         *  
+         *
          *  @since  before 0.11.0
          */
         const string id() const;
 
         /*!
          *  @brief  Returns true if the user is muting the account
-         *  
+         *
          *  @since  before 0.11.0
          */
         bool muting() const;
 
         /*!
          *  @brief  Returns true if the user is also muting notifications
-         *  
+         *
          *  @since  before 0.11.0
          */
         bool muting_notifications() const;
 
         /*!
          *  @brief  Returns true if the user has requested to follow the account
-         *  
+         *
          *  @since  before 0.11.0
          */
         bool requested() const;
 
         /*!
          *  @brief  Returns true if the user is showing notifications
-         *  
+         *
          *  @since  0.19.0
          */
         bool showing_notifications() const;
     };
+}
 }
 
 #endif  // MASTODON_CPP_EASY_RELATIONSHIP_HPP

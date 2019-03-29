@@ -25,13 +25,14 @@
 #include <functional>
 #include <ostream>
 #include <jsoncpp/json/json.h>
-#include "return_types_easy.hpp"
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
+    #include "easy/return_types_easy.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
+    #include <mastodon-cpp/easy/return_types_easy.hpp>
 #endif
 
 using std::string;
@@ -133,6 +134,38 @@ namespace Easy
      *  @since  0.13.3
      */
     typedef std::map<Easy::notification_type, bool> alertmap;
+
+    struct time
+    {
+        system_clock::time_point timepoint = system_clock::time_point();
+
+        operator const system_clock::time_point();
+        operator const string();
+        friend std::ostream &operator <<(std::ostream &out,
+                                         const Easy::time &t);
+
+        /*!
+         *  @brief  Converts time to a string.
+         *
+         *          The return value can not exceed 1023 chars.
+         *
+         *  @param  format     The format of the string, same as with
+         *                     `strftime`.
+         *  @param  local      Use local time (default).
+         *
+         *  Example:
+         *  @code
+         *  Mastodon::Easy::time timepoint = status.created_at();
+         *  std::cout << timepoint.strtime("%F, %T UTC", false) << '\n';
+         *  @endcode
+         *
+         *  @return The time as string.
+         *
+         *  @since  0.100.0
+         */
+        const string strtime (const string &format,
+                              const bool &local = true) const;
+    };
 
     // TODO: Get rid of forward declarations.
     class Account;
@@ -254,42 +287,6 @@ namespace Easy
         const Link get_link() const;
 
         /*!
-         *  @brief  Converts a time_point to a string
-         *
-         *          The return value can not exceed 1023 chars.
-         *
-         *  @param  timepoint  The timepoint
-         *  @param  format     The format of the string, same as with
-         *                     `strftime`.
-         *
-         *  Example:
-         *  @code
-         *  auto timepoint = status.created_at();
-         *  cout << Easy::strtime_utc(timepoint, "%F, %T") << '\n';
-         *  @endcode
-         *
-         *  @return The UTC time as string
-         *
-         *  @since  0.11.0
-         */
-        // TODO: Time type, convertible to time_point, str_utc and str_local.
-        static const string strtime_utc(const system_clock::time_point &timepoint,
-                                        const string &format);
-
-        /*!
-         *  @brief  See strtime_utc
-         *
-         *  @return The local time as string
-         *
-         *  @since  0.11.0
-         */
-        static const string strtime_local(const system_clock::time_point &timepoint,
-                                          const string &format);
-
-        // #### simple calls ####
-        // TODO: Own file.
-
-        /*!
          *  @brief  Sends a post.
          *
          *  @param  status  The status to send
@@ -323,12 +320,7 @@ namespace Easy
         const return_entity_vector<Easy::Notification> get_notifications(
             const uint16_t limit = 20, const string since_id = "",
             const string max_id = "");
-
-    protected:
-        inline static const string strtime
-        (const system_clock::time_point &timepoint,
-         const string &format, const bool &utc);
-};
+    };
 }
 }
 

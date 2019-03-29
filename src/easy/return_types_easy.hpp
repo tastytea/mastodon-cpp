@@ -38,6 +38,8 @@ namespace Easy
 
     /*!
      *  @brief  Return types for calls that return a single `Easy::Entity`.
+     *
+     *  @since  0.100.0
      */
     template <typename T>
     struct return_entity : return_base

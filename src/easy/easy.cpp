@@ -48,11 +48,11 @@ const string Easy::time::strtime(const string &format, const bool &local) const
     {
         timeinfo = std::gmtime(&time);
     }
-    char buffer[bufsize];
 
+    char buffer[bufsize];
     std::strftime(buffer, bufsize, format.c_str(), timeinfo);
 
-    return buffer;
+    return static_cast<const string>(buffer);
 }
 
 std::ostream &Mastodon::Easy::operator <<(std::ostream &out,

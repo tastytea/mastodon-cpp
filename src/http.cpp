@@ -1,6 +1,6 @@
 /*  This file is part of mastodon-cpp.
  *  Copyright © 2018, 2019 tastytea <tastytea@tastytea.de>
- *                                                                   
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, version 3.
@@ -57,7 +57,7 @@ return_call API::http::request(const method &meth,
 
     string answer;
     ttdebug << "Path is: " << path << '\n';
-    
+
     try
     {
         curlpp::Easy request;
@@ -123,7 +123,7 @@ return_call API::http::request(const method &meth,
             default:
                 break;
         }
-        
+
         //request.setOpt<curlopts::Verbose>(true);
 
         answer.clear();

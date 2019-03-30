@@ -78,7 +78,7 @@ const std::vector<string> Easy::json_array_to_vector(const string &json)
         std::vector<string> vec(json_array.size());
         std::transform(json_array.begin(), json_array.end(), vec.begin(),
                        [](const Json::Value &j)
-                       { return j.toStyledString(); });
+                           { return j.toStyledString(); });
         return vec;
     }
 

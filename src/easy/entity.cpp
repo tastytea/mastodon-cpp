@@ -239,7 +239,7 @@ const std::vector<string> Easy::Entity::get_vector(const string &key) const
     {
         std::vector<string> vec;
         std::transform(node.begin(), node.end(), std::back_inserter(vec),
-                       [=](const Json::Value &value)
+                       [](const Json::Value &value)
                            { return value.asString(); });
         _was_set = true;
         return vec;

@@ -96,7 +96,7 @@ const std::vector<Account::fields_pair> Account::fields() const
     {
         std::vector<Account::fields_pair> vec;
         std::transform(node.begin(), node.end(), std::back_inserter(vec),
-                       [=](const Json::Value &value)
+                       [](const Json::Value &value)
                            {
                                return Account::fields_pair
                                    (value["name"].asString(),
@@ -239,7 +239,7 @@ const std::vector<Account::fields_pair> Account::Source::fields() const
     {
         std::vector<Account::fields_pair> vec;
         std::transform(node.begin(), node.end(), std::back_inserter(vec),
-                       [=](const Json::Value &value)
+                       [](const Json::Value &value)
                            {
                                return Account::fields_pair
                                    (value["name"].asString(),

@@ -39,43 +39,104 @@ using std::string;
 namespace Mastodon
 {
     /*!
-     * Base return type.
-     * @since  0.100.0
+     *  @brief  Basis for return types.
+     *
+     *  @since  0.100.0
      */
     typedef struct return_base
     {
-        uint8_t error_code = 0;     // NOTE: http://mazack.org/unix/errno.php
+        /*!
+         *  @brief  @ref error "Error code".
+         *
+         *  @since  0.100.0
+         */
+        uint8_t error_code = 0;
+
+        /*!
+         *  @brief  The error message, or "".
+         *
+         *  @since  0.100.0
+         */
         string error_message;
 
+        /*!
+         *  @brief  true if return_base::error_code is 0, otherwise false.
+         *
+         *  @since  0.100.0
+         */
         operator bool();
+
+        /*!
+         *  @brief  Same as return_base::error_code.
+         *
+         *  @since  0.100.0
+         */
         operator uint8_t();
     } return_base;
 
     /*!
-     * Return type for API calls.
-     * @since  0.100.0
+     *  @brief Return type for API calls.
+     *
+     *  Example:
+     *  @code
+     *  Mastodon::return_call ret = masto.get(Mastodon::API::v1::instance);
+     *  if (!ret)               // Or ret.error_code != 0
+     *  {
+     *      cout << "Error " << std::to_string(ret.error_code);
+     *      cout << " (HTTP " << std::to_string(ret.http_error_code) << "): ";
+     *      cout << ret.error_message << endl
+     *  }
+     *  else
+     *  {
+     *      cout << ret << endl; // Or ret.answer
+     *  }
+     *  @endcode
+     *
+     *  @since  0.100.0
      */
     typedef struct return_call : return_base
     {
+        /*!
+         *  @brief HTTP error code.
+         *
+         *  @since  0.100.0
+         */
         uint16_t http_error_code = 0;
+
+        /*!
+         *  @brief  The response from the server.
+         *
+         *  @since  0.100.0
+         */
         string answer;
 
         return_call();
         return_call(const uint8_t ec, const string &em,
                     const uint16_t hec, const string &a);
 
+        /*!
+         *  @brief  Same es return_call::answer.
+         *
+         *  @since  0.100.0
+         */
         operator const string() const;
+
+        /*!
+         *  @brief  Same es return_call::answer.
+         *
+         *  @since  0.100.0
+         */
         friend std::ostream &operator <<(std::ostream &out,
                                          const return_call &ret);
     } return_call;
 
 /*!
  *  @brief  Interface to the Mastodon API.
- *  
+ *
  *          All input is expected to be UTF-8. Binary data must be
  *          base64-encoded or a filename.
  *          It appears that media attachements can not be base64 encoded.
- *  
+ *
  *  @section error Error codes
  *  |      Code | Explanation                                |
  *  | --------: |:-------------------------------------------|
@@ -87,7 +148,7 @@ namespace Mastodon
  *  |       192 | curlpp runtime error                       |
  *  |       193 | curlpp logic error                         |
  *  |       255 | Unknown error                              |
- *  
+ *
  *  @since  before 0.11.0
  */
 class API
@@ -95,7 +156,7 @@ class API
 public:
     /*!
      *  @brief  http class. Do not use this directly.
-     *  
+     *
      *  @since  before 0.11.0
      */
     class http
@@ -129,7 +190,7 @@ public:
          *
          *  @return @ref error "Error code". If the URL has permanently changed,
          *  13 is returned and answer is set to the new URL.
-         *  
+         *
          *  @since  before 0.11.0
          */
         return_call request(const method &meth,
@@ -143,24 +204,24 @@ public:
 
         /*!
          *  @brief  Cancels the stream. Use only with streams.
-         *  
+         *
          *          Cancels the stream next time data comes in. Can take a few
          *          seconds.
          *          This works only with streams, because only streams have an
          *          own http object.
-         *          
+         *
          *  @since  0.12.2
-         */ 
+         */
         void cancel_stream();
 
         /*!
          *  @brief  Gets the mutex guarding the string that is written to.
-         *  
+         *
          *          The mutex guards the function that writes to the string you
          *          specified in get_stream().
          *
          *  @return A reference of the mutex.
-         *  
+         *
          *  @since  0.12.3
          */
         std::mutex &get_mutex();
@@ -181,7 +242,7 @@ public:
 
     /*!
      *  @brief Used for passing parameters.
-     *  
+     *
      *  Example:
      *  @code
      *  parametermap p =
@@ -190,16 +251,16 @@ public:
      *      {"field2", { "value" } }
      *  }
      *  @endcode
-     *  
+     *
      *  @since  before 0.11.0
      */
     typedef std::map<string, std::vector<string>> parametermap;
 
     /*!
      *  @brief  A list of all v1 API calls.
-     *  
+     *
      *          The original `/` are substituted by `_`.
-     *  
+     *
      *  @since  before 0.11.0
      */
     enum class v1
@@ -308,9 +369,9 @@ public:
 
     /*!
      *  @brief  A list of all v2 API calls.
-     *  
+     *
      *          The original `/` are substituted by `_`.
-     *  
+     *
      *  @since  0.16.0
      */
     enum class v2
@@ -326,7 +387,7 @@ public:
      *
      *  @param  instance      The hostname of your instance
      *  @param  access_token  Your access token.
-     *  
+     *
      *  @since  before 0.11.0
      */
     explicit API(const string &instance, const string &access_token);
@@ -342,7 +403,7 @@ public:
      *  @brief  Sets the useragent. Default is mastodon-cpp/version.
      *
      *  @param  useragent  The useragent
-     *  
+     *
      *  @since  before 0.11.0
      */
     void set_useragent(const string &useragent);
@@ -351,7 +412,7 @@ public:
      *  @brief  Gets the useragent.
      *
      *  @return The useragent.
-     *  
+     *
      *  @since  before 0.11.0
      */
     const string get_useragent() const;
@@ -360,7 +421,7 @@ public:
      *  @brief  Returns the instance.
      *
      *  @return The instance.
-     *  
+     *
      *  @since  before 0.11.0
      */
     const string get_instance() const;
@@ -368,18 +429,18 @@ public:
     /*!
      *  @brief  Percent-encodes a string. This is done automatically, unless you
      *          make a custom request.
-     *          
+     *
      *          Calls curlpp::escape(str)
      *
      *          The only time you should use this, is if you use
      *          get(const string &call, string &answer).
-     *          
+     *
      *          See RFC 3986 section 2.1 for more info.
      *
      *  @param  str     The string
      *
      *  @return The percent-encoded string
-     *  
+     *
      *  @since  before 0.11.0
      */
     static const string urlencode(const string &str);
@@ -413,7 +474,7 @@ public:
      *
      *  @return @ref error "Error code". If the URL has permanently changed, 13
      *          is returned and url is set to the new URL.
-     *  
+     *
      *  @since  before 0.11.0
      */
     return_call register_app1(const string &client_name,
@@ -427,17 +488,17 @@ public:
 
     /*!
      *  @brief  Register application, step 2/2
-     *  
+     *
      *          The access token will be used in all subsequent calls.
      *
-     *  @param  client_id      
-     *  @param  client_secret  
+     *  @param  client_id
+     *  @param  client_secret
      *  @param  redirect_uri   urn:ietf:wg:oauth:2.0:oob for none
      *  @param  code           The code generated by the website
      *  @param  access_token   Returned
      *
      *  @return @ref error "Error code".
-     *  
+     *
      *  @since  before 0.11.0
      */
     return_call register_app2(const string &client_id,
@@ -452,21 +513,21 @@ public:
      *  @param  header  The header to get
      *
      *  @return The header, or "" on error.
-     *  
+     *
      *  @since  before 0.11.0
      */
     const string get_header(const string &header) const;
 
     /*!
      *  @brief  Turn exceptions on or off. Defaults to off.
-     *  
+     *
      *          This applies to exceptions from curlpp. curlpp::RuntimeError and
      *          curlpp::LogicError.
      *
      *  @param  value   true for on, false for off
      *
      *  @return true if exceptions are turned on, false otherwise
-     *  
+     *
      *  @since  before 0.11.0
      */
     bool exceptions(const bool &value);
@@ -480,7 +541,7 @@ public:
      *  @brief  Replaces HTML entities with UTF-8 characters
      *
      *          Supports named and numbered entities, decimal and hexadecimal.
-     *          
+     *
      *  @since  0.12.0
      */
     static const string unescape_html(const string &html);

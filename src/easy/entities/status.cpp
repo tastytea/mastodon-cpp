@@ -15,6 +15,7 @@
  */
 
 #include <iostream>
+#include <algorithm>
 #include <jsoncpp/json/json.h>
 #include "status.hpp"
 
@@ -99,10 +100,9 @@ const std::vector<Easy::Emoji> Status::emojis() const
     if (node.isArray())
     {
         std::vector<Easy::Emoji> vec;
-        for (const Json::Value &value : node)
-        {
-            vec.push_back(Easy::Emoji(value.toStyledString()));
-        }
+        std::transform(node.begin(), node.end(), std::back_inserter(vec),
+                       [](const Json::Value &value)
+                           { return Easy::Emoji(value); });
         return vec;
     }
 
@@ -157,10 +157,9 @@ const std::vector<Easy::Attachment> Status::media_attachments() const
     if (node.isArray())
     {
         std::vector<Easy::Attachment> vec;
-        for (const Json::Value &value : node)
-        {
-            vec.push_back(Easy::Attachment(value.toStyledString()));
-        }
+        std::transform(node.begin(), node.end(), std::back_inserter(vec),
+                       [](const Json::Value &value)
+                           { return Easy::Attachment(value); });
         return vec;
     }
 
@@ -187,10 +186,9 @@ const std::vector<Easy::Mention> Status::mentions() const
     if (node.isArray())
     {
         std::vector<Easy::Mention> vec;
-        for (const Json::Value &value : node)
-        {
-            vec.push_back(Easy::Mention(value.toStyledString()));
-        }
+        std::transform(node.begin(), node.end(), std::back_inserter(vec),
+                       [](const Json::Value &value)
+                           { return Easy::Mention(value); });
         return vec;
     }
 
@@ -261,10 +259,9 @@ const std::vector<Easy::Tag> Status::tags() const
     if (node.isArray())
     {
         std::vector<Easy::Tag> vec;
-        for (const Json::Value &value : node)
-        {
-            vec.push_back(Easy::Tag(value.toStyledString()));
-        }
+        std::transform(node.begin(), node.end(), std::back_inserter(vec),
+                       [](const Json::Value &value)
+                           { return Easy::Tag(value); });
         return vec;
     }
 

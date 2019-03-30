@@ -19,6 +19,7 @@
 #include <sstream>
 #include <chrono>
 #include <regex>
+#include <algorithm>
 #include "easy/entity.hpp"
 #include "debug.hpp"
 
@@ -237,10 +238,9 @@ const std::vector<string> Easy::Entity::get_vector(const string &key) const
     if (node.isArray())
     {
         std::vector<string> vec;
-        for (const Json::Value &value : node)
-        {
-            vec.push_back(value.asString());
-        }
+        std::transform(node.begin(), node.end(), std::back_inserter(vec),
+                       [=](const Json::Value &value)
+                           { return value.asString(); });
         _was_set = true;
         return vec;
     }

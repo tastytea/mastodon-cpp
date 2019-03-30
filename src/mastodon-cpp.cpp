@@ -20,11 +20,13 @@
 #include <codecvt>
 #include <utility>
 #include <iostream>
+#include <algorithm>
 #include "version.hpp"
 #include "debug.hpp"
 #include "mastodon-cpp.hpp"
 
 using namespace Mastodon;
+
 return_base::operator bool()
 {
     if (error_code == 0)
@@ -166,11 +168,13 @@ const curlpp::Forms API::maptoformdata(const parametermap &map)
         }
         else
         {
-            for (const string &str : it.second)
-            {
-                formdata.push_back(
-                    new curlpp::FormParts::Content(it.first + "[]", str));
-            }
+            std::transform(it.second.begin(), it.second.end(),
+                           std::back_inserter(formdata),
+                           [&it](const string &s)
+                               {
+                                   return new curlpp::FormParts::Content
+                                       (it.first + "[]", s);
+                               });
         }
     }
 

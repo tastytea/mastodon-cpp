@@ -8,7 +8,7 @@ to see if the problem has already been reported. If it has, add a comment to the
 existing issue instead of opening a new one. Same for enhancements.
 
 You can also contact me via the Fediverse if you don't want to open an account.
-My account is [@tastytea@soc.ialis.me](https://soc.ialis.me/@tastytea).
+My account is [@tastytea@likeable.space](https://likeable.space/users/tastytea).
 
 ## Pull requests
 

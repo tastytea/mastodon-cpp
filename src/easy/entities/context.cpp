@@ -14,6 +14,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <algorithm>
 #include "context.hpp"
 #include "debug.hpp"
 
@@ -37,10 +38,9 @@ const std::vector<Easy::Status> Context::ancestors() const
     if (node.isArray())
     {
         std::vector<Easy::Status> vec;
-        for (const Json::Value &value : node)
-        {
-            vec.push_back(Easy::Status(value.toStyledString()));
-        }
+        std::transform(node.begin(), node.end(), std::back_inserter(vec),
+                       [](const Json::Value &value)
+                           { return Easy::Status(value); });
         return vec;
     }
 
@@ -54,10 +54,9 @@ const std::vector<Easy::Status> Context::descendants() const
     if (node.isArray())
     {
         std::vector<Easy::Status> vec;
-        for (const Json::Value &value : node)
-        {
-            vec.push_back(Easy::Status(value.toStyledString()));
-        }
+        std::transform(node.begin(), node.end(), std::back_inserter(vec),
+                       [](const Json::Value &value)
+                           { return Easy::Status(value); });
         return vec;
     }
 

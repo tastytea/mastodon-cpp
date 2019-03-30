@@ -44,31 +44,64 @@ namespace Easy
     template <typename T>
     struct return_entity : return_base
     {
+        /*!
+         *  @brief  Mastodon::Easy::Entity
+         *
+         *  @since  0.100.0
+         */
         T entity;
 
         return_entity();
         return_entity(const uint8_t ec, const string &em, const T &ent);
 
+        /*!
+         *  @brief  Same as return_entity::entity.
+         *
+         *  @since  0.100.0
+         */
         operator const T() const;
+
+        /*!
+         *  @brief  Mastodon::Easy::Entity as string.
+         *
+         *  @since  0.100.0
+         */
         operator const string() const;
 
         // FIXME: Can't get it to work, don't know why.
+        /*!
+         *  @brief  Mastodon::Easy::Entity as string.
+         *
+         *  @since  0.100.0
+         */
         friend std::ostream &operator <<<T>(std::ostream &out,
                                             const return_entity<T> &ret);
     };
 
     /*!
      *  @brief  Return types for calls that return multiple `Easy::Entity`s.
+     *
+     *  @since  0.100.0
      */
     template <typename T>
     struct return_entity_vector : return_base
     {
+        /*!
+         *  @brief  std::vector of Mastodon::Easy::Entity.
+         *
+         *  @since  0.100.0
+         */
         vector<T> entities;
 
         return_entity_vector();
         return_entity_vector(const uint8_t ec, const string &em,
                              const vector<T> &vec);
 
+        /*!
+         *  @brief  Same es return_entity_vector::entities.
+         *
+         *  @since  0.100.0
+         */
         operator const vector<T>() const;
     };
 }

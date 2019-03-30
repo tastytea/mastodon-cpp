@@ -16,6 +16,7 @@
 
 #include <sstream>
 #include <iomanip>
+#include <algorithm>
 #include "tag.hpp"
 #include "debug.hpp"
 
@@ -49,10 +50,9 @@ const std::vector<Tag::History> Tag::history() const
     if (node.isArray())
     {
         std::vector<Easy::Tag::History> vec;
-        for (const Json::Value &value : node)
-        {
-            vec.push_back(Easy::Tag::History(value.toStyledString()));
-        }
+        std::transform(node.begin(), node.end(), std::back_inserter(vec),
+                       [](const Json::Value &value)
+                           { return Easy::Tag::History(value); });
         return vec;
     }
 

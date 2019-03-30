@@ -15,6 +15,7 @@
  */
 
 #include <array>
+#include <algorithm>
 #include "account.hpp"
 #include "debug.hpp"
 
@@ -94,11 +95,13 @@ const std::vector<Account::fields_pair> Account::fields() const
     if (node.isArray())
     {
         std::vector<Account::fields_pair> vec;
-        for (const Json::Value &value : node)
-        {
-            vec.push_back(Account::fields_pair(value["name"].asString(),
-                                               value["value"].asString()));
-        }
+        std::transform(node.begin(), node.end(), std::back_inserter(vec),
+                       [=](const Json::Value &value)
+                           {
+                               return Account::fields_pair
+                                   (value["name"].asString(),
+                                    value["value"].asString());
+                           });
         return vec;
     }
 
@@ -235,11 +238,13 @@ const std::vector<Account::fields_pair> Account::Source::fields() const
     if (node.isArray())
     {
         std::vector<Account::fields_pair> vec;
-        for (const Json::Value &value : node)
-        {
-            vec.push_back(Account::fields_pair(value["name"].asString(),
-                                               value["value"].asString()));
-        }
+        std::transform(node.begin(), node.end(), std::back_inserter(vec),
+                       [=](const Json::Value &value)
+                           {
+                               return Account::fields_pair
+                                   (value["name"].asString(),
+                                    value["value"].asString());
+                           });
         return vec;
     }
 

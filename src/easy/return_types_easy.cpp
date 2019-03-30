@@ -15,8 +15,22 @@
  */
 
 #include "return_types_easy.hpp"
-#include "easy/entities/status.hpp"
+#include "easy/entities/account.hpp"
+#include "easy/entities/application.hpp"
+#include "easy/entities/attachment.hpp"
+#include "easy/entities/card.hpp"
+#include "easy/entities/context.hpp"
+#include "easy/entities/emoji.hpp"
+#include "easy/entities/instance.hpp"
+#include "easy/entities/list.hpp"
+#include "easy/entities/mention.hpp"
 #include "easy/entities/notification.hpp"
+#include "easy/entities/relationship.hpp"
+#include "easy/entities/report.hpp"
+#include "easy/entities/results.hpp"
+#include "easy/entities/status.hpp"
+#include "easy/entities/tag.hpp"
+#include "easy/entities/pushsubscription.hpp"
 
 using namespace Mastodon;
 
@@ -55,9 +69,22 @@ std::ostream &Easy::operator <<(std::ostream &out,
 }
 
 // Explicit instantiations, so it can be used from outside.
-// TODO: Complete this.
-template struct Easy::return_entity<Easy::Status>;
+template struct Easy::return_entity<Easy::Account>;
+template struct Easy::return_entity<Easy::Application>;
+template struct Easy::return_entity<Easy::Attachment>;
+template struct Easy::return_entity<Easy::Card>;
+template struct Easy::return_entity<Easy::Context>;
+template struct Easy::return_entity<Easy::Emoji>;
+template struct Easy::return_entity<Easy::Instance>;
+template struct Easy::return_entity<Easy::List>;
+template struct Easy::return_entity<Easy::Mention>;
 template struct Easy::return_entity<Easy::Notification>;
+template struct Easy::return_entity<Easy::Relationship>;
+template struct Easy::return_entity<Easy::Report>;
+template struct Easy::return_entity<Easy::Results>;
+template struct Easy::return_entity<Easy::Status>;
+template struct Easy::return_entity<Easy::Tag>;
+template struct Easy::return_entity<Easy::PushSubscription>;
 
 
 template<typename T>
@@ -83,6 +110,19 @@ Easy::return_entity_vector<T>::return_entity_vector::operator const vector<T>()
 }
 
 // Explicit instantiations, so it can be used from outside.
-// TODO: Complete this.
-template struct Easy::return_entity_vector<Easy::Status>;
+template struct Easy::return_entity_vector<Easy::Account>;
+template struct Easy::return_entity_vector<Easy::Application>;
+template struct Easy::return_entity_vector<Easy::Attachment>;
+template struct Easy::return_entity_vector<Easy::Card>;
+template struct Easy::return_entity_vector<Easy::Context>;
+template struct Easy::return_entity_vector<Easy::Emoji>;
+template struct Easy::return_entity_vector<Easy::Instance>;
+template struct Easy::return_entity_vector<Easy::List>;
+template struct Easy::return_entity_vector<Easy::Mention>;
 template struct Easy::return_entity_vector<Easy::Notification>;
+template struct Easy::return_entity_vector<Easy::Relationship>;
+template struct Easy::return_entity_vector<Easy::Report>;
+template struct Easy::return_entity_vector<Easy::Results>;
+template struct Easy::return_entity_vector<Easy::Status>;
+template struct Easy::return_entity_vector<Easy::Tag>;
+template struct Easy::return_entity_vector<Easy::PushSubscription>;

@@ -14,6 +14,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <algorithm>
 #include <jsoncpp/json/json.h>
 #include "results.hpp"
 
@@ -38,10 +39,9 @@ const std::vector<Easy::Account> Results::accounts() const
     if (node.isArray())
     {
         std::vector<Easy::Account> vec;
-        for (const Json::Value &value : node)
-        {
-            vec.push_back(Easy::Account(value.toStyledString()));
-        }
+        std::transform(node.begin(), node.end(), std::back_inserter(vec),
+                       [](const Json::Value &value)
+                           { return Easy::Account(value); });
         return vec;
     }
 
@@ -54,10 +54,9 @@ const std::vector<Easy::Status> Results::statuses() const
     if (node.isArray())
     {
         std::vector<Easy::Status> vec;
-        for (const Json::Value &value : node)
-        {
-            vec.push_back(Easy::Status(value.toStyledString()));
-        }
+        std::transform(node.begin(), node.end(), std::back_inserter(vec),
+                       [](const Json::Value &value)
+                           { return Easy::Status(value); });
         return vec;
     }
 
@@ -75,10 +74,9 @@ const std::vector<Easy::Tag> Results::hashtags_v2() const
     if (node.isArray())
     {
         std::vector<Easy::Tag> vec;
-        for (const Json::Value &value : node)
-        {
-            vec.push_back(Easy::Tag(value.toStyledString()));
-        }
+        std::transform(node.begin(), node.end(), std::back_inserter(vec),
+                       [](const Json::Value &value)
+                           { return Easy::Tag(value); });
         return vec;
     }
 

@@ -23,14 +23,12 @@
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
-    #include "easy/easy.hpp"
-    #include "easy/entities/status.hpp"
     #include "easy/entity.hpp"
+    #include "easy/entities/status.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
-    #include <mastodon-cpp/easy/easy.hpp>
-    #include <mastodon-cpp/easy/entities/status.hpp>
     #include <mastodon-cpp/easy/entity.hpp>
+    #include <mastodon-cpp/easy/entities/status.hpp>
 #endif
 
 using std::string;
@@ -49,7 +47,7 @@ namespace Easy
     public:
         using Entity::Entity;
 
-        virtual bool valid() const;
+        virtual bool valid() const override;
 
         /*!
          *  @brief  Returns the ancestors of the Status as vector of Statuses

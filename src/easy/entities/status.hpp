@@ -24,7 +24,7 @@
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
-    #include "easy/easy.hpp"
+    #include "easy/entity.hpp"
     #include "easy/entities/account.hpp"
     #include "easy/entities/emoji.hpp"
     #include "easy/entities/attachment.hpp"
@@ -32,10 +32,9 @@
     #include "easy/entities/tag.hpp"
     #include "easy/entities/application.hpp"
     #include "easy/entities/card.hpp"
-    #include "easy/entity.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
-    #include <mastodon-cpp/easy/easy.hpp>
+    #include <mastodon-cpp/easy/entity.hpp>
     #include <mastodon-cpp/easy/entities/account.hpp>
     #include <mastodon-cpp/easy/entities/emoji.hpp>
     #include <mastodon-cpp/easy/entities/attachment.hpp>
@@ -43,7 +42,6 @@
     #include <mastodon-cpp/easy/entities/tag.hpp>
     #include <mastodon-cpp/easy/entities/application.hpp>
     #include <mastodon-cpp/easy/entities/card.hpp>
-    #include <mastodon-cpp/easy/entity.hpp>
 #endif
 
 using std::string;
@@ -63,7 +61,7 @@ namespace Easy
     public:
         using Entity::Entity;
 
-        virtual bool valid() const;
+        virtual bool valid() const override;
 
         /*!
          *  @brief  Returns an array of matched accounts.

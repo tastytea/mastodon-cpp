@@ -25,11 +25,9 @@
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
-    #include "easy/easy.hpp"
     #include "easy/entity.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
-    #include <mastodon-cpp/easy/easy.hpp>
     #include <mastodon-cpp/easy/entity.hpp>
 #endif
 
@@ -57,7 +55,7 @@ namespace Easy
          */
         using fields_pair = std::pair<const string, const string>;
 
-        virtual bool valid() const;
+        virtual bool valid() const override;
 
         /*!
          *  @brief  Returns username
@@ -259,7 +257,7 @@ namespace Easy
              */
             Source();
 
-            virtual bool valid() const;
+            virtual bool valid() const override;
 
             /*!
              *  @brief  Returns metadata fields

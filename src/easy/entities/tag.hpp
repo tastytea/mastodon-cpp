@@ -23,11 +23,9 @@
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
-    #include "easy/easy.hpp"
     #include "easy/entity.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
-    #include <mastodon-cpp/easy/easy.hpp>
     #include <mastodon-cpp/easy/entity.hpp>
 #endif
 
@@ -56,7 +54,7 @@ namespace Easy
         public:
             using Entity::Entity;
 
-            virtual bool valid() const;
+            virtual bool valid() const override;
 
             /*!
              *  @brief  Returns the number of accounts using that hashtag.
@@ -82,7 +80,7 @@ namespace Easy
 
         using Entity::Entity;
 
-        virtual bool valid() const;
+        virtual bool valid() const override;
 
         /*!
          *  @brief  Returns the name of the tag

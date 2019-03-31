@@ -22,9 +22,9 @@
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
-    #include "easy/easy.hpp"
+    #include "easy/types.hpp"
 #else
-    #include <mastodon-cpp/easy/easy.hpp>
+    #include <mastodon-cpp/easy/types.hpp>
 #endif
 
 using std::string;

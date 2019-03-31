@@ -19,9 +19,7 @@
 
 #include <string>
 #include <cstdint>
-#include <chrono>
 #include <vector>
-#include <utility>
 #include <functional>
 #include <ostream>
 #include <jsoncpp/json/json.h>
@@ -30,16 +28,21 @@
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
     #include "easy/return_types_easy.hpp"
+    #include "easy/types.hpp"
+    #include "easy/entities/notification.hpp"
+    #include "easy/entities/status.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy/return_types_easy.hpp>
+    #include <mastodon-cpp/easy/types.hpp>
+    #include <mastodon-cpp/easy/entities/notification.hpp>
+    #include <mastodon-cpp/easy/entities/status.hpp>
 #endif
 
 using std::string;
 using std::vector;
 using std::uint64_t;
 using std::uint16_t;
-using std::chrono::system_clock;
 
 namespace Mastodon
 {
@@ -50,141 +53,6 @@ namespace Mastodon
  */
 namespace Easy
 {
-    /*!
-     *  @brief  Describes the event type
-     *
-     *  @since  before 0.11.0
-     */
-    enum class event_type
-    {
-        Update,
-        Notification,
-        Delete,
-        Undefined
-    };
-
-    /*!
-     *  @brief  Describes visibility of toots.
-     *
-     *  @since  before 0.11.0
-     */
-    enum class visibility_type
-    {
-        Direct,
-        Private,
-        Unlisted,
-        Public,
-        Undefined
-    };
-
-    /*!
-     *  @brief  Describes the attachment type
-     *
-     *  @since  before 0.11.0
-     */
-    enum class attachment_type
-    {
-        Image,
-        Video,
-        Gifv,
-        Unknown,
-        Undefined
-    };
-
-    /*!
-     *  @brief  Describes the card type
-     *
-     *  @since  before 0.11.0
-     */
-    enum class card_type
-    {
-        Link,
-        Photo,
-        Video,
-        Rich,
-        Undefined
-    };
-
-    /*!
-     *  @brief  Describes the notification type
-     *
-     *  @since  before 0.11.0
-     */
-    enum class notification_type
-    {
-        Mention,
-        Reblog,
-        Favourite,
-        Follow,
-        Undefined
-    };
-
-    /*!
-     *  @brief Used for stream events.
-     *
-     *  @since  before 0.11.0
-     */
-    typedef std::pair<event_type, string> stream_event;
-
-    /*!
-     *  @brief  Map of 'notification type' and 'push is requested or not'
-     *
-     *          Used in PushSubscription::alerts().
-     *
-     *  @since  0.13.3
-     */
-    typedef std::map<Easy::notification_type, bool> alertmap;
-
-    struct time
-    {
-        system_clock::time_point timepoint = system_clock::time_point();
-
-        operator const system_clock::time_point();
-        operator const string();
-        friend std::ostream &operator <<(std::ostream &out,
-                                         const Easy::time &t);
-
-        /*!
-         *  @brief  Converts time to a string.
-         *
-         *          The return value can not exceed 1023 chars.
-         *
-         *  @param  format     The format of the string, same as with
-         *                     `strftime`.
-         *  @param  local      Use local time (default).
-         *
-         *  Example:
-         *  @code
-         *  Mastodon::Easy::time timepoint = status.created_at();
-         *  std::cout << timepoint.strtime("%F, %T UTC", false) << '\n';
-         *  @endcode
-         *
-         *  @return The time as string.
-         *
-         *  @since  0.100.0
-         */
-        const string strtime (const string &format,
-                              const bool &local = true) const;
-    };
-
-    // TODO: Get rid of forward declarations.
-    class Account;
-    class Application;
-    class Attachment;
-    class Card;
-    class Context;
-    class Emoji;
-    class Instance;
-    class List;
-    class Mention;
-    class Notification;
-    class Relationship;
-    class Report;
-    class Results;
-    class Status;
-    class Tag;
-    class PushSubscription;
-
     /*!
      *  @brief  Class to hold the `Link`-header.
      *

@@ -23,44 +23,6 @@
 #include "debug.hpp"
 
 using namespace Mastodon;
-using std::string;
-
-Easy::time::operator const system_clock::time_point()
-{
-    return timepoint;
-}
-
-Easy::time::operator const string()
-{
-    return strtime("%FT%T%z", true);
-}
-
-const string Easy::time::strtime(const string &format, const bool &local) const
-{
-    constexpr std::uint16_t bufsize = 1024;
-    std::time_t time = system_clock::to_time_t(timepoint);
-    std::tm *timeinfo;
-    if (local)
-    {
-        timeinfo = std::localtime(&time);
-    }
-    else
-    {
-        timeinfo = std::gmtime(&time);
-    }
-
-    char buffer[bufsize];
-    std::strftime(buffer, bufsize, format.c_str(), timeinfo);
-
-    return static_cast<const string>(buffer);
-}
-
-std::ostream &Mastodon::Easy::operator <<(std::ostream &out,
-                                          const Easy::time &t)
-{
-    out << t.strtime("%FT%T%z", true);
-    return out;
-}
 
 Easy::API::API(const string &instance, const string &access_token)
     : Mastodon::API(instance, access_token)

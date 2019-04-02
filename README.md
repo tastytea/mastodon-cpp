@@ -11,23 +11,24 @@ JSON. You can then put that JSON into easy to use classes.
 
 # Breaking API changes
 
-I'm going to rewrite key parts of this library. The new API will be incompatible
-with the old one. The new code will start with the version number `0.100.0`. The
-old code is archived in the branch `pre-0.100.0` and will get bugfixes for a
-while.
+I'm currently rewriting key parts of this library. The new API will be
+incompatible with the old one. The new code will start with the version number
+`0.100.0`. The old code is archived in the branch `pre-0.100.0` and will get
+bugfixes for a while.
 
 **The code on the `master`-branch is not usable at the moment, stick to the
 releases, please.**
 
 # Usage
 
-The HTML reference can be generated with `build_doc.sh`, if doxygen is installed. It is also available at
-[doc.schlomp.space/mastodon-cpp/](https://doc.schlomp.space/mastodon-cpp/annotated.html).
-There are [examples](https://schlomp.space/tastytea/mastodon-cpp/src/branch/master/examples) in `examples/`.
+The HTML reference can be generated with `build_doc.sh`, if doxygen is
+installed. It is also available at [doc.schlomp.space/mastodon-cpp/](https://doc.schlomp.space/mastodon-cpp/annotated.html).
+There are [examples](https://schlomp.space/tastytea/mastodon-cpp/src/branch/master/examples)
+in `examples/`.
 
 ## Most basic example
 
-```C++
+```c++
 #include <iostream>
 #include <mastodon-cpp/mastodon-cpp.hpp>
 
@@ -43,7 +44,7 @@ int main()
 
 Using the `Easy`-class.
 
-```C++
+```c++
 #include <iostream>
 #include <string>
 #include <mastodon-cpp/mastodon-cpp.hpp>
@@ -69,7 +70,7 @@ int main()
 
 A project consisting of one file can be compiled as follows:
 
-```SH
+``` shellsession
 g++ -std=c++14 -lmastodon-cpp example.cpp
 ```
 
@@ -105,7 +106,7 @@ available in an overlay.
 Add my [repository](https://schlomp.space/tastytea/overlay) and
 install it from there.
 
-```SH
+```shellsession
 eselect repository enable tastytea
 echo 'dev-cpp/mastodon-cpp ~amd64' >> /etc/portage/package.keywords/mastodon-cpp
 emaint sync -r tastytea
@@ -143,13 +144,13 @@ Download the current release at [schlomp.space](https://schlomp.space/tastytea/m
 
 #### Development version
 
-```SH
+```shellsession
 git clone https://schlomp.space/tastytea/mastodon-cpp.git
 ```
 
 ### Compile
 
-```SH
+```shellsession
 mkdir build
 cd build/
 cmake ..
@@ -286,7 +287,7 @@ Run `make package` from the build directory to generate a tar.gz archive.
 
 # Copyright
 
-```PLAIN
+``` text
 Copyright © 2018, 2019 tastytea <tastytea@tastytea.de>.
 License GPLv3: GNU GPL version 3 <https://www.gnu.org/licenses/gpl-3.0.html>.
 This program comes with ABSOLUTELY NO WARRANTY. This is free software,

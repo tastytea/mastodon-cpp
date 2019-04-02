@@ -27,46 +27,6 @@
 
 using namespace Mastodon;
 
-return_base::operator bool()
-{
-    if (error_code == 0)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-return_base::operator uint8_t()
-{
-    return error_code;
-}
-
-return_call::operator const string() const
-{
-    return answer;
-}
-
-std::ostream &Mastodon::operator <<(std::ostream &out, const return_call &ret)
-{
-    out << ret.answer;
-    return out;
-}
-
-return_call::return_call()
-{}
-
-return_call::return_call(const uint8_t ec, const string &em,
-                         const uint16_t hec, const string &a)
-: http_error_code(hec)
-, answer(a)
-{
-    error_code = ec;
-    error_message = em;
-}
-
 API::API(const string &instance, const string &access_token)
 : _instance(instance)
 , _access_token(access_token)
@@ -310,7 +270,7 @@ const string API::unescape_html(const string &html)
     // Matches numbered entities between 1 and 8 digits, decimal or hexadecimal
     std::regex re_entity("&#(x)?(\\d{1,8});");
     std::smatch match;
-    
+
     while (std::regex_search(buffer, match, re_entity))
     {
         char32_t codepoint = 0;

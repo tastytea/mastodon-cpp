@@ -19,7 +19,6 @@
 
 #include <string>
 #include <vector>
-#include <cstdint>
 #include <map>
 #include <memory>
 #include <array>
@@ -28,8 +27,13 @@
 #include <curlpp/cURLpp.hpp>
 #include <curlpp/Easy.hpp>
 
-using std::uint8_t;
-using std::uint16_t;
+// If we are compiling mastodon-cpp, use another include path
+#ifdef MASTODON_CPP
+    #include "return_types.hpp"
+#else
+    #include <mastodon-cpp/return_types.hpp>
+#endif
+
 using std::string;
 
 /*!
@@ -38,98 +42,6 @@ using std::string;
 
 namespace Mastodon
 {
-    /*!
-     *  @brief  Basis for return types.
-     *
-     *  @since  0.100.0
-     */
-    typedef struct return_base
-    {
-        /*!
-         *  @brief  @ref error "Error code".
-         *
-         *  @since  0.100.0
-         */
-        uint8_t error_code = 0;
-
-        /*!
-         *  @brief  The error message, or "".
-         *
-         *  @since  0.100.0
-         */
-        string error_message;
-
-        /*!
-         *  @brief  true if return_base::error_code is 0, otherwise false.
-         *
-         *  @since  0.100.0
-         */
-        operator bool();
-
-        /*!
-         *  @brief  Same as return_base::error_code.
-         *
-         *  @since  0.100.0
-         */
-        operator uint8_t();
-    } return_base;
-
-    /*!
-     *  @brief Return type for API calls.
-     *
-     *  Example:
-     *  @code
-     *  Mastodon::return_call ret = masto.get(Mastodon::API::v1::instance);
-     *  if (!ret)               // Or ret.error_code != 0
-     *  {
-     *      cout << "Error " << std::to_string(ret.error_code);
-     *      cout << " (HTTP " << std::to_string(ret.http_error_code) << "): ";
-     *      cout << ret.error_message << endl
-     *  }
-     *  else
-     *  {
-     *      cout << ret << endl; // Or ret.answer
-     *  }
-     *  @endcode
-     *
-     *  @since  0.100.0
-     */
-    typedef struct return_call : return_base
-    {
-        /*!
-         *  @brief HTTP error code.
-         *
-         *  @since  0.100.0
-         */
-        uint16_t http_error_code = 0;
-
-        /*!
-         *  @brief  The response from the server.
-         *
-         *  @since  0.100.0
-         */
-        string answer;
-
-        return_call();
-        return_call(const uint8_t ec, const string &em,
-                    const uint16_t hec, const string &a);
-
-        /*!
-         *  @brief  Same es return_call::answer.
-         *
-         *  @since  0.100.0
-         */
-        operator const string() const;
-
-        /*!
-         *  @brief  Same es return_call::answer.
-         *
-         *  @since  0.100.0
-         */
-        friend std::ostream &operator <<(std::ostream &out,
-                                         const return_call &ret);
-    } return_call;
-
 /*!
  *  @brief  Interface to the Mastodon API.
  *

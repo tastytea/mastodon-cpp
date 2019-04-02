@@ -14,8 +14,8 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef RETURN_TYPES_EASY_HPP
-#define RETURN_TYPES_EASY_HPP
+#ifndef MASTODON_CPP_EASY_RETURN_TYPES_EASY_HPP
+#define MASTODON_CPP_EASY_RETURN_TYPES_EASY_HPP
 
 #include <string>
 #include <vector>
@@ -107,4 +107,4 @@ namespace Easy
 }
 }
 
-#endif  // RETURN_TYPES_EASY_HPP
+#endif  // MASTODON_CPP_EASY_RETURN_TYPES_EASY_HPP

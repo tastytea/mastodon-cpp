@@ -159,7 +159,7 @@ return_call API::register_app1(const string &client_name,
                                string &client_secret,
                                string &url)
 {
-    API::parametermap parameters =
+    parametermap parameters =
     {
         { "client_name", { client_name } },
         { "redirect_uris", { redirect_uri } },
@@ -207,7 +207,7 @@ return_call API::register_app2(const string &client_id,
                                const string &code,
                                string &access_token)
 {
-    API::parametermap parameters =
+    parametermap parameters =
     {
         { "client_id", { client_id } },
         { "client_secret", { client_secret } },

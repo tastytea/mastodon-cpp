@@ -28,13 +28,13 @@
 #ifdef MASTODON_CPP
     #include "mastodon-cpp.hpp"
     #include "easy/return_types_easy.hpp"
-    #include "easy/types.hpp"
+    #include "easy/types_easy.hpp"
     #include "easy/entities/notification.hpp"
     #include "easy/entities/status.hpp"
 #else
     #include <mastodon-cpp/mastodon-cpp.hpp>
     #include <mastodon-cpp/easy/return_types_easy.hpp>
-    #include <mastodon-cpp/easy/types.hpp>
+    #include <mastodon-cpp/easy/types_easy.hpp>
     #include <mastodon-cpp/easy/entities/notification.hpp>
     #include <mastodon-cpp/easy/entities/status.hpp>
 #endif

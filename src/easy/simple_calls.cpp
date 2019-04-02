@@ -30,7 +30,7 @@ const return_entity<Status> API::send_toot(const Status &status)
 
 const return_entity<Status> API::send_post(const Status &status)
 {
-    API::parametermap parameters;
+    parametermap parameters;
 
     if (!status.content().empty())
     {
@@ -86,7 +86,7 @@ const return_entity<Status> API::send_post(const Status &status)
         std::vector<string> media_ids;
         for (const Attachment &att : status.media_attachments())
         {
-            API::parametermap param_att;
+            parametermap param_att;
             if (!att.file().empty())
             {
                 param_att.insert({ "file", { att.file() }});
@@ -132,7 +132,7 @@ const return_entity<Status> API::send_post(const Status &status)
 const return_entity_vector<Notification> API::get_notifications(
     const uint16_t limit, const string since_id, const string max_id)
 {
-    API::parametermap parameters;
+    parametermap parameters;
 
     parameters.insert({ "limit", { std::to_string(limit) } });
     if (!since_id.empty())

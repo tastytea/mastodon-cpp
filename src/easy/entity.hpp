@@ -14,17 +14,17 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ENTITY_HPP
-#define ENTITY_HPP
+#ifndef MASTODON_CPP_EASY_ENTITY_HPP
+#define MASTODON_CPP_EASY_ENTITY_HPP
 
 #include <string>
 #include <jsoncpp/json/json.h>
 
 // If we are compiling mastodon-cpp, use another include path
 #ifdef MASTODON_CPP
-    #include "easy/types.hpp"
+    #include "easy/types_easy.hpp"
 #else
-    #include <mastodon-cpp/easy/types.hpp>
+    #include <mastodon-cpp/easy/types_easy.hpp>
 #endif
 
 using std::string;
@@ -240,4 +240,4 @@ namespace Easy
 }
 }
 
-#endif  // ENTITY_HPP
+#endif  // MASTODON_CPP_EASY_ENTITY_HPP

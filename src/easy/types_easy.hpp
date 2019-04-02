@@ -14,8 +14,8 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MASTODON_CPP_TYPES_HPP
-#define MASTODON_CPP_TYPES_HPP
+#ifndef MASTODON_CPP_EASY_TYPES_EASY_HPP
+#define MASTODON_CPP_EASY_TYPES_EASY_HPP
 
 #include <string>
 #include <utility>
@@ -152,4 +152,4 @@ namespace Easy
     };
 }
 }
-#endif  // MASTODON_CPP_TYPES_HPP
+#endif  // MASTODON_CPP_EASY_TYPES_EASY_HPP

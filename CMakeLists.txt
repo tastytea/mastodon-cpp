@@ -90,7 +90,7 @@ endif()
 
 # Install library and header files
 install(TARGETS mastodon-cpp LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
-install(FILES src/mastodon-cpp.hpp
+install(FILES src/mastodon-cpp.hpp src/return_types.hpp src/types.hpp
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp)
 if(NOT WITHOUT_EASY)
     file(GLOB easy_header src/easy/*.hpp)

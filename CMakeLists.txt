@@ -5,7 +5,7 @@ project (mastodon-cpp
 )
 
 set(WITH_EASY "YES" CACHE STRING "WITH_EASY defaults to \"YES\"")
-set(WITH_EXAMPLES "YES" CACHE STRING "WITH_EXAMPLES defaults to \"YES\"")
+set(WITH_EXAMPLES "NO" CACHE STRING "WITH_EXAMPLES defaults to \"NO\"")
 set(WITH_TESTS "NO" CACHE STRING "WITH_TESTS defaults to \"NO\"")
 set(WITH_DOC "YES" CACHE STRING "WITH_DOC defaults to \"YES\"")
 set(WITH_DEB "NO" CACHE STRING "WITH_DEB defaults to \"NO\"")

@@ -1,3 +1,4 @@
+# -*- mode: conf-toml -*-
 pipeline:
   gcc6:
     image: debian:stretch-slim
@@ -16,7 +17,7 @@ pipeline:
       - apt-get install -qy -t sid libcurlpp-dev
       - apt-get install -qy rpm file
       - rm -rf build && mkdir -p build && cd build
-      - cmake -DWITH_EXAMPLES=ON -DWITH_TESTS=ON ..
+      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES ..
       - make VERBOSE=1
       - make install DESTDIR=install
       - ctest ..
@@ -53,7 +54,7 @@ pipeline:
       - apt-get install -qy -t sid libcurlpp-dev
       - apt-get install -qy rpm file
       - rm -rf build && mkdir -p build && cd build
-      - cmake -DWITH_EXAMPLES=ON -DWITH_TESTS=ON ..
+      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES ..
       - make VERBOSE=1
       - make install DESTDIR=install
     volumes:
@@ -84,7 +85,7 @@ pipeline:
       - apt-get install -qy -t sid libcurlpp-dev
       - apt-get install -qy rpm file
       - rm -rf build && mkdir -p build && cd build
-      - cmake -DWITH_EXAMPLES=ON -DWITH_TESTS=ON ..
+      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES ..
       - make VERBOSE=1
       - make install DESTDIR=install
     volumes:

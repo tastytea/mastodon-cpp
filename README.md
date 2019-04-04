@@ -163,7 +163,7 @@ cmake options:
  * `-DWITH_EASY=NO` to not build the Easy abstractions and to get rid of the jsoncpp-dependency (not recommended)
  * `-DWITH_EXAMPLES=YES` if you want to compile the examples
  * `-DWITH_TESTS=YES` if you want to compile the tests
- * `-DWITH_DOC=YES` if you want to compile the HTML reference
+ * `-DWITH_DOC=NO` if you don't want to compile the HTML reference
  * One of:
     * `-DWITH_DEB=YES` if you want to be able to generate a deb-package
     * `-DWITH_RPM=YES` if you want to be able to generate an rpm-package

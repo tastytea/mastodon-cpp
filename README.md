@@ -160,13 +160,13 @@ make
 cmake options:
 
  * `-DCMAKE_BUILD_TYPE=Debug` for a debug build
- * `-DWITHOUT_EASY=ON` to not build the Easy abstractions and to get rid of the jsoncpp-dependency (not recommended)
- * `-DWITH_EXAMPLES=ON` if you want to compile the examples
- * `-DWITH_TESTS=ON` if you want to compile the tests
- * `-DWITH_DOC=ON` if you want to compile the HTML reference
+ * `-DWITH_EASY=NO` to not build the Easy abstractions and to get rid of the jsoncpp-dependency (not recommended)
+ * `-DWITH_EXAMPLES=YES` if you want to compile the examples
+ * `-DWITH_TESTS=YES` if you want to compile the tests
+ * `-DWITH_DOC=YES` if you want to compile the HTML reference
  * One of:
-    * `-DWITH_DEB=ON` if you want to be able to generate a deb-package
-    * `-DWITH_RPM=ON` if you want to be able to generate an rpm-package
+    * `-DWITH_DEB=YES` if you want to be able to generate a deb-package
+    * `-DWITH_RPM=YES` if you want to be able to generate an rpm-package
 
 You can run the tests with `ctest ..` inside the build directory.
 To install, run `make install`.

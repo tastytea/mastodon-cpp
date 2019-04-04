@@ -4,11 +4,18 @@ project (mastodon-cpp
          LANGUAGES CXX
 )
 
+set(WITH_EASY "YES" CACHE STRING "WITH_EASY defaults to \"YES\"")
+set(WITH_EXAMPLES "YES" CACHE STRING "WITH_EXAMPLES defaults to \"YES\"")
+set(WITH_TESTS "NO" CACHE STRING "WITH_TESTS defaults to \"NO\"")
+set(WITH_DOC "YES" CACHE STRING "WITH_DOC defaults to \"YES\"")
+set(WITH_DEB "NO" CACHE STRING "WITH_DEB defaults to \"NO\"")
+set(WITH_RPM "NO" CACHE STRING "WITH_RPM defaults to \"NO\"")
+
 include(GNUInstallDirs)
 find_package(PkgConfig REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(CURLPP REQUIRED curlpp)
-if(NOT WITHOUT_EASY)
+if(WITH_EASY)
     pkg_check_modules(JSONCPP REQUIRED jsoncpp)
 endif()
 
@@ -49,16 +56,16 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_definitions(-DDEBUG=1)
 endif()
 
-if(WITHOUT_EASY)
+if(NOT WITH_EASY)
     add_definitions(-DWITHOUT_EASY=1)
 endif()
 
 # Compile library
-if(WITHOUT_EASY)
-    file(GLOB sources src/*.cpp src/api/*.cpp)
-else()
+if(WITH_EASY)
     file(GLOB sources src/*.cpp src/api/*.cpp
                       src/easy/*.cpp src/easy/entities/*.cpp)
+else()
+    file(GLOB sources src/*.cpp src/api/*.cpp)
 endif()
 add_library(mastodon-cpp SHARED ${sources})
 set_target_properties(mastodon-cpp PROPERTIES
@@ -66,14 +73,13 @@ set_target_properties(mastodon-cpp PROPERTIES
                      SOVERSION ${mastodon-cpp_VERSION_MAJOR}
 )
 
-if(WITHOUT_EASY)
-    target_link_libraries(mastodon-cpp ${CURLPP_LIBRARIES})
-else()
+if(WITH_EASY)
     target_link_libraries(mastodon-cpp ${CURLPP_LIBRARIES} ${JSONCPP_LIBRARIES})
+else()
+    target_link_libraries(mastodon-cpp ${CURLPP_LIBRARIES})
 endif()
 
 # Compile examples
-set(WITH_EXAMPLES "YES" CACHE STRING "WITH_EXAMPLES defaults to \"YES\"")
 if(WITH_EXAMPLES)
     file(GLOB sources_examples examples/*.cpp)
     foreach(src ${sources_examples})
@@ -92,7 +98,7 @@ endif()
 install(TARGETS mastodon-cpp LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(FILES src/mastodon-cpp.hpp src/return_types.hpp src/types.hpp
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp)
-if(NOT WITHOUT_EASY)
+if(WITH_EASY)
     file(GLOB easy_header src/easy/*.hpp)
     install(FILES ${easy_header}
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp/easy)

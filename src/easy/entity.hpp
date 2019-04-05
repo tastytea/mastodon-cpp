@@ -220,6 +220,9 @@ namespace Easy
          */
         void set(const string &key, const Json::Value &value);
 
+        /*!
+         *  @brief  Returns value of str as uint64_t.
+         */
         std::uint64_t stouint64(const string &str) const;
 
         /*!

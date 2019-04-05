@@ -99,6 +99,17 @@ namespace Mastodon
         string answer;
 
         return_call();
+
+        /*!
+         *  @brief  Construct new return type for calls.
+         *
+         *  @param ec  Error code
+         *  @param em  Error message
+         *  @param hec HTTP error code
+         *  @param a   Answer
+         *
+         *  @since  0.100.0
+         */
         return_call(const uint8_t ec, const string &em,
                     const uint16_t hec, const string &a);
 

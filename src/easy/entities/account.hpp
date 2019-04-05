@@ -238,24 +238,10 @@ namespace Easy
          *
          *  @since  0.18.5
          */
-        class Source : public Easy::Entity
+        class Source : public Entity
         {
         public:
-            /*!
-             *  @brief  Constructs an Account::Source object from a JSON string.
-             *
-             *  @param  json    JSON string
-             *
-             *  @since  0.18.5
-             */
-            explicit Source(const string &json);
-
-            /*!
-             *  @brief  Constructs an empty Account::Source object.
-             *
-             *  @since  0.18.5
-             */
-            Source();
+            using Entity::Entity;
 
             virtual bool valid() const override;
 
@@ -316,7 +302,18 @@ namespace Easy
             Source sensitive(const bool &sensitive);
         };
 
+        /*!
+         *  @brief  Get source.
+         *
+         *  @since  before 0.100.0
+         */
         const Source source() const;
+
+        /*!
+         *  @brief  Set source.
+         *
+         *  @since  before 0.100.0
+         */
         Account source(const Source &source);
 
         /*!

@@ -218,14 +218,6 @@ bool Account::sensitive() const
     return get_bool("source.sensitive");
 }
 
-Account::Source::Source(const string &json)
-: Entity(json)
-{}
-
-Account::Source::Source()
-: Entity()
-{}
-
 bool Account::Source::valid() const
 {
     return true;
@@ -342,7 +334,7 @@ Account::Source Account::Source::sensitive(const bool &sensitive)
 
 const Account::Source Account::source() const
 {
-    return Account::Source(get("source").toStyledString());
+    return Account::Source(get("source"));
 }
 
 Account Account::source(const Account::Source &source)

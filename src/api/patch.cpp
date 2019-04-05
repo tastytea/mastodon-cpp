@@ -36,6 +36,6 @@ return_call API::patch(const Mastodon::API::v1 &call,
             break;
     }
 
-    return _http.request(API::http::method::PATCH,
+    return _http.request(http_method::PATCH,
                          strcall, maptoformdata(parameters));
 }

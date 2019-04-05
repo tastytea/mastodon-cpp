@@ -68,5 +68,5 @@ return_call API::get_stream(const Mastodon::API::v1 &call,
 return_call API::get_stream(const std::string &call, std::unique_ptr<http> &ptr)
 {
     ptr = std::make_unique<http>(*this, _instance, _access_token);
-    return ptr->request(http::method::GET_STREAM, call);
+    return ptr->request(http_method::GET_STREAM, call);
 }

@@ -76,37 +76,32 @@ namespace Mastodon
         {
         public:
             /*!
-             *  @brief  HTTP methods
+             *  @brief  Constructs new http object.
+             *
+             *  @param  API          Parent object.
+             *  @param  instance     Instance domain name
+             *  @param  access_token Access token
+             *
+             *  @since  before 0.11.0
              */
-            enum class method
-            {
-                GET,
-                PATCH,
-                POST,
-                PUT,
-                DELETE,
-                GET_STREAM
-            };
-
             explicit http(const API &api, const string &instance,
                           const string &access_token);
             ~http();
-            return_call request(const method &meth, const string &path);
+            return_call request(const http_method &meth, const string &path);
 
             /*!
              *  @brief  HTTP Request.
              *
-             *  @param  meth      The method defined in http::method
+             *  @param  meth      A method defined in http::method
              *  @param  path      The api call as string
              *  @param  formdata  The form data for PATCH and POST requests.
-             *  @param  answer    The answer from the server
              *
              *  @return @ref error "Error code". If the URL has permanently
-             *  changed, 13 is returned and answer is set to the new URL.
+             *  changed, 13 is returned and the answer is set to the new URL.
              *
              *  @since  before 0.11.0
              */
-            return_call request(const method &meth,
+            return_call request(const http_method &meth,
                                 const string &path,
                                 const curlpp::Forms &formdata);
 

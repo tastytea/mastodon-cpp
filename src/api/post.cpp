@@ -143,5 +143,5 @@ return_call API::post(const Mastodon::API::v1 &call)
 return_call API::post(const string &call, const parametermap &parameters)
 {
 
-    return _http.request(http::method::POST, call, maptoformdata(parameters));
+    return _http.request(http_method::POST, call, maptoformdata(parameters));
 }

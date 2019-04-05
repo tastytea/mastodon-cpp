@@ -40,6 +40,21 @@ namespace Mastodon
      *  @since  before 0.11.0
      */
     typedef std::map<string, std::vector<string>> parametermap;
+
+    /*!
+     *  @brief  HTTP methods.
+     *
+     *  @since  before 0.100.0
+     */
+    enum class http_method
+    {
+        GET,
+        PATCH,
+        POST,
+        PUT,
+        DELETE,
+        GET_STREAM
+    };
 }
 
 #endif  // MASTODON_CPP_TYPES_HPP

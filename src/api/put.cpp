@@ -56,5 +56,5 @@ return_call API::put(const Mastodon::API::v1 &call,
 return_call API::put(const string &call, const parametermap &parameters)
 {
 
-    return _http.request(http::method::PUT, call, maptoformdata(parameters));
+    return _http.request(http_method::PUT, call, maptoformdata(parameters));
 }

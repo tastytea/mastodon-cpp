@@ -44,14 +44,14 @@ API::http::~http()
     curlpp::terminate();
 }
 
-return_call API::http::request(const method &meth, const string &path)
+return_call API::http::request(const http_method &meth, const string &path)
 {
     return request(meth, path, curlpp::Forms());
 }
 
-return_call API::http::request(const method &meth,
-                            const string &path,
-                            const curlpp::Forms &formdata)
+return_call API::http::request(const http_method &meth,
+                               const string &path,
+                               const curlpp::Forms &formdata)
 {
     using namespace std::placeholders;  // _1, _2, _3
 
@@ -85,7 +85,7 @@ return_call API::http::request(const method &meth,
         {
             headers.push_back("Authorization: Bearer " + _access_token);
         }
-        if (meth != http::method::GET_STREAM)
+        if (meth != http_method::GET_STREAM)
         {
             headers.push_back("Connection: close");
             // Get headers from server
@@ -106,18 +106,18 @@ return_call API::http::request(const method &meth,
 
         switch (meth)
         {
-            case http::method::GET:
+            case http_method::GET:
                 break;
-            case http::method::PATCH:
+            case http_method::PATCH:
                 request.setOpt<curlopts::CustomRequest>("PATCH");
                 break;
-            case http::method::POST:
+            case http_method::POST:
                 request.setOpt<curlopts::CustomRequest>("POST");
                 break;
-            case http::method::PUT:
+            case http_method::PUT:
                 request.setOpt<curlopts::CustomRequest>("PUT");
                 break;
-            case http::method::DELETE:
+            case http_method::DELETE:
                 request.setOpt<curlopts::CustomRequest>("DELETE");
                 break;
             default:

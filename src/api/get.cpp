@@ -280,5 +280,5 @@ const return_call API::get(const Mastodon::API::v1 &call)
 
 const return_call API::get(const std::string &call)
 {
-    return _http.request(http::method::GET, call);
+    return _http.request(http_method::GET, call);
 }

@@ -3,6 +3,8 @@ pipeline:
   gcc6:
     image: debian:stretch-slim
     pull: true
+    when:
+      event: [push, pull_request]
     environment:
       - LANG=C.utf8
       - CXX=g++-6
@@ -89,15 +91,55 @@ pipeline:
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
 
-  prepare_release:
+  package_deb:
     image: debian:stretch-slim
     pull: true
     when:
       event: tag
+    environment:
+      - LANG=C.utf8
+      - CXXFLAGS=-pipe -O2
     commands:
-      - cp -v build/mastodon-cpp-${DRONE_TAG}_x86_64.tar.gz .
-      - cp -v build/libmastodon-cpp_${DRONE_TAG}-0_amd64.deb .
-      - cp -v build/libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm .
+      - rm /etc/apt/apt.conf.d/docker-clean
+      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+      - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
+      - apt-get update -q
+      - apt-get install -qy build-essential cmake pkg-config
+      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen
+      - apt-get install -qy -t sid libcurlpp-dev
+      - rm -rf build && mkdir -p build && cd build
+      - cmake -DWITH_EXAMPLES=NO -DWITH_TESTS=NO ..
+      - make package
+      - cmake -DWITH_DEB=YES ..
+      - make package
+      - cp -v mastodon-cpp-${DRONE_TAG}_x86_64.tar.gz ..
+      - cp -v libmastodon-cpp_${DRONE_TAG}-0_amd64.deb ..
+    volumes:
+      - /var/cache/debian-package-cache:/var/cache/apt/archives
+
+  package_rpm:
+    image: centos:7
+    pull: true
+    when:
+      event: tag
+    environment:
+      - LANG=C.utf8
+      - CXXFLAGS=-pipe -O2
+    commands:
+      - cd /var/cache/yum && wget -nc http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && cd -
+      - rpm -i epel-release-latest-7.noarch.rpm
+      - yum group install -qy "Development Tools"
+      - yum install -qy cmake libcurl-devel doxygen
+      - yum --enablerepo=epel install -qy jsoncpp-devel libcurlpp-devel
+      - yum install -qy rpm file
+      - rm -rf build && mkdir -p build && cd build
+      - cmake -DWITH_EXAMPLES=NO -DWITH_TESTS=NO ..
+      - make package
+      - cmake -DWITH_RPM=YES ..
+      - make package
+      - cp -v libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm ..
+    volumes:
+      - /var/cache/centos-package-cache:/var/cache/yum/
 
   gitea_release:
     image: plugins/gitea-release

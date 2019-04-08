@@ -116,10 +116,12 @@ emerge -a dev-cpp/mastodon-cpp
 ### DEB and RPM
 
 Prebuilt DEB and RPM packages for x86_64(amd64) are provided with each release.
-These packages are automatically built and not tested.
-Install with `dpkg -i` or `rpm -i`, respectively.
+`.deb` packages are built on Debian stretch and `.rpm` packages are built on
+CentOS 7. These packages are automatically built and not tested. Install with
+`dpkg -i` or `rpm -i`, respectively.
 
-To use the DEB package on stretch, you will need [libcurlpp0](https://packages.debian.org/libcurlpp0) from sid.
+To use the DEB package on Debian stretch, you will need
+[libcurlpp0](https://packages.debian.org/libcurlpp0) from sid.
 
 ## From source
 

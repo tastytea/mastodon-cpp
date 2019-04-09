@@ -106,22 +106,21 @@ return_call API::http::request(const http_method &meth,
 
         switch (meth)
         {
-            case http_method::GET:
-                break;
-            case http_method::PATCH:
-                request.setOpt<curlopts::CustomRequest>("PATCH");
-                break;
-            case http_method::POST:
-                request.setOpt<curlopts::CustomRequest>("POST");
-                break;
-            case http_method::PUT:
-                request.setOpt<curlopts::CustomRequest>("PUT");
-                break;
-            case http_method::DELETE:
-                request.setOpt<curlopts::CustomRequest>("DELETE");
-                break;
-            default:
-                break;
+        case http_method::GET:
+        case http_method::GET_STREAM:
+            break;
+        case http_method::PATCH:
+            request.setOpt<curlopts::CustomRequest>("PATCH");
+            break;
+        case http_method::POST:
+            request.setOpt<curlopts::CustomRequest>("POST");
+            break;
+        case http_method::PUT:
+            request.setOpt<curlopts::CustomRequest>("PUT");
+            break;
+        case http_method::DELETE:
+            request.setOpt<curlopts::CustomRequest>("DELETE");
+            break;
         }
 
         //request.setOpt<curlopts::Verbose>(true);

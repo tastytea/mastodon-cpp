@@ -65,6 +65,7 @@ void API::http::request_stream(const string &path, string &stream)
         {                       // deleted before we access it.
             ret = request_common(http_method::GET_STREAM, path,
                                  curlpp::Forms(), stream);
+            ttdebug << "Remaining content of the stream: " << stream << '\n';
             if (!ret)
             {
                 // Embed the HTTP status code in stream on error.

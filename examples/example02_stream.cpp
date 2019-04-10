@@ -1,5 +1,5 @@
-/*  This file is part of mastodon-cpp.
- */
+// This file is part of mastodon-cpp.
+// Listen to /api/v1/streaming/public and display the events.
 
 // Don't compile this if the Easy-interface is turned off
 #ifndef WITHOUT_EASY

@@ -1,5 +1,5 @@
-/*  This file is part of mastodon-cpp.
- */
+// This file is part of mastodon-cpp.
+// Get the last 4 local posts from the public timeline and display them.
 
 // Don't compile this if the Easy-interface is turned off
 #ifndef WITHOUT_EASY

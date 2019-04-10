@@ -42,6 +42,7 @@ using std::uint8_t;
 
 /*!
  *  @example example01_get_public_timeline.cpp
+ *  @example example02_stream.cpp
  */
 
 namespace Mastodon

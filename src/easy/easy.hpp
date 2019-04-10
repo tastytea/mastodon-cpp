@@ -49,7 +49,7 @@ namespace Mastodon
 /*!
  *  @brief  Child of Mastodon::API with abstract methods.
  *
- *  @since  before 0.11.0
+ *  @since  before 0.100.0
  */
 namespace Easy
 {
@@ -143,14 +143,14 @@ namespace Easy
          *  @param  instance      The hostname of your instance
          *  @param  access_token  The access token
          *
-         *  @since  before 0.11.0
+         *  @since  0.100.0
          */
         explicit API(const string &instance, const string &access_token);
 
         /*!
          *  @brief  Gets the links from the last answer
          *
-         *  @since  before 0.11.0
+         *  @since  0.100.0
          */
         const Link get_link() const;
 
@@ -162,14 +162,14 @@ namespace Easy
          *
          *  @return The new Easy::Status
          *
-         *  @since  0.18.1
+         *  @since  0.100.0
          */
         const return_entity<Easy::Status> send_post(const Status &status);
 
         /*!
          *  @brief  Alias for send_post()
          *
-         *  @since  0.17.0
+         *  @since  0.100.0
          */
         const return_entity<Easy::Status> send_toot(const Status &status);
 
@@ -183,7 +183,7 @@ namespace Easy
          *
          *  @return vector of Easy::Notification.
          *
-         *  @since  0.21.0
+         *  @since  0.100.0
          */
         const return_entity_vector<Easy::Notification> get_notifications(
             const uint16_t limit = 20, const string since_id = "",

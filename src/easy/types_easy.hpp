@@ -39,6 +39,7 @@ namespace Easy
         Update,
         Notification,
         Delete,
+        Error,
         Undefined
     };
 

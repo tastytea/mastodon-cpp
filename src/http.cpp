@@ -57,7 +57,7 @@ return_call API::http::request(const http_method &meth, const string &path,
     return request_common(meth, path, formdata, answer);
 }
 
-uint8_t API::http::request_stream(const string &path, string &stream)
+void API::http::request_stream(const string &path, string &stream)
 {
     static return_call ret;
     _streamthread = std::thread(
@@ -65,19 +65,14 @@ uint8_t API::http::request_stream(const string &path, string &stream)
         {
             ret = request_common(http_method::GET_STREAM, path,
                                  curlpp::Forms(), stream);
+            if (!ret)
+            {
+                // Embed the HTTP status code in stream on error.
+                stream += "event: ERROR\ndata: {\"error_code\":"
+                    + std::to_string(ret.error_code) +  ",\"http_error\":"
+                    + std::to_string(ret.http_error_code) + "}\n";
+            }
         });
-
-    // FIXME: Build reliable error detection.
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-    if (!ret)
-    {
-        cancel_stream();
-        return ret.error_code;
-    }
-    else
-    {
-        return 0;
-    }
 }
 
 return_call API::http::request_common(const http_method &meth,
@@ -197,8 +192,13 @@ return_call API::http::request_common(const http_method &meth,
         }
         else if (what.compare(what.size() - 20, 20, "Connection timed out") == 0)
         {
-            ttdebug << "Timeout\n";
+            ttdebug << what << "\n";
             return { 110, "Connection timed out", 0, "" };
+        }
+        else if (what.compare(0, 23, "Could not resolve host:") == 0)
+        {
+            ttdebug << what << "\n";
+            return { 113, "Could not resolve host", 0, "" };
         }
 
         if (parent.exceptions())

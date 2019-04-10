@@ -83,6 +83,7 @@ g++ -std=c++14 -lmastodon-cpp example.cpp
 |        78 | URL changed (HTTP 301 or 308)              |
 |       110 | Connection timed out                       |
 |       111 | Connection refused (check http_error_code) |
+|       113 | No route to host / Could not resolve host  |
 |       192 | curlpp runtime error                       |
 |       193 | curlpp logic error                         |
 |       255 | Unknown error                              |

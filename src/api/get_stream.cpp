@@ -21,7 +21,7 @@
 using namespace Mastodon;
 using std::cerr;
 
-uint8_t API::get_stream(const Mastodon::API::v1 &call,
+void API::get_stream(const Mastodon::API::v1 &call,
                         const parametermap &parameters,
                         std::unique_ptr<Mastodon::API::http> &ptr,
                         string &stream)
@@ -47,7 +47,8 @@ uint8_t API::get_stream(const Mastodon::API::v1 &call,
             break;
         default:
             ttdebug << "ERROR: Invalid call.\n";
-            return 22;
+            stream = "event: ERROR\ndata: {\"error_code\":22}\n";
+            return;
             break;
     }
 
@@ -59,15 +60,15 @@ uint8_t API::get_stream(const Mastodon::API::v1 &call,
     return get_stream(strcall, ptr, stream);
 }
 
-uint8_t API::get_stream(const Mastodon::API::v1 &call,
-                        std::unique_ptr<Mastodon::API::http> &ptr,
-                        string &stream)
+void API::get_stream(const Mastodon::API::v1 &call,
+                     std::unique_ptr<Mastodon::API::http> &ptr,
+                     string &stream)
 {
     return get_stream(call, {}, ptr, stream);
 }
 
-uint8_t API::get_stream(const std::string &call, std::unique_ptr<http> &ptr,
-                        string &stream)
+void API::get_stream(const std::string &call, std::unique_ptr<http> &ptr,
+                     string &stream)
 {
     ptr = std::make_unique<http>(*this, _instance, _access_token);
     return ptr->request_stream(call, stream);

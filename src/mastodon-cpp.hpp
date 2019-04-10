@@ -62,6 +62,7 @@ namespace Mastodon
      *  |        78 | URL changed (HTTP 301 or 308)              |
      *  |       110 | Connection timed out                       |
      *  |       111 | Connection refused (check http_error_code) |
+     *  |       113 | No route to host / Could not resolve host  |
      *  |       192 | curlpp runtime error                       |
      *  |       193 | curlpp logic error                         |
      *  |       255 | Unknown error                              |
@@ -117,7 +118,7 @@ namespace Mastodon
              *
              *  @since  0.100.0
              */
-            uint8_t request_stream(const string &path, string &stream);
+            void request_stream(const string &path, string &stream);
 
             /*!
              *  @brief  Get all headers in a string
@@ -538,14 +539,20 @@ namespace Mastodon
          *  @param  ptr         Pointer to the http object. Can be used to call
          *                      ptr->cancel_stream()
          *
-         *  @return @ref error "Error code".
+         *  @return @ref error "Errors" are reported in this format:
+         *  `{"error_code":uint8_t,"http_error":uint16_t}`. `http_error` is
+         *  optional.
+         *
+         *  @return @ref error "Errors" are reported in this format:
+         *  `{"error_code":uint8_t,"http_error":uint16_t}`. `http_error` is
+         *  optional.
          *
          *  @since  0.100.0
          */
-        uint8_t get_stream(const Mastodon::API::v1 &call,
-                           const parametermap &parameters,
-                           std::unique_ptr<Mastodon::API::http> &ptr,
-                           string &stream);
+        void get_stream(const Mastodon::API::v1 &call,
+                        const parametermap &parameters,
+                        std::unique_ptr<Mastodon::API::http> &ptr,
+                        string &stream);
 
         /*!
          *  @brief  Make a streaming GET request.
@@ -554,11 +561,13 @@ namespace Mastodon
          *  @param  ptr     Pointer to the http object. Can be used to call
          *                  ptr->cancel_stream()
          *
-         *  @return @ref error "Error code".
+         *  @return @ref error "Errors" are reported in this format:
+         *  `{"error_code":uint8_t,"http_error":uint16_t}`. `http_error` is
+         *  optional.
          *
          *  @since  0.100.0
          */
-        uint8_t get_stream(const Mastodon::API::v1 &call,
+        void get_stream(const Mastodon::API::v1 &call,
                         std::unique_ptr<Mastodon::API::http> &ptr,
                         string &stream);
 
@@ -569,11 +578,9 @@ namespace Mastodon
          *  @param  ptr     Pointer to the http object. Can be used to call
          *                  ptr->cancel_stream()
          *
-         *  @return @ref error "Error code".
-         *
          *  @since  0.100.0
          */
-        uint8_t get_stream(const string &call,
+        void get_stream(const string &call,
                         std::unique_ptr<Mastodon::API::http> &ptr,
                         string &stream);
 

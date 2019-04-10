@@ -40,10 +40,8 @@ int main(int argc, char *argv[])
     // This variable is filled with the stream data.
     string stream;
 
-    // Get the public timeline, the pointer is set here. The error detection is
-    // not very reliable at the moment, don't count on it.
-    uint8_t ret = masto.get_stream(API::v1::streaming_public, ptr, stream);
-    cout << "Return code: " << std::to_string(ret) << endl;
+    // Get the public timeline. The pointer is set here.
+    masto.get_stream(API::v1::streaming_public, ptr, stream);
 
     // Listen to the stream for 120 seconds.
     for (uint8_t counter = 0; counter < 120; ++counter)
@@ -80,12 +78,19 @@ int main(int argc, char *argv[])
             }
             case Easy::event_type::Delete:
             {
-                cout << "Deleted: " << event.data << '\n';
+                cout << "Deleted: " << event.data << endl;
                 break;
+            }
+            case Easy::event_type::Error:
+            {
+                cerr << "Error: " << event.data << endl;
+                ptr->cancel_stream();
+                return 1;
             }
             default:
             {
                 cout << "Something undefined happened. 😱\n";
+                cout << event.data << endl;
             }
             }
         }

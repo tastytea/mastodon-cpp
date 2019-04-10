@@ -83,6 +83,7 @@ int main(int argc, char *argv[])
             }
             case Easy::event_type::Error:
             {
+                // Errors are reported in-stream. Print error and exit.
                 cerr << "Error: " << event.data << endl;
                 ptr->cancel_stream();
                 return 1;

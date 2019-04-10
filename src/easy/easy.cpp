@@ -70,7 +70,7 @@ const vector<Easy::stream_event> Easy::parse_stream(
         else if (event.compare("delete") == 0)
             type = event_type::Delete;
 
-        vec.push_back(stream_event(type, data));
+        vec.push_back({ type, data });
         stream = match.suffix().str();
     }
 

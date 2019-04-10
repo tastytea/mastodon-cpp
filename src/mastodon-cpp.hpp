@@ -23,6 +23,8 @@
 #include <array>
 #include <mutex>
 #include <ostream>
+#include <thread>
+#include <cstdint>
 #include <curlpp/cURLpp.hpp>
 #include <curlpp/Easy.hpp>
 
@@ -36,6 +38,7 @@
 #endif
 
 using std::string;
+using std::uint8_t;
 
 /*!
  *  @example example01_get_public_timeline.cpp
@@ -92,8 +95,8 @@ namespace Mastodon
             /*!
              *  @brief  HTTP Request.
              *
-             *  @param  meth      A method defined in http::method
-             *  @param  path      The api call as string
+             *  @param  meth      A method defined in http::method.
+             *  @param  path      The API call as string.
              *  @param  formdata  The form data for PATCH and POST requests.
              *
              *  @return @ref error "Error code". If the URL has permanently
@@ -104,6 +107,16 @@ namespace Mastodon
             return_call request(const http_method &meth,
                                 const string &path,
                                 const curlpp::Forms &formdata);
+
+            /*!
+             *  @brief HTTP Request for streams.
+             *
+             *  @param  path   The API call as string.
+             *  @param  stream The stream of data that is returned.
+             *
+             *  @since  0.100.0
+             */
+            uint8_t request_stream(const string &path, string &stream);
 
             /*!
              *  @brief  Get all headers in a string
@@ -140,7 +153,12 @@ namespace Mastodon
             string _headers;
             bool _cancel_stream;
             std::mutex _mutex;
+            std::thread _streamthread;
 
+            return_call request_common(const http_method &meth,
+                                       const string &path,
+                                       const curlpp::Forms &formdata,
+                                       string &answer);
             size_t callback_write(char* data, size_t size, size_t nmemb,
                                   string *oss);
             double callback_progress(double /* dltotal */, double /* dlnow */,
@@ -467,7 +485,7 @@ namespace Mastodon
          *
          *  @param  call    A call defined in Mastodon::API::v1
          *
-         *  @return @ref error "Error code".
+         *  @return return_call
          *
          *  @since  0.100.0
          */
@@ -480,7 +498,7 @@ namespace Mastodon
          *  @param  parameters  A Mastodon::parametermap containing
          *                      parameters
          *
-         *  @return @ref error "Error code".
+         *  @return return_call
          */
         const return_call get(const Mastodon::API::v1 &call,
                               const parametermap &parameters);
@@ -494,7 +512,7 @@ namespace Mastodon
          *  @param  parameters  A Mastodon::parametermap containing
          *                      parameters
          *
-         *  @return @ref error "Error code".
+         *  @return return_call
          */
         const return_call get(const Mastodon::API::v2 &call,
                               const parametermap &parameters);
@@ -504,7 +522,7 @@ namespace Mastodon
          *
          *  @param  call    String in the form `/api/v1/example`
          *
-         *  @return @ref error "Error code".
+         *  @return return_call
          *
          *  @since  0.100.0
          */
@@ -523,9 +541,10 @@ namespace Mastodon
          *
          *  @since  0.100.0
          */
-        return_call get_stream(const Mastodon::API::v1 &call,
-                               const parametermap &parameters,
-                               std::unique_ptr<Mastodon::API::http> &ptr);
+        uint8_t get_stream(const Mastodon::API::v1 &call,
+                           const parametermap &parameters,
+                           std::unique_ptr<Mastodon::API::http> &ptr,
+                           string &stream);
 
         /*!
          *  @brief  Make a streaming GET request.
@@ -538,8 +557,9 @@ namespace Mastodon
          *
          *  @since  0.100.0
          */
-        return_call get_stream(const Mastodon::API::v1 &call,
-                               std::unique_ptr<Mastodon::API::http> &ptr);
+        uint8_t get_stream(const Mastodon::API::v1 &call,
+                        std::unique_ptr<Mastodon::API::http> &ptr,
+                        string &stream);
 
         /*!
          *  @brief  Make a streaming GET request.
@@ -552,8 +572,9 @@ namespace Mastodon
          *
          *  @since  0.100.0
          */
-        return_call get_stream(const string &call,
-                               std::unique_ptr<Mastodon::API::http> &ptr);
+        uint8_t get_stream(const string &call,
+                        std::unique_ptr<Mastodon::API::http> &ptr,
+                        string &stream);
 
         /*!
          *  @brief  Make a PATCH request.

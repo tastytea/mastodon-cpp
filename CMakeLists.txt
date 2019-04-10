@@ -74,9 +74,11 @@ set_target_properties(mastodon-cpp PROPERTIES
 )
 
 if(WITH_EASY)
-    target_link_libraries(mastodon-cpp ${CURLPP_LIBRARIES} ${JSONCPP_LIBRARIES})
+  target_link_libraries(mastodon-cpp
+    ${CURLPP_LIBRARIES} pthread ${JSONCPP_LIBRARIES})
 else()
-    target_link_libraries(mastodon-cpp ${CURLPP_LIBRARIES})
+  target_link_libraries(mastodon-cpp
+    ${CURLPP_LIBRARIES} pthread)
 endif()
 
 # Compile examples

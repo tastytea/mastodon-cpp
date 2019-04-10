@@ -21,9 +21,10 @@
 using namespace Mastodon;
 using std::cerr;
 
-return_call API::get_stream(const Mastodon::API::v1 &call,
-                            const parametermap &parameters,
-                            std::unique_ptr<Mastodon::API::http> &ptr)
+uint8_t API::get_stream(const Mastodon::API::v1 &call,
+                        const parametermap &parameters,
+                        std::unique_ptr<Mastodon::API::http> &ptr,
+                        string &stream)
 {
     string strcall = "";
 
@@ -46,7 +47,7 @@ return_call API::get_stream(const Mastodon::API::v1 &call,
             break;
         default:
             ttdebug << "ERROR: Invalid call.\n";
-            return { 22, "Invalid argument", 0, "" };
+            return 22;
             break;
     }
 
@@ -55,18 +56,19 @@ return_call API::get_stream(const Mastodon::API::v1 &call,
         strcall += maptostr(parameters);
     }
 
-    return get_stream(strcall, ptr);
+    return get_stream(strcall, ptr, stream);
 }
 
-return_call API::get_stream(const Mastodon::API::v1 &call,
-                            std::unique_ptr<Mastodon::API::http> &ptr)
+uint8_t API::get_stream(const Mastodon::API::v1 &call,
+                        std::unique_ptr<Mastodon::API::http> &ptr,
+                        string &stream)
 {
-    parametermap p = {};
-    return get_stream(call, p, ptr);
+    return get_stream(call, {}, ptr, stream);
 }
 
-return_call API::get_stream(const std::string &call, std::unique_ptr<http> &ptr)
+uint8_t API::get_stream(const std::string &call, std::unique_ptr<http> &ptr,
+                        string &stream)
 {
     ptr = std::make_unique<http>(*this, _instance, _access_token);
-    return ptr->request(http_method::GET_STREAM, call);
+    return ptr->request_stream(call, stream);
 }

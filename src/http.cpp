@@ -19,6 +19,7 @@
 #include <list>
 #include <cstring>      // std::strncmp
 #include <exception>
+#include <thread>
 #include <curlpp/Options.hpp>
 #include <curlpp/Exception.hpp>
 #include <curlpp/Infos.hpp>
@@ -49,13 +50,43 @@ return_call API::http::request(const http_method &meth, const string &path)
     return request(meth, path, curlpp::Forms());
 }
 
-return_call API::http::request(const http_method &meth,
-                               const string &path,
+return_call API::http::request(const http_method &meth, const string &path,
                                const curlpp::Forms &formdata)
+{
+    string answer;
+    return request_common(meth, path, formdata, answer);
+}
+
+uint8_t API::http::request_stream(const string &path, string &stream)
+{
+    static return_call ret;
+    _streamthread = std::thread(
+        [&]
+        {
+            ret = request_common(http_method::GET_STREAM, path,
+                                 curlpp::Forms(), stream);
+        });
+
+    // FIXME: Build reliable error detection.
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    if (!ret)
+    {
+        cancel_stream();
+        return ret.error_code;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+return_call API::http::request_common(const http_method &meth,
+                                      const string &path,
+                                      const curlpp::Forms &formdata,
+                                      string &answer)
 {
     using namespace std::placeholders;  // _1, _2, _3
 
-    string answer;
     ttdebug << "Path is: " << path << '\n';
 
     try
@@ -220,6 +251,7 @@ double API::http::callback_progress(double /* dltotal */, double /* dlnow */,
 void API::http::cancel_stream()
 {
     _cancel_stream = true;
+    _streamthread.join();
 }
 
 std::mutex &API::http::get_mutex()

@@ -103,7 +103,11 @@ namespace Easy
      *
      *  @since  before 0.11.0
      */
-    typedef std::pair<event_type, string> stream_event;
+    typedef struct stream_event
+    {
+        event_type type = event_type::Undefined;
+        string data;
+    } stream_event;
 
     /*!
      *  @brief  Map of 'notification type' and 'push is requested or not'.

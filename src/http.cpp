@@ -61,8 +61,8 @@ void API::http::request_stream(const string &path, string &stream)
 {
     static return_call ret;
     _streamthread = std::thread(
-        [&]
-        {
+        [&, path]               // path is captured by value because it may be
+        {                       // deleted before we access it.
             ret = request_common(http_method::GET_STREAM, path,
                                  curlpp::Forms(), stream);
             if (!ret)

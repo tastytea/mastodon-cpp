@@ -22,7 +22,7 @@ using namespace Mastodon;
 using std::cerr;
 
 void API::get_stream(const Mastodon::API::v1 &call,
-                        const parametermap &parameters,
+                        const parameters &params,
                         std::unique_ptr<Mastodon::API::http> &ptr,
                         string &stream)
 {
@@ -52,9 +52,9 @@ void API::get_stream(const Mastodon::API::v1 &call,
             break;
     }
 
-    if (parameters.size() > 0)
+    if (params.size() > 0)
     {
-        strcall += maptostr(parameters);
+        strcall += maptostr(params);
     }
 
     return get_stream(strcall, ptr, stream);

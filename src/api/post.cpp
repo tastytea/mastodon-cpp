@@ -21,16 +21,16 @@
 using namespace Mastodon;
 
 return_call API::post(const Mastodon::API::v1 &call,
-                      const parametermap &parameters)
+                      const parameters &params)
 {
     string strcall = "";
     string strid = "";
 
     // The ID is part of the path
-    const auto &it = parameters.find("id");
-    if (it != parameters.end())
+    const auto &it = params.find("id");
+    if (it != params.end())
     {
-        strid = it->second[0];
+        strid = it->values[0];
     }
 
     switch (call)
@@ -131,17 +131,17 @@ return_call API::post(const Mastodon::API::v1 &call,
             break;
     }
 
-    return post(strcall, parameters);
+    return post(strcall, params);
 }
 
 return_call API::post(const Mastodon::API::v1 &call)
 {
-    const parametermap p;
+    const parameters p;
     return post(call, p);
 }
 
-return_call API::post(const string &call, const parametermap &parameters)
+return_call API::post(const string &call, const parameters &params)
 {
 
-    return _http.request(http_method::POST, call, maptoformdata(parameters));
+    return _http.request(http_method::POST, call, maptoformdata(params));
 }

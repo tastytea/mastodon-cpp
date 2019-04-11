@@ -503,7 +503,7 @@ namespace Mastodon
          *  @return return_call
          */
         const return_call get(const Mastodon::API::v1 &call,
-                              const parametermap &parameters);
+                              const parameters &parameters);
 
         /*!
          *  @brief  Make a GET request which requires parameters.
@@ -517,7 +517,7 @@ namespace Mastodon
          *  @return return_call
          */
         const return_call get(const Mastodon::API::v2 &call,
-                              const parametermap &parameters);
+                              const parameters &parameters);
 
         /*!
          *  @brief  Make a custom GET request.
@@ -550,7 +550,7 @@ namespace Mastodon
          *  @since  0.100.0
          */
         void get_stream(const Mastodon::API::v1 &call,
-                        const parametermap &parameters,
+                        const parameters &parameters,
                         std::unique_ptr<Mastodon::API::http> &ptr,
                         string &stream);
 
@@ -598,7 +598,7 @@ namespace Mastodon
          *  @since  0.100.0
          */
         return_call patch(const Mastodon::API::v1 &call,
-                          const parametermap &parameters);
+                          const parameters &parameters);
 
         /*!
          *  @brief  Make a POST request which doesn't require parameters.
@@ -625,7 +625,7 @@ namespace Mastodon
          *  @since  0.100.0
          */
         return_call post(const Mastodon::API::v1 &call,
-                         const parametermap &parameters);
+                         const parameters &parameters);
 
         /*!
          *  @brief  Make a custom POST request.
@@ -641,7 +641,7 @@ namespace Mastodon
          *  @since  0.100.0
          */
         return_call post(const string &call,
-                         const parametermap &parameters);
+                         const parameters &parameters);
 
         /*!
          *  @brief  Make a PUT request which requires a parameters.
@@ -655,7 +655,7 @@ namespace Mastodon
          *  @since  0.100.0
          */
         return_call put(const Mastodon::API::v1 &call,
-                        const parametermap &parameters);
+                        const parameters &parameters);
 
         /*!
          *  @brief  Make a custom PUT request.
@@ -668,7 +668,7 @@ namespace Mastodon
          *
          *  @since  0.100.0
          */
-        return_call put(const string &call, const parametermap &parameters);
+        return_call put(const string &call, const parameters &parameters);
 
         /*!
          *  @brief  Make a DELETE request which requires parameters.
@@ -682,7 +682,7 @@ namespace Mastodon
          *  @since  0.100.0
          */
         return_call del(const Mastodon::API::v1 &call,
-                        const parametermap &parameters);
+                        const parameters &parameters);
 
         /*!
          *  @brief  Make a custom DELETE request.
@@ -695,7 +695,7 @@ namespace Mastodon
          *
          *  @since  0.100.0
          */
-        return_call del(const string &call, const parametermap &parameters);
+        return_call del(const string &call, const parameters &parameters);
 
     private:
         const string _instance;
@@ -714,7 +714,7 @@ namespace Mastodon
          *
          *  @return String of parameters
          */
-        const string maptostr(const parametermap &map,
+        const string maptostr(const parameters &map,
                               const bool &firstparam = true);
 
         /*!
@@ -724,7 +724,7 @@ namespace Mastodon
          *
          *  @return Form data as curlpp::Forms
          */
-        const curlpp::Forms maptoformdata(const parametermap &map);
+        const curlpp::Forms maptoformdata(const parameters &map);
     };
 }
 

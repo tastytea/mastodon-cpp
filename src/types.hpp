@@ -22,24 +22,62 @@
 #include <vector>
 
 using std::string;
+using std::vector;
 
 namespace Mastodon
 {
     /*!
-     *  @brief Used for passing parameters.
+     *  @brief  A single parameter.
+     *
+     *  @param  key    The key as a string.
+     *  @param  values The values as a vector of strings.
+     *
+     *  @since  0.100.0
+     */
+    typedef struct param
+    {
+        string key;
+        vector<string> values;
+
+        /*!  @brief  Returns key  */
+        operator const string() const;
+    } param;
+
+    /*!
+     *  @brief  Vector of Mastodon::param, used for passing parameters in calls.
+     *
+     *  The only difference to a std::vector<param> is the added member find.
      *
      *  Example:
      *  @code
-     *  parametermap p =
-     *  {
-     *      {"field1", { "value1", "value2" } },
-     *      {"field2", { "value" } }
-     *  }
+     *  parameters p =
+     *      {
+     *          { "media_ids", { "1234", "4321" } },
+     *          { "status", { "Hello world!" } }
+     *      };
      *  @endcode
      *
-     *  @since  before 0.11.0
+     *  @since  0.100.0
      */
-    typedef std::map<string, std::vector<string>> parametermap;
+    typedef struct parameters : public vector<param>
+    {
+        using vector<param>::vector;
+
+        /*!
+         *  @brief  Get iterator to element with key.
+         *
+         *  Searches parameters for an element with a key equivalent to key and
+         *  returns an iterator to it if found, otherwise it returns an iterator
+         *  to parameters::end().
+         *
+         *  @param  key String to search for.
+         *
+         *  @return Iterator to element with key or parameters::end().
+         *
+         *  @since  0.100.0
+         */
+        const std::vector<param>::const_iterator find(const string &key) const;
+    } parameters;
 
     /*!
      *  @brief  HTTP methods.

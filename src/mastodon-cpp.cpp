@@ -55,7 +55,7 @@ const string API::get_instance() const
     return _instance;
 }
 
-const string API::maptostr(const parametermap &map, const bool &firstparam)
+const string API::maptostr(const parameters &map, const bool &firstparam)
 {
     string result = "";
     char delim = '?';
@@ -66,9 +66,9 @@ const string API::maptostr(const parametermap &map, const bool &firstparam)
 
     for (const auto &it : map)
     {
-        if (it.second.size() == 1)
+        if (it.values.size() == 1)
         {
-            result += (delim + it.first + "=" + urlencode(it.second.front()));
+            result += (delim + it.key + "=" + urlencode(it.values.front()));
             if (delim == '?')
             {
                 delim = '&';
@@ -76,9 +76,9 @@ const string API::maptostr(const parametermap &map, const bool &firstparam)
         }
         else
         {
-            for (const string &str : it.second)
+            for (const string &str : it.values)
             {
-                result += (delim + it.first + "[]=" + urlencode(str));
+                result += (delim + it.key + "[]=" + urlencode(str));
                 if (delim == '?')
                 {
                     delim = '&';
@@ -91,7 +91,7 @@ const string API::maptostr(const parametermap &map, const bool &firstparam)
     return result;
 }
 
-const curlpp::Forms API::maptoformdata(const parametermap &map)
+const curlpp::Forms API::maptoformdata(const parameters &map)
 {
     curlpp::Forms formdata;
 
@@ -102,20 +102,20 @@ const curlpp::Forms API::maptoformdata(const parametermap &map)
 
     for (const auto &it : map)
     {
-        if (it.second.size() == 1)
+        if (it.values.size() == 1)
         {   // If the file is not base64-encoded, treat as filename
-            if ((it.first == "avatar" ||
-                it.first == "header" ||
-                it.first == "file") &&
-                it.second.front().substr(0, 4).compare("data") != 0)
+            if ((it.key == "avatar" ||
+                it.key == "header" ||
+                it.key == "file") &&
+                it.values.front().substr(0, 4).compare("data") != 0)
              {
-                ttdebug << it.first << ": Filename detected.\n";
+                ttdebug << it.key << ": Filename detected.\n";
                 formdata.push_back(
-                    new curlpp::FormParts::File(it.first, it.second.front()));
+                    new curlpp::FormParts::File(it.key, it.values.front()));
              }
              else
              {
-                string key = it.first;
+                string key = it.key;
                 if (key == "account_ids" ||
                     key == "exclude_types" ||
                     key == "media_ids")
@@ -123,17 +123,17 @@ const curlpp::Forms API::maptoformdata(const parametermap &map)
                     key += "[]";
                 }
                 formdata.push_back(
-                    new curlpp::FormParts::Content(key, it.second.front()));
+                    new curlpp::FormParts::Content(key, it.values.front()));
             }
         }
         else
         {
-            std::transform(it.second.begin(), it.second.end(),
+            std::transform(it.values.begin(), it.values.end(),
                            std::back_inserter(formdata),
                            [&it](const string &s)
                                {
                                    return new curlpp::FormParts::Content
-                                       (it.first + "[]", s);
+                                       (it.key + "[]", s);
                                });
         }
     }
@@ -159,7 +159,7 @@ return_call API::register_app1(const string &client_name,
                                string &client_secret,
                                string &url)
 {
-    parametermap parameters =
+    parameters params =
     {
         { "client_name", { client_name } },
         { "redirect_uris", { redirect_uri } },
@@ -167,7 +167,7 @@ return_call API::register_app1(const string &client_name,
         { "website", { website } }
     };
 
-    return_call ret = post(API::v1::apps, parameters);
+    return_call ret = post(API::v1::apps, params);
 
     if (ret.error_code == 0)
     {
@@ -207,7 +207,7 @@ return_call API::register_app2(const string &client_id,
                                const string &code,
                                string &access_token)
 {
-    parametermap parameters =
+    parameters params =
     {
         { "client_id", { client_id } },
         { "client_secret", { client_secret } },
@@ -216,7 +216,7 @@ return_call API::register_app2(const string &client_id,
         { "code", { code } },
     };
 
-    return_call ret = post("/oauth/token", parameters);
+    return_call ret = post("/oauth/token", params);
     if (ret.error_code == 0)
     {
         std::smatch match;

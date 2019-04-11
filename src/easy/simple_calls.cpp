@@ -30,11 +30,11 @@ const return_entity<Status> API::send_toot(const Status &status)
 
 const return_entity<Status> API::send_post(const Status &status)
 {
-    parametermap parameters;
+    parameters params;
 
     if (!status.content().empty())
     {
-        parameters.insert({ "status", { status.content() }});
+        params.push_back({ "status", { status.content() }});
     }
     else
     {
@@ -44,16 +44,16 @@ const return_entity<Status> API::send_post(const Status &status)
 
     if (!status.in_reply_to_id().empty())
     {
-        parameters.insert({ "in_reply_to_id",
-                          { status.in_reply_to_id() }});
+        params.push_back({ "in_reply_to_id",
+                           { status.in_reply_to_id() }});
     }
     if (status.sensitive())
     {
-        parameters.insert({ "sensitive", { "true" }});
+        params.push_back({ "sensitive", { "true" }});
     }
     if (!status.spoiler_text().empty())
     {
-        parameters.insert({ "spoiler_text", { status.spoiler_text() }});
+        params.push_back({ "spoiler_text", { status.spoiler_text() }});
     }
     if (status.visibility() != visibility_type::Undefined)
     {
@@ -75,21 +75,21 @@ const return_entity<Status> API::send_post(const Status &status)
             default:
                 break;
         };
-        parameters.insert({ "visibility", { visibility }});
+        params.push_back({ "visibility", { visibility }});
     }
     if (!status.language().empty())
     {
-        parameters.insert({ "language", { status.language() }});
+        params.push_back({ "language", { status.language() }});
     }
     if (!status.media_attachments().empty())
     {
         std::vector<string> media_ids;
         for (const Attachment &att : status.media_attachments())
         {
-            parametermap param_att;
+            parameters param_att;
             if (!att.file().empty())
             {
-                param_att.insert({ "file", { att.file() }});
+                param_att.push_back({ "file", { att.file() }});
             }
             else
             {
@@ -99,13 +99,13 @@ const return_entity<Status> API::send_post(const Status &status)
             }
             if (!att.description().empty())
             {
-                param_att.insert({ "description", { att.description() }});
+                param_att.push_back({ "description", { att.description() }});
             }
             if (!att.focus().empty())
             {
-                param_att.insert({ "focus",
-                                 { std::to_string(att.focus()[0]) + ',' +
-                                   std::to_string(att.focus()[1]) }});
+                param_att.push_back({ "focus",
+                                      { std::to_string(att.focus()[0]) + ',' +
+                                        std::to_string(att.focus()[1]) }});
             }
 
             return_call ret = post(API::v1::media, param_att);
@@ -122,29 +122,29 @@ const return_entity<Status> API::send_post(const Status &status)
             }
         }
 
-        parameters.insert({ "media_ids", media_ids });
+        params.push_back({ "media_ids", media_ids });
     }
 
-    return_call ret = post(API::v1::statuses, parameters);
+    return_call ret = post(API::v1::statuses, params);
     return { ret.error_code, ret.error_message, Status(ret.answer) };
 }
 
 const return_entity_vector<Notification> API::get_notifications(
     const uint16_t limit, const string since_id, const string max_id)
 {
-    parametermap parameters;
+    parameters params;
 
-    parameters.insert({ "limit", { std::to_string(limit) } });
+    params.push_back({ "limit", { std::to_string(limit) } });
     if (!since_id.empty())
     {
-        parameters.insert({ "since_id", { since_id } });
+        params.push_back({ "since_id", { since_id } });
     }
     if (!max_id.empty())
     {
-        parameters.insert({ "max_id", { max_id } });
+        params.push_back({ "max_id", { max_id } });
     }
 
-    return_call ret = API::get(API::v1::notifications, parameters);
+    return_call ret = API::get(API::v1::notifications, params);
 
     if (ret.error_code == 0)
     {

@@ -21,16 +21,16 @@
 using namespace Mastodon;
 
 const return_call API::get(const Mastodon::API::v1 &call,
-                           const parametermap &parameters)
+                           const parameters &params)
 {
     string strcall = "";
     string strid = "";
 
     // The ID is part of the path
-    const auto &it_id = parameters.find("id");
-    if (it_id != parameters.end())
+    const auto &it_id = params.find("id");
+    if (it_id != params.end())
     {
-        strid = it_id->second[0];
+        strid = it_id->values[0];
     }
 
     switch (call)
@@ -183,10 +183,10 @@ const return_call API::get(const Mastodon::API::v1 &call,
         case v1::timelines_tag_hashtag:
         {
             // The tag is part of the path
-            const auto &it = parameters.find("tag");
-            if (it != parameters.end())
+            const auto &it = params.find("tag");
+            if (it != params.end())
             {
-                strcall = "/api/v1/timelines/tag/" + urlencode(it->second[0]);
+                strcall = "/api/v1/timelines/tag/" + urlencode(it->values[0]);
             }
             else
             {
@@ -222,29 +222,29 @@ const return_call API::get(const Mastodon::API::v1 &call,
         }
     }
 
-    if (parameters.size() > 0)
+    if (params.size() > 0)
     {
-        // Delete the parameters that are already in strcall
-        parametermap newparameters = parameters;
-        newparameters.erase("id");
-        newparameters.erase("tag");
-        strcall += maptostr(newparameters);
+        // Delete the params that are already in strcall
+        parameters newparams = params;
+        newparams.erase(newparams.find("id"));
+        newparams.erase(newparams.find("tag"));
+        strcall += maptostr(newparams);
     }
 
     return get(strcall);
 }
 
 const return_call API::get(const Mastodon::API::v2 &call,
-                           const parametermap &parameters)
+                           const parameters &params)
 {
     string strcall = "";
     string strid = "";
 
     // The ID is part of the path
-    const auto &it = parameters.find("id");
-    if (it != parameters.end())
+    const auto &it = params.find("id");
+    if (it != params.end())
     {
-        strid = it->second[0];
+        strid = it->values[0];
     }
 
     switch (call)
@@ -261,13 +261,13 @@ const return_call API::get(const Mastodon::API::v2 &call,
         }
     }
 
-    if (parameters.size() > 0)
+    if (params.size() > 0)
     {
-        // Delete the parameters that are already in strcall
-        parametermap newparameters = parameters;
-        newparameters.erase("id");
-        newparameters.erase("tag");
-        strcall += maptostr(newparameters);
+        // Delete the params that are already in strcall
+        parameters newparams = params;
+        newparams.erase(newparams.find("id"));
+        newparams.erase(newparams.find("tag"));
+        strcall += maptostr(newparams);
     }
 
     return get(strcall);

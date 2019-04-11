@@ -22,7 +22,7 @@ using namespace Mastodon;
 using std::cerr;
 
 return_call API::patch(const Mastodon::API::v1 &call,
-                       const parametermap &parameters)
+                       const parameters &params)
 {
     string strcall = "";
     switch (call)
@@ -37,5 +37,5 @@ return_call API::patch(const Mastodon::API::v1 &call,
     }
 
     return _http.request(http_method::PATCH,
-                         strcall, maptoformdata(parameters));
+                         strcall, maptoformdata(params));
 }

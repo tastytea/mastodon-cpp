@@ -126,12 +126,15 @@ pipeline:
       - LANG=C.utf8
       - CXXFLAGS=-pipe -O2
     commands:
+      - sed -i 's/keepcache=0/keepcache=1/' /etc/yum.conf
       - curl -s -o /var/cache/yum/epel-release-latest-7.noarch.rpm http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
       - rpm -i /var/cache/yum/epel-release-latest-7.noarch.rpm
       - yum group install -qy "Development Tools"
       - yum install -qy libcurl-devel doxygen
-      - yum --enablerepo=epel install -qy cmake3 jsoncpp-devel libcurlpp-devel
-      - yum install -qy rpm file
+      - yum --enablerepo=epel install -qy cmake3 jsoncpp-devel
+      - curl -s -o /var/cache/yum/curlpp-devel-0.7.3-5.el6.x86_64.rpm https://ftp.wrz.de/pub/fedora-epel/6/x86_64/Packages/c/curlpp-devel-0.7.3-5.el6.x86_64.rpm
+      - curl -s -o /var/cache/yum/curlpp-0.7.3-5.el6.x86_64.rpm https://ftp.wrz.de/pub/fedora-epel/6/x86_64/Packages/c/curlpp-0.7.3-5.el6.x86_64.rpm
+      - yum localinstall -qy /var/cache/yum/curlpp-*
       - rm -rf build && mkdir -p build && cd build
       - cmake3 -DWITH_EXAMPLES=NO -DWITH_TESTS=NO ..
       - make package

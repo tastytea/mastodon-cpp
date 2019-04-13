@@ -20,10 +20,11 @@
 #include <string>
 #include <utility>
 #include <chrono>
-#include <map>
+#include <vector>
 
 using std::string;
 using std::chrono::system_clock;
+using std::vector;
 
 namespace Mastodon
 {
@@ -113,14 +114,24 @@ namespace Easy
     } stream_event;
 
     /*!
-     *  @brief  Map of 'notification type' and 'push is requested or not'.
+     *  @brief  Type of notification and 'push is requested or not'.
+     *
+     *  @since  0.100.0
+     */
+    typedef struct alert_type
+    {
+        Easy::notification_type type = Easy::notification_type::Undefined;
+        bool pushreq = false;
+    } alert_type;
+
+    /*!
+     *  @brief  Vector of Easy::alert_type.
      *
      *          Used in PushSubscription::alerts().
      *
-     *  @since  0.13.3
+     *  @since  0.100.0
      */
-    // TODO: Replace with struct?
-    typedef std::map<Easy::notification_type, bool> alertmap;
+    typedef vector<alert_type> alerts;
 
     /*!
      *  @brief  Type for time. Converts to time_point and string.

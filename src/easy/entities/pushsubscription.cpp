@@ -46,9 +46,9 @@ const string PushSubscription::server_key() const
     return get_string("server_key");
 }
 
-const Easy::alertmap PushSubscription::alerts() const
+const Easy::alerts PushSubscription::alerts() const
 {
-    alertmap alerts;
+    Easy::alerts alerts;
     const Json::Value node = get("alerts");
     for (auto it = node.begin(); it != node.end(); ++it)
     {
@@ -75,7 +75,7 @@ const Easy::alertmap PushSubscription::alerts() const
             type = notification_type::Undefined;
         }
 
-        alerts.insert({{ type, s_to_b(it->asString()) }});
+        alerts.push_back({ type, s_to_b(it->asString()) });
     }
     return alerts;
 }

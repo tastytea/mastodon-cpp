@@ -71,12 +71,11 @@ namespace Easy
 
         // TODO: Look up what the data looks like
         /*!
-         *  @brief  Returns a map of 'notification event type' and
-         *  'push is requested or not'
+         *  @brief  Returns a vector of Easy::alert_type.
          *
-         *  @since  0.14.0
+         *  @since  0.100.0
          */
-        const Easy::alertmap alerts() const;
+        const Easy::alerts alerts() const;
 
     protected:
         /*!

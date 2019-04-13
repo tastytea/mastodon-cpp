@@ -1,4 +1,3 @@
-# -*- mode: conf-toml -*-
 pipeline:
   gcc6:
     image: debian:stretch-slim
@@ -127,8 +126,8 @@ pipeline:
       - LANG=C.utf8
       - CXXFLAGS=-pipe -O2
     commands:
-      - cd /var/cache/yum && wget -nc http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && cd -
-      - rpm -i epel-release-latest-7.noarch.rpm
+      - curl -s -o /var/cache/yum/epel-release-latest-7.noarch.rpm http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+      - rpm -i /var/cache/yum/epel-release-latest-7.noarch.rpm
       - yum group install -qy "Development Tools"
       - yum install -qy cmake libcurl-devel doxygen
       - yum --enablerepo=epel install -qy jsoncpp-devel libcurlpp-devel

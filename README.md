@@ -6,9 +6,6 @@ JSON. You can then put that JSON into easy to use classes.
 
 **The ABI will be unstable in versions < 1.0.0**
 
-**Beginning with 0.30.0, all IDs are `const string` instead of
-`uint_fast64_t` as required by the Mastodon API. Sorry for the inconvenience.**
-
 # Breaking API changes
 
 I'm currently rewriting key parts of this library. The new API will be
@@ -22,7 +19,8 @@ releases, please.**
 # Usage
 
 The HTML reference can be generated with `build_doc.sh`, if doxygen is
-installed. It is also available at [doc.schlomp.space/mastodon-cpp/](https://doc.schlomp.space/mastodon-cpp/annotated.html).
+installed. It is also available at
+[doc.schlomp.space/mastodon-cpp/](https://doc.schlomp.space/mastodon-cpp/annotated.html).
 There are [examples](https://schlomp.space/tastytea/mastodon-cpp/src/branch/master/examples)
 in `examples/`.
 
@@ -73,6 +71,37 @@ A project consisting of one file can be compiled as follows:
 ``` shellsession
 g++ -std=c++14 -lmastodon-cpp example.cpp
 ```
+
+## List of types
+
+Learn more at <https://doc.schlomp.space/mastodon-cpp/namespaceMastodon.html>
+and <https://doc.schlomp.space/mastodon-cpp/namespaceMastodon_1_1Easy.html>.
+
+### Return types
+
+* `Mastodon::return_call`: Contains the response from `Mastodon::API` calls.
+* `Mastodon::Easy::return_entity`: Contains the response from
+  `Mastodon::Easy::API` calls that return a single `Mastodon::Easy::Entity`.
+* `Mastodon::Easy::return_entities_vector`: Contains the response from
+  `Mastodon::Easy::API` calls that return multiple `Mastodon::Easy::Entity`.
+
+### Other types
+
+* `Mastodon::param`: A single parameter to an `Mastodon::API` call. Normally you
+  don't need this.
+* `Mastodon::parameters`: All parameters to an `Mastodon::API` call.
+* `Mastodon::http_method`: HTTP method of an `Mastodon::API` call.
+* `Mastodon::Easy::event_type`: Event types returned in streams.
+* `Mastodon::Easy::visibility_type`: Describes the visibility of a post.
+* `Mastodon::Easy::attachment_type`: Describes the type of attachment.
+* `Mastodon::Easy::card_type`: Describes the type of card.
+* `Mastodon::Easy::notification_type`: The type of the notification.
+* `Mastodon::Easy::stream_event`: Type and data of an events returned in
+  streams.
+* `Mastodon::Easy::alert_type`: Type for a single alert.
+* `Mastodon::Easy::alerts`: Vector of alert_type, used for push subscribstions.
+* `Mastodon::Easy::time`: Type for time, can be converted to `time_point` and
+  `string`.
 
 ## Error codes
 

@@ -31,7 +31,7 @@ namespace Mastodon
 namespace Easy
 {
     /*!
-     *  @brief  Describes the event type
+     *  @brief  Describes the event type returned in streams.
      *
      *  @since  before 0.11.0
      */
@@ -45,7 +45,7 @@ namespace Easy
     };
 
     /*!
-     *  @brief  Describes visibility of toots.
+     *  @brief  Describes visibility of posts.
      *
      *  @since  before 0.11.0
      */

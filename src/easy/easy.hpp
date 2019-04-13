@@ -47,9 +47,8 @@ using std::uint16_t;
 namespace Mastodon
 {
 /*!
- *  @brief  Child of Mastodon::API with abstract methods.
- *
- *  @since  before 0.100.0
+ *  @brief  Collection of things that make it easier to interface with server
+ *          software that implements the Mastodon API.
  */
 namespace Easy
 {
@@ -127,7 +126,7 @@ namespace Easy
     const std::vector<stream_event> parse_stream(const std::string &streamdata);
 
     /*!
-     *  @brief  Interface to the Mastodon API, easy version.
+     *  @brief  Child of Mastodon::API with abstract methods.
      *
      *  Provides convenient functions to deal with the responses you get.
      */

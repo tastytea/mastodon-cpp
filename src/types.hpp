@@ -80,7 +80,7 @@ namespace Mastodon
     } parameters;
 
     /*!
-     *  @brief  HTTP methods.
+     *  @brief  HTTP methods. Used in API calls.
      *
      *  @since  0.100.0
      */

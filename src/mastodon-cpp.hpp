@@ -45,6 +45,10 @@ using std::uint8_t;
  *  @example example02_stream.cpp
  */
 
+/*!
+ *  @brief   Collection of things to interface with server software that
+ *           implements the Mastodon API.
+ */
 namespace Mastodon
 {
     /*!

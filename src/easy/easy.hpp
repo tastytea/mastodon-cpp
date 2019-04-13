@@ -120,7 +120,7 @@ namespace Easy
      *
      *  @param  streamdata  Data from get_stream()
      *
-     *  @return vector of stream events
+     *  @return vector of Easy::stream_event
      *
      *  @since  before 0.11.0
      */

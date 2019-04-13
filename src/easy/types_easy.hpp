@@ -48,6 +48,7 @@ namespace Easy
      *
      *  @since  before 0.11.0
      */
+    // TODO: What about instance-only?
     enum class visibility_type
     {
         Direct,
@@ -62,6 +63,7 @@ namespace Easy
      *
      *  @since  before 0.11.0
      */
+    // TODO: Look up what Pleroma returns.
     enum class attachment_type
     {
         Image,
@@ -102,7 +104,7 @@ namespace Easy
     /*!
      *  @brief Used for stream events.
      *
-     *  @since  before 0.11.0
+     *  @since  0.100.0
      */
     typedef struct stream_event
     {
@@ -117,6 +119,7 @@ namespace Easy
      *
      *  @since  0.13.3
      */
+    // TODO: Replace with struct?
     typedef std::map<Easy::notification_type, bool> alertmap;
 
     /*!
@@ -128,8 +131,16 @@ namespace Easy
     {
         system_clock::time_point timepoint = system_clock::time_point();
 
-        operator const system_clock::time_point();
-        operator const string();
+        operator const system_clock::time_point() const;
+
+        /*
+         *  @brief  Returns local time as string in ISO 8601 format (%FT%T%z).
+         */
+        operator const string() const;
+
+        /*
+         *  @brief  Returns local time as string in ISO 8601 format (%FT%T%z).
+         */
         friend std::ostream &operator <<(std::ostream &out,
                                          const Easy::time &t);
 
@@ -140,7 +151,7 @@ namespace Easy
          *
          *  @param  format     The format of the string, same as with
          *                     `strftime`.
-         *  @param  local      Use local time (default).
+         *  @param  local      Use local time (default) or UTC.
          *
          *  Example:
          *  @code
@@ -152,8 +163,8 @@ namespace Easy
          *
          *  @since  0.100.0
          */
-        const string strtime (const string &format,
-                              const bool &local = true) const;
+        const string strtime(const string &format,
+                             const bool &local = true) const;
     };
 }
 }

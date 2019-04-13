@@ -18,12 +18,12 @@
 
 using namespace Mastodon;
 
-Easy::time::operator const system_clock::time_point()
+Easy::time::operator const system_clock::time_point() const
 {
     return timepoint;
 }
 
-Easy::time::operator const string()
+Easy::time::operator const string() const
 {
     return strtime("%FT%T%z", true);
 }
@@ -51,6 +51,7 @@ const string Easy::time::strtime(const string &format, const bool &local) const
 std::ostream &Mastodon::Easy::operator <<(std::ostream &out,
                                           const Easy::time &t)
 {
-    out << t.strtime("%FT%T%z", true);
+    const string s = t;         // Converts using operator const string().
+    out << s;
     return out;
 }

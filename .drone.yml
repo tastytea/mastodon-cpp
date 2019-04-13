@@ -129,13 +129,13 @@ pipeline:
       - curl -s -o /var/cache/yum/epel-release-latest-7.noarch.rpm http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
       - rpm -i /var/cache/yum/epel-release-latest-7.noarch.rpm
       - yum group install -qy "Development Tools"
-      - yum install -qy cmake libcurl-devel doxygen
-      - yum --enablerepo=epel install -qy jsoncpp-devel libcurlpp-devel
+      - yum install -qy libcurl-devel doxygen
+      - yum --enablerepo=epel install -qy cmake3 jsoncpp-devel libcurlpp-devel
       - yum install -qy rpm file
       - rm -rf build && mkdir -p build && cd build
-      - cmake -DWITH_EXAMPLES=NO -DWITH_TESTS=NO ..
+      - cmake3 -DWITH_EXAMPLES=NO -DWITH_TESTS=NO ..
       - make package
-      - cmake -DWITH_RPM=YES ..
+      - cmake3 -DWITH_RPM=YES ..
       - make package
       - cp -v libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm ..
     volumes:

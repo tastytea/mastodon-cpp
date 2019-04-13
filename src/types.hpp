@@ -82,7 +82,7 @@ namespace Mastodon
     /*!
      *  @brief  HTTP methods.
      *
-     *  @since  before 0.100.0
+     *  @since  0.100.0
      */
     enum class http_method
     {

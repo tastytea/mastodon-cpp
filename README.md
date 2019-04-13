@@ -123,6 +123,8 @@ If you use a debug build, you get more verbose error messages.
 ## Useful links
 
 * [Mastodon documentation](https://docs.joinmastodon.org/)
+* [Pleroma documentation](https://git.pleroma.social/pleroma/pleroma/tree/develop/docs/api)
+* [glitch-soc documentation](https://glitch-soc.github.io/docs/#whats-different)
 
 # Install
 

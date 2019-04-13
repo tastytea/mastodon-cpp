@@ -144,13 +144,17 @@ namespace Easy
 
         operator const system_clock::time_point() const;
 
-        /*
+        /*!
          *  @brief  Returns local time as string in ISO 8601 format (%FT%T%z).
+         *
+         *  @since  0.100.0
          */
         operator const string() const;
 
-        /*
+        /*!
          *  @brief  Returns local time as string in ISO 8601 format (%FT%T%z).
+         *
+         *  @since  0.100.0
          */
         friend std::ostream &operator <<(std::ostream &out,
                                          const Easy::time &t);

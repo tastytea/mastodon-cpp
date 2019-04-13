@@ -11,7 +11,7 @@ JSON. You can then put that JSON into easy to use classes.
 I'm currently rewriting key parts of this library. The new API will be
 incompatible with the old one. The new code will start with the version number
 `0.100.0`. The old code is archived in the branch `pre-0.100.0` and will get
-bugfixes for a while.
+bug-fixes for a while.
 
 **The code on the `master`-branch is not usable at the moment, stick to the
 releases, please.**
@@ -99,7 +99,8 @@ and <https://doc.schlomp.space/mastodon-cpp/namespaceMastodon_1_1Easy.html>.
 * `Mastodon::Easy::stream_event`: Type and data of an events returned in
   streams.
 * `Mastodon::Easy::alert_type`: Type for a single alert.
-* `Mastodon::Easy::alerts`: Vector of alert_type, used for push subscribstions.
+* `Mastodon::Easy::alerts`: Vector of `Mastodon::Easy::alert_type`, used for
+  push subscriptions.
 * `Mastodon::Easy::time`: Type for time, can be converted to `time_point` and
   `string`.
 

@@ -107,6 +107,7 @@ pipeline:
       - apt-get install -qy build-essential cmake pkg-config
       - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen
       - apt-get install -qy -t sid libcurlpp-dev
+      - apt-get install -qy file
       - rm -rf build && mkdir -p build && cd build
       - cmake -DWITH_EXAMPLES=NO -DWITH_TESTS=NO ..
       - make package

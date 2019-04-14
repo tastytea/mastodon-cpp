@@ -1,20 +1,7 @@
-**mastodon-cpp** is a C++ wrapper for the Mastodon API.
-The library takes care of the network stuff. You submit a query and get the raw
-JSON. You can then put that JSON into easy to use classes.
-
-[TODO-list](https://schlomp.space/tastytea/mastodon-cpp/milestones)
+**mastodon-cpp** is a C++ wrapper for the Mastodon API. You submit an API call
+and get the raw JSON or easy to use abstractions, just as you like.
 
 **The ABI will be unstable in versions < 1.0.0**
-
-# Breaking API changes
-
-I'm currently rewriting key parts of this library. The new API will be
-incompatible with the old one. The new code will start with the version number
-`0.100.0`. The old code is archived in the branch `pre-0.100.0` and will get
-bug-fixes for a while.
-
-**The code on the `master`-branch is not usable at the moment, stick to the
-releases, please.**
 
 # Usage
 
@@ -40,7 +27,7 @@ int main()
 
 ## Another simple example
 
-Using the `Easy`-class.
+Using the `Easy` interface.
 
 ```c++
 #include <iostream>
@@ -48,12 +35,12 @@ Using the `Easy`-class.
 #include <mastodon-cpp/mastodon-cpp.hpp>
 #include <mastodon-cpp/easy/all.hpp>
 
-using Mastodon::Easy;
+using Mastodon;
 
 int main()
 {
-    Easy masto("social.example", "");
-    return_call ret = masto.get(Mastodon::API::v1::timelines_public);
+    Easy::API masto("social.example", "");
+    return_call ret = masto.get(API::v1::timelines_public);
 
     for (const std::string &str : Easy::json_array_to_vector(ret.answer))
     {
@@ -128,11 +115,19 @@ If you use a debug build, you get more verbose error messages.
 
 # Install
 
+## Upgrading from versions below 0.100.0
+
+Starting with version `0.100.0`, large parts of the library have been rewritten.
+Upgrading from previous versions will require extensive code changes. You can
+keep using the old version, it is archived in the branch
+[pre-0.100.0](https://schlomp.space/tastytea/mastodon-cpp/src/branch/pre-0.100.0).
+It will receive bug-fixes for a while but no new features.
+
 ## Packages
 
 Every [release](https://schlomp.space/tastytea/mastodon-cpp/releases) includes
 packages for the package managers of Debian and Red Hat. Gentoo packages are
-available in an overlay.
+available in my overlay.
 
 ### Gentoo
 
@@ -141,7 +136,7 @@ install it from there.
 
 ```shellsession
 eselect repository enable tastytea
-echo 'dev-cpp/mastodon-cpp ~amd64' >> /etc/portage/package.keywords/mastodon-cpp
+echo 'dev-cpp/mastodon-cpp ~amd64' >> /etc/portage/package.accept_keywords/mastodon-cpp
 emaint sync -r tastytea
 emerge -a dev-cpp/mastodon-cpp
 ```
@@ -150,11 +145,14 @@ emerge -a dev-cpp/mastodon-cpp
 
 Prebuilt DEB and RPM packages for x86_64(amd64) are provided with each release.
 `.deb` packages are built on Debian stretch and `.rpm` packages are built on
-CentOS 7. These packages are automatically built and not tested. Install with
-`dpkg -i` or `rpm -i`, respectively.
+CentOS 7. These packages are automatically built and not tested.
 
-To use the DEB package on Debian stretch, you will need
+To use the DEB`.deb` package on Debian stretch, you will need
 [libcurlpp0](https://packages.debian.org/libcurlpp0) from sid.
+
+To use the `.rpm` package on CentOS 7, you will need
+[libcurlpp](https://download.fedoraproject.org/pub/epel/6/x86_64/Packages/c/)
+from EPEL 6.
 
 ## From source
 
@@ -162,20 +160,22 @@ To use the DEB package on Debian stretch, you will need
 
 * Tested OS: Linux
 * C++ compiler (tested: gcc 6 / 7 / 8)
-* [cmake](https://cmake.org/) (tested: 3.9 / 3.12)
-* [pkgconfig](https://pkgconfig.freedesktop.org/wiki/) (tested: 0.29)
+* [cmake](https://cmake.org/) (at least: 3.6)
+* [pkgconfig](https://pkgconfig.freedesktop.org/wiki/) (tested: 0.29 / 0.27)
 * [curlpp](http://www.curlpp.org/) (tested: 0.8)
 * Optional
     * Easy interface & Examples: [jsoncpp](https://github.com/open-source-parsers/jsoncpp) (tested: 1.8 / 1.7)
     * Documentation: [doxygen](https://www.stack.nl/~dimitri/doxygen/) (tested: 1.8)
-    * DEB package: [dpkg](https://packages.qa.debian.org/dpkg) (tested: 1.19 / 1.18)
-    * RPM package: [rpm](http://www.rpm.org) (tested: 4.14 / 4.12)
+    * DEB package: [dpkg](https://packages.qa.debian.org/dpkg) (tested: 1.18)
+    * RPM package: [rpm-build](http://www.rpm.org) (tested: 4.11)
+    * Tests: [catch](https://github.com/catchorg/Catch2) (tested: 2.5 / 1.2)
 
 ### Get sourcecode
 
 #### Release
 
-Download the current release at [schlomp.space](https://schlomp.space/tastytea/mastodon-cpp/releases).
+Download the current release at
+[schlomp.space](https://schlomp.space/tastytea/mastodon-cpp/releases).
 
 #### Development version
 
@@ -189,13 +189,14 @@ git clone https://schlomp.space/tastytea/mastodon-cpp.git
 mkdir build
 cd build/
 cmake ..
-make
+cmake --build . -- -j$(nproc --ignore=1)
 ```
 
 cmake options:
 
  * `-DCMAKE_BUILD_TYPE=Debug` for a debug build
- * `-DWITH_EASY=NO` to not build the Easy abstractions and to get rid of the jsoncpp-dependency (not recommended)
+ * `-DWITH_EASY=NO` to not build the Easy abstractions and to get rid of the
+   jsoncpp-dependency (not recommended)
  * `-DWITH_EXAMPLES=YES` if you want to compile the examples
  * `-DWITH_TESTS=YES` if you want to compile the tests
  * `-DWITH_DOC=NO` if you don't want to compile the HTML reference
@@ -203,7 +204,7 @@ cmake options:
     * `-DWITH_DEB=YES` if you want to be able to generate a deb-package
     * `-DWITH_RPM=YES` if you want to be able to generate an rpm-package
 
-You can run the tests with `ctest ..` inside the build directory.
+You can run the tests with `ctest` inside the build directory.
 To install, run `make install`.
 
 ### Packages

@@ -1,8 +1,8 @@
 cmake_minimum_required (VERSION 3.6)
 project (mastodon-cpp
-         VERSION 0.101.0
-         LANGUAGES CXX
-)
+  VERSION 0.101.0
+  LANGUAGES CXX
+  )
 
 set(WITH_EASY "YES" CACHE STRING "WITH_EASY defaults to \"YES\"")
 set(WITH_EXAMPLES "NO" CACHE STRING "WITH_EXAMPLES defaults to \"NO\"")
@@ -16,7 +16,7 @@ find_package(PkgConfig REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(CURLPP REQUIRED curlpp)
 if(WITH_EASY)
-    pkg_check_modules(JSONCPP REQUIRED jsoncpp)
+  pkg_check_modules(JSONCPP REQUIRED jsoncpp)
 endif()
 
 set(CMAKE_CXX_STANDARD 14)
@@ -24,11 +24,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_CXX_FLAGS_DEBUG
-    "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -Wpedantic -ftrapv -fsanitize=undefined -g -Og -fno-omit-frame-pointer")
+  "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -Wpedantic -ftrapv -fsanitize=undefined -g -Og -fno-omit-frame-pointer")
 
 # Do not complain about compatibility-wrapper
 if(NOT CMAKE_BUILD_TYPE STREQUAL "Debug")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations")
 endif()
 
 include_directories(${PROJECT_SOURCE_DIR}/src)
@@ -44,8 +44,8 @@ link_directories(${JSONCPP_LIBRARY_DIRS})
 
 # Write version in header
 configure_file (
-    "${PROJECT_SOURCE_DIR}/src/version.hpp.in"
-    "${PROJECT_BINARY_DIR}/version.hpp"
+  "${PROJECT_SOURCE_DIR}/src/version.hpp.in"
+  "${PROJECT_BINARY_DIR}/version.hpp"
 )
 
 # Announce that we are compiling mastodon-cpp (used to figure out where the
@@ -53,125 +53,75 @@ configure_file (
 add_definitions(-DMASTODON_CPP=1)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    add_definitions(-DDEBUG=1)
+  add_definitions(-DDEBUG=1)
 endif()
 
 if(NOT WITH_EASY)
-    add_definitions(-DWITHOUT_EASY=1)
+  add_definitions(-DWITHOUT_EASY=1)
 endif()
 
 # Compile library
 if(WITH_EASY)
-    file(GLOB sources src/*.cpp src/api/*.cpp
-                      src/easy/*.cpp src/easy/entities/*.cpp)
+  file(GLOB sources src/*.cpp src/api/*.cpp
+    src/easy/*.cpp src/easy/entities/*.cpp)
 else()
-    file(GLOB sources src/*.cpp src/api/*.cpp)
+  file(GLOB sources src/*.cpp src/api/*.cpp)
 endif()
-add_library(mastodon-cpp SHARED ${sources})
-set_target_properties(mastodon-cpp PROPERTIES
-                     VERSION ${PROJECT_VERSION}
-                     SOVERSION ${mastodon-cpp_VERSION_MAJOR}
-)
+add_library(${CMAKE_PROJECT_NAME} SHARED ${sources})
+set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
+  VERSION ${PROJECT_VERSION}
+  SOVERSION ${${CMAKE_PROJECT_NAME}_VERSION_MAJOR}
+  )
 
 if(WITH_EASY)
-  target_link_libraries(mastodon-cpp
+  target_link_libraries(${CMAKE_PROJECT_NAME}
     ${CURLPP_LIBRARIES} pthread ${JSONCPP_LIBRARIES})
 else()
-  target_link_libraries(mastodon-cpp
+  target_link_libraries(${CMAKE_PROJECT_NAME}
     ${CURLPP_LIBRARIES} pthread)
 endif()
 
 # Compile examples
 if(WITH_EXAMPLES)
-    file(GLOB sources_examples examples/*.cpp)
-    foreach(src ${sources_examples})
-        get_filename_component(bin ${src} NAME_WE)
-        add_executable(${bin} ${src})
-        target_link_libraries(${bin} pthread ${JSONCPP_LIBRARIES} mastodon-cpp)
-    endforeach()
+  file(GLOB sources_examples examples/*.cpp)
+  foreach(src ${sources_examples})
+    get_filename_component(bin ${src} NAME_WE)
+    add_executable(${bin} ${src})
+    target_link_libraries(${bin} pthread ${JSONCPP_LIBRARIES} ${CMAKE_PROJECT_NAME})
+  endforeach()
 endif()
 
 # Compile tests
 if(WITH_TESTS)
-    # Disabled for now.
+  include(tests.CMakeLists.txt)
 endif()
 
 # Install library and header files
-install(TARGETS mastodon-cpp LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(TARGETS ${CMAKE_PROJECT_NAME} LIBRARY
+  DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(FILES src/mastodon-cpp.hpp src/return_types.hpp src/types.hpp
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp)
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${CMAKE_PROJECT_NAME})
 if(WITH_EASY)
-    file(GLOB easy_header src/easy/*.hpp)
-    install(FILES ${easy_header}
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp/easy)
-    file(GLOB easy_entities_header src/easy/entities/*.hpp)
-    install(FILES ${easy_entities_header}
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mastodon-cpp/easy/entities)
+  file(GLOB easy_header src/easy/*.hpp)
+  install(FILES ${easy_header}
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${CMAKE_PROJECT_NAME}/easy)
+  file(GLOB easy_entities_header src/easy/entities/*.hpp)
+  install(FILES ${easy_entities_header}
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${CMAKE_PROJECT_NAME}/easy/entities)
 endif()
 
 # Compile & install documentation
 if(WITH_DOC)
-    execute_process(COMMAND ./build_doc.sh
-                    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
-    install(DIRECTORY ${PROJECT_SOURCE_DIR}/doc/html
-            DESTINATION ${CMAKE_INSTALL_DOCDIR}/mastodon-cpp-${PROJECT_VERSION})
-    file(GLOB examples examples/example*.cpp)
-    install(FILES ${examples}
-            DESTINATION ${CMAKE_INSTALL_DOCDIR}/mastodon-cpp-${PROJECT_VERSION}/examples)
+  add_custom_command(OUTPUT ${PROJECT_SOURCE_DIR}/doc/html
+    COMMAND ./build_doc.sh WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+  add_custom_target(doc DEPENDS doc/html)
+  add_dependencies(${CMAKE_PROJECT_NAME} doc)
+  install(DIRECTORY ${PROJECT_SOURCE_DIR}/doc/html
+    DESTINATION ${CMAKE_INSTALL_DOCDIR}/${CMAKE_PROJECT_NAME}-${PROJECT_VERSION})
+  file(GLOB examples examples/example*.cpp)
+  install(FILES ${examples}
+    DESTINATION ${CMAKE_INSTALL_DOCDIR}/${CMAKE_PROJECT_NAME}-${PROJECT_VERSION}/examples)
 endif()
 
 # Packages
-set(CPACK_PACKAGE_NAME ${CMAKE_PROJECT_NAME})
-set(CPACK_PACKAGE_VERSION_MAJOR ${mastodon-cpp_VERSION_MAJOR})
-set(CPACK_PACKAGE_VERSION_MINOR ${mastodon-cpp_VERSION_MINOR})
-set(CPACK_PACKAGE_VERSION_PATCH ${mastodon-cpp_VERSION_PATCH})
-set(CPACK_PACKAGE_VERSION ${mastodon-cpp_VERSION})
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "C++ wrapper for the Mastodon API")
-set(CPACK_PACKAGE_CONTACT "tastytea <tastytea@tastytea.de>")
-set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
-set(CPACK_RESOURCE_FILE_README "${PROJECT_SOURCE_DIR}/README.md")
-list(APPEND CPACK_SOURCE_IGNORE_FILES "/\\\\.git"
-                                      "/.gitignore"
-                                      "/build/"
-                                      "/doc/"
-                                      "\\\\.sublime-"
-                                      "/update_doc.sh"
-                                      "/.drone.yml"
-                                      "/ISSUE_TEMPLATE.md$")
-execute_process(COMMAND uname -m
-                OUTPUT_VARIABLE CPACK_PACKAGE_ARCHITECTURE
-                OUTPUT_STRIP_TRAILING_WHITESPACE)
-set(CPACK_PACKAGE_FILE_NAME
-    "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}_${CPACK_PACKAGE_ARCHITECTURE}")
-set(CPACK_GENERATOR "TGZ")
-set(CPACK_SOURCE_GENERATOR "TGZ")
-
-if (WITH_DEB)
-    set(CPACK_PACKAGE_NAME "lib${CMAKE_PROJECT_NAME}")
-    set(CPACK_GENERATOR "DEB")
-    set(CPACK_SOURCE_GENERATOR "DEB")
-    set(CPACK_DEBIAN_PACKAGE_HOMEPAGE "https://schlomp.space/tastytea/mastodon-cpp")
-    set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
-    execute_process(COMMAND dpkg --print-architecture
-                    OUTPUT_VARIABLE CPACK_DEBIAN_PACKAGE_ARCHITECTURE
-                    OUTPUT_STRIP_TRAILING_WHITESPACE)
-    set(CPACK_PACKAGE_FILE_NAME
-        "${CPACK_PACKAGE_NAME}_${CPACK_PACKAGE_VERSION}-0_${CPACK_DEBIAN_PACKAGE_ARCHITECTURE}")
-    set(CPACK_SOURCE_PACKAGE_FILE_NAME
-        "${CPACK_PACKAGE_NAME}_${CPACK_PACKAGE_VERSION}-0_src")
-endif()
-
-if (WITH_RPM)
-    set(CPACK_PACKAGE_NAME "lib${CMAKE_PROJECT_NAME}")
-    set(CPACK_GENERATOR "RPM")
-    set(CPACK_SOURCE_GENERATOR "RPM")
-    set(CPACK_RPM_PACKAGE_LICENSE "GPL-3")
-    set(CPACK_RPM_PACKAGE_URL "https://schlomp.space/tastytea/mastodon-cpp")
-    set(CPACK_RPM_PACKAGE_REQUIRES "curlpp >= 0.8.1 jsoncpp, >= 1.7.4")
-    set(CPACK_PACKAGE_FILE_NAME
-         "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-0.${CPACK_PACKAGE_ARCHITECTURE}")
-    set(CPACK_SOURCE_PACKAGE_FILE_NAME
-        "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-0.src")
-endif()
-
-include(CPack)
+include(packages.CMakeLists.txt)

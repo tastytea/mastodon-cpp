@@ -32,8 +32,7 @@ bool Instance::valid() const
         "email",
         "version",
         "urls",
-        "languages",
-        "contact_account"
+        "languages"
     }};
 
     return Entity::check_valid(attributes);

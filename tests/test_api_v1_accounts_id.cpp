@@ -26,15 +26,17 @@ using namespace Mastodon;
 SCENARIO ("/api/v1/accounts/:id can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
-    GIVEN ("id and return_call")
+    GIVEN ("instance, id and return_call")
     {
+        const char *envinstance = std::getenv("MASTODON_CPP_INSTANCE");
+        const string instance = (envinstance ? envinstance : "likeable.space");
         const string id = "9hnrrVPriLiLVAhfVo";
         return_call ret;
         bool exception = false;
 
         GIVEN ("Mastodon::API")
         {
-            Mastodon::API masto("likeable.space", "");
+            Mastodon::API masto(instance, "");
             bool username_found = false;
 
             WHEN ("/api/v1/accounts/" + id + " is called")
@@ -68,7 +70,7 @@ SCENARIO ("/api/v1/accounts/:id can be called successfully",
 
         GIVEN ("Mastodon::Easy::API")
         {
-            Mastodon::Easy::API masto("likeable.space", "");
+            Mastodon::Easy::API masto(instance, "");
             Easy::Account account;
 
             WHEN ("/api/v1/accounts/" + id + " is called")

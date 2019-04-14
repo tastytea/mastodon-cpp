@@ -27,8 +27,10 @@ using namespace Mastodon;
 SCENARIO ("/api/v1/accounts/update_credentials can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
-    GIVEN ("access token and return_call")
+    GIVEN ("instance, access token and return_call")
     {
+        const char *envinstance = std::getenv("MASTODON_CPP_INSTANCE");
+        const string instance = (envinstance ? envinstance : "likeable.space");
         const char *access_token = std::getenv("MASTODON_CPP_ACCESS_TOKEN");
         return_call ret;
         bool exception = false;
@@ -38,7 +40,7 @@ SCENARIO ("/api/v1/accounts/update_credentials can be called successfully",
 
         GIVEN ("Mastodon::API")
         {
-            Mastodon::API masto("likeable.space", access_token);
+            Mastodon::API masto(instance, access_token);
 
             WHEN ("/api/v1/accounts/update_credentials is called")
             {
@@ -71,7 +73,7 @@ SCENARIO ("/api/v1/accounts/update_credentials can be called successfully",
 
         GIVEN ("Mastodon::Easy::API")
         {
-            Mastodon::Easy::API masto("likeable.space", access_token);
+            Mastodon::Easy::API masto(instance, access_token);
             Easy::Account account;
 
             WHEN ("/api/v1/accounts/update_credentials is called")

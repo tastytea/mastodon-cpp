@@ -26,14 +26,16 @@ using namespace Mastodon;
 SCENARIO ("/api/v1/instance can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
-    GIVEN ("return_call")
+    GIVEN ("instance and return_call")
     {
+        const char *envinstance = std::getenv("MASTODON_CPP_INSTANCE");
+        const string instance = (envinstance ? envinstance : "likeable.space");
         return_call ret;
         bool exception = false;
 
         GIVEN ("Mastodon::API")
         {
-            Mastodon::API masto("likeable.space", "");
+            Mastodon::API masto(instance, "");
             bool uri_found = false;
 
             WHEN ("/api/v1/instance is called")
@@ -41,8 +43,9 @@ SCENARIO ("/api/v1/instance can be called successfully",
                 try
                 {
                     ret = masto.get(API::v1::instance);
-                    uri_found = ret.answer.find(
-                        "\"uri\":\"https://likeable.space\"") != std::string::npos;
+                    uri_found =
+                        ret.answer.find("\"uri\":\"https://likeable.space\"")
+                        != std::string::npos;
                 }
                 catch (const std::exception &e)
                 {
@@ -66,15 +69,15 @@ SCENARIO ("/api/v1/instance can be called successfully",
 
         GIVEN ("Mastodon::Easy::API")
         {
-            Mastodon::Easy::API masto("likeable.space", "");
-            Easy::Instance instance;
+            Mastodon::Easy::API masto(instance, "");
+            Easy::Instance instance_;
 
             WHEN ("/api/v1/instance is called")
             {
                 try
                 {
                     ret = masto.get(API::v1::instance);
-                    instance = Easy::Instance(ret.answer);
+                    instance_ = Easy::Instance(ret.answer);
                 }
                 catch (const std::exception &e)
                 {
@@ -91,11 +94,11 @@ SCENARIO ("/api/v1/instance can be called successfully",
                 }
                 THEN ("Answer is valid")
                 {
-                    REQUIRE(instance.valid());
+                    REQUIRE(instance_.valid());
                 }
                 THEN ("The answer makes sense")
                 {
-                    REQUIRE(instance.uri() == "https://likeable.space");
+                    REQUIRE(instance_.uri() == "https://likeable.space");
                 }
             }
         }

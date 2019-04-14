@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">mastodon-cpp
-   &#160;<span id="projectnumber">0.30.1</span>
+   &#160;<span id="projectnumber">0.101.1</span>
    </div>
   </td>
  </tr>
@@ -43,69 +43,93 @@ $(function() {
 <div class="title">mastodon-cpp Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><b>mastodon-cpp</b> is a C++ wrapper for the Mastodon API. The library takes care of the network stuff. You submit a query and get the raw JSON. You can then put that JSON into easy to use classes.</p>
-<p><a href="https://schlomp.space/tastytea/mastodon-cpp/milestones">TODO-list</a></p>
+<div class="textblock"><p><b>mastodon-cpp</b> is a C++ wrapper for the <a class="el" href="namespaceMastodon.html" title="Collection of things to interface with server software that implements the Mastodon API...">Mastodon</a> API. You submit an API call and get the raw JSON or easy to use abstractions, just as you like.</p>
 <p><b>The ABI will be unstable in versions &lt; 1.0.0</b></p>
-<p><b>Beginning with 0.30.0, all IDs are <code>const string</code> instead of <code>uint_fast64_t</code> as required by the Mastodon API. Sorry for the inconvenience.</b></p>
-<h1>Breaking API changes</h1>
-<p>I'm going to rewrite key parts of this library. The new API will be incompatible with the old one. The new code will start with the version number <code>0.100.0</code>. The old code is archived in the branch "pre-0.100.0" and will get bugfixes for a while.</p>
 <h1>Usage</h1>
 <p>The HTML reference can be generated with <code>build_doc.sh</code>, if doxygen is installed. It is also available at <a href="https://doc.schlomp.space/mastodon-cpp/annotated.html">doc.schlomp.space/mastodon-cpp/</a>. There are <a href="https://schlomp.space/tastytea/mastodon-cpp/src/branch/master/examples">examples</a> in <code>examples/</code>.</p>
 <h2>Most basic example</h2>
-<div class="fragment"><div class="line">{C++}</div><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;string&gt;</div><div class="line">#include &lt;mastodon-cpp/mastodon-cpp.hpp&gt;</div><div class="line"></div><div class="line">int main()</div><div class="line">{</div><div class="line">    Mastodon::API masto(&quot;social.example.com&quot;, &quot;auth_token&quot;);</div><div class="line">    std::string answer;</div><div class="line">    masto.get(Mastodon::API::v1::accounts_verify_credentials, answer);</div><div class="line">    std::cout &lt;&lt; answer &lt;&lt; &#39;\n&#39;;</div><div class="line">}</div></div><!-- fragment --><h2>Another simple example</h2>
-<p>Using the <code>Easy</code>-class.</p>
-<div class="fragment"><div class="line">{C++}</div><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;string&gt;</div><div class="line">#include &lt;vector&gt;</div><div class="line">#include &lt;mastodon-cpp/mastodon-cpp.hpp&gt;</div><div class="line">#include &lt;mastodon-cpp/easy/all.hpp&gt;</div><div class="line"></div><div class="line">using Mastodon::Easy;</div><div class="line"></div><div class="line">int main()</div><div class="line">{</div><div class="line">    Easy masto(&quot;social.example&quot;, &quot;&quot;);</div><div class="line">    std::string answer;</div><div class="line">    masto.get(Mastodon::API::v1::timelines_public, answer);</div><div class="line"></div><div class="line">    for (const std::string &amp;str : Easy::json_array_to_vector(answer))</div><div class="line">    {</div><div class="line">        Easy::Status status(str);</div><div class="line">        std::cout &lt;&lt; &quot;  &quot; &lt;&lt; status.account().acct() &lt;&lt; &quot; wrote:\n&quot;;</div><div class="line">        std::cout &lt;&lt; status.content() &lt;&lt; &#39;\n&#39;;</div><div class="line">    }</div><div class="line">}</div></div><!-- fragment --><h2>Compiling your project</h2>
+<div class="fragment"><div class="line">{c++}</div><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;mastodon-cpp/mastodon-cpp.hpp&gt;</div><div class="line"></div><div class="line">int main()</div><div class="line">{</div><div class="line">    Mastodon::API masto(&quot;social.example.com&quot;, &quot;auth_token&quot;);</div><div class="line">    std::cout &lt;&lt; masto.get(Mastodon::API::v1::accounts_verify_credentials);</div><div class="line">    std::cout &lt;&lt; std::endl;</div><div class="line">}</div></div><!-- fragment --><h2>Another simple example</h2>
+<p>Using the <code>Easy</code> interface.</p>
+<div class="fragment"><div class="line">{c++}</div><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;string&gt;</div><div class="line">#include &lt;mastodon-cpp/mastodon-cpp.hpp&gt;</div><div class="line">#include &lt;mastodon-cpp/easy/all.hpp&gt;</div><div class="line"></div><div class="line">using Mastodon;</div><div class="line"></div><div class="line">int main()</div><div class="line">{</div><div class="line">    Easy::API masto(&quot;social.example&quot;, &quot;&quot;);</div><div class="line">    return_call ret = masto.get(API::v1::timelines_public);</div><div class="line"></div><div class="line">    for (const std::string &amp;str : Easy::json_array_to_vector(ret.answer))</div><div class="line">    {</div><div class="line">        Easy::Status status(str);</div><div class="line">        std::cout &lt;&lt; &quot;  &quot; &lt;&lt; status.account().acct() &lt;&lt; &quot; wrote:\n&quot;;</div><div class="line">        std::cout &lt;&lt; status.content() &lt;&lt; &#39;\n&#39;;</div><div class="line">    }</div><div class="line">}</div></div><!-- fragment --><h2>Compiling your project</h2>
 <p>A project consisting of one file can be compiled as follows:</p>
-<div class="fragment"><div class="line">g++ -std=c++14 -lmastodon-cpp example.cpp</div></div><!-- fragment --><h2>Error codes</h2>
-<p>mastodon-cpp will never use error codes below 11, except 0.</p>
+<div class="fragment"><div class="line">g++ -std=c++14 -lmastodon-cpp example.cpp</div></div><!-- fragment --><h2>List of types</h2>
+<p>Learn more at <a href="https://doc.schlomp.space/mastodon-cpp/namespaceMastodon.html">https://doc.schlomp.space/mastodon-cpp/namespaceMastodon.html</a> and <a href="https://doc.schlomp.space/mastodon-cpp/namespaceMastodon_1_1Easy.html">https://doc.schlomp.space/mastodon-cpp/namespaceMastodon_1_1Easy.html</a>.</p>
+<h3>Return types</h3>
+<ul>
+<li><code><a class="el" href="structMastodon_1_1return__call.html" title="Return type for API calls. ">Mastodon::return_call</a></code>: Contains the response from <code><a class="el" href="classMastodon_1_1API.html" title="Interface to the Mastodon API. ">Mastodon::API</a></code> calls.</li>
+<li><code><a class="el" href="structMastodon_1_1Easy_1_1return__entity.html" title="Return types for calls that return a single Easy::Entity. ">Mastodon::Easy::return_entity</a></code>: Contains the response from <code><a class="el" href="classMastodon_1_1Easy_1_1API.html" title="Child of Mastodon::API with abstract methods. ">Mastodon::Easy::API</a></code> calls that return a single <code><a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Mastodon::Easy::Entity</a></code>.</li>
+<li><code>Mastodon::Easy::return_entities_vector</code>: Contains the response from <code><a class="el" href="classMastodon_1_1Easy_1_1API.html" title="Child of Mastodon::API with abstract methods. ">Mastodon::Easy::API</a></code> calls that return multiple <code><a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Mastodon::Easy::Entity</a></code>.</li>
+</ul>
+<h3>Other types</h3>
+<ul>
+<li><code><a class="el" href="structMastodon_1_1param.html" title="A single parameter. ">Mastodon::param</a></code>: A single parameter to an <code><a class="el" href="classMastodon_1_1API.html" title="Interface to the Mastodon API. ">Mastodon::API</a></code> call. Normally you don't need this.</li>
+<li><code><a class="el" href="structMastodon_1_1parameters.html" title="Vector of Mastodon::param, used for passing parameters in calls. ">Mastodon::parameters</a></code>: All parameters to an <code><a class="el" href="classMastodon_1_1API.html" title="Interface to the Mastodon API. ">Mastodon::API</a></code> call.</li>
+<li><code><a class="el" href="namespaceMastodon.html#a1b4c13dfd9ccc43a2328d99a93b34452" title="HTTP methods. Used in API calls. ">Mastodon::http_method</a></code>: HTTP method of an <code><a class="el" href="classMastodon_1_1API.html" title="Interface to the Mastodon API. ">Mastodon::API</a></code> call.</li>
+<li><code><a class="el" href="namespaceMastodon_1_1Easy.html#acd775719887d95875c2fb46b45116d2b" title="Describes the event type returned in streams. ">Mastodon::Easy::event_type</a></code>: Event types returned in streams.</li>
+<li><code><a class="el" href="namespaceMastodon_1_1Easy.html#a41488ca00d3169dc24313b21bd19eefa" title="Describes visibility of posts. ">Mastodon::Easy::visibility_type</a></code>: Describes the visibility of a post.</li>
+<li><code><a class="el" href="namespaceMastodon_1_1Easy.html#a1c6e6d9643e6739f7b9126a307b45bc1" title="Describes the attachment type. ">Mastodon::Easy::attachment_type</a></code>: Describes the type of attachment.</li>
+<li><code><a class="el" href="namespaceMastodon_1_1Easy.html#aa17ec4f385ac3bc773b1b2277f209341" title="Describes the card type. ">Mastodon::Easy::card_type</a></code>: Describes the type of card.</li>
+<li><code><a class="el" href="namespaceMastodon_1_1Easy.html#af99b6a79e360ae9836bae129f9989e76" title="Describes the notification type. ">Mastodon::Easy::notification_type</a></code>: The type of the notification.</li>
+<li><code><a class="el" href="structMastodon_1_1Easy_1_1stream__event.html" title="Used for stream events. ">Mastodon::Easy::stream_event</a></code>: Type and data of an events returned in streams.</li>
+<li><code><a class="el" href="structMastodon_1_1Easy_1_1alert__type.html" title="Type of notification and &#39;push is requested or not&#39;. ">Mastodon::Easy::alert_type</a></code>: Type for a single alert.</li>
+<li><code><a class="el" href="namespaceMastodon_1_1Easy.html#a678e302785d81f1168344c513e75fd0c" title="Vector of Easy::alert_type. ">Mastodon::Easy::alerts</a></code>: Vector of <code><a class="el" href="structMastodon_1_1Easy_1_1alert__type.html" title="Type of notification and &#39;push is requested or not&#39;. ">Mastodon::Easy::alert_type</a></code>, used for push subscriptions.</li>
+<li><code><a class="el" href="structMastodon_1_1Easy_1_1time.html" title="Type for time. Converts to time_point and string. ">Mastodon::Easy::time</a></code>: Type for time, can be converted to <code>time_point</code> and <code>string</code>.</li>
+</ul>
+<h2>Error codes</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadRight">Code  </th><th class="markdownTableHeadLeft">Explanation   </th></tr>
 <tr class="markdownTableBody" class="markdownTableRowOdd">
 <td class="markdownTableBodyRight">0  </td><td class="markdownTableBodyLeft">No error   </td></tr>
 <tr class="markdownTableBody" class="markdownTableRowEven">
-<td class="markdownTableBodyRight">11  </td><td class="markdownTableBodyLeft">Invalid call   </td></tr>
+<td class="markdownTableBodyRight">22  </td><td class="markdownTableBodyLeft">Invalid argument   </td></tr>
 <tr class="markdownTableBody" class="markdownTableRowOdd">
-<td class="markdownTableBodyRight">12  </td><td class="markdownTableBodyLeft">Not implemented   </td></tr>
+<td class="markdownTableBodyRight">78  </td><td class="markdownTableBodyLeft">URL changed (HTTP 301 or 308)   </td></tr>
 <tr class="markdownTableBody" class="markdownTableRowEven">
-<td class="markdownTableBodyRight">13  </td><td class="markdownTableBodyLeft">URL changed (HTTP 301 or 308)   </td></tr>
+<td class="markdownTableBodyRight">110  </td><td class="markdownTableBodyLeft">Connection timed out   </td></tr>
 <tr class="markdownTableBody" class="markdownTableRowOdd">
-<td class="markdownTableBodyRight">14  </td><td class="markdownTableBodyLeft">Aborted by user   </td></tr>
+<td class="markdownTableBodyRight">111  </td><td class="markdownTableBodyLeft">Connection refused (check http_error_code)   </td></tr>
 <tr class="markdownTableBody" class="markdownTableRowEven">
-<td class="markdownTableBodyRight">15  </td><td class="markdownTableBodyLeft">Network error (curlpp exception)   </td></tr>
+<td class="markdownTableBodyRight">113  </td><td class="markdownTableBodyLeft">No route to host / Could not resolve host   </td></tr>
 <tr class="markdownTableBody" class="markdownTableRowOdd">
-<td class="markdownTableBodyRight">16  </td><td class="markdownTableBodyLeft">Timeout   </td></tr>
+<td class="markdownTableBodyRight">192  </td><td class="markdownTableBodyLeft">curlpp runtime error   </td></tr>
 <tr class="markdownTableBody" class="markdownTableRowEven">
-<td class="markdownTableBodyRight">100 - 999  </td><td class="markdownTableBodyLeft">HTTP status codes   </td></tr>
+<td class="markdownTableBodyRight">193  </td><td class="markdownTableBodyLeft">curlpp logic error   </td></tr>
 <tr class="markdownTableBody" class="markdownTableRowOdd">
-<td class="markdownTableBodyRight">65535  </td><td class="markdownTableBodyLeft">Unknown error   </td></tr>
+<td class="markdownTableBodyRight">255  </td><td class="markdownTableBodyLeft">Unknown error   </td></tr>
 </table>
 <p>If you use a debug build, you get more verbose error messages.</p>
 <h2>Useful links</h2>
 <ul>
 <li><a href="https://docs.joinmastodon.org/">Mastodon documentation</a></li>
+<li><a href="https://git.pleroma.social/pleroma/pleroma/tree/develop/docs/api">Pleroma documentation</a></li>
+<li><a href="https://glitch-soc.github.io/docs/#whats-different">glitch-soc documentation</a></li>
 </ul>
 <h1>Install</h1>
+<h2>Upgrading from versions below 0.100.0</h2>
+<p>Starting with version <code>0.100.0</code>, large parts of the library have been rewritten. Upgrading from previous versions will require extensive code changes. You can keep using the old version, it is archived in the branch <a href="https://schlomp.space/tastytea/mastodon-cpp/src/branch/pre-0.100.0">pre-0.100.0</a>. It will receive bug-fixes for a while but no new features.</p>
 <h2>Packages</h2>
-<p>Every <a href="https://schlomp.space/tastytea/mastodon-cpp/releases">release</a> includes packages for the package managers of Debian and Red Hat. Gentoo packages are available in an overlay.</p>
+<p>Every <a href="https://schlomp.space/tastytea/mastodon-cpp/releases">release</a> includes packages for the package managers of Debian and Red Hat. Gentoo packages are available in my overlay.</p>
 <h3>Gentoo</h3>
 <p>Add my <a href="https://schlomp.space/tastytea/overlay">repository</a> and install it from there.</p>
-<div class="fragment"><div class="line">eselect repository enable tastytea</div><div class="line">echo &#39;dev-cpp/mastodon-cpp ~amd64&#39; &gt;&gt; /etc/portage/package.keywords/mastodon-cpp</div><div class="line">emaint sync -r tastytea</div><div class="line">emerge -a dev-cpp/mastodon-cpp</div></div><!-- fragment --><h3>DEB and RPM</h3>
-<p>Prebuilt DEB and RPM packages for x86_64(amd64) are provided with each release. These packages are automatically built and not tested. Install with <code>dpkg -i</code> or <code>rpm -i</code>, respectively.</p>
-<p>To use the DEB package on stretch, you will need <a href="https://packages.debian.org/libcurlpp0">libcurlpp0</a> from sid.</p>
+<div class="fragment"><div class="line">eselect repository enable tastytea</div><div class="line">echo &#39;dev-cpp/mastodon-cpp ~amd64&#39; &gt;&gt; /etc/portage/package.accept_keywords/mastodon-cpp</div><div class="line">emaint sync -r tastytea</div><div class="line">emerge -a dev-cpp/mastodon-cpp</div></div><!-- fragment --><h3>DEB and RPM</h3>
+<p>Prebuilt DEB and RPM packages for x86_64(amd64) are provided with each release. <code>.deb</code> packages are built on Debian stretch and <code>.rpm</code> packages are built on CentOS 7. These packages are automatically built and not tested.</p>
+<p>To use the DEB&lt;tt&gt;.deb package on Debian stretch, you will need <a href="https://packages.debian.org/libcurlpp0">libcurlpp0</a> from sid.</p>
+<p>To use the <code>.rpm</code> package on CentOS 7, you will need <a href="https://download.fedoraproject.org/pub/epel/6/x86_64/Packages/c/">libcurlpp</a> from EPEL 6.</p>
 <h2>From source</h2>
 <h3>Dependencies</h3>
 <ul>
 <li>Tested OS: Linux</li>
-<li>C++ compiler (tested: gcc 5 / 6 / 7 / 8)</li>
-<li><a href="https://cmake.org/">cmake</a> (tested: 3.9 / 3.12)</li>
-<li><a href="https://pkgconfig.freedesktop.org/wiki/">pkgconfig</a> (tested: 0.29)</li>
+<li>C++ compiler (tested: gcc 6 / 7 / 8)</li>
+<li><a href="https://cmake.org/">cmake</a> (at least: 3.6)</li>
+<li><a href="https://pkgconfig.freedesktop.org/wiki/">pkgconfig</a> (tested: 0.29 / 0.27)</li>
 <li><a href="http://www.curlpp.org/">curlpp</a> (tested: 0.8)</li>
 <li>Optional<ul>
 <li>Easy interface &amp; Examples: <a href="https://github.com/open-source-parsers/jsoncpp">jsoncpp</a> (tested: 1.8 / 1.7)</li>
 <li>Documentation: <a href="https://www.stack.nl/~dimitri/doxygen/">doxygen</a> (tested: 1.8)</li>
-<li>DEB package: <a href="https://packages.qa.debian.org/dpkg">dpkg</a> (tested: 1.19 / 1.18)</li>
-<li>RPM package: <a href="http://www.rpm.org">rpm</a> (tested: 4.14 / 4.12)</li>
+<li>DEB package: <a href="https://packages.qa.debian.org/dpkg">dpkg</a> (tested: 1.18)</li>
+<li>RPM package: <a href="http://www.rpm.org">rpm-build</a> (tested: 4.11)</li>
+<li>Tests: <a href="https://github.com/catchorg/Catch2">catch</a> (tested: 2.5 / 1.2)</li>
 </ul>
 </li>
 </ul>
@@ -114,27 +138,30 @@ $(function() {
 <p>Download the current release at <a href="https://schlomp.space/tastytea/mastodon-cpp/releases">schlomp.space</a>.</p>
 <h4>Development version</h4>
 <div class="fragment"><div class="line">git clone https://schlomp.space/tastytea/mastodon-cpp.git</div></div><!-- fragment --><h3>Compile</h3>
-<div class="fragment"><div class="line">mkdir build</div><div class="line">cd build/</div><div class="line">cmake ..</div><div class="line">make</div></div><!-- fragment --><p>cmake options:</p>
+<div class="fragment"><div class="line">mkdir build</div><div class="line">cd build/</div><div class="line">cmake ..</div><div class="line">cmake --build . -- -j$(nproc --ignore=1)</div></div><!-- fragment --><p>cmake options:</p>
 <ul>
 <li><code>-DCMAKE_BUILD_TYPE=Debug</code> for a debug build</li>
-<li><code>-DWITHOUT_EASY=ON</code> to not build the Easy abstractions and to get rid of the jsoncpp-dependency (not recommended)</li>
-<li><code>-DWITH_EXAMPLES=ON</code> if you want to compile the examples</li>
-<li><code>-DWITH_TESTS=ON</code> if you want to compile the tests</li>
-<li><code>-DWITH_STATIC=ON</code> If you want a static library along with the dynamic one</li>
-<li><code>-DWITH_DOC=ON</code> if you want to compile the HTML reference</li>
-<li><code>-DWITH_DEB=ON</code> if you want to be able to generate a deb-package</li>
-<li><code>-DWITH_RPM=ON</code> if you want to be able to generate an rpm-package</li>
+<li><code>-DWITH_EASY=NO</code> to not build the Easy abstractions and to get rid of the jsoncpp-dependency (not recommended)</li>
+<li><code>-DWITH_EXAMPLES=YES</code> if you want to compile the examples</li>
+<li><code>-DWITH_TESTS=YES</code> if you want to compile the tests</li>
+<li><code>-DWITH_DOC=NO</code> if you don't want to compile the HTML reference</li>
+<li>One of:<ul>
+<li><code>-DWITH_DEB=YES</code> if you want to be able to generate a deb-package</li>
+<li><code>-DWITH_RPM=YES</code> if you want to be able to generate an rpm-package</li>
 </ul>
-<p>You can run the tests with <code>ctest ..</code> inside the build directory. To install, run <code>make install</code>.</p>
+</li>
+</ul>
+<p>You can run the tests with <code>ctest</code> inside the build directory. To install, run <code>make install</code>.</p>
 <h3>Packages</h3>
 <h4>DEB and RPM</h4>
 <p>Compile with <code>-DWITH_DEB=ON</code> or <code>-DWITH_RPM=ON</code>. Run <code>make package</code> from the build directory to generate a DEB/RPM package.</p>
 <h4>Other</h4>
 <p>Run <code>make package</code> from the build directory to generate a tar.gz archive.</p>
 <h1>Status of implementation</h1>
-<p>Feature complete as of Mastodon 2.6.1</p>
+<p>~~Feature complete as of <a class="el" href="namespaceMastodon.html" title="Collection of things to interface with server software that implements the Mastodon API...">Mastodon</a> 2.6.1~~</p>
 <ul>
 <li>[x] GET /api/v1/accounts/:id</li>
+<li>[ ] POST /api/v1/accounts</li>
 <li>[x] GET /api/v1/accounts/verify_credentials</li>
 <li>[x] PATCH /api/v1/accounts/update_credentials</li>
 <li>[x] GET /api/v1/accounts/:id/followers</li>
@@ -142,14 +169,14 @@ $(function() {
 <li>[x] GET /api/v1/accounts/:id/statuses</li>
 <li>[x] POST /api/v1/accounts/:id/follow</li>
 <li>[x] POST /api/v1/accounts/:id/unfollow</li>
-<li>[x] POST /api/v1/accounts/:id/block</li>
-<li>[x] POST /api/v1/accounts/:id/unblock</li>
-<li>[x] POST /api/v1/accounts/:id/mute</li>
-<li>[x] POST /api/v1/accounts/:id/unmute</li>
 <li>[x] GET /api/v1/accounts/relationships</li>
 <li>[x] GET /api/v1/accounts/search</li>
 <li>[x] POST /api/v1/apps</li>
+<li>[ ] GET /api/v1/apps/verify_credentials</li>
 <li>[x] GET /api/v1/blocks</li>
+<li>[x] POST /api/v1/accounts/:id/block</li>
+<li>[x] POST /api/v1/accounts/:id/unblock</li>
+<li>[x] GET /api/v1/custom_emojis</li>
 <li>[x] GET /api/v1/domain_blocks</li>
 <li>[x] POST /api/v1/domain_blocks</li>
 <li>[x] DELETE /api/v1/domain_blocks</li>
@@ -157,12 +184,18 @@ $(function() {
 <li>[x] POST /api/v1/accounts/:id/pin</li>
 <li>[x] POST /api/v1/accounts/:id/unpin</li>
 <li>[x] GET /api/v1/favourites</li>
+<li>[x] POST /api/v1/statuses/:id/favourite</li>
+<li>[x] POST /api/v1/statuses/:id/unfavourite</li>
+<li>[ ] GET /api/v1/filters</li>
+<li>[ ] POST /api/v1/filters</li>
+<li>[ ] GET /api/v1/filters/:id</li>
+<li>[ ] DELETE /api/v1/filters/:id</li>
 <li>[x] GET /api/v1/follow_requests</li>
 <li>[x] POST /api/v1/follow_requests/:id/authorize</li>
 <li>[x] POST /api/v1/follow_requests/:id/reject</li>
-<li>[x] POST /api/v1/follows</li>
+<li>[ ] GET /api/v1/suggestions</li>
+<li>[ ] DELETE /api/v1/suggestions/:account_id</li>
 <li>[x] GET /api/v1/instance</li>
-<li>[x] GET /api/v1/custom_emojis</li>
 <li>[x] GET /api/v1/lists</li>
 <li>[x] GET /api/v1/accounts/:id/lists</li>
 <li>[x] GET /api/v1/lists/:id/accounts</li>
@@ -175,13 +208,26 @@ $(function() {
 <li>[x] POST /api/v1/media</li>
 <li>[x] PUT /api/v1/media/:id</li>
 <li>[x] GET /api/v1/mutes</li>
+<li>[x] POST /api/v1/accounts/:id/mute</li>
+<li>[x] POST /api/v1/accounts/:id/unmute</li>
+<li>[x] POST /api/v1/statuses/:id/mute</li>
+<li>[x] POST /api/v1/statuses/:id/unmute</li>
 <li>[x] GET /api/v1/notifications</li>
 <li>[x] GET /api/v1/notifications/:id</li>
 <li>[x] POST /api/v1/notifications/clear</li>
 <li>[x] POST /api/v1/notifications/dismiss</li>
-<li>[x] GET /api/v1/reports</li>
+<li>[x] POST /api/v1/push/subscription</li>
+<li>[x] GET /api/v1/push/subscription</li>
+<li>[x] PUT /api/v1/push/subscription</li>
+<li>[x] DELETE /api/v1/push/subscription</li>
+<li>[x] ~~GET /api/v1/reports~~ (Deprecated)</li>
 <li>[x] POST /api/v1/reports</li>
-<li>[x] GET /api/v1/search</li>
+<li>[ ] GET /api/v1/scheduled_statuses</li>
+<li>[ ] GET /api/v1/scheduled_statuses/:id</li>
+<li>[ ] PUT /api/v1/scheduled_statuses/:id</li>
+<li>[ ] DELETE /api/v1/scheduled_statuses/:id</li>
+<li>[x] ~~GET /api/v1/search~~ (Deprecated)</li>
+<li>[x] GET /api/v2/search</li>
 <li>[x] GET /api/v1/statuses/:id</li>
 <li>[x] GET /api/v1/statuses/:id/context</li>
 <li>[x] GET /api/v1/statuses/:id/card</li>
@@ -191,13 +237,10 @@ $(function() {
 <li>[x] DELETE /api/v1/statuses/:id</li>
 <li>[x] POST /api/v1/statuses/:id/reblog</li>
 <li>[x] POST /api/v1/statuses/:id/unreblog</li>
-<li>[x] POST /api/v1/statuses/:id/favourite</li>
-<li>[x] POST /api/v1/statuses/:id/unfavourite</li>
 <li>[x] POST /api/v1/statuses/:id/pin</li>
 <li>[x] POST /api/v1/statuses/:id/unpin</li>
-<li>[x] POST /api/v1/statuses/:id/mute</li>
-<li>[x] POST /api/v1/statuses/:id/unmute</li>
 <li>[x] GET /api/v1/timelines/home</li>
+<li>[ ] GET /api/v1/conversations</li>
 <li>[x] GET /api/v1/timelines/public</li>
 <li>[x] GET /api/v1/timelines/tag/:hashtag</li>
 <li>[x] GET /api/v1/timelines/list/:list_id</li>
@@ -205,12 +248,9 @@ $(function() {
 <li>[x] GET /api/v1/streaming/public</li>
 <li>[x] GET /api/v1/streaming/public/local</li>
 <li>[x] GET /api/v1/streaming/hashtag</li>
+<li>[ ] GET /api/v1/streaming/hashtag/local</li>
 <li>[x] GET /api/v1/streaming/list</li>
-<li>[x] POST /api/v1/push/subscription</li>
-<li>[x] GET /api/v1/push/subscription</li>
-<li>[x] PUT /api/v1/push/subscription</li>
-<li>[x] DELETE /api/v1/push/subscription</li>
-<li>[x] GET /api/v2/search</li>
+<li>[ ] GET /api/v1/streaming/direct</li>
 </ul>
 <h2>Glitch-Soc support</h2>
 <ul>
@@ -220,7 +260,7 @@ $(function() {
 <li>[x] POST /api/v1/statuses/:id/unbookmark</li>
 </ul>
 <h1>Copyright</h1>
-<div class="fragment"><div class="line">Copyright © 2018 tastytea &lt;tastytea@tastytea.de&gt;.</div><div class="line">License GPLv3: GNU GPL version 3 &lt;https://www.gnu.org/licenses/gpl-3.0.html&gt;.</div><div class="line">This program comes with ABSOLUTELY NO WARRANTY. This is free software,</div><div class="line">and you are welcome to redistribute it under certain conditions.</div></div><!-- fragment --> </div></div><!-- contents -->
+<div class="fragment"><div class="line">Copyright © 2018, 2019 tastytea &lt;tastytea@tastytea.de&gt;.</div><div class="line">License GPLv3: GNU GPL version 3 &lt;https://www.gnu.org/licenses/gpl-3.0.html&gt;.</div><div class="line">This program comes with ABSOLUTELY NO WARRANTY. This is free software,</div><div class="line">and you are welcome to redistribute it under certain conditions.</div></div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

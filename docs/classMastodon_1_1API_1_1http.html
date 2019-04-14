@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">mastodon-cpp
-   &#160;<span id="projectnumber">0.30.1</span>
+   &#160;<span id="projectnumber">0.101.1</span>
    </div>
   </td>
  </tr>
@@ -39,12 +39,11 @@ $(function() {
 <div id="main-nav"></div>
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>Mastodon</b></li><li class="navelem"><a class="el" href="classMastodon_1_1API.html">API</a></li><li class="navelem"><a class="el" href="classMastodon_1_1API_1_1http.html">http</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceMastodon.html">Mastodon</a></li><li class="navelem"><a class="el" href="classMastodon_1_1API.html">API</a></li><li class="navelem"><a class="el" href="classMastodon_1_1API_1_1http.html">http</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classMastodon_1_1API_1_1http-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -57,32 +56,20 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="mastodon-cpp_8hpp_source.html">mastodon-cpp.hpp</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr class="memitem:a032704aafaba505badc482379c5b6cf7"><td class="memItemLeft" align="right" valign="top"><a id="a032704aafaba505badc482379c5b6cf7"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1API_1_1http.html#a032704aafaba505badc482379c5b6cf7">method</a> { <br />
-&#160;&#160;<b>GET</b>, 
-<b>PATCH</b>, 
-<b>POST</b>, 
-<b>PUT</b>, 
-<br />
-&#160;&#160;<b>DELETE</b>, 
-<b>GET_STREAM</b>
-<br />
- }</td></tr>
-<tr class="memdesc:a032704aafaba505badc482379c5b6cf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">HTTP methods. <br /></td></tr>
-<tr class="separator:a032704aafaba505badc482379c5b6cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4d1bfdd627041a88e747916bd3d8d945"><td class="memItemLeft" align="right" valign="top"><a id="a4d1bfdd627041a88e747916bd3d8d945"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>http</b> (const <a class="el" href="classMastodon_1_1API.html">API</a> &amp;api, const string &amp;instance, const string &amp;access_token)</td></tr>
+<tr class="memitem:a4d1bfdd627041a88e747916bd3d8d945"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1API_1_1http.html#a4d1bfdd627041a88e747916bd3d8d945">http</a> (const <a class="el" href="classMastodon_1_1API.html">API</a> &amp;api, const string &amp;instance, const string &amp;access_token)</td></tr>
+<tr class="memdesc:a4d1bfdd627041a88e747916bd3d8d945"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs new http object.  <a href="#a4d1bfdd627041a88e747916bd3d8d945">More...</a><br /></td></tr>
 <tr class="separator:a4d1bfdd627041a88e747916bd3d8d945"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05849cbd09dc14a6aeb60320593060ec"><td class="memItemLeft" align="right" valign="top"><a id="a05849cbd09dc14a6aeb60320593060ec"></a>
-uint_fast16_t&#160;</td><td class="memItemRight" valign="bottom"><b>request</b> (const <a class="el" href="classMastodon_1_1API_1_1http.html#a032704aafaba505badc482379c5b6cf7">method</a> &amp;meth, const string &amp;path, string &amp;answer)</td></tr>
-<tr class="separator:a05849cbd09dc14a6aeb60320593060ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a163b0be7757fc67c7a1910e4198f817e"><td class="memItemLeft" align="right" valign="top">uint_fast16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1API_1_1http.html#a163b0be7757fc67c7a1910e4198f817e">request</a> (const <a class="el" href="classMastodon_1_1API_1_1http.html#a032704aafaba505badc482379c5b6cf7">method</a> &amp;meth, const string &amp;path, const curlpp::Forms &amp;formdata, string &amp;answer)</td></tr>
-<tr class="memdesc:a163b0be7757fc67c7a1910e4198f817e"><td class="mdescLeft">&#160;</td><td class="mdescRight">HTTP Request.  <a href="#a163b0be7757fc67c7a1910e4198f817e">More...</a><br /></td></tr>
-<tr class="separator:a163b0be7757fc67c7a1910e4198f817e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ad1426610ac0f25118045cfcac49b2d"><td class="memItemLeft" align="right" valign="top"><a id="a4ad1426610ac0f25118045cfcac49b2d"></a>
+<a class="el" href="structMastodon_1_1return__call.html">return_call</a>&#160;</td><td class="memItemRight" valign="bottom"><b>request</b> (const <a class="el" href="namespaceMastodon.html#a1b4c13dfd9ccc43a2328d99a93b34452">http_method</a> &amp;meth, const string &amp;path)</td></tr>
+<tr class="separator:a4ad1426610ac0f25118045cfcac49b2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5efbc73c390bdbd0c82feac68bc5b922"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structMastodon_1_1return__call.html">return_call</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1API_1_1http.html#a5efbc73c390bdbd0c82feac68bc5b922">request</a> (const <a class="el" href="namespaceMastodon.html#a1b4c13dfd9ccc43a2328d99a93b34452">http_method</a> &amp;meth, const string &amp;path, const curlpp::Forms &amp;formdata)</td></tr>
+<tr class="memdesc:a5efbc73c390bdbd0c82feac68bc5b922"><td class="mdescLeft">&#160;</td><td class="mdescRight">HTTP Request.  <a href="#a5efbc73c390bdbd0c82feac68bc5b922">More...</a><br /></td></tr>
+<tr class="separator:a5efbc73c390bdbd0c82feac68bc5b922"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d782e047c22357faf919fd9aa86b2df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1API_1_1http.html#a0d782e047c22357faf919fd9aa86b2df">request_stream</a> (const string &amp;path, string &amp;stream)</td></tr>
+<tr class="memdesc:a0d782e047c22357faf919fd9aa86b2df"><td class="mdescLeft">&#160;</td><td class="mdescRight">HTTP Request for streams.  <a href="#a0d782e047c22357faf919fd9aa86b2df">More...</a><br /></td></tr>
+<tr class="separator:a0d782e047c22357faf919fd9aa86b2df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc0e6357f12dd6e35a48aefb098ffc4a"><td class="memItemLeft" align="right" valign="top"><a id="afc0e6357f12dd6e35a48aefb098ffc4a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1API_1_1http.html#afc0e6357f12dd6e35a48aefb098ffc4a">get_headers</a> (string &amp;headers) const</td></tr>
 <tr class="memdesc:afc0e6357f12dd6e35a48aefb098ffc4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all headers in a string. <br /></td></tr>
@@ -90,9 +77,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a5963c15ce15eb7672e21bd1191688668"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1API_1_1http.html#a5963c15ce15eb7672e21bd1191688668">cancel_stream</a> ()</td></tr>
 <tr class="memdesc:a5963c15ce15eb7672e21bd1191688668"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancels the stream. Use only with streams.  <a href="#a5963c15ce15eb7672e21bd1191688668">More...</a><br /></td></tr>
 <tr class="separator:a5963c15ce15eb7672e21bd1191688668"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b6c7f030f877746493170296e9dbd76"><td class="memItemLeft" align="right" valign="top"><a id="a6b6c7f030f877746493170296e9dbd76"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>abort_stream</b> ()</td></tr>
-<tr class="separator:a6b6c7f030f877746493170296e9dbd76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73b74ebe9fb2d6a38a1ab8946abbb4f3"><td class="memItemLeft" align="right" valign="top">std::mutex &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1API_1_1http.html#a73b74ebe9fb2d6a38a1ab8946abbb4f3">get_mutex</a> ()</td></tr>
 <tr class="memdesc:a73b74ebe9fb2d6a38a1ab8946abbb4f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the mutex guarding the string that is written to.  <a href="#a73b74ebe9fb2d6a38a1ab8946abbb4f3">More...</a><br /></td></tr>
 <tr class="separator:a73b74ebe9fb2d6a38a1ab8946abbb4f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -100,7 +84,61 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>abort_stream</b> ()</
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>http class. Do not use this directly. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a4d1bfdd627041a88e747916bd3d8d945"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d1bfdd627041a88e747916bd3d8d945">&#9670;&nbsp;</a></span>http()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">API::http::http </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMastodon_1_1API.html">API</a> &amp;&#160;</td>
+          <td class="paramname"><em>api</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>access_token</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs new http object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="classMastodon_1_1API.html" title="Interface to the Mastodon API. ">API</a></td><td>Parent object. </td></tr>
+    <tr><td class="paramname">instance</td><td>Instance domain name </td></tr>
+    <tr><td class="paramname">access_token</td><td>Access token</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
+<div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;: parent(api)</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;, _instance(instance)</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;, _access_token(access_token)</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;, _cancel_stream(<span class="keyword">false</span>)</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    curlpp::initialize();</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div></div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a5963c15ce15eb7672e21bd1191688668"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5963c15ce15eb7672e21bd1191688668">&#9670;&nbsp;</a></span>cancel_stream()</h2>
 
@@ -119,7 +157,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>abort_stream</b> ()</
 <p>Cancels the stream. Use only with streams. </p>
 <p>Cancels the stream next time data comes in. Can take a few seconds. This works only with streams, because only streams have an own http object.</p>
 <dl class="section since"><dt>Since</dt><dd>0.12.2 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;{</div><div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    _cancel_stream = <span class="keyword">true</span>;</div><div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;}</div></div><!-- fragment -->
+<div class="fragment"><div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;{</div><div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    _cancel_stream = <span class="keyword">true</span>;</div><div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    _streamthread.join();</div><div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;}</div></div><!-- fragment -->
 </div>
 </div>
 <a id="a73b74ebe9fb2d6a38a1ab8946abbb4f3"></a>
@@ -138,22 +176,22 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>abort_stream</b> ()</
 </div><div class="memdoc">
 
 <p>Gets the mutex guarding the string that is written to. </p>
-<p>The mutex guards the function that writes to the string you specified in <a class="el" href="classMastodon_1_1API.html#a3f4df7ecf727cfcc4b9c20a18d0dbb34" title="Make a streaming GET request. ">get_stream()</a>.</p>
+<p>The mutex guards the function that writes to the string you specified in <a class="el" href="classMastodon_1_1API.html#ad9fe21dfeac68dad34ff4ad50f68109a" title="Make a streaming GET request. ">get_stream()</a>.</p>
 <dl class="section return"><dt>Returns</dt><dd>A reference of the mutex.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>0.12.3 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;{</div><div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="keywordflow">return</span> _mutex;</div><div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;}</div></div><!-- fragment -->
+<div class="fragment"><div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;{</div><div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <span class="keywordflow">return</span> _mutex;</div><div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;}</div></div><!-- fragment -->
 </div>
 </div>
-<a id="a163b0be7757fc67c7a1910e4198f817e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a163b0be7757fc67c7a1910e4198f817e">&#9670;&nbsp;</a></span>request()</h2>
+<a id="a5efbc73c390bdbd0c82feac68bc5b922"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5efbc73c390bdbd0c82feac68bc5b922">&#9670;&nbsp;</a></span>request()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint_fast16_t API::http::request </td>
+          <td class="memname"><a class="el" href="structMastodon_1_1return__call.html">return_call</a> API::http::request </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMastodon_1_1API_1_1http.html#a032704aafaba505badc482379c5b6cf7">method</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMastodon.html#a1b4c13dfd9ccc43a2328d99a93b34452">http_method</a> &amp;&#160;</td>
           <td class="paramname"><em>meth</em>, </td>
         </tr>
         <tr>
@@ -166,13 +204,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>abort_stream</b> ()</
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const curlpp::Forms &amp;&#160;</td>
-          <td class="paramname"><em>formdata</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string &amp;&#160;</td>
-          <td class="paramname"><em>answer</em>&#160;</td>
+          <td class="paramname"><em>formdata</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -185,16 +217,55 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>abort_stream</b> ()</
 <p>HTTP Request. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">meth</td><td>The method defined in <a href="http::method">http::method</a> </td></tr>
-    <tr><td class="paramname">path</td><td>The api call as string </td></tr>
-    <tr><td class="paramname">formdata</td><td>The form data for PATCH and POST requests. </td></tr>
-    <tr><td class="paramname">answer</td><td>The answer from the server</td></tr>
+    <tr><td class="paramname">meth</td><td>A method defined in <a href="http::method">http::method</a>. </td></tr>
+    <tr><td class="paramname">path</td><td>The <a class="el" href="classMastodon_1_1API.html" title="Interface to the Mastodon API. ">API</a> call as string. </td></tr>
+    <tr><td class="paramname">formdata</td><td>The form data for PATCH and POST requests.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classMastodon_1_1API.html#error">Error code</a>. If the URL has permanently changed, 13 is returned and answer is set to the new URL.</dd></dl>
-<dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">using namespace </span>std::placeholders;  <span class="comment">// _1, _2, _3</span></div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    uint_fast16_t ret = 0;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    ttdebug &lt;&lt; <span class="stringliteral">&quot;Path is: &quot;</span> &lt;&lt; path &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    </div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordflow">try</span></div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    {</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        curlpp::Easy request;</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        std::list&lt;string&gt; headers;</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        request.setOpt&lt;curlopts::Url&gt;(<span class="stringliteral">&quot;https://&quot;</span> + _instance + path);</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        ttdebug &lt;&lt; <span class="stringliteral">&quot;User-Agent: &quot;</span> &lt;&lt; parent.get_useragent() &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        request.setOpt&lt;curlopts::UserAgent&gt;(parent.get_useragent());</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        {</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordtype">string</span> proxy;</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordtype">string</span> userpw;</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            parent.get_proxy(proxy, userpw);</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <span class="keywordflow">if</span> (!proxy.empty())</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            {</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                request.setOpt&lt;curlopts::Proxy&gt;(proxy);</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                <span class="keywordflow">if</span> (!userpw.empty())</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                {</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                    request.setOpt&lt;curlopts::ProxyUserPwd&gt;(userpw);</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                }</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            }</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        }</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">if</span> (!_access_token.empty())</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        {</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            headers.push_back(<span class="stringliteral">&quot;Authorization: Bearer &quot;</span> + _access_token);</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        }</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">if</span> (meth != http::method::GET_STREAM)</div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        {</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            headers.push_back(<span class="stringliteral">&quot;Connection: close&quot;</span>);</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="comment">// Get headers from server</span></div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            request.setOpt&lt;curlpp::options::Header&gt;(<span class="keyword">true</span>);</div><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        }</div><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        request.setOpt&lt;curlopts::HttpHeader&gt;(headers);</div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        request.setOpt&lt;curlopts::FollowLocation&gt;(<span class="keyword">true</span>);</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        request.setOpt&lt;curlopts::WriteFunction&gt;</div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            (std::bind(&amp;http::callback_write, <span class="keyword">this</span>, _1, _2, _3, &amp;answer));</div><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        request.setOpt&lt;curlopts::ProgressFunction&gt;</div><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            (std::bind(&amp;http::callback_progress, <span class="keyword">this</span>, _1, _2, _3, _4));</div><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        request.setOpt&lt;curlopts::NoProgress&gt;(0);</div><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">if</span> (!formdata.empty())</div><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        {</div><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            request.setOpt&lt;curlopts::HttpPost&gt;(formdata);</div><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        }</div><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordflow">switch</span> (meth)</div><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        {</div><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            <span class="keywordflow">case</span> http::method::GET:</div><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                <span class="keywordflow">break</span>;</div><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            <span class="keywordflow">case</span> http::method::PATCH:</div><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                request.setOpt&lt;curlopts::CustomRequest&gt;(<span class="stringliteral">&quot;PATCH&quot;</span>);</div><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                <span class="keywordflow">break</span>;</div><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            <span class="keywordflow">case</span> http::method::POST:</div><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                request.setOpt&lt;curlopts::CustomRequest&gt;(<span class="stringliteral">&quot;POST&quot;</span>);</div><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                <span class="keywordflow">break</span>;</div><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            <span class="keywordflow">case</span> http::method::PUT:</div><div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                request.setOpt&lt;curlopts::CustomRequest&gt;(<span class="stringliteral">&quot;PUT&quot;</span>);</div><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                <span class="keywordflow">break</span>;</div><div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            <span class="keywordflow">case</span> http::method::DELETE:</div><div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                request.setOpt&lt;curlopts::CustomRequest&gt;(<span class="stringliteral">&quot;DELETE&quot;</span>);</div><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                <span class="keywordflow">break</span>;</div><div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            <span class="keywordflow">default</span>:</div><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                <span class="keywordflow">break</span>;</div><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        }</div><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        </div><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="comment">//request.setOpt&lt;curlopts::Verbose&gt;(true);</span></div><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div><div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        answer.clear();</div><div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        request.perform();</div><div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        ret = curlpp::infos::ResponseCode::get(request);</div><div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        ttdebug &lt;&lt; <span class="stringliteral">&quot;Response code: &quot;</span> &lt;&lt; ret &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div><div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="comment">// Work around &quot;HTTP/1.1 100 Continue\r\n\r\nHTTP/1.1 200 OK&quot;</span></div><div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="keywordtype">size_t</span> pos = answer.find(<span class="stringliteral">&quot;\r\n\r\n&quot;</span>, 25);</div><div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        _headers = answer.substr(0, pos);</div><div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="comment">// Only return body</span></div><div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        answer = answer.substr(pos + 4);</div><div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div><div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keywordflow">if</span> (ret == 200 || ret == 302 || ret == 307)</div><div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        {   <span class="comment">// OK or Found or Temporary Redirect</span></div><div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            <span class="keywordflow">return</span> 0;</div><div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        }</div><div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (ret == 301 || ret == 308)</div><div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        {   <span class="comment">// Moved Permanently or Permanent Redirect</span></div><div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            <span class="comment">// return new URL</span></div><div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            answer = curlpp::infos::EffectiveUrl::get(request);</div><div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            <span class="keywordflow">return</span> 13;</div><div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        }</div><div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (ret == 0)</div><div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        {</div><div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            <span class="keywordflow">return</span> 0xffff;</div><div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        }</div><div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <span class="keywordflow">else</span></div><div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        {</div><div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            <span class="keywordflow">return</span> ret;</div><div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        }</div><div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    }</div><div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordflow">catch</span> (curlpp::RuntimeError &amp;e)</div><div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    {</div><div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">string</span> what = e.what();</div><div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <span class="comment">// This error is thrown if http.cancel_stream() is used.</span></div><div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="keywordflow">if</span> ((what.compare(0, 16, <span class="stringliteral">&quot;Callback aborted&quot;</span>) == 0) ||</div><div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            (what.compare(0, 19, <span class="stringliteral">&quot;Failed writing body&quot;</span>) == 0))</div><div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        {</div><div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            ttdebug &lt;&lt; <span class="stringliteral">&quot;Request was cancelled by user\n&quot;</span>;</div><div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            <span class="keywordflow">return</span> 14;</div><div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        }</div><div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (what.compare(what.size() - 20, 20, <span class="stringliteral">&quot;Connection timed out&quot;</span>) == 0)</div><div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        {</div><div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            ttdebug &lt;&lt; <span class="stringliteral">&quot;Timeout\n&quot;</span>;</div><div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            <span class="keywordflow">return</span> 16;</div><div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        }</div><div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div><div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <span class="keywordflow">if</span> (parent.exceptions())</div><div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        {</div><div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            std::rethrow_exception(std::current_exception());</div><div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        }</div><div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="keywordflow">else</span></div><div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        {</div><div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            ttdebug &lt;&lt; <span class="stringliteral">&quot;curlpp::RuntimeError: &quot;</span> &lt;&lt; e.what() &lt;&lt; std::endl;</div><div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;            <span class="keywordflow">return</span> 15;</div><div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        }</div><div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    }</div><div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="keywordflow">catch</span> (curlpp::LogicError &amp;e)</div><div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    {</div><div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="keywordflow">if</span> (parent.exceptions())</div><div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        {</div><div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            std::rethrow_exception(std::current_exception());</div><div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        }</div><div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div><div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        ttdebug &lt;&lt; <span class="stringliteral">&quot;curlpp::LogicError: &quot;</span> &lt;&lt; e.what() &lt;&lt; std::endl;</div><div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <span class="keywordflow">return</span> 15;</div><div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    }</div><div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;}</div></div><!-- fragment -->
+<dl class="section since"><dt>Since</dt><dd>0.100.0 </dd></dl>
+<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">string</span> answer;</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">return</span> request_common(meth, path, formdata, answer);</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div></div><!-- fragment -->
+</div>
+</div>
+<a id="a0d782e047c22357faf919fd9aa86b2df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d782e047c22357faf919fd9aa86b2df">&#9670;&nbsp;</a></span>request_stream()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void API::http::request_stream </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>stream</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>HTTP Request for streams. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The <a class="el" href="classMastodon_1_1API.html" title="Interface to the Mastodon API. ">API</a> call as string. </td></tr>
+    <tr><td class="paramname">stream</td><td>The stream of data that is returned.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>0.100.0 </dd></dl>
+<div class="fragment"><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;{</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">static</span> <a class="code" href="structMastodon_1_1return__call.html">return_call</a> ret;</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    _streamthread = std::thread(</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        [&amp;, path]               <span class="comment">// path is captured by value because it may be</span></div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        {                       <span class="comment">// deleted before we access it.</span></div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            ret = request_common(http_method::GET_STREAM, path,</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                                 curlpp::Forms(), stream);</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            ttdebug &lt;&lt; <span class="stringliteral">&quot;Remaining content of the stream: &quot;</span> &lt;&lt; stream &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordflow">if</span> (!ret)</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            {</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                <span class="comment">// Embed the HTTP status code in stream on error.</span></div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                stream += <span class="stringliteral">&quot;event: ERROR\ndata: {\&quot;error_code\&quot;:&quot;</span></div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                    + std::to_string(ret.<a class="code" href="structMastodon_1_1return__base.html#a12cebffae19249cac4c9e4ae9f95391a">error_code</a>) +  <span class="stringliteral">&quot;,\&quot;http_error\&quot;:&quot;</span></div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                    + std::to_string(ret.<a class="code" href="structMastodon_1_1return__call.html#a4b0ebe6866b1e976e073081304bc68f5">http_error_code</a>) + <span class="stringliteral">&quot;}\n&quot;</span>;</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            }</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        });</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div><div class="ttc" id="structMastodon_1_1return__call_html"><div class="ttname"><a href="structMastodon_1_1return__call.html">Mastodon::return_call</a></div><div class="ttdoc">Return type for API calls. </div><div class="ttdef"><b>Definition:</b> return_types.hpp:85</div></div>
+<div class="ttc" id="structMastodon_1_1return__call_html_a4b0ebe6866b1e976e073081304bc68f5"><div class="ttname"><a href="structMastodon_1_1return__call.html#a4b0ebe6866b1e976e073081304bc68f5">Mastodon::return_call::http_error_code</a></div><div class="ttdeci">uint16_t http_error_code</div><div class="ttdoc">HTTP error code. </div><div class="ttdef"><b>Definition:</b> return_types.hpp:92</div></div>
+<div class="ttc" id="structMastodon_1_1return__base_html_a12cebffae19249cac4c9e4ae9f95391a"><div class="ttname"><a href="structMastodon_1_1return__base.html#a12cebffae19249cac4c9e4ae9f95391a">Mastodon::return_base::error_code</a></div><div class="ttdeci">uint8_t error_code</div><div class="ttdoc">Error code. </div><div class="ttdef"><b>Definition:</b> return_types.hpp:41</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>

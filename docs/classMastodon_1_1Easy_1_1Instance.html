@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">mastodon-cpp
-   &#160;<span id="projectnumber">0.30.1</span>
+   &#160;<span id="projectnumber">0.101.1</span>
    </div>
   </td>
  </tr>
@@ -39,7 +39,7 @@ $(function() {
 <div id="main-nav"></div>
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>Mastodon</b></li><li class="navelem"><a class="el" href="classMastodon_1_1Easy.html">Easy</a></li><li class="navelem"><a class="el" href="classMastodon_1_1Easy_1_1Instance.html">Instance</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceMastodon.html">Mastodon</a></li><li class="navelem"><a class="el" href="namespaceMastodon_1_1Easy.html">Easy</a></li><li class="navelem"><a class="el" href="classMastodon_1_1Easy_1_1Instance.html">Instance</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -67,15 +67,9 @@ Inheritance diagram for Mastodon::Easy::Instance:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad9348d692d1086efacc82628989719a8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Instance.html#ad9348d692d1086efacc82628989719a8">Instance</a> (const string &amp;json)</td></tr>
-<tr class="memdesc:ad9348d692d1086efacc82628989719a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classMastodon_1_1Easy_1_1Instance.html" title="Class to hold instances. ">Instance</a> object from a JSON string.  <a href="#ad9348d692d1086efacc82628989719a8">More...</a><br /></td></tr>
-<tr class="separator:ad9348d692d1086efacc82628989719a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a399506c7e75ab9ab78fbc34a25932bbd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Instance.html#a399506c7e75ab9ab78fbc34a25932bbd">Instance</a> ()</td></tr>
-<tr class="memdesc:a399506c7e75ab9ab78fbc34a25932bbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty <a class="el" href="classMastodon_1_1Easy_1_1Instance.html" title="Class to hold instances. ">Instance</a> object.  <a href="#a399506c7e75ab9ab78fbc34a25932bbd">More...</a><br /></td></tr>
-<tr class="separator:a399506c7e75ab9ab78fbc34a25932bbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a331d16c9edec4cbdfac7673083d2a909"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Instance.html#a331d16c9edec4cbdfac7673083d2a909">valid</a> () const</td></tr>
-<tr class="memdesc:a331d16c9edec4cbdfac7673083d2a909"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the <a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Entity</a> holds valid data.  <a href="#a331d16c9edec4cbdfac7673083d2a909">More...</a><br /></td></tr>
-<tr class="separator:a331d16c9edec4cbdfac7673083d2a909"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22141e6d58a5dfdf15a36dfe5430cb0b"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Instance.html#a22141e6d58a5dfdf15a36dfe5430cb0b">valid</a> () const override</td></tr>
+<tr class="memdesc:a22141e6d58a5dfdf15a36dfe5430cb0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the <a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Entity</a> holds valid data.  <a href="#a22141e6d58a5dfdf15a36dfe5430cb0b">More...</a><br /></td></tr>
+<tr class="separator:a22141e6d58a5dfdf15a36dfe5430cb0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad64fce6e6d2f9bd163982427ef898292"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classMastodon_1_1Easy_1_1Account.html">Account</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Instance.html#ad64fce6e6d2f9bd163982427ef898292">contact_account</a> () const</td></tr>
 <tr class="memdesc:ad64fce6e6d2f9bd163982427ef898292"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <a class="el" href="classMastodon_1_1Easy_1_1Account.html" title="Class to hold accounts. ">Account</a> of the admin or another contact person.  <a href="#ad64fce6e6d2f9bd163982427ef898292">More...</a><br /></td></tr>
 <tr class="separator:ad64fce6e6d2f9bd163982427ef898292"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -98,21 +92,44 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a0a0c2656943c60f490d18894e4806c7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the version used by the instance.  <a href="#a0a0c2656943c60f490d18894e4806c7f">More...</a><br /></td></tr>
 <tr class="separator:a0a0c2656943c60f490d18894e4806c7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85232e0d93f32fba932c2652db0ccac9"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Instance.html#a85232e0d93f32fba932c2652db0ccac9">streaming_api</a> () const</td></tr>
-<tr class="memdesc:a85232e0d93f32fba932c2652db0ccac9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the URL for the streaming <a class="el" href="classMastodon_1_1API.html" title="Class for the Mastodon API. ">API</a>.  <a href="#a85232e0d93f32fba932c2652db0ccac9">More...</a><br /></td></tr>
+<tr class="memdesc:a85232e0d93f32fba932c2652db0ccac9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the URL for the streaming <a class="el" href="classMastodon_1_1Easy_1_1API.html" title="Child of Mastodon::API with abstract methods. ">API</a>.  <a href="#a85232e0d93f32fba932c2652db0ccac9">More...</a><br /></td></tr>
 <tr class="separator:a85232e0d93f32fba932c2652db0ccac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3948fc60228f921f88069698fdae1324"><td class="memItemLeft" align="right" valign="top">uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Instance.html#a3948fc60228f921f88069698fdae1324">max_toot_chars</a> () const</td></tr>
-<tr class="memdesc:a3948fc60228f921f88069698fdae1324"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the maximum chars a post can have.  <a href="#a3948fc60228f921f88069698fdae1324">More...</a><br /></td></tr>
-<tr class="separator:a3948fc60228f921f88069698fdae1324"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab07d99500d330c0a28b3778f254febe"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Instance.html#aab07d99500d330c0a28b3778f254febe">max_toot_chars</a> () const</td></tr>
+<tr class="memdesc:aab07d99500d330c0a28b3778f254febe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the maximum chars a post can have.  <a href="#aab07d99500d330c0a28b3778f254febe">More...</a><br /></td></tr>
+<tr class="separator:aab07d99500d330c0a28b3778f254febe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a753b382e29be6cb7b16772d4c609cedc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Instance.html#a753b382e29be6cb7b16772d4c609cedc">Entity</a> (const string &amp;json)</td></tr>
+<tr class="memdesc:a753b382e29be6cb7b16772d4c609cedc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Entity</a> object from a JSON string.  <a href="#a753b382e29be6cb7b16772d4c609cedc">More...</a><br /></td></tr>
+<tr class="separator:a753b382e29be6cb7b16772d4c609cedc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f75930d233df7d2bc04629ba00a139d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Instance.html#a2f75930d233df7d2bc04629ba00a139d">Entity</a> (const Json::Value &amp;object)</td></tr>
+<tr class="memdesc:a2f75930d233df7d2bc04629ba00a139d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Entity</a> object from a JSON object.  <a href="#a2f75930d233df7d2bc04629ba00a139d">More...</a><br /></td></tr>
+<tr class="separator:a2f75930d233df7d2bc04629ba00a139d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83eb2be5a13eaaa22b2796f05817f7a9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Instance.html#a83eb2be5a13eaaa22b2796f05817f7a9">Entity</a> ()</td></tr>
+<tr class="memdesc:a83eb2be5a13eaaa22b2796f05817f7a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty <a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Entity</a> object.  <a href="#a83eb2be5a13eaaa22b2796f05817f7a9">More...</a><br /></td></tr>
+<tr class="separator:a83eb2be5a13eaaa22b2796f05817f7a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classMastodon_1_1Easy_1_1Entity"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMastodon_1_1Easy_1_1Entity')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMastodon_1_1Easy_1_1Entity.html">Mastodon::Easy::Entity</a></td></tr>
 <tr class="memitem:a753b382e29be6cb7b16772d4c609cedc inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#a753b382e29be6cb7b16772d4c609cedc">Entity</a> (const string &amp;json)</td></tr>
 <tr class="memdesc:a753b382e29be6cb7b16772d4c609cedc inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Entity</a> object from a JSON string.  <a href="classMastodon_1_1Easy_1_1Entity.html#a753b382e29be6cb7b16772d4c609cedc">More...</a><br /></td></tr>
 <tr class="separator:a753b382e29be6cb7b16772d4c609cedc inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f75930d233df7d2bc04629ba00a139d inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#a2f75930d233df7d2bc04629ba00a139d">Entity</a> (const Json::Value &amp;object)</td></tr>
+<tr class="memdesc:a2f75930d233df7d2bc04629ba00a139d inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Entity</a> object from a JSON object.  <a href="classMastodon_1_1Easy_1_1Entity.html#a2f75930d233df7d2bc04629ba00a139d">More...</a><br /></td></tr>
+<tr class="separator:a2f75930d233df7d2bc04629ba00a139d inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83eb2be5a13eaaa22b2796f05817f7a9 inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#a83eb2be5a13eaaa22b2796f05817f7a9">Entity</a> ()</td></tr>
 <tr class="memdesc:a83eb2be5a13eaaa22b2796f05817f7a9 inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty <a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Entity</a> object.  <a href="classMastodon_1_1Easy_1_1Entity.html#a83eb2be5a13eaaa22b2796f05817f7a9">More...</a><br /></td></tr>
 <tr class="separator:a83eb2be5a13eaaa22b2796f05817f7a9 inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d6464e9bb1fccd4e8b677f30a655f19 inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#a5d6464e9bb1fccd4e8b677f30a655f19">~Entity</a> ()</td></tr>
+<tr class="memdesc:a5d6464e9bb1fccd4e8b677f30a655f19 inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the object.  <a href="classMastodon_1_1Easy_1_1Entity.html#a5d6464e9bb1fccd4e8b677f30a655f19">More...</a><br /></td></tr>
+<tr class="separator:a5d6464e9bb1fccd4e8b677f30a655f19 inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f81e1e98c1780ac23bea646122f4bba inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#a8f81e1e98c1780ac23bea646122f4bba">operator const Json::Value</a> () const</td></tr>
+<tr class="separator:a8f81e1e98c1780ac23bea646122f4bba inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16d99717df650d00312509b79de70a60 inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#a16d99717df650d00312509b79de70a60">from_string</a> (const string &amp;json)</td></tr>
 <tr class="memdesc:a16d99717df650d00312509b79de70a60 inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces the <a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Entity</a> with a new one from a JSON string.  <a href="classMastodon_1_1Easy_1_1Entity.html#a16d99717df650d00312509b79de70a60">More...</a><br /></td></tr>
 <tr class="separator:a16d99717df650d00312509b79de70a60 inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7482a8784b8ce80a0f534e23c8d9cceb inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#a7482a8784b8ce80a0f534e23c8d9cceb">to_string</a> () const</td></tr>
+<tr class="memdesc:a7482a8784b8ce80a0f534e23c8d9cceb inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the JSON of the <a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Entity</a> as string.  <a href="classMastodon_1_1Easy_1_1Entity.html#a7482a8784b8ce80a0f534e23c8d9cceb">More...</a><br /></td></tr>
+<tr class="separator:a7482a8784b8ce80a0f534e23c8d9cceb inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a036816325ebd642c096eaf862d746db3 inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#a036816325ebd642c096eaf862d746db3">from_object</a> (const Json::Value &amp;object)</td></tr>
+<tr class="memdesc:a036816325ebd642c096eaf862d746db3 inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces the <a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Entity</a> with a new one from a JSON object.  <a href="classMastodon_1_1Easy_1_1Entity.html#a036816325ebd642c096eaf862d746db3">More...</a><br /></td></tr>
+<tr class="separator:a036816325ebd642c096eaf862d746db3 inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9ed99f52a6337b04a506e8b30b37dd9 inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">const Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#ab9ed99f52a6337b04a506e8b30b37dd9">to_object</a> () const</td></tr>
 <tr class="memdesc:ab9ed99f52a6337b04a506e8b30b37dd9 inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the JSON object of the <a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Entity</a>.  <a href="classMastodon_1_1Easy_1_1Entity.html#ab9ed99f52a6337b04a506e8b30b37dd9">More...</a><br /></td></tr>
 <tr class="separator:ab9ed99f52a6337b04a506e8b30b37dd9 inherit pub_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,27 +149,28 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:adb8d99a42bce94868a5bd68937cc1e93 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a> (const string &amp;key) const</td></tr>
 <tr class="memdesc:adb8d99a42bce94868a5bd68937cc1e93 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value of key as std::string.  <a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">More...</a><br /></td></tr>
 <tr class="separator:adb8d99a42bce94868a5bd68937cc1e93 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70657872b65f41ac4e9048c6f0dd2060 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#a70657872b65f41ac4e9048c6f0dd2060">get_uint64</a> (const string &amp;key) const</td></tr>
-<tr class="memdesc:a70657872b65f41ac4e9048c6f0dd2060 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value of key as std::uint_fast64_t.  <a href="classMastodon_1_1Easy_1_1Entity.html#a70657872b65f41ac4e9048c6f0dd2060">More...</a><br /></td></tr>
-<tr class="separator:a70657872b65f41ac4e9048c6f0dd2060 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad27a6fe68b96e187ed29d5260e52e32b inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#ad27a6fe68b96e187ed29d5260e52e32b">get_uint64</a> (const string &amp;key) const</td></tr>
+<tr class="memdesc:ad27a6fe68b96e187ed29d5260e52e32b inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value of key as std::uint64_t.  <a href="classMastodon_1_1Easy_1_1Entity.html#ad27a6fe68b96e187ed29d5260e52e32b">More...</a><br /></td></tr>
+<tr class="separator:ad27a6fe68b96e187ed29d5260e52e32b inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6082153efde52b69b1b88372d268554f inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#a6082153efde52b69b1b88372d268554f">get_double</a> (const string &amp;key) const</td></tr>
 <tr class="memdesc:a6082153efde52b69b1b88372d268554f inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value of key as double.  <a href="classMastodon_1_1Easy_1_1Entity.html#a6082153efde52b69b1b88372d268554f">More...</a><br /></td></tr>
 <tr class="separator:a6082153efde52b69b1b88372d268554f inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10c3fde7a0941c679eec4ae7539aa421 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#a10c3fde7a0941c679eec4ae7539aa421">get_bool</a> (const string &amp;key) const</td></tr>
 <tr class="memdesc:a10c3fde7a0941c679eec4ae7539aa421 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value of key as bool.  <a href="classMastodon_1_1Easy_1_1Entity.html#a10c3fde7a0941c679eec4ae7539aa421">More...</a><br /></td></tr>
 <tr class="separator:a10c3fde7a0941c679eec4ae7539aa421 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07336bdaa1dfe7cad90a1e686562ec0f inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">const system_clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#a07336bdaa1dfe7cad90a1e686562ec0f">get_time_point</a> (const string &amp;key) const</td></tr>
-<tr class="memdesc:a07336bdaa1dfe7cad90a1e686562ec0f inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value of key as time_point.  <a href="classMastodon_1_1Easy_1_1Entity.html#a07336bdaa1dfe7cad90a1e686562ec0f">More...</a><br /></td></tr>
-<tr class="separator:a07336bdaa1dfe7cad90a1e686562ec0f inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad34d606236c86f748f448bbb43528566 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structMastodon_1_1Easy_1_1time.html">Easy::time</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#ad34d606236c86f748f448bbb43528566">get_time</a> (const string &amp;key) const</td></tr>
+<tr class="memdesc:ad34d606236c86f748f448bbb43528566 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value of key as <a class="el" href="structMastodon_1_1Easy_1_1time.html" title="Type for time. Converts to time_point and string. ">Easy::time</a>.  <a href="classMastodon_1_1Easy_1_1Entity.html#ad34d606236c86f748f448bbb43528566">More...</a><br /></td></tr>
+<tr class="separator:ad34d606236c86f748f448bbb43528566 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00f1106c4143e070207b0a96ba736042 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#a00f1106c4143e070207b0a96ba736042">get_vector</a> (const string &amp;key) const</td></tr>
 <tr class="memdesc:a00f1106c4143e070207b0a96ba736042 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value of key as vector.  <a href="classMastodon_1_1Easy_1_1Entity.html#a00f1106c4143e070207b0a96ba736042">More...</a><br /></td></tr>
 <tr class="separator:a00f1106c4143e070207b0a96ba736042 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a598cb356c85af698e6e5390a12d39e6a inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#a598cb356c85af698e6e5390a12d39e6a">set</a> (const string &amp;key, const Json::Value &amp;value)</td></tr>
 <tr class="memdesc:a598cb356c85af698e6e5390a12d39e6a inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the value of key.  <a href="classMastodon_1_1Easy_1_1Entity.html#a598cb356c85af698e6e5390a12d39e6a">More...</a><br /></td></tr>
 <tr class="separator:a598cb356c85af698e6e5390a12d39e6a inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8012fa97ebeb1fb118cc274b95be99b3 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top"><a id="a8012fa97ebeb1fb118cc274b95be99b3"></a>
-std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint64</b> (const string &amp;str) const</td></tr>
-<tr class="separator:a8012fa97ebeb1fb118cc274b95be99b3 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc71e78fbc381dddfc838e09318d4de8 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top"><a id="adc71e78fbc381dddfc838e09318d4de8"></a>
+std::uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#adc71e78fbc381dddfc838e09318d4de8">stouint64</a> (const string &amp;str) const</td></tr>
+<tr class="memdesc:adc71e78fbc381dddfc838e09318d4de8 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns value of str as uint64_t. <br /></td></tr>
+<tr class="separator:adc71e78fbc381dddfc838e09318d4de8 inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9af50e48d1241e0c2f32b2032312cfef inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html#a9af50e48d1241e0c2f32b2032312cfef">check_valid</a> (const std::vector&lt; string &gt; &amp;attributes) const</td></tr>
 <tr class="memdesc:a9af50e48d1241e0c2f32b2032312cfef inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if an <a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Entity</a> is valid.  <a href="classMastodon_1_1Easy_1_1Entity.html#a9af50e48d1241e0c2f32b2032312cfef">More...</a><br /></td></tr>
 <tr class="separator:a9af50e48d1241e0c2f32b2032312cfef inherit pro_methods_classMastodon_1_1Easy_1_1Entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,65 +178,7 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to hold instances. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ad9348d692d1086efacc82628989719a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad9348d692d1086efacc82628989719a8">&#9670;&nbsp;</a></span>Instance() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Instance::Instance </td>
-          <td>(</td>
-          <td class="paramtype">const string &amp;&#160;</td>
-          <td class="paramname"><em>json</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Constructs an <a class="el" href="classMastodon_1_1Easy_1_1Instance.html" title="Class to hold instances. ">Instance</a> object from a JSON string. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">json</td><td>JSON string</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;: <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a83eb2be5a13eaaa22b2796f05817f7a9">Entity</a>(json)</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a83eb2be5a13eaaa22b2796f05817f7a9"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a83eb2be5a13eaaa22b2796f05817f7a9">Mastodon::Easy::Entity::Entity</a></div><div class="ttdeci">Entity()</div><div class="ttdoc">Constructs an empty Entity object. </div><div class="ttdef"><b>Definition:</b> entity.cpp:65</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a399506c7e75ab9ab78fbc34a25932bbd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a399506c7e75ab9ab78fbc34a25932bbd">&#9670;&nbsp;</a></span>Instance() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Instance::Instance </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Constructs an empty <a class="el" href="classMastodon_1_1Easy_1_1Instance.html" title="Class to hold instances. ">Instance</a> object. </p>
-<dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;: <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a83eb2be5a13eaaa22b2796f05817f7a9">Entity</a>()</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a83eb2be5a13eaaa22b2796f05817f7a9"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a83eb2be5a13eaaa22b2796f05817f7a9">Mastodon::Easy::Entity::Entity</a></div><div class="ttdeci">Entity()</div><div class="ttdoc">Constructs an empty Entity object. </div><div class="ttdef"><b>Definition:</b> entity.cpp:65</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ad64fce6e6d2f9bd163982427ef898292"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad64fce6e6d2f9bd163982427ef898292">&#9670;&nbsp;</a></span>contact_account()</h2>
 
@@ -236,7 +196,7 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 
 <p>Returns the <a class="el" href="classMastodon_1_1Easy_1_1Account.html" title="Class to hold accounts. ">Account</a> of the admin or another contact person. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">const</span> Json::Value node = <span class="keyword">get</span>(<span class="stringliteral">&quot;contact_account&quot;</span>);</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">if</span> (node.isObject())</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Account.html">Easy::Account</a>(node.toStyledString());</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    ttdebug &lt;&lt; <span class="stringliteral">&quot;Could not get data: contact_account\n&quot;</span>;</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Account.html">Easy::Account</a>();</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Account_html"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Account.html">Mastodon::Easy::Account</a></div><div class="ttdoc">Class to hold accounts. </div><div class="ttdef"><b>Definition:</b> account.hpp:46</div></div>
+<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">const</span> Json::Value node = <span class="keyword">get</span>(<span class="stringliteral">&quot;contact_account&quot;</span>);</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">if</span> (node.isObject())</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Account.html">Easy::Account</a>(node.toStyledString());</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    ttdebug &lt;&lt; <span class="stringliteral">&quot;Could not get data: contact_account\n&quot;</span>;</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Account.html">Easy::Account</a>();</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Account_html"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Account.html">Mastodon::Easy::Account</a></div><div class="ttdoc">Class to hold accounts. </div><div class="ttdef"><b>Definition:</b> account.hpp:46</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -257,7 +217,7 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 
 <p>Returns the description of the instance. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;description&quot;</span>);</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:134</div></div>
+<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;description&quot;</span>);</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:159</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -278,8 +238,88 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 
 <p>Returns the email address which can be used to contact the instance administrator. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;email&quot;</span>);</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:134</div></div>
+<div class="fragment"><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;{</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;email&quot;</span>);</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:159</div></div>
 </div><!-- fragment -->
+</div>
+</div>
+<a id="a753b382e29be6cb7b16772d4c609cedc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a753b382e29be6cb7b16772d4c609cedc">&#9670;&nbsp;</a></span>Entity() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Easy::Entity::Entity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs an <a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Entity</a> object from a JSON string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">json</td><td>JSON string</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
+<div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;: _tree(Json::nullValue)</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;,_was_set(<span class="keyword">false</span>)</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a16d99717df650d00312509b79de70a60">from_string</a>(json);</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a16d99717df650d00312509b79de70a60"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a16d99717df650d00312509b79de70a60">Mastodon::Easy::Entity::from_string</a></div><div class="ttdeci">void from_string(const string &amp;json)</div><div class="ttdoc">Replaces the Entity with a new one from a JSON string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:55</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a83eb2be5a13eaaa22b2796f05817f7a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83eb2be5a13eaaa22b2796f05817f7a9">&#9670;&nbsp;</a></span>Entity() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Easy::Entity::Entity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs an empty <a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Entity</a> object. </p>
+<dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
+<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;: _tree(Json::nullValue)</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;, _was_set(<span class="keyword">false</span>)</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{}</div></div><!-- fragment -->
+</div>
+</div>
+<a id="a2f75930d233df7d2bc04629ba00a139d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f75930d233df7d2bc04629ba00a139d">&#9670;&nbsp;</a></span>Entity() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Easy::Entity::Entity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs an <a class="el" href="classMastodon_1_1Easy_1_1Entity.html" title="Base class for all entities. ">Entity</a> object from a JSON object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>JSON object</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>0.100.0 </dd></dl>
+<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;: _tree(<span class="keywordtype">object</span>)</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;,_was_set(<span class="keyword">false</span>)</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{}</div></div><!-- fragment -->
 </div>
 </div>
 <a id="aebfa2f19d09cbc83aec06f414bc3bcbb"></a>
@@ -299,18 +339,18 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 
 <p>Returns a vector of ISO 6391 language codes the instance has chosen to advertise. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a00f1106c4143e070207b0a96ba736042">get_vector</a>(<span class="stringliteral">&quot;languages&quot;</span>);</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a00f1106c4143e070207b0a96ba736042"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a00f1106c4143e070207b0a96ba736042">Mastodon::Easy::Entity::get_vector</a></div><div class="ttdeci">const std::vector&lt; string &gt; get_vector(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as vector. </div><div class="ttdef"><b>Definition:</b> entity.cpp:210</div></div>
+<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a00f1106c4143e070207b0a96ba736042">get_vector</a>(<span class="stringliteral">&quot;languages&quot;</span>);</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a00f1106c4143e070207b0a96ba736042"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a00f1106c4143e070207b0a96ba736042">Mastodon::Easy::Entity::get_vector</a></div><div class="ttdeci">const std::vector&lt; string &gt; get_vector(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as vector. </div><div class="ttdef"><b>Definition:</b> entity.cpp:234</div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a3948fc60228f921f88069698fdae1324"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3948fc60228f921f88069698fdae1324">&#9670;&nbsp;</a></span>max_toot_chars()</h2>
+<a id="aab07d99500d330c0a28b3778f254febe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab07d99500d330c0a28b3778f254febe">&#9670;&nbsp;</a></span>max_toot_chars()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint_fast64_t Instance::max_toot_chars </td>
+          <td class="memname">uint64_t Instance::max_toot_chars </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -319,10 +359,10 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 </div><div class="memdoc">
 
 <p>Returns the maximum chars a post can have. </p>
-<p>This parameter is not supported by upstream Mastodon. If it is not found, 500 is returned.</p>
+<p>This parameter is not supported by upstream <a class="el" href="namespaceMastodon.html" title="Collection of things to interface with server software that implements the Mastodon API...">Mastodon</a>. If it is not found, 500 is returned.</p>
 <dl class="section since"><dt>Since</dt><dd>0.20.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;{</div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keyword">const</span> uint_fast64_t max_chars = <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a70657872b65f41ac4e9048c6f0dd2060">get_uint64</a>(<span class="stringliteral">&quot;max_toot_chars&quot;</span>);</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a9d8e026d50315925f6824e0f6c58df36">was_set</a>())</div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    {</div><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keywordflow">return</span> max_chars;</div><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">else</span></div><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    {</div><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordflow">return</span> 500;</div><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    }</div><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a9d8e026d50315925f6824e0f6c58df36"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a9d8e026d50315925f6824e0f6c58df36">Mastodon::Easy::Entity::was_set</a></div><div class="ttdeci">bool was_set() const</div><div class="ttdoc">Returns true if the last requested value was set, false if it was unset. </div><div class="ttdef"><b>Definition:</b> entity.cpp:88</div></div>
-<div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a70657872b65f41ac4e9048c6f0dd2060"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a70657872b65f41ac4e9048c6f0dd2060">Mastodon::Easy::Entity::get_uint64</a></div><div class="ttdeci">uint_fast64_t get_uint64(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::uint_fast64_t. </div><div class="ttdef"><b>Definition:</b> entity.cpp:148</div></div>
+<div class="fragment"><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;{</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keyword">const</span> uint64_t max_chars = <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#ad27a6fe68b96e187ed29d5260e52e32b">get_uint64</a>(<span class="stringliteral">&quot;max_toot_chars&quot;</span>);</div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a9d8e026d50315925f6824e0f6c58df36">was_set</a>())</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    {</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">return</span> max_chars;</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordflow">else</span></div><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    {</div><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">return</span> 500;</div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_ad27a6fe68b96e187ed29d5260e52e32b"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#ad27a6fe68b96e187ed29d5260e52e32b">Mastodon::Easy::Entity::get_uint64</a></div><div class="ttdeci">uint64_t get_uint64(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::uint64_t. </div><div class="ttdef"><b>Definition:</b> entity.cpp:173</div></div>
+<div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a9d8e026d50315925f6824e0f6c58df36"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a9d8e026d50315925f6824e0f6c58df36">Mastodon::Easy::Entity::was_set</a></div><div class="ttdeci">bool was_set() const</div><div class="ttdoc">Returns true if the last requested value was set, false if it was unset. </div><div class="ttdef"><b>Definition:</b> entity.cpp:113</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -341,9 +381,9 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
       </table>
 </div><div class="memdoc">
 
-<p>Returns the URL for the streaming <a class="el" href="classMastodon_1_1API.html" title="Class for the Mastodon API. ">API</a>. </p>
+<p>Returns the URL for the streaming <a class="el" href="classMastodon_1_1Easy_1_1API.html" title="Child of Mastodon::API with abstract methods. ">API</a>. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;{</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;urls.streaming_api&quot;</span>);</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:134</div></div>
+<div class="fragment"><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;{</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;urls.streaming_api&quot;</span>);</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:159</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -364,7 +404,7 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 
 <p>Returns the title of the instance. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;{</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;title&quot;</span>);</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:134</div></div>
+<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;{</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;title&quot;</span>);</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:159</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -385,12 +425,12 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 
 <p>Returns the URI of the instance. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;{</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;uri&quot;</span>);</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:134</div></div>
+<div class="fragment"><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;{</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;uri&quot;</span>);</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:159</div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a331d16c9edec4cbdfac7673083d2a909"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a331d16c9edec4cbdfac7673083d2a909">&#9670;&nbsp;</a></span>valid()</h2>
+<a id="a22141e6d58a5dfdf15a36dfe5430cb0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22141e6d58a5dfdf15a36dfe5430cb0b">&#9670;&nbsp;</a></span>valid()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -407,7 +447,7 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -416,7 +456,7 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 (virtual since 0.18.2) </dd></dl>
 
 <p>Implements <a class="el" href="classMastodon_1_1Easy_1_1Entity.html#ab418a0cde7adc0ecb6016dd5499597a6">Mastodon::Easy::Entity</a>.</p>
-<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">const</span> std::vector&lt;string&gt; attributes =</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {{</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="stringliteral">&quot;uri&quot;</span>,</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="stringliteral">&quot;title&quot;</span>,</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="stringliteral">&quot;description&quot;</span>,</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="stringliteral">&quot;email&quot;</span>,</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="stringliteral">&quot;version&quot;</span>,</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="stringliteral">&quot;urls&quot;</span>,</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="stringliteral">&quot;languages&quot;</span>,</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="stringliteral">&quot;contact_account&quot;</span></div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }};</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a9af50e48d1241e0c2f32b2032312cfef">Entity::check_valid</a>(attributes);</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a9af50e48d1241e0c2f32b2032312cfef"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a9af50e48d1241e0c2f32b2032312cfef">Mastodon::Easy::Entity::check_valid</a></div><div class="ttdeci">bool check_valid(const std::vector&lt; string &gt; &amp;attributes) const</div><div class="ttdoc">Checks if an Entity is valid. </div><div class="ttdef"><b>Definition:</b> entity.cpp:69</div></div>
+<div class="fragment"><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">const</span> std::vector&lt;string&gt; attributes =</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {{</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="stringliteral">&quot;uri&quot;</span>,</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="stringliteral">&quot;title&quot;</span>,</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="stringliteral">&quot;description&quot;</span>,</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="stringliteral">&quot;email&quot;</span>,</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="stringliteral">&quot;version&quot;</span>,</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="stringliteral">&quot;urls&quot;</span>,</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="stringliteral">&quot;languages&quot;</span>,</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="stringliteral">&quot;contact_account&quot;</span></div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }};</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#a9af50e48d1241e0c2f32b2032312cfef">Entity::check_valid</a>(attributes);</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_a9af50e48d1241e0c2f32b2032312cfef"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#a9af50e48d1241e0c2f32b2032312cfef">Mastodon::Easy::Entity::check_valid</a></div><div class="ttdeci">bool check_valid(const std::vector&lt; string &gt; &amp;attributes) const</div><div class="ttdoc">Checks if an Entity is valid. </div><div class="ttdef"><b>Definition:</b> entity.cpp:94</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -437,7 +477,7 @@ std::uint_fast64_t&#160;</td><td class="memItemRight" valign="bottom"><b>stouint
 
 <p>Returns the version used by the instance. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;{</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;version&quot;</span>);</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:134</div></div>
+<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">get_string</a>(<span class="stringliteral">&quot;version&quot;</span>);</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div><div class="ttc" id="classMastodon_1_1Easy_1_1Entity_html_adb8d99a42bce94868a5bd68937cc1e93"><div class="ttname"><a href="classMastodon_1_1Easy_1_1Entity.html#adb8d99a42bce94868a5bd68937cc1e93">Mastodon::Easy::Entity::get_string</a></div><div class="ttdeci">const string get_string(const string &amp;key) const</div><div class="ttdoc">Returns the value of key as std::string. </div><div class="ttdef"><b>Definition:</b> entity.cpp:159</div></div>
 </div><!-- fragment -->
 </div>
 </div>

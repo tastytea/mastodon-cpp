@@ -19,6 +19,7 @@
 #include <catch.hpp>
 #include "mastodon-cpp.hpp"
 #include "easy/easy.hpp"
+#include "easy/entities/instance.hpp"
 
 using namespace Mastodon;
 
@@ -28,14 +29,17 @@ SCENARIO ("/api/v1/instance can be called successfully",
     GIVEN ("Mastodon::API")
     {
         Mastodon::API masto("likeable.space", "");
-        bool exception = false;
         return_call ret;
+        bool exception = false;
+        bool uri_found = false;
 
         WHEN ("/api/v1/instance is called")
         {
             try
             {
                 ret = masto.get(API::v1::instance);
+                uri_found = ret.answer.find(
+                    "\"uri\":\"https://likeable.space\"") != std::string::npos;
             }
             catch (const std::exception &e)
             {
@@ -52,9 +56,45 @@ SCENARIO ("/api/v1/instance can be called successfully",
             }
             THEN ("The answer makes sense")
             {
-                const bool uri_found = ret.answer.find(
-                    "\"uri\":\"https://likeable.space\"") != std::string::npos;
                 REQUIRE(uri_found);
+            }
+        }
+    }
+
+    GIVEN ("Mastodon::Easy::API")
+    {
+        Mastodon::Easy::API masto("likeable.space", "");
+        return_call ret;
+        Easy::Instance instance;
+        bool exception = false;
+
+        WHEN ("/api/v1/instance is called")
+        {
+            try
+            {
+                ret = masto.get(API::v1::instance);
+                instance = Easy::Instance(ret.answer);
+            }
+            catch (const std::exception &e)
+            {
+                exception = true;
+            }
+            THEN("No exception is thrown")
+            {
+                REQUIRE_FALSE(exception);
+            }
+            THEN ("No errors are returned")
+            {
+                REQUIRE(ret.error_code == 0);
+                REQUIRE(ret.http_error_code == 200);
+            }
+            THEN ("Answer is valid")
+            {
+                REQUIRE(instance.valid());
+            }
+            THEN ("The answer makes sense")
+            {
+                REQUIRE(instance.uri() == "https://likeable.space");
             }
         }
     }

@@ -40,7 +40,8 @@ bool Account::valid() const
         "avatar",
         "avatar_static",
         "header",
-        "header_static"
+        "header_static",
+        "emojis"
     }};
 
     return Entity::check_valid(attributes);

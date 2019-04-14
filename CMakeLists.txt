@@ -67,17 +67,17 @@ if(WITH_EASY)
 else()
   file(GLOB sources src/*.cpp src/api/*.cpp)
 endif()
-add_library(${CMAKE_PROJECT_NAME} SHARED ${sources})
-set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
+add_library(${PROJECT_NAME} SHARED ${sources})
+set_target_properties(${PROJECT_NAME} PROPERTIES
   VERSION ${PROJECT_VERSION}
-  SOVERSION ${${CMAKE_PROJECT_NAME}_VERSION_MAJOR}
+  SOVERSION ${${PROJECT_NAME}_VERSION_MAJOR}
   )
 
 if(WITH_EASY)
-  target_link_libraries(${CMAKE_PROJECT_NAME}
+  target_link_libraries(${PROJECT_NAME}
     ${CURLPP_LIBRARIES} pthread ${JSONCPP_LIBRARIES})
 else()
-  target_link_libraries(${CMAKE_PROJECT_NAME}
+  target_link_libraries(${PROJECT_NAME}
     ${CURLPP_LIBRARIES} pthread)
 endif()
 
@@ -87,7 +87,7 @@ if(WITH_EXAMPLES)
   foreach(src ${sources_examples})
     get_filename_component(bin ${src} NAME_WE)
     add_executable(${bin} ${src})
-    target_link_libraries(${bin} pthread ${JSONCPP_LIBRARIES} ${CMAKE_PROJECT_NAME})
+    target_link_libraries(${bin} pthread ${JSONCPP_LIBRARIES} ${PROJECT_NAME})
   endforeach()
 endif()
 
@@ -97,17 +97,17 @@ if(WITH_TESTS)
 endif()
 
 # Install library and header files
-install(TARGETS ${CMAKE_PROJECT_NAME} LIBRARY
+install(TARGETS ${PROJECT_NAME} LIBRARY
   DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(FILES src/mastodon-cpp.hpp src/return_types.hpp src/types.hpp
-  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${CMAKE_PROJECT_NAME})
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME})
 if(WITH_EASY)
   file(GLOB easy_header src/easy/*.hpp)
   install(FILES ${easy_header}
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${CMAKE_PROJECT_NAME}/easy)
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/easy)
   file(GLOB easy_entities_header src/easy/entities/*.hpp)
   install(FILES ${easy_entities_header}
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${CMAKE_PROJECT_NAME}/easy/entities)
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/easy/entities)
 endif()
 
 # Compile & install documentation
@@ -115,12 +115,12 @@ if(WITH_DOC)
   add_custom_command(OUTPUT ${PROJECT_SOURCE_DIR}/doc/html
     COMMAND ./build_doc.sh WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
   add_custom_target(doc DEPENDS doc/html)
-  add_dependencies(${CMAKE_PROJECT_NAME} doc)
+  add_dependencies(${PROJECT_NAME} doc)
   install(DIRECTORY ${PROJECT_SOURCE_DIR}/doc/html
-    DESTINATION ${CMAKE_INSTALL_DOCDIR}/${CMAKE_PROJECT_NAME}-${PROJECT_VERSION})
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/${PROJECT_NAME}-${PROJECT_VERSION})
   file(GLOB examples examples/example*.cpp)
   install(FILES ${examples}
-    DESTINATION ${CMAKE_INSTALL_DOCDIR}/${CMAKE_PROJECT_NAME}-${PROJECT_VERSION}/examples)
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/${PROJECT_NAME}-${PROJECT_VERSION}/examples)
 endif()
 
 # Packages

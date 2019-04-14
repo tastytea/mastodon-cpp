@@ -157,7 +157,6 @@ namespace Easy
          *  @brief  Sends a post.
          *
          *  @param  status  The status to send
-         *  @param  error   @ref error "Error code"
          *
          *  @return The new Easy::Status
          *
@@ -175,7 +174,6 @@ namespace Easy
         /*!
          *  @brief  Gets notifications.
          *
-         *  @param  error     @ref error "Error code"
          *  @param  limit     Maximum number of notifications
          *  @param  since_id  Return notifications newer than ID
          *  @param  max_id    Return notifications older than ID

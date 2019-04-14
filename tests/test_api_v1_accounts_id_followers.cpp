@@ -29,10 +29,14 @@ SCENARIO ("/api/v1/accounts/:id/followers can be called successfully",
 {
     GIVEN ("instance, access token, user id and return_call")
     {
-        const char *envinstance = std::getenv("MASTODON_CPP_INSTANCE");
-        const string instance = (envinstance ? envinstance : "likeable.space");
+        const char *env_instance = std::getenv("MASTODON_CPP_INSTANCE");
+        const string instance =
+            (env_instance ? env_instance : "likeable.space");
         const char *access_token = std::getenv("MASTODON_CPP_ACCESS_TOKEN");
-        const string user_id = "9hnrrVPriLiLVAhfVo";
+        const char *env_user_id = std::getenv("MASTODON_CPP_USER_ID");
+        const string user_id =
+            (env_user_id ? env_user_id : "9hnrrVPriLiLVAhfVo");
+
         return_call ret;
         bool exception = false;
         bool username_found = false;

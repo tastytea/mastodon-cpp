@@ -26,11 +26,14 @@ using namespace Mastodon;
 SCENARIO ("/api/v1/accounts/:id can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
-    GIVEN ("instance, id and return_call")
+    GIVEN ("instance, user id and return_call")
     {
         const char *envinstance = std::getenv("MASTODON_CPP_INSTANCE");
         const string instance = (envinstance ? envinstance : "likeable.space");
-        const string id = "9hnrrVPriLiLVAhfVo";
+        const char *env_user_id = std::getenv("MASTODON_CPP_USER_ID");
+        const string user_id =
+            (env_user_id ? env_user_id : "9hnrrVPriLiLVAhfVo");
+
         return_call ret;
         bool exception = false;
 
@@ -39,14 +42,15 @@ SCENARIO ("/api/v1/accounts/:id can be called successfully",
             Mastodon::API masto(instance, "");
             bool username_found = false;
 
-            WHEN ("/api/v1/accounts/" + id + " is called")
+            WHEN ("/api/v1/accounts/" + user_id + " is called")
             {
                 try
                 {
                     ret = masto.get(API::v1::accounts_id,
-                                    {{ "id", { id }}});
-                    username_found = ret.answer.find(
-                        "\"username\":\"testaccount\"") != std::string::npos;
+                                    {{ "id", { user_id }}});
+                    username_found =
+                        ret.answer.find("\"username\":\"")
+                        != std::string::npos;
                 }
                 catch (const std::exception &e)
                 {
@@ -73,12 +77,12 @@ SCENARIO ("/api/v1/accounts/:id can be called successfully",
             Mastodon::Easy::API masto(instance, "");
             Easy::Account account;
 
-            WHEN ("/api/v1/accounts/" + id + " is called")
+            WHEN ("/api/v1/accounts/" + user_id + " is called")
             {
                 try
                 {
                     ret = masto.get(API::v1::accounts_id,
-                                    {{ "id", { id }}});
+                                    {{ "id", { user_id }}});
                     account = Easy::Account(ret.answer);
                 }
                 catch (const std::exception &e)
@@ -100,7 +104,7 @@ SCENARIO ("/api/v1/accounts/:id can be called successfully",
                 }
                 THEN ("The answer makes sense")
                 {
-                    REQUIRE(account.username() == "testaccount");
+                    REQUIRE(account.username() != "");
                 }
             }
         }

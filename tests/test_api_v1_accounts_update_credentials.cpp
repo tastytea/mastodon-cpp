@@ -48,8 +48,9 @@ SCENARIO ("/api/v1/accounts/update_credentials can be called successfully",
                 {
                     ret = masto.patch(API::v1::accounts_update_credentials,
                                      {{ "display_name", { "testaccount" } }});
-                    display_name_found = ret.answer.find(
-                        "\"display_name\":\"testaccount\"") != std::string::npos;
+                    display_name_found =
+                        ret.answer.find("\"display_name\":\"testaccount\"")
+                        != std::string::npos;
                 }
                 catch (const std::exception &e)
                 {

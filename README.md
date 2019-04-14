@@ -210,9 +210,10 @@ Install with `make install`.
 
 You can run the tests with `ctest` inside the build directory. You need to set
 the environment variable `MASTODON_CPP_ACCESS_TOKEN` to an access token with the
-scopes *read*, *write*, *follow* and *push* for some tests.
+scopes *read*, *write* and *follow* for some tests.
 You can select the instance to use with `MASTODON_CPP_INSTANCE`, the default is
-*likeable.space*.
+*likeable.space*. You can select the user ID with `MASTODON_CPP_USER_ID`, the
+default is *9hnrrVPriLiLVAhfVo*.
 
 ### Packages
 

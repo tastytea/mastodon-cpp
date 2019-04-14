@@ -687,6 +687,19 @@ namespace Mastodon
          *  @return Form data as curlpp::Forms
          */
         const curlpp::Forms maptoformdata(const parameters &map);
+
+        /*!
+         *  @brief  Delete Mastodon::param from Mastodon::parameters.
+         *
+         *  @param  params Old vector of parameters.
+         *  @param  key    keys of Mastodon::param to delete.
+         *
+         *  @return New vector of parameters.
+         *
+         *  @since  0.102.0
+         */
+        const parameters delete_params(const parameters &params,
+                                       const vector<string> &keys);
     };
 }
 

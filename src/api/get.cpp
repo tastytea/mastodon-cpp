@@ -15,6 +15,7 @@
  */
 
 #include <iostream>
+#include <algorithm>
 #include "debug.hpp"
 #include "mastodon-cpp.hpp"
 
@@ -224,10 +225,8 @@ const return_call API::get(const Mastodon::API::v1 &call,
 
     if (params.size() > 0)
     {
-        // Delete the params that are already in strcall
-        parameters newparams = params;
-        newparams.erase(newparams.find("id"));
-        newparams.erase(newparams.find("tag"));
+        // Delete the parameters that are already in strcall
+        const parameters newparams = delete_params(params, { "id", "tag" });
         strcall += maptostr(newparams);
     }
 
@@ -263,10 +262,8 @@ const return_call API::get(const Mastodon::API::v2 &call,
 
     if (params.size() > 0)
     {
-        // Delete the params that are already in strcall
-        parameters newparams = params;
-        newparams.erase(newparams.find("id"));
-        newparams.erase(newparams.find("tag"));
+        // Delete the parameterss that are already in strcall
+        const parameters newparams = delete_params(params, { "id", "tag" });
         strcall += maptostr(newparams);
     }
 

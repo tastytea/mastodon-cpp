@@ -578,3 +578,24 @@ void API::get_proxy(string &proxy, string &userpw) const
         }
     }
 }
+
+const parameters API::delete_params(const parameters &params,
+                                    const vector<string> &keys)
+{
+    // Iterate through params. For each item in keys (k), compare to key of
+    // current parameter (p). Return false if parameter is to be deleted. Copy
+    // to new list of parameters (newparams) if true is returned.
+    parameters newparams(params.size());
+    const auto it =
+        std::copy_if(params.begin(), params.end(), newparams.begin(),
+                     [&keys](const param &p)
+                     {
+                         return std::any_of(keys.begin(), keys.end(),
+                                            [&p](const string &k)
+                                            {
+                                                return (k != p.key);
+                                            });
+                     });
+        newparams.resize(std::distance(newparams.begin(), it));
+        return newparams;
+}

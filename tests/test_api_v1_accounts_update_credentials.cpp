@@ -24,7 +24,7 @@
 
 using namespace Mastodon;
 
-SCENARIO ("/api/v1/accounts/verify_credentials can be called successfully",
+SCENARIO ("/api/v1/accounts/update_credentials can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
     GIVEN ("access token and return_call")
@@ -32,7 +32,7 @@ SCENARIO ("/api/v1/accounts/verify_credentials can be called successfully",
         const char *access_token = std::getenv("MASTODON_CPP_ACCESS_TOKEN");
         return_call ret;
         bool exception = false;
-        bool username_found = false;
+        bool display_name_found = false;
 
         REQUIRE (access_token != nullptr);
 
@@ -40,13 +40,14 @@ SCENARIO ("/api/v1/accounts/verify_credentials can be called successfully",
         {
             Mastodon::API masto("likeable.space", access_token);
 
-            WHEN ("/api/v1/accounts/verify_credentials is called")
+            WHEN ("/api/v1/accounts/update_credentials is called")
             {
                 try
                 {
-                    ret = masto.get(API::v1::accounts_verify_credentials);
-                    username_found = ret.answer.find(
-                        "\"username\":\"testaccount\"") != std::string::npos;
+                    ret = masto.patch(API::v1::accounts_update_credentials,
+                                     {{ "display_name", { "testaccount" } }});
+                    display_name_found = ret.answer.find(
+                        "\"display_name\":\"testaccount\"") != std::string::npos;
                 }
                 catch (const std::exception &e)
                 {
@@ -63,7 +64,7 @@ SCENARIO ("/api/v1/accounts/verify_credentials can be called successfully",
                 }
                 THEN ("The answer makes sense")
                 {
-                    REQUIRE(username_found);
+                    REQUIRE(display_name_found);
                 }
             }
         }
@@ -73,11 +74,12 @@ SCENARIO ("/api/v1/accounts/verify_credentials can be called successfully",
             Mastodon::Easy::API masto("likeable.space", access_token);
             Easy::Account account;
 
-            WHEN ("/api/v1/accounts/verify_credentials is called")
+            WHEN ("/api/v1/accounts/update_credentials is called")
             {
                 try
                 {
-                    ret = masto.get(API::v1::accounts_verify_credentials);
+                    ret = masto.patch(API::v1::accounts_update_credentials,
+                                     {{ "display_name", { "testaccount" } }});
                     account = Easy::Account(ret.answer);
                 }
                 catch (const std::exception &e)
@@ -99,7 +101,7 @@ SCENARIO ("/api/v1/accounts/verify_credentials can be called successfully",
                 }
                 THEN ("The answer makes sense")
                 {
-                    REQUIRE(account.username() == "testaccount");
+                    REQUIRE(account.display_name() == "testaccount");
                 }
             }
         }

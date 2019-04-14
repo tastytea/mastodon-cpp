@@ -16,33 +16,37 @@
 
 #include <exception>
 #include <string>
+#include <cstdlib>
 #include <catch.hpp>
 #include "mastodon-cpp.hpp"
 #include "easy/easy.hpp"
-#include "easy/entities/instance.hpp"
+#include "easy/entities/account.hpp"
 
 using namespace Mastodon;
 
-SCENARIO ("/api/v1/instance can be called successfully",
+SCENARIO ("/api/v1/accounts/verify_credentials can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
-    GIVEN ("return_call")
+    GIVEN ("access token return_call")
     {
+        const char *access_token = std::getenv("MASTODON_CPP_ACCESS_TOKEN");
         return_call ret;
         bool exception = false;
+        bool username_found = false;
+
+        REQUIRE (access_token != nullptr);
 
         GIVEN ("Mastodon::API")
         {
-            Mastodon::API masto("likeable.space", "");
-            bool uri_found = false;
+            Mastodon::API masto("likeable.space", access_token);
 
-            WHEN ("/api/v1/instance is called")
+            WHEN ("/api/v1/accounts/verify_credentials is called")
             {
                 try
                 {
-                    ret = masto.get(API::v1::instance);
-                    uri_found = ret.answer.find(
-                        "\"uri\":\"https://likeable.space\"") != std::string::npos;
+                    ret = masto.get(API::v1::accounts_verify_credentials);
+                    username_found = ret.answer.find(
+                        "\"username\":\"testaccount\"") != std::string::npos;
                 }
                 catch (const std::exception &e)
                 {
@@ -59,22 +63,22 @@ SCENARIO ("/api/v1/instance can be called successfully",
                 }
                 THEN ("The answer makes sense")
                 {
-                    REQUIRE(uri_found);
+                    REQUIRE(username_found);
                 }
             }
         }
 
         GIVEN ("Mastodon::Easy::API")
         {
-            Mastodon::Easy::API masto("likeable.space", "");
-            Easy::Instance instance;
+            Mastodon::Easy::API masto("likeable.space", access_token);
+            Easy::Account account;
 
-            WHEN ("/api/v1/instance is called")
+            WHEN ("/api/v1/accounts/verify_credentials is called")
             {
                 try
                 {
-                    ret = masto.get(API::v1::instance);
-                    instance = Easy::Instance(ret.answer);
+                    ret = masto.get(API::v1::accounts_verify_credentials);
+                    account = Easy::Account(ret.answer);
                 }
                 catch (const std::exception &e)
                 {
@@ -91,11 +95,11 @@ SCENARIO ("/api/v1/instance can be called successfully",
                 }
                 THEN ("Answer is valid")
                 {
-                    REQUIRE(instance.valid());
+                    REQUIRE(account.valid());
                 }
                 THEN ("The answer makes sense")
                 {
-                    REQUIRE(instance.uri() == "https://likeable.space");
+                    REQUIRE(account.username() == "testaccount");
                 }
             }
         }

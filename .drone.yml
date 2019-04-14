@@ -8,6 +8,8 @@ pipeline:
       - LANG=C.utf8
       - CXX=g++-6
       - CXXFLAGS=-pipe -O2
+    secrets:
+      - mastodon_cpp_access_token
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
       - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
@@ -33,6 +35,8 @@ pipeline:
       - LANG=C.utf8
       - CXX=g++-7
       - CXXFLAGS=-pipe -O2
+    secrets:
+      - mastodon_cpp_access_token
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
       - apt-get update -q
@@ -64,6 +68,8 @@ pipeline:
       - LANG=C.utf8
       - CXX=g++-8
       - CXXFLAGS=-pipe -O2
+    secrets:
+      - mastodon_cpp_access_token
     commands:
       - rm /etc/apt/apt.conf.d/docker-clean
       - apt-get update -q

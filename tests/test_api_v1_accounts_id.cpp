@@ -26,77 +26,80 @@ using namespace Mastodon;
 SCENARIO ("/api/v1/accounts/:id can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
-    GIVEN ("Mastodon::API")
+    GIVEN ("id and return_call")
     {
-        Mastodon::API masto("likeable.space", "");
+        const string id = "9hnrrVPriLiLVAhfVo";
         return_call ret;
         bool exception = false;
-        bool username_found = false;
 
-        WHEN ("/api/v1/accounts/9hnrrVPriLiLVAhfVo is called")
+        GIVEN ("Mastodon::API")
         {
-            try
+            Mastodon::API masto("likeable.space", "");
+            bool username_found = false;
+
+            WHEN ("/api/v1/accounts/" + id + " is called")
             {
-                ret = masto.get(API::v1::accounts_id,
-                                {{ "id", { "9hnrrVPriLiLVAhfVo" }}});
-                username_found = ret.answer.find(
-                    "\"username\":\"testaccount\"") != std::string::npos;
-            }
-            catch (const std::exception &e)
-            {
-                exception = true;
-            }
-            THEN("No exception is thrown")
-            {
-                REQUIRE_FALSE(exception);
-            }
-            THEN ("No errors are returned")
-            {
-                REQUIRE(ret.error_code == 0);
-                REQUIRE(ret.http_error_code == 200);
-            }
-            THEN ("The answer makes sense")
-            {
-                REQUIRE(username_found);
+                try
+                {
+                    ret = masto.get(API::v1::accounts_id,
+                                    {{ "id", { id }}});
+                    username_found = ret.answer.find(
+                        "\"username\":\"testaccount\"") != std::string::npos;
+                }
+                catch (const std::exception &e)
+                {
+                    exception = true;
+                }
+                THEN("No exception is thrown")
+                {
+                    REQUIRE_FALSE(exception);
+                }
+                THEN ("No errors are returned")
+                {
+                    REQUIRE(ret.error_code == 0);
+                    REQUIRE(ret.http_error_code == 200);
+                }
+                THEN ("The answer makes sense")
+                {
+                    REQUIRE(username_found);
+                }
             }
         }
-    }
 
-    GIVEN ("Mastodon::Easy::API")
-    {
-        Mastodon::Easy::API masto("likeable.space", "");
-        return_call ret;
-        Easy::Account account;
-        bool exception = false;
-
-        WHEN ("/api/v1/accounts/9hnrrVPriLiLVAhfVo is called")
+        GIVEN ("Mastodon::Easy::API")
         {
-            try
+            Mastodon::Easy::API masto("likeable.space", "");
+            Easy::Account account;
+
+            WHEN ("/api/v1/accounts/" + id + " is called")
             {
-                ret = masto.get(API::v1::accounts_id,
-                                {{ "id", { "9hnrrVPriLiLVAhfVo" }}});
-                account = Easy::Account(ret.answer);
-            }
-            catch (const std::exception &e)
-            {
-                exception = true;
-            }
-            THEN("No exception is thrown")
-            {
-                REQUIRE_FALSE(exception);
-            }
-            THEN ("No errors are returned")
-            {
-                REQUIRE(ret.error_code == 0);
-                REQUIRE(ret.http_error_code == 200);
-            }
-            THEN ("Answer is valid")
-            {
-                REQUIRE(account.valid());
-            }
-            THEN ("The answer makes sense")
-            {
-                REQUIRE(account.username() == "testaccount");
+                try
+                {
+                    ret = masto.get(API::v1::accounts_id,
+                                    {{ "id", { id }}});
+                    account = Easy::Account(ret.answer);
+                }
+                catch (const std::exception &e)
+                {
+                    exception = true;
+                }
+                THEN("No exception is thrown")
+                {
+                    REQUIRE_FALSE(exception);
+                }
+                THEN ("No errors are returned")
+                {
+                    REQUIRE(ret.error_code == 0);
+                    REQUIRE(ret.http_error_code == 200);
+                }
+                THEN ("Answer is valid")
+                {
+                    REQUIRE(account.valid());
+                }
+                THEN ("The answer makes sense")
+                {
+                    REQUIRE(account.username() == "testaccount");
+                }
             }
         }
     }

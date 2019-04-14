@@ -41,11 +41,12 @@ Easy::return_entity<T>::return_entity()
 
 template<typename T>
 Easy::return_entity<T>::return_entity(const uint8_t ec, const string &em,
-                                      const T &ent)
+                                      const uint16_t hec, const T &ent)
     : entity(ent)
 {
     error_code = ec;
     error_message = em;
+    http_error_code = hec;
 }
 
 template<typename T>
@@ -95,11 +96,13 @@ return_entity_vector::return_entity_vector()
 
 template<typename T>
 Easy::return_entity_vector<T>::return_entity_vector::return_entity_vector(
-    const uint8_t ec, const string &em, const vector<T> &vec)
+    const uint8_t ec, const string &em,
+    const uint16_t hec, const vector<T> &vec)
     : entities(vec)
 {
     error_code = ec;
     error_message = em;
+    http_error_code = hec;
 }
 
 template<typename T>

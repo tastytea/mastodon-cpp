@@ -51,9 +51,9 @@ return_call::return_call()
 
 return_call::return_call(const uint8_t ec, const string &em,
                          const uint16_t hec, const string &a)
-: http_error_code(hec)
-, answer(a)
+    : answer(a)
 {
     error_code = ec;
     error_message = em;
+    http_error_code = hec;
 }

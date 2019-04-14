@@ -52,7 +52,19 @@ namespace Easy
         T entity;
 
         return_entity();
-        return_entity(const uint8_t ec, const string &em, const T &ent);
+
+        /*!
+         *  @brief  Return type for easy Mastodon::Easy::API.
+         *
+         *  @param ec  Error code
+         *  @param em  Error message
+         *  @param hec HTTP error code
+         *  @param ent Answer
+         *
+         *  @since  0.100.0
+         */
+        return_entity(const uint8_t ec, const string &em,
+                      const uint16_t hec, const T &ent);
 
         /*!
          *  @brief  Same as return_entity::entity.
@@ -95,7 +107,7 @@ namespace Easy
 
         return_entity_vector();
         return_entity_vector(const uint8_t ec, const string &em,
-                             const vector<T> &vec);
+                             const uint16_t hec, const vector<T> &vec);
 
         /*!
          *  @brief  Same es return_entity_vector::entities.

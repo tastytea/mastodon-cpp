@@ -48,6 +48,13 @@ namespace Mastodon
         string error_message;
 
         /*!
+         *  @brief HTTP error code.
+         *
+         *  @since  0.100.0
+         */
+        uint16_t http_error_code = 0;
+
+        /*!
          *  @brief  true if return_base::error_code is 0, otherwise false.
          *
          *  @since  0.100.0
@@ -85,13 +92,6 @@ namespace Mastodon
     typedef struct return_call : return_base
     {
         /*!
-         *  @brief HTTP error code.
-         *
-         *  @since  0.100.0
-         */
-        uint16_t http_error_code = 0;
-
-        /*!
          *  @brief  The response from the server.
          *
          *  @since  0.100.0
@@ -101,7 +101,7 @@ namespace Mastodon
         return_call();
 
         /*!
-         *  @brief  Construct new return type for calls.
+         *  @brief  Return type for Mastodon::API.
          *
          *  @param ec  Error code
          *  @param em  Error message

@@ -39,7 +39,7 @@ const return_entity<Status> API::send_post(const Status &status)
     else
     {
         ttdebug << "ERROR: Easy::Status::content can not be empty.\n";
-        return {22, "Easy::Status::content can not be empty", Status()};
+        return { 22, "Easy::Status::content can not be empty", 0, Status() };
     }
 
     if (!status.in_reply_to_id().empty())
@@ -95,7 +95,7 @@ const return_entity<Status> API::send_post(const Status &status)
             {
                 ttdebug << "ERROR: Easy::Attachment::file can not be empty.\n";
                 return { 22, "Easy::Attachment::file can not be empty",
-                    Status() };
+                         0, Status() };
             }
             if (!att.description().empty())
             {
@@ -118,7 +118,7 @@ const return_entity<Status> API::send_post(const Status &status)
             {
                 ttdebug << "ERROR: Could not upload file.\n";
                 return { ret.error_code, ret.error_message,
-                    Status(ret.answer) };
+                         ret.http_error_code, Status(ret.answer) };
             }
         }
 
@@ -126,7 +126,8 @@ const return_entity<Status> API::send_post(const Status &status)
     }
 
     return_call ret = post(API::v1::statuses, params);
-    return { ret.error_code, ret.error_message, Status(ret.answer) };
+    return { ret.error_code, ret.error_message, ret.http_error_code,
+             Status(ret.answer) };
 }
 
 const return_entity_vector<Notification> API::get_notifications(
@@ -157,11 +158,12 @@ const return_entity_vector<Notification> API::get_notifications(
                        [](const string &s)
                        { return Notification(s); });
 
-        return { ret.error_code, ret.error_message, notifications };
+        return { ret.error_code, ret.error_message, ret.http_error_code,
+                 notifications };
     }
     else
     {
         ttdebug << "ERROR: Could not get notifications.\n";
-        return { ret.error_code, ret.error_message, {} };
+        return { ret.error_code, ret.error_message, ret.http_error_code, {} };
     }
 }

@@ -14,19 +14,13 @@ pipeline:
       - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
       - apt-get update -q
       - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen
+      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
       - apt-get install -qy -t sid libcurlpp-dev
-      - apt-get install -qy rpm file
       - rm -rf build && mkdir -p build && cd build
       - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES ..
       - make VERBOSE=1
       - make install DESTDIR=install
-      - ctest ..
-      - make package
-      - cmake -DWITH_DEB=YES ..
-      - make package
-      - cmake -DWITH_DEB=NO -DWITH_RPM=YES ..
-      - make package
+      - ctest
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
 
@@ -51,12 +45,13 @@ pipeline:
       - apt-get update -q
       - apt-get install -qy build-essential cmake pkg-config
       - apt-get install -qy -t xenial g++-7
-      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen
+      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
       - apt-get install -qy -t sid libcurlpp-dev
       - rm -rf build && mkdir -p build && cd build
       - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES ..
       - make VERBOSE=1
       - make install DESTDIR=install
+      - ctest
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
 
@@ -81,12 +76,13 @@ pipeline:
       - apt-get update -q
       - apt-get install -qy build-essential cmake pkg-config
       - apt-get install -qy -t xenial g++-8
-      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen
+      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
       - apt-get install -qy -t sid libcurlpp-dev
       - rm -rf build && mkdir -p build && cd build
       - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES ..
       - make VERBOSE=1
       - make install DESTDIR=install
+      - ctest
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
 

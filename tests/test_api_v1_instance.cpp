@@ -26,83 +26,43 @@ using namespace Mastodon;
 SCENARIO ("/api/v1/instance can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
-    GIVEN ("instance and return_call")
+    const char *envinstance = std::getenv("MASTODON_CPP_INSTANCE");
+    const string instance = (envinstance ? envinstance : "likeable.space");
+    GIVEN ("instance = " + instance)
     {
-        const char *envinstance = std::getenv("MASTODON_CPP_INSTANCE");
-        const string instance = (envinstance ? envinstance : "likeable.space");
+        Mastodon::Easy::API masto(instance, "");
         return_call ret;
+        Easy::Instance instance_;
         bool exception = false;
 
-        GIVEN ("Mastodon::API")
+        WHEN ("/api/v1/instance is called")
         {
-            Mastodon::API masto(instance, "");
-            bool uri_found = false;
-
-            WHEN ("/api/v1/instance is called")
+            try
             {
-                try
-                {
-                    ret = masto.get(API::v1::instance);
-                    uri_found =
-                        ret.answer.find("\"uri\":\"https://likeable.space\"")
-                        != std::string::npos;
-                }
-                catch (const std::exception &e)
-                {
-                    exception = true;
-                    WARN(e.what());
-                }
-                THEN("No exception is thrown")
-                {
-                    REQUIRE_FALSE(exception);
-                }
-                THEN ("No errors are returned")
-                {
-                    REQUIRE(ret.error_code == 0);
-                    REQUIRE(ret.http_error_code == 200);
-                }
-                THEN ("The answer makes sense")
-                {
-                    REQUIRE(uri_found);
-                }
+                ret = masto.get(API::v1::instance);
+                instance_ = Easy::Instance(ret.answer);
             }
-        }
-
-        GIVEN ("Mastodon::Easy::API")
-        {
-            Mastodon::Easy::API masto(instance, "");
-            Easy::Instance instance_;
-
-            WHEN ("/api/v1/instance is called")
+            catch (const std::exception &e)
             {
-                try
-                {
-                    ret = masto.get(API::v1::instance);
-                    instance_ = Easy::Instance(ret.answer);
-                }
-                catch (const std::exception &e)
-                {
-                    exception = true;
-                    WARN(e.what());
-                }
-                THEN("No exception is thrown")
-                {
-                    REQUIRE_FALSE(exception);
-                }
-                THEN ("No errors are returned")
-                {
-                    REQUIRE(ret.error_code == 0);
-                    REQUIRE(ret.http_error_code == 200);
-                }
-                THEN ("Answer is valid")
-                {
-                    REQUIRE(instance_.valid());
-                }
-                THEN ("The answer makes sense")
-                {
-                    REQUIRE(instance_.uri() == "https://likeable.space");
-                }
+                exception = true;
+                WARN(e.what());
+            }
+
+            THEN("No exception is thrown")
+                AND_THEN ("No errors are returned")
+                AND_THEN ("Answer is valid")
+                AND_THEN ("The answer makes sense")
+            {
+                REQUIRE_FALSE(exception);
+
+                REQUIRE(ret.error_code == 0);
+                REQUIRE(ret.http_error_code == 200);
+
+                REQUIRE(instance_.valid());
+
+                REQUIRE(instance_.uri() == ("https://" + instance));
             }
         }
     }
 }
+

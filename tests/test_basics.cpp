@@ -22,6 +22,7 @@
 SCENARIO ("Instantiating API classes works")
 {
     bool exception = false;
+
     WHEN ("Mastodon::API")
     {
         try
@@ -32,6 +33,7 @@ SCENARIO ("Instantiating API classes works")
         {
             exception = true;
         }
+
         THEN ("No exception is thrown")
         {
             REQUIRE_FALSE(exception);
@@ -48,6 +50,7 @@ SCENARIO ("Instantiating API classes works")
         {
             exception = true;
         }
+
         THEN ("No exception is thrown")
         {
             REQUIRE_FALSE(exception);

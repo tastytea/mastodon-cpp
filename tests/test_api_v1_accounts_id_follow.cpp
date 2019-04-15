@@ -27,103 +27,52 @@ using namespace Mastodon;
 SCENARIO ("/api/v1/accounts/:id/follow can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
-    GIVEN ("instance, access token, user id and return_call")
+    const char *env_instance = std::getenv("MASTODON_CPP_INSTANCE");
+    const string instance = (env_instance ? env_instance : "likeable.space");
+    const char *access_token = std::getenv("MASTODON_CPP_ACCESS_TOKEN");
+    const char *env_user_id = std::getenv("MASTODON_CPP_USER_ID");
+    const string user_id = (env_user_id ? env_user_id : "9hnrrVPriLiLVAhfVo");
+
+    GIVEN ("instance = " + instance + ", user ID = " + user_id)
     {
-        const char *env_instance = std::getenv("MASTODON_CPP_INSTANCE");
-        const string instance =
-            (env_instance ? env_instance : "likeable.space");
-        const char *access_token = std::getenv("MASTODON_CPP_ACCESS_TOKEN");
-        const char *env_user_id = std::getenv("MASTODON_CPP_USER_ID");
-        const string user_id =
-            (env_user_id ? env_user_id : "9hnrrVPriLiLVAhfVo");
-
+        Mastodon::Easy::API masto(instance, access_token);
         return_call ret;
+        Easy::Relationship relationship;
         bool exception = false;
-        bool following_found = false;
-        bool error_found = false;
 
-        // You can't follow yourself, so we look for errors too.
 
         REQUIRE (access_token != nullptr);
 
-        GIVEN ("Mastodon::API")
+        WHEN ("/api/v1/accounts/" + user_id + "/follow is called")
         {
-            Mastodon::API masto(instance, access_token);
-
-            WHEN ("/api/v1/accounts/" + user_id + "/follow is called")
+            try
             {
-                try
-                {
-                    ret = masto.post(API::v1::accounts_id_follow,
-                                    {
-                                        { "id", { user_id } },
-                                    });
-                    following_found =
-                        ret.answer.find("\"following\":\"")
-                        != std::string::npos;
-                    error_found = following_found =
-                        ret.answer.find("\"error")
-                        != std::string::npos;
-                }
-                catch (const std::exception &e)
-                {
-                    exception = true;
-                    WARN(e.what());
-                }
-                THEN("No exception is thrown")
-                {
-                    REQUIRE_FALSE(exception);
-                }
-                THEN ("No unexpected errors are returned")
-                {
-                    REQUIRE((ret.error_code == 0
-                             || ret.error_code == 111));
-                    REQUIRE((ret.http_error_code == 200
-                             || ret.http_error_code == 500));
-                }
-                THEN ("The answer makes sense")
-                {
-                    REQUIRE((following_found || error_found));
-                }
+                ret = masto.post(API::v1::accounts_id_follow,
+                                 {
+                                     { "id", { user_id } },
+                                 });
+                relationship.from_string(ret.answer);
             }
-        }
-
-        GIVEN ("Mastodon::Easy::API")
-        {
-            Mastodon::Easy::API masto(instance, access_token);
-            Easy::Relationship relationship;
-
-            WHEN ("/api/v1/accounts/" + user_id + "/follow is called")
+            catch (const std::exception &e)
             {
-                try
-                {
-                    ret = masto.post(API::v1::accounts_id_follow,
-                                     {
-                                         { "id", { user_id } },
-                                     });
-                    relationship.from_string(ret.answer);
-                }
-                catch (const std::exception &e)
-                {
-                    exception = true;
-                    WARN(e.what());
-                }
-                THEN("No exception is thrown")
-                {
-                    REQUIRE_FALSE(exception);
-                }
-                THEN ("No unexpected errors are returned")
-                {
-                    REQUIRE((ret.error_code == 0
-                             || ret.error_code == 111));
-                    REQUIRE((ret.http_error_code == 200
-                             || ret.http_error_code == 500));
-                }
-                THEN ("The answer makes sense")
-                {
-                    REQUIRE((relationship.following()
-                             || relationship.error() != ""));
-                }
+                exception = true;
+                WARN(e.what());
+            }
+
+            THEN("No exception is thrown")
+                AND_THEN ("No unexpected errors are returned")
+                AND_THEN ("The answer makes sense")
+            {
+                REQUIRE_FALSE(exception);
+
+                // You can't follow yourself, so we look for errors too.
+                REQUIRE((ret.error_code == 0
+                         || ret.error_code == 111));
+                REQUIRE((ret.http_error_code == 200
+                         || ret.http_error_code == 500));
+
+                REQUIRE((relationship.following()
+                         || relationship.error() != ""));
             }
         }
     }

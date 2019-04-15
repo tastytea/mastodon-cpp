@@ -1,5 +1,5 @@
 **mastodon-cpp** is a C++ wrapper for the Mastodon API. You submit an API call
-and get the raw JSON or easy to use abstractions, just as you like.
+and get the raw JSON or easy to use abstractions.
 
 **The ABI will be unstable in versions < 1.0.0**
 

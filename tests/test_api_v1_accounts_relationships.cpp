@@ -20,11 +20,11 @@
 #include <catch.hpp>
 #include "mastodon-cpp.hpp"
 #include "easy/easy.hpp"
-#include "easy/entities/status.hpp"
+#include "easy/entities/relationship.hpp"
 
 using namespace Mastodon;
 
-SCENARIO ("/api/v1/accounts/:id/statuses can be called successfully",
+SCENARIO ("/api/v1/accounts/relationships can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
     GIVEN ("instance, access token, user id and return_call")
@@ -39,7 +39,7 @@ SCENARIO ("/api/v1/accounts/:id/statuses can be called successfully",
 
         return_call ret;
         bool exception = false;
-        bool content_found = false;
+        bool id_found = false;
 
         REQUIRE (access_token != nullptr);
 
@@ -47,21 +47,20 @@ SCENARIO ("/api/v1/accounts/:id/statuses can be called successfully",
         {
             Mastodon::API masto(instance, access_token);
 
-            WHEN ("/api/v1/accounts/" + user_id + "/statuses is called")
+            WHEN ("/api/v1/accounts/relationships is called")
             {
                 try
                 {
-                    ret = masto.get(API::v1::accounts_id_statuses,
+                    ret = masto.get(API::v1::accounts_relationships,
                                     {
                                         { "id", { user_id } },
-                                        { "limit", { "5" } }
                                     });
                     if (ret.answer == "[]")
                     {
-                        WARN("No statuses found.");
+                        WARN("No relationships found.");
                     }
-                    content_found =
-                        ret.answer.find("\"content\":\"")
+                    id_found =
+                        ret.answer.find("\"id\":\"")
                         != std::string::npos;
                 }
                 catch (const std::exception &e)
@@ -80,7 +79,7 @@ SCENARIO ("/api/v1/accounts/:id/statuses can be called successfully",
                 }
                 THEN ("The answer makes sense")
                 {
-                    REQUIRE(content_found);
+                    REQUIRE(id_found);
                 }
             }
         }
@@ -88,24 +87,23 @@ SCENARIO ("/api/v1/accounts/:id/statuses can be called successfully",
         GIVEN ("Mastodon::Easy::API")
         {
             Mastodon::Easy::API masto(instance, access_token);
-            Easy::Status status;
+            Easy::Relationship relationship;
 
-            WHEN ("/api/v1/accounts/" + user_id + "/statuses is called")
+            WHEN ("/api/v1/accounts/relationships is called")
             {
                 try
                 {
-                    ret = masto.get(API::v1::accounts_id_statuses,
+                    ret = masto.get(API::v1::accounts_relationships,
                                     {
                                         { "id", { user_id } },
-                                        { "limit", { "5" } }
                                     });
                     if (ret.answer == "[]")
                     {
-                        WARN("No statuses found.");
+                        WARN("No relationships found.");
                     }
                     else
                     {
-                        status.from_string
+                        reloationship.from_string
                             (Easy::json_array_to_vector(ret.answer).front());
                     }
                 }
@@ -125,11 +123,11 @@ SCENARIO ("/api/v1/accounts/:id/statuses can be called successfully",
                 }
                 THEN ("Answer is valid")
                 {
-                    REQUIRE(status.valid());
+                    REQUIRE(relationship.valid());
                 }
                 THEN ("The answer makes sense")
                 {
-                    REQUIRE(status.content() != "");
+                    REQUIRE(relationship.id() != "");
                 }
             }
         }

@@ -20,11 +20,11 @@
 #include <catch.hpp>
 #include "mastodon-cpp.hpp"
 #include "easy/easy.hpp"
-#include "easy/entities/status.hpp"
+#include "easy/entities/relationship.hpp"
 
 using namespace Mastodon;
 
-SCENARIO ("/api/v1/accounts/:id/statuses can be called successfully",
+SCENARIO ("/api/v1/accounts/:id/follow can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
     GIVEN ("instance, access token, user id and return_call")
@@ -39,7 +39,10 @@ SCENARIO ("/api/v1/accounts/:id/statuses can be called successfully",
 
         return_call ret;
         bool exception = false;
-        bool content_found = false;
+        bool following_found = false;
+        bool error_found = false;
+
+        // You can't follow yourself, so we look for errors too.
 
         REQUIRE (access_token != nullptr);
 
@@ -47,21 +50,19 @@ SCENARIO ("/api/v1/accounts/:id/statuses can be called successfully",
         {
             Mastodon::API masto(instance, access_token);
 
-            WHEN ("/api/v1/accounts/" + user_id + "/statuses is called")
+            WHEN ("/api/v1/accounts/" + user_id + "/follow is called")
             {
                 try
                 {
-                    ret = masto.get(API::v1::accounts_id_statuses,
+                    ret = masto.post(API::v1::accounts_id_follow,
                                     {
                                         { "id", { user_id } },
-                                        { "limit", { "5" } }
                                     });
-                    if (ret.answer == "[]")
-                    {
-                        WARN("No statuses found.");
-                    }
-                    content_found =
-                        ret.answer.find("\"content\":\"")
+                    following_found =
+                        ret.answer.find("\"following\":\"")
+                        != std::string::npos;
+                    error_found = following_found =
+                        ret.answer.find("\"error")
                         != std::string::npos;
                 }
                 catch (const std::exception &e)
@@ -73,14 +74,16 @@ SCENARIO ("/api/v1/accounts/:id/statuses can be called successfully",
                 {
                     REQUIRE_FALSE(exception);
                 }
-                THEN ("No errors are returned")
+                THEN ("No unexpected errors are returned")
                 {
-                    REQUIRE(ret.error_code == 0);
-                    REQUIRE(ret.http_error_code == 200);
+                    REQUIRE((ret.error_code == 0
+                             || ret.error_code == 111));
+                    REQUIRE((ret.http_error_code == 200
+                             || ret.http_error_code == 500));
                 }
                 THEN ("The answer makes sense")
                 {
-                    REQUIRE(content_found);
+                    REQUIRE((following_found || error_found));
                 }
             }
         }
@@ -88,26 +91,17 @@ SCENARIO ("/api/v1/accounts/:id/statuses can be called successfully",
         GIVEN ("Mastodon::Easy::API")
         {
             Mastodon::Easy::API masto(instance, access_token);
-            Easy::Status status;
+            Easy::Relationship relationship;
 
-            WHEN ("/api/v1/accounts/" + user_id + "/statuses is called")
+            WHEN ("/api/v1/accounts/" + user_id + "/follow is called")
             {
                 try
                 {
-                    ret = masto.get(API::v1::accounts_id_statuses,
-                                    {
-                                        { "id", { user_id } },
-                                        { "limit", { "5" } }
-                                    });
-                    if (ret.answer == "[]")
-                    {
-                        WARN("No followed found.");
-                    }
-                    else
-                    {
-                        status.from_string
-                            (Easy::json_array_to_vector(ret.answer).front());
-                    }
+                    ret = masto.post(API::v1::accounts_id_follow,
+                                     {
+                                         { "id", { user_id } },
+                                     });
+                    relationship.from_string(ret.answer);
                 }
                 catch (const std::exception &e)
                 {
@@ -120,16 +114,15 @@ SCENARIO ("/api/v1/accounts/:id/statuses can be called successfully",
                 }
                 THEN ("No errors are returned")
                 {
-                    REQUIRE(ret.error_code == 0);
-                    REQUIRE(ret.http_error_code == 200);
-                }
-                THEN ("Answer is valid")
-                {
-                    REQUIRE(status.valid());
+                    REQUIRE((ret.error_code == 0
+                             || ret.error_code == 111));
+                    REQUIRE((ret.http_error_code == 200
+                             || ret.http_error_code == 500));
                 }
                 THEN ("The answer makes sense")
                 {
-                    REQUIRE(status.content() != "");
+                    REQUIRE((relationship.following()
+                             || relationship.error() != ""));
                 }
             }
         }

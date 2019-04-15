@@ -103,7 +103,7 @@ SCENARIO ("/api/v1/accounts/relationships can be called successfully",
                     }
                     else
                     {
-                        reloationship.from_string
+                        relationship.from_string
                             (Easy::json_array_to_vector(ret.answer).front());
                     }
                 }

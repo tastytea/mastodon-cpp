@@ -32,6 +32,7 @@ bool Status::valid() const
         "content",
         "created_at",
         "emojis",
+        "replies_count",
         "reblogs_count",
         "favourites_count",
         "sensitive",
@@ -39,7 +40,8 @@ bool Status::valid() const
         "visibility",
         "media_attachments",
         "mentions",
-        "tags"
+        "tags",
+        "application"
     }};
 
     return Entity::check_valid(attributes);

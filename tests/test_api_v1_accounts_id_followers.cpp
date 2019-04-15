@@ -67,6 +67,7 @@ SCENARIO ("/api/v1/accounts/:id/followers can be called successfully",
                 catch (const std::exception &e)
                 {
                     exception = true;
+                    WARN(e.what());
                 }
                 THEN("No exception is thrown")
                 {

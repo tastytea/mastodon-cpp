@@ -55,6 +55,7 @@ SCENARIO ("/api/v1/accounts/update_credentials can be called successfully",
                 catch (const std::exception &e)
                 {
                     exception = true;
+                    WARN(e.what());
                 }
                 THEN("No exception is thrown")
                 {
@@ -88,6 +89,7 @@ SCENARIO ("/api/v1/accounts/update_credentials can be called successfully",
                 catch (const std::exception &e)
                 {
                     exception = true;
+                    WARN(e.what());
                 }
                 THEN("No exception is thrown")
                 {

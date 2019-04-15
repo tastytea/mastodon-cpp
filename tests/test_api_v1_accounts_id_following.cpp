@@ -51,7 +51,7 @@ SCENARIO ("/api/v1/accounts/:id/following can be called successfully",
             {
                 try
                 {
-                    ret = masto.get(API::v1::accounts_id_followers,
+                    ret = masto.get(API::v1::accounts_id_following,
                                     {
                                         { "id", { user_id } },
                                         { "limit", { "5" } }
@@ -67,6 +67,7 @@ SCENARIO ("/api/v1/accounts/:id/following can be called successfully",
                 catch (const std::exception &e)
                 {
                     exception = true;
+                    WARN(e.what());
                 }
                 THEN("No exception is thrown")
                 {
@@ -93,7 +94,7 @@ SCENARIO ("/api/v1/accounts/:id/following can be called successfully",
             {
                 try
                 {
-                    ret = masto.get(API::v1::accounts_id_followers,
+                    ret = masto.get(API::v1::accounts_id_following,
                                     {
                                         { "id", { user_id } },
                                         { "limit", { "5" } }

@@ -69,7 +69,7 @@ void Easy::Entity::from_string(const string &json)
         ttdebug << "ERROR: JSON string holds no object\n";
         ttdebug << "String was: " << json << '\n';
     }
-    else if (!_tree["error"].isNull())
+    else if (!_tree["error"].isNull() || !_tree["errors"].isNull())
     {
         ttdebug << "ERROR: Server returned an error\n";
         ttdebug << "String was: " << json << '\n';
@@ -107,7 +107,14 @@ bool Easy::Entity::check_valid(const std::vector<string> &attributes) const
 
 const string Easy::Entity::error() const
 {
-    return get_string("error");
+    string error = get_string("error");
+    if (error.empty())
+    {
+        // Pleroma uses {"errors":{"detail":"[…]"}} sometimes.
+        const Json::Value node = get("errors.detail");
+        error = node.asString();
+    }
+    return error;
 }
 
 bool Easy::Entity::was_set() const

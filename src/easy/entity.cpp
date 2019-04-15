@@ -54,8 +54,15 @@ Easy::Entity::operator const Json::Value() const
 
 void Easy::Entity::from_string(const string &json)
 {
-    std::stringstream ss(json);
-    ss >> _tree;
+    if (json.find('{') != std::string::npos)
+    {
+        std::stringstream ss(json);
+        ss >> _tree;
+    }
+    else
+    {
+        _tree.clear();
+    }
 
     // If the JSON is a single object encapsulated in an array,
     // transform it into an object. If the JSON string is [], transform to null

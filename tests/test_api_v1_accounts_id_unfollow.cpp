@@ -24,7 +24,7 @@
 
 using namespace Mastodon;
 
-SCENARIO ("/api/v1/accounts/:id/follow can be called successfully",
+SCENARIO ("/api/v1/accounts/:id/unfollow can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
     GIVEN ("instance, access token, user id and return_call")
@@ -39,10 +39,10 @@ SCENARIO ("/api/v1/accounts/:id/follow can be called successfully",
 
         return_call ret;
         bool exception = false;
-        bool following_found = false;
+        bool following_found = true;
         bool error_found = false;
 
-        // You can't follow yourself, so we look for errors too.
+        // You can't unfollow yourself, so we look for errors too.
 
         REQUIRE (access_token != nullptr);
 
@@ -50,11 +50,11 @@ SCENARIO ("/api/v1/accounts/:id/follow can be called successfully",
         {
             Mastodon::API masto(instance, access_token);
 
-            WHEN ("/api/v1/accounts/" + user_id + "/follow is called")
+            WHEN ("/api/v1/accounts/" + user_id + "/unfollow is called")
             {
                 try
                 {
-                    ret = masto.post(API::v1::accounts_id_follow,
+                    ret = masto.post(API::v1::accounts_id_unfollow,
                                     {
                                         { "id", { user_id } },
                                     });
@@ -83,7 +83,7 @@ SCENARIO ("/api/v1/accounts/:id/follow can be called successfully",
                 }
                 THEN ("The answer makes sense")
                 {
-                    REQUIRE((following_found || error_found));
+                    REQUIRE((!following_found || error_found));
                 }
             }
         }
@@ -93,11 +93,11 @@ SCENARIO ("/api/v1/accounts/:id/follow can be called successfully",
             Mastodon::Easy::API masto(instance, access_token);
             Easy::Relationship relationship;
 
-            WHEN ("/api/v1/accounts/" + user_id + "/follow is called")
+            WHEN ("/api/v1/accounts/" + user_id + "/unfollow is called")
             {
                 try
                 {
-                    ret = masto.post(API::v1::accounts_id_follow,
+                    ret = masto.post(API::v1::accounts_id_unfollow,
                                      {
                                          { "id", { user_id } },
                                      });
@@ -121,7 +121,7 @@ SCENARIO ("/api/v1/accounts/:id/follow can be called successfully",
                 }
                 THEN ("The answer makes sense")
                 {
-                    REQUIRE((relationship.following()
+                    REQUIRE((!relationship.following()
                              || relationship.error() != ""));
                 }
             }

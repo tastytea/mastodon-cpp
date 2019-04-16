@@ -36,7 +36,7 @@ SCENARIO ("/api/v1/accounts/:id/statuses can be called successfully",
         Easy::Status status;
         bool exception = false;
 
-        WHEN ("/api/v1/accounts/" + user_id + "/statuses is called")
+        WHEN ("GET /api/v1/accounts/" + user_id + "/statuses is called")
         {
             try
             {

@@ -34,7 +34,7 @@ SCENARIO ("/api/v1/instance can be called successfully",
         Easy::Instance instance_;
         bool exception = false;
 
-        WHEN ("/api/v1/instance is called")
+        WHEN ("GET /api/v1/instance is called")
         {
             try
             {

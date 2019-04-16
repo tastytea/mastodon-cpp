@@ -34,7 +34,7 @@ SCENARIO ("/api/v1/accounts/:id can be called successfully",
         Easy::Account account;
         bool exception = false;
 
-        WHEN ("/api/v1/accounts/" + user_id + " is called")
+        WHEN ("GET /api/v1/accounts/" + user_id + " is called")
         {
             try
             {

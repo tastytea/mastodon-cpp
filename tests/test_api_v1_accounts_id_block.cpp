@@ -35,7 +35,7 @@ SCENARIO ("/api/v1/accounts/:id/block can be called successfully",
         Easy::Relationship relationship;
         bool exception = false;
 
-        WHEN ("/api/v1/accounts/" + user_id + "/block is called")
+        WHEN ("POST /api/v1/accounts/" + user_id + "/block is called")
         {
             try
             {

@@ -36,7 +36,7 @@ SCENARIO ("/api/v1/accounts/:id/followers can be called successfully",
         Easy::Account account;
         bool exception = false;
 
-        WHEN ("/api/v1/accounts/" + user_id + "/followers is called")
+        WHEN ("GET /api/v1/accounts/" + user_id + "/followers is called")
         {
             try
             {

@@ -36,7 +36,7 @@ SCENARIO ("/api/v1/accounts/verify_credentials can be called successfully",
         Easy::Account account;
         bool exception = false;
 
-        WHEN ("/api/v1/accounts/verify_credentials is called")
+        WHEN ("GET /api/v1/accounts/verify_credentials is called")
         {
             try
             {

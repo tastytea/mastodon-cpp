@@ -36,7 +36,7 @@ SCENARIO ("/api/v1/accounts/:id/unfollow can be called successfully",
         Easy::Relationship relationship;
         bool exception = false;
 
-        WHEN ("/api/v1/accounts/" + user_id + "/unfollow is called")
+        WHEN ("POST /api/v1/accounts/" + user_id + "/unfollow is called")
         {
             try
             {

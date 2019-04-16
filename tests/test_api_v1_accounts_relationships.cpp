@@ -36,7 +36,7 @@ SCENARIO ("/api/v1/accounts/relationships can be called successfully",
         Easy::Relationship relationship;
         bool exception = false;
 
-        WHEN ("/api/v1/accounts/relationships is called")
+        WHEN ("GET /api/v1/accounts/relationships is called")
         {
             try
             {

@@ -34,7 +34,7 @@ SCENARIO ("/api/v1/apps can be called successfully",
         Easy::Application app;
         bool exception = false;
 
-        WHEN ("/api/v1/apps is called")
+        WHEN ("POST /api/v1/apps is called")
         {
             try
             {

@@ -34,7 +34,7 @@ SCENARIO ("/api/v1/accounts can be called successfully",
         Easy::Token token;
         bool exception = false;
 
-        WHEN ("/api/v1/accounts is called")
+        WHEN ("POST /api/v1/accounts is called")
         {
             try
             {

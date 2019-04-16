@@ -34,7 +34,7 @@ SCENARIO ("/api/v1/custom_emojis can be called successfully",
         Easy::Emoji emoji;
         bool exception = false;
 
-        WHEN ("/api/v1/custom_emojis is called")
+        WHEN ("GET /api/v1/custom_emojis is called")
         {
             try
             {

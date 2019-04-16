@@ -30,6 +30,7 @@
 #include "easy/entities/results.hpp"
 #include "easy/entities/status.hpp"
 #include "easy/entities/tag.hpp"
+#include "easy/entities/token.hpp"
 #include "easy/entities/pushsubscription.hpp"
 
 using namespace Mastodon;
@@ -85,6 +86,7 @@ template struct Easy::return_entity<Easy::Report>;
 template struct Easy::return_entity<Easy::Results>;
 template struct Easy::return_entity<Easy::Status>;
 template struct Easy::return_entity<Easy::Tag>;
+template struct Easy::return_entity<Easy::Token>;
 template struct Easy::return_entity<Easy::PushSubscription>;
 
 
@@ -128,4 +130,5 @@ template struct Easy::return_entity_vector<Easy::Report>;
 template struct Easy::return_entity_vector<Easy::Results>;
 template struct Easy::return_entity_vector<Easy::Status>;
 template struct Easy::return_entity_vector<Easy::Tag>;
+template struct Easy::return_entity_vector<Easy::Token>;
 template struct Easy::return_entity_vector<Easy::PushSubscription>;

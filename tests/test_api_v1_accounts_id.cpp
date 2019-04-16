@@ -20,17 +20,13 @@
 #include "mastodon-cpp.hpp"
 #include "easy/easy.hpp"
 #include "easy/entities/account.hpp"
+#include "environment_variables.hpp"
 
 using namespace Mastodon;
 
 SCENARIO ("/api/v1/accounts/:id can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
-    const char *envinstance = std::getenv("MASTODON_CPP_INSTANCE");
-    const string instance = (envinstance ? envinstance : "likeable.space");
-    const char *env_user_id = std::getenv("MASTODON_CPP_USER_ID");
-    const string user_id = (env_user_id ? env_user_id : "9hnrrVPriLiLVAhfVo");
-
     GIVEN ("instance = " + instance + ", user ID = " + user_id)
     {
         Mastodon::Easy::API masto(instance, "");

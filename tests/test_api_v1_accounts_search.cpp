@@ -16,20 +16,18 @@
 
 #include <exception>
 #include <string>
-#include <cstdlib>
 #include <catch.hpp>
 #include "mastodon-cpp.hpp"
 #include "easy/easy.hpp"
 #include "easy/entities/account.hpp"
+#include "environment_variables.hpp"
 
 using namespace Mastodon;
 
 SCENARIO ("/api/v1/accounts/search can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
-    const char *env_instance = std::getenv("MASTODON_CPP_INSTANCE");
-    const string instance = (env_instance ? env_instance : "likeable.space");
-    const char *access_token = std::getenv("MASTODON_CPP_ACCESS_TOKEN");
+    REQUIRE (access_token != nullptr);
 
     GIVEN ("instance = " + instance)
     {
@@ -37,8 +35,6 @@ SCENARIO ("/api/v1/accounts/search can be called successfully",
         return_call ret;
         Easy::Account account;
         bool exception = false;
-
-        REQUIRE (access_token != nullptr);
 
         WHEN ("/api/v1/accounts/search is called")
         {

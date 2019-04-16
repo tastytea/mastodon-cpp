@@ -14,18 +14,18 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define CATCH_CONFIG_MAIN
+#ifndef MASTODON_CPP_TEST_ENVIRONMENT_VARIABLES_HPP
+#define MASTODON_CPP_TEST_ENVIRONMENT_VARIABLES_HPP
 
-#include <cstdlib>
-#include <catch.hpp>
-#include "environment_variables.hpp"
+#include <string>
 
 using std::string;
-using std::getenv;
 
-// Declared in environment_variables.hpp
-const char *env_instance = getenv("MASTODON_CPP_INSTANCE");
-const string instance = (env_instance ? env_instance : "likeable.space");
-const char *access_token = getenv("MASTODON_CPP_ACCESS_TOKEN");
-const char *env_user_id = getenv("MASTODON_CPP_USER_ID");
-const string user_id = (env_user_id ? env_user_id : "9hnrrVPriLiLVAhfVo");
+// Defined in main.cpp
+extern const char *env_instance;
+extern const string instance;
+extern const char *access_token;
+extern const char *env_user_id;
+extern const string user_id;
+
+#endif  // MASTODON_CPP_TEST_ENVIRONMENT_VARIABLES_HPP

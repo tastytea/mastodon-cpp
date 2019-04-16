@@ -16,22 +16,18 @@
 
 #include <exception>
 #include <string>
-#include <cstdlib>
 #include <catch.hpp>
 #include "mastodon-cpp.hpp"
 #include "easy/easy.hpp"
 #include "easy/entities/account.hpp"
+#include "environment_variables.hpp"
 
 using namespace Mastodon;
 
 SCENARIO ("/api/v1/accounts/update_credentials can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
-    const char *envinstance = std::getenv("MASTODON_CPP_INSTANCE");
-    const string instance = (envinstance ? envinstance : "likeable.space");
-    const char *access_token = std::getenv("MASTODON_CPP_ACCESS_TOKEN");
-    const char *env_user_id = std::getenv("MASTODON_CPP_USER_ID");
-    const string user_id = (env_user_id ? env_user_id : "9hnrrVPriLiLVAhfVo");
+    REQUIRE (access_token != nullptr);
 
     GIVEN ("instance = " + instance + ", user ID = " + user_id)
     {
@@ -39,8 +35,6 @@ SCENARIO ("/api/v1/accounts/update_credentials can be called successfully",
         return_call ret;
         Easy::Account account;
         bool exception = false;
-
-        REQUIRE (access_token != nullptr);
 
         WHEN ("/api/v1/accounts/update_credentials is called")
         {

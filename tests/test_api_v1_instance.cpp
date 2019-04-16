@@ -20,14 +20,13 @@
 #include "mastodon-cpp.hpp"
 #include "easy/easy.hpp"
 #include "easy/entities/instance.hpp"
+#include "environment_variables.hpp"
 
 using namespace Mastodon;
 
 SCENARIO ("/api/v1/instance can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
-    const char *envinstance = std::getenv("MASTODON_CPP_INSTANCE");
-    const string instance = (envinstance ? envinstance : "likeable.space");
     GIVEN ("instance = " + instance)
     {
         Mastodon::Easy::API masto(instance, "");

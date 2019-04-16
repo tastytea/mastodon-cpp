@@ -15,24 +15,17 @@
  */
 
 #include <exception>
-#include <string>
-#include <cstdlib>
 #include <catch.hpp>
 #include "mastodon-cpp.hpp"
 #include "easy/easy.hpp"
 #include "easy/entities/relationship.hpp"
+#include "environment_variables.hpp"
 
 using namespace Mastodon;
 
 SCENARIO ("/api/v1/accounts/:id/blocks can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
-    const char *env_instance = std::getenv("MASTODON_CPP_INSTANCE");
-    const string instance = (env_instance ? env_instance : "likeable.space");
-    const char *access_token = std::getenv("MASTODON_CPP_ACCESS_TOKEN");
-    const char *env_user_id = std::getenv("MASTODON_CPP_USER_ID");
-    const string user_id = (env_user_id ? env_user_id : "9hnrrVPriLiLVAhfVo");
-
     REQUIRE (access_token != nullptr);
 
     GIVEN ("instance = " + instance)

@@ -242,7 +242,7 @@ Run `make package` from the build directory to generate a tar.gz archive.
  * [x] GET /api/v1/accounts/relationships
  * [x] GET /api/v1/accounts/search
  * [x] POST /api/v1/apps
- * [ ] GET /api/v1/apps/verify_credentials
+ * [x] GET /api/v1/apps/verify_credentials
  * [x] GET /api/v1/blocks
  * [x] POST /api/v1/accounts/:id/block
  * [x] POST /api/v1/accounts/:id/unblock

@@ -191,7 +191,7 @@ namespace Mastodon
             accounts_search,
 
             apps,
-            // apps_verify_credentials,
+            apps_verify_credentials,
 
             blocks,
             accounts_id_block,

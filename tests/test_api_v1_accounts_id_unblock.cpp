@@ -23,7 +23,7 @@
 
 using namespace Mastodon;
 
-SCENARIO ("/api/v1/accounts/:id/block can be called successfully",
+SCENARIO ("/api/v1/accounts/:id/unblock can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
     REQUIRE (access_token != nullptr);
@@ -35,11 +35,11 @@ SCENARIO ("/api/v1/accounts/:id/block can be called successfully",
         Easy::Relationship relationship;
         bool exception = false;
 
-        WHEN ("/api/v1/accounts/" + user_id + "/block is called")
+        WHEN ("/api/v1/accounts/" + user_id + "/unblock is called")
         {
             try
             {
-                ret = masto.post(API::v1::accounts_id_block,
+                ret = masto.post(API::v1::accounts_id_unblock,
                                  {
                                      { "id", { user_id }}
                                  });
@@ -57,13 +57,13 @@ SCENARIO ("/api/v1/accounts/:id/block can be called successfully",
             {
                 REQUIRE_FALSE(exception);
 
-                // You can't block yourself, so we look for errors too.
+                // You can't unblock yourself, so we look for errors too.
                 REQUIRE((ret.error_code == 0
                          || ret.error_code == 111));
                 REQUIRE((ret.http_error_code == 200
                          || ret.http_error_code == 500));
 
-                REQUIRE((relationship.blocking()
+                REQUIRE((relationship.id() != ""
                          || relationship.error() != ""));
             }
         }

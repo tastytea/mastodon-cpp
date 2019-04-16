@@ -26,7 +26,8 @@ bool Emoji::valid() const
     {{
         "shortcode",
         "static_url",
-        "url"
+        "url",
+        "visible_in_picker"
     }};
 
     return Entity::check_valid(attributes);

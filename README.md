@@ -159,7 +159,8 @@ from EPEL 6.
 ### Dependencies
 
 * Tested OS: Linux
-* C++ compiler (tested: gcc 6 / 7 / 8)
+* C++ compiler (tested: [gcc](https://gcc.gnu.org/) 6/7/8,
+  [clang](https://llvm.org/) 5/6)
 * [cmake](https://cmake.org/) (at least: 3.6)
 * [pkgconfig](https://pkgconfig.freedesktop.org/wiki/) (tested: 0.29 / 0.27)
 * [curlpp](http://www.curlpp.org/) (tested: 0.8)

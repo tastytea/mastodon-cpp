@@ -92,6 +92,66 @@ pipeline:
     volumes:
       - /var/cache/debian-package-cache:/var/cache/apt/archives
 
+  clang5:
+    image: debian:stretch-slim
+    pull: true
+    when:
+      event: [push, pull_request]
+    environment:
+      - LANG=C.utf8
+      - CXX=clang++-5.0
+      - CXXFLAGS=-pipe -O2
+    secrets:
+      - mastodon_cpp_access_token
+    commands:
+      - rm /etc/apt/apt.conf.d/docker-clean
+      - apt-get update -q
+      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+      - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/stretch.list
+      - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
+      - apt-get update -q
+      - apt-get install -qy build-essential cmake pkg-config
+      - apt-get install -qy -t stretch-backports clang-5.0
+      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
+      - apt-get install -qy -t sid libcurlpp-dev
+      - rm -rf build && mkdir -p build && cd build
+      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES ..
+      - make VERBOSE=1
+      - make install DESTDIR=install
+      - ctest
+    volumes:
+      - /var/cache/debian-package-cache:/var/cache/apt/archives
+
+  clang6:
+    image: debian:stretch-slim
+    pull: true
+    when:
+      event: [push, pull_request]
+    environment:
+      - LANG=C.utf8
+      - CXX=clang++-6.0
+      - CXXFLAGS=-pipe -O2
+    secrets:
+      - mastodon_cpp_access_token
+    commands:
+      - rm /etc/apt/apt.conf.d/docker-clean
+      - apt-get update -q
+      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+      - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/stretch.list
+      - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
+      - apt-get update -q
+      - apt-get install -qy build-essential cmake pkg-config
+      - apt-get install -qy -t stretch-backports clang-6.0
+      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
+      - apt-get install -qy -t sid libcurlpp-dev
+      - rm -rf build && mkdir -p build && cd build
+      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES ..
+      - make VERBOSE=1
+      - make install DESTDIR=install
+      - ctest
+    volumes:
+      - /var/cache/debian-package-cache:/var/cache/apt/archives
+
   package_deb:
     image: debian:stretch-slim
     pull: true

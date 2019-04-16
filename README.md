@@ -234,7 +234,7 @@ Run `make package` from the build directory to generate a tar.gz archive.
 ~~Feature complete as of Mastodon 2.6.1~~
 
  * [x] GET /api/v1/accounts/:id
- * [ ] POST /api/v1/accounts
+ * [x] POST /api/v1/accounts
  * [x] GET /api/v1/accounts/verify_credentials
  * [x] PATCH /api/v1/accounts/update_credentials
  * [x] GET /api/v1/accounts/:id/followers

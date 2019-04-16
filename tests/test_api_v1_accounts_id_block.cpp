@@ -52,7 +52,7 @@ SCENARIO ("/api/v1/accounts/:id/block can be called successfully",
             }
 
             THEN ("No exception is thrown")
-                AND_THEN ("No errors are returned")
+                AND_THEN ("No unexpected errors are returned")
                 AND_THEN ("The answer makes sense")
             {
                 REQUIRE_FALSE(exception);

@@ -179,7 +179,7 @@ namespace Mastodon
         {
             // Mastodon
             accounts_id,
-            // accounts,
+            accounts,
             accounts_verify_credentials,
             accounts_update_credentials,
             accounts_id_followers,

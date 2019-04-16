@@ -15,35 +15,38 @@
  */
 
 #include <exception>
+#include <string>
 #include <catch.hpp>
 #include "mastodon-cpp.hpp"
 #include "easy/easy.hpp"
-#include "easy/entities/relationship.hpp"
+#include "easy/entities/token.hpp"
 #include "environment_variables.hpp"
 
 using namespace Mastodon;
 
-SCENARIO ("/api/v1/accounts/:id/unblock can be called successfully",
-          "[api][mastodon][pleroma][glitch-soc]")
+SCENARIO ("/api/v1/accounts can be called successfully",
+          "[api][mastodon][glitch-soc]")
 {
-    REQUIRE (access_token != nullptr);
-
-    GIVEN ("instance = " + instance + ", user ID = " + user_id)
+    GIVEN ("instance = " + instance)
     {
-        Mastodon::Easy::API masto(instance, access_token);
+        Mastodon::Easy::API masto(instance, "");
         return_call ret;
-        Easy::Relationship relationship;
+        Easy::Token token;
         bool exception = false;
 
-        WHEN ("/api/v1/accounts/" + user_id + "/unblock is called")
+        WHEN ("/api/v1/accounts is called")
         {
             try
             {
-                ret = masto.post(API::v1::accounts_id_unblock,
+                ret = masto.post(API::v1::accounts,
                                  {
-                                     { "id", { user_id }}
+                                     { "username", { "testaccount" }},
+                                     { "email", { "user@example.com" }},
+                                     { "password", { "..,-fidm" }},
+                                     { "agreement", { "true" }},
+                                     { "locale", { "en" }},
                                  });
-                relationship.from_string(ret.answer);
+                token.from_string(ret.answer);
             }
             catch (const std::exception &e)
             {
@@ -51,20 +54,20 @@ SCENARIO ("/api/v1/accounts/:id/unblock can be called successfully",
                 WARN(e.what());
             }
 
-            THEN ("No exception is thrown")
-                AND_THEN ("No unexpected errors are returned")
+            THEN("No exception is thrown")
+                AND_THEN ("No errors are returned")
                 AND_THEN ("The answer makes sense")
             {
                 REQUIRE_FALSE(exception);
 
-                // You can't unblock yourself, so we look for errors too.
+                // The account probably exists already, so we look for errors too.
                 REQUIRE((ret.error_code == 0
                          || ret.error_code == 111));
                 REQUIRE((ret.http_error_code == 200
                          || ret.http_error_code == 500));
 
-                REQUIRE((relationship.id() != ""
-                         || relationship.error() != ""));
+                REQUIRE((token.access_token() != ""
+                         || token.error() != ""));
             }
         }
     }

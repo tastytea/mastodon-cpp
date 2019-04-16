@@ -19,7 +19,7 @@ pipeline:
       - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
       - apt-get install -qy -t sid libcurlpp-dev
       - rm -rf build && mkdir -p build && cd build
-      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES ..
+      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="[pleroma]" ..
       - make VERBOSE=1
       - make install DESTDIR=install
       - ctest
@@ -52,7 +52,7 @@ pipeline:
       - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
       - apt-get install -qy -t sid libcurlpp-dev
       - rm -rf build && mkdir -p build && cd build
-      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES ..
+      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="[pleroma]" ..
       - make VERBOSE=1
       - make install DESTDIR=install
       - ctest
@@ -85,7 +85,7 @@ pipeline:
       - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
       - apt-get install -qy -t sid libcurlpp-dev
       - rm -rf build && mkdir -p build && cd build
-      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES ..
+      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="[pleroma]" ..
       - make VERBOSE=1
       - make install DESTDIR=install
       - ctest
@@ -115,7 +115,7 @@ pipeline:
       - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
       - apt-get install -qy -t sid libcurlpp-dev
       - rm -rf build && mkdir -p build && cd build
-      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES ..
+      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="[pleroma]" ..
       - make VERBOSE=1
       - make install DESTDIR=install
       - ctest
@@ -145,7 +145,7 @@ pipeline:
       - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
       - apt-get install -qy -t sid libcurlpp-dev
       - rm -rf build && mkdir -p build && cd build
-      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES ..
+      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="[pleroma]" ..
       - make VERBOSE=1
       - make install DESTDIR=install
       - ctest

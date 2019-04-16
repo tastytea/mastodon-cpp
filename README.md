@@ -200,6 +200,8 @@ cmake options:
    jsoncpp-dependency (not recommended)
  * `-DWITH_EXAMPLES=YES` if you want to compile the examples
  * `-DWITH_TESTS=YES` if you want to compile the tests
+ * `-DEXTRA_TEST_ARGS` to run only some tests
+   * Possible values: `[api]`, `[mastodon]`, `[glitch-soc]`, `[pleroma]`
  * `-DWITH_DOC=NO` if you don't want to compile the HTML reference
  * One of:
     * `-DWITH_DEB=YES` if you want to be able to generate a deb-package

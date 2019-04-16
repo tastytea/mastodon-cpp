@@ -218,6 +218,13 @@ You can select the instance to use with `MASTODON_CPP_INSTANCE`, the default is
 *likeable.space*. You can select the user ID with `MASTODON_CPP_USER_ID`, the
 default is *9hnrrVPriLiLVAhfVo*.
 
+Requirements for the test-user:
+
+* Have at least 1 follower.
+* Follow at least 1 account.
+* Have at least 1 account endorsed.
+* Have at least 1 public or unlisted status.
+
 ### Packages
 
 #### DEB and RPM

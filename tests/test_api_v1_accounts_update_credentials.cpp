@@ -62,7 +62,7 @@ SCENARIO ("/api/v1/accounts/update_credentials can be called successfully",
 
                 REQUIRE(account.valid());
 
-                REQUIRE(account.id() == user_id);
+                REQUIRE(account.display_name() == "testaccount");
             }
         }
     }

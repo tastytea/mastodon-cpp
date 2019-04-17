@@ -3,6 +3,8 @@ and get the raw JSON or easy to use abstractions.
 
 **The ABI will be unstable in versions < 1.0.0**
 
+[Subscribe to mastodon-cpp releases](https://rss.schlomp.space/tastytea/mastodon-cpp.rss).
+
 # Usage
 
 The HTML reference can be generated with `build_doc.sh`, if doxygen is

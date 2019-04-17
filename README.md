@@ -3,7 +3,7 @@ and get the raw JSON or easy to use abstractions.
 
 **The ABI will be unstable in versions < 1.0.0**
 
-[Subscribe to mastodon-cpp releases](https://rss.schlomp.space/tastytea/mastodon-cpp.rss).
+[Subscribe to mastodon-cpp releases](https://rss.schlomp.space/?repo=tastytea/mastodon-cpp).
 
 # Usage
 

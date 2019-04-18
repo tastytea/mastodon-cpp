@@ -226,6 +226,7 @@ Requirements for the test-user:
 * Follow at least 1 account.
 * Have at least 1 account endorsed.
 * Have at least 1 public or unlisted status.
+* Have at least 1 post favourited.
 
 ### Packages
 

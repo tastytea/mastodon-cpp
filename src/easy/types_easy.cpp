@@ -32,18 +32,18 @@ const string Easy::time::strtime(const string &format, const bool &local) const
 {
     constexpr std::uint16_t bufsize = 1024;
     std::time_t time = system_clock::to_time_t(timepoint);
-    std::tm *timeinfo;
+    std::tm *tm;
     if (local)
     {
-        timeinfo = std::localtime(&time);
+        tm = std::localtime(&time);
     }
     else
     {
-        timeinfo = std::gmtime(&time);
+        tm = std::gmtime(&time);
     }
 
     char buffer[bufsize];
-    std::strftime(buffer, bufsize, format.c_str(), timeinfo);
+    std::strftime(buffer, bufsize, format.c_str(), tm);
 
     return static_cast<const string>(buffer);
 }

@@ -14,10 +14,10 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <ctime>
 #include <iomanip>  // get_time
 #include <sstream>
 #include <chrono>
+#include <ctime>
 #include <regex>
 #include <algorithm>
 #include "easy/entity.hpp"
@@ -233,9 +233,10 @@ const Easy::time Easy::Entity::get_time(const string &key) const
     if (node.isString())
     {
         std::stringstream sstime(node.asString());
-        struct std::tm tm;
+        struct std::tm tm = {};
+        tm.tm_isdst = -1;       // Detect daylight saving time.
         sstime >> std::get_time(&tm, "%Y-%m-%dT%T");
-        std::time_t time = timegm(&tm);
+        std::time_t time = timegm(&tm); // Assume time is UTC.
         _was_set = true;
         return { system_clock::from_time_t(time) };
     }

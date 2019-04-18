@@ -61,7 +61,7 @@ SCENARIO ("/api/v1/accounts/:id/unfollow can be called successfully",
                 REQUIRE((ret.error_code == 0
                          || ret.error_code == 111));
                 REQUIRE((ret.http_error_code == 200
-                         || ret.http_error_code == 500));
+                         || ret.http_error_code == 404));
 
                 REQUIRE((!relationship.following()
                          || relationship.error() != ""));

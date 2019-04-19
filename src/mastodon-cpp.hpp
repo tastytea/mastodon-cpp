@@ -339,15 +339,7 @@ namespace Mastodon
         const string get_instance() const;
 
         /*!
-         *  @brief Percent-encodes a string. This is done automatically, unless
-         *          you make a custom request.
-         *
-         *          Calls curlpp::escape(str)
-         *
-         *          The only time you should use this, is if you use
-         *          get(const string &call, string &answer).
-         *
-         *          See RFC 3986 section 2.1 for more info.
+         *  @brief  Alias for Mastodon::urlencode.
          *
          *  @param  str     The string
          *
@@ -355,14 +347,11 @@ namespace Mastodon
          *
          *  @since  before 0.11.0
          */
+        [[deprecated("Replaced by Mastodon::urlencode")]]
         static const string urlencode(const string &str);
 
         /*!
-         *  @brief  Decodes a percent-encoded string.
-         *
-         *          Calls curlpp::unescape(str)
-         *
-         *          See RFC 3986 section 2.1 for more info.
+         *  @brief  Alias for Mastodon::urldecode.
          *
          *  @param  str     The string
          *
@@ -370,6 +359,7 @@ namespace Mastodon
          *
          *  @since  0.18.0
          */
+        [[deprecated("Replaced by Mastodon::urldecode")]]
         static const string urldecode(const string &str);
 
         /*!
@@ -446,13 +436,11 @@ namespace Mastodon
         bool exceptions() const;
 
         /*!
-         *  @brief  Replaces HTML entities with UTF-8 characters
-         *
-         *          Supports named and numbered entities, decimal and
-         *          hexadecimal.
+         *  @brief  Alias for Mastodon::unescape_html.
          *
          *  @since  0.12.0
          */
+        [[deprecated("Replaced by Mastodon::unescape_html")]]
         static const string unescape_html(const string &html);
 
         /*!
@@ -701,6 +689,54 @@ namespace Mastodon
         const parameters delete_params(const parameters &params,
                                        const vector<string> &keys);
     };
+
+    /*!
+     *  @brief  Percent-encodes a string. This is done automatically, unless
+     *          you make a custom request.
+     *
+     *          Calls curlpp::escape(str).
+     *
+     *          The only time you should use this, is if you use
+     *          get(const string &call, string &answer).
+     *
+     *          See RFC 3986 section 2.1 for more info.
+     *
+     *  @param  str The string to encode.
+     *
+     *  @return The percent-encoded string.
+     *
+     *  @since  0.105.0
+     */
+    const string urlencode(const string &str);
+
+    /*!
+     *  @brief  Decodes a percent-encoded string.
+     *
+     *          Calls curlpp::unescape(str).
+     *
+     *          See RFC 3986 section 2.1 for more info.
+     *
+     *  @param  str The string to decode.
+     *
+     *  @return The decoded string.
+     *
+     *  @since  0.105.0
+     */
+    const string urldecode(const string &str);
+
+    /*!
+     *  @brief  Replaces HTML entities with UTF-8 characters.
+     *
+     *          Supports named and numbered entities, decimal and
+     *          hexadecimal.
+     *
+     *  @param  html The html to unescape.
+     *
+     *  @return The unescaped string.
+     *
+     *  @since  0.105.0
+     */
+    const string unescape_html(const string &html);
 }
 
 #endif

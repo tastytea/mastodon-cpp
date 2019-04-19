@@ -143,16 +143,6 @@ const curlpp::Forms API::maptoformdata(const parameters &map)
     return formdata;
 }
 
-const std::string API::urlencode(const std::string &str)
-{
-    return curlpp::escape(str);
-}
-
-const std::string API::urldecode(const std::string &str)
-{
-    return curlpp::unescape(str);
-}
-
 return_call API::register_app1(const string &client_name,
                                const string &redirect_uri,
                                const string &scopes,
@@ -262,7 +252,55 @@ bool API::exceptions() const
     return _exceptions;
 }
 
-const string API::unescape_html(const string &html)
+void API::set_proxy(const string &proxy, const string &userpw)
+{
+    _proxy = proxy;
+    _proxy_userpw = userpw;
+}
+
+void API::get_proxy(string &proxy, string &userpw) const
+{
+    if (!_proxy.empty())
+    {
+        proxy = _proxy;
+        if (!_proxy_userpw.empty())
+        {
+            userpw = _proxy_userpw;
+        }
+    }
+}
+
+const parameters API::delete_params(const parameters &params,
+                                    const vector<string> &keys)
+{
+    // Iterate through params. For each item in keys (k), compare to key of
+    // current parameter (p). Return false if parameter is to be deleted. Copy
+    // to new list of parameters (newparams) if true is returned.
+    parameters newparams(params.size());
+    const auto it =
+        std::copy_if(params.begin(), params.end(), newparams.begin(),
+                     [&keys](const param &p)
+                     {
+                         return std::any_of(keys.begin(), keys.end(),
+                                            [&p](const string &k)
+                                            {
+                                                return (k != p.key);
+                                            });
+                     });
+        newparams.resize(std::distance(newparams.begin(), it));
+        return newparams;
+}
+
+const string urlencode(const std::string &str)
+{
+    return curlpp::escape(str);
+}
+const string urldecode(const std::string &str)
+{
+    return curlpp::unescape(str);
+}
+
+const string unescape_html(const string &html)
 {
     string buffer = html;
     string output = "";
@@ -563,41 +601,20 @@ const string API::unescape_html(const string &html)
     return output;
 }
 
-void API::set_proxy(const string &proxy, const string &userpw)
+
+// ↓ DEPRECATED ↓
+
+const string API::urlencode(const std::string &str)
 {
-    _proxy = proxy;
-    _proxy_userpw = userpw;
+    return Mastodon::urlencode(str);
 }
 
-void API::get_proxy(string &proxy, string &userpw) const
+const string API::urldecode(const std::string &str)
 {
-    if (!_proxy.empty())
-    {
-        proxy = _proxy;
-        if (!_proxy_userpw.empty())
-        {
-            userpw = _proxy_userpw;
-        }
-    }
+    return Mastodon::urldecode(str);
 }
 
-const parameters API::delete_params(const parameters &params,
-                                    const vector<string> &keys)
+const string API::unescape_html(const string &html)
 {
-    // Iterate through params. For each item in keys (k), compare to key of
-    // current parameter (p). Return false if parameter is to be deleted. Copy
-    // to new list of parameters (newparams) if true is returned.
-    parameters newparams(params.size());
-    const auto it =
-        std::copy_if(params.begin(), params.end(), newparams.begin(),
-                     [&keys](const param &p)
-                     {
-                         return std::any_of(keys.begin(), keys.end(),
-                                            [&p](const string &k)
-                                            {
-                                                return (k != p.key);
-                                            });
-                     });
-        newparams.resize(std::distance(newparams.begin(), it));
-        return newparams;
+    return Mastodon::unescape_html(html);
 }

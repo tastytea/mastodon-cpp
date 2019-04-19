@@ -216,8 +216,8 @@ namespace Mastodon
             follow_requests_id_authorize,
             follow_requests_id_reject,
 
-            // suggestions,
-            // suggestions_id,
+            suggestions,
+            suggestions_accountid,
 
             instance,
 

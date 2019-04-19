@@ -280,8 +280,8 @@ Run `make package` from the build directory to generate a tar.gz archive.
  * [x] GET /api/v1/follow_requests
  * [x] POST /api/v1/follow_requests/:id/authorize
  * [x] POST /api/v1/follow_requests/:id/reject
- * [ ] GET /api/v1/suggestions
- * [ ] DELETE /api/v1/suggestions/:account_id
+ * [x] GET /api/v1/suggestions
+ * [x] DELETE /api/v1/suggestions/:account_id
  * [x] GET /api/v1/instance
  * [x] GET /api/v1/lists
  * [x] GET /api/v1/accounts/:id/lists

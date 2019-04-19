@@ -27,10 +27,15 @@ return_call API::del(const Mastodon::API::v1 &call,
     string strid = "";
 
     // The ID is part of the path
-    auto &it = params.find("id");
-    if (it != params.end())
+    const parameters::const_iterator &it_id = params.find("id");
+    const parameters::const_iterator &it_aid = params.find("accountid");
+    if (it_id != params.end())
     {
-        strid = it->values[0];
+        strid = it_id->values[0];
+    }
+    else if (it_aid != params.end())
+    {
+        strid = it_aid->values[0];
     }
 
     switch (call)
@@ -63,6 +68,11 @@ return_call API::del(const Mastodon::API::v1 &call,
     case v1::filters_id:
     {
         strcall = "/api/v1/filters/" + strid;
+        break;
+    }
+    case v1::suggestions_accountid:
+    {
+        strcall = "/api/v1/suggestions/" + strid;
         break;
     }
     default:

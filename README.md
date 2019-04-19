@@ -229,6 +229,7 @@ Requirements for the test-user:
 * Have at least 1 account endorsed.
 * Have at least 1 public or unlisted status.
 * Have at least 1 post favourited.
+* Have no follow requests.
 
 ### Packages
 

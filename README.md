@@ -204,6 +204,8 @@ cmake options:
  * `-DWITH_TESTS=YES` if you want to compile the tests
  * `-DEXTRA_TEST_ARGS` to run only some tests
    * Possible values: `[api]`, `[mastodon]`, `[glitch-soc]`, `[pleroma]`
+   * Example: `-DEXTRA_TEST_ARGS=[pleroma]![mastodon]` to run the tests for features
+     in Pleroma that are not in Mastodon.
  * `-DWITH_DOC=NO` if you don't want to compile the HTML reference
  * One of:
     * `-DWITH_DEB=YES` if you want to be able to generate a deb-package

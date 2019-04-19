@@ -85,6 +85,7 @@ and <https://doc.schlomp.space/mastodon-cpp/namespaceMastodon_1_1Easy.html>.
 * `Mastodon::Easy::attachment_type`: Describes the type of attachment.
 * `Mastodon::Easy::card_type`: Describes the type of card.
 * `Mastodon::Easy::notification_type`: The type of the notification.
+* `Mastodon::Easy::context_type`: Describes the context of a filter.
 * `Mastodon::Easy::stream_event`: Type and data of an events returned in
   streams.
 * `Mastodon::Easy::alert_type`: Type for a single alert.
@@ -128,8 +129,7 @@ It will receive bug-fixes for a while but no new features.
 ## Packages
 
 Every [release](https://schlomp.space/tastytea/mastodon-cpp/releases) includes
-packages for the package managers of Debian and Red Hat. Gentoo packages are
-available in my overlay.
+packages for Debian and Centos. Gentoo packages are available in my overlay.
 
 ### Gentoo
 

@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">mastodon-cpp
-   &#160;<span id="projectnumber">0.101.1</span>
+   &#160;<span id="projectnumber">0.104.0</span>
    </div>
   </td>
  </tr>
@@ -70,7 +70,7 @@ Inheritance diagram for Mastodon::return_call:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af659491b31dc25a782824336bd84b926"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMastodon_1_1return__call.html#af659491b31dc25a782824336bd84b926">return_call</a> (const uint8_t ec, const string &amp;em, const uint16_t hec, const string &amp;a)</td></tr>
-<tr class="memdesc:af659491b31dc25a782824336bd84b926"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct new return type for calls.  <a href="#af659491b31dc25a782824336bd84b926">More...</a><br /></td></tr>
+<tr class="memdesc:af659491b31dc25a782824336bd84b926"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return type for <a class="el" href="classMastodon_1_1API.html" title="Interface to the Mastodon API. ">Mastodon::API</a>.  <a href="#af659491b31dc25a782824336bd84b926">More...</a><br /></td></tr>
 <tr class="separator:af659491b31dc25a782824336bd84b926"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8609af6b22f8380698d48e08c052217a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMastodon_1_1return__call.html#a8609af6b22f8380698d48e08c052217a">operator const string</a> () const</td></tr>
 <tr class="memdesc:a8609af6b22f8380698d48e08c052217a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same es <a class="el" href="structMastodon_1_1return__call.html#a8d9ac799e26fc5ff54592083a8a83404" title="The response from the server. ">return_call::answer</a>.  <a href="#a8609af6b22f8380698d48e08c052217a">More...</a><br /></td></tr>
@@ -85,9 +85,6 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a4b0ebe6866b1e976e073081304bc68f5"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMastodon_1_1return__call.html#a4b0ebe6866b1e976e073081304bc68f5">http_error_code</a> = 0</td></tr>
-<tr class="memdesc:a4b0ebe6866b1e976e073081304bc68f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">HTTP error code.  <a href="#a4b0ebe6866b1e976e073081304bc68f5">More...</a><br /></td></tr>
-<tr class="separator:a4b0ebe6866b1e976e073081304bc68f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d9ac799e26fc5ff54592083a8a83404"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMastodon_1_1return__call.html#a8d9ac799e26fc5ff54592083a8a83404">answer</a></td></tr>
 <tr class="memdesc:a8d9ac799e26fc5ff54592083a8a83404"><td class="mdescLeft">&#160;</td><td class="mdescRight">The response from the server.  <a href="#a8d9ac799e26fc5ff54592083a8a83404">More...</a><br /></td></tr>
 <tr class="separator:a8d9ac799e26fc5ff54592083a8a83404"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -98,6 +95,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:ab902d5ecac698fadbdcabcd99d0ce754 inherit pub_attribs_structMastodon_1_1return__base"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMastodon_1_1return__base.html#ab902d5ecac698fadbdcabcd99d0ce754">error_message</a></td></tr>
 <tr class="memdesc:ab902d5ecac698fadbdcabcd99d0ce754 inherit pub_attribs_structMastodon_1_1return__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">The error message, or "".  <a href="structMastodon_1_1return__base.html#ab902d5ecac698fadbdcabcd99d0ce754">More...</a><br /></td></tr>
 <tr class="separator:ab902d5ecac698fadbdcabcd99d0ce754 inherit pub_attribs_structMastodon_1_1return__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af62546b8b4bb03899ddbec770065e0b6 inherit pub_attribs_structMastodon_1_1return__base"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMastodon_1_1return__base.html#af62546b8b4bb03899ddbec770065e0b6">http_error_code</a> = 0</td></tr>
+<tr class="memdesc:af62546b8b4bb03899ddbec770065e0b6 inherit pub_attribs_structMastodon_1_1return__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">HTTP error code.  <a href="structMastodon_1_1return__base.html#af62546b8b4bb03899ddbec770065e0b6">More...</a><br /></td></tr>
+<tr class="separator:af62546b8b4bb03899ddbec770065e0b6 inherit pub_attribs_structMastodon_1_1return__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -107,7 +107,7 @@ Friends</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Return type for <a class="el" href="classMastodon_1_1API.html" title="Interface to the Mastodon API. ">API</a> calls. </p>
-<p>Example: </p><div class="fragment"><div class="line"><a class="code" href="structMastodon_1_1return__call.html">Mastodon::return_call</a> ret = masto.get(Mastodon::API::v1::instance);</div><div class="line"><span class="keywordflow">if</span> (!ret)               <span class="comment">// Or ret.error_code != 0</span></div><div class="line">{</div><div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Error &quot;</span> &lt;&lt; std::to_string(ret.<a class="code" href="structMastodon_1_1return__base.html#a12cebffae19249cac4c9e4ae9f95391a">error_code</a>);</div><div class="line">    cout &lt;&lt; <span class="stringliteral">&quot; (HTTP &quot;</span> &lt;&lt; std::to_string(ret.<a class="code" href="structMastodon_1_1return__call.html#a4b0ebe6866b1e976e073081304bc68f5">http_error_code</a>) &lt;&lt; <span class="stringliteral">&quot;): &quot;</span>;</div><div class="line">    cout &lt;&lt; ret.<a class="code" href="structMastodon_1_1return__base.html#ab902d5ecac698fadbdcabcd99d0ce754">error_message</a> &lt;&lt; endl</div><div class="line">}</div><div class="line"><span class="keywordflow">else</span></div><div class="line">{</div><div class="line">    cout &lt;&lt; ret &lt;&lt; endl; <span class="comment">// Or ret.answer</span></div><div class="line">}</div></div><!-- fragment --><dl class="section since"><dt>Since</dt><dd>0.100.0 </dd></dl>
+<p>Example: </p><div class="fragment"><div class="line"><a class="code" href="structMastodon_1_1return__call.html">Mastodon::return_call</a> ret = masto.get(Mastodon::API::v1::instance);</div><div class="line"><span class="keywordflow">if</span> (!ret)               <span class="comment">// Or ret.error_code != 0</span></div><div class="line">{</div><div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Error &quot;</span> &lt;&lt; std::to_string(ret.<a class="code" href="structMastodon_1_1return__base.html#a12cebffae19249cac4c9e4ae9f95391a">error_code</a>);</div><div class="line">    cout &lt;&lt; <span class="stringliteral">&quot; (HTTP &quot;</span> &lt;&lt; std::to_string(ret.<a class="code" href="structMastodon_1_1return__base.html#af62546b8b4bb03899ddbec770065e0b6">http_error_code</a>) &lt;&lt; <span class="stringliteral">&quot;): &quot;</span>;</div><div class="line">    cout &lt;&lt; ret.<a class="code" href="structMastodon_1_1return__base.html#ab902d5ecac698fadbdcabcd99d0ce754">error_message</a> &lt;&lt; endl</div><div class="line">}</div><div class="line"><span class="keywordflow">else</span></div><div class="line">{</div><div class="line">    cout &lt;&lt; ret &lt;&lt; endl; <span class="comment">// Or ret.answer</span></div><div class="line">}</div></div><!-- fragment --><dl class="section since"><dt>Since</dt><dd>0.100.0 </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="example01_get_public_timeline_8cpp-example.html#_a1">example01_get_public_timeline.cpp</a>.</dd>
 </dl></div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af659491b31dc25a782824336bd84b926"></a>
@@ -148,7 +148,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Construct new return type for calls. </p>
+<p>Return type for <a class="el" href="classMastodon_1_1API.html" title="Interface to the Mastodon API. ">Mastodon::API</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ec</td><td>Error code </td></tr>
@@ -159,9 +159,9 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 <dl class="section since"><dt>Since</dt><dd>0.100.0 </dd></dl>
-<div class="fragment"><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;: <a class="code" href="structMastodon_1_1return__call.html#a4b0ebe6866b1e976e073081304bc68f5">http_error_code</a>(hec)</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;, <a class="code" href="structMastodon_1_1return__call.html#a8d9ac799e26fc5ff54592083a8a83404">answer</a>(a)</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="structMastodon_1_1return__base.html#a12cebffae19249cac4c9e4ae9f95391a">error_code</a> = ec;</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="structMastodon_1_1return__base.html#ab902d5ecac698fadbdcabcd99d0ce754">error_message</a> = em;</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div><div class="ttc" id="structMastodon_1_1return__call_html_a4b0ebe6866b1e976e073081304bc68f5"><div class="ttname"><a href="structMastodon_1_1return__call.html#a4b0ebe6866b1e976e073081304bc68f5">Mastodon::return_call::http_error_code</a></div><div class="ttdeci">uint16_t http_error_code</div><div class="ttdoc">HTTP error code. </div><div class="ttdef"><b>Definition:</b> return_types.hpp:92</div></div>
-<div class="ttc" id="structMastodon_1_1return__call_html_a8d9ac799e26fc5ff54592083a8a83404"><div class="ttname"><a href="structMastodon_1_1return__call.html#a8d9ac799e26fc5ff54592083a8a83404">Mastodon::return_call::answer</a></div><div class="ttdeci">string answer</div><div class="ttdoc">The response from the server. </div><div class="ttdef"><b>Definition:</b> return_types.hpp:99</div></div>
+<div class="fragment"><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    : <a class="code" href="structMastodon_1_1return__call.html#a8d9ac799e26fc5ff54592083a8a83404">answer</a>(a)</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="structMastodon_1_1return__base.html#a12cebffae19249cac4c9e4ae9f95391a">error_code</a> = ec;</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="structMastodon_1_1return__base.html#ab902d5ecac698fadbdcabcd99d0ce754">error_message</a> = em;</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="structMastodon_1_1return__base.html#af62546b8b4bb03899ddbec770065e0b6">http_error_code</a> = hec;</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div><div class="ttc" id="structMastodon_1_1return__call_html_a8d9ac799e26fc5ff54592083a8a83404"><div class="ttname"><a href="structMastodon_1_1return__call.html#a8d9ac799e26fc5ff54592083a8a83404">Mastodon::return_call::answer</a></div><div class="ttdeci">string answer</div><div class="ttdoc">The response from the server. </div><div class="ttdef"><b>Definition:</b> return_types.hpp:99</div></div>
 <div class="ttc" id="structMastodon_1_1return__base_html_a12cebffae19249cac4c9e4ae9f95391a"><div class="ttname"><a href="structMastodon_1_1return__base.html#a12cebffae19249cac4c9e4ae9f95391a">Mastodon::return_base::error_code</a></div><div class="ttdeci">uint8_t error_code</div><div class="ttdoc">Error code. </div><div class="ttdef"><b>Definition:</b> return_types.hpp:41</div></div>
+<div class="ttc" id="structMastodon_1_1return__base_html_af62546b8b4bb03899ddbec770065e0b6"><div class="ttname"><a href="structMastodon_1_1return__base.html#af62546b8b4bb03899ddbec770065e0b6">Mastodon::return_base::http_error_code</a></div><div class="ttdeci">uint16_t http_error_code</div><div class="ttdoc">HTTP error code. </div><div class="ttdef"><b>Definition:</b> return_types.hpp:55</div></div>
 <div class="ttc" id="structMastodon_1_1return__base_html_ab902d5ecac698fadbdcabcd99d0ce754"><div class="ttname"><a href="structMastodon_1_1return__base.html#ab902d5ecac698fadbdcabcd99d0ce754">Mastodon::return_base::error_message</a></div><div class="ttdeci">string error_message</div><div class="ttdoc">The error message, or &quot;&quot;. </div><div class="ttdef"><b>Definition:</b> return_types.hpp:48</div></div>
 </div><!-- fragment -->
 </div>
@@ -244,24 +244,6 @@ Friends</h2></td></tr>
 <p>The response from the server. </p>
 <dl class="section since"><dt>Since</dt><dd>0.100.0 </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="example01_get_public_timeline_8cpp-example.html#a4">example01_get_public_timeline.cpp</a>.</dd>
-</dl>
-</div>
-</div>
-<a id="a4b0ebe6866b1e976e073081304bc68f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4b0ebe6866b1e976e073081304bc68f5">&#9670;&nbsp;</a></span>http_error_code</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint16_t Mastodon::return_call::http_error_code = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>HTTP error code. </p>
-<dl class="section since"><dt>Since</dt><dd>0.100.0 </dd></dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="example01_get_public_timeline_8cpp-example.html#a10">example01_get_public_timeline.cpp</a>.</dd>
 </dl>
 </div>
 </div>

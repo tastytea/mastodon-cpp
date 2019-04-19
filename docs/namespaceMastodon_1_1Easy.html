@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">mastodon-cpp
-   &#160;<span id="projectnumber">0.101.1</span>
+   &#160;<span id="projectnumber">0.104.0</span>
    </div>
   </td>
  </tr>
@@ -85,6 +85,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Entity.html">Entity</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class for all entities.  <a href="classMastodon_1_1Easy_1_1Entity.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Filter.html">Filter</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class to hold filters.  <a href="classMastodon_1_1Easy_1_1Filter.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Instance.html">Instance</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class to hold instances.  <a href="classMastodon_1_1Easy_1_1Instance.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,6 +132,9 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMastodon_1_1Easy_1_1time.html">time</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type for time. Converts to time_point and string.  <a href="structMastodon_1_1Easy_1_1time.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMastodon_1_1Easy_1_1Token.html">Token</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class to hold applications.  <a href="classMastodon_1_1Easy_1_1Token.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
@@ -200,6 +206,17 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:af99b6a79e360ae9836bae129f9989e76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes the notification type.  <a href="namespaceMastodon_1_1Easy.html#af99b6a79e360ae9836bae129f9989e76">More...</a><br /></td></tr>
 <tr class="separator:af99b6a79e360ae9836bae129f9989e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65b9f0eba23e0617e3840aa35310a7e5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMastodon_1_1Easy.html#a65b9f0eba23e0617e3840aa35310a7e5">context_type</a> { <br />
+&#160;&#160;<b>Home</b>, 
+<b>Notifications</b>, 
+<b>Public</b>, 
+<b>Thread</b>, 
+<br />
+&#160;&#160;<b>Undefined</b>
+<br />
+ }</td></tr>
+<tr class="memdesc:a65b9f0eba23e0617e3840aa35310a7e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes the context.  <a href="namespaceMastodon_1_1Easy.html#a65b9f0eba23e0617e3840aa35310a7e5">More...</a><br /></td></tr>
+<tr class="separator:a65b9f0eba23e0617e3840aa35310a7e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -318,6 +335,31 @@ template&lt;typename T &gt; </td></tr>
 <p>Describes the card type. </p>
 <dl class="section since"><dt>Since</dt><dd>before 0.11.0 </dd></dl>
 <div class="fragment"><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    {</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        Link,</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        Photo,</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        Video,</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        Rich,</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        Undefined</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    };</div></div><!-- fragment -->
+</div>
+</div>
+<a id="a65b9f0eba23e0617e3840aa35310a7e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65b9f0eba23e0617e3840aa35310a7e5">&#9670;&nbsp;</a></span>context_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceMastodon_1_1Easy.html#a65b9f0eba23e0617e3840aa35310a7e5">Mastodon::Easy::context_type</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Describes the context. </p>
+<dl class="section since"><dt>Since</dt><dd>0.104.0 </dd></dl>
+<div class="fragment"><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    {</div><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        Home,</div><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        Notifications,</div><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        Public,</div><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        Thread,</div><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        Undefined</div><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    };</div></div><!-- fragment -->
 </div>
 </div>
 <a id="acd775719887d95875c2fb46b45116d2b"></a>

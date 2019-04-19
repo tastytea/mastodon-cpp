@@ -115,15 +115,17 @@ const curlpp::Forms API::maptoformdata(const parameters &map)
              }
              else
              {
-                string key = it.key;
-                if (key == "account_ids" ||
-                    key == "exclude_types" ||
-                    key == "media_ids")
-                {
-                    key += "[]";
-                }
-                formdata.push_back(
-                    new curlpp::FormParts::Content(key, it.values.front()));
+                 // Append [] to array keys.
+                 string key = it.key;
+                 if (key == "account_ids"
+                     || key == "exclude_types"
+                     || key == "media_ids"
+                     || key == "context")
+                 {
+                     key += "[]";
+                 }
+                 formdata.push_back(
+                     new curlpp::FormParts::Content(key, it.values.front()));
             }
         }
         else

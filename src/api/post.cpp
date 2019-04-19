@@ -190,6 +190,11 @@ return_call API::post(const Mastodon::API::v1 &call,
         strcall = "/api/v1/statuses/" + strid + "/unbookmark";
         break;
     }
+    case v1::filters:
+    {
+        strcall = "/api/v1/filters";
+        break;
+    }
     default:
     {
         ttdebug << "ERROR: Invalid argument.\n";

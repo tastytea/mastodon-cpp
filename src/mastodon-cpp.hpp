@@ -209,8 +209,8 @@ namespace Mastodon
             statuses_id_favourite,
             statuses_id_unfavourite,
 
-            // filters,
-            // filters_id,
+            filters,
+            filters_id,
 
             follow_requests,
             follow_requests_id_authorize,

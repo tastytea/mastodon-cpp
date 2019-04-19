@@ -103,6 +103,20 @@ namespace Easy
     };
 
     /*!
+     *  @brief  Describes the context.
+     *
+     *  @since  0.104.0
+     */
+    enum class context_type
+    {
+        Home,
+        Notifications,
+        Public,
+        Thread,
+        Undefined
+    };
+
+    /*!
      *  @brief Used for stream events.
      *
      *  @since  0.100.0

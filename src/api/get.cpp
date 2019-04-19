@@ -221,6 +221,16 @@ const return_call API::get(const Mastodon::API::v1 &call,
         strcall = "/api/v1/apps/verify_credentials";
         break;
     }
+    case v1::filters:
+    {
+        strcall = "/api/v1/filters";
+        break;
+    }
+    case v1::filters_id:
+    {
+        strcall = "/api/v1/filters/" + strid;
+        break;
+    }
     default:
     {
         ttdebug << "ERROR: Invalid argument.\n";

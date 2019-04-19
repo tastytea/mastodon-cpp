@@ -35,25 +35,41 @@ return_call API::del(const Mastodon::API::v1 &call,
 
     switch (call)
     {
-        case v1::domain_blocks:
-            strcall = "/api/v1/domain_blocks";
-            break;
-        case v1::lists_id:
-            strcall = "/api/v1/lists/" + strid;
-            break;
-        case v1::lists_id_accounts:
-            strcall = "/api/v1/lists/" + strid + "/accounts";
-            break;
-        case v1::statuses_id:
-            strcall = "/api/v1/statuses/" + strid;
-            break;
-        case v1::push_subscription:
-            strcall = "/api/v1/push/subscription";
-            break;
-        default:
-            ttdebug << "ERROR: Invalid argument.\n";
-            return { 22, "Invalid argument", 0, "" };
-            break;
+    case v1::domain_blocks:
+    {
+        strcall = "/api/v1/domain_blocks";
+        break;
+    }
+    case v1::lists_id:
+    {
+        strcall = "/api/v1/lists/" + strid;
+        break;
+    }
+    case v1::lists_id_accounts:
+    {
+        strcall = "/api/v1/lists/" + strid + "/accounts";
+        break;
+    }
+    case v1::statuses_id:
+    {
+        strcall = "/api/v1/statuses/" + strid;
+        break;
+    }
+    case v1::push_subscription:
+    {
+        strcall = "/api/v1/push/subscription";
+        break;
+    }
+    case v1::filters_id:
+    {
+        strcall = "/api/v1/filters/" + strid;
+        break;
+    }
+    default:
+    {
+        ttdebug << "ERROR: Invalid argument.\n";
+        return { 22, "Invalid argument", 0, "" };
+    }
     }
 
     return del(strcall, params);

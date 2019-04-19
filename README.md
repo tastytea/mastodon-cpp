@@ -270,10 +270,11 @@ Run `make package` from the build directory to generate a tar.gz archive.
  * [x] GET /api/v1/favourites
  * [x] POST /api/v1/statuses/:id/favourite
  * [x] POST /api/v1/statuses/:id/unfavourite
- * [ ] GET /api/v1/filters
- * [ ] POST /api/v1/filters
- * [ ] GET /api/v1/filters/:id
- * [ ] DELETE /api/v1/filters/:id
+ * [x] GET /api/v1/filters
+ * [x] POST /api/v1/filters
+ * [x] GET /api/v1/filters/:id
+ * [x] PUT /api/v1/filters/:id
+ * [x] DELETE /api/v1/filters/:id
  * [x] GET /api/v1/follow_requests
  * [x] POST /api/v1/follow_requests/:id/authorize
  * [x] POST /api/v1/follow_requests/:id/reject

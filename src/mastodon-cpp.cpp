@@ -68,7 +68,7 @@ const string API::maptostr(const parameters &map, const bool &firstparam)
     {
         if (it.values.size() == 1)
         {
-            result += (delim + it.key + "=" + urlencode(it.values.front()));
+            result += (delim + it.key + "=" + ::urlencode(it.values.front()));
             if (delim == '?')
             {
                 delim = '&';
@@ -78,7 +78,7 @@ const string API::maptostr(const parameters &map, const bool &firstparam)
         {
             for (const string &str : it.values)
             {
-                result += (delim + it.key + "[]=" + urlencode(str));
+                result += (delim + it.key + "[]=" + ::urlencode(str));
                 if (delim == '?')
                 {
                     delim = '&';
@@ -173,12 +173,12 @@ return_call API::register_app1(const string &client_name,
         client_secret = match[1].str();
 
         url = "https://" + _instance + "/oauth/authorize" +
-              "?scope=" + urlencode(scopes) + "&response_type=code" +
-              "&redirect_uri=" + urlencode(redirect_uri) +
-              "&client_id=" + client_id;
+            "?scope=" + ::urlencode(scopes) + "&response_type=code" +
+            "&redirect_uri=" + ::urlencode(redirect_uri) +
+            "&client_id=" + client_id;
         if (!website.empty())
         {
-            url += "&website=" + urlencode(website);
+            url += "&website=" + ::urlencode(website);
         }
     }
     else if (ret.error_code == 78)
@@ -291,16 +291,16 @@ const parameters API::delete_params(const parameters &params,
         return newparams;
 }
 
-const string urlencode(const std::string &str)
+const string Mastodon::urlencode(const std::string &str)
 {
     return curlpp::escape(str);
 }
-const string urldecode(const std::string &str)
+const string Mastodon::urldecode(const std::string &str)
 {
     return curlpp::unescape(str);
 }
 
-const string unescape_html(const string &html)
+const string Mastodon::unescape_html(const string &html)
 {
     string buffer = html;
     string output = "";

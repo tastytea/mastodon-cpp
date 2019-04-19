@@ -187,7 +187,7 @@ const return_call API::get(const Mastodon::API::v1 &call,
         const auto &it = params.find("tag");
         if (it != params.end())
         {
-            strcall = "/api/v1/timelines/tag/" + urlencode(it->values[0]);
+            strcall = "/api/v1/timelines/tag/" + ::urlencode(it->values[0]);
         }
         else
         {

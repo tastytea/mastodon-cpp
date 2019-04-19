@@ -31,3 +31,5 @@ const char *env_user_id = getenv("MASTODON_CPP_USER_ID");
 const string user_id = (env_user_id ? env_user_id : "9hnrrVPriLiLVAhfVo");
 const char *env_status_id = getenv("MASTODON_CPP_STATUS_ID");
 const string status_id = (env_status_id ? env_status_id : "9hwnuJMq3eTdO4s1PU");
+const char *env_filter_id = getenv("MASTODON_CPP_FILTER_ID");
+const string filter_id = (env_filter_id ? env_filter_id : "");

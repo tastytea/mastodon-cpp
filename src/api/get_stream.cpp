@@ -22,34 +22,45 @@ using namespace Mastodon;
 using std::cerr;
 
 void API::get_stream(const Mastodon::API::v1 &call,
-                        const parameters &params,
-                        std::unique_ptr<Mastodon::API::http> &ptr,
-                        string &stream)
+                     const parameters &params,
+                     std::unique_ptr<Mastodon::API::http> &ptr,
+                     string &stream)
 {
     string strcall = "";
 
     switch (call)
     {
-        case v1::streaming_user:
-            strcall = "/api/v1/streaming/user";
-            break;
-        case v1::streaming_public:
-            strcall = "/api/v1/streaming/public";
-            break;
-        case v1::streaming_public_local:
-            strcall = "/api/v1/streaming/public/local";
-            break;
-        case v1::streaming_hashtag:
-            strcall = "/api/v1/streaming/hashtag";
-            break;
-        case v1::streaming_list:
-            strcall = "/api/v1/streaming/list";
-            break;
-        default:
-            ttdebug << "ERROR: Invalid call.\n";
-            stream = "event: ERROR\ndata: {\"error_code\":22}\n";
-            return;
-            break;
+    case Mastodon::API::v1::streaming_user:
+    {
+        strcall = "/api/v1/streaming/user";
+        break;
+    }
+    case v1::streaming_public:
+    {
+        strcall = "/api/v1/streaming/public";
+        break;
+    }
+    case v1::streaming_public_local:
+    {
+        strcall = "/api/v1/streaming/public/local";
+        break;
+    }
+    case v1::streaming_hashtag:
+    {
+        strcall = "/api/v1/streaming/hashtag";
+        break;
+    }
+    case v1::streaming_list:
+    {
+        strcall = "/api/v1/streaming/list";
+        break;
+    }
+    default:
+    {
+        ttdebug << "ERROR: Invalid call.\n";
+        stream = "event: ERROR\ndata: {\"error_code\":22}\n";
+        return;
+    }
     }
 
     if (params.size() > 0)

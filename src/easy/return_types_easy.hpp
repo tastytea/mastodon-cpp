@@ -36,11 +36,6 @@ namespace Mastodon
 {
 namespace Easy
 {
-    template <typename T>
-    struct return_entity;
-    template <typename T>       // https://stackoverflow.com/a/4661372/5965450
-    std::ostream &operator <<(std::ostream&, const return_entity<T>&);
-
     /*!
      *  @brief  Return types for calls that return a single `Easy::Entity`.
      *
@@ -79,20 +74,24 @@ namespace Easy
         operator const T() const;
 
         /*!
-         *  @brief  Mastodon::Easy::Entity as string.
+         *  @brief  Mastodon::Easy::Entity as formatted string.
          *
          *  @since  0.100.0
          */
         operator const string() const;
 
-        // FIXME: Can't get it to work, don't know why.
         /*!
-         *  @brief  Mastodon::Easy::Entity as string.
+         *  @brief  Mastodon::Easy::Entity as formatted string.
          *
          *  @since  0.100.0
          */
-        friend std::ostream &operator <<<T>(std::ostream &out,
-                                            const return_entity<T> &ret);
+        friend std::ostream &operator <<(std::ostream &out,
+                                         const return_entity<T> &ret)
+        {
+            // Could only get it to work by implementing it here.
+            out << ret.entity.to_string();
+            return out;
+        }
     };
 
     /*!

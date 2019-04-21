@@ -63,14 +63,6 @@ Easy::return_entity<T>::return_entity::operator const string() const
     return entity.to_string();
 }
 
-template<typename T>
-std::ostream &Easy::operator <<(std::ostream &out,
-                                const Easy::return_entity<T> &ret)
-{
-    out << ret.entity.to_string();
-    return out;
-}
-
 // Explicit instantiations, so it can be used from outside.
 template struct Easy::return_entity<Easy::Account>;
 template struct Easy::return_entity<Easy::Application>;

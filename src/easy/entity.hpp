@@ -90,7 +90,7 @@ namespace Easy
         void from_string(const string &json);
 
         /*!
-         *  @brief  Returns the JSON of the Entity as string.
+         *  @brief  Returns the JSON of the Entity as formatted string.
          *
          *  @return JSON string
          *

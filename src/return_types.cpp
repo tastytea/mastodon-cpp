@@ -16,44 +16,45 @@
 
 #include "return_types.hpp"
 
-using namespace Mastodon;
-
-return_base::operator bool()
+namespace Mastodon
 {
-    if (error_code == 0)
+    return_base::operator bool()
     {
-        return true;
+        if (error_code == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
-    else
+
+    return_base::operator uint8_t()
     {
-        return false;
+        return error_code;
     }
-}
 
-return_base::operator uint8_t()
-{
-    return error_code;
-}
+    return_call::operator const string() const
+    {
+        return answer;
+    }
 
-return_call::operator const string() const
-{
-    return answer;
-}
+    std::ostream &operator <<(std::ostream &out, const return_call &ret)
+    {
+        out << ret.answer;
+        return out;
+    }
 
-std::ostream &Mastodon::operator <<(std::ostream &out, const return_call &ret)
-{
-    out << ret.answer;
-    return out;
-}
+    return_call::return_call()
+    {}
 
-return_call::return_call()
-{}
-
-return_call::return_call(const uint8_t ec, const string &em,
-                         const uint16_t hec, const string &a)
-    : answer(a)
-{
-    error_code = ec;
-    error_message = em;
-    http_error_code = hec;
+    return_call::return_call(const uint8_t ec, const string &em,
+                             const uint16_t hec, const string &a)
+        : answer(a)
+    {
+        error_code = ec;
+        error_message = em;
+        http_error_code = hec;
+    }
 }

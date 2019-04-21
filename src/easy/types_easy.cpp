@@ -16,42 +16,46 @@
 
 #include "types_easy.hpp"
 
-using namespace Mastodon;
-
-Easy::time::operator const system_clock::time_point() const
+namespace Mastodon
 {
-    return timepoint;
-}
-
-Easy::time::operator const string() const
+namespace Easy
 {
-    return strtime("%FT%T%z", true);
-}
-
-const string Easy::time::strtime(const string &format, const bool &local) const
-{
-    constexpr std::uint16_t bufsize = 1024;
-    std::time_t time = system_clock::to_time_t(timepoint);
-    std::tm *tm;
-    if (local)
+    time::operator const system_clock::time_point() const
     {
-        tm = std::localtime(&time);
-    }
-    else
-    {
-        tm = std::gmtime(&time);
+        return timepoint;
     }
 
-    char buffer[bufsize];
-    std::strftime(buffer, bufsize, format.c_str(), tm);
+    time::operator const string() const
+    {
+        return strtime("%FT%T%z", true);
+    }
 
-    return static_cast<const string>(buffer);
+    const string time::strtime(const string &format, const bool &local) const
+    {
+        constexpr std::uint16_t bufsize = 1024;
+        std::time_t time = system_clock::to_time_t(timepoint);
+        std::tm *tm;
+        if (local)
+        {
+            tm = std::localtime(&time);
+        }
+        else
+        {
+            tm = std::gmtime(&time);
+        }
+
+        char buffer[bufsize];
+        std::strftime(buffer, bufsize, format.c_str(), tm);
+
+        return static_cast<const string>(buffer);
+    }
+
+    std::ostream &operator <<(std::ostream &out,
+                              const time &t)
+    {
+        const string s = t;         // Converts using operator const string().
+        out << s;
+        return out;
+    }
 }
-
-std::ostream &Mastodon::Easy::operator <<(std::ostream &out,
-                                          const Easy::time &t)
-{
-    const string s = t;         // Converts using operator const string().
-    out << s;
-    return out;
 }

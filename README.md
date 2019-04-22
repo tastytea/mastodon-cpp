@@ -149,7 +149,7 @@ Prebuilt DEB and RPM packages for x86_64(amd64) are provided with each release.
 `.deb` packages are built on Debian stretch and `.rpm` packages are built on
 CentOS 7. These packages are automatically built and not tested.
 
-To use the DEB`.deb` package on Debian stretch, you will need
+To use the `.deb` package on Debian stretch, you will need
 [libcurlpp0](https://packages.debian.org/libcurlpp0) from sid.
 
 To use the `.rpm` package on CentOS 7, you will need
@@ -172,6 +172,31 @@ from EPEL 6.
     * DEB package: [dpkg](https://packages.qa.debian.org/dpkg) (tested: 1.18)
     * RPM package: [rpm-build](http://www.rpm.org) (tested: 4.11)
     * Tests: [catch](https://github.com/catchorg/Catch2) (tested: 2.5 / 1.2)
+
+#### Debian stretch
+
+``` shellsession
+echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
+apt-get update
+apt-get install build-essential cmake pkg-config libcurl4-openssl-dev libjsoncpp-dev doxygen file
+apt-get install -t sid libcurlpp-dev
+```
+
+#### Centos 7
+
+``` shellsession
+wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+rpm -i epel-release-latest-7.noarch.rpm
+yum install centos-release-scl
+yum install devtoolset-6
+scl enable devtoolset-6 bash
+yum install libcurl-devel doxygen rpm-build
+yum --enablerepo=epel install cmake3 jsoncpp-devel
+wget https://download.fedoraproject.org/pub/epel/6/x86_64/Packages/c/curlpp-devel-0.7.3-5.el6.x86_64.rpm
+wget https://download.fedoraproject.org/pub/epel/6/x86_64/Packages/c/curlpp-0.7.3-5.el6.x86_64.rpm
+yum localinstall curlpp-devel-0.7.3-5.el6.x86_64.rpm curlpp-0.7.3-5.el6.x86_64.rpm
+```
 
 ### Get sourcecode
 

@@ -180,7 +180,6 @@ const Account Account::moved() const
 {
     if (has_moved())
     {
-        // TODO: Find an account with moved-node and test
         return Account(get("moved").toStyledString());
     }
 

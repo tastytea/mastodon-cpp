@@ -171,7 +171,6 @@ const std::vector<Easy::Attachment> Status::media_attachments() const
 Status Status::media_attachments
     (const std::vector<Attachment> &media_attachments)
 {
-    // FIXME: Needs writable Easy::Attachment()
     Json::Value jsonarray(Json::arrayValue);
 
     for (const Attachment &att : media_attachments)

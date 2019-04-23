@@ -69,16 +69,15 @@ and <https://doc.schlomp.space/mastodon-cpp/namespaceMastodon_1_1Easy.html>.
 ### Return types
 
 * `Mastodon::return_call`: Contains the response from `Mastodon::API` calls.
-* `Mastodon::Easy::return_entity`: Contains the response from
-  `Mastodon::Easy::API` calls that return a single `Mastodon::Easy::Entity`.
+* `Mastodon::Easy::return_entity`: Contains the response from high-level
+  functions that return a single `Mastodon::Easy::Entity`.
 * `Mastodon::Easy::return_entities_vector`: Contains the response from
-  `Mastodon::Easy::API` calls that return multiple `Mastodon::Easy::Entity`.
+  high-level functions that return multiple `Mastodon::Easy::Entity`.
 
 ### Other types
 
-* `Mastodon::param`: A single parameter to an `Mastodon::API` call. Normally you
-  don't need this.
-* `Mastodon::parameters`: All parameters to an `Mastodon::API` call.
+* `Mastodon::parameters`: Vector of `Mastodon::param`, for specifying parameters
+  to an `Mastodon::API` call.
 * `Mastodon::http_method`: HTTP method of an `Mastodon::API` call.
 * `Mastodon::Easy::event_type`: Event types returned in streams.
 * `Mastodon::Easy::visibility_type`: Describes the visibility of a post.
@@ -88,7 +87,6 @@ and <https://doc.schlomp.space/mastodon-cpp/namespaceMastodon_1_1Easy.html>.
 * `Mastodon::Easy::context_type`: Describes the context of a filter.
 * `Mastodon::Easy::stream_event`: Type and data of an events returned in
   streams.
-* `Mastodon::Easy::alert_type`: Type for a single alert.
 * `Mastodon::Easy::alerts`: Vector of `Mastodon::Easy::alert_type`, used for
   push subscriptions.
 * `Mastodon::Easy::time`: Type for time, can be converted to `time_point` and

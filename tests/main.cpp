@@ -34,4 +34,4 @@ const string status_id = (env_status_id ? env_status_id : "9hwnuJMq3eTdO4s1PU");
 const char *env_filter_id = getenv("MASTODON_CPP_FILTER_ID");
 const string filter_id = (env_filter_id ? env_filter_id : "");
 const char *env_list_id = getenv("MASTODON_CPP_LIST_ID");
-const string list_id = (env_list_id ? env_list_id : "1");
+const string list_id = (env_list_id ? env_list_id : "2");

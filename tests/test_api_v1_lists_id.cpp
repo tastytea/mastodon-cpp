@@ -65,6 +65,62 @@ SCENARIO ("/api/v1/lists/:id can be called successfully",
                 REQUIRE(list.id() == list_id);
             }
         }
+
+        WHEN ("PUT /api/v1/lists/" + list_id + " is called")
+        {
+            try
+            {
+                ret = masto.put(API::v1::lists_id,
+                                {
+                                    { "id", { list_id }},
+                                    { "title", { "testlist" }}
+                                });
+                list.from_string(ret.answer);
+            }
+            catch (const std::exception &e)
+            {
+                exception = true;
+                WARN(e.what());
+            }
+
+            THEN("No exception is thrown")
+                AND_THEN ("No errors are returned")
+                AND_THEN ("Answer is valid")
+                AND_THEN ("The answer makes sense")
+            {
+                REQUIRE_FALSE(exception);
+
+                REQUIRE(ret.error_code == 0);
+                REQUIRE(ret.http_error_code == 200);
+
+                REQUIRE(list.valid());
+
+                REQUIRE(list.title() == "testlist");
+            }
+        }
+
+        WHEN ("DELETE /api/v1/lists/donotdelete is called")
+        {
+            try
+            {
+                ret = masto.del(API::v1::lists_id,
+                                {{ "id", { "donotdelete" }}});
+            }
+            catch (const std::exception &e)
+            {
+                exception = true;
+                WARN(e.what());
+            }
+
+            THEN("No exception is thrown")
+                AND_THEN ("No unexpected errors are returned")
+            {
+                REQUIRE_FALSE(exception);
+
+                REQUIRE(ret.error_code == 111);
+                REQUIRE(ret.http_error_code == 400);
+            }
+        }
     }
 }
 

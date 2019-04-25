@@ -246,7 +246,7 @@ You can select the instance to use with `MASTODON_CPP_INSTANCE`, the default is
 default is *9hnrrVPriLiLVAhfVo*. You can select the status ID with
 `MASTODON_CPP_STATUS_ID`, the default is *9hwnuJMq3eTdO4s1PU*. You can select
 the filter ID with `MASTODON_CPP_FILTER_ID`. You can select the list ID with
-`MASTODON_CPP_LIST_ID`, the default is *1*.
+`MASTODON_CPP_LIST_ID`, the default is *2*.
 
 Requirements for the test-user:
 

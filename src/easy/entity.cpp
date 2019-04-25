@@ -100,7 +100,7 @@ const Json::Value Easy::Entity::to_object() const
 
 bool Easy::Entity::check_valid(const std::vector<string> &attributes) const
 {
-    for (const string &attribute: attributes)
+    for (const string &attribute : attributes)
     {
         get(attribute);
         if (!was_set())

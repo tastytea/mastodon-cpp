@@ -24,10 +24,10 @@ using std::uint64_t;
 bool List::valid() const
 {
     const std::vector<string> attributes =
-    {{
+    {
         "id",
         "title"
-    }};
+    };
 
     return Entity::check_valid(attributes);
 }

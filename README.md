@@ -255,6 +255,7 @@ Requirements for the test-user:
 * Have at least 1 public or unlisted status.
 * Have at least 1 post favourited.
 * Have no follow requests.
+* Have at least 1 list with at least one account in it.
 
 ### Packages
 

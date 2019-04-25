@@ -31,5 +31,7 @@ extern const char *env_status_id;
 extern const string status_id;
 extern const char *env_filter_id;
 extern const string filter_id;
+extern const char *env_list_id;
+extern const string list_id;
 
 #endif  // MASTODON_CPP_TEST_ENVIRONMENT_VARIABLES_HPP

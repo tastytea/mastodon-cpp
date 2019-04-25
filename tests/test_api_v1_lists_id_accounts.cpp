@@ -19,27 +19,41 @@
 #include <catch.hpp>
 #include "mastodon-cpp.hpp"
 #include "easy/easy.hpp"
+#include "easy/entities/account.hpp"
 #include "environment_variables.hpp"
 
 using namespace Mastodon;
 
-SCENARIO ("/api/v1/accounts/:id/lists can be called successfully",
+SCENARIO ("/api/v1/lists/:id/accounts can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
     REQUIRE (access_token != nullptr);
 
-    GIVEN ("instance = " + instance + ", user ID = " + user_id)
+    GIVEN ("instance = " + instance + ", list ID = " + list_id)
     {
         Mastodon::Easy::API masto(instance, access_token);
         return_call ret;
+        Easy::Account account;
         bool exception = false;
 
-        WHEN ("GET /api/v1/accounts/" + user_id + "/lists is called")
+        WHEN ("GET /api/v1/lists/" + list_id + "/accounts is called")
         {
             try
             {
-                ret = masto.get(API::v1::accounts_id_lists,
-                                {{ "id", { user_id }}});
+                ret = masto.get(API::v1::lists_id_accounts,
+                                {
+                                    { "id", { list_id }},
+                                    { "limit", { "5" }}
+                                });
+                if (ret.answer == "[]")
+                {
+                    WARN("No accounts found.");
+                }
+                else
+                {
+                    account.from_string
+                        (Easy::json_array_to_vector(ret.answer).front());
+                }
             }
             catch (const std::exception &e)
             {
@@ -48,7 +62,8 @@ SCENARIO ("/api/v1/accounts/:id/lists can be called successfully",
             }
 
             THEN("No exception is thrown")
-                AND_THEN ("No unexpected errors are returned")
+                AND_THEN ("No errors are returned")
+                AND_THEN ("Answer is valid")
                 AND_THEN ("The answer makes sense")
             {
                 REQUIRE_FALSE(exception);
@@ -56,7 +71,9 @@ SCENARIO ("/api/v1/accounts/:id/lists can be called successfully",
                 REQUIRE(ret.error_code == 0);
                 REQUIRE(ret.http_error_code == 200);
 
-                REQUIRE(ret.answer == "[]");
+                REQUIRE(account.valid());
+
+                REQUIRE(account.id() != "");
             }
         }
     }

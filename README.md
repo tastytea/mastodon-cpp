@@ -245,7 +245,8 @@ You can select the instance to use with `MASTODON_CPP_INSTANCE`, the default is
 *likeable.space*. You can select the user ID with `MASTODON_CPP_USER_ID`, the
 default is *9hnrrVPriLiLVAhfVo*. You can select the status ID with
 `MASTODON_CPP_STATUS_ID`, the default is *9hwnuJMq3eTdO4s1PU*. You can select
-the filter ID with `MASTODON_CPP_FILTER_ID`.
+the filter ID with `MASTODON_CPP_FILTER_ID`. You can select the list ID with
+`MASTODON_CPP_LIST_ID`, the default is *1*.
 
 Requirements for the test-user:
 

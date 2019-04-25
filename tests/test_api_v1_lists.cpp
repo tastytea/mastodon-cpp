@@ -71,6 +71,35 @@ SCENARIO ("/api/v1/lists can be called successfully",
                 REQUIRE(list.id() != "");
             }
         }
+
+        WHEN ("POST /api/v1/lists is called")
+        {
+            try
+            {
+                ret = masto.post(API::v1::lists,
+                                 {{ "title", { "testlist" }}});
+                list.from_string(ret.answer);
+            }
+            catch (const std::exception &e)
+            {
+                exception = true;
+                WARN(e.what());
+            }
+
+            THEN("No exception is thrown")
+                AND_THEN ("No errors are returned")
+                AND_THEN ("Answer is valid")
+                AND_THEN ("The answer makes sense")
+            {
+                REQUIRE_FALSE(exception);
+
+                REQUIRE(ret.error_code == 0);
+                REQUIRE(ret.http_error_code == 200);
+                REQUIRE(list.valid());
+
+                REQUIRE(list.id() != "");
+            }
+        }
     }
 }
 

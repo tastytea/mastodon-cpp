@@ -24,32 +24,23 @@
 
 using namespace Mastodon;
 
-SCENARIO ("/api/v1/lists can be called successfully",
+SCENARIO ("/api/v1/accounts/:id/lists can be called successfully",
           "[api][mastodon][pleroma][glitch-soc]")
 {
     REQUIRE (access_token != nullptr);
 
-    GIVEN ("instance = " + instance)
+    GIVEN ("instance = " + instance + ", user ID = " + user_id)
     {
         Mastodon::Easy::API masto(instance, access_token);
         return_call ret;
-        Easy::List list;
         bool exception = false;
 
-        WHEN ("GET /api/v1/lists is called")
+        WHEN ("GET /api/v1/accounts/" + user_id + "/lists is called")
         {
             try
             {
-                ret = masto.get(API::v1::lists);
-                if (ret.answer == "[]")
-                {
-                    WARN("No lists found.");
-                }
-                else
-                {
-                    list.from_string
-                        (Easy::json_array_to_vector(ret.answer).front());
-                }
+                ret = masto.get(API::v1::accounts_id_lists,
+                                {{ "id", { user_id }}});
             }
             catch (const std::exception &e)
             {
@@ -58,17 +49,15 @@ SCENARIO ("/api/v1/lists can be called successfully",
             }
 
             THEN("No exception is thrown")
-                AND_THEN ("No errors are returned")
-                AND_THEN ("Answer is valid")
+                AND_THEN ("No unexpected errors are returned")
                 AND_THEN ("The answer makes sense")
             {
                 REQUIRE_FALSE(exception);
 
                 REQUIRE(ret.error_code == 0);
                 REQUIRE(ret.http_error_code == 200);
-                REQUIRE(list.valid());
 
-                REQUIRE(list.id() != "");
+                REQUIRE(ret.answer == "[]");
             }
         }
     }

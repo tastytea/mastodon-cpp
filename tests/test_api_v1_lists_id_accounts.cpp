@@ -29,7 +29,8 @@ SCENARIO ("/api/v1/lists/:id/accounts can be called successfully",
 {
     REQUIRE (access_token != nullptr);
 
-    GIVEN ("instance = " + instance + ", list ID = " + list_id)
+    GIVEN ("instance = " + instance + ", list ID = " + list_id
+           + ", user ID = " + user_id)
     {
         Mastodon::Easy::API masto(instance, access_token);
         return_call ret;
@@ -76,6 +77,59 @@ SCENARIO ("/api/v1/lists/:id/accounts can be called successfully",
                 REQUIRE(account.id() != "");
             }
         }
+
+        WHEN ("POST /api/v1/lists/" + list_id + "/accounts is called")
+        {
+            try
+            {
+                ret = masto.post(API::v1::lists_id_accounts,
+                                 {
+                                     { "id", { list_id }},
+                                     { "account_ids", { user_id }}
+                                 });
+            }
+            catch (const std::exception &e)
+            {
+                exception = true;
+                WARN(e.what());
+            }
+
+            THEN("No exception is thrown")
+                AND_THEN ("No errors are returned")
+            {
+                REQUIRE_FALSE(exception);
+
+                REQUIRE(ret.error_code == 0);
+                REQUIRE(ret.http_error_code == 200);
+            }
+        }
+
+        WHEN ("DELETE /api/v1/lists/" + list_id + "/accounts is called")
+        {
+            try
+            {
+                ret = masto.del(API::v1::lists_id_accounts,
+                                {
+                                    { "id", { list_id }},
+                                    { "account_ids", { user_id }}
+                                });
+            }
+            catch (const std::exception &e)
+            {
+                exception = true;
+                WARN(e.what());
+            }
+
+            THEN("No exception is thrown")
+                AND_THEN ("No errors are returned")
+            {
+                REQUIRE_FALSE(exception);
+
+                REQUIRE(ret.error_code == 0);
+                REQUIRE(ret.http_error_code == 200);
+            }
+        }
+
     }
 }
 

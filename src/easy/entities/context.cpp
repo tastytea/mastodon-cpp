@@ -23,13 +23,11 @@ using Context = Easy::Context;
 
 bool Context::valid() const
 {
-    const std::vector<string> attributes =
-    {{
-        "ancestors",
-        "descendants"
-    }};
-
-    return Entity::check_valid(attributes);
+    return Entity::check_valid(
+        {
+            "ancestors",
+            "descendants"
+        });
 }
 
 const std::vector<Easy::Status> Context::ancestors() const

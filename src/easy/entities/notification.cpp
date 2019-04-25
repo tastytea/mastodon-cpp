@@ -22,15 +22,13 @@ using Notification = Easy::Notification;
 
 bool Notification::valid() const
 {
-    const std::vector<string> attributes =
-    {{
-        "id",
-        "type",
-        "created_at",
-        "account"
-    }};
-
-    return Entity::check_valid(attributes);
+    return Entity::check_valid(
+        {
+            "id",
+            "type",
+            "created_at",
+            "account"
+        });
 }
 
 const Easy::Account Notification::account() const

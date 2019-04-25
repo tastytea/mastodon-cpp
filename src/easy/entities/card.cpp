@@ -22,15 +22,13 @@ using Card = Easy::Card;
 
 bool Card::valid() const
 {
-    const std::vector<string> attributes =
-    {{
-        "url",
-        "title",
-        "description",
-        "type"
-    }};
-
-    return Entity::check_valid(attributes);
+    return Entity::check_valid(
+        {
+            "url",
+            "title",
+            "description",
+            "type"
+        });
 }
 
 const string Card::author_name() const

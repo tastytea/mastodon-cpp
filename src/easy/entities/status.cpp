@@ -24,27 +24,25 @@ using Status = Easy::Status;
 
 bool Status::valid() const
 {
-    const std::vector<string> attributes =
-    {{
-        "id",
-        "uri",
-        "account",
-        "content",
-        "created_at",
-        "emojis",
-        "replies_count",
-        "reblogs_count",
-        "favourites_count",
-        "sensitive",
-        "spoiler_text",
-        "visibility",
-        "media_attachments",
-        "mentions",
-        "tags",
-        "application"
-    }};
-
-    return Entity::check_valid(attributes);
+    return Entity::check_valid(
+        {
+            "id",
+            "uri",
+            "account",
+            "content",
+            "created_at",
+            "emojis",
+            "replies_count",
+            "reblogs_count",
+            "favourites_count",
+            "sensitive",
+            "spoiler_text",
+            "visibility",
+            "media_attachments",
+            "mentions",
+            "tags",
+            "application"
+        });
 }
 
 const Easy::Account Status::account() const

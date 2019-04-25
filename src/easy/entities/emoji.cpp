@@ -22,15 +22,13 @@ using Emoji = Easy::Emoji;
 
 bool Emoji::valid() const
 {
-    const std::vector<string> attributes =
-    {{
-        "shortcode",
-        "static_url",
-        "url",
-        "visible_in_picker"
-    }};
-
-    return Entity::check_valid(attributes);
+    return Entity::check_valid(
+        {
+            "shortcode",
+            "static_url",
+            "url",
+            "visible_in_picker"
+        });
 }
 
 const string Emoji::shortcode() const

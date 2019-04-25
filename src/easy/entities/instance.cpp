@@ -24,18 +24,16 @@ using Instance = Easy::Instance;
 
 bool Instance::valid() const
 {
-    const std::vector<string> attributes =
-    {{
-        "uri",
-        "title",
-        "description",
-        "email",
-        "version",
-        "urls",
-        "languages"
-    }};
-
-    return Entity::check_valid(attributes);
+    return Entity::check_valid(
+        {
+            "uri",
+            "title",
+            "description",
+            "email",
+            "version",
+            "urls",
+            "languages"
+        });
 }
 
 const Easy::Account Instance::contact_account() const

@@ -21,13 +21,11 @@ using Report = Easy::Report;
 
 bool Report::valid() const
 {
-    const std::vector<string> attributes =
-    {{
-        "id",
-        "action_taken"
-    }};
-
-    return Entity::check_valid(attributes);
+    return Entity::check_valid(
+        {
+            "id",
+            "action_taken"
+        });
 }
 
 bool Report::action_taken() const

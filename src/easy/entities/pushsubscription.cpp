@@ -26,14 +26,12 @@ const string PushSubscription::id() const
 
 bool PushSubscription::valid() const
 {
-    const std::vector<string> attributes =
-    {{
-        "id",
-        "endpoint",
-        "server_key"
-    }};
-
-    return Entity::check_valid(attributes);
+    return Entity::check_valid(
+        {
+            "id",
+            "endpoint",
+            "server_key"
+        });
 }
 
 const string PushSubscription::endpoint() const

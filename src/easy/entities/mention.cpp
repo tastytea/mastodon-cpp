@@ -21,15 +21,13 @@ using Mention = Easy::Mention;
 
 bool Mention::valid() const
 {
-    const std::vector<string> attributes =
-    {{
-        "url",
-        "username",
-        "acct",
-        "id"
-    }};
-
-    return Entity::check_valid(attributes);
+    return Entity::check_valid(
+        {
+            "url",
+            "username",
+            "acct",
+            "id"
+        });
 }
 
 const string Mention::acct() const

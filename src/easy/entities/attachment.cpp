@@ -23,15 +23,13 @@ using Attachment = Easy::Attachment;
 
 bool Attachment::valid() const
 {
-    const std::vector<string> attributes =
-    {{
-        "id",
-        "type",
-        "url",
-        "preview_url"
-    }};
-
-    return Entity::check_valid(attributes);
+    return Entity::check_valid(
+        {
+            "id",
+            "type",
+            "url",
+            "preview_url"
+        });
 }
 
 double Attachment::aspect() const

@@ -25,13 +25,11 @@ using Tag = Easy::Tag;
 
 bool Tag::valid() const
 {
-    const std::vector<string> attributes =
-    {{
-        "name",
-        "url"
-    }};
-
-    return Entity::check_valid(attributes);
+    return Entity::check_valid(
+        {
+            "name",
+            "url"
+        });
 }
 
 const string Tag::name() const

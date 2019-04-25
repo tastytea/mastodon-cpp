@@ -21,10 +21,13 @@ using Token = Easy::Token;
 
 bool Token::valid() const
 {
-    return Entity::check_valid({"access_token",
-                                "token_type",
-                                "scope",
-                                "created_at"});
+    return Entity::check_valid(
+        {
+            "access_token",
+            "token_type",
+            "scope",
+            "created_at"
+        });
 }
 
 const string Token::access_token() const

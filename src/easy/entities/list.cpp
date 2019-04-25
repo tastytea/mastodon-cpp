@@ -23,13 +23,11 @@ using std::uint64_t;
 
 bool List::valid() const
 {
-    const std::vector<string> attributes =
-    {
-        "id",
-        "title"
-    };
-
-    return Entity::check_valid(attributes);
+    return Entity::check_valid(
+        {
+            "id",
+            "title"
+        });
 }
 
 const string List::id() const

@@ -21,19 +21,17 @@ using Relationship = Easy::Relationship;
 
 bool Relationship::valid() const
 {
-    const std::vector<string> attributes =
-    {{
-        "id",
-        "following",
-        "followed_by",
-        "blocking",
-        "muting",
-        "muting_notifications",
-        "requested",
-        "domain_blocking"
-    }};
-
-    return Entity::check_valid(attributes);
+    return Entity::check_valid(
+        {
+            "id",
+            "following",
+            "followed_by",
+            "blocking",
+            "muting",
+            "muting_notifications",
+            "requested",
+            "domain_blocking"
+        });
 }
 
 bool Relationship::blocking() const

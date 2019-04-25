@@ -24,27 +24,25 @@ using Account = Easy::Account;
 
 bool Account::valid() const
 {
-    const std::vector<string> attributes =
-    {{
-        "id",
-        "username",
-        "acct",
-        "display_name",
-        "locked",
-        "created_at",
-        "followers_count",
-        "following_count",
-        "statuses_count",
-        "note",
-        "url",
-        "avatar",
-        "avatar_static",
-        "header",
-        "header_static",
-        "emojis"
-    }};
-
-    return Entity::check_valid(attributes);
+    return Entity::check_valid(
+        {
+            "id",
+            "username",
+            "acct",
+            "display_name",
+            "locked",
+            "created_at",
+            "followers_count",
+            "following_count",
+            "statuses_count",
+            "note",
+            "url",
+            "avatar",
+            "avatar_static",
+            "header",
+            "header_static",
+            "emojis"
+        });
 }
 
 const string Account::acct() const

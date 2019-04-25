@@ -23,14 +23,12 @@ using Results = Easy::Results;
 
 bool Results::valid() const
 {
-    const std::vector<string> attributes =
-    {{
-        "accounts",
-        "statuses",
-        "hashtags"
-    }};
-
-    return Entity::check_valid(attributes);
+    return Entity::check_valid(
+        {
+            "accounts",
+            "statuses",
+            "hashtags"
+        });
 }
 
 const std::vector<Easy::Account> Results::accounts() const

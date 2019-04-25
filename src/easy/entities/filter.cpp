@@ -24,11 +24,14 @@ using Filter = Easy::Filter;
 
 bool Filter::valid() const
 {
-    return Entity::check_valid({ "id",
-                                 "phrase",
-                                 "context",
-                                 "irreversible",
-                                 "whole_word" });
+    return Entity::check_valid(
+        {
+            "id",
+            "phrase",
+            "context",
+            "irreversible",
+            "whole_word"
+        });
 }
 
 const string Filter::id() const

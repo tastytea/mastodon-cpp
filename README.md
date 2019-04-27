@@ -220,17 +220,15 @@ cmake --build . -- -j$(nproc --ignore=1)
 
 cmake options:
 
-* `-DCMAKE_BUILD_TYPE=Debug` for a debug build
+* `-DCMAKE_BUILD_TYPE=Debug` for a debug build.
 * `-DWITH_EASY=NO` to not build the Easy abstractions and to get rid of the
-  jsoncpp-dependency (not recommended)
-* `-DWITH_EXAMPLES=YES` if you want to compile the examples
-* `-DWITH_TESTS=YES` if you want to compile the tests
-* `-DEXTRA_TEST_ARGS` to run only some tests
+  jsoncpp-dependency (not recommended).
+* `-DWITH_EXAMPLES=YES` if you want to compile the examples.
+* `-DWITH_TESTS=YES` if you want to compile the tests.
+* `-DEXTRA_TEST_ARGS` to run only some tests ([format](https://github.com/catchorg/Catch2/blob/master/docs/command-line.md#specifying-which-tests-to-run)).
   * Possible tags: `[api]`, `[auth]`, `[mastodon]`, `[glitch-soc]`,
-    `[pleroma]`, `[upload]`
-  * Example: `-DEXTRA_TEST_ARGS='[pleroma]![mastodon]'` to run the tests for
-    features in Pleroma that are not in Mastodon.
-  * `[upload]` tags tests that upload files.
+    `[pleroma]`, `[upload]`.
+    * `[upload]` tags tests that upload files.
 * `-DWITH_DOC=NO` if you don't want to compile the HTML reference
 * One of:
   * `-DWITH_DEB=YES` if you want to be able to generate a deb-package

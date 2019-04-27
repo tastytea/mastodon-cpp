@@ -54,9 +54,8 @@ namespace Mastodon
     /*!
      *  @brief  Interface to the Mastodon API.
      *
-     *          All input is expected to be UTF-8. Binary data must be
-     *          base64-encoded or a filename.
-     *          It appears that media attachements can not be base64 encoded.
+     *          All input is expected to be UTF-8. Binary data must be a
+     *          filename.
      *
      *  @section error Error codes
      *  |      Code | Explanation                                |
@@ -553,7 +552,7 @@ namespace Mastodon
         /*!
          *  @brief  Make a PATCH request.
          *
-         *          Binary data must be base64-encoded or a filename.
+         *          Binary data must be a filename.
          *
          *  @param  call        A call defined in Mastodon::API::v1
          *  @param  parameters  A Mastodon::parametermap containing
@@ -576,7 +575,7 @@ namespace Mastodon
         /*!
          *  @brief  Make a POST request which requires parameters.
          *
-         *          Binary data must be base64-encoded or a filename.
+         *          Binary data must be a filename.
          *
          *  @param  call        A call defined in Mastodon::API::v1
          *  @param  parameters  A Mastodon::parametermap containing
@@ -590,7 +589,7 @@ namespace Mastodon
         /*!
          *  @brief  Make a custom POST request.
          *
-         *          Binary data must be base64-encoded or a filename.
+         *          Binary data must be a filename.
          *
          *  @param  call        String in the form `/api/v1/example`
          *  @param  parameters  A Mastodon::parametermap containing

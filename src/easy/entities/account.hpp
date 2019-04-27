@@ -75,9 +75,8 @@ namespace Easy
         const string avatar() const;
 
         /*!
-         *  @brief  Sets avatar
+         *  @brief  Sets avatar to file.
          *
-         *          Filename or base64-encoded
          *
          *  @since  0.18.5
          */
@@ -154,9 +153,7 @@ namespace Easy
         const string header() const;
 
         /*!
-         *  @brief  Sets header image
-         *
-         *          Filename or base64-encoded.
+         *  @brief  Sets header image to file.
          *
          *  @since  0.18.5
          */

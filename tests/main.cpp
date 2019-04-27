@@ -35,3 +35,5 @@ const char *env_filter_id = getenv("MASTODON_CPP_FILTER_ID");
 const string filter_id = (env_filter_id ? env_filter_id : "");
 const char *env_list_id = getenv("MASTODON_CPP_LIST_ID");
 const string list_id = (env_list_id ? env_list_id : "2");
+const char *env_media_id = getenv("MASTODON_CPP_MEDIA_ID");
+const string media_id = (env_media_id ? env_media_id : "2127742613");

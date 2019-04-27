@@ -21,6 +21,7 @@
 #include <utility>
 #include <iostream>
 #include <algorithm>
+#include <fstream>
 #include "version.hpp"
 #include "debug.hpp"
 #include "mastodon-cpp.hpp"
@@ -103,20 +104,30 @@ const curlpp::Forms API::maptoformdata(const parameters &map)
     for (const auto &it : map)
     {
         if (it.values.size() == 1)
-        {   // If the file is not base64-encoded, treat as filename
+        {   // If the file is not base64-encoded, treat as filename.
             if ((it.key == "avatar" ||
                 it.key == "header" ||
                 it.key == "file") &&
-                it.values.front().substr(0, 4).compare("data") != 0)
+                it.values.front().substr(0, 5) != "data:")
              {
                 ttdebug << it.key << ": Filename detected.\n";
-                formdata.push_back(
-                    new curlpp::FormParts::File(it.key, it.values.front()));
+                std::ifstream testfile(it.values.front());
+                if (testfile.good())
+                {
+                    testfile.close();
+                    formdata.push_back(
+                        new curlpp::FormParts::File(it.key, it.values.front()));
+                }
+                else
+                {
+                    std::cerr << "Error: File not found: " << it.values.front()
+                              << std::endl;
+                }
              }
              else
              {
-                 // Append [] to array keys.
                  string key = it.key;
+                 // Append [] to array keys.
                  if (key == "account_ids"
                      || key == "exclude_types"
                      || key == "media_ids"

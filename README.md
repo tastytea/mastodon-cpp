@@ -226,8 +226,9 @@ cmake options:
 * `-DWITH_EXAMPLES=YES` if you want to compile the examples
 * `-DWITH_TESTS=YES` if you want to compile the tests
 * `-DEXTRA_TEST_ARGS` to run only some tests
-  * Possible values: `[api]`, `[mastodon]`, `[glitch-soc]`, `[pleroma]`, `[upload]`
-  * Example: `-DEXTRA_TEST_ARGS=[pleroma]![mastodon]` to run the tests for
+  * Possible tags: `[api]`, `[auth]`, `[mastodon]`, `[glitch-soc]`,
+    `[pleroma]`, `[upload]`
+  * Example: `-DEXTRA_TEST_ARGS='[pleroma]![mastodon]'` to run the tests for
     features in Pleroma that are not in Mastodon.
   * `[upload]` tags tests that upload files.
 * `-DWITH_DOC=NO` if you don't want to compile the HTML reference
@@ -241,7 +242,7 @@ Install with `make install`.
 
 You can run the tests with `ctest` inside the build directory. You need to set
 the environment variable `MASTODON_CPP_ACCESS_TOKEN` to an access token with the
-scopes *read*, *write* and *follow* for some tests.
+scopes *read*, *write* and *follow* for tests tagged with `[auth]`.
 You can select the instance to use with `MASTODON_CPP_INSTANCE`, the default is
 *likeable.space*. You can select the user ID with `MASTODON_CPP_USER_ID`, the
 default is *9hnrrVPriLiLVAhfVo*. You can select the status ID with

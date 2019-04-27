@@ -25,7 +25,7 @@
 using namespace Mastodon;
 
 SCENARIO ("/api/v1/media can be called successfully",
-          "[api][mastodon][pleroma][glitch-soc][upload]")
+          "[api][auth][mastodon][pleroma][glitch-soc][upload]")
 {
     REQUIRE (access_token != nullptr);
 

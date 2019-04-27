@@ -24,7 +24,7 @@
 using namespace Mastodon;
 
 SCENARIO ("/api/v1/follow_requests/:id/authorize can be called successfully",
-          "[api][mastodon][pleroma][glitch-soc]")
+          "[api][auth][mastodon][pleroma][glitch-soc]")
 {
     REQUIRE (access_token != nullptr);
 

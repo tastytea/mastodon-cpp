@@ -25,7 +25,7 @@
 using namespace Mastodon;
 
 SCENARIO ("/api/v1/endorsements can be called successfully",
-          "[api][mastodon][glitch-soc]")
+          "[api][auth][mastodon][glitch-soc]")
 {
     REQUIRE (access_token != nullptr);
 

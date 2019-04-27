@@ -25,7 +25,7 @@
 using namespace Mastodon;
 
 SCENARIO ("/api/v1/accounts/:id/pin can be called successfully",
-          "[api][mastodon][glitch-soc]")
+          "[api][auth][mastodon][glitch-soc]")
 {
     REQUIRE (access_token != nullptr);
 

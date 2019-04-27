@@ -27,7 +27,7 @@ using namespace Mastodon;
 // We use a media attachment that is attached to a status, therefore we get an
 // error.
 SCENARIO ("/api/v1/media/:id can be called successfully",
-          "[api][mastodon][pleroma][glitch-soc]")
+          "[api][auth][mastodon][pleroma][glitch-soc]")
 {
     REQUIRE (access_token != nullptr);
 

@@ -93,6 +93,7 @@ endif()
 
 # Compile tests
 if(WITH_TESTS)
+  configure_file("tests/test.gif" "${CMAKE_CURRENT_BINARY_DIR}" COPYONLY)
   include(tests.CMakeLists.txt)
 endif()
 

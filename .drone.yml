@@ -265,6 +265,11 @@ depends_on:
   - on_push
   - on_tag
 
+trigger:
+  status:
+  - success
+  - failure
+
 clone:
   disable: true
 

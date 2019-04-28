@@ -179,7 +179,7 @@ trigger:
 steps:
 - name: package_deb
   image: debian:stretch-slim
-  pull: true
+  pull: always
   environment:
     LANG: C.utf8
     CXXFLAGS: -pipe -O2
@@ -205,7 +205,7 @@ steps:
 
 - name: package_rpm
   image: centos:7
-  pull: true
+  pull: always
   environment:
     LANG: C.utf8
     CXXFLAGS: -pipe -O2
@@ -233,7 +233,7 @@ steps:
 
 - name: gitea_release
   image: plugins/gitea-release
-  pull: true
+  pull: always
   settings:
     base_url: https://schlomp.space
     api_key:
@@ -252,7 +252,7 @@ steps:
     when:
       status: [ changed, failure ]
     image: drillster/drone-email
-    pull: true
+    pull: always
     host: cryptoparty-celle.de
     secrets: [ email_username, email_password ]
     from: drone@tzend.de
@@ -271,7 +271,7 @@ clone:
 steps:
 - name: notify
   image: drillster/drone-email
-  pull: true
+  pull: always
   settings:
     host: cryptoparty-celle.de
     from: drone@tzend.de

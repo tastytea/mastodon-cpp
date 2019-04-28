@@ -6,7 +6,7 @@ set(CPACK_PACKAGE_VERSION ${mastodon-cpp_VERSION})
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "C++ wrapper for the Mastodon API")
 set(CPACK_PACKAGE_CONTACT "tastytea <tastytea@tastytea.de>")
 set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
-set(CPACK_RESOURCE_FILE_README "${PROJECT_SOURCE_DIR}/README.md")
+set(CPACK_RESOURCE_FILE_README "${PROJECT_SOURCE_DIR}/README.adoc")
 list(APPEND CPACK_SOURCE_IGNORE_FILES "/\\\\.git"
                                       "/.gitignore"
                                       "/build/"

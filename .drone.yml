@@ -1,220 +1,243 @@
-pipeline:
-  gcc6:
-    image: debian:stretch-slim
-    pull: true
-    when:
-      event: [push, pull_request]
-    environment:
-      - LANG=C.utf8
-      - CXX=g++-6
-      - CXXFLAGS=-pipe -O2
-    secrets:
-      - mastodon_cpp_access_token
-    commands:
-      - rm /etc/apt/apt.conf.d/docker-clean
-      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
-      - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
-      - apt-get update -q
-      - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
-      - apt-get install -qy -t sid libcurlpp-dev
-      - rm -rf build && mkdir -p build && cd build
-      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="[pleroma]~[upload]" ..
-      - make VERBOSE=1
-      - make install DESTDIR=install
-      - ctest
-    volumes:
-      - /var/cache/debian-package-cache:/var/cache/apt/archives
+kind: pipeline
+name: on_push
 
-  gcc7:
-    image: debian:stretch-slim
-    pull: true
-    when:
-      event: [push, pull_request]
-    environment:
-      - LANG=C.utf8
-      - CXX=g++-7
-      - CXXFLAGS=-pipe -O2
-    secrets:
-      - mastodon_cpp_access_token
-    commands:
-      - rm /etc/apt/apt.conf.d/docker-clean
-      - apt-get update -q
-      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
-      - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
-      - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
-      - apt-get install -qy gnupg
-      - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
-      - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
-      - apt-get update -q
-      - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy -t xenial g++-7
-      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
-      - apt-get install -qy -t sid libcurlpp-dev
-      - rm -rf build && mkdir -p build && cd build
-      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="[pleroma]~[upload]" ..
-      - make VERBOSE=1
-      - make install DESTDIR=install
-      - ctest
-    volumes:
-      - /var/cache/debian-package-cache:/var/cache/apt/archives
+volumes:
+- name: debian-package-cache
+  host:
+    path: /var/cache/debian-package-cache
 
-  gcc8:
-    image: debian:stretch-slim
-    pull: true
-    when:
-      event: [push, pull_request]
-    environment:
-      - LANG=C.utf8
-      - CXX=g++-8
-      - CXXFLAGS=-pipe -O2
-    secrets:
-      - mastodon_cpp_access_token
-    commands:
-      - rm /etc/apt/apt.conf.d/docker-clean
-      - apt-get update -q
-      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
-      - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
-      - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
-      - apt-get install -qy gnupg
-      - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
-      - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
-      - apt-get update -q
-      - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy -t xenial g++-8
-      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
-      - apt-get install -qy -t sid libcurlpp-dev
-      - rm -rf build && mkdir -p build && cd build
-      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="[pleroma]~[upload]" ..
-      - make VERBOSE=1
-      - make install DESTDIR=install
-      - ctest
-    volumes:
-      - /var/cache/debian-package-cache:/var/cache/apt/archives
+trigger:
+  event:
+    exclude:
+    - tag
 
-  clang5:
-    image: debian:stretch-slim
-    pull: true
-    when:
-      event: [push, pull_request]
-    environment:
-      - LANG=C.utf8
-      - CXX=clang++-5.0
-      - CXXFLAGS=-pipe -O2
-    secrets:
-      - mastodon_cpp_access_token
-    commands:
-      - rm /etc/apt/apt.conf.d/docker-clean
-      - apt-get update -q
-      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
-      - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/stretch.list
-      - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
-      - apt-get update -q
-      - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy -t stretch-backports clang-5.0
-      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
-      - apt-get install -qy -t sid libcurlpp-dev
-      - rm -rf build && mkdir -p build && cd build
-      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="[pleroma]~[upload]" ..
-      - make VERBOSE=1
-      - make install DESTDIR=install
-      - ctest
-    volumes:
-      - /var/cache/debian-package-cache:/var/cache/apt/archives
+steps:
+- name: gcc6
+  image: debian:stretch-slim
+  pull: true
+  environment:
+    LANG: C.utf8
+    CXX: g++-6
+    CXXFLAGS: -pipe -O2
+    MASTODON_CPP_ACCESS_TOKEN:
+      from_secret: mastodon_cpp_access_token
+  commands:
+  - rm /etc/apt/apt.conf.d/docker-clean
+  - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+  - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
+  - apt-get update -q
+  - apt-get install -qy build-essential cmake pkg-config
+  - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
+  - apt-get install -qy -t sid libcurlpp-dev
+  - rm -rf build && mkdir -p build && cd build
+  - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="[pleroma]~[upload]" ..
+  - make VERBOSE=1
+  - make install DESTDIR=install
+  - ctest
+  volumes:
+    - name: debian-package-cache
+      path: /var/cache/apt/archives
 
-  clang6:
-    image: debian:stretch-slim
-    pull: true
-    when:
-      event: [push, pull_request]
-    environment:
-      - LANG=C.utf8
-      - CXX=clang++-6.0
-      - CXXFLAGS=-pipe -O2
-    secrets:
-      - mastodon_cpp_access_token
-    commands:
-      - rm /etc/apt/apt.conf.d/docker-clean
-      - apt-get update -q
-      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
-      - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/stretch.list
-      - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
-      - apt-get update -q
-      - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy -t stretch-backports clang-6.0
-      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
-      - apt-get install -qy -t sid libcurlpp-dev
-      - rm -rf build && mkdir -p build && cd build
-      - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="[pleroma]~[upload]" ..
-      - make VERBOSE=1
-      - make install DESTDIR=install
-      - ctest
-    volumes:
-      - /var/cache/debian-package-cache:/var/cache/apt/archives
+- name: gcc7
+  image: debian:stretch-slim
+  pull: true
+  environment:
+    LANG: C.utf8
+    CXX: g++-7
+    CXXFLAGS: -pipe -O2
+    MASTODON_CPP_ACCESS_TOKEN:
+      from_secret: mastodon_cpp_access_token
+  commands:
+  - rm /etc/apt/apt.conf.d/docker-clean
+  - apt-get update -q
+  - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+  - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
+  - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
+  - apt-get install -qy gnupg
+  - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
+  - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
+  - apt-get update -q
+  - apt-get install -qy build-essential cmake pkg-config
+  - apt-get install -qy -t xenial g++-7
+  - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
+  - apt-get install -qy -t sid libcurlpp-dev
+  - rm -rf build && mkdir -p build && cd build
+  - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="[pleroma]~[upload]" ..
+  - make VERBOSE=1
+  - make install DESTDIR=install
+  - ctest
+  volumes:
+  - name: debian-package-cache
+    path: /var/cache/apt/archives
 
-  package_deb:
-    image: debian:stretch-slim
-    pull: true
-    when:
-      event: tag
-    environment:
-      - LANG=C.utf8
-      - CXXFLAGS=-pipe -O2
-    commands:
-      - rm /etc/apt/apt.conf.d/docker-clean
-      - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
-      - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
-      - apt-get update -q
-      - apt-get install -qy build-essential cmake pkg-config
-      - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen
-      - apt-get install -qy -t sid libcurlpp-dev
-      - apt-get install -qy file
-      - rm -rf build && mkdir -p build && cd build
-      - cmake -DWITH_EXAMPLES=NO -DWITH_TESTS=NO ..
-      - make package
-      - cmake -DWITH_DEB=YES ..
-      - make package
-      - cp -v mastodon-cpp-${DRONE_TAG}_x86_64.tar.gz ..
-      - cp -v libmastodon-cpp_${DRONE_TAG}-0_amd64.deb ..
-    volumes:
-      - /var/cache/debian-package-cache:/var/cache/apt/archives
+- name: gcc8
+  image: debian:stretch-slim
+  pull: true
+  environment:
+    LANG: C.utf8
+    CXX: g++-8
+    CXXFLAGS: -pipe -O2
+    MASTODON_CPP_ACCESS_TOKEN:
+      from_secret: mastodon_cpp_access_token
+  commands:
+  - rm /etc/apt/apt.conf.d/docker-clean
+  - apt-get update -q
+  - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+  - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
+  - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
+  - apt-get install -qy gnupg
+  - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
+  - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
+  - apt-get update -q
+  - apt-get install -qy build-essential cmake pkg-config
+  - apt-get install -qy -t xenial g++-8
+  - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
+  - apt-get install -qy -t sid libcurlpp-dev
+  - rm -rf build && mkdir -p build && cd build
+  - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="~[api]" ..
+  - make VERBOSE=1
+  - make install DESTDIR=install
+  - ctest
+  volumes:
+  - name: debian-package-cache
+    path: /var/cache/apt/archives
 
-  package_rpm:
-    image: centos:7
-    pull: true
-    when:
-      event: tag
-    environment:
-      - LANG=C.utf8
-      - CXXFLAGS=-pipe -O2
-    commands:
-      - sed -i 's/keepcache=0/keepcache=1/' /etc/yum.conf
-      - curl -s -o /var/cache/yum/epel-release-latest-7.noarch.rpm http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-      - rpm -i /var/cache/yum/epel-release-latest-7.noarch.rpm
-      - yum install -qy centos-release-scl
-      - yum install -qy devtoolset-6
-      - scl enable devtoolset-6 bash
-      - yum install -qy libcurl-devel doxygen rpm-build
-      - yum --enablerepo=epel install -qy cmake3 jsoncpp-devel
-      - curl -s -o /var/cache/yum/curlpp-devel-0.7.3-5.el6.x86_64.rpm https://download.fedoraproject.org/pub/epel/6/x86_64/Packages/c/curlpp-devel-0.7.3-5.el6.x86_64.rpm
-      - curl -s -o /var/cache/yum/curlpp-0.7.3-5.el6.x86_64.rpm https://download.fedoraproject.org/pub/epel/6/x86_64/Packages/c/curlpp-0.7.3-5.el6.x86_64.rpm
-      - yum localinstall -qy /var/cache/yum/curlpp-*
-      - rm -rf build && mkdir -p build && cd build
-      - cmake3 -DWITH_EXAMPLES=NO -DWITH_TESTS=NO ..
-      - make package
-      - cmake3 -DWITH_RPM=YES ..
-      - make package
-      - cp -v libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm ..
-    volumes:
-      - /var/cache/centos-package-cache:/var/cache/yum/
+- name: clang5
+  image: debian:stretch-slim
+  pull: true
+  environment:
+    LANG: C.utf8
+    CXX: clang++-5.0
+    CXXFLAGS: -pipe -O2
+    MASTODON_CPP_ACCESS_TOKEN:
+      from_secret: mastodon_cpp_access_token
+  commands:
+  - rm /etc/apt/apt.conf.d/docker-clean
+  - apt-get update -q
+  - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+  - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/stretch.list
+  - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
+  - apt-get update -q
+  - apt-get install -qy build-essential cmake pkg-config
+  - apt-get install -qy -t stretch-backports clang-5.0
+  - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
+  - apt-get install -qy -t sid libcurlpp-dev
+  - rm -rf build && mkdir -p build && cd build
+  - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="~[api]" ..
+  - make VERBOSE=1
+  - make install DESTDIR=install
+  - ctest
+  volumes:
+  - name: debian-package-cache
+    path: /var/cache/apt/archives
 
-  gitea_release:
-    image: plugins/gitea-release
-    pull: true
-    when:
-      event: tag
+- name: clang6
+  image: debian:stretch-slim
+  pull: true
+  environment:
+    LANG: C.utf8
+    CXX: clang++-6.0
+    CXXFLAGS: -pipe -O2
+    MASTODON_CPP_ACCESS_TOKEN:
+      from_secret: mastodon_cpp_access_token
+  commands:
+  - rm /etc/apt/apt.conf.d/docker-clean
+  - apt-get update -q
+  - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+  - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/stretch.list
+  - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
+  - apt-get update -q
+  - apt-get install -qy build-essential cmake pkg-config
+  - apt-get install -qy -t stretch-backports clang-6.0
+  - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
+  - apt-get install -qy -t sid libcurlpp-dev
+  - rm -rf build && mkdir -p build && cd build
+  - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="~[api]" ..
+  - make VERBOSE=1
+  - make install DESTDIR=install
+  - ctest
+  volumes:
+  - name: debian-package-cache
+    path: /var/cache/apt/archives
+
+---
+kind: pipeline
+name: on_tag
+
+volumes:
+- name: debian-package-cache
+  host:
+    path: /var/cache/debian-package-cache
+- name: centos-package-cache
+  host:
+    path: /var/cache/centos-package-cache
+
+trigger:
+  event:
+  - tag
+
+steps:
+- name: package_deb
+  image: debian:stretch-slim
+  pull: true
+  environment:
+    LANG: C.utf8
+    CXXFLAGS: -pipe -O2
+  commands:
+  - rm /etc/apt/apt.conf.d/docker-clean
+  - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+  - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
+  - apt-get update -q
+  - apt-get install -qy build-essential cmake pkg-config
+  - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen
+  - apt-get install -qy -t sid libcurlpp-dev
+  - apt-get install -qy file
+  - rm -rf build && mkdir -p build && cd build
+  - cmake -DWITH_EXAMPLES=NO -DWITH_TESTS=NO ..
+  - make package
+  - cmake -DWITH_DEB=YES ..
+  - make package
+  - cp -v mastodon-cpp-${DRONE_TAG}_x86_64.tar.gz ..
+  - cp -v libmastodon-cpp_${DRONE_TAG}-0_amd64.deb ..
+  volumes:
+    - name: debian-package-cache
+      path: /var/cache/apt/archives
+
+- name: package_rpm
+  image: centos:7
+  pull: true
+  environment:
+    LANG: C.utf8
+    CXXFLAGS: -pipe -O2
+  commands:
+  - sed -i 's/keepcache=0/keepcache=1/' /etc/yum.conf
+  - curl -s -o /var/cache/yum/epel-release-latest-7.noarch.rpm http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  - rpm -i /var/cache/yum/epel-release-latest-7.noarch.rpm
+  - yum install -qy centos-release-scl
+  - yum install -qy devtoolset-6
+  - scl enable devtoolset-6 bash
+  - yum install -qy libcurl-devel doxygen rpm-build
+  - yum --enablerepo=epel install -qy cmake3 jsoncpp-devel
+  - curl -s -o /var/cache/yum/curlpp-devel-0.7.3-5.el6.x86_64.rpm https://download.fedoraproject.org/pub/epel/6/x86_64/Packages/c/curlpp-devel-0.7.3-5.el6.x86_64.rpm
+  - curl -s -o /var/cache/yum/curlpp-0.7.3-5.el6.x86_64.rpm https://download.fedoraproject.org/pub/epel/6/x86_64/Packages/c/curlpp-0.7.3-5.el6.x86_64.rpm
+  - yum localinstall -qy /var/cache/yum/curlpp-*
+  - rm -rf build && mkdir -p build && cd build
+  - cmake3 -DWITH_EXAMPLES=NO -DWITH_TESTS=NO ..
+  - make package
+  - cmake3 -DWITH_RPM=YES ..
+  - make package
+  - cp -v libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm ..
+  volumes:
+  - name: centos-package-cache
+    path: /var/cache/yum
+
+- name: gitea_release
+  image: plugins/gitea-release
+  pull: true
+  settings:
     base_url: https://schlomp.space
-    secrets: [ gitea_token ]
+    api_key:
+      from_secret: gitea_token
     title: ${DRONE_TAG}
     prerelease: true
     files:
@@ -233,3 +256,28 @@ pipeline:
     host: cryptoparty-celle.de
     secrets: [ email_username, email_password ]
     from: drone@tzend.de
+
+---
+kind: pipeline
+name: after
+
+depends_on:
+  - on_push
+  - on_tag
+
+clone:
+  disable: true
+
+steps:
+- name: notify
+  image: drillster/drone-email
+  pull: true
+  settings:
+    host: cryptoparty-celle.de
+    from: drone@tzend.de
+    username:
+      from-secret: email_username
+    password:
+      from_secret: email_password
+  when:
+    status: [ changed, failure ]

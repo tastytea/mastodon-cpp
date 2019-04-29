@@ -263,6 +263,8 @@ the filter ID with `MASTODON_CPP_FILTER_ID`. You can select the list ID with
 
 == Status of implementation
 
+=== Mastodon API
+
 * Accounts
   ** [x] GET /api/v1/accounts/:id
   ** [x] POST /api/v1/accounts
@@ -380,12 +382,59 @@ the filter ID with `MASTODON_CPP_FILTER_ID`. You can select the list ID with
   ** [x] GET /api/v1/streaming/list
   ** [ ] GET /api/v1/streaming/direct
 
-=== Glitch-Soc support
+=== glitch-soc API
 
-* [x] max_toot_chars in /api/v1/instance
+* [x] `max_toot_chars` in /api/v1/instance
 * [x] GET /api/v1/bookmarks
 * [x] POST /api/v1/statuses/:id/bookmark
 * [x] POST /api/v1/statuses/:id/unbookmark
+
+=== Pleroma API
+
+* [ ] `pleroma` object in:
+  ** [ ] Statuses
+  ** [ ] Attachments
+  ** [ ] Accounts
+  ** [ ] Source
+  ** [ ] Notifications
+* [ ] `preview` and `content_type` in POST /api/v1/statuses
+* [ ] `no_rich_text`, `hide_followers`, `hide_follows`, `hide_favorites` and
+  `show_role` in /api/v1/update_credentials
+* [ ] GET /api/pleroma/emoji
+* [ ] POST /api/pleroma/follow_import
+* [ ] GET /api/pleroma/captcha
+* [ ] POST /api/pleroma/delete_account
+* [ ] POST /api/account/register
+* [ ] POST /api/v1/pleroma/flavour/:flavour
+* [ ] GET /api/v1/pleroma/flavour
+* [ ] POST /api/pleroma/notifications/read
+* [ ] POST /api/v1/pleroma/accounts/:id/subscribe
+* [ ] POST /api/v1/pleroma/accounts/:id/unsubscribe
+* [ ] GET /api/v1/pleroma/accounts/:id/favourites
+* [ ] PUT /api/pleroma/notification_settings
+* [ ] GET /api/pleroma/healthcheck
+* Admin API
+  ** [ ] GET /api/pleroma/admin/users
+  ** [ ] DELETE /api/pleroma/admin/user
+  ** [ ] POST /api/pleroma/admin/user
+  ** [ ] POST /api/pleroma/admin/user/follow
+  ** [ ] POST /api/pleroma/admin/user/unfollow
+  ** [ ] PATCH /api/pleroma/admin/users/:nickname/toggle_activation
+  ** [ ] PUT /api/pleroma/admin/users/tag
+  ** [ ] DELETE /api/pleroma/admin/users/tag
+  ** [ ] GET /api/pleroma/admin/permission_group/:nickname
+  ** [ ] GET /api/pleroma/admin/permission_group/:nickname/:permission_group
+  ** [ ] POST /api/pleroma/admin/permission_group/:nickname/:permission_group
+  ** [ ] DELETE /api/pleroma/admin/permission_group/:nickname/:permission_group
+  ** [ ] PUT /api/pleroma/admin/activation_status/:nickname
+  ** [ ] GET /api/pleroma/admin/users/:nickname
+  ** [ ] POST /api/pleroma/admin/relay
+  ** [ ] DELETE /api/pleroma/admin/relay
+  ** [ ] GET /api/pleroma/admin/invite_token
+  ** [ ] GET /api/pleroma/admin/invites
+  ** [ ] POST /api/pleroma/admin/revoke_invite
+  ** [ ] POST /api/pleroma/admin/email_invite
+  ** [ ] GET /api/pleroma/admin/password_reset
 
 == Copyright
 

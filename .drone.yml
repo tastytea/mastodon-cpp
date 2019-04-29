@@ -162,6 +162,51 @@ steps:
 
 ---
 kind: pipeline
+name: on_push arm
+
+platform:
+  os: linux
+  arch: arm
+
+volumes:
+- name: debian-package-cache
+  host:
+    path: /var/cache/debian-package-cache
+
+trigger:
+  event:
+    exclude:
+    - tag
+
+steps:
+- name: gcc6
+  image: debian:stretch-slim
+  pull: true
+  environment:
+    LANG: C.utf8
+    CXX: g++-6
+    CXXFLAGS: -pipe -O2
+    MASTODON_CPP_ACCESS_TOKEN:
+      from_secret: mastodon_cpp_access_token
+  commands:
+  - rm /etc/apt/apt.conf.d/docker-clean
+  - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
+  - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
+  - apt-get update -q
+  - apt-get install -qy build-essential cmake pkg-config
+  - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
+  - apt-get install -qy -t sid libcurlpp-dev
+  - rm -rf build && mkdir -p build && cd build
+  - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="~[api]" ..
+  - make VERBOSE=1
+  - make install DESTDIR=install
+  - ctest
+  volumes:
+    - name: debian-package-cache
+      path: /var/cache/apt/archives
+
+---
+kind: pipeline
 name: on_tag
 
 volumes:
@@ -247,15 +292,6 @@ steps:
     checksum:
       - sha256
       - sha512
-
-  notify:
-    when:
-      status: [ changed, failure ]
-    image: drillster/drone-email
-    pull: always
-    host: cryptoparty-celle.de
-    secrets: [ email_username, email_password ]
-    from: drone@tzend.de
 
 ---
 kind: pipeline

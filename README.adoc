@@ -260,6 +260,7 @@ the filter ID with `MASTODON_CPP_FILTER_ID`. You can select the list ID with
 * Have at least 1 post favourited.
 * Have no follow requests.
 * Have at least 1 list with at least one account in it.
+* have at least 1 account muted.
 
 == Status of implementation
 

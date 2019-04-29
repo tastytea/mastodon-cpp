@@ -259,7 +259,7 @@ steps:
 
 ---
 kind: pipeline
-name: after
+name: notify
 
 depends_on:
   - on_push
@@ -274,7 +274,7 @@ clone:
   disable: true
 
 steps:
-- name: notify
+- name: email
   image: drillster/drone-email
   pull: always
   settings:

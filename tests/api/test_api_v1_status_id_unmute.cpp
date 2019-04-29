@@ -25,7 +25,7 @@
 using namespace Mastodon;
 
 SCENARIO ("/api/v1/statuses/:id/unmute can be called successfully",
-          "[api][auth][mastodon][glitch-soc]")
+          "[api][auth][mastodon][pleroma][glitch-soc]")
 {
     REQUIRE (access_token != nullptr);
 
@@ -42,7 +42,7 @@ SCENARIO ("/api/v1/statuses/:id/unmute can be called successfully",
             {
                 ret = masto.post(API::v1::statuses_id_unmute,
                                  {
-                                     { "id", { user_id } }
+                                     { "id", { status_id } }
                                  });
                 status.from_string(ret);
             }

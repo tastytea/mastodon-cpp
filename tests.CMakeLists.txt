@@ -1,5 +1,5 @@
 include(CTest)
-file(GLOB sources_tests tests/test_*.cpp)
+file(GLOB sources_tests tests/test_*.cpp tests/*/test_*.cpp)
 
 find_package(Catch2)
 if(Catch2_FOUND)    # Catch 2.x

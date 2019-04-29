@@ -223,7 +223,7 @@ cmake --build . -- -j$(nproc --ignore=1)
 * `-DWITH_EXAMPLES=YES` if you want to compile the examples.
 * `-DWITH_TESTS=YES` if you want to compile the tests.
 * `-DEXTRA_TEST_ARGS` to run only some tests
-  (https://github.com/catchorg/Catch2/blob/master/docs/command-line.md#specifying-which-tests-to-run)[format]).
+  (https://github.com/catchorg/Catch2/blob/master/docs/command-line.md#specifying-which-tests-to-run[format]).
   ** Possible tags: `[api]`, `[auth]`, `[mastodon]`, `[glitch-soc]`,
      `[pleroma]`, `[upload]`.
 * `-DWITH_DOC=NO` if you don't want to compile the HTML reference.
@@ -391,7 +391,7 @@ the filter ID with `MASTODON_CPP_FILTER_ID`. You can select the list ID with
 
 === Pleroma API
 
-* [ ] `pleroma` object in:
+* `pleroma` object in:
   ** [ ] Statuses
   ** [ ] Attachments
   ** [ ] Accounts

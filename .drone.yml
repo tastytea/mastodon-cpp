@@ -281,7 +281,7 @@ steps:
     host: cryptoparty-celle.de
     from: drone@tzend.de
     username:
-      from-secret: email_username
+      from_secret: email_username
     password:
       from_secret: email_password
   when:

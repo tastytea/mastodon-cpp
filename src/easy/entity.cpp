@@ -21,6 +21,7 @@
 #include <regex>
 #include <algorithm>
 #include "easy/entity.hpp"
+#include "easy/easy.hpp"
 #include "debug.hpp"
 
 using namespace Mastodon;
@@ -232,13 +233,8 @@ const Easy::time Easy::Entity::get_time(const string &key) const
 
     if (node.isString())
     {
-        std::stringstream sstime(node.asString());
-        struct std::tm tm = {};
-        tm.tm_isdst = -1;       // Detect daylight saving time.
-        sstime >> std::get_time(&tm, "%Y-%m-%dT%T");
-        std::time_t time = timegm(&tm); // Assume time is UTC.
         _was_set = true;
-        return { system_clock::from_time_t(time) };
+        return Easy::string_to_time(node.asString());
     }
 
     _was_set = false;
@@ -313,29 +309,3 @@ std::uint64_t Easy::Entity::stouint64(const string &str) const
         return stoull(str);
     }
 }
-
-// Easy::GenericEntity::GenericEntity(const string &json)
-// : Entity(json)
-// {}
-
-// Easy::GenericEntity::GenericEntity()
-// : Entity()
-// {}
-
-// bool Easy::GenericEntity::valid() const
-// {
-//     return true;
-// }
-
-// template<typename T> GenericEntity<T>::GenericEntity(const string &json)
-//     : Entity(json)
-// {}
-
-// template<typename T> GenericEntity<T>::GenericEntity()
-//     : Entity()
-// {}
-
-// template<typename T> bool GenericEntity<T>::valid() const
-// {
-//     return true;
-// }

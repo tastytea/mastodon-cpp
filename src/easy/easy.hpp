@@ -126,6 +126,13 @@ namespace Easy
     const std::vector<stream_event> parse_stream(const std::string &streamdata);
 
     /*!
+     *  @brief Convert ISO 8601 time string to Easy::time.
+     *
+     *  @param strtime Time string as returned by Mastodon.
+     */
+    const Easy::time string_to_time(const string &strtime);
+
+    /*!
      *  @brief  Child of Mastodon::API with abstract methods.
      *
      *  Provides convenient functions to deal with the responses you get.

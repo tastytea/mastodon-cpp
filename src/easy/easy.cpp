@@ -79,6 +79,16 @@ const vector<Easy::stream_event> Easy::parse_stream(
     return vec;
 }
 
+const Easy::time string_to_time(const string &strtime)
+{
+    std::stringstream sstime(strtime);
+    struct std::tm tm = {};
+    tm.tm_isdst = -1;       // Detect daylight saving time.
+    sstime >> std::get_time(&tm, "%Y-%m-%dT%T");
+    std::time_t time = timegm(&tm); // Assume time is UTC.
+    return { system_clock::from_time_t(time) };
+}
+
 const Easy::Link Easy::API::get_link() const
 {
     return Link(get_header("Link"));

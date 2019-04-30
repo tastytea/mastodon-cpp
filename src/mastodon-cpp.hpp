@@ -466,7 +466,7 @@ namespace Mastodon
         void get_proxy(string &proxy, string &userpw) const;
 
         /*!
-         *  @brief  Make a GET request which doesn't require parameters.
+         *  @brief  Make a GET request that doesn't require parameters.
          *
          *  @param  call    A call defined in Mastodon::API::v1
          *
@@ -475,7 +475,7 @@ namespace Mastodon
         const return_call get(const Mastodon::API::v1 &call);
 
         /*!
-         *  @brief  Make a GET request which requires parameters.
+         *  @brief  Make a GET request that requires parameters.
          *
          *  @param  call        A call defined in Mastodon::API::v1
          *  @param  parameters  A Mastodon::parametermap containing
@@ -487,7 +487,7 @@ namespace Mastodon
                               const parameters &parameters);
 
         /*!
-         *  @brief  Make a GET request which requires parameters.
+         *  @brief  Make a GET request that requires parameters.
          *
          *  @param  call        A call defined in Mastodon::API::v2
          *  @param  parameters  A Mastodon::parametermap containing
@@ -564,7 +564,7 @@ namespace Mastodon
                           const parameters &parameters);
 
         /*!
-         *  @brief  Make a POST request which doesn't require parameters.
+         *  @brief  Make a POST request that doesn't require parameters.
          *
          *  @param  call    A call defined in Mastodon::API::v1
          *
@@ -573,7 +573,7 @@ namespace Mastodon
         return_call post(const Mastodon::API::v1 &call);
 
         /*!
-         *  @brief  Make a POST request which requires parameters.
+         *  @brief  Make a POST request that requires parameters.
          *
          *          Binary data must be a filename.
          *
@@ -601,7 +601,7 @@ namespace Mastodon
                          const parameters &parameters);
 
         /*!
-         *  @brief  Make a PUT request which requires a parameters.
+         *  @brief  Make a PUT request that requires parameters.
          *
          *  @param  call        A call defined in Mastodon::API::v1
          *  @param  parameters  A Mastodon::parametermap containing
@@ -624,7 +624,7 @@ namespace Mastodon
         return_call put(const string &call, const parameters &parameters);
 
         /*!
-         *  @brief  Make a DELETE request which requires parameters.
+         *  @brief  Make a DELETE request that requires parameters.
          *
          *  @param  call        A call defined in Mastodon::API::v1
          *  @param  parameters  A Mastodon::parametermap containing

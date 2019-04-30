@@ -195,6 +195,27 @@ namespace Easy
         const string strtime(const string &format,
                              const bool &local = true) const;
     };
+
+    /*!
+     *  @brief  Describes an account-field.
+     *
+     *  @since  0.106.0
+     */
+    typedef struct account_field_type
+    {
+        const string name;
+        const string value;
+        Easy::time verified_at;
+    } account_field_type;
+
+    /*!
+     *  @brief  Vector of Easy::account_field_type.
+     *
+     *          Used in Easy::Account.
+     *
+     *  @since  0.106.0
+     */
+    typedef vector<account_field_type> account_fields;
 }
 }
 #endif  // MASTODON_CPP_EASY_TYPES_EASY_HPP

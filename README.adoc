@@ -96,6 +96,7 @@ and <https://doc.schlomp.space/mastodon-cpp/namespaceMastodon_1_1Easy.html>.
   push subscriptions.
 * `Mastodon::Easy::time`: Type for time, can be converted to `time_point` and
   `string`.
+* `Mastodon::Easy::Account::account_fields`: Type for fields in accounts.
 
 === Error codes
 

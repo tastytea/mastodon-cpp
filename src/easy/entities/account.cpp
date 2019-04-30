@@ -14,10 +14,10 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <array>
 #include <algorithm>
 #include "account.hpp"
 #include "debug.hpp"
+#include "easy/easy.hpp"
 
 using namespace Mastodon;
 using Account = Easy::Account;
@@ -55,12 +55,6 @@ const string Account::avatar() const
     return get_string("avatar");
 }
 
-Account Account::avatar(const string &avatar)
-{
-    set("avatar", Json::Value(avatar));
-    return *this;
-}
-
 const string Account::avatar_static() const
 {
     return get_string("avatar_static");
@@ -81,45 +75,46 @@ const string Account::display_name() const
     return get_string("display_name");
 }
 
-Account Account::display_name(const string &display_name)
+const std::vector<Easy::Emoji> Account::emojis()
 {
-    set("display_name", Json::Value(display_name));
-    return *this;
-}
-
-const std::vector<Account::fields_pair> Account::fields() const
-{
-    const Json::Value &node = get("fields");
+    const Json::Value &node = get("emojis");
 
     if (node.isArray())
     {
-        std::vector<Account::fields_pair> vec;
+        std::vector<Easy::Emoji> vec;
         std::transform(node.begin(), node.end(), std::back_inserter(vec),
                        [](const Json::Value &value)
-                           {
-                               return Account::fields_pair
-                                   (value["name"].asString(),
-                                    value["value"].asString());
-                           });
+                       {
+                           return Easy::Emoji(value);
+                       });
         return vec;
     }
 
     return {};
 }
 
-Account Account::fields(std::vector<Account::fields_pair> &fields)
+const Easy::account_fields Account::fields() const
 {
-    Json::Value jsonarray(Json::arrayValue);
+    const Json::Value &node = get("fields");
 
-    for (const fields_pair &field : fields)
+    if (node.isArray())
     {
-        Json::Value jsonkeyval(Json::objectValue);
-        jsonkeyval["name"] = field.first;
-        jsonkeyval["value"] = field.second;
-        jsonarray.append(jsonkeyval);
+        Easy::account_fields vec;
+        std::transform(node.begin(), node.end(), std::back_inserter(vec),
+                       [](const Json::Value &value)
+                       {
+                           return Easy::account_field_type(
+                               {
+                                   value["name"].asString(),
+                                   value["value"].asString(),
+                                   Easy::string_to_time(
+                                       value["verified_at"].asString())
+                               });
+                       });
+        return vec;
     }
-    set("fields", jsonarray);
-    return *this;
+
+    return {};
 }
 
 std::uint64_t Account::followers_count() const
@@ -137,12 +132,6 @@ const string Account::header() const
     return get_string("header");
 }
 
-Account Account::header(const string &header)
-{
-    set("header", Json::Value(header));
-    return *this;
-}
-
 const string Account::header_static() const
 {
     return get_string("header_static");
@@ -156,12 +145,6 @@ const string Account::id() const
 bool Account::locked() const
 {
     return get_bool("locked");
-}
-
-Account Account::locked(const bool &locked)
-{
-    set("locked", Json::Value(locked));
-    return *this;
 }
 
 bool Account::has_moved() const
@@ -178,7 +161,7 @@ const Account Account::moved() const
 {
     if (has_moved())
     {
-        return Account(get("moved").toStyledString());
+        return Account(get("moved"));
     }
 
     return Account();
@@ -189,22 +172,16 @@ const string Account::note() const
     return get_string("note");
 }
 
-Account Account::note(const string &note)
-{
-    set("note", Json::Value(note));
-    return *this;
-}
-
 Easy::visibility_type Account::privacy() const
 {
     const string strprivacy = get_string("source.privacy");
-    if (strprivacy.compare("public") == 0)
+    if (strprivacy == "public")
         return visibility_type::Public;
-    else if (strprivacy.compare("unlisted") == 0)
+    else if (strprivacy == "unlisted")
         return visibility_type::Unlisted;
-    else if (strprivacy.compare("private") == 0)
+    else if (strprivacy == "private")
         return visibility_type::Private;
-    else if (strprivacy.compare("direct") == 0)
+    else if (strprivacy == "direct")
         return visibility_type::Direct;
 
     ttdebug << "Could not get data: source.privacy\n";
@@ -216,129 +193,9 @@ bool Account::sensitive() const
     return get_bool("source.sensitive");
 }
 
-bool Account::Source::valid() const
-{
-    return true;
-}
-
-const std::vector<Account::fields_pair> Account::Source::fields() const
-{
-    const Json::Value &node = get("fields");
-
-    if (node.isArray())
-    {
-        std::vector<Account::fields_pair> vec;
-        std::transform(node.begin(), node.end(), std::back_inserter(vec),
-                       [](const Json::Value &value)
-                           {
-                               return Account::fields_pair
-                                   (value["name"].asString(),
-                                    value["value"].asString());
-                           });
-        return vec;
-    }
-
-    return {};
-}
-
-Account::Source Account::Source::fields
-    (std::vector<Account::fields_pair> &fields)
-{
-    Json::Value jsonarray(Json::arrayValue);
-
-    for (const fields_pair &field : fields)
-    {
-        Json::Value jsonkeyval(Json::objectValue);
-        jsonkeyval["name"] = field.first;
-        jsonkeyval["value"] = field.second;
-        jsonarray.append(jsonkeyval);
-    }
-    set("fields", jsonarray);
-    return *this;
-}
-
-const string Account::Source::note() const
-{
-    return get_string("note");
-}
-
-Account::Source Account::Source::note(const string &note)
-{
-    set("note", Json::Value(note));
-    return *this;
-}
-
-Easy::visibility_type Account::Source::privacy() const
-{
-    const string strprivacy = get_string("privacy");
-    if (strprivacy.compare("public") == 0)
-        return visibility_type::Public;
-    else if (strprivacy.compare("unlisted") == 0)
-        return visibility_type::Unlisted;
-    else if (strprivacy.compare("private") == 0)
-        return visibility_type::Private;
-    else if (strprivacy.compare("direct") == 0)
-        return visibility_type::Direct;
-
-    ttdebug << "Could not get data: source.privacy\n";
-    return visibility_type::Undefined;
-}
-
-Account::Source Account::Source::privacy(const Easy::visibility_type &privacy)
-{
-    string strprivacy = "";
-    switch (privacy)
-    {
-        case visibility_type::Public:
-        {
-            strprivacy = "public";
-            break;
-        }
-        case visibility_type::Unlisted:
-        {
-            strprivacy = "unlisted";
-            break;
-        }
-        case visibility_type::Private:
-        {
-            strprivacy = "private";
-            break;
-        }
-        case visibility_type::Direct:
-        {
-            strprivacy = "direct";
-            break;
-        }
-        default:
-        {
-            strprivacy = "undefined";
-            break;
-        }
-    }
-    set("privacy", Json::Value(strprivacy));
-    return *this;
-}
-
-bool Account::Source::sensitive() const
-{
-    return get_bool("sensitive");
-}
-
-Account::Source Account::Source::sensitive(const bool &sensitive)
-{
-    set("source", Json::Value(sensitive));
-    return *this;
-}
-
 const Account::Source Account::source() const
 {
     return Account::Source(get("source"));
-}
-
-Account Account::source(const Account::Source &source)
-{
-    set("source", Json::Value(source.to_object()));
-    return *this;
 }
 
 std::uint64_t Account::statuses_count() const
@@ -354,4 +211,68 @@ const string Account::url() const
 const string Account::username() const
 {
     return get_string("username");
+}
+
+bool Account::Source::valid() const
+{
+    return Entity::check_valid(
+        {
+            "note",
+            "fields"
+        });
+}
+
+const Easy::account_fields Account::Source::fields() const
+{
+    const Json::Value &node = get("fields");
+
+    if (node.isArray())
+    {
+        Easy::account_fields vec;
+        std::transform(node.begin(), node.end(), std::back_inserter(vec),
+                       [](const Json::Value &value)
+                       {
+                           return Easy::account_field_type(
+                               {
+                                   value["name"].asString(),
+                                   value["value"].asString(),
+                                   Easy::string_to_time(
+                                       value["verified_at"].asString())
+                               });
+                           });
+        return vec;
+    }
+
+    return {};
+}
+
+const string Account::Source::language() const
+{
+    return get_string("language");
+}
+
+const string Account::Source::note() const
+{
+    return get_string("note");
+}
+
+Easy::visibility_type Account::Source::privacy() const
+{
+    const string strprivacy = get_string("privacy");
+    if (strprivacy == "public")
+        return visibility_type::Public;
+    else if (strprivacy == "unlisted")
+        return visibility_type::Unlisted;
+    else if (strprivacy == "private")
+        return visibility_type::Private;
+    else if (strprivacy == "direct")
+        return visibility_type::Direct;
+
+    ttdebug << "Could not get data: source.privacy\n";
+    return visibility_type::Undefined;
+}
+
+bool Account::Source::sensitive() const
+{
+    return get_bool("sensitive");
 }

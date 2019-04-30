@@ -394,7 +394,7 @@ strings and you can use unsupported fields in an `Entity` by converting it to
 
 ==== Entities
 
-* [ ] Account
+* [x] Account
 * [ ] Application
 * [ ] Attachment
 * [ ] Card

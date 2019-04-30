@@ -71,6 +71,8 @@ g++ --std=c++14 -lmastodon-cpp example.cpp
 Learn more at <https://doc.schlomp.space/mastodon-cpp/namespaceMastodon.html>
 and <https://doc.schlomp.space/mastodon-cpp/namespaceMastodon_1_1Easy.html>.
 
+Not included in this list are entities.
+
 ==== Return types
 
 * `Mastodon::return_call`: Contains the response from `Mastodon::API` calls.
@@ -265,7 +267,13 @@ the filter ID with `MASTODON_CPP_FILTER_ID`. You can select the list ID with
 
 == Status of implementation
 
+You can still use unsupported calls by using `API::get` and the others with
+strings and you can use unsupported fields in an `Entity` by converting it to
+`Json::Value`.
+
 === Mastodon API
+
+==== Calls
 
 * Accounts
   ** [x] GET /api/v1/accounts/:id
@@ -384,21 +392,46 @@ the filter ID with `MASTODON_CPP_FILTER_ID`. You can select the list ID with
   ** [x] GET /api/v1/streaming/list
   ** [ ] GET /api/v1/streaming/direct
 
+==== Entities
+
+* [ ] Account
+* [ ] Application
+* [ ] Attachment
+* [ ] Card
+* [ ] Context
+* [ ] Conversation
+* [ ] Emoji
+* [ ] Filter
+* [ ] Instance
+* [ ] List
+* [ ] Mention
+* [ ] Notification
+* [ ] Poll
+* [ ] PushSubscription
+* [ ] Relationship
+* [ ] Report
+* [ ] Results ^(Deprecated)^
+* [ ] Status
+* [ ] ScheduledStatus
+* [ ] Tag
+* [ ] Token
+
 === glitch-soc API
 
-* [x] `max_toot_chars` in /api/v1/instance
+==== Calls
+
 * [x] GET /api/v1/bookmarks
 * [x] POST /api/v1/statuses/:id/bookmark
 * [x] POST /api/v1/statuses/:id/unbookmark
 
+==== Entities
+
+* [x] `max_toot_chars` in /api/v1/instance
+
 === Pleroma API
 
-* `pleroma` object in:
-  ** [ ] Statuses
-  ** [ ] Attachments
-  ** [ ] Accounts
-  ** [ ] Source
-  ** [ ] Notifications
+==== Calls
+
 * [ ] `preview` and `content_type` in POST /api/v1/statuses
 * [ ] `no_rich_text`, `hide_followers`, `hide_follows`, `hide_favorites` and
   `show_role` in /api/v1/update_credentials
@@ -437,6 +470,16 @@ the filter ID with `MASTODON_CPP_FILTER_ID`. You can select the list ID with
   ** [ ] POST /api/pleroma/admin/revoke_invite
   ** [ ] POST /api/pleroma/admin/email_invite
   ** [ ] GET /api/pleroma/admin/password_reset
+
+==== Entities
+
+* `pleroma` object in:
+  ** [ ] Statuses
+  ** [ ] Attachments
+  ** [ ] Accounts
+  ** [ ] Source
+  ** [ ] Notifications
+
 
 == Copyright
 

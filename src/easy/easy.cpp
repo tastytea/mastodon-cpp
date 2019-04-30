@@ -79,7 +79,7 @@ const vector<Easy::stream_event> Easy::parse_stream(
     return vec;
 }
 
-const Easy::time string_to_time(const string &strtime)
+const Easy::time Easy::string_to_time(const string &strtime)
 {
     std::stringstream sstime(strtime);
     struct std::tm tm = {};

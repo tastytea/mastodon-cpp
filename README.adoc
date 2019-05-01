@@ -228,7 +228,7 @@ cmake --build . -- -j$(nproc --ignore=1)
 * `-DEXTRA_TEST_ARGS` to run only some tests
   (https://github.com/catchorg/Catch2/blob/master/docs/command-line.md#specifying-which-tests-to-run[format]).
   ** Possible tags: `[api]`, `[auth]`, `[mastodon]`, `[glitch-soc]`,
-     `[pleroma]`, `[upload]`.
+     `[pleroma]`, `[upload]`, `[entity]`.
 * `-DWITH_DOC=NO` if you don't want to compile the HTML reference.
 * One of:
   ** `-DWITH_DEB=YES` if you want to be able to generate a deb-package.

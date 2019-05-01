@@ -174,7 +174,7 @@ const string Account::note() const
 
 Easy::visibility_type Account::privacy() const
 {
-    const string strprivacy = get_string("source.privacy");
+    const string strprivacy = get_string("privacy");
     if (strprivacy == "public")
         return visibility_type::Public;
     else if (strprivacy == "unlisted")
@@ -184,7 +184,6 @@ Easy::visibility_type Account::privacy() const
     else if (strprivacy == "direct")
         return visibility_type::Direct;
 
-    ttdebug << "Could not get data: source.privacy\n";
     return visibility_type::Undefined;
 }
 
@@ -268,7 +267,6 @@ Easy::visibility_type Account::Source::privacy() const
     else if (strprivacy == "direct")
         return visibility_type::Direct;
 
-    ttdebug << "Could not get data: source.privacy\n";
     return visibility_type::Undefined;
 }
 

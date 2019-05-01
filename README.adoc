@@ -409,8 +409,8 @@ strings and you can use unsupported fields in an `Entity` by converting it to
 * [ ] Poll
 * [ ] PushSubscription
 * [ ] Relationship
-* [ ] Report
-* [ ] Results ^(Deprecated)^
+* [ ] Report ^(Deprecated)^
+* [ ] Results
 * [ ] Status
 * [ ] ScheduledStatus
 * [ ] Tag

@@ -46,6 +46,11 @@ const string Card::description() const
     return get_string("description");
 }
 
+const string Card::embed_url() const
+{
+    return get_string("embed_url");
+}
+
 uint64_t Card::height() const
 {
     return get_uint64("height");
@@ -79,17 +84,16 @@ const string Card::title() const
 Easy::card_type Card::type() const
 {
     const string strtype = get_string("type");
-    if (strtype.compare("link") == 0)
+    if (strtype == "link")
         return card_type::Link;
-    else if (strtype.compare("photo") == 0)
+    else if (strtype == "photo")
         return card_type::Photo;
-    else if (strtype.compare("video") == 0)
+    else if (strtype == "video")
         return card_type::Video;
-    else if (strtype.compare("rich") == 0)
+    else if (strtype == "rich")
         return card_type::Rich;
-
-    ttdebug << "Could not get data: type\n";
-    return card_type::Undefined;
+    else
+        return card_type::Undefined;
 }
 
 const string Card::url() const

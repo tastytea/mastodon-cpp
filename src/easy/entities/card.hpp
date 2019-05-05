@@ -70,6 +70,15 @@ namespace Easy
         const string description() const;
 
         /*!
+         *  @brief  Returns the embed URL.
+         *
+         *  This is an undocumented attribute and may vanish at any time.
+         *
+         *  @since  0.106.0
+         */
+        const string embed_url() const;
+
+        /*!
          *  @brief  Returns the height of the card
          *
          *  @since before 0.11.0

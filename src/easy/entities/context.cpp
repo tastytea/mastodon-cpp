@@ -38,11 +38,10 @@ const std::vector<Easy::Status> Context::ancestors() const
         std::vector<Easy::Status> vec;
         std::transform(node.begin(), node.end(), std::back_inserter(vec),
                        [](const Json::Value &value)
-                           { return Easy::Status(value); });
+                       { return Easy::Status(value); });
         return vec;
     }
 
-    ttdebug << "Could not get data: ancestors\n";
     return {};
 }
 
@@ -54,10 +53,9 @@ const std::vector<Easy::Status> Context::descendants() const
         std::vector<Easy::Status> vec;
         std::transform(node.begin(), node.end(), std::back_inserter(vec),
                        [](const Json::Value &value)
-                           { return Easy::Status(value); });
+                       { return Easy::Status(value); });
         return vec;
     }
 
-    ttdebug << "Could not get data: descendants\n";
     return {};
 }

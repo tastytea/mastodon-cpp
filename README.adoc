@@ -400,7 +400,7 @@ strings and you can use unsupported fields in an `Entity` by converting it to
 * [x] Card
 * [x] Context
 * [ ] Conversation
-* [ ] Emoji
+* [x] Emoji
 * [ ] Filter
 * [ ] Instance
 * [ ] List

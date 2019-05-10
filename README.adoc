@@ -398,7 +398,7 @@ strings and you can use unsupported fields in an `Entity` by converting it to
 * [x] Application
 * [x] Attachment
 * [x] Card
-* [ ] Context
+* [x] Context
 * [ ] Conversation
 * [ ] Emoji
 * [ ] Filter

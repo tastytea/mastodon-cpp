@@ -45,3 +45,8 @@ const string Emoji::url() const
 {
     return get_string("url");
 }
+
+bool Emoji::visible_in_picker() const
+{
+    return get_bool("visible_in_picker");
+}

@@ -35,9 +35,9 @@ namespace Mastodon
 namespace Easy
 {
     /*!
-     *  @brief  Class to hold emojis
+     *  @brief  Class to hold emojis.
      *
-     *  @since before 0.11.0
+     *  @since  before 0.11.0
      */
     class Emoji : public Entity
     {
@@ -47,25 +47,32 @@ namespace Easy
         virtual bool valid() const override;
 
         /*!
-         *  @brief  Returns the shortcode of the emoji
+         *  @brief  Returns the shortcode of the emoji.
          *
-         *  @since before 0.11.0
+         *  @since  before 0.11.0
          */
         const string shortcode() const;
 
         /*!
-         *  @brief  Returns the URL to the emoji static image
+         *  @brief  Returns the URL to the emoji static image.
          *
-         *  @since before 0.11.0
+         *  @since  before 0.11.0
          */
         const string static_url() const;
 
         /*!
-         *  @brief  Returns the URL to the emoji image
+         *  @brief  Returns the URL to the emoji image.
          *
-         *  @since before 0.11.0
+         *  @since  before 0.11.0
          */
         const string url() const;
+
+        /*!
+         *  @brief  Returns if the emoji is visible in the picker.
+         *
+         *  @since  0.106.0
+         */
+        bool visible_in_picker() const;
     };
 }
 }

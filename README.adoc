@@ -234,7 +234,7 @@ cmake --build . -- -j$(nproc --ignore=1)
   ** `-DWITH_DEB=YES` if you want to be able to generate a deb-package.
   ** `-DWITH_RPM=YES` if you want to be able to generate an rpm-package.
 
-.Compile only tests for glitch-soc features that don't upload any files.
+.Run only tests for glitch-soc features that don't upload any files.
 ====
 [source,shell]
 ----
@@ -426,7 +426,7 @@ strings and you can use unsupported fields in an `Entity` by converting it to
 
 ==== Entities
 
-* [x] `max_toot_chars` in /api/v1/instance
+* [x] `max_toot_chars` in Instance
 
 === Pleroma API
 
@@ -474,11 +474,11 @@ strings and you can use unsupported fields in an `Entity` by converting it to
 ==== Entities
 
 * `pleroma` object in:
-  ** [ ] Statuses
-  ** [ ] Attachments
-  ** [ ] Accounts
+  ** [ ] Status
+  ** [ ] Attachment
+  ** [ ] Account
   ** [ ] Source
-  ** [ ] Notifications
+  ** [ ] Notification
 
 
 == Copyright

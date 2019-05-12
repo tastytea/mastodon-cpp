@@ -401,7 +401,7 @@ strings and you can use unsupported fields in an `Entity` by converting it to
 * [x] Context
 * [ ] Conversation
 * [x] Emoji
-* [ ] Filter
+* [x] Filter
 * [ ] Instance
 * [ ] List
 * [ ] Mention

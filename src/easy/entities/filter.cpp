@@ -52,19 +52,19 @@ const vector<Easy::context_type> Filter::context() const
         vector<Easy::context_type> vec;
         std::transform(node.begin(), node.end(), std::back_inserter(vec),
                        [](const Json::Value &value)
-                           {
-                               const string strtype = value.asString();
-                               if (strtype == "home")
-                                   return Easy::context_type::Home;
-                               else if (strtype == "notifications")
-                                   return Easy::context_type::Notifications;
-                               else if (strtype == "public")
-                                   return Easy::context_type::Public;
-                               else if (strtype == "thread")
-                                   return Easy::context_type::Thread;
-                               else
-                                   return context_type::Undefined;
-                           });
+                       {
+                           const string strtype = value.asString();
+                           if (strtype == "home")
+                               return Easy::context_type::Home;
+                           else if (strtype == "notifications")
+                               return Easy::context_type::Notifications;
+                           else if (strtype == "public")
+                               return Easy::context_type::Public;
+                           else if (strtype == "thread")
+                               return Easy::context_type::Thread;
+                           else
+                               return context_type::Undefined;
+                       });
         return vec;
     }
 

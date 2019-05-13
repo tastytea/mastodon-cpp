@@ -63,6 +63,15 @@ const std::vector<string> Instance::languages() const
     return get_vector("languages");
 }
 
+const Easy::stats_type Instance::stats() const
+{
+    Easy::stats_type s;
+    s.user_count = get_uint64("stats.user_count");
+    s.status_count = get_uint64("stats.status_count");
+    s.domain_count = get_uint64("stats.domain_count");
+    return s;
+}
+
 const string Instance::title() const
 {
     return get_string("title");
@@ -83,14 +92,6 @@ const string Instance::version() const
     return get_string("version");
 }
 
-const Easy::stats_type Instance::stats() const
-{
-    Easy::stats_type s;
-    s.user_count = get_uint64("user_count");
-    s.status_count = get_uint64("status_count");
-    s.domain_count = get_uint64("domain_count");
-    return s;
-}
 const string Instance::thumbnail() const
 {
     return get_string("thumbnail");

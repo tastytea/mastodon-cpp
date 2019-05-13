@@ -40,9 +40,9 @@ namespace Mastodon
 namespace Easy
 {
     /*!
-     *  @brief  Class to hold instances
+     *  @brief  Class to hold instances.
      *
-     *  @since before 0.11.0
+     *  @since  before 0.11.0
      */
     class Instance : public Entity
     {
@@ -52,34 +52,34 @@ namespace Easy
         virtual bool valid() const override;
 
         /*!
-         *  @brief  Returns the Account of the admin or another contact person
+         *  @brief  Returns the Account of the admin or another contact person.
          *
-         *  @since before 0.11.0
+         *  @since  before 0.11.0
          */
         const Account contact_account() const;
 
         /*!
-         *  @brief  Returns the description of the instance
+         *  @brief  Returns the description of the instance.
          *
-         *  @since before 0.11.0
+         *  @since  before 0.11.0
          */
         const string description() const;
 
         /*!
          *  @brief  Returns the email address which can be used to contact the
-         *          instance administrator
+         *          instance administrator.
          *
-         *  @since before 0.11.0
+         *  @since  before 0.11.0
          */
         const string email() const;
 
         /*!
          *  @brief  Returns a vector of ISO 6391 language codes the instance has
-         *          chosen to advertise
+         *          chosen to advertise.
          *
-         *  @since before 0.11.0
+         *  @since  before 0.11.0
          */
-        const std::vector<string> languages() const;
+        const vector<string> languages() const;
 
         /*!
          *  @brief  Returns the thumbnail of the instance.
@@ -89,32 +89,39 @@ namespace Easy
         const string thumbnail() const;
 
         /*!
-         *  @brief  Returns the title of the instance
+         *  @brief  Returns the title of the instance.
          *
-         *  @since before 0.11.0
+         *  @since  before 0.11.0
          */
         const string title() const;
 
         /*!
-         *  @brief  Returns the URI of the instance
+         *  @brief  Returns the URI of the instance.
          *
-         *  @since before 0.11.0
+         *  @since  before 0.11.0
          */
         const string uri() const;
 
         /*!
-         *  @brief  Returns the version used by the instance
+         *  @brief  Returns the URL for the streaming API and possibly others.
          *
-         *  @since before 0.11.0
+         *  @since  0.106.0
          */
-        const string version() const;
+        const Easy::urls_type urls() const;
 
         /*!
-         *  @brief  Returns the URL for the streaming API
+         *  @brief  Returns statistics about the instance.
          *
-         *  @since before 0.11.0
+         *  @since  0.106.0
          */
-        const string streaming_api() const;
+        const Easy::stats_type stats() const;
+
+        /*!
+         *  @brief  Returns the version used by the instance.
+         *
+         *  @since  before 0.11.0
+         */
+        const string version() const;
 
         /*!
          *  @brief  Returns the maximum chars a post can have

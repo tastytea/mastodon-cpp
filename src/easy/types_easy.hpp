@@ -20,9 +20,11 @@
 #include <string>
 #include <utility>
 #include <chrono>
+#include <cstdint>
 
 using std::string;
 using std::chrono::system_clock;
+using std::uint64_t;
 
 namespace Mastodon
 {
@@ -212,6 +214,16 @@ namespace Easy
     {
         string streaming_api;
     } urls_type;
+
+    /*!
+     *  @brief Statistics returned by Instance::stats().
+     */
+    typedef struct stats_type
+    {
+        uint64_t user_count = 0;
+        uint64_t status_count = 0;
+        uint64_t domain_count = 0;
+    } stats_type;
 }
 }
 #endif  // MASTODON_CPP_EASY_TYPES_EASY_HPP

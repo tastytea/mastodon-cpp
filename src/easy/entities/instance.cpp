@@ -42,7 +42,7 @@ const Easy::Account Instance::contact_account() const
     const Json::Value node = get("contact_account");
     if (node.isObject())
     {
-        return Easy::Account(node.toStyledString());
+        return Easy::Account(node);
     }
 
     return Easy::Account();
@@ -73,16 +73,24 @@ const string Instance::uri() const
     return get_string("uri");
 }
 
+const Easy::urls_type Instance::urls() const
+{
+    return { get_string("urls.streaming_api") };
+}
+
 const string Instance::version() const
 {
     return get_string("version");
 }
 
-const string Instance::streaming_api() const
+const Easy::stats_type Instance::stats() const
 {
-    return get_string("urls.streaming_api");
+    Easy::stats_type s;
+    s.user_count = get_uint64("user_count");
+    s.status_count = get_uint64("status_count");
+    s.domain_count = get_uint64("domain_count");
+    return s;
 }
-
 const string Instance::thumbnail() const
 {
     return get_string("thumbnail");

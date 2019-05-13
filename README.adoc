@@ -83,8 +83,8 @@ Not included in this list are entities.
 
 ==== Other types
 
-* `Mastodon::parameters`: Vector of `Mastodon::param`, for specifying parameters
-  to an `Mastodon::API` call.
+* `Mastodon::parameters`: Vector of `Mastodon::param` with custom `find()`, for
+  specifying parameters to an `Mastodon::API` call.
 * `Mastodon::http_method`: HTTP method of an `Mastodon::API` call.
 * `Mastodon::Easy::event_type`: Event types returned in streams.
 * `Mastodon::Easy::visibility_type`: Describes the visibility of a post.
@@ -92,13 +92,12 @@ Not included in this list are entities.
 * `Mastodon::Easy::card_type`: Describes the type of card.
 * `Mastodon::Easy::notification_type`: The type of the notification.
 * `Mastodon::Easy::context_type`: Describes the context of a filter.
-* `Mastodon::Easy::stream_event`: Type and data of an events returned in
+* `Mastodon::Easy::stream_event_type`: Type and data of an events returned in
   streams.
-* `Mastodon::Easy::alerts`: Vector of `Mastodon::Easy::alert_type`, used for
-  push subscriptions.
-* `Mastodon::Easy::time`: Type for time, can be converted to `time_point` and
-  `string`.
-* `Mastodon::Easy::Account::account_fields`: Type for fields in accounts.
+* `Mastodon::Easy::alert_type`, used for push subscriptions.
+* `Mastodon::Easy::time_type`: Type for time, can be converted to `time_point`
+  and `string`.
+* `Mastodon::Easy::Account::account_field_type`: Type for fields in accounts.
 
 === Error codes
 

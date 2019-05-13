@@ -44,9 +44,9 @@ const string PushSubscription::server_key() const
     return get_string("server_key");
 }
 
-const Easy::alerts PushSubscription::alerts() const
+const vector<Easy::alert_type> PushSubscription::alerts() const
 {
-    Easy::alerts alerts;
+    vector<Easy::alert_type> alerts;
     const Json::Value node = get("alerts");
     for (auto it = node.begin(); it != node.end(); ++it)
     {

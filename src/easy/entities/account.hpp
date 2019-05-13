@@ -35,6 +35,7 @@
 
 using std::string;
 using std::uint64_t;
+using std::vector;
 
 namespace Mastodon
 {
@@ -88,7 +89,7 @@ namespace Easy
          *
          *  @since before 0.11.0
          */
-        const Easy::time created_at() const;
+        const Easy::time_type created_at() const;
 
         /*!
          *  @brief  Returns display name.
@@ -109,7 +110,7 @@ namespace Easy
          *
          *  @since  0.16.1
          */
-        const Easy::account_fields fields() const;
+        const vector<Easy::account_field_type> fields() const;
 
         /*!
          *  @brief  Returns number of followers.
@@ -206,7 +207,7 @@ namespace Easy
              *
              *  @since  0.18.5
              */
-            const Easy::account_fields fields() const;
+            const vector<Easy::account_field_type> fields() const;
 
             /*!
              *  @brief  Returns the language as ISO 6391 string.

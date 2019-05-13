@@ -65,7 +65,7 @@ bool Account::bot() const
     return get_bool("bot");
 }
 
-const Easy::time Account::created_at() const
+const Easy::time_type Account::created_at() const
 {
     return get_time("created_at");
 }
@@ -93,13 +93,13 @@ const std::vector<Easy::Emoji> Account::emojis()
     return {};
 }
 
-const Easy::account_fields Account::fields() const
+const vector<Easy::account_field_type> Account::fields() const
 {
     const Json::Value &node = get("fields");
 
     if (node.isArray())
     {
-        Easy::account_fields vec;
+        vector<Easy::account_field_type> vec;
         std::transform(node.begin(), node.end(), std::back_inserter(vec),
                        [](const Json::Value &value)
                        {
@@ -221,13 +221,13 @@ bool Account::Source::valid() const
         });
 }
 
-const Easy::account_fields Account::Source::fields() const
+const vector<Easy::account_field_type> Account::Source::fields() const
 {
     const Json::Value &node = get("fields");
 
     if (node.isArray())
     {
-        Easy::account_fields vec;
+        vector<Easy::account_field_type> vec;
         std::transform(node.begin(), node.end(), std::back_inserter(vec),
                        [](const Json::Value &value)
                        {

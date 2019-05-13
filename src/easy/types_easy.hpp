@@ -20,11 +20,9 @@
 #include <string>
 #include <utility>
 #include <chrono>
-#include <vector>
 
 using std::string;
 using std::chrono::system_clock;
-using std::vector;
 
 namespace Mastodon
 {
@@ -121,11 +119,14 @@ namespace Easy
      *
      *  @since  0.100.0
      */
-    typedef struct stream_event
+    typedef struct stream_event_type
     {
         event_type type = event_type::Undefined;
         string data;
-    } stream_event;
+    } stream_event_type;
+
+    [[deprecated("Replaced by Mastodon::Easy::stream_event_type")]]
+    typedef stream_event_type stream_event;
 
     /*!
      *  @brief  Type of notification and 'push is requested or not'.
@@ -139,20 +140,11 @@ namespace Easy
     } alert_type;
 
     /*!
-     *  @brief  Vector of Easy::alert_type.
-     *
-     *          Used in PushSubscription::alerts().
-     *
-     *  @since  0.100.0
-     */
-    typedef vector<alert_type> alerts;
-
-    /*!
      *  @brief  Type for time. Converts to time_point and string.
      *
      *  @since  0.100.0
      */
-    struct time
+    struct time_type
     {
         system_clock::time_point timepoint = system_clock::time_point();
 
@@ -171,7 +163,7 @@ namespace Easy
          *  @since  0.100.0
          */
         friend std::ostream &operator <<(std::ostream &out,
-                                         const Easy::time &t);
+                                         const Easy::time_type &t);
 
         /*!
          *  @brief  Converts time to a string.
@@ -196,6 +188,9 @@ namespace Easy
                              const bool &local = true) const;
     };
 
+    [[deprecated("Replaced by Mastodon::Easy::time_type")]]
+    typedef time_type time;
+
     /*!
      *  @brief  Describes an account-field.
      *
@@ -205,17 +200,18 @@ namespace Easy
     {
         const string name;
         const string value;
-        Easy::time verified_at;
+        Easy::time_type verified_at;
     } account_field_type;
 
     /*!
-     *  @brief  Vector of Easy::account_field_type.
-     *
-     *          Used in Easy::Account.
+     *  @brief  URLs returned by Instance::urls().
      *
      *  @since  0.106.0
      */
-    typedef vector<account_field_type> account_fields;
+    typedef struct urls_type
+    {
+        string streaming_api;
+    } urls_type;
 }
 }
 #endif  // MASTODON_CPP_EASY_TYPES_EASY_HPP

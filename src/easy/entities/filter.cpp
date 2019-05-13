@@ -71,7 +71,7 @@ const vector<Easy::context_type> Filter::context() const
     return {};
 }
 
-const Easy::time Filter::expires_at() const
+const Easy::time_type Filter::expires_at() const
 {
     return get_time("expires_at");
 }

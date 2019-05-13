@@ -72,7 +72,7 @@ namespace Easy
          *
          *  @since  0.104.0
          */
-        const Easy::time expires_at() const;
+        const Easy::time_type expires_at() const;
 
         /*!
          *  @brief  Returns if the phrase should disappear irreversibly.

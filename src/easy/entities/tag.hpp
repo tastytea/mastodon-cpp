@@ -68,7 +68,7 @@ namespace Easy
              *
              *  @since  0.16.0
              */
-            const Easy::time day();
+            const Easy::time_type day();
 
             /*!
              *  @brief  Returns the number of accounts using that hashtag.

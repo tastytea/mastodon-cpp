@@ -112,7 +112,7 @@ namespace Easy
      *
      *  @since  before 0.11.0
      */
-    const std::vector<string> json_array_to_vector(const string &json);
+    const vector<string> json_array_to_vector(const string &json);
 
     /*!
      *  @brief  Split stream into a vector of events
@@ -123,14 +123,14 @@ namespace Easy
      *
      *  @since  before 0.11.0
      */
-    const std::vector<stream_event> parse_stream(const std::string &streamdata);
+    const vector<stream_event_type> parse_stream(const std::string &streamdata);
 
     /*!
      *  @brief Convert ISO 8601 time string to Easy::time.
      *
      *  @param strtime Time string as returned by Mastodon.
      */
-    const Easy::time string_to_time(const string &strtime);
+    const Easy::time_type string_to_time(const string &strtime);
 
     /*!
      *  @brief  Child of Mastodon::API with abstract methods.

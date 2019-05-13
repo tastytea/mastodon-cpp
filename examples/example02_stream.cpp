@@ -51,11 +51,12 @@ int main(int argc, char *argv[])
         // Acquire lock for the stream variable to avoid simultaneous access.
         std::lock_guard<std::mutex> lock(ptr->get_mutex());
         // Parse event stream into a vector.
-        std::vector<Easy::stream_event> events = Easy::parse_stream(stream);
+        std::vector<Easy::stream_event_type> events
+            = Easy::parse_stream(stream);
         // Clear the stream buffer.
         stream.clear();
 
-        for (const Easy::stream_event &event : events)
+        for (const Easy::stream_event_type &event : events)
         {
             // Print out some information about the events.
             switch (event.type)

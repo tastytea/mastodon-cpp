@@ -203,7 +203,7 @@ namespace Easy
          *
          *          Returns clocks epoch if the value does not exist or is null.
          */
-        const Easy::time get_time(const string &key) const;
+        const Easy::time_type get_time(const string &key) const;
 
         /*!
          *  @brief  Returns the value of key as vector

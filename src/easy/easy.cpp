@@ -49,13 +49,13 @@ const std::vector<string> Easy::json_array_to_vector(const string &json)
     return {};
 }
 
-const vector<Easy::stream_event> Easy::parse_stream(
+const vector<Easy::stream_event_type> Easy::parse_stream(
     const std::string &streamdata)
 {
     string stream = streamdata;
     std::regex reevent("event: (update|notification|delete|ERROR)\ndata: (.*)\n");
     std::smatch match;
-    std::vector<stream_event> vec = {};
+    std::vector<stream_event_type> vec = {};
 
     while (std::regex_search(stream, match, reevent))
     {
@@ -79,7 +79,7 @@ const vector<Easy::stream_event> Easy::parse_stream(
     return vec;
 }
 
-const Easy::time Easy::string_to_time(const string &strtime)
+const Easy::time_type Easy::string_to_time(const string &strtime)
 {
     std::stringstream sstime(strtime);
     struct std::tm tm = {};

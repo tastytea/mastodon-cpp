@@ -75,7 +75,7 @@ uint64_t Tag::History::accounts()
     return stouint64(get_string("accounts"));
 }
 
-const Easy::time Tag::History::day()
+const Easy::time_type Tag::History::day()
 {
     const Json::Value node = get("day");
 
@@ -86,7 +86,7 @@ const Easy::time Tag::History::day()
     }
 
     ttdebug << "Could not get data: day\n";
-    return Easy::time();
+    return Easy::time_type();
 }
 
 uint64_t Tag::History::uses()

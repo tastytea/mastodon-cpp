@@ -82,6 +82,13 @@ namespace Easy
         const std::vector<string> languages() const;
 
         /*!
+         *  @brief  Returns the thumbnail of the instance.
+         *
+         *  @since  0.106.0
+         */
+        const string thumbnail() const;
+
+        /*!
          *  @brief  Returns the title of the instance
          *
          *  @since before 0.11.0

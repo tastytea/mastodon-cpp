@@ -32,6 +32,7 @@ bool Instance::valid() const
             "email",
             "version",
             "urls",
+            "stats",
             "languages"
         });
 }
@@ -44,7 +45,6 @@ const Easy::Account Instance::contact_account() const
         return Easy::Account(node.toStyledString());
     }
 
-    ttdebug << "Could not get data: contact_account\n";
     return Easy::Account();
 }
 
@@ -81,6 +81,11 @@ const string Instance::version() const
 const string Instance::streaming_api() const
 {
     return get_string("urls.streaming_api");
+}
+
+const string Instance::thumbnail() const
+{
+    return get_string("thumbnail");
 }
 
 uint64_t Instance::max_toot_chars() const

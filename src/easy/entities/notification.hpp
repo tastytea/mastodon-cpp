@@ -64,7 +64,7 @@ namespace Easy
          *
          *  @since before 0.11.0
          */
-        const Easy::time created_at() const;
+        const Easy::time_type created_at() const;
 
         /*!
          *  @brief  Returns notification ID

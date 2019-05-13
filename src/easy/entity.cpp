@@ -227,7 +227,7 @@ bool Easy::Entity::get_bool(const string &key) const
     return false;
 }
 
-const Easy::time Easy::Entity::get_time(const string &key) const
+const Easy::time_type Easy::Entity::get_time(const string &key) const
 {
     const Json::Value node = get(key);
 

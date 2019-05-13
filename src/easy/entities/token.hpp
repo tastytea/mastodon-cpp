@@ -72,7 +72,7 @@ namespace Easy
          *
          *  @since  0.103.0
          */
-        const Easy::time created_at() const;
+        const Easy::time_type created_at() const;
 };
 }
 }

@@ -43,7 +43,7 @@ const Easy::Account Notification::account() const
     return Easy::Account();
 }
 
-const Easy::time Notification::created_at() const
+const Easy::time_type Notification::created_at() const
 {
     return get_time("created_at");
 }

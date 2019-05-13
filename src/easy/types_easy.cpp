@@ -20,17 +20,17 @@ namespace Mastodon
 {
 namespace Easy
 {
-    time::operator const system_clock::time_point() const
+    time_type::operator const system_clock::time_point() const
     {
         return timepoint;
     }
 
-    time::operator const string() const
+    time_type::operator const string() const
     {
         return strtime("%FT%T%z", true);
     }
 
-    const string time::strtime(const string &format, const bool &local) const
+    const string time_type::strtime(const string &format, const bool &local) const
     {
         constexpr std::uint16_t bufsize = 1024;
         std::time_t time = system_clock::to_time_t(timepoint);
@@ -51,7 +51,7 @@ namespace Easy
     }
 
     std::ostream &operator <<(std::ostream &out,
-                              const time &t)
+                              const time_type &t)
     {
         const string s = t;         // Converts using operator const string().
         out << s;

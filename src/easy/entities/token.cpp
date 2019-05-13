@@ -45,7 +45,7 @@ const string Token::scope() const
     return get_string("scope");
 }
 
-const Easy::time Token::created_at() const
+const Easy::time_type Token::created_at() const
 {
     return get_time("created_at");
 }

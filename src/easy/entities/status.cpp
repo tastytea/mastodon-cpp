@@ -78,7 +78,7 @@ const Easy::Card Status::card() const
     return Easy::Card();
 }
 
-const Easy::time Status::created_at() const
+const Easy::time_type Status::created_at() const
 {
     return get_time("created_at");
 }

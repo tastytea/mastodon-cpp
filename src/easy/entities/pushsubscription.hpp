@@ -18,6 +18,7 @@
 #define MASTODON_CPP_EASY_PUSHSUBSCRIPTION_HPP
 
 #include <string>
+#include <vector>
 #include <cstdint>
 #include <map>
 
@@ -31,6 +32,7 @@
 #endif
 
 using std::string;
+using std::vector;
 
 namespace Mastodon
 {
@@ -75,7 +77,7 @@ namespace Easy
          *
          *  @since  0.100.0
          */
-        const Easy::alerts alerts() const;
+        const vector<Easy::alert_type> alerts() const;
 
     protected:
         /*!

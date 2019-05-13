@@ -85,7 +85,7 @@ SCENARIO ("Easy::Filter works as intended", "[entity]")
 
             THEN ("No exception is thrown")
                 AND_THEN ("It is not valid")
-                AND_THEN ("shortcode is empty")
+                AND_THEN ("phrase is empty")
             {
                 REQUIRE_FALSE(exception);
                 REQUIRE_FALSE(filter.valid());

@@ -319,7 +319,7 @@ const string Mastodon::unescape_html(const string &html)
     // Used to convert int to utf-8 char
     std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> u8c;
     // Matches numbered entities between 1 and 8 digits, decimal or hexadecimal
-    std::regex re_entity("&#(x)?(\\d{1,8});");
+    std::regex re_entity("&#(x)?([[:alnum:]]{1,8});");
     std::smatch match;
 
     while (std::regex_search(buffer, match, re_entity))

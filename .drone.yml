@@ -20,13 +20,13 @@ steps:
   image: debian:stretch-slim
   pull: true
   environment:
-    LANG: C.utf8
     CXX: g++-6
     CXXFLAGS: -pipe -O2
     MASTODON_CPP_ACCESS_TOKEN:
       from_secret: mastodon_cpp_access_token
   commands:
   - rm /etc/apt/apt.conf.d/docker-clean
+  - rm /var/cache/apt/archives/lock
   - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
   - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
   - apt-get update -q
@@ -42,17 +42,17 @@ steps:
     - name: debian-package-cache
       path: /var/cache/apt/archives
 
-- name: gcc7
+- name: gcc9
   image: debian:stretch-slim
   pull: true
   environment:
-    LANG: C.utf8
-    CXX: g++-7
+    CXX: g++-9
     CXXFLAGS: -pipe -O2
     MASTODON_CPP_ACCESS_TOKEN:
       from_secret: mastodon_cpp_access_token
   commands:
   - rm /etc/apt/apt.conf.d/docker-clean
+  - rm /var/cache/apt/archives/lock
   - apt-get update -q
   - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
   - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
@@ -62,39 +62,7 @@ steps:
   - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
   - apt-get update -q
   - apt-get install -qy build-essential cmake pkg-config
-  - apt-get install -qy -t xenial g++-7
-  - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
-  - apt-get install -qy -t sid libcurlpp-dev
-  - rm -rf build && mkdir -p build && cd build
-  - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="~[api]" ..
-  - make VERBOSE=1
-  - make install DESTDIR=install
-  - ctest
-  volumes:
-  - name: debian-package-cache
-    path: /var/cache/apt/archives
-
-- name: gcc8
-  image: debian:stretch-slim
-  pull: true
-  environment:
-    LANG: C.utf8
-    CXX: g++-8
-    CXXFLAGS: -pipe -O2
-    MASTODON_CPP_ACCESS_TOKEN:
-      from_secret: mastodon_cpp_access_token
-  commands:
-  - rm /etc/apt/apt.conf.d/docker-clean
-  - apt-get update -q
-  - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
-  - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
-  - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
-  - apt-get install -qy gnupg
-  - gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0x60c317803a41ba51845e371a1e9377a2ba9ef27f
-  - gpg --armor --export 0x60c317803a41ba51845e371a1e9377a2ba9ef27f | apt-key add -
-  - apt-get update -q
-  - apt-get install -qy build-essential cmake pkg-config
-  - apt-get install -qy -t xenial g++-8
+  - apt-get install -qy -t xenial g++-9
   - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
   - apt-get install -qy -t sid libcurlpp-dev
   - rm -rf build && mkdir -p build && cd build
@@ -110,13 +78,13 @@ steps:
   image: debian:stretch-slim
   pull: true
   environment:
-    LANG: C.utf8
     CXX: clang++-5.0
     CXXFLAGS: -pipe -O2
     MASTODON_CPP_ACCESS_TOKEN:
       from_secret: mastodon_cpp_access_token
   commands:
   - rm /etc/apt/apt.conf.d/docker-clean
+  - rm /var/cache/apt/archives/lock
   - apt-get update -q
   - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
   - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/stretch.list
@@ -146,6 +114,7 @@ steps:
       from_secret: mastodon_cpp_access_token
   commands:
   - rm /etc/apt/apt.conf.d/docker-clean
+  - rm /var/cache/apt/archives/lock
   - apt-get update -q
   - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
   - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/stretch.list
@@ -203,10 +172,10 @@ steps:
   image: debian:stretch-slim
   pull: always
   environment:
-    LANG: C.utf8
     CXXFLAGS: -pipe -O2
   commands:
   - rm /etc/apt/apt.conf.d/docker-clean
+  - rm /var/cache/apt/archives/lock
   - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
   - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
   - apt-get update -q
@@ -229,7 +198,6 @@ steps:
   image: centos:7
   pull: always
   environment:
-    LANG: C.utf8
     CXXFLAGS: -pipe -O2
   commands:
   - sed -i 's/keepcache=0/keepcache=1/' /etc/yum.conf

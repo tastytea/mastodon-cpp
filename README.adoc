@@ -403,7 +403,7 @@ strings and you can use unsupported fields in an `Entity` by converting it to
 * [x] Filter
 * [x] Instance
 * [x] List
-* [ ] Mention
+* [x] Mention
 * [ ] Notification
 * [ ] Poll
 * [ ] PushSubscription

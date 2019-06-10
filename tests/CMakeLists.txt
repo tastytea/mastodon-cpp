@@ -13,7 +13,7 @@ else()              # Catch 1.x
     message(STATUS "Catch 1.x found.")
     foreach(src ${sources_tests})
       get_filename_component(bin ${src} NAME_WE)
-      add_executable(${bin} tests/main.cpp ${src})
+      add_executable(${bin} main.cpp ${src})
       target_link_libraries(${bin} ${PROJECT_NAME})
       add_test(${bin} ${bin} "${EXTRA_TEST_ARGS}")
     endforeach()

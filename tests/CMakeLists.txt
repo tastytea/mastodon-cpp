@@ -1,10 +1,10 @@
 include(CTest)
-file(GLOB sources_tests tests/test_*.cpp tests/*/test_*.cpp)
+file(GLOB sources_tests test_*.cpp */test_*.cpp)
 
 find_package(Catch2)
 if(Catch2_FOUND)    # Catch 2.x
   include(Catch)
-  add_executable(all_tests tests/main.cpp ${sources_tests})
+  add_executable(all_tests main.cpp ${sources_tests})
   target_link_libraries(all_tests ${PROJECT_NAME} Catch2::Catch2)
   target_include_directories(all_tests PRIVATE "/usr/include/catch2")
   catch_discover_tests(all_tests EXTRA_ARGS "${EXTRA_TEST_ARGS}")

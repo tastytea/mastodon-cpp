@@ -404,7 +404,7 @@ strings and you can use unsupported fields in an `Entity` by converting it to
 * [x] Instance
 * [x] List
 * [x] Mention
-* [ ] Notification
+* [x] Notification
 * [ ] Poll
 * [ ] PushSubscription
 * [ ] Relationship

@@ -22,6 +22,7 @@
 #include <iostream>
 #include <algorithm>
 #include <fstream>
+#include <exception>
 #include "version.hpp"
 #include "debug.hpp"
 #include "mastodon-cpp.hpp"
@@ -36,7 +37,24 @@ API::API(const string &instance, const string &access_token)
 , _exceptions(false)
 , _proxy("")
 , _proxy_userpw("")
-{}
+{
+    bool fash = false;
+    const std::regex re_gab("(?:\\.|^)gab\\.[^\\.]+$");
+
+    for (const std::regex &re : { re_gab })
+    {
+        if (std::regex_search(_instance, re))
+        {
+            fash = true;
+            break;
+        }
+    }
+
+    if (fash)
+    {
+        throw std::runtime_error("Fascist instance detected: " + _instance);
+    }
+}
 
 API::~API()
 {}

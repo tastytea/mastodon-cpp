@@ -40,8 +40,9 @@ API::API(const string &instance, const string &access_token)
 {
     bool fash = false;
     const std::regex re_gab("(?:\\.|^)gab\\.[^\\.]+$");
+    const std::regex re_kiwifarms("(?:\\.|^)kiwifarms\\.[^\\.]+$");
 
-    for (const std::regex &re : { re_gab })
+    for (const std::regex &re : { re_gab, re_kiwifarms })
     {
         if (std::regex_search(_instance, re))
         {

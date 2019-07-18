@@ -481,7 +481,8 @@ strings and you can use unsupported fields in an `Entity` by converting it to
 
 == Blocked instances
 
-Instances that exist mainly to hurt people are blocked from using this library.
+Instances that are frequently used to hurt marginalized people are blocked from
+using this library.
 
 .List of blocked instances:
 * https://en.wikipedia.org/wiki/Gab_(social_network)[Gab]

@@ -30,7 +30,8 @@ bool PushSubscription::valid() const
         {
             "id",
             "endpoint",
-            "server_key"
+            "server_key",
+            "alerts"
         });
 }
 

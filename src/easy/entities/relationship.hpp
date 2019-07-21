@@ -49,74 +49,81 @@ namespace Easy
         virtual bool valid() const override;
 
         /*!
-         *  @brief  Returns true if the user is blocking the account
+         *  @brief  Returns true if the user is blocking the account.
          *
          *  @since  before 0.11.0
          */
         bool blocking() const;
 
         /*!
-         *  @brief  Returns true if the user is blocking the account's domain
+         *  @brief  Returns true if the user is blocking the account's domain.
          *
          *  @since  before 0.11.0
          */
         bool domain_blocking() const;
 
         /*!
-         *  @brief  Returns true if the account is endorsed by the user
+         *  @brief  Returns true if the account is endorsed by the user.
          *
          *  @since  0.19.0
          */
         bool endorsed() const;
 
         /*!
-         *  @brief  Returns true if the user is being followed by the account
+         *  @brief  Returns true if the user is being followed by the account.
          *
          *  @since  before 0.11.0
          */
         bool followed_by() const;
 
         /*!
-         *  @brief  Returns true if the user is being following the account
+         *  @brief  Returns true if the user is being following the account.
          *
          *  @since  before 0.11.0
          */
         bool following() const;
 
         /*!
-         *  @brief  Returns the target account ID
+         *  @brief  Returns the target account ID.
          *
          *  @since  before 0.11.0
          */
         const string id() const;
 
         /*!
-         *  @brief  Returns true if the user is muting the account
+         *  @brief  Returns true if the user is muting the account.
          *
          *  @since  before 0.11.0
          */
         bool muting() const;
 
         /*!
-         *  @brief  Returns true if the user is also muting notifications
+         *  @brief  Returns true if the user is also muting notifications.
          *
          *  @since  before 0.11.0
          */
         bool muting_notifications() const;
 
         /*!
-         *  @brief  Returns true if the user has requested to follow the account
+         *  @brief  Returns true if the user has requested to follow the account.
          *
          *  @since  before 0.11.0
          */
         bool requested() const;
 
         /*!
-         *  @brief  Returns true if the user is showing notifications
+         *  @brief  Returns true if the user is showing notifications.
          *
          *  @since  0.19.0
          */
         bool showing_notifications() const;
+
+        /*!
+         *  @brief  Returns true if the user is showing reblogs.
+         *
+         *  @since  0.106.0
+         */
+        bool showing_reblogs() const;
     };
 }
 }

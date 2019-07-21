@@ -30,7 +30,9 @@ bool Relationship::valid() const
             "muting",
             "muting_notifications",
             "requested",
-            "domain_blocking"
+            "domain_blocking",
+            "showing_reblogs",
+            "endorsed"
         });
 }
 
@@ -82,4 +84,9 @@ bool Relationship::requested() const
 bool Relationship::showing_notifications() const
 {
     return get_bool("showing_notifications");
+}
+
+bool Relationship::showing_reblogs() const
+{
+    return get_bool("showing_reblogs");
 }

@@ -18,7 +18,7 @@
 
 namespace Mastodon
 {
-    return_base::operator bool()
+    return_base::operator bool() const
     {
         if (error_code == 0)
         {
@@ -30,7 +30,7 @@ namespace Mastodon
         }
     }
 
-    return_base::operator uint8_t()
+    return_base::operator uint8_t() const
     {
         return error_code;
     }

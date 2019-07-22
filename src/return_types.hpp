@@ -59,14 +59,14 @@ namespace Mastodon
          *
          *  @since  0.100.0
          */
-        operator bool();
+        operator bool() const;
 
         /*!
          *  @brief  Same as return_base::error_code.
          *
          *  @since  0.100.0
          */
-        operator uint8_t();
+        operator uint8_t() const;
     } return_base;
 
     /*!

@@ -409,7 +409,7 @@ strings and you can use unsupported fields in an `Entity` by converting it to
 * [x] PushSubscription
 * [x] Relationship
 * [ ] Report ^(Deprecated)^
-* [ ] Results
+* [x] Results
 * [ ] Status
 * [ ] ScheduledStatus
 * [ ] Tag

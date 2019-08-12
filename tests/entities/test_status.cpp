@@ -66,16 +66,15 @@ SCENARIO ("Easy::Status works as intended", "[entity]")
                   "\"remote_url\":\"https://example.com/media/debian.svg\","
                   "\"text_url\":\"https://example.com/media/debian.svg\","
                   "\"type\":\"unknown\","
-                  "\"url\":\"https://example.com/media/debian.svg\"],"
-                ",\"mentions\":[],"
-                ",\"muted\":false,\"pinned\":false,"
+                  "\"url\":\"https://example.com/media/debian.svg\"}],"
+                "\"mentions\":[],"
+                "\"muted\":false,\"pinned\":false,"
                 "\"poll\":null,\"reblog\":null,\"reblogged\":false,"
                 "\"reblogs_count\":0,\"replies_count\":0,"
                 "\"sensitive\":false,\"spoiler_text\":\"Test\","
                 "\"tags\":[],\"uri\":\"https://example.com/objects/0000\","
                 "\"url\":\"https://example.com/notice/0000\","
-                "\"visibility\":\"unlisted\"}"
-                ;
+                "\"visibility\":\"unlisted\"}";
 
             try
             {
@@ -83,7 +82,7 @@ SCENARIO ("Easy::Status works as intended", "[entity]")
             }
             catch (const std::exception &e)
             {
-                exception = true;
+              exception = true;
             }
 
             THEN ("No exception is thrown")
@@ -93,7 +92,7 @@ SCENARIO ("Easy::Status works as intended", "[entity]")
                 REQUIRE_FALSE(exception);
                 REQUIRE(status.valid());
                 REQUIRE(status.account().id() == "9hnrrVPriLiLVAhfVo");
-                REQUIRE(status.content = "This is another test-post.");
+                REQUIRE(status.content() == "This is another test-post.");
                 REQUIRE(status.visibility() == Easy::visibility_type::Unlisted);
             }
         }

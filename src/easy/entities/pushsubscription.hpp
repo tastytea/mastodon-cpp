@@ -71,7 +71,6 @@ namespace Easy
          */
         const string server_key() const;
 
-        // TODO: Look up what the data looks like
         /*!
          *  @brief  Returns a vector of Easy::alert_type.
          *

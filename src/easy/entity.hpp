@@ -190,7 +190,6 @@ namespace Easy
          */
         double get_double(const string &key) const;
 
-        // TODO: Maybe an enum would be better?
         /*!
          *  @brief  Returns the value of key as bool
          *

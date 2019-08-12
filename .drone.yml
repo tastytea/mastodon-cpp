@@ -198,6 +198,7 @@ steps:
   image: centos:7
   pull: always
   environment:
+    CXX: /opt/rh/devtoolset-6/root/usr/bin/g++
     CXXFLAGS: -pipe -O2
   commands:
   - sed -i 's/keepcache=0/keepcache=1/' /etc/yum.conf

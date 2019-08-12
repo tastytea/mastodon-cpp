@@ -17,47 +17,24 @@
 #ifndef MASTODON_CPP_EASY_ALL_HPP
 #define MASTODON_CPP_EASY_ALL_HPP
 
-// If we are compiling mastodon-cpp, use another include path
-#ifdef MASTODON_CPP
-    #include "easy/easy.hpp"
-    #include "easy/entities/account.hpp"
-    #include "easy/entities/application.hpp"
-    #include "easy/entities/attachment.hpp"
-    #include "easy/entities/card.hpp"
-    #include "easy/entities/context.hpp"
-    #include "easy/entities/emoji.hpp"
-    #include "easy/entities/instance.hpp"
-    #include "easy/entities/list.hpp"
-    #include "easy/entities/mention.hpp"
-    #include "easy/entities/notification.hpp"
-    #include "easy/entities/relationship.hpp"
-    #include "easy/entities/report.hpp"
-    #include "easy/entities/results.hpp"
-    #include "easy/entities/status.hpp"
-    #include "easy/entities/tag.hpp"
-    #include "easy/entities/token.hpp"
-    #include "easy/entities/pushsubscription.hpp"
-    #include "easy/entities/filter.hpp"
-#else
-    #include <mastodon-cpp/easy/easy.hpp>
-    #include <mastodon-cpp/easy/entities/account.hpp>
-    #include <mastodon-cpp/easy/entities/application.hpp>
-    #include <mastodon-cpp/easy/entities/attachment.hpp>
-    #include <mastodon-cpp/easy/entities/card.hpp>
-    #include <mastodon-cpp/easy/entities/context.hpp>
-    #include <mastodon-cpp/easy/entities/emoji.hpp>
-    #include <mastodon-cpp/easy/entities/instance.hpp>
-    #include <mastodon-cpp/easy/entities/list.hpp>
-    #include <mastodon-cpp/easy/entities/mention.hpp>
-    #include <mastodon-cpp/easy/entities/notification.hpp>
-    #include <mastodon-cpp/easy/entities/relationship.hpp>
-    #include <mastodon-cpp/easy/entities/report.hpp>
-    #include <mastodon-cpp/easy/entities/results.hpp>
-    #include <mastodon-cpp/easy/entities/status.hpp>
-    #include <mastodon-cpp/easy/entities/tag.hpp>
-    #include <mastodon-cpp/easy/entities/token.hpp>
-    #include <mastodon-cpp/easy/entities/pushsubscription.hpp>
-    #include <mastodon-cpp/easy/entities/filter.hpp>
-#endif
+#include "easy.hpp"
+#include "entities/account.hpp"
+#include "entities/application.hpp"
+#include "entities/attachment.hpp"
+#include "entities/card.hpp"
+#include "entities/context.hpp"
+#include "entities/emoji.hpp"
+#include "entities/instance.hpp"
+#include "entities/list.hpp"
+#include "entities/mention.hpp"
+#include "entities/notification.hpp"
+#include "entities/relationship.hpp"
+#include "entities/report.hpp"
+#include "entities/results.hpp"
+#include "entities/status.hpp"
+#include "entities/tag.hpp"
+#include "entities/token.hpp"
+#include "entities/pushsubscription.hpp"
+#include "entities/filter.hpp"
 
 #endif  // MASTODON_CPP_EASY_ALL_HPP

@@ -20,16 +20,9 @@
 #include <string>
 #include <vector>
 
-// If we are compiling mastodon-cpp, use another include path
-#ifdef MASTODON_CPP
-    #include "mastodon-cpp.hpp"
-    #include "easy/entity.hpp"
-    #include "easy/entities/status.hpp"
-#else
-    #include <mastodon-cpp/mastodon-cpp.hpp>
-    #include <mastodon-cpp/easy/entity.hpp>
-    #include <mastodon-cpp/easy/entities/status.hpp>
-#endif
+#include "../../mastodon-cpp.hpp"
+#include "../entity.hpp"
+#include "status.hpp"
 
 using std::string;
 

@@ -28,14 +28,8 @@
 #include <curlpp/cURLpp.hpp>
 #include <curlpp/Easy.hpp>
 
-// If we are compiling mastodon-cpp, use another include path
-#ifdef MASTODON_CPP
-    #include "return_types.hpp"
-    #include "types.hpp"
-#else
-    #include <mastodon-cpp/return_types.hpp>
-    #include <mastodon-cpp/types.hpp>
-#endif
+#include "return_types.hpp"
+#include "types.hpp"
 
 using std::string;
 using std::uint8_t;

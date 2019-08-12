@@ -48,10 +48,6 @@ configure_file (
   "${PROJECT_BINARY_DIR}/version.hpp"
 )
 
-# Announce that we are compiling mastodon-cpp (used to figure out where the
-# headers are)
-add_definitions(-DMASTODON_CPP=1)
-
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   add_definitions(-DDEBUG=1)
 endif()

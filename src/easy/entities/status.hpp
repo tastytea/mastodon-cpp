@@ -21,28 +21,15 @@
 #include <cstdint>
 #include <vector>
 
-// If we are compiling mastodon-cpp, use another include path
-#ifdef MASTODON_CPP
-    #include "mastodon-cpp.hpp"
-    #include "easy/entity.hpp"
-    #include "easy/entities/account.hpp"
-    #include "easy/entities/emoji.hpp"
-    #include "easy/entities/attachment.hpp"
-    #include "easy/entities/mention.hpp"
-    #include "easy/entities/tag.hpp"
-    #include "easy/entities/application.hpp"
-    #include "easy/entities/card.hpp"
-#else
-    #include <mastodon-cpp/mastodon-cpp.hpp>
-    #include <mastodon-cpp/easy/entity.hpp>
-    #include <mastodon-cpp/easy/entities/account.hpp>
-    #include <mastodon-cpp/easy/entities/emoji.hpp>
-    #include <mastodon-cpp/easy/entities/attachment.hpp>
-    #include <mastodon-cpp/easy/entities/mention.hpp>
-    #include <mastodon-cpp/easy/entities/tag.hpp>
-    #include <mastodon-cpp/easy/entities/application.hpp>
-    #include <mastodon-cpp/easy/entities/card.hpp>
-#endif
+#include "../../mastodon-cpp.hpp"
+#include "../entity.hpp"
+#include "account.hpp"
+#include "emoji.hpp"
+#include "attachment.hpp"
+#include "mention.hpp"
+#include "tag.hpp"
+#include "application.hpp"
+#include "card.hpp"
 
 using std::string;
 using std::uint64_t;

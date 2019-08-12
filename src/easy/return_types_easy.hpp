@@ -21,12 +21,7 @@
 #include <vector>
 #include <ostream>
 #include <cstdint>
-// If we are compiling mastodon-cpp, use another include path
-#ifdef MASTODON_CPP
-    #include "mastodon-cpp.hpp"
-#else
-    #include <mastodon-cpp/mastodon-cpp.hpp>
-#endif
+#include "../mastodon-cpp.hpp"
 
 using std::string;
 using std::vector;

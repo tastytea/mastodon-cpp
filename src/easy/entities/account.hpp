@@ -22,16 +22,9 @@
 #include <vector>
 #include <utility>
 
-// If we are compiling mastodon-cpp, use another include path
-#ifdef MASTODON_CPP
-    #include "mastodon-cpp.hpp"
-    #include "easy/entity.hpp"
-    #include "easy/entities/emoji.hpp"
-#else
-    #include <mastodon-cpp/mastodon-cpp.hpp>
-    #include <mastodon-cpp/easy/entity.hpp>
-    #include <mastodon-cpp/easy/entities/emoji.hpp>
-#endif
+#include "../../mastodon-cpp.hpp"
+#include "../entity.hpp"
+#include "emoji.hpp"
 
 using std::string;
 using std::uint64_t;

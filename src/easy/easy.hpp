@@ -24,20 +24,11 @@
 #include <ostream>
 #include <jsoncpp/json/json.h>
 
-// If we are compiling mastodon-cpp, use another include path
-#ifdef MASTODON_CPP
-    #include "mastodon-cpp.hpp"
-    #include "easy/return_types_easy.hpp"
-    #include "easy/types_easy.hpp"
-    #include "easy/entities/notification.hpp"
-    #include "easy/entities/status.hpp"
-#else
-    #include <mastodon-cpp/mastodon-cpp.hpp>
-    #include <mastodon-cpp/easy/return_types_easy.hpp>
-    #include <mastodon-cpp/easy/types_easy.hpp>
-    #include <mastodon-cpp/easy/entities/notification.hpp>
-    #include <mastodon-cpp/easy/entities/status.hpp>
-#endif
+#include "../mastodon-cpp.hpp"
+#include "return_types_easy.hpp"
+#include "types_easy.hpp"
+#include "entities/notification.hpp"
+#include "entities/status.hpp"
 
 using std::string;
 using std::vector;

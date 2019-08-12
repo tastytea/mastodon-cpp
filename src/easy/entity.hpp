@@ -20,12 +20,7 @@
 #include <string>
 #include <jsoncpp/json/json.h>
 
-// If we are compiling mastodon-cpp, use another include path
-#ifdef MASTODON_CPP
-    #include "easy/types_easy.hpp"
-#else
-    #include <mastodon-cpp/easy/types_easy.hpp>
-#endif
+#include "types_easy.hpp"
 
 using std::string;
 

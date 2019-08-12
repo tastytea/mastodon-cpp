@@ -10,13 +10,8 @@
 #include <mutex>
 #include <chrono>
 #include <vector>
-#ifdef MASTODON_CPP
-    #include "mastodon-cpp.hpp"
-    #include "easy/all.hpp"
-#else
-    #include <mastodon-cpp/mastodon-cpp.hpp>
-    #include <mastodon-cpp/easy/all.hpp>
-#endif
+#include "mastodon-cpp.hpp"
+#include "easy/all.hpp"
 
 using std::cout;
 using std::cerr;

@@ -50,7 +50,7 @@ const std::vector<Tag::History> Tag::history() const
         std::vector<Easy::Tag::History> vec;
         std::transform(node.begin(), node.end(), std::back_inserter(vec),
                        [](const Json::Value &value)
-                           { return Easy::Tag::History(value); });
+                       { return Easy::Tag::History(value); });
         return vec;
     }
 
@@ -72,7 +72,7 @@ bool Tag::History::valid() const
 
 uint64_t Tag::History::accounts() const
 {
-    return stouint64(get_string("accounts"));
+    return get_uint64("accounts");
 }
 
 const Easy::time_type Tag::History::day() const
@@ -91,5 +91,5 @@ const Easy::time_type Tag::History::day() const
 
 uint64_t Tag::History::uses() const
 {
-    return stouint64(get_string("uses"));
+    return get_uint64("uses");
 }

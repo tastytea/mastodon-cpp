@@ -37,7 +37,7 @@ steps:
   - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="~[api]" ..
   - make VERBOSE=1
   - make install DESTDIR=install
-  - ctest
+  - cd tests && ctest
   volumes:
     - name: debian-package-cache
       path: /var/cache/apt/archives
@@ -69,7 +69,6 @@ steps:
   - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="~[api]" ..
   - make VERBOSE=1
   - make install DESTDIR=install
-  - ctest
   volumes:
   - name: debian-package-cache
     path: /var/cache/apt/archives
@@ -98,7 +97,6 @@ steps:
   - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="~[api]" ..
   - make VERBOSE=1
   - make install DESTDIR=install
-  - ctest
   volumes:
   - name: debian-package-cache
     path: /var/cache/apt/archives
@@ -128,7 +126,6 @@ steps:
   - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="~[api]" ..
   - make VERBOSE=1
   - make install DESTDIR=install
-  - ctest
   volumes:
   - name: debian-package-cache
     path: /var/cache/apt/archives

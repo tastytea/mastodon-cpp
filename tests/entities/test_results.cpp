@@ -88,7 +88,7 @@ SCENARIO ("Easy::Results works as intended", "[entity]")
 
             THEN ("No exception is thrown")
                 AND_THEN ("It is not valid")
-                AND_THEN ("id is empty")
+                AND_THEN ("accounts is empty")
             {
                 REQUIRE_FALSE(exception);
                 REQUIRE_FALSE(results.valid());

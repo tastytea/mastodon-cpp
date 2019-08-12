@@ -70,12 +70,12 @@ bool Tag::History::valid() const
     return Entity::check_valid(attributes);
 }
 
-uint64_t Tag::History::accounts()
+uint64_t Tag::History::accounts() const
 {
     return stouint64(get_string("accounts"));
 }
 
-const Easy::time_type Tag::History::day()
+const Easy::time_type Tag::History::day() const
 {
     const Json::Value node = get("day");
 
@@ -89,7 +89,7 @@ const Easy::time_type Tag::History::day()
     return Easy::time_type();
 }
 
-uint64_t Tag::History::uses()
+uint64_t Tag::History::uses() const
 {
     return stouint64(get_string("uses"));
 }

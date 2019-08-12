@@ -55,21 +55,21 @@ namespace Easy
              *
              *  @since  0.16.0
              */
-            uint64_t accounts();
+            uint64_t accounts() const;
 
             /*!
              *  @brief  Returns the day.
              *
              *  @since  0.16.0
              */
-            const Easy::time_type day();
+            const Easy::time_type day() const;
 
             /*!
-             *  @brief  Returns the number of accounts using that hashtag.
+             *  @brief  Returns the number of statuses with that hashtag.
              *
              *  @since  0.16.0
              */
-            uint64_t uses();
+            uint64_t uses() const;
         };
 
         using Entity::Entity;

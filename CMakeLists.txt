@@ -81,5 +81,6 @@ if(WITH_DOC)
 endif()
 
 add_subdirectory("cmake")
+add_subdirectory("pkg-config")
 
 include("cmake/packages.cmake")

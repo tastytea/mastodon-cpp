@@ -1,20 +1,23 @@
 include(CTest)
-file(GLOB sources_tests test_*.cpp */test_*.cpp)
+
+file(GLOB_RECURSE sources_tests test_*.cpp)
+
+configure_file("test.gif" "${CMAKE_CURRENT_BINARY_DIR}" COPYONLY)
 
 find_package(Catch2)
-if(Catch2_FOUND)    # Catch 2.x
+if(Catch2_FOUND)                # Catch 2.x
   include(Catch)
   add_executable(all_tests main.cpp ${sources_tests})
-  target_link_libraries(all_tests ${PROJECT_NAME} Catch2::Catch2)
+  target_link_libraries(all_tests PRIVATE ${PROJECT_NAME} Catch2::Catch2)
   target_include_directories(all_tests PRIVATE "/usr/include/catch2")
   catch_discover_tests(all_tests EXTRA_ARGS "${EXTRA_TEST_ARGS}")
-else()              # Catch 1.x
+else()                          # Catch 1.x
   if(EXISTS "/usr/include/catch.hpp")
     message(STATUS "Catch 1.x found.")
     foreach(src ${sources_tests})
       get_filename_component(bin ${src} NAME_WE)
       add_executable(${bin} main.cpp ${src})
-      target_link_libraries(${bin} ${PROJECT_NAME})
+      target_link_libraries(${bin} PRIVATE ${PROJECT_NAME})
       add_test(${bin} ${bin} "${EXTRA_TEST_ARGS}")
     endforeach()
   else()

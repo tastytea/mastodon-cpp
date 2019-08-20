@@ -110,8 +110,7 @@ Not included in this list are entities.
 |  110 | Connection timed out
 |  111 | Connection refused (check http_error_code)
 |  113 | No route to host / Could not resolve host
-|  192 | curlpp runtime error
-|  193 | curlpp logic error
+|  150 | Encryption error (TODO: CHANGEME!)
 |  255 | Unknown error
 |===================================================
 

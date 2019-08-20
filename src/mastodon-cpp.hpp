@@ -27,12 +27,15 @@
 #include <cstdint>
 #include <curlpp/cURLpp.hpp>
 #include <curlpp/Easy.hpp>
+#include <Poco/Net/HTMLForm.h>
 
 #include "return_types.hpp"
 #include "types.hpp"
 
 using std::string;
 using std::uint8_t;
+using std::unique_ptr;
+using Poco::Net::HTMLForm;
 
 /*!
  *  @example example01_get_public_timeline.cpp
@@ -45,6 +48,7 @@ using std::uint8_t;
  */
 namespace Mastodon
 {
+    // TODO: error enum, different error codes.
     /*!
      *  @brief  Interface to the Mastodon API.
      *
@@ -60,8 +64,7 @@ namespace Mastodon
      *  |       110 | Connection timed out                       |
      *  |       111 | Connection refused (check http_error_code) |
      *  |       113 | No route to host / Could not resolve host  |
-     *  |       192 | curlpp runtime error                       |
-     *  |       193 | curlpp logic error                         |
+     *  |       150 | Encryption error                           |
      *  |       255 | Unknown error                              |
      *
      *  @since  before 0.11.0
@@ -102,7 +105,7 @@ namespace Mastodon
              */
             return_call request(const http_method &meth,
                                 const string &path,
-                                const curlpp::Forms &formdata);
+                                unique_ptr<HTMLForm> formdata);
 
             /*!
              *  @brief HTTP Request for streams.
@@ -153,7 +156,7 @@ namespace Mastodon
 
             return_call request_common(const http_method &meth,
                                        const string &path,
-                                       const curlpp::Forms &formdata,
+                                       unique_ptr<HTMLForm> formdata,
                                        string &answer);
             size_t callback_write(char* data, size_t size, size_t nmemb,
                                   string *oss);
@@ -412,8 +415,7 @@ namespace Mastodon
         /*!
          *  @brief  Turn exceptions on or off. Defaults to off.
          *
-         *          This applies to exceptions from curlpp. curlpp::RuntimeError
-         *          and curlpp::LogicError.
+         *          Most exceptions will be thrown at you to handle if on.
          *
          *  @param  value   true for on, false for off
          *
@@ -514,7 +516,7 @@ namespace Mastodon
          */
         void get_stream(const Mastodon::API::v1 &call,
                         const parameters &parameters,
-                        std::unique_ptr<Mastodon::API::http> &ptr,
+                        unique_ptr<Mastodon::API::http> &ptr,
                         string &stream);
 
         /*!
@@ -527,7 +529,7 @@ namespace Mastodon
          *  @since  0.100.0
          */
         void get_stream(const Mastodon::API::v1 &call,
-                        std::unique_ptr<Mastodon::API::http> &ptr,
+                        unique_ptr<Mastodon::API::http> &ptr,
                         string &stream);
 
         /*!
@@ -540,7 +542,7 @@ namespace Mastodon
          *  @since  0.100.0
          */
         void get_stream(const string &call,
-                        std::unique_ptr<Mastodon::API::http> &ptr,
+                        unique_ptr<Mastodon::API::http> &ptr,
                         string &stream);
 
         /*!
@@ -665,9 +667,9 @@ namespace Mastodon
          *
          *  @param  map     Map of parameters
          *
-         *  @return Form data as curlpp::Forms
+         *  @return Form data as Poco::Net::HTMLForm.
          */
-        const curlpp::Forms maptoformdata(const parameters &map);
+        unique_ptr<HTMLForm> maptoformdata(const parameters &map);
 
         /*!
          *  @brief  Delete Mastodon::param from Mastodon::parameters.

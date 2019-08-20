@@ -14,20 +14,20 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <sstream>
 #include <regex>
 #include <locale>
 #include <codecvt>
 #include <utility>
 #include <iostream>
-#include <algorithm>
-#include <fstream>
 #include <exception>
+#include <Poco/Net/FilePartSource.h>
 #include "version.hpp"
 #include "debug.hpp"
 #include "mastodon-cpp.hpp"
 
 using namespace Mastodon;
+using std::make_unique;
+using Poco::Net::FilePartSource;
 
 API::API(const string &instance, const string &access_token)
 : _instance(instance)
@@ -111,9 +111,10 @@ const string API::maptostr(const parameters &map, const bool &firstparam)
     return result;
 }
 
-const curlpp::Forms API::maptoformdata(const parameters &map)
+unique_ptr<HTMLForm> API::maptoformdata(const parameters &map)
 {
-    curlpp::Forms formdata;
+    unique_ptr<HTMLForm> formdata =
+        make_unique<HTMLForm>(HTMLForm::ENCODING_MULTIPART);
 
     if (map.size() == 0)
     {
@@ -122,51 +123,57 @@ const curlpp::Forms API::maptoformdata(const parameters &map)
 
     for (const auto &it : map)
     {
+        string key = it.key;
+
+        // TODO: Test nested parameters.
+        if (const size_t pos = key.find('.') != string::npos)
+        {                       // Nested parameters.
+            key.replace(pos, 1, "[");
+            key += ']';
+        }
+
         if (it.values.size() == 1)
         {   // If the file is not base64-encoded, treat as filename.
-            if ((it.key == "avatar" ||
-                it.key == "header" ||
-                it.key == "file") &&
+            if ((key == "avatar" ||
+                 key == "header" ||
+                 key == "file") &&
                 it.values.front().substr(0, 5) != "data:")
-             {
-                ttdebug << it.key << ": Filename detected.\n";
-                std::ifstream testfile(it.values.front());
-                if (testfile.good())
+            {
+                ttdebug << key << ": Filename detected.\n";
+
+                try
                 {
-                    testfile.close();
-                    formdata.push_back(
-                        new curlpp::FormParts::File(it.key, it.values.front()));
+                    formdata->addPart(key,
+                                     new FilePartSource(it.values.front()));
                 }
-                else
+                catch (const std::exception &e)
                 {
-                    std::cerr << "Error: File not found: " << it.values.front()
-                              << std::endl;
+                    if (exceptions())
+                    {
+                        std::rethrow_exception(std::current_exception());
+                    }
+
+                    // TODO: Proper error handling without exceptions.
+                    std::cerr << "Error: Could not open file: "
+                              << it.values.front() << std::endl;
                 }
-             }
-             else
-             {
-                 string key = it.key;
-                 // Append [] to array keys.
-                 if (key == "account_ids"
+            }
+            else if (key == "account_ids"
                      || key == "exclude_types"
                      || key == "media_ids"
                      || key == "context")
-                 {
-                     key += "[]";
-                 }
-                 formdata.push_back(
-                     new curlpp::FormParts::Content(key, it.values.front()));
+            {
+                key += "[]";
             }
+
+            formdata->add(key, it.values.front());
         }
         else
         {
-            std::transform(it.values.begin(), it.values.end(),
-                           std::back_inserter(formdata),
-                           [&it](const string &s)
-                               {
-                                   return new curlpp::FormParts::Content
-                                       (it.key + "[]", s);
-                               });
+            for (const string &value : it.values)
+            {
+                formdata->add(key + "[]", value);
+            }
         }
     }
 

@@ -297,6 +297,8 @@ void API::set_proxy(const string &proxy, const string &userpw)
 {
     _proxy = proxy;
     _proxy_userpw = userpw;
+
+    _http.inherit_proxy();
 }
 
 void API::get_proxy(string &proxy, string &userpw) const

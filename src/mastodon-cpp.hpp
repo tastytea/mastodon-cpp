@@ -142,6 +142,13 @@ namespace Mastodon
              */
             std::mutex &get_mutex();
 
+            /*!
+             *  @brief  Inherit proxy from parent. Do not call this.
+             *
+             *  @since  0.110.0
+             */
+            void inherit_proxy();
+
         private:
             const API &parent;
             const string _instance;
@@ -441,8 +448,8 @@ namespace Mastodon
          *          Since mastodon-cpp is built on libcurl, it respects the same
          *          proxy environment variables. See `man curl`.
          *
-         *  @param  proxy   See `man 3 CURLOPT_PROXY`
-         *  @param  userpw  See `man 3 CURLOPT_PROXYUSERPWD` (optional)
+         *  @param  proxy   host:port
+         *  @param  userpw  username[:password] (optional)
          *
          *  @since  0.15.0
          */

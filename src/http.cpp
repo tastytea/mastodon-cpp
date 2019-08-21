@@ -59,19 +59,19 @@ API::http::http(const API &api, const string &instance,
 
     try
     {
-        HTTPSClientSession::ProxyConfig proxy;
+        HTTPSClientSession::ProxyConfig proxyconfig;
         string env_proxy = Environment::get("http_proxy");
         regex re_proxy("^(?:https?://)?(?:([^:]+):?([^@]*)@)?" // user:password
                        "([^:]+):([[:digit:]]+/?)");            // host:port
         smatch match;
 
         regex_search(env_proxy, match, re_proxy);
-        proxy.host = match[3].str();
-        proxy.port = std::stoi(match[4].str());
-        proxy.username = match[1].str();
-        proxy.password = match[2].str();
+        proxyconfig.host = match[3].str();
+        proxyconfig.port = std::stoi(match[4].str());
+        proxyconfig.username = match[1].str();
+        proxyconfig.password = match[2].str();
 
-        HTTPSClientSession::setGlobalProxyConfig(proxy);
+        HTTPSClientSession::setGlobalProxyConfig(proxyconfig);
     }
     catch (const std::exception &)
     {
@@ -83,6 +83,49 @@ API::http::http(const API &api, const string &instance,
 API::http::~http()
 {
     Poco::Net::uninitializeSSL();
+}
+
+void API::http::inherit_proxy()
+{
+    // TODO: Test proxy.
+    string proxy, userpw;
+    parent.get_proxy(proxy, userpw);
+
+    size_t pos = proxy.find(':');
+    if (pos == string::npos)
+    {
+        return;
+    }
+
+    try
+    {
+        HTTPSClientSession::ProxyConfig proxyconfig;
+        proxyconfig.host = proxy.substr(0, pos);
+        proxyconfig.port = std::stoi(proxy.substr(pos + 1));
+
+        if (!userpw.empty())
+        {
+            pos = userpw.find(':');
+            if (pos == string::npos)
+            {
+                proxyconfig.username = userpw;
+            }
+            else
+            {
+                proxyconfig.username = userpw.substr(0, pos);
+                proxyconfig.password = std::stoi(userpw.substr(pos + 1));
+            }
+        }
+
+        HTTPSClientSession::setGlobalProxyConfig(proxyconfig);
+    }
+    catch (const std::exception &e)
+    {
+        if (parent.exceptions())
+        {
+            std::rethrow_exception(std::current_exception());
+        }
+    }
 }
 
 return_call API::http::request(const http_method &meth, const string &path)

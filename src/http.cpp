@@ -206,7 +206,7 @@ return_call API::http::request_common(const http_method &meth,
         {
         case HTTPResponse::HTTP_OK:
         {
-            return { 0, "", http_code, answer };
+            return { error::OK, "", http_code, answer };
         }
         // Not using the constants because some are too new for Debian stretch.
         case 301:               // HTTPResponse::HTTP_MOVED_PERMANENTLY
@@ -226,8 +226,8 @@ return_call API::http::request_common(const http_method &meth,
                 if (location.substr(pos1, pos2 - pos1) != _instance)
                 {               // Return new location if the domain changed.
                     ttdebug << "New location is on another domain.\n";
-                    return { 78, "Remote address changed", http_code,
-                             location };
+                    return { error::URL_CHANGED, "Remote address changed",
+                             http_code, location };
                 }
 
                 location = location.substr(pos2);
@@ -235,7 +235,8 @@ return_call API::http::request_common(const http_method &meth,
 
             if (http_code == 301 || http_code == 308)
             {                   // Return new location for permanent redirects.
-                return { 78, "Remote address changed", http_code, location };
+                return { error::URL_CHANGED, "Remote address changed",
+                         http_code, location };
             }
             else
             {
@@ -245,7 +246,8 @@ return_call API::http::request_common(const http_method &meth,
         }
         default:
         {
-            return { 111, "Connection refused", http_code, answer };
+            return { error::CONNECTION_REFUSED, "Connection refused",
+                     http_code, answer };
         }
         }
     }
@@ -257,7 +259,7 @@ return_call API::http::request_common(const http_method &meth,
         }
 
         ttdebug << e.displayText() << "\n";
-        return { 113, e.displayText(), 0, "" };
+        return { error::DNS, e.displayText(), 0, "" };
     }
     catch (const Poco::Net::ConnectionRefusedException &e)
     {
@@ -267,7 +269,7 @@ return_call API::http::request_common(const http_method &meth,
         }
 
         ttdebug << e.displayText() << "\n";
-        return { 111, e.displayText(), 0, "" };
+        return { error::CONNECTION_REFUSED, e.displayText(), 0, "" };
     }
     catch (const Poco::Net::SSLException &e)
     {
@@ -277,7 +279,7 @@ return_call API::http::request_common(const http_method &meth,
         }
 
         ttdebug << e.displayText() << "\n";
-        return { 150, e.displayText(), 0, "" };
+        return { error::ENCRYPTION, e.displayText(), 0, "" };
     }
     catch (const Poco::Net::NetException &e)
     {
@@ -287,7 +289,7 @@ return_call API::http::request_common(const http_method &meth,
         }
 
         ttdebug << "Unknown network error: " << e.displayText() << std::endl;
-        return { 255, e.displayText(), 0, "" };
+        return { error::UNKNOWN, e.displayText(), 0, "" };
     }
     catch (const std::exception &e)
     {
@@ -297,33 +299,14 @@ return_call API::http::request_common(const http_method &meth,
         }
 
         ttdebug << "Unknown error: " << e.what() << std::endl;
-        return { 255, e.what(), 0, "" };
+        return { error::UNKNOWN, e.what(), 0, "" };
     }
 }
 
+// FIXME: get_headers() doesn't work anymore.
 void API::http::get_headers(string &headers) const
 {
     headers = _headers;
-}
-
-size_t API::http::callback_write(char* data, size_t size, size_t nmemb,
-                                 string *str)
-{
-    std::lock_guard<std::mutex> lock(_mutex);
-    str->append(data, size * nmemb);
-    // ttdebug << "Received " << size * nmemb << " Bytes\n";
-    return size * nmemb;
-}
-
-double API::http::callback_progress(double /* dltotal */, double /* dlnow */,
-                                    double /* ultotal */, double /* ulnow */)
-{
-    if (_cancel_stream)
-    {
-        // This throws the runtime error: Callback aborted
-        return 1;
-    }
-    return 0;
 }
 
 void API::http::cancel_stream()

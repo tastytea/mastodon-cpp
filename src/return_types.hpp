@@ -19,6 +19,7 @@
 
 #include <cstdint>
 #include <string>
+#include "types.hpp"
 
 using std::uint8_t;
 using std::uint16_t;
@@ -111,6 +112,19 @@ namespace Mastodon
          *  @since  0.100.0
          */
         return_call(const uint8_t ec, const string &em,
+                    const uint16_t hec, const string &a);
+
+        /*!
+         *  @brief  Return type for Mastodon::API.
+         *
+         *  @param  ec  Error code
+         *  @param  em  Error message
+         *  @param  hec HTTP error code
+         *  @param  a   Answer
+         *
+         *  @since  0.110.0
+         */
+        return_call(const error ec, const string &em,
                     const uint16_t hec, const string &a);
 
         /*!

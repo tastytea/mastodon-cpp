@@ -57,4 +57,13 @@ namespace Mastodon
         error_message = em;
         http_error_code = hec;
     }
+
+    return_call::return_call(const error ec, const string &em,
+                             const uint16_t hec, const string &a)
+        : answer(a)
+    {
+        error_code = static_cast<uint8_t>(ec);
+        error_message = em;
+        http_error_code = hec;
+    }
 }

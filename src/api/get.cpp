@@ -192,7 +192,7 @@ const return_call API::get(const Mastodon::API::v1 &call,
         else
         {
             ttdebug << "ERROR: Invalid argument.\n";
-            return { 22, "Invalid argument", 0, "" };
+            return { error::INVALID_ARGUMENT, "Invalid argument", 0, "" };
         }
         break;
     }
@@ -239,7 +239,7 @@ const return_call API::get(const Mastodon::API::v1 &call,
     default:
     {
         ttdebug << "ERROR: Invalid argument.\n";
-        return { 22, "Invalid argument", 0, "" };
+        return { error::INVALID_ARGUMENT, "Invalid argument", 0, "" };
     }
     }
 
@@ -276,7 +276,7 @@ const return_call API::get(const Mastodon::API::v2 &call,
         default:
         {
             ttdebug << "ERROR: Invalid argument.\n";
-            return { 22, "Invalid argument", 0, "" };
+            return { error::INVALID_ARGUMENT, "Invalid argument", 0, "" };
         }
     }
 

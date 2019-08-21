@@ -78,7 +78,7 @@ return_call API::del(const Mastodon::API::v1 &call,
     default:
     {
         ttdebug << "ERROR: Invalid argument.\n";
-        return { 22, "Invalid argument", 0, "" };
+        return { error::INVALID_ARGUMENT, "Invalid argument", 0, "" };
     }
     }
 

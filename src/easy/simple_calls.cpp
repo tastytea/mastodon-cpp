@@ -39,7 +39,8 @@ const return_entity<Status> API::send_post(const Status &status)
     else
     {
         ttdebug << "ERROR: Easy::Status::content can not be empty.\n";
-        return { 22, "Easy::Status::content can not be empty", 0, Status() };
+        return { error::INVALID_ARGUMENT,
+                 "Easy::Status::content can not be empty", 0, Status() };
     }
 
     if (!status.in_reply_to_id().empty())
@@ -94,8 +95,9 @@ const return_entity<Status> API::send_post(const Status &status)
             else
             {
                 ttdebug << "ERROR: Easy::Attachment::file can not be empty.\n";
-                return { 22, "Easy::Attachment::file can not be empty",
-                         0, Status() };
+                return { error::INVALID_ARGUMENT,
+                         "Easy::Attachment::file can not be empty", 0,
+                         Status() };
             }
             if (!att.description().empty())
             {

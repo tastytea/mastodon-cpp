@@ -46,7 +46,6 @@ using Poco::Net::HTMLForm;
  */
 namespace Mastodon
 {
-    // TODO: error enum, different error codes.
     /*!
      *  @brief  Interface to the Mastodon API.
      *
@@ -57,13 +56,13 @@ namespace Mastodon
      *  |      Code | Explanation                                |
      *  | --------: |:-------------------------------------------|
      *  |         0 | No error                                   |
-     *  |        22 | Invalid argument                           |
-     *  |        78 | URL changed (HTTP 301 or 308)              |
-     *  |       110 | Connection timed out                       |
-     *  |       111 | Connection refused (check http_error_code) |
-     *  |       113 | No route to host / Could not resolve host  |
-     *  |       150 | Encryption error                           |
-     *  |       255 | Unknown error                              |
+     *  |         1 | Invalid argument                           |
+     *  |        10 | URL changed (HTTP 301 or 308)              |
+     *  |        11 | Connection timed out                       |
+     *  |        12 | Connection refused (check http_error_code) |
+     *  |        13 | No route to host / Could not resolve host  |
+     *  |        14 | Encryption error                           |
+     *  |       127 | Unknown error                              |
      *
      *  @since  before 0.11.0
      */

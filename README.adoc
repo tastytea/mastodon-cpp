@@ -105,13 +105,13 @@ Not included in this list are entities.
 |===================================================
 | Code | Explanation
 |    0 | No error
-|   22 | Invalid argument
-|   78 | URL changed (HTTP 301 or 308)
-|  110 | Connection timed out
-|  111 | Connection refused (check http_error_code)
-|  113 | No route to host / Could not resolve host
-|  150 | Encryption error (TODO: CHANGEME!)
-|  255 | Unknown error
+|    1 | Invalid argument
+|   10 | URL changed (HTTP 301 or 308)
+|   11 | Connection timed out
+|   12 | Connection refused (check http_error_code)
+|   13 | No route to host / Could not resolve host
+|   14 | Encryption error
+|  127 | Unknown error
 |===================================================
 
 If you use a debug build, you get more verbose error messages.

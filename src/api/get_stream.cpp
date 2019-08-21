@@ -20,6 +20,7 @@
 
 using namespace Mastodon;
 using std::cerr;
+using std::to_string;
 
 void API::get_stream(const Mastodon::API::v1 &call,
                      const parameters &params,
@@ -57,8 +58,10 @@ void API::get_stream(const Mastodon::API::v1 &call,
     }
     default:
     {
+        const uint8_t err = static_cast<uint8_t>(error::INVALID_ARGUMENT);
         ttdebug << "ERROR: Invalid call.\n";
-        stream = "event: ERROR\ndata: {\"error_code\":22}\n";
+        stream = "event: ERROR\ndata: "
+            "{\"error_code\":" + to_string(err) + "}\n";
         return;
     }
     }

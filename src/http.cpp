@@ -192,15 +192,16 @@ return_call API::http::request_common(const http_method &meth,
 
         if (!formdata->empty())
         {
-            // TODO: Test form submit.
-            // TODO: Change maptoformdata() and so on.
             ttdebug << "Size of HTMLForm is " << formdata->size() << '\n';
             formdata->prepareSubmit(request);
+            formdata->write(session.sendRequest(request));
+        }
+        else
+        {
+            session.sendRequest(request);
         }
 
         HTTPResponse response;
-
-        session.sendRequest(request);
         istream &rs = session.receiveResponse(response);
 
         const uint16_t http_code = response.getStatus();

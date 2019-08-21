@@ -88,5 +88,5 @@ return_call API::del(const Mastodon::API::v1 &call,
 return_call API::del(const std::string &call, const parameters &params)
 {
 
-    return _http.request(http_method::DELETE, call, maptoformdata(params));
+    return _http.request(http_method::DELETE, call, *maptoformdata(params));
 }

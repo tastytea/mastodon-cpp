@@ -105,7 +105,7 @@ namespace Mastodon
              */
             return_call request(const http_method &meth,
                                 const string &path,
-                                unique_ptr<HTMLForm> formdata);
+                                HTMLForm &formdata);
 
             /*!
              *  @brief HTTP Request for streams.
@@ -156,7 +156,7 @@ namespace Mastodon
 
             return_call request_common(const http_method &meth,
                                        const string &path,
-                                       unique_ptr<HTMLForm> formdata,
+                                       HTMLForm &formdata,
                                        string &answer);
             size_t callback_write(char* data, size_t size, size_t nmemb,
                                   string *oss);

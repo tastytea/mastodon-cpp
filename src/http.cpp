@@ -106,14 +106,15 @@ API::http::~http()
 
 return_call API::http::request(const http_method &meth, const string &path)
 {
-    return request(meth, path, make_unique<HTMLForm>());
+    HTMLForm form;
+    return request(meth, path, form);
 }
 
 return_call API::http::request(const http_method &meth, const string &path,
-                               unique_ptr<HTMLForm> formdata)
+                               HTMLForm &formdata)
 {
     string answer;
-    return request_common(meth, path, move(formdata), answer);
+    return request_common(meth, path, formdata, answer);
 }
 
 void API::http::request_stream(const string &path, string &stream)
@@ -122,8 +123,9 @@ void API::http::request_stream(const string &path, string &stream)
     _streamthread = std::thread(
         [&, path]               // path is captured by value because it may be
         {                       // deleted before we access it.
+            HTMLForm form;
             ret = request_common(http_method::GET_STREAM, path,
-                                 make_unique<HTMLForm>(), stream);
+                                 form, stream);
             ttdebug << "Remaining content of the stream: " << stream << '\n';
             if (!ret)
             {
@@ -137,7 +139,7 @@ void API::http::request_stream(const string &path, string &stream)
 
 return_call API::http::request_common(const http_method &meth,
                                       const string &path,
-                                      unique_ptr<HTMLForm> formdata,
+                                      HTMLForm &formdata,
                                       string &answer)
 {
     ttdebug << "Path is: " << path << '\n';
@@ -190,11 +192,11 @@ return_call API::http::request_common(const http_method &meth,
             request.set("Authorization", " Bearer " + _access_token);
         }
 
-        if (!formdata->empty())
+        if (!formdata.empty())
         {
-            ttdebug << "Size of HTMLForm is " << formdata->size() << '\n';
-            formdata->prepareSubmit(request);
-            formdata->write(session.sendRequest(request));
+            ttdebug << "Size of HTMLForm is " << formdata.size() << '\n';
+            formdata.prepareSubmit(request);
+            formdata.write(session.sendRequest(request));
         }
         else
         {
@@ -246,7 +248,7 @@ return_call API::http::request_common(const http_method &meth,
             }
             else
             {
-                return request_common(meth, location, move(formdata), answer);
+                return request_common(meth, location, formdata, answer);
             }
         }
         default:

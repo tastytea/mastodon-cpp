@@ -194,6 +194,7 @@ return_call API::http::request_common(const http_method &meth,
         {
             // TODO: Test form submit.
             // TODO: Change maptoformdata() and so on.
+            ttdebug << "Size of HTMLForm is " << formdata->size() << '\n';
             formdata->prepareSubmit(request);
         }
 

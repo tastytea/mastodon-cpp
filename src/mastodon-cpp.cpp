@@ -113,6 +113,8 @@ const string API::maptostr(const parameters &map, const bool &firstparam)
 
 unique_ptr<HTMLForm> API::maptoformdata(const parameters &map)
 {
+    ttdebug << "Transforming Mastodon::parameters to Poco::Net::HTMLForm.\n";
+
     unique_ptr<HTMLForm> formdata =
         make_unique<HTMLForm>(HTMLForm::ENCODING_MULTIPART);
 
@@ -124,6 +126,7 @@ unique_ptr<HTMLForm> API::maptoformdata(const parameters &map)
     for (const auto &it : map)
     {
         string key = it.key;
+        ttdebug << "Processing \"" + key + "\".\n";
 
         // TODO: Test nested parameters.
         if (const size_t pos = key.find('.') != string::npos)

@@ -156,13 +156,6 @@ Prebuilt DEB and RPM packages for x86_64(amd64) are provided with each release.
 `.deb` packages are built on Debian stretch and `.rpm` packages are built on
 CentOS 7. These packages are automatically built and not tested.
 
-To use the `.deb` package on Debian stretch, you will need
-https://packages.debian.org/libcurlpp0[libcurlpp0] from sid.
-
-To use the `.rpm` package on CentOS 7, you will need
-https://download.fedoraproject.org/pub/epel/6/x86_64/Packages/c/[curlpp]
-from EPEL 6.
-
 === From source
 
 ==== Dependencies
@@ -171,8 +164,7 @@ from EPEL 6.
 * C++ compiler (tested: https://gcc.gnu.org/[gcc] 6/8/9,
   https://llvm.org/[clang] 5/6)
 * https://cmake.org/[cmake] (at least: 3.6)
-* https://pkgconfig.freedesktop.org/wiki/[pkgconfig] (tested: 0.29 / 0.27)
-* http://www.curlpp.org/[curlpp] (tested: 0.8)
+* https://pocoproject.org/[POCO] (tested: 1.9 / 1.7)
 * Optional
   ** Easy interface & Examples:
      https://github.com/open-source-parsers/jsoncpp[jsoncpp] (tested: 1.8 / 1.7)
@@ -185,11 +177,7 @@ from EPEL 6.
 ====
 [source,shell]
 ----
-echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
-echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
-apt-get update
-apt-get install build-essential cmake pkg-config libcurl4-openssl-dev libjsoncpp-dev doxygen file
-apt-get install -t sid libcurlpp-dev
+apt-get install build-essential cmake libpoco-dev libjsoncpp-dev doxygen
 ----
 ====
 

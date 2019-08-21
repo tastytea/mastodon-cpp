@@ -301,14 +301,8 @@ void API::set_proxy(const string &proxy, const string &userpw)
 
 void API::get_proxy(string &proxy, string &userpw) const
 {
-    if (!_proxy.empty())
-    {
-        proxy = _proxy;
-        if (!_proxy_userpw.empty())
-        {
-            userpw = _proxy_userpw;
-        }
-    }
+    proxy = _proxy;
+    userpw = _proxy_userpw;
 }
 
 const parameters API::delete_params(const parameters &params,

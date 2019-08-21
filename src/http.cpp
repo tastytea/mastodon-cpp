@@ -58,9 +58,8 @@ API::http::http(const API &api, const string &instance,
 
     Poco::Net::initializeSSL();
 
-    // FIXME: rewrite set_proxy() and set proxy here.
-    // string proxy_host, proxy_userpw;
-    // parent.get_proxy(proxy_host, proxy_userpw);
+    // FIXME: rewrite set_proxy() that it calls set_proxy() here.
+    // FIXME: Username and password for proxy.
 
     try
     {
@@ -227,7 +226,7 @@ return_call API::http::request_common(const http_method &meth,
         {
             string location = response.get("Location");
 
-            // TODO: Test this.
+            // TODO: Test HTTP redirects.
             if (location.substr(0, 4) == "http")
             {                   // Remove protocol and instance from path.
                 size_t pos1 = location.find("//") + 2;

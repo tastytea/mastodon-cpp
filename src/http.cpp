@@ -18,6 +18,7 @@
 #include <functional>   // std::bind
 #include <exception>
 #include <thread>
+#include <regex>
 #include <Poco/Net/HTTPSClientSession.h>
 #include <Poco/Net/HTTPRequest.h>
 #include <Poco/Net/HTTPResponse.h>
@@ -29,13 +30,15 @@
 #include <Poco/Net/SSLException.h>
 #include "debug.hpp"
 #include "mastodon-cpp.hpp"
-#include <string>
 
 using namespace Mastodon;
 using std::cerr;
 using std::istream;
 using std::make_unique;
 using std::move;
+using std::regex;
+using std::regex_search;
+using std::smatch;
 using Poco::Net::HTTPSClientSession;
 using Poco::Net::HTTPRequest;
 using Poco::Net::HTTPResponse;
@@ -53,33 +56,20 @@ API::http::http(const API &api, const string &instance,
     Poco::Net::initializeSSL();
 
     // FIXME: rewrite set_proxy() that it calls set_proxy() here.
-    // FIXME: Username and password for proxy.
 
     try
     {
         HTTPSClientSession::ProxyConfig proxy;
-        string proxy_env = Environment::get("http_proxy");
-        size_t pos;
+        string env_proxy = Environment::get("http_proxy");
+        regex re_proxy("^(?:https?://)?(?:([^:]+):?([^@]*)@)?" // user:password
+                       "([^:]+):([[:digit:]]+/?)");            // host:port
+        smatch match;
 
-        // Only keep text between // and /.
-        if ((pos = proxy_env.find("//")) != string::npos)
-        {
-            proxy_env = proxy_env.substr(pos + 2);
-        }
-        if ((pos = proxy_env.find('/')) != string::npos)
-        {
-            proxy_env = proxy_env.substr(0, pos);
-        }
-
-        if ((pos = proxy_env.find(':')) != string::npos)
-        {
-            proxy.host = proxy_env.substr(0, pos);
-            proxy.port = std::stoi(proxy_env.substr(pos + 1));
-        }
-        else
-        {
-            proxy.host = proxy_env;
-        }
+        regex_search(env_proxy, match, re_proxy);
+        proxy.host = match[3].str();
+        proxy.port = std::stoi(match[4].str());
+        proxy.username = match[1].str();
+        proxy.password = match[2].str();
 
         HTTPSClientSession::setGlobalProxyConfig(proxy);
     }

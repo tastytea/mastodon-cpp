@@ -94,12 +94,12 @@ steps:
   - name: debian-package-cache
     path: /var/cache/apt/archives
 
-- name: clang6
-  image: debian:stretch-slim
+- name: clang7
+  image: debian:buster-slim
   pull: true
   environment:
     LANG: C.utf8
-    CXX: clang++-6.0
+    CXX: clang++
     CXXFLAGS: -pipe -O2
     MASTODON_CPP_ACCESS_TOKEN:
       from_secret: mastodon_cpp_access_token
@@ -107,11 +107,8 @@ steps:
   - rm /etc/apt/apt.conf.d/docker-clean
   - rm /var/cache/apt/archives/lock
   - apt-get update -q
-  - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
-  - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/stretch.list
   - apt-get update -q
-  - apt-get install -qy build-essential cmake
-  - apt-get install -qy -t stretch-backports clang-6.0
+  - apt-get install -qy build-essential cmake clang
   - apt-get install -qy libpoco-dev libjsoncpp-dev doxygen catch
   - rm -rf build && mkdir -p build && cd build
   - cmake -DWITH_EXAMPLES=YES ..

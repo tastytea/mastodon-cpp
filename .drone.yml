@@ -31,7 +31,7 @@ steps:
   - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
   - apt-get update -q
   - apt-get install -qy build-essential cmake pkg-config
-  - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
+  - apt-get install -qy libcurl4-openssl-dev libpoco-dev libjsoncpp-dev doxygen catch
   - apt-get install -qy -t sid libcurlpp-dev
   - rm -rf build && mkdir -p build && cd build
   - cmake -DWITH_EXAMPLES=YES -DWITH_TESTS=YES -DEXTRA_TEST_ARGS="~[api]" ..
@@ -63,7 +63,7 @@ steps:
   - apt-get update -q
   - apt-get install -qy build-essential cmake pkg-config
   - apt-get install -qy -t xenial g++-9
-  - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
+  - apt-get install -qy libcurl4-openssl-dev libpoco-dev libjsoncpp-dev doxygen catch
   - apt-get install -qy -t sid libcurlpp-dev
   - rm -rf build && mkdir -p build && cd build
   - cmake -DWITH_EXAMPLES=YES ..
@@ -91,7 +91,7 @@ steps:
   - apt-get update -q
   - apt-get install -qy build-essential cmake pkg-config
   - apt-get install -qy -t stretch-backports clang-5.0
-  - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
+  - apt-get install -qy libcurl4-openssl-dev libpoco-dev libjsoncpp-dev doxygen catch
   - apt-get install -qy -t sid libcurlpp-dev
   - rm -rf build && mkdir -p build && cd build
   - cmake -DWITH_EXAMPLES=YES ..
@@ -120,7 +120,7 @@ steps:
   - apt-get update -q
   - apt-get install -qy build-essential cmake pkg-config
   - apt-get install -qy -t stretch-backports clang-6.0
-  - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen catch
+  - apt-get install -qy libcurl4-openssl-dev libpoco-dev libjsoncpp-dev doxygen catch
   - apt-get install -qy -t sid libcurlpp-dev
   - rm -rf build && mkdir -p build && cd build
   - cmake -DWITH_EXAMPLES=YES ..
@@ -177,7 +177,7 @@ steps:
   - echo "deb http://deb.debian.org/debian sid main" >> /etc/apt/sources.list.d/sid.list
   - apt-get update -q
   - apt-get install -qy build-essential cmake pkg-config
-  - apt-get install -qy libcurl4-openssl-dev libjsoncpp-dev doxygen
+  - apt-get install -qy libcurl4-openssl-dev libpoco-dev libjsoncpp-dev doxygen
   - apt-get install -qy -t sid libcurlpp-dev
   - apt-get install -qy file
   - rm -rf build && mkdir -p build && cd build
@@ -204,7 +204,7 @@ steps:
   - yum install -qy centos-release-scl
   - yum install -qy devtoolset-6
   - scl enable devtoolset-6 bash
-  - yum install -qy libcurl-devel doxygen rpm-build
+  - yum install -qy libcurl-devel poco-devel doxygen rpm-build
   - yum --enablerepo=epel install -qy cmake3 jsoncpp-devel
   - curl -s -o /var/cache/yum/curlpp-devel-0.7.3-5.el6.x86_64.rpm https://download.fedoraproject.org/pub/epel/6/x86_64/Packages/c/curlpp-devel-0.7.3-5.el6.x86_64.rpm
   - curl -s -o /var/cache/yum/curlpp-0.7.3-5.el6.x86_64.rpm https://download.fedoraproject.org/pub/epel/6/x86_64/Packages/c/curlpp-0.7.3-5.el6.x86_64.rpm

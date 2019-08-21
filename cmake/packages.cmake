@@ -32,7 +32,7 @@ if (WITH_RPM)
   set(CPACK_GENERATOR "RPM")
   set(CPACK_RPM_PACKAGE_LICENSE "AGPL-3")
   set(CPACK_RPM_PACKAGE_URL "https://schlomp.space/tastytea/${PROJECT_NAME}")
-  set(CPACK_RPM_PACKAGE_REQUIRES "curlpp >= 0.8.1 jsoncpp, >= 1.7.4")
+  set(CPACK_RPM_PACKAGE_REQUIRES "poco-netssl >= 1.6, jsoncpp >= 1.7.4")
   set(CPACK_PACKAGE_FILE_NAME
     "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-0.${CPACK_PACKAGE_ARCHITECTURE}")
 endif()

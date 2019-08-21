@@ -139,7 +139,6 @@ return_call API::http::request_common(const http_method &meth,
     {
         string method;
 
-        // TODO: operator string on http_method?
         switch (meth)
         {
         case http_method::GET:
@@ -216,16 +215,17 @@ return_call API::http::request_common(const http_method &meth,
         case 303:               // HTTPResponse::HTTP_SEE_OTHER
         case 307:               // HTTPResponse::HTTP_TEMPORARY_REDIRECT
         {
+            ttdebug << "HTTP redirect.\n";
             string location = response.get("Location");
 
-            // TODO: Test HTTP redirects.
             if (location.substr(0, 4) == "http")
             {                   // Remove protocol and instance from path.
                 size_t pos1 = location.find("//") + 2;
                 size_t pos2 = location.find('/', pos1);
 
-                if (location.substr(pos1, pos2) != _instance)
+                if (location.substr(pos1, pos2 - pos1) != _instance)
                 {               // Return new location if the domain changed.
+                    ttdebug << "New location is on another domain.\n";
                     return { 78, "Remote address changed", http_code,
                              location };
                 }
@@ -239,6 +239,7 @@ return_call API::http::request_common(const http_method &meth,
             }
             else
             {
+                ttdebug << "Following temporary redirect: " << location << '\n';
                 return request_common(meth, location, formdata, answer);
             }
         }

@@ -25,8 +25,6 @@
 #include <ostream>
 #include <thread>
 #include <cstdint>
-#include <curlpp/cURLpp.hpp>
-#include <curlpp/Easy.hpp>
 #include <Poco/Net/HTMLForm.h>
 
 #include "return_types.hpp"
@@ -686,13 +684,12 @@ namespace Mastodon
     };
 
     /*!
-     *  @brief  Percent-encodes a string. This is done automatically, unless
-     *          you make a custom request.
+     *  @brief  Percent-encodes a string.
      *
-     *          Calls curlpp::escape(str).
      *
-     *          The only time you should use this, is if you use
-     *          get(const string &call, string &answer).
+     *          This is done automatically where necessary. The only time you
+     *          should use this, is if you use get(const string &call, string
+     *          &answer).
      *
      *          See RFC 3986 section 2.1 for more info.
      *
@@ -706,8 +703,6 @@ namespace Mastodon
 
     /*!
      *  @brief  Decodes a percent-encoded string.
-     *
-     *          Calls curlpp::unescape(str).
      *
      *          See RFC 3986 section 2.1 for more info.
      *

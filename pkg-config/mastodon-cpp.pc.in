@@ -7,5 +7,6 @@ Name: ${name}
 Description: @PROJECT_DESCRIPTION@
 Version: @PROJECT_VERSION@
 Cflags: -I${includedir}
-Libs: -L${libdir} -l${name} -lpthread
-Requires: jsoncpp curlpp
+Libs: -L${libdir} -l${name} -lpthread -lPocoNet
+Requires: jsoncpp
+Libs.private: -lPocoFoundation -lPocoNetSSL

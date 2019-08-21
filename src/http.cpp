@@ -18,9 +18,6 @@
 #include <functional>   // std::bind
 #include <exception>
 #include <thread>
-#include <curlpp/Options.hpp>
-#include <curlpp/Exception.hpp>
-#include <curlpp/Infos.hpp>
 #include <Poco/Net/HTTPSClientSession.h>
 #include <Poco/Net/HTTPRequest.h>
 #include <Poco/Net/HTTPResponse.h>
@@ -35,7 +32,6 @@
 #include <string>
 
 using namespace Mastodon;
-namespace curlopts = curlpp::options;
 using std::cerr;
 using std::istream;
 using std::make_unique;
@@ -54,8 +50,6 @@ API::http::http(const API &api, const string &instance,
 , _access_token(access_token)
 , _cancel_stream(false)
 {
-    curlpp::initialize();
-
     Poco::Net::initializeSSL();
 
     // FIXME: rewrite set_proxy() that it calls set_proxy() here.
@@ -98,8 +92,6 @@ API::http::http(const API &api, const string &instance,
 
 API::http::~http()
 {
-    curlpp::terminate();
-
     Poco::Net::uninitializeSSL();
 }
 

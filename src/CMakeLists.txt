@@ -1,9 +1,7 @@
 include(GNUInstallDirs)
 
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(curlpp REQUIRED IMPORTED_TARGET curlpp)
 if(WITH_EASY)
-  find_package(jsoncpp REQUIRED CONFIG)
+  find_package(jsoncpp CONFIG REQUIRED)
 endif()
 # Some distributions do not contain Poco*Config.cmake recipes.
 find_package(Poco COMPONENTS Foundation Net NetSSL CONFIG)
@@ -33,10 +31,7 @@ target_include_directories(${PROJECT_NAME}
 
 if(WITH_EASY)
   target_link_libraries(${PROJECT_NAME}
-    PUBLIC pthread PkgConfig::curlpp jsoncpp_lib)
-else()
-  target_link_libraries(${PROJECT_NAME}
-    PUBLIC pthread PkgConfig::curlpp)
+    PUBLIC pthread jsoncpp_lib)
 endif()
 
 # If no Poco*Config.cmake recipes are found, look for headers in standard dirs.

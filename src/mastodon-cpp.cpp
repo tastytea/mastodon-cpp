@@ -21,6 +21,7 @@
 #include <iostream>
 #include <exception>
 #include <Poco/Net/FilePartSource.h>
+#include <Poco/URI.h>
 #include "version.hpp"
 #include "debug.hpp"
 #include "mastodon-cpp.hpp"
@@ -333,11 +334,16 @@ const parameters API::delete_params(const parameters &params,
 
 const string Mastodon::urlencode(const std::string &str)
 {
-    return curlpp::escape(str);
+    string out;
+    Poco::URI::encode(str, "", out);
+    return out;
 }
+
 const string Mastodon::urldecode(const std::string &str)
 {
-    return curlpp::unescape(str);
+    string out;
+    Poco::URI::decode(str, out);
+    return out;
 }
 
 const string Mastodon::unescape_html(const string &html)

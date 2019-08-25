@@ -112,11 +112,17 @@ void API::http::set_proxy(const string &hostport, const string &userpw)
 
         if (!userpw.empty())
         {
+            string username;
+
             pos = userpw.find(':');
-            proxyconfig.username = userpw.substr(0, pos);
+            Poco::URI::decode(userpw.substr(0, pos), username);
+            proxyconfig.username = username;
+
             if (pos != string::npos)
             {
-                proxyconfig.password = userpw.substr(pos + 1);
+                string password;
+                Poco::URI::decode(userpw.substr(pos + 1), password);
+                proxyconfig.password = password;
             }
         }
 

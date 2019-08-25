@@ -59,19 +59,29 @@ API::http::http(const API &api, const string &instance,
 
     try
     {
-        HTTPSClientSession::ProxyConfig proxyconfig;
         string env_proxy = Environment::get("http_proxy");
-        regex re_proxy("^(?:https?://)?(?:([^:]+):?([^@]*)@)?" // user:password
-                       "([^:]+):([[:digit:]]+/?)");            // host:port
-        smatch match;
+        size_t pos;
 
-        regex_search(env_proxy, match, re_proxy);
-        proxyconfig.host = match[3].str();
-        proxyconfig.port = std::stoi(match[4].str());
-        proxyconfig.username = match[1].str();
-        proxyconfig.password = match[2].str();
+        // Only keep text between // and /.
+        if ((pos = env_proxy.find("//")) != string::npos)
+        {
+            env_proxy = env_proxy.substr(pos + 2);
+        }
+        if ((pos = env_proxy.find('/')) != string::npos)
+        {
+            env_proxy = env_proxy.substr(0, pos);
+        }
 
-        HTTPSClientSession::setGlobalProxyConfig(proxyconfig);
+        if ((pos = env_proxy.find('@')) != string::npos)
+        {
+            string hostport = env_proxy.substr(pos + 1);
+            string userpw = env_proxy.substr(0, pos);
+            parent.set_proxy(hostport, userpw);
+        }
+        else
+        {
+            parent.set_proxy(env_proxy);
+        }
     }
     catch (const std::exception &)
     {
@@ -85,35 +95,28 @@ API::http::~http()
     Poco::Net::uninitializeSSL();
 }
 
-void API::http::inherit_proxy()
+void API::http::set_proxy(const string &hostport, const string &userpw)
 {
     // TODO: Test proxy.
-    string proxy, userpw;
-    parent.get_proxy(proxy, userpw);
-
-    size_t pos = proxy.find(':');
-    if (pos == string::npos)
-    {
-        return;
-    }
 
     try
     {
         HTTPSClientSession::ProxyConfig proxyconfig;
-        proxyconfig.host = proxy.substr(0, pos);
-        proxyconfig.port = std::stoi(proxy.substr(pos + 1));
+        size_t pos = hostport.find(':');
+
+        proxyconfig.host = hostport.substr(0, pos);
+        if (pos != string::npos)
+        {
+            proxyconfig.port = std::stoi(hostport.substr(pos + 1));
+        }
 
         if (!userpw.empty())
         {
             pos = userpw.find(':');
-            if (pos == string::npos)
+            proxyconfig.username = userpw.substr(0, pos);
+            if (pos != string::npos)
             {
-                proxyconfig.username = userpw;
-            }
-            else
-            {
-                proxyconfig.username = userpw.substr(0, pos);
-                proxyconfig.password = std::stoi(userpw.substr(pos + 1));
+                proxyconfig.password = userpw.substr(pos + 1);
             }
         }
 

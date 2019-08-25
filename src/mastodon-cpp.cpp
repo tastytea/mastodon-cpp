@@ -36,8 +36,6 @@ API::API(const string &instance, const string &access_token)
 , _useragent(string("mastodon-cpp/") + global::version)
 , _http(*this, instance, access_token)
 , _exceptions(false)
-, _proxy("")
-, _proxy_userpw("")
 {
     bool fash = false;
     const std::regex re_gab("(?:\\.|^)gab\\.[^\\.]+$");
@@ -293,18 +291,9 @@ bool API::exceptions() const
     return _exceptions;
 }
 
-void API::set_proxy(const string &proxy, const string &userpw)
+void API::set_proxy(const string &hostport, const string &userpw)
 {
-    _proxy = proxy;
-    _proxy_userpw = userpw;
-
-    _http.inherit_proxy();
-}
-
-void API::get_proxy(string &proxy, string &userpw) const
-{
-    proxy = _proxy;
-    userpw = _proxy_userpw;
+    _http.set_proxy(hostport, userpw);
 }
 
 const parameters API::delete_params(const parameters &params,

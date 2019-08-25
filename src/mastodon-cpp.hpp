@@ -143,11 +143,14 @@ namespace Mastodon
             std::mutex &get_mutex();
 
             /*!
-             *  @brief  Inherit proxy from parent. Do not call this.
+             *  @brief  Set proxy. Do not call this directly.
+             *
+             *  @param  hostport host[:port]
+             *  @param  userpw   user[:password]
              *
              *  @since  0.110.0
              */
-            void inherit_proxy();
+            void set_proxy(const string &hostport, const string &userpw);
 
         private:
             const API &parent;
@@ -445,25 +448,15 @@ namespace Mastodon
         /*!
          *  @brief  Sets the proxy.
          *
-         *          Since mastodon-cpp is built on libcurl, it respects the same
-         *          proxy environment variables. See `man curl`.
+         *          Both the username and the password will be URL decoded
+         *          before use.
          *
-         *  @param  proxy   host:port
-         *  @param  userpw  username[:password] (optional)
+         *  @param  hostport host[:port]
+         *  @param  userpw   username[:password] (optional)
          *
          *  @since  0.15.0
          */
-        void set_proxy(const string &proxy, const string &userpw = "");
-
-        /*!
-         *  @brief  For internal use
-         *
-         *  @param  proxy   URL
-         *  @param  userpw  username:password
-         *
-         *  @since  0.15.1
-         */
-        void get_proxy(string &proxy, string &userpw) const;
+        void set_proxy(const string &hostport, const string &userpw = "");
 
         /*!
          *  @brief  Make a GET request that doesn't require parameters.
@@ -652,8 +645,6 @@ namespace Mastodon
         string _useragent;
         http _http;
         bool _exceptions;
-        string _proxy;
-        string _proxy_userpw;
 
         /*!
          *  @brief  Converts map of parameters into a string.

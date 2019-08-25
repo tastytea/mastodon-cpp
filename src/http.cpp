@@ -76,11 +76,11 @@ API::http::http(const API &api, const string &instance,
         {
             string hostport = env_proxy.substr(pos + 1);
             string userpw = env_proxy.substr(0, pos);
-            parent.set_proxy(hostport, userpw);
+            set_proxy(hostport, userpw);
         }
         else
         {
-            parent.set_proxy(env_proxy);
+            set_proxy(env_proxy);
         }
     }
     catch (const std::exception &)

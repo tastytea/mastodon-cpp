@@ -146,11 +146,11 @@ namespace Mastodon
              *  @brief  Set proxy. Do not call this directly.
              *
              *  @param  hostport host[:port]
-             *  @param  userpw   user[:password]
+             *  @param  userpw   user[:password] (optional)
              *
              *  @since  0.110.0
              */
-            void set_proxy(const string &hostport, const string &userpw);
+            void set_proxy(const string &hostport, const string &userpw = "");
 
         private:
             const API &parent;

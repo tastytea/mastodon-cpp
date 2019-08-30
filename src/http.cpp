@@ -55,8 +55,6 @@ API::http::http(const API &api, const string &instance,
 {
     Poco::Net::initializeSSL();
 
-    // FIXME: rewrite set_proxy() that it calls set_proxy() here.
-
     try
     {
         string env_proxy = Environment::get("http_proxy");
@@ -97,8 +95,6 @@ API::http::~http()
 
 void API::http::set_proxy(const string &hostport, const string &userpw)
 {
-    // TODO: Test proxy.
-
     try
     {
         HTTPSClientSession::ProxyConfig proxyconfig;
@@ -127,6 +123,7 @@ void API::http::set_proxy(const string &hostport, const string &userpw)
         }
 
         HTTPSClientSession::setGlobalProxyConfig(proxyconfig);
+        ttdebug << "Set proxy to " << hostport << ".\n";
     }
     catch (const std::exception &e)
     {

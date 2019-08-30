@@ -52,6 +52,16 @@ Easy::return_entity<T>::return_entity(const uint8_t ec, const string &em,
 }
 
 template<typename T>
+Easy::return_entity<T>::return_entity(const error ec, const string &em,
+                                      const uint16_t hec, const T &ent)
+    : entity(ent)
+{
+    error_code = static_cast<uint8_t>(ec);
+    error_message = em;
+    http_error_code = hec;
+}
+
+template<typename T>
 Easy::return_entity<T>::return_entity::operator const T() const
 {
     return entity;

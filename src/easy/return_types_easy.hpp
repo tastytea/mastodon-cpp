@@ -62,6 +62,19 @@ namespace Easy
                       const uint16_t hec, const T &ent);
 
         /*!
+         *  @brief  Return type for easy Mastodon::Easy::API.
+         *
+         *  @param ec  Error code
+         *  @param em  Error message
+         *  @param hec HTTP error code
+         *  @param ent Answer
+         *
+         *  @since  0.110.0
+         */
+        return_entity(const error ec, const string &em,
+                      const uint16_t hec, const T &ent);
+
+        /*!
          *  @brief  Same as return_entity::entity.
          *
          *  @since  0.100.0

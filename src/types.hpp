@@ -93,6 +93,18 @@ namespace Mastodon
         DELETE,
         GET_STREAM
     };
+
+    enum class error
+    {
+        OK = 0,
+        INVALID_ARGUMENT = 1,
+        URL_CHANGED = 10,
+        CONNECTION_TIMEOUT = 11,
+        CONNECTION_REFUSED = 12,
+        DNS = 13,
+        ENCRYPTION = 14,
+        UNKNOWN = 127
+    };
 }
 
 #endif  // MASTODON_CPP_TYPES_HPP

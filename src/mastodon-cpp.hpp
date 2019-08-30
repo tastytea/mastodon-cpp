@@ -25,14 +25,15 @@
 #include <ostream>
 #include <thread>
 #include <cstdint>
-#include <curlpp/cURLpp.hpp>
-#include <curlpp/Easy.hpp>
+#include <Poco/Net/HTMLForm.h>
 
 #include "return_types.hpp"
 #include "types.hpp"
 
 using std::string;
 using std::uint8_t;
+using std::unique_ptr;
+using Poco::Net::HTMLForm;
 
 /*!
  *  @example example01_get_public_timeline.cpp
@@ -55,14 +56,13 @@ namespace Mastodon
      *  |      Code | Explanation                                |
      *  | --------: |:-------------------------------------------|
      *  |         0 | No error                                   |
-     *  |        22 | Invalid argument                           |
-     *  |        78 | URL changed (HTTP 301 or 308)              |
-     *  |       110 | Connection timed out                       |
-     *  |       111 | Connection refused (check http_error_code) |
-     *  |       113 | No route to host / Could not resolve host  |
-     *  |       192 | curlpp runtime error                       |
-     *  |       193 | curlpp logic error                         |
-     *  |       255 | Unknown error                              |
+     *  |         1 | Invalid argument                           |
+     *  |        10 | URL changed (HTTP 301 or 308)              |
+     *  |        11 | Connection timed out                       |
+     *  |        12 | Connection refused (check http_error_code) |
+     *  |        13 | No route to host / Could not resolve host  |
+     *  |        14 | Encryption error                           |
+     *  |       127 | Unknown error                              |
      *
      *  @since  before 0.11.0
      */
@@ -102,7 +102,7 @@ namespace Mastodon
              */
             return_call request(const http_method &meth,
                                 const string &path,
-                                const curlpp::Forms &formdata);
+                                HTMLForm &formdata);
 
             /*!
              *  @brief HTTP Request for streams.
@@ -142,6 +142,16 @@ namespace Mastodon
              */
             std::mutex &get_mutex();
 
+            /*!
+             *  @brief  Set proxy. Do not call this directly.
+             *
+             *  @param  hostport host[:port]
+             *  @param  userpw   user[:password] (optional)
+             *
+             *  @since  0.110.0
+             */
+            void set_proxy(const string &hostport, const string &userpw = "");
+
         private:
             const API &parent;
             const string _instance;
@@ -153,7 +163,7 @@ namespace Mastodon
 
             return_call request_common(const http_method &meth,
                                        const string &path,
-                                       const curlpp::Forms &formdata,
+                                       HTMLForm &formdata,
                                        string &answer);
             size_t callback_write(char* data, size_t size, size_t nmemb,
                                   string *oss);
@@ -412,8 +422,7 @@ namespace Mastodon
         /*!
          *  @brief  Turn exceptions on or off. Defaults to off.
          *
-         *          This applies to exceptions from curlpp. curlpp::RuntimeError
-         *          and curlpp::LogicError.
+         *          Most exceptions will be thrown at you to handle if on.
          *
          *  @param  value   true for on, false for off
          *
@@ -439,25 +448,15 @@ namespace Mastodon
         /*!
          *  @brief  Sets the proxy.
          *
-         *          Since mastodon-cpp is built on libcurl, it respects the same
-         *          proxy environment variables. See `man curl`.
+         *          Both the username and the password will be URL decoded
+         *          before use.
          *
-         *  @param  proxy   See `man 3 CURLOPT_PROXY`
-         *  @param  userpw  See `man 3 CURLOPT_PROXYUSERPWD` (optional)
+         *  @param  hostport host[:port]
+         *  @param  userpw   username[:password] (optional)
          *
          *  @since  0.15.0
          */
-        void set_proxy(const string &proxy, const string &userpw = "");
-
-        /*!
-         *  @brief  For internal use
-         *
-         *  @param  proxy   URL
-         *  @param  userpw  username:password
-         *
-         *  @since  0.15.1
-         */
-        void get_proxy(string &proxy, string &userpw) const;
+        void set_proxy(const string &hostport, const string &userpw = "");
 
         /*!
          *  @brief  Make a GET request that doesn't require parameters.
@@ -514,7 +513,7 @@ namespace Mastodon
          */
         void get_stream(const Mastodon::API::v1 &call,
                         const parameters &parameters,
-                        std::unique_ptr<Mastodon::API::http> &ptr,
+                        unique_ptr<Mastodon::API::http> &ptr,
                         string &stream);
 
         /*!
@@ -527,7 +526,7 @@ namespace Mastodon
          *  @since  0.100.0
          */
         void get_stream(const Mastodon::API::v1 &call,
-                        std::unique_ptr<Mastodon::API::http> &ptr,
+                        unique_ptr<Mastodon::API::http> &ptr,
                         string &stream);
 
         /*!
@@ -540,7 +539,7 @@ namespace Mastodon
          *  @since  0.100.0
          */
         void get_stream(const string &call,
-                        std::unique_ptr<Mastodon::API::http> &ptr,
+                        unique_ptr<Mastodon::API::http> &ptr,
                         string &stream);
 
         /*!
@@ -646,8 +645,6 @@ namespace Mastodon
         string _useragent;
         http _http;
         bool _exceptions;
-        string _proxy;
-        string _proxy_userpw;
 
         /*!
          *  @brief  Converts map of parameters into a string.
@@ -665,9 +662,9 @@ namespace Mastodon
          *
          *  @param  map     Map of parameters
          *
-         *  @return Form data as curlpp::Forms
+         *  @return Form data as Poco::Net::HTMLForm.
          */
-        const curlpp::Forms maptoformdata(const parameters &map);
+        unique_ptr<HTMLForm> maptoformdata(const parameters &map);
 
         /*!
          *  @brief  Delete Mastodon::param from Mastodon::parameters.
@@ -684,13 +681,12 @@ namespace Mastodon
     };
 
     /*!
-     *  @brief  Percent-encodes a string. This is done automatically, unless
-     *          you make a custom request.
+     *  @brief  Percent-encodes a string.
      *
-     *          Calls curlpp::escape(str).
      *
-     *          The only time you should use this, is if you use
-     *          get(const string &call, string &answer).
+     *          This is done automatically where necessary. The only time you
+     *          should use this, is if you use get(const string &call, string
+     *          &answer).
      *
      *          See RFC 3986 section 2.1 for more info.
      *
@@ -704,8 +700,6 @@ namespace Mastodon
 
     /*!
      *  @brief  Decodes a percent-encoded string.
-     *
-     *          Calls curlpp::unescape(str).
      *
      *          See RFC 3986 section 2.1 for more info.
      *

@@ -1,124 +1,86 @@
-cmake_minimum_required (VERSION 3.6)
-project (mastodon-cpp
-  VERSION 0.106.0
-  LANGUAGES CXX
-  )
-
-set(WITH_EASY "YES" CACHE STRING "WITH_EASY defaults to \"YES\"")
-set(WITH_EXAMPLES "NO" CACHE STRING "WITH_EXAMPLES defaults to \"NO\"")
-set(WITH_TESTS "NO" CACHE STRING "WITH_TESTS defaults to \"NO\"")
-set(WITH_DOC "YES" CACHE STRING "WITH_DOC defaults to \"YES\"")
-set(WITH_DEB "NO" CACHE STRING "WITH_DEB defaults to \"NO\"")
-set(WITH_RPM "NO" CACHE STRING "WITH_RPM defaults to \"NO\"")
+# Support version 3.6 and above, but use policy settings up to 3.14.
+# 3.6 is needed because of IMPORTED_TARGET in pkg_check_modules().
+cmake_minimum_required(VERSION 3.6...3.14)
+# Ranges are supported from 3.12, set policy to current for < 3.12.
+if(${CMAKE_VERSION} VERSION_LESS 3.12)
+  cmake_policy(VERSION ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION})
+endif()
 
 include(GNUInstallDirs)
-find_package(PkgConfig REQUIRED)
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(CURLPP REQUIRED curlpp)
-if(WITH_EASY)
-  pkg_check_modules(JSONCPP REQUIRED jsoncpp)
+
+project (mastodon-cpp
+  VERSION 0.110.0
+  LANGUAGES CXX)
+
+# DESCRIPTION was introduced in version 3.9.
+if(NOT (${CMAKE_VERSION} VERSION_LESS 3.9))
+  set(PROJECT_DESCRIPTION
+    "C++ wrapper for the Mastodon API.")
 endif()
+
+option(WITH_EASY "Compile Easy interface." YES)
+option(WITH_EXAMPLES "Compile examples." NO)
+option(WITH_TESTS "Compile tests." NO)
+option(WITH_DOC "Generate HTML documentation." YES)
+option(WITH_DEB "Prepare for the building of .deb packages." NO)
+option(WITH_RPM "Prepare for the building of .rpm packages." NO)
+option(BUILD_SHARED_LIBS "Build shared libraries." YES)
+set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Build type, Release or Debug.")
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-set(CMAKE_CXX_FLAGS_DEBUG
-  "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -Wpedantic -ftrapv -fsanitize=undefined -g -Og -fno-omit-frame-pointer")
-
-# Do not complain about compatibility-wrapper
-if(NOT CMAKE_BUILD_TYPE STREQUAL "Debug")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations")
+set(DEBUG_CXXFLAGS
+  "-Wall"
+  "-Wextra"
+  "-Wpedantic"
+  "-ftrapv"
+  "-fsanitize=undefined"
+  "-g"
+  "-Og"
+  "-fno-omit-frame-pointer"
+  "-Wno-deprecated-declarations")
+set(DEBUG_LDFLAGS
+  "-fsanitize=undefined")
+add_compile_options("$<$<CONFIG:Debug>:${DEBUG_CXXFLAGS}>")
+# add_link_options was introduced in version 3.13.
+if(${CMAKE_VERSION} VERSION_LESS 3.13)
+  set(CMAKE_SHARED_LINKER_FLAGS_DEBUG "${DEBUG_LDFLAGS}")
+else()
+  add_link_options("$<$<CONFIG:Debug>:${DEBUG_LDFLAGS}>")
 endif()
 
-include_directories(${PROJECT_SOURCE_DIR}/src)
-include_directories(${PROJECT_BINARY_DIR})
-
-include_directories(${CURL_INCLUDE_DIRS})
-include_directories(${CURLPP_INCLUDE_DIRS})
-include_directories(${JSONCPP_INCLUDE_DIRS})
-
-link_directories(${CURL_LIBRARY_DIRS})
-link_directories(${CURLPP_LIBRARY_DIRS})
-link_directories(${JSONCPP_LIBRARY_DIRS})
-
-# Write version in header
-configure_file (
-  "${PROJECT_SOURCE_DIR}/src/version.hpp.in"
-  "${PROJECT_BINARY_DIR}/version.hpp"
-)
-
+# Turn on debug output.
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-  add_definitions(-DDEBUG=1)
+  add_definitions("-DDEBUG=1")
 endif()
 
 if(NOT WITH_EASY)
-  add_definitions(-DWITHOUT_EASY=1)
+  add_definitions("-DWITHOUT_EASY=1")
 endif()
 
-# Compile library
-if(WITH_EASY)
-  file(GLOB sources src/*.cpp src/api/*.cpp
-    src/easy/*.cpp src/easy/entities/*.cpp)
-else()
-  file(GLOB sources src/*.cpp src/api/*.cpp)
-endif()
-add_library(${PROJECT_NAME} SHARED ${sources})
-set_target_properties(${PROJECT_NAME} PROPERTIES
-  VERSION ${PROJECT_VERSION}
-  SOVERSION ${${PROJECT_NAME}_VERSION_MAJOR}
-  )
+add_subdirectory("src")
 
-if(WITH_EASY)
-  target_link_libraries(${PROJECT_NAME}
-    ${CURLPP_LIBRARIES} pthread ${JSONCPP_LIBRARIES})
-else()
-  target_link_libraries(${PROJECT_NAME}
-    ${CURLPP_LIBRARIES} pthread)
-endif()
-
-# Compile examples
 if(WITH_EXAMPLES)
-  file(GLOB sources_examples examples/*.cpp)
-  foreach(src ${sources_examples})
-    get_filename_component(bin ${src} NAME_WE)
-    add_executable(${bin} ${src})
-    target_link_libraries(${bin} pthread ${JSONCPP_LIBRARIES} ${PROJECT_NAME})
-  endforeach()
+  add_subdirectory("examples")
 endif()
 
-# Compile tests
 if(WITH_TESTS)
-  configure_file("tests/test.gif" "${CMAKE_CURRENT_BINARY_DIR}" COPYONLY)
-  add_subdirectory(tests)
+  add_subdirectory("tests")
 endif()
 
-# Install library and header files
-install(TARGETS ${PROJECT_NAME} LIBRARY
-  DESTINATION ${CMAKE_INSTALL_LIBDIR})
-install(FILES src/mastodon-cpp.hpp src/return_types.hpp src/types.hpp
-  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME})
-if(WITH_EASY)
-  file(GLOB easy_header src/easy/*.hpp)
-  install(FILES ${easy_header}
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/easy)
-  file(GLOB easy_entities_header src/easy/entities/*.hpp)
-  install(FILES ${easy_entities_header}
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/easy/entities)
-endif()
-
-# Compile & install documentation
 if(WITH_DOC)
   add_custom_command(OUTPUT ${PROJECT_SOURCE_DIR}/doc/html
-    COMMAND ./build_doc.sh WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+    COMMAND "./build_doc.sh" WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
   add_custom_target(doc DEPENDS doc/html)
   add_dependencies(${PROJECT_NAME} doc)
+
   install(DIRECTORY ${PROJECT_SOURCE_DIR}/doc/html
-    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/${PROJECT_NAME}-${PROJECT_VERSION})
-  file(GLOB examples examples/example*.cpp)
-  install(FILES ${examples}
-    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/${PROJECT_NAME}-${PROJECT_VERSION}/examples)
+    DESTINATION "${CMAKE_INSTALL_DOCDIR}")
 endif()
 
-# Packages
-include(packages.CMakeLists.txt)
+add_subdirectory("cmake")
+add_subdirectory("pkg-config")
+
+include("cmake/packages.cmake")

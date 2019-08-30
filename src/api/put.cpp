@@ -58,7 +58,7 @@ return_call API::put(const Mastodon::API::v1 &call,
     default:
     {
         ttdebug << "ERROR: Invalid argument.\n";
-        return { 22, "Invalid argument", 0, "" };
+        return { error::INVALID_ARGUMENT, "Invalid argument", 0, "" };
     }
     }
 
@@ -68,5 +68,5 @@ return_call API::put(const Mastodon::API::v1 &call,
 return_call API::put(const string &call, const parameters &params)
 {
 
-    return _http.request(http_method::PUT, call, maptoformdata(params));
+    return _http.request(http_method::PUT, call, *maptoformdata(params));
 }

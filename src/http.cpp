@@ -16,19 +16,35 @@
 
 #include <iostream>
 #include <functional>   // std::bind
-#include <list>
-#include <cstring>      // std::strncmp
 #include <exception>
 #include <thread>
-#include <curlpp/Options.hpp>
-#include <curlpp/Exception.hpp>
-#include <curlpp/Infos.hpp>
+#include <regex>
+#include <Poco/Net/HTTPSClientSession.h>
+#include <Poco/Net/HTTPRequest.h>
+#include <Poco/Net/HTTPResponse.h>
+#include <Poco/StreamCopier.h>
+#include <Poco/URI.h>
+#include <Poco/Environment.h>
+#include <Poco/Exception.h>
+#include <Poco/Net/NetException.h>
+#include <Poco/Net/SSLException.h>
 #include "debug.hpp"
 #include "mastodon-cpp.hpp"
 
 using namespace Mastodon;
-namespace curlopts = curlpp::options;
 using std::cerr;
+using std::istream;
+using std::make_unique;
+using std::move;
+using std::regex;
+using std::regex_search;
+using std::smatch;
+using Poco::Net::HTTPSClientSession;
+using Poco::Net::HTTPRequest;
+using Poco::Net::HTTPResponse;
+using Poco::Net::HTTPMessage;
+using Poco::StreamCopier;
+using Poco::Environment;
 
 API::http::http(const API &api, const string &instance,
                 const string &access_token)
@@ -37,21 +53,95 @@ API::http::http(const API &api, const string &instance,
 , _access_token(access_token)
 , _cancel_stream(false)
 {
-    curlpp::initialize();
+    Poco::Net::initializeSSL();
+
+    try
+    {
+        string env_proxy = Environment::get("http_proxy");
+        size_t pos;
+
+        // Only keep text between // and /.
+        if ((pos = env_proxy.find("//")) != string::npos)
+        {
+            env_proxy = env_proxy.substr(pos + 2);
+        }
+        if ((pos = env_proxy.find('/')) != string::npos)
+        {
+            env_proxy = env_proxy.substr(0, pos);
+        }
+
+        if ((pos = env_proxy.find('@')) != string::npos)
+        {
+            string hostport = env_proxy.substr(pos + 1);
+            string userpw = env_proxy.substr(0, pos);
+            set_proxy(hostport, userpw);
+        }
+        else
+        {
+            set_proxy(env_proxy);
+        }
+    }
+    catch (const std::exception &)
+    {
+        // No proxy found, no problem.
+    }
+
 }
 
 API::http::~http()
 {
-    curlpp::terminate();
+    Poco::Net::uninitializeSSL();
+}
+
+void API::http::set_proxy(const string &hostport, const string &userpw)
+{
+    try
+    {
+        HTTPSClientSession::ProxyConfig proxyconfig;
+        size_t pos = hostport.find(':');
+
+        proxyconfig.host = hostport.substr(0, pos);
+        if (pos != string::npos)
+        {
+            proxyconfig.port = std::stoi(hostport.substr(pos + 1));
+        }
+
+        if (!userpw.empty())
+        {
+            string username;
+
+            pos = userpw.find(':');
+            Poco::URI::decode(userpw.substr(0, pos), username);
+            proxyconfig.username = username;
+
+            if (pos != string::npos)
+            {
+                string password;
+                Poco::URI::decode(userpw.substr(pos + 1), password);
+                proxyconfig.password = password;
+            }
+        }
+
+        HTTPSClientSession::setGlobalProxyConfig(proxyconfig);
+        ttdebug << "Set proxy to " << hostport << ".\n";
+    }
+    catch (const std::exception &e)
+    {
+        if (parent.exceptions())
+        {
+            std::rethrow_exception(std::current_exception());
+        }
+    }
 }
 
 return_call API::http::request(const http_method &meth, const string &path)
 {
-    return request(meth, path, curlpp::Forms());
+    HTMLForm form;
+    return request(meth, path, form);
 }
 
 return_call API::http::request(const http_method &meth, const string &path,
-                               const curlpp::Forms &formdata)
+                               HTMLForm &formdata)
 {
     string answer;
     return request_common(meth, path, formdata, answer);
@@ -63,8 +153,9 @@ void API::http::request_stream(const string &path, string &stream)
     _streamthread = std::thread(
         [&, path]               // path is captured by value because it may be
         {                       // deleted before we access it.
+            HTMLForm form;
             ret = request_common(http_method::GET_STREAM, path,
-                                 curlpp::Forms(), stream);
+                                 form, stream);
             ttdebug << "Remaining content of the stream: " << stream << '\n';
             if (!ret)
             {
@@ -78,175 +169,183 @@ void API::http::request_stream(const string &path, string &stream)
 
 return_call API::http::request_common(const http_method &meth,
                                       const string &path,
-                                      const curlpp::Forms &formdata,
+                                      HTMLForm &formdata,
                                       string &answer)
 {
-    using namespace std::placeholders;  // _1, _2, _3
-
     ttdebug << "Path is: " << path << '\n';
 
     try
     {
-        curlpp::Easy request;
-        std::list<string> headers;
-
-        request.setOpt<curlopts::Url>("https://" + _instance + path);
-        ttdebug << "User-Agent: " << parent.get_useragent() << "\n";
-        request.setOpt<curlopts::UserAgent>(parent.get_useragent());
-
-        {
-            string proxy;
-            string userpw;
-            parent.get_proxy(proxy, userpw);
-            if (!proxy.empty())
-            {
-                request.setOpt<curlopts::Proxy>(proxy);
-                if (!userpw.empty())
-                {
-                    request.setOpt<curlopts::ProxyUserPwd>(userpw);
-                }
-            }
-        }
-
-        if (!_access_token.empty())
-        {
-            headers.push_back("Authorization: Bearer " + _access_token);
-        }
-        if (meth != http_method::GET_STREAM)
-        {
-            headers.push_back("Connection: close");
-            // Get headers from server
-            request.setOpt<curlpp::options::Header>(true);
-        }
-
-        request.setOpt<curlopts::HttpHeader>(headers);
-        request.setOpt<curlopts::FollowLocation>(true);
-        request.setOpt<curlopts::WriteFunction>
-            (std::bind(&http::callback_write, this, _1, _2, _3, &answer));
-        request.setOpt<curlopts::ProgressFunction>
-            (std::bind(&http::callback_progress, this, _1, _2, _3, _4));
-        request.setOpt<curlopts::NoProgress>(0);
-        if (!formdata.empty())
-        {
-            request.setOpt<curlopts::HttpPost>(formdata);
-        }
+        string method;
 
         switch (meth)
         {
         case http_method::GET:
         case http_method::GET_STREAM:
-            break;
-        case http_method::PATCH:
-            request.setOpt<curlopts::CustomRequest>("PATCH");
-            break;
-        case http_method::POST:
-            request.setOpt<curlopts::CustomRequest>("POST");
-            break;
-        case http_method::PUT:
-            request.setOpt<curlopts::CustomRequest>("PUT");
-            break;
-        case http_method::DELETE:
-            request.setOpt<curlopts::CustomRequest>("DELETE");
+        {
+            method = HTTPRequest::HTTP_GET;
             break;
         }
+        case http_method::PUT:
+        {
+            method = HTTPRequest::HTTP_PUT;
+            break;
+        }
+        case http_method::POST:
+        {
+            method = HTTPRequest::HTTP_POST;
+            break;
+        }
+        case http_method::PATCH:
+        {
+            method = HTTPRequest::HTTP_PATCH;
+            break;
+        }
+        case http_method::DELETE:
+        {
+            method = HTTPRequest::HTTP_DELETE;
+            break;
+        }
+        default:
+        {
+            break;
+        }
+        }
 
-        //request.setOpt<curlopts::Verbose>(true);
+        HTTPSClientSession session(_instance);
+        HTTPRequest request(method, path, HTTPMessage::HTTP_1_1);
+        request.set("User-Agent", parent.get_useragent());
+
+        if (!_access_token.empty())
+        {
+            request.set("Authorization", " Bearer " + _access_token);
+        }
+
+        if (!formdata.empty())
+        {
+            ttdebug << "Size of HTMLForm is " << formdata.size() << '\n';
+            formdata.prepareSubmit(request);
+            formdata.write(session.sendRequest(request));
+        }
+        else
+        {
+            session.sendRequest(request);
+        }
+
+        HTTPResponse response;
+        istream &rs = session.receiveResponse(response);
+
+        const uint16_t http_code = response.getStatus();
+        ttdebug << "Response code: " << http_code << '\n';
 
         answer.clear();
-        request.perform();
-        uint16_t http_code = curlpp::infos::ResponseCode::get(request);
-        ttdebug << "Response code: " << http_code << '\n';
-        // Work around "HTTP/1.1 100 Continue\r\n\r\nHTTP/1.1 200 OK"
-        size_t pos = answer.find("\r\n\r\n", 25);
-        _headers = answer.substr(0, pos);
-        // Only return body
-        answer = answer.substr(pos + 4);
+        StreamCopier::copyToString(rs, answer);
 
-        if (http_code == 200 || http_code == 302 || http_code == 307)
-        {   // OK or Found or Temporary Redirect
-            return { 0, "", http_code, answer };
-        }
-        else if (http_code == 301 || http_code == 308)
-        {   // Moved Permanently or Permanent Redirect
-            // return new URL
-            answer = curlpp::infos::EffectiveUrl::get(request);
-            return { 78, "Remote address changed", http_code, answer };
-        }
-        else if (http_code == 0)
+        switch (http_code)
         {
-            return { 255, "Unknown error", http_code, answer };
-        }
-        else
+        case HTTPResponse::HTTP_OK:
         {
-            return { 111, "Connection refused", http_code, answer };
+            return { error::OK, "", http_code, answer };
+        }
+        // Not using the constants because some are too new for Debian stretch.
+        case 301:               // HTTPResponse::HTTP_MOVED_PERMANENTLY
+        case 308:               // HTTPResponse::HTTP_PERMANENT_REDIRECT
+        case 302:               // HTTPResponse::HTTP_FOUND
+        case 303:               // HTTPResponse::HTTP_SEE_OTHER
+        case 307:               // HTTPResponse::HTTP_TEMPORARY_REDIRECT
+        {
+            ttdebug << "HTTP redirect.\n";
+            string location = response.get("Location");
+
+            if (location.substr(0, 4) == "http")
+            {                   // Remove protocol and instance from path.
+                size_t pos1 = location.find("//") + 2;
+                size_t pos2 = location.find('/', pos1);
+
+                if (location.substr(pos1, pos2 - pos1) != _instance)
+                {               // Return new location if the domain changed.
+                    ttdebug << "New location is on another domain.\n";
+                    return { error::URL_CHANGED, "Remote address changed",
+                             http_code, location };
+                }
+
+                location = location.substr(pos2);
+            }
+
+            if (http_code == 301 || http_code == 308)
+            {                   // Return new location for permanent redirects.
+                return { error::URL_CHANGED, "Remote address changed",
+                         http_code, location };
+            }
+            else
+            {
+                ttdebug << "Following temporary redirect: " << location << '\n';
+                return request_common(meth, location, formdata, answer);
+            }
+        }
+        default:
+        {
+            return { error::CONNECTION_REFUSED, "Connection refused",
+                     http_code, answer };
+        }
         }
     }
-    catch (curlpp::RuntimeError &e)
+    catch (const Poco::Net::DNSException &e)
     {
-        const string what = e.what();
-        // This error is thrown if http.cancel_stream() is used.
-        if ((what.compare(0, 16, "Callback aborted") == 0) ||
-            (what.compare(0, 19, "Failed writing body") == 0))
+        if (parent.exceptions())
         {
-            ttdebug << "Request was cancelled by user\n";
-            return { 0, "Request was cancelled by user", 0, "" };
-        }
-        else if (what.compare(what.size() - 20, 20, "Connection timed out") == 0)
-        {
-            ttdebug << what << "\n";
-            return { 110, "Connection timed out", 0, "" };
-        }
-        else if (what.compare(0, 23, "Could not resolve host:") == 0)
-        {
-            ttdebug << what << "\n";
-            return { 113, "Could not resolve host", 0, "" };
+            e.rethrow();
         }
 
+        ttdebug << e.displayText() << "\n";
+        return { error::DNS, e.displayText(), 0, "" };
+    }
+    catch (const Poco::Net::ConnectionRefusedException &e)
+    {
+        if (parent.exceptions())
+        {
+            e.rethrow();
+        }
+
+        ttdebug << e.displayText() << "\n";
+        return { error::CONNECTION_REFUSED, e.displayText(), 0, "" };
+    }
+    catch (const Poco::Net::SSLException &e)
+    {
+        if (parent.exceptions())
+        {
+            e.rethrow();
+        }
+
+        ttdebug << e.displayText() << "\n";
+        return { error::ENCRYPTION, e.displayText(), 0, "" };
+    }
+    catch (const Poco::Net::NetException &e)
+    {
+        if (parent.exceptions())
+        {
+            e.rethrow();
+        }
+
+        ttdebug << "Unknown network error: " << e.displayText() << std::endl;
+        return { error::UNKNOWN, e.displayText(), 0, "" };
+    }
+    catch (const std::exception &e)
+    {
         if (parent.exceptions())
         {
             std::rethrow_exception(std::current_exception());
         }
-        else
-        {
-            ttdebug << "curlpp::RuntimeError: " << e.what() << std::endl;
-            return { 192, e.what(), 0, "" };
-        }
-    }
-    catch (curlpp::LogicError &e)
-    {
-        if (parent.exceptions())
-        {
-            std::rethrow_exception(std::current_exception());
-        }
 
-        ttdebug << "curlpp::LogicError: " << e.what() << std::endl;
-        return { 193, e.what(), 0, "" };
+        ttdebug << "Unknown error: " << e.what() << std::endl;
+        return { error::UNKNOWN, e.what(), 0, "" };
     }
 }
 
+// FIXME: get_headers() doesn't work anymore.
 void API::http::get_headers(string &headers) const
 {
     headers = _headers;
-}
-
-size_t API::http::callback_write(char* data, size_t size, size_t nmemb,
-                                 string *str)
-{
-    std::lock_guard<std::mutex> lock(_mutex);
-    str->append(data, size * nmemb);
-    // ttdebug << "Received " << size * nmemb << " Bytes\n";
-    return size * nmemb;
-}
-
-double API::http::callback_progress(double /* dltotal */, double /* dlnow */,
-                                    double /* ultotal */, double /* ulnow */)
-{
-    if (_cancel_stream)
-    {
-        // This throws the runtime error: Callback aborted
-        return 1;
-    }
-    return 0;
 }
 
 void API::http::cancel_stream()

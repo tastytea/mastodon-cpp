@@ -97,7 +97,12 @@ Not included in this list are entities.
 * `Mastodon::Easy::alert_type`, used for push subscriptions.
 * `Mastodon::Easy::time_type`: Type for time, can be converted to `time_point`
   and `string`.
-* `Mastodon::Easy::Account::account_field_type`: Type for fields in accounts.
+* `Mastodon::Easy::account_field_type`: Type for fields in accounts.
+* `Mastodon::Easy::urls_type`: Type for URLs returned by `Instance::urls()`.
+* `Mastodon::Easy::stats_type`: Type for statistics returned by
+  `Instance::stats()`.
+* `Mastodon::Easy::poll_options_type`: Type for poll options returned by
+  `Poll::options()`.
 
 === Error codes
 
@@ -392,7 +397,7 @@ strings and you can use unsupported fields in an `Entity` by converting it to
 * [x] List
 * [x] Mention
 * [x] Notification
-* [ ] Poll
+* [x] Poll
 * [x] PushSubscription
 * [x] Relationship
 * [ ] Report ^(Deprecated)^

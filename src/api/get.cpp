@@ -151,11 +151,6 @@ const return_call API::get(const Mastodon::API::v1 &call,
         strcall = "/api/v1/notifications/" + strid;
         break;
     }
-    case v1::search:
-    {
-        strcall = "/api/v1/search";
-        break;
-    }
     case v1::statuses_id:
     {
         strcall = "/api/v1/statuses/" + strid;

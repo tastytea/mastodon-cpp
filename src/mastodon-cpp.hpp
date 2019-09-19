@@ -226,8 +226,8 @@ namespace Mastodon
 
             lists,
             accounts_id_lists,
-            lists_id,
             lists_id_accounts,
+            lists_id,
 
             media,
             media_id,
@@ -244,19 +244,20 @@ namespace Mastodon
             notifications_dismiss,
             push_subscription,
 
+            // polls_id,
+            // polls_id_votes,
+
             reports,
 
             // scheduled_statuses,
             // scheduled_statuses_id,
 
-            search,
-
-            statuses,
             statuses_id,
             statuses_id_context,
             statuses_id_card,
             statuses_id_reblogged_by,
             statuses_id_favourited_by,
+            statuses,
             statuses_id_reblog,
             statuses_id_unreblog,
             statuses_id_pin,
@@ -268,6 +269,7 @@ namespace Mastodon
             timelines_tag_hashtag,
             timelines_list_list_id,
 
+            // streaming_health,
             streaming_user,
             streaming_public,
             streaming_public_local,

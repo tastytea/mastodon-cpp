@@ -33,6 +33,7 @@
 #include "easy/entities/token.hpp"
 #include "easy/entities/pushsubscription.hpp"
 #include "easy/entities/filter.hpp"
+#include "easy/entities/poll.hpp"
 
 using namespace Mastodon;
 
@@ -92,6 +93,7 @@ template struct Easy::return_entity<Easy::Tag>;
 template struct Easy::return_entity<Easy::Token>;
 template struct Easy::return_entity<Easy::PushSubscription>;
 template struct Easy::return_entity<Easy::Filter>;
+template struct Easy::return_entity<Easy::Poll>;
 
 
 template<typename T>

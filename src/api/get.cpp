@@ -231,6 +231,11 @@ const return_call API::get(const Mastodon::API::v1 &call,
         strcall = "/api/v1/suggestions";
         break;
     }
+    case v1::polls_id:
+    {
+        strcall = "/api/v1/polls/" + strid;
+        break;
+    }
     default:
     {
         ttdebug << "ERROR: Invalid argument.\n";

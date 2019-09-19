@@ -343,8 +343,8 @@ strings and you can use unsupported fields in an `Entity` by converting it to
   ** [x] PUT /api/v1/push/subscription
   ** [x] DELETE /api/v1/push/subscription
 * Polls
-  ** [ ] GET /api/v1/polls/:id
-  ** [ ] POST /api/v1/polls/:id/votes
+  ** [x] GET /api/v1/polls/:id
+  ** [x] POST /api/v1/polls/:id/votes
 * Reports
   ** [x] GET /api/v1/reports ^(Deprecated)^
   ** [x] POST /api/v1/reports

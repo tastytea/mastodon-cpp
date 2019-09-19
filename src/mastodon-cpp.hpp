@@ -244,8 +244,8 @@ namespace Mastodon
             notifications_dismiss,
             push_subscription,
 
-            // polls_id,
-            // polls_id_votes,
+            polls_id,
+            polls_id_votes,
 
             reports,
 

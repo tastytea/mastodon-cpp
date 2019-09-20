@@ -198,7 +198,8 @@ return_call API::http::request_common(const http_method &meth,
         }
         case http_method::PATCH:
         {
-            method = HTTPRequest::HTTP_PATCH;
+            // POCO in CentOS 7 (1.6.1) doesn't have HTTPRequest::HTTP_PATCH.
+            method = "PATCH";
             break;
         }
         case http_method::DELETE:

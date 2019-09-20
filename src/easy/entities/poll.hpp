@@ -34,7 +34,7 @@ namespace Easy
     /*!
      *  @brief  Class to hold polls.
      *
-     *  @since  0.107.0
+     *  @since  0.110.0
      */
     class Poll : public Entity
     {
@@ -46,49 +46,49 @@ namespace Easy
         /*!
          *  @brief  Returns poll ID.
          *
-         *  @since  0.107.0
+         *  @since  0.110.0
          */
         const string id() const;
 
         /*!
          *  @brief  Returns time when the poll expires.
          *
-         *  @since  0.107.0
+         *  @since  0.110.0
          */
         const Easy::time_type expires_at() const;
 
         /*!
          *  @brief  Returns true if poll has expired.
          *
-         *  @since  0.107.0
+         *  @since  0.110.0
          */
         bool expired() const;
 
         /*!
          *  @brief  Returns true or false.
          *
-         *  @since  0.107.0
+         *  @since  0.110.0
          */
         bool multiple() const;
 
         /*!
          *  @brief  Returns the number of votes.
          *
-         *  @since  0.107.0
+         *  @since  0.110.0
          */
         uint64_t votes_count() const;
 
         /*!
          *  @brief  Returns poll options and their votes count.
          *
-         *  @since  0.107.0
+         *  @since  0.110.0
          */
         const vector<poll_options_type> options() const;
 
         /*!
          *  @brief  Returns whether you voted or not.
          *
-         *  @since  0.107.0
+         *  @since  0.110.0
          */
         bool voted() const;
     };

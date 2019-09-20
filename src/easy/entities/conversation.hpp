@@ -34,7 +34,7 @@ namespace Easy
     /*!
      *  @brief  Class to hold conversations.
      *
-     *  @since  0.107.0
+     *  @since  0.110.0
      */
     class Conversation : public Entity
     {
@@ -46,28 +46,28 @@ namespace Easy
         /*!
          *  @brief  Returns the id of the conversation.
          *
-         *  @since  0.107.0
+         *  @since  0.110.0
          */
         const string id() const;
 
         /*!
          *  @brief  Returns the participating accounts.
          *
-         *  @since  0.107.0
+         *  @since  0.110.0
          */
         const std::vector<Account> accounts() const;
 
         /*!
          *  @brief  Returns the last status.
          *
-         *  @since  0.107.0
+         *  @since  0.110.0
          */
         const Status last_status() const;
 
         /*!
          *  @brief  Returns true if unread.
          *
-         *  @since  0.107.0
+         *  @since  0.110.0
          */
         bool unread() const;
     };

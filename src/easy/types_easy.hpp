@@ -41,6 +41,7 @@ namespace Easy
         Notification,
         Delete,
         Error,
+        Filters_changed,
         Undefined
     };
 

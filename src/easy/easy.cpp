@@ -53,7 +53,8 @@ const vector<Easy::stream_event_type> Easy::parse_stream(
     const std::string &streamdata)
 {
     string stream = streamdata;
-    std::regex reevent("event: (update|notification|delete|ERROR)\ndata: (.*)\n");
+    std::regex reevent("event: (update|notification|delete|filters_changed"
+                       "|ERROR)\ndata: (.*)\n");
     std::smatch match;
     std::vector<stream_event_type> vec = {};
 
@@ -63,14 +64,16 @@ const vector<Easy::stream_event_type> Easy::parse_stream(
         const string &data = match[2].str();
         event_type type = event_type::Undefined;
 
-        if (event.compare("update") == 0)
+        if (event == "update")
             type = event_type::Update;
-        else if (event.compare("notification") == 0)
+        else if (event == "notification")
             type = event_type::Notification;
-        else if (event.compare("delete") == 0)
+        else if (event == "delete")
             type = event_type::Delete;
-        else if (event.compare("ERROR") == 0)
+        else if (event == "ERROR")
             type = event_type::Error;
+        else if (event == "filters_changed")
+            type = event_type::Filters_changed;
 
         vec.push_back({ type, data });
         stream = match.suffix().str();

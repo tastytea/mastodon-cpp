@@ -86,11 +86,6 @@ const return_call API::get(const Mastodon::API::v1 &call,
         strcall = "/api/v1/notifications";
         break;
     }
-    case v1::reports:
-    {
-        strcall = "/api/v1/reports";
-        break;
-    }
     case v1::timelines_home:
     {
         strcall = "/api/v1/timelines/home";
@@ -149,11 +144,6 @@ const return_call API::get(const Mastodon::API::v1 &call,
     case v1::notifications_id:
     {
         strcall = "/api/v1/notifications/" + strid;
-        break;
-    }
-    case v1::search:
-    {
-        strcall = "/api/v1/search";
         break;
     }
     case v1::statuses_id:
@@ -234,6 +224,21 @@ const return_call API::get(const Mastodon::API::v1 &call,
     case v1::suggestions:
     {
         strcall = "/api/v1/suggestions";
+        break;
+    }
+    case v1::polls_id:
+    {
+        strcall = "/api/v1/polls/" + strid;
+        break;
+    }
+    case v1::conversations:
+    {
+        strcall = "/api/v1/conversations";
+        break;
+    }
+    case v1::streaming_health:
+    {
+        strcall = "/api/v1/streaming/health";
         break;
     }
     default:

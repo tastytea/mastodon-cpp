@@ -14,14 +14,16 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MASTODON_CPP_EASY_REPORT_HPP
-#define MASTODON_CPP_EASY_REPORT_HPP
+#ifndef MASTODON_CPP_EASY_CONVERSATION_HPP
+#define MASTODON_CPP_EASY_CONVERSATION_HPP
 
 #include <string>
-#include <cstdint>
+#include <vector>
 
 #include "../../mastodon-cpp.hpp"
 #include "../entity.hpp"
+#include "account.hpp"
+#include "status.hpp"
 
 using std::string;
 
@@ -30,11 +32,11 @@ namespace Mastodon
 namespace Easy
 {
     /*!
-     *  @brief  Class to hold reports
+     *  @brief  Class to hold conversations.
      *
-     *  before 0.11.0
+     *  @since  0.107.0
      */
-    class Report : public Entity
+    class Conversation : public Entity
     {
     public:
         using Entity::Entity;
@@ -42,21 +44,34 @@ namespace Easy
         virtual bool valid() const override;
 
         /*!
-         *  @brief  Returns true if an action was taken in response to the
-         *          report
+         *  @brief  Returns the id of the conversation.
          *
-         *  @since  before 0.11.0
-         */
-        bool action_taken() const;
-
-        /*!
-         *  @brief  Returns the ID of the report
-         *
-         *  @since  before 0.11.0
+         *  @since  0.107.0
          */
         const string id() const;
+
+        /*!
+         *  @brief  Returns the participating accounts.
+         *
+         *  @since  0.107.0
+         */
+        const std::vector<Account> accounts() const;
+
+        /*!
+         *  @brief  Returns the last status.
+         *
+         *  @since  0.107.0
+         */
+        const Status last_status() const;
+
+        /*!
+         *  @brief  Returns true if unread.
+         *
+         *  @since  0.107.0
+         */
+        bool unread() const;
     };
 }
 }
 
-#endif  // MASTODON_CPP_EASY_REPORT_HPP
+#endif  // MASTODON_CPP_EASY_CONVERSATION_HPP

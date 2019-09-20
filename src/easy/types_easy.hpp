@@ -41,6 +41,7 @@ namespace Easy
         Notification,
         Delete,
         Error,
+        Filters_changed,
         Undefined
     };
 
@@ -224,6 +225,15 @@ namespace Easy
         uint64_t status_count = 0;
         uint64_t domain_count = 0;
     } stats_type;
+
+    /*!
+     *  @brief Poll options returned by Poll::options().
+     */
+    typedef struct poll_options_type
+    {
+        string title;
+        uint64_t votes_count = 0;
+    } poll_options_type;
 }
 }
 #endif  // MASTODON_CPP_EASY_TYPES_EASY_HPP

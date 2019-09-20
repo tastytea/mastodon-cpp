@@ -97,7 +97,12 @@ Not included in this list are entities.
 * `Mastodon::Easy::alert_type`, used for push subscriptions.
 * `Mastodon::Easy::time_type`: Type for time, can be converted to `time_point`
   and `string`.
-* `Mastodon::Easy::Account::account_field_type`: Type for fields in accounts.
+* `Mastodon::Easy::account_field_type`: Type for fields in accounts.
+* `Mastodon::Easy::urls_type`: Type for URLs returned by `Instance::urls()`.
+* `Mastodon::Easy::stats_type`: Type for statistics returned by
+  `Instance::stats()`.
+* `Mastodon::Easy::poll_options_type`: Type for poll options returned by
+  `Poll::options()`.
 
 === Error codes
 
@@ -338,10 +343,9 @@ strings and you can use unsupported fields in an `Entity` by converting it to
   ** [x] PUT /api/v1/push/subscription
   ** [x] DELETE /api/v1/push/subscription
 * Polls
-  ** [ ] GET /api/v1/polls/:id
-  ** [ ] POST /api/v1/polls/:id/votes
+  ** [x] GET /api/v1/polls/:id
+  ** [x] POST /api/v1/polls/:id/votes
 * Reports
-  ** [x] GET /api/v1/reports ^(Deprecated)^
   ** [x] POST /api/v1/reports
 * Scheduled Statuses
   ** [ ] GET /api/v1/scheduled_statuses
@@ -349,7 +353,6 @@ strings and you can use unsupported fields in an `Entity` by converting it to
   ** [ ] PUT /api/v1/scheduled_statuses/:id
   ** [ ] DELETE /api/v1/scheduled_statuses/:id
 * Search
-  ** [x] GET /api/v1/search ^(Deprecated)^
   ** [x] GET /api/v2/search
 * Statuses
   ** [x] GET /api/v1/statuses/:id
@@ -365,18 +368,19 @@ strings and you can use unsupported fields in an `Entity` by converting it to
   ** [x] POST /api/v1/statuses/:id/unpin
 * Timelines
   ** [x] GET /api/v1/timelines/home
-  ** [ ] GET /api/v1/conversations
+  ** [x] GET /api/v1/conversations
   ** [x] GET /api/v1/timelines/public
   ** [x] GET /api/v1/timelines/tag/:hashtag
   ** [x] GET /api/v1/timelines/list/:list_id
 * Streaming API
+  ** [x] GET /api/v1/streaming/health
   ** [x] GET /api/v1/streaming/user
   ** [x] GET /api/v1/streaming/public
   ** [x] GET /api/v1/streaming/public/local
   ** [x] GET /api/v1/streaming/hashtag
-  ** [ ] GET /api/v1/streaming/hashtag/local
+  ** [x] GET /api/v1/streaming/hashtag/local
   ** [x] GET /api/v1/streaming/list
-  ** [ ] GET /api/v1/streaming/direct
+  ** [x] GET /api/v1/streaming/direct
 
 ==== Entities
 
@@ -385,17 +389,16 @@ strings and you can use unsupported fields in an `Entity` by converting it to
 * [x] Attachment
 * [x] Card
 * [x] Context
-* [ ] Conversation
+* [x] Conversation
 * [x] Emoji
 * [x] Filter
 * [x] Instance
 * [x] List
 * [x] Mention
 * [x] Notification
-* [ ] Poll
+* [x] Poll
 * [x] PushSubscription
 * [x] Relationship
-* [ ] Report ^(Deprecated)^
 * [x] Results
 * [x] Status
 * [ ] ScheduledStatus

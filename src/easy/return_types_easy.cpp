@@ -26,13 +26,14 @@
 #include "easy/entities/mention.hpp"
 #include "easy/entities/notification.hpp"
 #include "easy/entities/relationship.hpp"
-#include "easy/entities/report.hpp"
 #include "easy/entities/results.hpp"
 #include "easy/entities/status.hpp"
 #include "easy/entities/tag.hpp"
 #include "easy/entities/token.hpp"
 #include "easy/entities/pushsubscription.hpp"
 #include "easy/entities/filter.hpp"
+#include "easy/entities/poll.hpp"
+#include "easy/entities/conversation.hpp"
 
 using namespace Mastodon;
 
@@ -85,13 +86,14 @@ template struct Easy::return_entity<Easy::List>;
 template struct Easy::return_entity<Easy::Mention>;
 template struct Easy::return_entity<Easy::Notification>;
 template struct Easy::return_entity<Easy::Relationship>;
-template struct Easy::return_entity<Easy::Report>;
 template struct Easy::return_entity<Easy::Results>;
 template struct Easy::return_entity<Easy::Status>;
 template struct Easy::return_entity<Easy::Tag>;
 template struct Easy::return_entity<Easy::Token>;
 template struct Easy::return_entity<Easy::PushSubscription>;
 template struct Easy::return_entity<Easy::Filter>;
+template struct Easy::return_entity<Easy::Poll>;
+template struct Easy::return_entity<Easy::Conversation>;
 
 
 template<typename T>
@@ -130,10 +132,11 @@ template struct Easy::return_entity_vector<Easy::List>;
 template struct Easy::return_entity_vector<Easy::Mention>;
 template struct Easy::return_entity_vector<Easy::Notification>;
 template struct Easy::return_entity_vector<Easy::Relationship>;
-template struct Easy::return_entity_vector<Easy::Report>;
 template struct Easy::return_entity_vector<Easy::Results>;
 template struct Easy::return_entity_vector<Easy::Status>;
 template struct Easy::return_entity_vector<Easy::Tag>;
 template struct Easy::return_entity_vector<Easy::Token>;
 template struct Easy::return_entity_vector<Easy::PushSubscription>;
 template struct Easy::return_entity_vector<Easy::Filter>;
+template struct Easy::return_entity_vector<Easy::Poll>;
+template struct Easy::return_entity_vector<Easy::Conversation>;

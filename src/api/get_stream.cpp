@@ -51,9 +51,19 @@ void API::get_stream(const Mastodon::API::v1 &call,
         strcall = "/api/v1/streaming/hashtag";
         break;
     }
+    case v1::streaming_hashtag_local:
+    {
+        strcall = "/api/v1/streaming/hashtag/local";
+        break;
+    }
     case v1::streaming_list:
     {
         strcall = "/api/v1/streaming/list";
+        break;
+    }
+    case v1::streaming_direct:
+    {
+        strcall = "/api/v1/streaming/direct";
         break;
     }
     default:

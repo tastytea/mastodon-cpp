@@ -29,12 +29,13 @@
 #include "entities/mention.hpp"
 #include "entities/notification.hpp"
 #include "entities/relationship.hpp"
-#include "entities/report.hpp"
 #include "entities/results.hpp"
 #include "entities/status.hpp"
 #include "entities/tag.hpp"
 #include "entities/token.hpp"
 #include "entities/pushsubscription.hpp"
 #include "entities/filter.hpp"
+#include "entities/poll.hpp"
+#include "entities/conversation.hpp"
 
 #endif  // MASTODON_CPP_EASY_ALL_HPP

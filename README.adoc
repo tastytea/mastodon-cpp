@@ -346,7 +346,6 @@ strings and you can use unsupported fields in an `Entity` by converting it to
   ** [x] GET /api/v1/polls/:id
   ** [x] POST /api/v1/polls/:id/votes
 * Reports
-  ** [x] GET /api/v1/reports ^(Deprecated)^
   ** [x] POST /api/v1/reports
 * Scheduled Statuses
   ** [ ] GET /api/v1/scheduled_statuses
@@ -354,7 +353,6 @@ strings and you can use unsupported fields in an `Entity` by converting it to
   ** [ ] PUT /api/v1/scheduled_statuses/:id
   ** [ ] DELETE /api/v1/scheduled_statuses/:id
 * Search
-  ** [x] GET /api/v1/search ^(Deprecated)^
   ** [x] GET /api/v2/search
 * Statuses
   ** [x] GET /api/v1/statuses/:id
@@ -400,7 +398,6 @@ strings and you can use unsupported fields in an `Entity` by converting it to
 * [x] Poll
 * [x] PushSubscription
 * [x] Relationship
-* [ ] Report ^(Deprecated)^
 * [x] Results
 * [x] Status
 * [ ] ScheduledStatus

@@ -86,11 +86,6 @@ const return_call API::get(const Mastodon::API::v1 &call,
         strcall = "/api/v1/notifications";
         break;
     }
-    case v1::reports:
-    {
-        strcall = "/api/v1/reports";
-        break;
-    }
     case v1::timelines_home:
     {
         strcall = "/api/v1/timelines/home";

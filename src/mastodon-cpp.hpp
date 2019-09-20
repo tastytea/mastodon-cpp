@@ -276,7 +276,7 @@ namespace Mastodon
             streaming_hashtag,
             streaming_hashtag_local,
             streaming_list,
-            // streaming_direct,
+            streaming_direct,
 
             // Glitch-Soc
             bookmarks,

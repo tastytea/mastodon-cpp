@@ -61,6 +61,11 @@ void API::get_stream(const Mastodon::API::v1 &call,
         strcall = "/api/v1/streaming/list";
         break;
     }
+    case v1::streaming_direct:
+    {
+        strcall = "/api/v1/streaming/direct";
+        break;
+    }
     default:
     {
         const uint8_t err = static_cast<uint8_t>(error::INVALID_ARGUMENT);

@@ -370,7 +370,7 @@ strings and you can use unsupported fields in an `Entity` by converting it to
   ** [x] POST /api/v1/statuses/:id/unpin
 * Timelines
   ** [x] GET /api/v1/timelines/home
-  ** [ ] GET /api/v1/conversations
+  ** [x] GET /api/v1/conversations
   ** [x] GET /api/v1/timelines/public
   ** [x] GET /api/v1/timelines/tag/:hashtag
   ** [x] GET /api/v1/timelines/list/:list_id

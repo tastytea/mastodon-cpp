@@ -264,7 +264,7 @@ namespace Mastodon
             statuses_id_unpin,
 
             timelines_home,
-            // timelines_conversations,
+            conversations,
             timelines_public,
             timelines_tag_hashtag,
             timelines_list_list_id,

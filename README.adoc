@@ -378,7 +378,7 @@ strings and you can use unsupported fields in an `Entity` by converting it to
   ** [x] GET /api/v1/streaming/public
   ** [x] GET /api/v1/streaming/public/local
   ** [x] GET /api/v1/streaming/hashtag
-  ** [ ] GET /api/v1/streaming/hashtag/local
+  ** [x] GET /api/v1/streaming/hashtag/local
   ** [x] GET /api/v1/streaming/list
   ** [ ] GET /api/v1/streaming/direct
 

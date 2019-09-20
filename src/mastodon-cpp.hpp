@@ -274,7 +274,7 @@ namespace Mastodon
             streaming_public,
             streaming_public_local,
             streaming_hashtag,
-            // streaming_hashtag_local,
+            streaming_hashtag_local,
             streaming_list,
             // streaming_direct,
 

@@ -188,7 +188,7 @@ steps:
   - yum install -qy centos-release-scl
   - yum install -qy devtoolset-6
   - scl enable devtoolset-6 bash
-  - yum install -qy libcurl-devel poco-devel doxygen rpm-build
+  - yum install -qy poco-devel openssl-devel doxygen rpm-build
   - yum --enablerepo=epel install -qy cmake3 jsoncpp-devel
   - rm -rf build && mkdir -p build && cd build
   - cmake3 -DWITH_EXAMPLES=NO -DWITH_TESTS=NO ..

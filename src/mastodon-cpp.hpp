@@ -269,7 +269,7 @@ namespace Mastodon
             timelines_tag_hashtag,
             timelines_list_list_id,
 
-            // streaming_health,
+            streaming_health,
             streaming_user,
             streaming_public,
             streaming_public_local,

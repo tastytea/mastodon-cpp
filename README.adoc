@@ -373,6 +373,7 @@ strings and you can use unsupported fields in an `Entity` by converting it to
   ** [x] GET /api/v1/timelines/tag/:hashtag
   ** [x] GET /api/v1/timelines/list/:list_id
 * Streaming API
+  ** [x] GET /api/v1/streaming/health
   ** [x] GET /api/v1/streaming/user
   ** [x] GET /api/v1/streaming/public
   ** [x] GET /api/v1/streaming/public/local

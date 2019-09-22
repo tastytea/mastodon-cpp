@@ -260,7 +260,7 @@ the filter ID with `MASTODON_CPP_FILTER_ID`. You can select the list ID with
 == Contributing
 
 See
-https://schlomp.space/tastytea/{project}/src/branch/main/CONTRIBUTING.adoc[CONTRIBUTING.adoc].
+https://schlomp.space/tastytea/{project}/src/branch/master/CONTRIBUTING.adoc[CONTRIBUTING.adoc].
 
 == Status of implementation
 

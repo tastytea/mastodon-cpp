@@ -2,16 +2,16 @@
 :toc: preamble
 :project: mastodon-cpp
 
-*mastodon-cpp* is a C++ wrapper for the Mastodon API. You submit an API call
+*{project}* is a C++ wrapper for the Mastodon API. You submit an API call
 and get the raw JSON or easy to use abstractions.
 
 == Usage
 
 The HTML reference can be generated with `build_doc.sh`, if doxygen is
 installed. It is also available at
-https://doc.schlomp.space/mastodon-cpp/annotated.html[doc.schlomp.space/mastodon-cpp/].
+https://doc.schlomp.space/{project}/annotated.html[doc.schlomp.space/{project}/].
 There are more
-https://schlomp.space/tastytea/mastodon-cpp/src/branch/master/examples[examples]
+https://schlomp.space/tastytea/{project}/src/branch/master/examples[examples]
 in `examples/`.
 
 === Examples
@@ -140,7 +140,7 @@ It will receive bug-fixes for a while but no new features.
 
 === Packages
 
-Every https://schlomp.space/tastytea/mastodon-cpp/releases[release] includes
+Every https://schlomp.space/tastytea/{project}/releases[release] includes
 packages for Debian and Centos. Gentoo packages are available in my overlay.
 
 ==== Gentoo
@@ -192,7 +192,7 @@ apt-get install build-essential cmake libpoco-dev libjsoncpp-dev doxygen
 ===== Release
 
 Download the current release at
-https://schlomp.space/tastytea/mastodon-cpp/releases[schlomp.space].
+https://schlomp.space/tastytea/{project}/releases[schlomp.space].
 
 ===== Development version
 

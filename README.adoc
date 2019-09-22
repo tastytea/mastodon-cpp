@@ -1,5 +1,6 @@
 = mastodon-cpp
 :toc: preamble
+:project: mastodon-cpp
 
 *mastodon-cpp* is a C++ wrapper for the Mastodon API. You submit an API call
 and get the raw JSON or easy to use abstractions.
@@ -255,6 +256,11 @@ the filter ID with `MASTODON_CPP_FILTER_ID`. You can select the list ID with
 * Have no follow requests.
 * Have at least 1 list with at least one account in it.
 * have at least 1 account muted.
+
+== Contributing
+
+See
+https://schlomp.space/tastytea/{project}/src/branch/main/CONTRIBUTING.adoc[CONTRIBUTING.adoc].
 
 == Status of implementation
 

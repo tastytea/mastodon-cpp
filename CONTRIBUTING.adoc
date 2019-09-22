@@ -1,0 +1,22 @@
+:project: mastodon-cpp
+
+== How to contribute
+
+Read the link:CODE_OF_CONDUCT.adoc[Code of Conduct].
+
+=== Reporting bugs or suggesting enhancements
+
+Before reporting a bug, please
+https://schlomp.space/tastytea/{project}/issues[perform a search] to see if the
+problem has already been reported. If it has, add a comment to the existing
+issue instead of opening a new one. Same for enhancements.
+
+You can also contact me via mailto:tastytea@tastytea.de[E-Mail],
+link:xmpp:tastytea@tastytea.de[XMPP] or the
+https://likeable.space/users/tastytea[Fediverse] if you don't want to open an
+account.
+
+=== Pull requests
+
+Please use similar coding conventions as the rest of the project. The basic rule
+to remember is to write code in the same style as the existing/surrounding code.

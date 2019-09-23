@@ -1,4 +1,5 @@
 :project: mastodon-cpp
+:patch_contact: tastytea@tastytea.de
 
 == How to contribute
 
@@ -20,3 +21,6 @@ account.
 
 Please use similar coding conventions as the rest of the project. The basic rule
 to remember is to write code in the same style as the existing/surrounding code.
+
+You can also send me your patches via email, to {patch_contact} (ideally using
+`git format-patch` or `git send-email`).

@@ -1,9 +1,13 @@
 :project: mastodon-cpp
-:patch_contact: tastytea@tastytea.de
+:uri-base: https://schlomp.space/tastytea/{project}
+:uri-coc: {uri-base}/src/branch/master/CODE_OF_CONDUCT.adoc
+:contact-email: tastytea@tastytea.de
+:contact-xmpp: {contact-email}
+:contact-fediverse: https://likeable.space/users/tastytea
 
 == How to contribute
 
-Read the link:CODE_OF_CONDUCT.adoc[Code of Conduct].
+Read the link:{uri-coc}[Code of Conduct].
 
 === Reporting bugs or suggesting enhancements
 
@@ -12,15 +16,14 @@ https://schlomp.space/tastytea/{project}/issues[perform a search] to see if the
 problem has already been reported. If it has, add a comment to the existing
 issue instead of opening a new one. Same for enhancements.
 
-You can also contact me via mailto:tastytea@tastytea.de[E-Mail],
-link:xmpp:tastytea@tastytea.de[XMPP] or the
-https://likeable.space/users/tastytea[Fediverse] if you don't want to open an
-account.
+You can also contact me via mailto:{contact-email}[E-Mail],
+link:xmpp:{contact-xmpp}[XMPP] or the {contact-fediverse}[Fediverse] if you
+don't want to open an account.
 
 === Pull requests
 
 Please use similar coding conventions as the rest of the project. The basic rule
 to remember is to write code in the same style as the existing/surrounding code.
 
-You can also send me your patches via email, to {patch_contact} (ideally using
-`git format-patch` or `git send-email`).
+You can also send me your patches via mailto:{contact-email}[E-Mail], ideally
+using `git format-patch` or `git send-email`.

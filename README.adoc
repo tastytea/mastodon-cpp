@@ -1,6 +1,8 @@
 = mastodon-cpp
 :toc: preamble
 :project: mastodon-cpp
+:uri-base: https://schlomp.space/tastytea/{project}
+:uri-branch-main: {uri-base}/src/branch/master
 
 *{project}* is a C++ wrapper for the Mastodon API. You submit an API call
 and get the raw JSON or easy to use abstractions.
@@ -10,9 +12,7 @@ and get the raw JSON or easy to use abstractions.
 The HTML reference can be generated with `build_doc.sh`, if doxygen is
 installed. It is also available at
 https://doc.schlomp.space/{project}/annotated.html[doc.schlomp.space/{project}/].
-There are more
-https://schlomp.space/tastytea/{project}/src/branch/master/examples[examples]
-in `examples/`.
+There are more {uri-branch-main}/examples[examples] in `examples/`.
 
 === Examples
 
@@ -257,10 +257,7 @@ the filter ID with `MASTODON_CPP_FILTER_ID`. You can select the list ID with
 * Have at least 1 list with at least one account in it.
 * have at least 1 account muted.
 
-== Contributing
-
-See
-https://schlomp.space/tastytea/{project}/src/branch/master/CONTRIBUTING.adoc[CONTRIBUTING.adoc].
+include::{uri-base}/raw/branch/master/CONTRIBUTING.adoc[]
 
 == Status of implementation
 

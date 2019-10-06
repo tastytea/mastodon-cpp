@@ -165,9 +165,9 @@ steps:
   - apt-get install -qy build-essential cmake
   - apt-get install -qy libpoco-dev libjsoncpp-dev doxygen file
   - rm -rf build && mkdir -p build && cd build
-  - cmake -DWITH_EXAMPLES=NO -DWITH_TESTS=NO ..
+  - cmake -DWITH_DOC=NO ..
   - make package
-  - cmake -DWITH_DEB=YES ..
+  - cmake -DWITH_DEB=YES -DWITH_DOC=NO ..
   - make package
   - cp -v mastodon-cpp-${DRONE_TAG}_x86_64.tar.gz ..
   - cp -v libmastodon-cpp_${DRONE_TAG}-0_amd64.deb ..
@@ -193,7 +193,7 @@ steps:
   - rm -rf build && mkdir -p build && cd build
   - cmake3 -DWITH_EXAMPLES=NO -DWITH_TESTS=NO ..
   - make package
-  - cmake3 -DWITH_RPM=YES ..
+  - cmake3 -DWITH_RPM=YES -DWITH_DOC=NO ..
   - make package
   - cp -v libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm ..
   volumes:

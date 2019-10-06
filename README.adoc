@@ -133,10 +133,7 @@ If you use a debug build, you get more verbose error messages.
 === Upgrading from versions below 0.100.0
 
 Starting with version `0.100.0`, large parts of the library have been rewritten.
-Upgrading from previous versions will require extensive code changes. You can
-keep using the old version, it is archived in the branch
-https://schlomp.space/tastytea/mastodon-cpp/src/branch/pre-0.100.0[pre-0.100.0].
-It will receive bug-fixes for a while but no new features.
+Upgrading from previous versions will require extensive code changes.
 
 === Packages
 

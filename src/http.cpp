@@ -234,13 +234,17 @@ return_call API::http::request_common(const http_method &meth,
         }
 
         HTTPResponse response;
-        istream &rs = session.receiveResponse(response);
+        istream &body_stream = session.receiveResponse(response);
 
         const uint16_t http_code = response.getStatus();
         ttdebug << "Response code: " << http_code << '\n';
 
         answer.clear();
-        StreamCopier::copyToString(rs, answer);
+        StreamCopier::copyToString(body_stream, answer);
+
+        std::ostringstream headers_stream;
+        response.write(headers_stream);
+        _headers = headers_stream.str();
 
         switch (http_code)
         {

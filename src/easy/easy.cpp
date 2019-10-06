@@ -101,8 +101,8 @@ Easy::Link::Link(const string &link_header)
 : _next()
 , _prev()
 {
-    std::regex renext("max_id=([[:digit:]]*)");
-    std::regex reprev("since_id=([[:digit:]]*)");
+    std::regex renext("max_id=([[:alnum:]]*)");
+    std::regex reprev("(?:since|min)_id=([[:alnum:]]*)");
     std::smatch match;
 
     if (std::regex_search(link_header, match, renext))
@@ -131,6 +131,11 @@ const string Easy::Link::prev() const
 }
 
 const string Easy::Link::since_id() const
+{
+    return _prev;
+}
+
+const string Easy::Link::min_id() const
 {
     return _prev;
 }

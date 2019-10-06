@@ -89,6 +89,13 @@ namespace Easy
          */
         const string since_id() const;
 
+        /*!
+         *  @brief  Returns min_id.
+         *
+         *  @since  0.111.0
+         */
+        const string min_id() const;
+
     private:
         string _next;
         string _prev;

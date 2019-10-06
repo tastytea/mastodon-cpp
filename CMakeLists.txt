@@ -77,7 +77,7 @@ if(WITH_DOC)
   add_dependencies(${PROJECT_NAME} doc)
 
   install(DIRECTORY ${PROJECT_SOURCE_DIR}/doc/html
-    DESTINATION "${CMAKE_INSTALL_DOCDIR}")
+    DESTINATION "${CMAKE_INSTALL_DOCDIR}/${PROJECT_NAME}")
 endif()
 
 add_subdirectory("cmake")

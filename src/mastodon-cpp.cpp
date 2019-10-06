@@ -311,7 +311,7 @@ const parameters API::delete_params(const parameters &params,
         std::copy_if(params.begin(), params.end(), newparams.begin(),
                      [&keys](const param &p)
                      {
-                         return std::any_of(keys.begin(), keys.end(),
+                         return std::all_of(keys.begin(), keys.end(),
                                             [&p](const string &k)
                                             {
                                                 return (k != p.key);

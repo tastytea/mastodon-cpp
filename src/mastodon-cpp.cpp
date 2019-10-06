@@ -20,6 +20,7 @@
 #include <utility>
 #include <iostream>
 #include <exception>
+#include <algorithm>
 #include <Poco/Net/FilePartSource.h>
 #include <Poco/URI.h>
 #include "version.hpp"
@@ -265,10 +266,13 @@ return_call API::register_app2(const string &client_id,
     return ret;
 }
 
-const string API::get_header(const std::string &header) const
+const string API::get_header(std::string header) const
 {
     string headers;
     _http.get_headers(headers);
+    std::transform(headers.begin(), headers.end(), headers.begin(), ::tolower);
+    std::transform(header.begin(), header.end(), header.begin(), ::tolower);
+
     size_t startpos = headers.find(header + ':');
     if (startpos != std::string::npos)
     {

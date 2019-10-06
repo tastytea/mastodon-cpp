@@ -411,7 +411,7 @@ namespace Mastodon
                                   string &access_token);
 
         /*!
-         *  @brief  Gets the header from the last answer.
+         *  @brief  Gets the header from the last answer. Case insensitive.
          *
          *  @param  header  The header to get
          *
@@ -419,7 +419,7 @@ namespace Mastodon
          *
          *  @since  before 0.11.0
          */
-        const string get_header(const string &header) const;
+        const string get_header(string header) const;
 
         /*!
          *  @brief  Turn exceptions on or off. Defaults to off.

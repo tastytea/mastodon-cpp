@@ -269,11 +269,15 @@ return_call API::register_app2(const string &client_id,
 const string API::get_header(std::string header) const
 {
     string headers;
+    string headers_lower;
     _http.get_headers(headers);
-    std::transform(headers.begin(), headers.end(), headers.begin(), ::tolower);
+    headers_lower.resize(headers.size());
+
+    std::transform(headers.begin(), headers.end(),
+                   headers_lower.begin(), ::tolower);
     std::transform(header.begin(), header.end(), header.begin(), ::tolower);
 
-    size_t startpos = headers.find(header + ':');
+    size_t startpos = headers_lower.find(header + ':');
     if (startpos != std::string::npos)
     {
         startpos = headers.find(':', startpos) + 2;

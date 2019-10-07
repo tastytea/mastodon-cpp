@@ -347,7 +347,6 @@ return_call API::http::request_common(const http_method &meth,
     }
 }
 
-// FIXME: get_headers() doesn't work anymore.
 void API::http::get_headers(string &headers) const
 {
     headers = _headers;

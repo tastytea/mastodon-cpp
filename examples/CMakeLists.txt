@@ -7,5 +7,5 @@ endforeach()
 
 if(WITH_DOC)
   install(FILES ${sources_examples}
-    DESTINATION "${CMAKE_INSTALL_DOCDIR}/examples")
+    DESTINATION "${CMAKE_INSTALL_DOCDIR}/${PROJECT_NAME}/examples")
 endif()

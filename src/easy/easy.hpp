@@ -167,6 +167,7 @@ namespace Easy
          *
          *  @since  0.100.0
          */
+        [[deprecated("Will go away in 1.0.0 with no replacement.")]]
         const return_entity<Easy::Status> send_post(const Status &status);
 
         /*!
@@ -174,6 +175,7 @@ namespace Easy
          *
          *  @since  0.100.0
          */
+        [[deprecated("Will go away in 1.0.0 with no replacement.")]]
         const return_entity<Easy::Status> send_toot(const Status &status);
 
         /*!
@@ -187,6 +189,7 @@ namespace Easy
          *
          *  @since  0.100.0
          */
+        [[deprecated("Will go away in 1.0.0 with no replacement.")]]
         const return_entity_vector<Easy::Notification> get_notifications(
             const uint16_t limit = 20, const string since_id = "",
             const string max_id = "");

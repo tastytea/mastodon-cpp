@@ -5,7 +5,7 @@
 :uri-branch-main: {uri-base}/src/branch/master
 
 *{project}* is a C++ wrapper for the Mastodon API. You submit an API call
-and get the raw JSON or easy to use abstractions.
+and get the raw JSON that you can then transform into easy to use abstractions.
 
 == Usage
 

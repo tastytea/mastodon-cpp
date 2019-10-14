@@ -36,8 +36,9 @@ namespace Easy
      *
      *  @since  0.100.0
      */
-    template <typename T>
-    struct return_entity : return_base
+    template <typename T> struct
+    [[deprecated("Will go away in 1.0.0 with no replacement.")]]
+    return_entity : return_base
     {
         /*!
          *  @brief  Mastodon::Easy::Entity
@@ -107,8 +108,9 @@ namespace Easy
      *
      *  @since  0.100.0
      */
-    template <typename T>
-    struct return_entity_vector : return_base
+    template <typename T> struct
+    [[deprecated("Will go away in 1.0.0 with no replacement.")]]
+    return_entity_vector : return_base
     {
         /*!
          *  @brief  std::vector of Mastodon::Easy::Entity.

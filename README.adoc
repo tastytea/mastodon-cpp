@@ -5,7 +5,7 @@
 :uri-branch-main: {uri-base}/src/branch/master
 
 *{project}* is a C++ wrapper for the Mastodon API. You submit an API call
-and get the raw JSON or easy to use abstractions.
+and get the raw JSON that you can then transform into easy to use abstractions.
 
 == Usage
 
@@ -77,10 +77,6 @@ Not included in this list are entities.
 ==== Return types
 
 * `Mastodon::return_call`: Contains the response from `Mastodon::API` calls.
-* `Mastodon::Easy::return_entity`: Contains the response from high-level
-  functions that return a single `Mastodon::Easy::Entity`.
-* `Mastodon::Easy::return_entities_vector`: Contains the response from
-  high-level functions that return multiple `Mastodon::Easy::Entity`.
 
 ==== Other types
 

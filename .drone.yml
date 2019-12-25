@@ -25,8 +25,8 @@ steps:
     MASTODON_CPP_ACCESS_TOKEN:
       from_secret: mastodon_cpp_access_token
   commands:
-  - rm /etc/apt/apt.conf.d/docker-clean
-  - rm /var/cache/apt/archives/lock
+  - rm -f /etc/apt/apt.conf.d/docker-clean
+  - rm -f /var/cache/apt/archives/lock
   - apt-get update -q
   - apt-get install -qy build-essential cmake
   - apt-get install -qy libpoco-dev libjsoncpp-dev doxygen catch
@@ -48,8 +48,8 @@ steps:
     MASTODON_CPP_ACCESS_TOKEN:
       from_secret: mastodon_cpp_access_token
   commands:
-  - rm /etc/apt/apt.conf.d/docker-clean
-  - rm /var/cache/apt/archives/lock
+  - rm -f /etc/apt/apt.conf.d/docker-clean
+  - rm -f /var/cache/apt/archives/lock
   - apt-get update -q
   - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
   - echo "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main" >> /etc/apt/sources.list.d/ubuntu-toolchain-r.list
@@ -77,8 +77,8 @@ steps:
     MASTODON_CPP_ACCESS_TOKEN:
       from_secret: mastodon_cpp_access_token
   commands:
-  - rm /etc/apt/apt.conf.d/docker-clean
-  - rm /var/cache/apt/archives/lock
+  - rm -f /etc/apt/apt.conf.d/docker-clean
+  - rm -f /var/cache/apt/archives/lock
   - apt-get update -q
   - echo "APT::Default-Release \"stretch\";" >> /etc/apt/apt.conf.d/00default_release
   - echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/stretch.list
@@ -104,8 +104,8 @@ steps:
     MASTODON_CPP_ACCESS_TOKEN:
       from_secret: mastodon_cpp_access_token
   commands:
-  - rm /etc/apt/apt.conf.d/docker-clean
-  - rm /var/cache/apt/archives/lock
+  - rm -f /etc/apt/apt.conf.d/docker-clean
+  - rm -f /var/cache/apt/archives/lock
   - apt-get update -q
   - apt-get update -q
   - apt-get install -qy build-essential cmake clang
@@ -160,8 +160,8 @@ steps:
     CXXFLAGS: -pipe -O2
     LANG: C.utf8
   commands:
-  - rm /etc/apt/apt.conf.d/docker-clean
-  - rm /var/cache/apt/archives/lock
+  - rm -f /etc/apt/apt.conf.d/docker-clean
+  - rm -f /var/cache/apt/archives/lock
   - apt-get update -q
   - apt-get install -qy build-essential cmake
   - apt-get install -qy libpoco-dev libjsoncpp-dev file
@@ -183,8 +183,8 @@ steps:
     CXXFLAGS: -pipe -O2
     LANG: C.utf8
   commands:
-  - rm /etc/apt/apt.conf.d/docker-clean
-  - rm /var/cache/apt/archives/lock
+  - rm -f /etc/apt/apt.conf.d/docker-clean
+  - rm -f /var/cache/apt/archives/lock
   - apt-get update -q
   - apt-get install -qy build-essential cmake
   - apt-get install -qy libpoco-dev libjsoncpp-dev file

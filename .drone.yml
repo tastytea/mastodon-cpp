@@ -153,34 +153,59 @@ trigger:
   - tag
 
 steps:
-- name: deb
+- name: Debian stretch
   image: debian:stretch-slim
   pull: always
   environment:
     CXXFLAGS: -pipe -O2
+    LANG: C.utf8
   commands:
   - rm /etc/apt/apt.conf.d/docker-clean
   - rm /var/cache/apt/archives/lock
   - apt-get update -q
   - apt-get install -qy build-essential cmake
-  - apt-get install -qy libpoco-dev libjsoncpp-dev doxygen file
+  - apt-get install -qy libpoco-dev libjsoncpp-dev file
   - rm -rf build && mkdir -p build && cd build
   - cmake -DWITH_DOC=NO ..
   - make package
   - cmake -DWITH_DEB=YES -DWITH_DOC=NO ..
   - make package
   - cp -v mastodon-cpp-${DRONE_TAG}_x86_64.tar.gz ..
-  - cp -v libmastodon-cpp_${DRONE_TAG}-0_amd64.deb ..
+  - cp -v libmastodon-cpp_${DRONE_TAG}-0_stretch_amd64.deb ..
   volumes:
     - name: debian-package-cache
       path: /var/cache/apt/archives
 
-- name: rpm
+- name: Debian buster
+  image: debian:buster-slim
+  pull: always
+  environment:
+    CXXFLAGS: -pipe -O2
+    LANG: C.utf8
+  commands:
+  - rm /etc/apt/apt.conf.d/docker-clean
+  - rm /var/cache/apt/archives/lock
+  - apt-get update -q
+  - apt-get install -qy build-essential cmake
+  - apt-get install -qy libpoco-dev libjsoncpp-dev file
+  - rm -rf build && mkdir -p build && cd build
+  - cmake -DWITH_DOC=NO ..
+  - make package
+  - cmake -DWITH_DEB=YES -DWITH_DOC=NO ..
+  - make package
+  - cp -v mastodon-cpp-${DRONE_TAG}_x86_64.tar.gz ..
+  - cp -v libmastodon-cpp_${DRONE_TAG}-0_buster_amd64.deb ..
+  volumes:
+    - name: debian-package-cache
+      path: /var/cache/apt/archives
+
+- name: CentOS 7
   image: centos:7
   pull: always
   environment:
     CXX: /opt/rh/devtoolset-6/root/usr/bin/g++
     CXXFLAGS: -pipe -O2
+    LANG: C.utf8
   commands:
   - sed -i 's/keepcache=0/keepcache=1/' /etc/yum.conf
   - curl -s -o /var/cache/yum/epel-release-latest-7.noarch.rpm http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
@@ -211,7 +236,8 @@ steps:
     prerelease: true
     files:
       - mastodon-cpp-${DRONE_TAG}_x86_64.tar.gz
-      - libmastodon-cpp_${DRONE_TAG}-0_amd64.deb
+      - libmastodon-cpp_${DRONE_TAG}-0_stretch_amd64.deb
+      - libmastodon-cpp_${DRONE_TAG}-0_buster_amd64.deb
       - libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm
     checksum:
       - sha256

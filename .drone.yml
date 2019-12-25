@@ -163,7 +163,7 @@ steps:
   - rm -f /etc/apt/apt.conf.d/docker-clean
   - rm -f /var/cache/apt/archives/lock
   - apt-get update -q
-  - apt-get install -qy build-essential cmake
+  - apt-get install -qy build-essential cmake lsb-release
   - apt-get install -qy libpoco-dev libjsoncpp-dev file
   - rm -rf build && mkdir -p build && cd build
   - cmake -DWITH_DOC=NO ..
@@ -186,7 +186,7 @@ steps:
   - rm -f /etc/apt/apt.conf.d/docker-clean
   - rm -f /var/cache/apt/archives/lock
   - apt-get update -q
-  - apt-get install -qy build-essential cmake
+  - apt-get install -qy build-essential cmake lsb-release
   - apt-get install -qy libpoco-dev libjsoncpp-dev file
   - rm -rf build && mkdir -p build && cd build
   - cmake -DWITH_DOC=NO ..

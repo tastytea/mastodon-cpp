@@ -9,7 +9,7 @@ endif()
 include(GNUInstallDirs)
 
 project (mastodon-cpp
-  VERSION 0.111.4
+  VERSION 0.111.5
   LANGUAGES CXX)
 
 # DESCRIPTION was introduced in version 3.9.

@@ -166,11 +166,8 @@ steps:
   - apt-get install -qy build-essential cmake lsb-release
   - apt-get install -qy libpoco-dev libjsoncpp-dev file
   - rm -rf build && mkdir -p build && cd build
-  - cmake -DWITH_DOC=NO ..
-  - make package
   - cmake -DWITH_DEB=YES -DWITH_DOC=NO ..
   - make package
-  - cp -v mastodon-cpp-${DRONE_TAG}_x86_64.tar.gz ..
   - cp -v libmastodon-cpp_${DRONE_TAG}-0_stretch_amd64.deb ..
   volumes:
     - name: debian-package-cache
@@ -189,12 +186,29 @@ steps:
   - apt-get install -qy build-essential cmake lsb-release
   - apt-get install -qy libpoco-dev libjsoncpp-dev file
   - rm -rf build && mkdir -p build && cd build
-  - cmake -DWITH_DOC=NO ..
-  - make package
   - cmake -DWITH_DEB=YES -DWITH_DOC=NO ..
   - make package
-  - cp -v mastodon-cpp-${DRONE_TAG}_x86_64.tar.gz ..
   - cp -v libmastodon-cpp_${DRONE_TAG}-0_buster_amd64.deb ..
+  volumes:
+    - name: debian-package-cache
+      path: /var/cache/apt/archives
+
+- name: Ubuntu bionic
+  image: ubuntu:bionic
+  pull: always
+  environment:
+    CXXFLAGS: -pipe -O2
+    LANG: C.utf8
+  commands:
+  - rm -f /etc/apt/apt.conf.d/docker-clean
+  - rm -f /var/cache/apt/archives/lock
+  - apt-get update -q
+  - apt-get install -qy build-essential cmake lsb-release
+  - apt-get install -qy libpoco-dev libjsoncpp-dev file
+  - rm -rf build && mkdir -p build && cd build
+  - cmake -DWITH_DEB=YES -DWITH_DOC=NO ..
+  - make package
+  - cp -v libmastodon-cpp_${DRONE_TAG}-0_bionic_amd64.deb ..
   volumes:
     - name: debian-package-cache
       path: /var/cache/apt/archives
@@ -216,8 +230,6 @@ steps:
   - yum install -qy poco-devel openssl-devel doxygen rpm-build
   - yum --enablerepo=epel install -qy cmake3 jsoncpp-devel
   - rm -rf build && mkdir -p build && cd build
-  - cmake3 -DWITH_EXAMPLES=NO -DWITH_TESTS=NO ..
-  - make package
   - cmake3 -DWITH_RPM=YES -DWITH_DOC=NO ..
   - make package
   - cp -v libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm ..
@@ -235,9 +247,9 @@ steps:
     title: ${DRONE_TAG}
     prerelease: true
     files:
-      - mastodon-cpp-${DRONE_TAG}_x86_64.tar.gz
       - libmastodon-cpp_${DRONE_TAG}-0_stretch_amd64.deb
       - libmastodon-cpp_${DRONE_TAG}-0_buster_amd64.deb
+      - libmastodon-cpp_${DRONE_TAG}-0_bionic_amd64.deb
       - libmastodon-cpp-${DRONE_TAG}-0.x86_64.rpm
     checksum:
       - sha256

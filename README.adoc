@@ -3,6 +3,14 @@
 :project: mastodon-cpp
 :uri-base: https://schlomp.space/tastytea/{project}
 :uri-branch-main: {uri-base}/src/branch/master
+:uri-mastodonpp: https://schlomp.space/tastytea/mastodonpp
+
+[IMPORTANT]
+This project has become too complicated to maintain by myself and I can't find
+the energy to add features. I'm attempting a complete rewrite, with cleaner and
+much easier to understand code at link:{uri-mastodonpp}[mastodonpp]. You can
+still report bugs here and I will respond, but I won't put too much work
+in it. If you want to take over maintainership, get in touch.
 
 *{project}* is a C++ wrapper for the Mastodon API. You submit an API call
 and get the raw JSON that you can then transform into easy to use abstractions.
